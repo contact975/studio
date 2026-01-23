@@ -4,6 +4,7 @@ import { ClientsSection } from '@/components/landing/clients-section';
 import { ServicesSection } from '@/components/landing/services-section';
 import { WhyUsSection } from '@/components/landing/why-us-section';
 import { TestimonialsSection } from '@/components/landing/testimonials-section';
+import { FaqSection } from '@/components/landing/faq-section';
 import { Footer } from '@/components/landing/footer';
 
 export default function Home() {
@@ -16,6 +17,7 @@ export default function Home() {
         <ServicesSection />
         <WhyUsSection />
         <TestimonialsSection />
+        <FaqSection />
       </main>
       <Footer />
     </div>
