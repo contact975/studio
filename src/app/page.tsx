@@ -2,6 +2,7 @@ import { Header } from '@/components/landing/header';
 import { HeroSection } from '@/components/landing/hero-section';
 import { ServicesSection } from '@/components/landing/services-section';
 import { WhyUsSection } from '@/components/landing/why-us-section';
+import { TestimonialsSection } from '@/components/landing/testimonials-section';
 import { Footer } from '@/components/landing/footer';
 
 export default function Home() {
@@ -12,6 +13,7 @@ export default function Home() {
         <HeroSection />
         <ServicesSection />
         <WhyUsSection />
+        <TestimonialsSection />
       </main>
       <Footer />
     </div>
