@@ -67,7 +67,7 @@ const services = [
     title: "ดูแลลูกค้า",
     fullTitle: "บริการดูแลลูกค้า ซัพพอร์ต (Customer Support)",
     description: "พร้อมให้คำปรึกษาแบบใกล้ชิดและเป็นกันเองในฐานะ 'เลขาส่วนตัวธุรกิจ' ซัพพอร์ตทุกปัญหาเพื่อให้ธุรกิจของคุณลื่นไหลและไม่สะดุด",
-    imageUrl: "https://picsum.photos/seed/support/800/600",
+    imageUrl: "https://images.unsplash.com/photo-1604881990409-b9f246db39da?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxNHx8c3VwcG9ydHxlbnwwfHx8fDE3NjkxOTAyNzd8MA&ixlib=rb-4.1.0&q=80&w=1080",
     imageHint: "customer service",
   },
 ];
