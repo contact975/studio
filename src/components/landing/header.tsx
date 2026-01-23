@@ -5,7 +5,6 @@ import Link from "next/link";
 import {
   BookUser,
   Menu,
-  MessageCircle,
   ChevronDown,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -87,10 +86,9 @@ export function Header() {
           )}
         </nav>
         <div className="flex items-center gap-4 ml-auto">
-          <Button asChild className="hidden sm:flex bg-green-500 hover:bg-green-600 text-white rounded-full">
+          <Button asChild className="hidden sm:flex rounded-full">
             <Link href="https://line.me/ti/p/~" target="_blank">
-              <MessageCircle className="mr-2 h-5 w-5" />
-              ติดต่อทาง Line
+              ติดต่อเรา
             </Link>
           </Button>
           <Sheet>
@@ -144,10 +142,9 @@ export function Header() {
                     </Link>
                   )
                 )}
-                <Button asChild className="bg-green-500 hover:bg-green-600 text-white rounded-full mt-4">
+                <Button asChild className="rounded-full mt-4">
                   <Link href="https://line.me/ti/p/~" target="_blank">
-                    <MessageCircle className="mr-2 h-5 w-5" />
-                    ติดต่อทาง Line
+                    ติดต่อเรา
                   </Link>
                 </Button>
               </nav>

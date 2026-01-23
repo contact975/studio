@@ -28,7 +28,7 @@ export function Footer() {
         </div>
       </div>
       <div className="container mx-auto px-6 mt-10 text-center opacity-50 text-sm">
-        © {new Date().getFullYear() + 2} IC Accounting & Service. All rights reserved.
+        © {new Date().getFullYear()} IC Accounting & Service. All rights reserved.
       </div>
     </footer>
   );
