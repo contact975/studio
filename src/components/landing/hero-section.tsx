@@ -8,7 +8,7 @@ export function HeroSection() {
           เลขาส่วนตัวธุรกิจที่ช่วยให้เรื่องบัญชีและภาษีเป็นเรื่องง่ายสำหรับคุณ
         </h1>
         <p className="text-lg md:text-xl max-w-3xl mx-auto mb-8 opacity-90">
-          ดูแลครอบคลุมทุกเรื่องบัญชีและภาษี เพื่อให้คุณโฟกัสกับธุรกิจได้อย่างเต็มที่
+          ดูแลครบทั้งระบบบัญชีและงานมีเดียคอนเทนต์ ให้คำปรึกษาพร้อมวางระบบหลังบ้านถึงที่ เพื่อการเติบโตของธุรกิจคุณอย่างมั่นคง
         </p>
         <div className="mt-12">
           <div className="relative aspect-video max-w-3xl mx-auto bg-black/20 rounded-xl overflow-hidden shadow-2xl group cursor-pointer">
