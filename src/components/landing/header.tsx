@@ -13,7 +13,6 @@ const navLinks = [
   { href: "/", label: "หน้าแรก" },
   { href: "/#services", label: "บริการของเรา" },
   { href: "/about", label: "เกี่ยวกับเรา" },
-  { href: "/#testimonials", label: "รีวิวลูกค้า" },
   { href: "/#contact", label: "ติดต่อเรา" },
 ];
 
