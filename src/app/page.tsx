@@ -1,5 +1,6 @@
 import { Header } from '@/components/landing/header';
 import { HeroSection } from '@/components/landing/hero-section';
+import { ClientsSection } from '@/components/landing/clients-section';
 import { ServicesSection } from '@/components/landing/services-section';
 import { WhyUsSection } from '@/components/landing/why-us-section';
 import { TestimonialsSection } from '@/components/landing/testimonials-section';
@@ -11,6 +12,7 @@ export default function Home() {
       <Header />
       <main className="flex-1">
         <HeroSection />
+        <ClientsSection />
         <ServicesSection />
         <WhyUsSection />
         <TestimonialsSection />
