@@ -10,7 +10,7 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 const navLinks = [
-  { href: "#", label: "หน้าแรก" },
+  { href: "#hero", label: "หน้าแรก" },
   { href: "#services", label: "บริการของเรา" },
   { href: "#about", label: "เกี่ยวกับเรา" },
   { href: "#testimonials", label: "รีวิวลูกค้า" },
