@@ -10,18 +10,18 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 const navLinks = [
-  { href: "#hero", label: "หน้าแรก" },
-  { href: "#services", label: "บริการของเรา" },
-  { href: "#about", label: "เกี่ยวกับเรา" },
-  { href: "#testimonials", label: "รีวิวลูกค้า" },
-  { href: "#contact", label: "ติดต่อเรา" },
+  { href: "/", label: "หน้าแรก" },
+  { href: "/#services", label: "บริการของเรา" },
+  { href: "/about", label: "เกี่ยวกับเรา" },
+  { href: "/#testimonials", label: "รีวิวลูกค้า" },
+  { href: "/#contact", label: "ติดต่อเรา" },
 ];
 
 export function Header() {
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-card/95 backdrop-blur supports-[backdrop-filter]:bg-card/60">
       <div className="container mx-auto flex h-16 items-center px-4 md:px-6">
-        <Link href="#" className="mr-6 flex items-center gap-2" prefetch={false}>
+        <Link href="/" className="mr-6 flex items-center gap-2" prefetch={false}>
           <BookUser className="h-6 w-6 text-primary" />
           <span className="font-bold text-lg text-primary">IC Accounting</span>
         </Link>
@@ -54,7 +54,7 @@ export function Header() {
             <SheetContent side="right">
               <nav className="grid gap-6 text-lg font-medium mt-8">
                 <Link
-                  href="#"
+                  href="/"
                   className="flex items-center gap-2 text-lg font-semibold"
                   prefetch={false}
                 >
