@@ -38,6 +38,11 @@ const navLinks = [
 
 export function Header() {
   const [isServicesOpen, setIsServicesOpen] = React.useState(false);
+  const [isClient, setIsClient] = React.useState(false);
+
+  React.useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-card/95 backdrop-blur supports-[backdrop-filter]:bg-card/60">
@@ -91,65 +96,67 @@ export function Header() {
               ติดต่อเรา
             </Link>
           </Button>
-          <Sheet>
-            <SheetTrigger asChild>
-              <Button variant="outline" size="icon" className="md:hidden">
-                <Menu className="h-6 w-6" />
-                <span className="sr-only">Toggle navigation menu</span>
-              </Button>
-            </SheetTrigger>
-            <SheetContent side="right">
-              <nav className="grid gap-6 text-lg font-medium mt-8">
-                <Link
-                  href="/"
-                  className="flex items-center gap-2 text-lg font-semibold"
-                  prefetch={false}
-                >
-                  <BookUser className="h-6 w-6 text-primary" />
-                  <span className="sr-only">IC Accounting</span>
-                </Link>
-                {navLinks.map((link) =>
-                  link.subLinks ? (
-                     <Accordion key={link.label} type="single" collapsible className="w-full">
-                        <AccordionItem value="services" className="border-b-0">
-                          <AccordionTrigger className="py-0 text-lg font-medium text-muted-foreground hover:text-foreground hover:no-underline">
-                            {link.label}
-                          </AccordionTrigger>
-                          <AccordionContent className="pt-4 pl-4">
-                            <div className="grid gap-4">
-                              {link.subLinks.map((subLink) => (
-                                <Link
-                                  key={subLink.label}
-                                  href={subLink.href}
-                                  className="text-muted-foreground hover:text-foreground"
-                                  prefetch={false}
-                                >
-                                  {subLink.label}
-                                </Link>
-                              ))}
-                            </div>
-                          </AccordionContent>
-                        </AccordionItem>
-                      </Accordion>
-                  ) : (
-                    <Link
-                      key={link.label}
-                      href={link.href}
-                      className="text-muted-foreground hover:text-foreground"
-                      prefetch={false}
-                    >
-                      {link.label}
-                    </Link>
-                  )
-                )}
-                <Button asChild className="rounded-full mt-4">
-                  <Link href="https://line.me/ti/p/~" target="_blank">
-                    ติดต่อเรา
-                  </Link>
+          {isClient && (
+            <Sheet>
+              <SheetTrigger asChild>
+                <Button variant="outline" size="icon" className="md:hidden">
+                  <Menu className="h-6 w-6" />
+                  <span className="sr-only">Toggle navigation menu</span>
                 </Button>
-              </nav>
-            </SheetContent>
-          </Sheet>
+              </SheetTrigger>
+              <SheetContent side="right">
+                <nav className="grid gap-6 text-lg font-medium mt-8">
+                  <Link
+                    href="/"
+                    className="flex items-center gap-2 text-lg font-semibold"
+                    prefetch={false}
+                  >
+                    <BookUser className="h-6 w-6 text-primary" />
+                    <span className="sr-only">IC Accounting</span>
+                  </Link>
+                  {navLinks.map((link) =>
+                    link.subLinks ? (
+                      <Accordion key={link.label} type="single" collapsible className="w-full">
+                          <AccordionItem value="services" className="border-b-0">
+                            <AccordionTrigger className="py-0 text-lg font-medium text-muted-foreground hover:text-foreground hover:no-underline">
+                              {link.label}
+                            </AccordionTrigger>
+                            <AccordionContent className="pt-4 pl-4">
+                              <div className="grid gap-4">
+                                {link.subLinks.map((subLink) => (
+                                  <Link
+                                    key={subLink.label}
+                                    href={subLink.href}
+                                    className="text-muted-foreground hover:text-foreground"
+                                    prefetch={false}
+                                  >
+                                    {subLink.label}
+                                  </Link>
+                                ))}
+                              </div>
+                            </AccordionContent>
+                          </AccordionItem>
+                        </Accordion>
+                    ) : (
+                      <Link
+                        key={link.label}
+                        href={link.href}
+                        className="text-muted-foreground hover:text-foreground"
+                        prefetch={false}
+                      >
+                        {link.label}
+                      </Link>
+                    )
+                  )}
+                  <Button asChild className="rounded-full mt-4">
+                    <Link href="https://line.me/ti/p/~" target="_blank">
+                      ติดต่อเรา
+                    </Link>
+                  </Button>
+                </nav>
+              </SheetContent>
+            </Sheet>
+          )}
         </div>
       </div>
     </header>
