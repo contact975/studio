@@ -5,7 +5,7 @@ export function HeroSection() {
     <section id="hero" className="bg-primary text-primary-foreground py-20 md:py-32">
       <div className="container mx-auto px-4 text-center">
         <h1 className="text-4xl md:text-5xl font-bold font-headline mb-4 tracking-tight">
-          IC Accounting & Service: เลขาส่วนตัวธุรกิจที่ช่วยให้เรื่องบัญชีและภาษีเป็นเรื่องง่ายสำหรับคุณ
+          เลขาส่วนตัวธุรกิจที่ช่วยให้เรื่องบัญชีและภาษีเป็นเรื่องง่ายสำหรับคุณ
         </h1>
         <p className="text-lg md:text-xl max-w-3xl mx-auto mb-8 opacity-90">
           ดูแลครอบคลุมทุกเรื่องบัญชีและภาษี เพื่อให้คุณโฟกัสกับธุรกิจได้อย่างเต็มที่
