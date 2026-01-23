@@ -46,7 +46,7 @@ export function Header() {
           <BookUser className="h-6 w-6 text-primary" />
           <span className="font-bold text-lg text-primary">IC Accounting</span>
         </Link>
-        <nav className="hidden flex-1 items-center justify-center gap-6 text-sm font-medium md:flex">
+        <nav className="hidden flex-1 items-center justify-center gap-8 text-base font-medium md:flex">
           {navLinks.map((link) =>
             link.subLinks ? (
               <div 
@@ -59,12 +59,12 @@ export function Header() {
                   {link.label} <ChevronDown className={`relative top-[1px] h-4 w-4 transition-transform duration-200 ${isServicesOpen ? 'rotate-180' : ''}`} />
                 </div>
                 {isServicesOpen && (
-                  <div className="absolute top-full left-1/2 -translate-x-1/2 w-56 z-50 min-w-[8rem] overflow-hidden rounded-md border bg-popover p-1 text-popover-foreground shadow-md">
+                  <div className="absolute top-full left-1/2 -translate-x-1/2 w-64 z-50 min-w-[8rem] overflow-hidden rounded-md border bg-popover p-1 text-popover-foreground shadow-md">
                      {link.subLinks.map((subLink) => (
                       <Link 
                         key={subLink.label} 
                         href={subLink.href}
-                        className="relative flex select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-none transition-colors hover:bg-accent hover:text-accent-foreground cursor-pointer"
+                        className="relative flex select-none items-center gap-2 rounded-sm px-3 py-2 text-base outline-none transition-colors hover:bg-accent hover:text-accent-foreground cursor-pointer"
                         onClick={() => setIsServicesOpen(false)}
                       >
                         {subLink.label}
