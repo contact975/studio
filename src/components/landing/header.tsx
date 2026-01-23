@@ -64,7 +64,7 @@ export function Header() {
                   {link.label} <ChevronDown className={`relative top-[1px] h-4 w-4 transition-transform duration-200 ${isServicesOpen ? 'rotate-180' : ''}`} />
                 </div>
                 {isServicesOpen && (
-                  <div className="absolute top-full left-1/2 -translate-x-1/2 w-64 z-50 min-w-[8rem] overflow-hidden rounded-md border bg-popover p-1 text-popover-foreground shadow-md animate-in fade-in-0 zoom-in-95">
+                  <div className="absolute top-full left-1/2 -translate-x-1/2 w-64 z-50 min-w-[8rem] overflow-hidden rounded-md border bg-popover p-1 text-popover-foreground shadow-md animate-in fade-in-0 slide-in-from-top-2">
                      {link.subLinks.map((subLink) => (
                       <Link 
                         key={subLink.label} 
