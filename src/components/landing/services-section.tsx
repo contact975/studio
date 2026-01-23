@@ -106,7 +106,7 @@ export function ServicesSection() {
               key={service.id}
               variant={current === index ? "default" : "outline"}
               className={cn(
-                "rounded-full transition-colors border-border/50",
+                "rounded-full transition-all duration-200 ease-in-out hover:scale-110 border-border/50",
                 current === index
                   ? "bg-primary text-primary-foreground hover:bg-primary/90"
                   : "bg-card text-foreground hover:bg-accent"
