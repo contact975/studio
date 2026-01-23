@@ -1,5 +1,6 @@
 "use client";
 
+import * as React from "react";
 import Link from "next/link";
 import {
   BookUser,
@@ -9,12 +10,6 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import {
   Accordion,
   AccordionContent,
@@ -43,6 +38,8 @@ const navLinks = [
 ];
 
 export function Header() {
+  const [isServicesOpen, setIsServicesOpen] = React.useState(false);
+
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-card/95 backdrop-blur supports-[backdrop-filter]:bg-card/60">
       <div className="container mx-auto flex h-16 items-center px-4 md:px-6">
@@ -53,18 +50,30 @@ export function Header() {
         <nav className="hidden flex-1 items-center justify-center gap-6 text-sm font-medium md:flex">
           {navLinks.map((link) =>
             link.subLinks ? (
-              <DropdownMenu key={link.label}>
-                <DropdownMenuTrigger className="flex items-center gap-1 text-foreground/70 transition-colors hover:text-foreground outline-none">
-                  {link.label} <ChevronDown className="relative top-[1px] h-4 w-4 transition-transform duration-200 group-data-[state=open]:rotate-180" />
-                </DropdownMenuTrigger>
-                <DropdownMenuContent>
-                  {link.subLinks.map((subLink) => (
-                    <DropdownMenuItem key={subLink.label} asChild>
-                      <Link href={subLink.href}>{subLink.label}</Link>
-                    </DropdownMenuItem>
-                  ))}
-                </DropdownMenuContent>
-              </DropdownMenu>
+              <div 
+                key={link.label}
+                className="relative"
+                onMouseEnter={() => setIsServicesOpen(true)}
+                onMouseLeave={() => setIsServicesOpen(false)}
+              >
+                <div className="flex items-center gap-1 text-foreground/70 transition-colors hover:text-foreground outline-none cursor-default">
+                  {link.label} <ChevronDown className={`relative top-[1px] h-4 w-4 transition-transform duration-200 ${isServicesOpen ? 'rotate-180' : ''}`} />
+                </div>
+                {isServicesOpen && (
+                  <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-56 z-50 min-w-[8rem] overflow-hidden rounded-md border bg-popover p-1 text-popover-foreground shadow-md">
+                     {link.subLinks.map((subLink) => (
+                      <Link 
+                        key={subLink.label} 
+                        href={subLink.href}
+                        className="relative flex select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-none transition-colors hover:bg-accent hover:text-accent-foreground cursor-pointer"
+                        onClick={() => setIsServicesOpen(false)}
+                      >
+                        {subLink.label}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
             ) : (
               <Link
                 key={link.label}
