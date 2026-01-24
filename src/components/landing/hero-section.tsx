@@ -7,7 +7,7 @@ export function HeroSection() {
       <div className="container mx-auto px-6 py-20 flex flex-col items-center text-center">
         <h1 className="text-5xl md:text-6xl font-bold mb-8 leading-tight font-headline">
           IC Accounting & Service <br />
-          <span className="text-blue-300">พาร์ทเนอร์ที่ธุรกิจคุณไว้วางใจ</span>
+          <span className="text-blue-300">พาร์ทเนอร์ที่ช่วยให้เรื่องภาษีและบัญชีเป็นเรื่องง่าย</span>
         </h1>
         <p className="text-xl opacity-90 mb-10 max-w-2xl">
           เราดูแลบัญชี ภาษี และวางระบบองค์กรด้วยเทคโนโลยีสมัยใหม่ในเชียงใหม่ 
