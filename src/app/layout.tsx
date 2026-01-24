@@ -22,6 +22,7 @@ export default function RootLayout({
         <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
         <script src="https://fast.wistia.com/embed/medias/hd04a418nd.jsonp" async></script>
         <script src="https://fast.wistia.com/assets/external/E-v1.js" async></script>
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" async></script>
       </head>
       <body className={cn('font-body antialiased')} suppressHydrationWarning>
         {children}
