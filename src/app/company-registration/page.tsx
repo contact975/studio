@@ -37,6 +37,39 @@ export default function CompanyRegistrationPage() {
               <p className="text-lg md:text-xl opacity-90 max-w-3xl">เริ่มต้นธุรกิจอย่างมั่นใจ บริการจดทะเบียนบริษัทและห้างหุ้นส่วนแบบครบวงจร ให้คุณเริ่มต้นก้าวแรกของธุรกิจได้อย่างถูกต้องและรวดเร็ว</p>
           </div>
         </section>
+        
+        <section className="py-20 md:py-28 bg-secondary/60">
+            <div className="container mx-auto px-4 md:px-6">
+                <h2 className="text-3xl md:text-4xl font-bold font-headline text-center mb-16 text-foreground">
+                แพ็กเกจบริการจดทะเบียน
+                </h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                {registrationPackages.map((pkg) => (
+                    <Card key={pkg.name} className="text-center p-8 rounded-xl shadow-lg hover:shadow-2xl transition-shadow bg-card flex flex-col">
+                        <CardHeader className="flex-shrink-0 p-0 mb-4">
+                            <div className="flex justify-center mb-4">
+                                <div className="inline-block px-6 py-2 rounded-full bg-primary/90 text-primary-foreground font-semibold text-sm">
+                                    {pkg.type}
+                                </div>
+                            </div>
+                            <CardTitle className="text-2xl font-bold">{pkg.name}</CardTitle>
+                        </CardHeader>
+                        <CardContent className="flex-grow p-0">
+                            <p className="text-3xl font-bold text-primary my-4">฿ {new Intl.NumberFormat('th-TH').format(Number(pkg.price))}</p>
+                            <p className="text-muted-foreground text-sm min-h-[40px]">
+                                {pkg.description}
+                            </p>
+                        </CardContent>
+                        <CardFooter className="justify-center pt-6 flex-shrink-0 p-0">
+                            <Button asChild className="w-full rounded-full" size="lg">
+                                <Link href="/#contact">{pkg.buttonText}</Link>
+                            </Button>
+                        </CardFooter>
+                    </Card>
+                ))}
+                </div>
+            </div>
+        </section>
 
         <section className="py-20 md:py-28 bg-background">
           <div className="container mx-auto px-4 md:px-6">
@@ -89,39 +122,6 @@ export default function CompanyRegistrationPage() {
               </Card>
             </div>
           </div>
-        </section>
-
-        <section className="py-20 md:py-28 bg-secondary/60">
-            <div className="container mx-auto px-4 md:px-6">
-                <h2 className="text-3xl md:text-4xl font-bold font-headline text-center mb-16 text-foreground">
-                แพ็กเกจบริการจดทะเบียน
-                </h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                {registrationPackages.map((pkg) => (
-                    <Card key={pkg.name} className="text-center p-8 rounded-xl shadow-lg hover:shadow-2xl transition-shadow bg-card flex flex-col">
-                        <CardHeader className="flex-shrink-0 p-0 mb-4">
-                            <div className="flex justify-center mb-4">
-                                <div className="inline-block px-6 py-2 rounded-full bg-primary/90 text-primary-foreground font-semibold text-sm">
-                                    {pkg.type}
-                                </div>
-                            </div>
-                            <CardTitle className="text-2xl font-bold">{pkg.name}</CardTitle>
-                        </CardHeader>
-                        <CardContent className="flex-grow p-0">
-                            <p className="text-3xl font-bold text-primary my-4">฿ {new Intl.NumberFormat('th-TH').format(Number(pkg.price))}</p>
-                            <p className="text-muted-foreground text-sm min-h-[40px]">
-                                {pkg.description}
-                            </p>
-                        </CardContent>
-                        <CardFooter className="justify-center pt-6 flex-shrink-0 p-0">
-                            <Button asChild className="w-full rounded-full" size="lg">
-                                <Link href="/#contact">{pkg.buttonText}</Link>
-                            </Button>
-                        </CardFooter>
-                    </Card>
-                ))}
-                </div>
-            </div>
         </section>
 
         <section className="py-20 md:py-28 bg-secondary">
