@@ -2,8 +2,8 @@
 
 import * as React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import {
-  BookUser,
   Menu,
   ChevronDown,
 } from "lucide-react";
@@ -48,7 +48,7 @@ export function Header() {
     <header className="sticky top-0 z-50 w-full border-b bg-card/95 backdrop-blur supports-[backdrop-filter]:bg-card/60">
       <div className="container mx-auto flex h-16 items-center px-4 md:px-6">
         <Link href="/" className="mr-6 flex items-center gap-2" prefetch={false}>
-          <BookUser className="h-6 w-6 text-primary" />
+          <Image src="https://live.staticflickr.com/65535/55057079017_ab04e1a929_q.jpg" alt="IC Accounting Logo" width={40} height={40} />
           <span className="font-bold text-lg text-primary">IC Accounting</span>
         </Link>
         <nav className="hidden flex-1 items-center justify-center gap-8 text-base font-medium md:flex">
@@ -111,7 +111,7 @@ export function Header() {
                     className="flex items-center gap-2 text-lg font-semibold"
                     prefetch={false}
                   >
-                    <BookUser className="h-6 w-6 text-primary" />
+                    <Image src="https://live.staticflickr.com/65535/55057079017_ab04e1a929_q.jpg" alt="IC Accounting Logo" width={24} height={24} />
                     <span className="sr-only">IC Accounting</span>
                   </Link>
                   {navLinks.map((link) =>
