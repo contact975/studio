@@ -18,7 +18,7 @@ export default function MediaContentPage() {
   }, []);
 
   return (
-    <div className="bg-slate-950 text-white min-h-screen font-sans selection:bg-blue-500 selection:text-white">
+    <div className="bg-slate-950 text-white min-h-screen selection:bg-blue-500 selection:text-white">
       <Header />
       <main>
         <section className="pt-32 pb-20 px-6 container mx-auto border-b border-white/10">
