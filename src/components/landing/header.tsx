@@ -48,7 +48,7 @@ export function Header() {
     <header className="sticky top-0 z-50 w-full border-b bg-card/95 backdrop-blur supports-[backdrop-filter]:bg-card/60">
       <div className="container mx-auto flex h-16 items-center px-4 md:px-6">
         <Link href="/" className="mr-6 flex items-center gap-2" prefetch={false}>
-          <Image src="https://live.staticflickr.com/65535/55057097267_cdf6d13e92_q.jpg" alt="IC Accounting Logo" width={40} height={40} />
+          <Image src="https://live.staticflickr.com/65535/55057097267_cdf6d13e92_t.jpg" alt="IC Accounting Logo" width={40} height={40} />
           <Image src="https://live.staticflickr.com/65535/55057990986_3f24fbba55_w.jpg" alt="IC Accounting" width={120} height={35} />
         </Link>
         <nav className="hidden flex-1 items-center justify-center gap-8 text-base font-medium md:flex">
@@ -111,7 +111,7 @@ export function Header() {
                     className="flex items-center gap-2 text-lg font-semibold"
                     prefetch={false}
                   >
-                    <Image src="https://live.staticflickr.com/65535/55057097267_cdf6d13e92_q.jpg" alt="IC Accounting Logo" width={24} height={24} />
+                    <Image src="https://live.staticflickr.com/65535/55057097267_cdf6d13e92_t.jpg" alt="IC Accounting Logo" width={24} height={24} />
                     <span className="sr-only">IC Accounting</span>
                   </Link>
                   {navLinks.map((link) =>
