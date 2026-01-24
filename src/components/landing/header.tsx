@@ -20,7 +20,7 @@ import {
 const serviceSubLinks = [
   { href: "/#services", label: "บริการจดทะเบียนบริษัท" },
   { href: "/accounting-services", label: "บริการทำบัญชี" },
-  { href: "/#services", label: "บริการตรวจสอบบัญชี" },
+  { href: "/audit-services", label: "บริการตรวจสอบบัญชี" },
   { href: "/#services", label: "บริการทำ Visa & Work Permit" },
   { href: "/#services", label: "บริการ วางระบบองค์กร" },
   { href: "/#services", label: "บริการผลิต Media Content Online" },
