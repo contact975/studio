@@ -54,7 +54,7 @@ const packages = [
     limit: 'จำนวนรายการต่อเดือนไม่เกิน 120 รายการ',
     bgColor: 'bg-blue-600',
     details: [
-      'ทุกอย่างในแพ็กเกจ M',
+      'ทุกอย่างในแพ็กเกจ L',
       'บริการรับ-ส่งเอกสาร (ในพื้นที่จังหวัดเชียงใหม่)',
       'จัดทำและนำส่งงบการเงินประจำปี (ภ.ง.ด.50)',
       'เข้าพบและให้คำปรึกษาที่สำนักงานลูกค้า (ไตรมาสละ 1 ครั้ง)',
@@ -118,29 +118,29 @@ export default function AccountingServicesPage() {
         </section>
         
         {/* Service Description Section */}
-        <section className="py-20 md:py-28 bg-card">
+        <section className="py-20 md:py-28 bg-primary text-primary-foreground">
             <div className="container mx-auto px-4 md:px-6">
                 <div className="grid md:grid-cols-2 gap-16 items-center">
                     <div className="space-y-6">
                         <div className="flex items-center gap-4">
-                            <div className="bg-primary/10 p-3 rounded-full">
-                                <Calculator className="h-8 w-8 text-primary" />
+                            <div className="bg-background/20 p-3 rounded-full">
+                                <Calculator className="h-8 w-8 text-primary-foreground" />
                             </div>
                             <h2 className="text-3xl font-bold font-headline">บริการจัดทำบัญชี</h2>
                         </div>
-                        <p className="text-lg text-muted-foreground leading-relaxed">ดูแลครบวงจรตั้งแต่ลงบัญชี ยื่นภาษี จนถึงปิดงบฯ เราให้คุณมากกว่าแค่ตัวเลข ด้วยการวิเคราะห์ต้นทุนและสถานะการเงิน เสมือนมี CFO ส่วนตัว อยู่เคียงข้างธุรกิจคุณ</p>
+                        <p className="text-lg text-primary-foreground/90 leading-relaxed">ดูแลครบวงจรตั้งแต่ลงบัญชี ยื่นภาษี จนถึงปิดงบฯ เราให้คุณมากกว่าแค่ตัวเลข ด้วยการวิเคราะห์ต้นทุนและสถานะการเงิน เสมือนมี CFO ส่วนตัว อยู่เคียงข้างธุรกิจคุณ</p>
                         <ul className="space-y-4">
                           <li className="flex items-start gap-3">
-                            <CheckCircle className="h-6 w-6 text-green-500 mt-1 flex-shrink-0" />
-                            <span className="text-foreground">เชื่อมต่อระบบขายหน้าร้านและออนไลน์โดยอัตโนมัติ</span>
+                            <CheckCircle className="h-6 w-6 text-primary-foreground mt-1 flex-shrink-0" />
+                            <span>เชื่อมต่อระบบขายหน้าร้านและออนไลน์โดยอัตโนมัติ</span>
                           </li>
                           <li className="flex items-start gap-3">
-                            <CheckCircle className="h-6 w-6 text-green-500 mt-1 flex-shrink-0" />
-                            <span className="text-foreground">ดูแลการยื่นภาษีครบถ้วนเพื่อลดความเสี่ยงทางกฎหมาย</span>
+                            <CheckCircle className="h-6 w-6 text-primary-foreground mt-1 flex-shrink-0" />
+                            <span>ดูแลการยื่นภาษีครบถ้วนเพื่อลดความเสี่ยงทางกฎหมาย</span>
                           </li>
                           <li className="flex items-start gap-3">
-                            <CheckCircle className="h-6 w-6 text-green-500 mt-1 flex-shrink-0" />
-                            <span className="text-foreground">พร้อมรายงานวิเคราะห์สถานะการเงินเพื่อการบริหารจัดการ</span>
+                            <CheckCircle className="h-6 w-6 text-primary-foreground mt-1 flex-shrink-0" />
+                            <span>พร้อมรายงานวิเคราะห์สถานะการเงินเพื่อการบริหารจัดการ</span>
                           </li>
                         </ul>
                     </div>
