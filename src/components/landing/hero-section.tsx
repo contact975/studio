@@ -36,14 +36,32 @@ export function HeroSection() {
         </p>
 
         <div className="relative w-full max-w-4xl mx-auto aspect-video rounded-xl overflow-hidden shadow-2xl mb-12">
-          <iframe
-            className="absolute top-0 left-0 w-full h-full"
-            src="https://www.youtube.com/embed/wfVktBpUIpw"
-            title="YouTube video player"
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowFullScreen
-          ></iframe>
+           <div
+                className="wistia_responsive_padding"
+                style={{ paddingTop: '56.25%', position: 'relative' }}
+            >
+                <div
+                    className="wistia_responsive_wrapper"
+                    style={{
+                        height: '100%',
+                        left: 0,
+                        position: 'absolute',
+                        top: 0,
+                        width: '100%',
+                    }}
+                >
+                    <div
+                        className="wistia_embed wistia_async_hd04a418nd videoFoam=true"
+                        style={{
+                            height: '100%',
+                            position: 'relative',
+                            width: '100%',
+                        }}
+                    >
+                        &nbsp;
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div className="flex flex-col sm:flex-row gap-4">
