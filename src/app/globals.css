@@ -117,3 +117,18 @@
     background-size: 400% 400%;
     animation: gradientBG 10s ease infinite;
 }
+
+/* ซ่อนปุ่ม Play และแถบควบคุมใน Browser ต่างๆ */
+video::-webkit-media-controls {
+    display: none !important;
+}
+
+video::-webkit-media-controls-start-playback-button {
+    display: none !important;
+    -webkit-appearance: none;
+}
+
+/* ป้องกันไม่ให้คลิกขวาแล้วขึ้นเมนูสั่งเล่น */
+video {
+    pointer-events: none;
+}
