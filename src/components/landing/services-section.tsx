@@ -123,7 +123,7 @@ export function ServicesSection() {
             {services.map((service) => (
               <CarouselItem key={service.id}>
                  <div className="p-1">
-                  <div className="grid md:grid-cols-2 gap-8 md:gap-16 items-center bg-card p-8 md:p-12 rounded-xl shadow-sm">
+                  <div className="grid md:grid-cols-2 gap-8 md:gap-16 items-center bg-primary text-primary-foreground p-8 md:p-12 rounded-xl shadow-sm">
                     <div className="relative aspect-[4/3] rounded-lg overflow-hidden">
                       <Image
                         src={service.imageUrl}
@@ -134,10 +134,10 @@ export function ServicesSection() {
                       />
                     </div>
                     <div className="space-y-4">
-                      <h3 className="text-2xl md:text-3xl font-bold font-headline text-primary">
+                      <h3 className="text-2xl md:text-3xl font-bold font-headline">
                         {service.fullTitle}
                       </h3>
-                      <p className="text-muted-foreground leading-relaxed">
+                      <p className="opacity-90 leading-relaxed">
                         {service.description}
                       </p>
                     </div>
