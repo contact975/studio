@@ -120,33 +120,28 @@ export default function AccountingServicesPage() {
         {/* Service Description Section */}
         <section className="py-20 md:py-28 bg-primary text-primary-foreground">
             <div className="container mx-auto px-4 md:px-6">
-                <div className="grid md:grid-cols-2 gap-16 items-center">
-                    <div className="space-y-6">
-                        <div className="flex items-center gap-4">
-                            <div className="bg-background/20 p-3 rounded-full">
-                                <Calculator className="h-8 w-8 text-primary-foreground" />
-                            </div>
-                            <h2 className="text-3xl font-bold font-headline">บริการจัดทำบัญชี</h2>
+                <div className="max-w-3xl mx-auto text-center space-y-8">
+                    <div className="inline-flex items-center gap-4">
+                        <div className="bg-background/20 p-3 rounded-full">
+                            <Calculator className="h-8 w-8 text-primary-foreground" />
                         </div>
-                        <p className="text-lg text-primary-foreground/90 leading-relaxed">ดูแลครบวงจรตั้งแต่ลงบัญชี ยื่นภาษี จนถึงปิดงบฯ เราให้คุณมากกว่าแค่ตัวเลข ด้วยการวิเคราะห์ต้นทุนและสถานะการเงิน เสมือนมี CFO ส่วนตัว อยู่เคียงข้างธุรกิจคุณ</p>
-                        <ul className="space-y-4">
-                          <li className="flex items-start gap-3">
-                            <CheckCircle className="h-6 w-6 text-primary-foreground mt-1 flex-shrink-0" />
-                            <span>เชื่อมต่อระบบขายหน้าร้านและออนไลน์โดยอัตโนมัติ</span>
-                          </li>
-                          <li className="flex items-start gap-3">
-                            <CheckCircle className="h-6 w-6 text-primary-foreground mt-1 flex-shrink-0" />
-                            <span>ดูแลการยื่นภาษีครบถ้วนเพื่อลดความเสี่ยงทางกฎหมาย</span>
-                          </li>
-                          <li className="flex items-start gap-3">
-                            <CheckCircle className="h-6 w-6 text-primary-foreground mt-1 flex-shrink-0" />
-                            <span>พร้อมรายงานวิเคราะห์สถานะการเงินเพื่อการบริหารจัดการ</span>
-                          </li>
-                        </ul>
+                        <h2 className="text-3xl font-bold font-headline">บริการจัดทำบัญชี</h2>
                     </div>
-                    <div className="relative aspect-[4/3] rounded-xl overflow-hidden shadow-lg">
-                        <Image src="https://picsum.photos/seed/accountant-consult/800/600" alt="Accountant with client" fill className="object-cover" data-ai-hint="business meeting"/>
-                    </div>
+                    <p className="text-lg text-primary-foreground/90 leading-relaxed">ดูแลครบวงจรตั้งแต่ลงบัญชี ยื่นภาษี จนถึงปิดงบฯ เราให้คุณมากกว่าแค่ตัวเลข ด้วยการวิเคราะห์ต้นทุนและสถานะการเงิน เสมือนมี CFO ส่วนตัว อยู่เคียงข้างธุรกิจคุณ</p>
+                    <ul className="space-y-4 inline-block text-left">
+                      <li className="flex items-start gap-3">
+                        <CheckCircle className="h-6 w-6 text-primary-foreground mt-1 flex-shrink-0" />
+                        <span>เชื่อมต่อระบบขายหน้าร้านและออนไลน์โดยอัตโนมัติ</span>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <CheckCircle className="h-6 w-6 text-primary-foreground mt-1 flex-shrink-0" />
+                        <span>ดูแลการยื่นภาษีครบถ้วนเพื่อลดความเสี่ยงทางกฎหมาย</span>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <CheckCircle className="h-6 w-6 text-primary-foreground mt-1 flex-shrink-0" />
+                        <span>พร้อมรายงานวิเคราะห์สถานะการเงินเพื่อการบริหารจัดการ</span>
+                      </li>
+                    </ul>
                 </div>
             </div>
         </section>
