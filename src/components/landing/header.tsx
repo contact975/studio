@@ -1,3 +1,4 @@
+
 "use client";
 
 import * as React from "react";
@@ -18,7 +19,7 @@ import {
 
 const serviceSubLinks = [
   { href: "/#services", label: "บริการจดทะเบียนบริษัท" },
-  { href: "/#services", label: "บริการทำบัญชี" },
+  { href: "/accounting-services", label: "บริการทำบัญชี" },
   { href: "/#services", label: "บริการตรวจสอบบัญชี" },
   { href: "/#services", label: "บริการทำ Visa & Work Permit" },
   { href: "/#services", label: "บริการ วางระบบองค์กร" },
