@@ -89,7 +89,7 @@ export function Header() {
           )}
         </nav>
         <div className="flex items-center gap-4 ml-auto">
-          <Button asChild className="hidden md:flex rounded-full bg-gradient-to-r from-red-500 to-orange-400 text-white hover:opacity-90 transition-opacity">
+          <Button asChild className="hidden md:flex rounded-full bg-gradient-to-r from-red-500 to-orange-400 text-white hover:opacity-90 transition-opacity btn-light-sweep">
               <Link href="/media-content">บริการ Exclusive Media</Link>
           </Button>
           <Button asChild className="hidden sm:flex rounded-full">
@@ -148,7 +148,7 @@ export function Header() {
                       </Link>
                     )
                   )}
-                  <Button asChild className="rounded-full mt-4 bg-gradient-to-r from-red-500 to-orange-400 text-white hover:opacity-90 transition-opacity">
+                  <Button asChild className="rounded-full mt-4 bg-gradient-to-r from-red-500 to-orange-400 text-white hover:opacity-90 transition-opacity btn-light-sweep">
                       <Link href="/media-content">บริการ Exclusive Media</Link>
                   </Button>
                   <Button asChild className="rounded-full mt-4">

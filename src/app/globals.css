@@ -2,6 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+  .btn-light-sweep {
+    @apply relative overflow-hidden;
+  }
+
+  .btn-light-sweep::after {
+    content: '';
+    @apply absolute top-0 left-0 h-full w-full animate-light-sweep;
+    background: linear-gradient(
+      110deg,
+      hsla(0, 0%, 100%, 0) 40%,
+      hsla(0, 0%, 100%, 0.3) 50%,
+      hsla(0, 0%, 100%, 0) 60%
+    );
+  }
+}
+
 @layer base {
   :root {
     --background: 220 17% 95%; /* #F0F2F5 */
