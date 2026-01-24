@@ -71,50 +71,50 @@ export default function CompanyRegistrationPage() {
             </div>
         </section>
 
-        <section className="py-20 md:py-28 bg-background">
+        <section className="py-20 md:py-28 bg-primary text-primary-foreground">
           <div className="container mx-auto px-4 md:px-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
               <div className="space-y-6">
-                <h2 className="text-3xl font-bold font-headline text-foreground">จดทะเบียนธุรกิจใหม่ (New Setup)</h2>
-                <p className="text-muted-foreground leading-relaxed">
+                <h2 className="text-3xl font-bold font-headline">จดทะเบียนธุรกิจใหม่ (New Setup)</h2>
+                <p className="text-primary-foreground/90 leading-relaxed">
                   เราช่วยดูแลตั้งแต่การจองชื่อนิติบุคคล จัดเตรียมเอกสารข้อบังคับบริษัท จนถึงการยื่นจดทะเบียนต่อกรมพัฒนาธุรกิจการค้า (DBD) พร้อมให้คำปรึกษาเรื่องโครงสร้างผู้ถือหุ้นและทุนจดทะเบียนที่เหมาะสมกับประเภทธุรกิจของคุณ
                 </p>
-                <ul className="space-y-3 text-foreground">
+                <ul className="space-y-3">
                   <li className="flex items-center gap-3">
-                    <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
+                    <CheckCircle className="h-5 w-5 text-primary-foreground flex-shrink-0" />
                     <span>จดทะเบียนบริษัทจำกัด / ห้างหุ้นส่วนจำกัด</span>
                   </li>
                   <li className="flex items-center gap-3">
-                    <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
+                    <CheckCircle className="h-5 w-5 text-primary-foreground flex-shrink-0" />
                     <span>ขอหนังสือรับรอง และเอกสารสำคัญของบริษัท</span>
                   </li>
                   <li className="flex items-center gap-3">
-                    <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
+                    <CheckCircle className="h-5 w-5 text-primary-foreground flex-shrink-0" />
                     <span>ขึ้นทะเบียนนายจ้าง (ประกันสังคม)</span>
                   </li>
                   <li className="flex items-center gap-3">
-                    <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
+                    <CheckCircle className="h-5 w-5 text-primary-foreground flex-shrink-0" />
                     <span>จดทะเบียนภาษีมูลค่าเพิ่ม (VAT)</span>
                   </li>
                 </ul>
               </div>
-              <Card className="bg-secondary/50 p-8 rounded-2xl">
+              <Card className="bg-card text-card-foreground p-8 rounded-2xl">
                 <CardHeader className="p-0 mb-4">
                   <CardTitle className="text-xl font-bold text-primary">บริการเปลี่ยนแปลงทางทะเบียน</CardTitle>
                 </CardHeader>
                 <CardContent className="p-0">
                   <p className="text-sm text-muted-foreground mb-6">สำหรับการขยายธุรกิจหรือการปรับปรุงโครงสร้างนิติบุคคล</p>
                   <div className="grid grid-cols-1 gap-4">
-                    <div className="bg-card p-4 rounded-lg shadow-sm">
+                    <div className="bg-secondary/50 p-4 rounded-lg shadow-sm">
                       <span className="font-bold text-primary mr-2">01.</span> เปลี่ยนแปลงชื่อบริษัท/ตราประทับ
                     </div>
-                    <div className="bg-card p-4 rounded-lg shadow-sm">
+                    <div className="bg-secondary/50 p-4 rounded-lg shadow-sm">
                       <span className="font-bold text-primary mr-2">02.</span> เพิ่ม/ลดทุนจดทะเบียน
                     </div>
-                    <div className="bg-card p-4 rounded-lg shadow-sm">
+                    <div className="bg-secondary/50 p-4 rounded-lg shadow-sm">
                       <span className="font-bold text-primary mr-2">03.</span> เปลี่ยนแปลงกรรมการ/ที่ตั้งสำนักงาน
                     </div>
-                    <div className="bg-card p-4 rounded-lg shadow-sm">
+                    <div className="bg-secondary/50 p-4 rounded-lg shadow-sm">
                       <span className="font-bold text-primary mr-2">04.</span> จดทะเบียนเลิกและชำระบัญชี
                     </div>
                   </div>
