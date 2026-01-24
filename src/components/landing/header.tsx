@@ -21,7 +21,7 @@ const serviceSubLinks = [
   { href: "/company-registration", label: "บริการจดทะเบียนบริษัท" },
   { href: "/accounting-services", label: "บริการทำบัญชี" },
   { href: "/audit-services", label: "บริการตรวจสอบบัญชี" },
-  { href: "/#services", label: "บริการทำ Visa & Work Permit" },
+  { href: "/visa-work-permit", label: "บริการทำ Visa & Work Permit" },
   { href: "/#services", label: "บริการ วางระบบองค์กร" },
   { href: "/#services", label: "บริการผลิต Media Content Online" },
 ];
