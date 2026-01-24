@@ -39,7 +39,7 @@ export function Footer() {
             <div>
               <h4 className="text-lg font-semibold mb-3 text-primary-foreground">ติดตามเรา (Follow Us)</h4>
               <div className="flex space-x-3">
-                <Link href="#" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors" prefetch={false}>
+                <Link href="https://www.facebook.com/icaccservice" target="_blank" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors" prefetch={false}>
                   <Facebook className="h-6 w-6" />
                   <span className="sr-only">Facebook</span>
                 </Link>
