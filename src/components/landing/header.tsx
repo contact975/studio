@@ -18,7 +18,7 @@ import {
 } from "@/components/ui/accordion";
 
 const serviceSubLinks = [
-  { href: "/#services", label: "บริการจดทะเบียนบริษัท" },
+  { href: "/company-registration", label: "บริการจดทะเบียนบริษัท" },
   { href: "/accounting-services", label: "บริการทำบัญชี" },
   { href: "/audit-services", label: "บริการตรวจสอบบัญชี" },
   { href: "/#services", label: "บริการทำ Visa & Work Permit" },
