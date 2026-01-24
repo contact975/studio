@@ -34,7 +34,7 @@ export function HeroSection() {
         ))}
       </div>
       
-      <div className="container mx-auto px-6 py-20 flex flex-col items-center text-center relative z-10">
+      <div data-aos="fade-up" className="container mx-auto px-6 py-20 flex flex-col items-center text-center relative z-10">
         <h1 className="text-5xl md:text-6xl font-bold mb-8 leading-relaxed font-headline">
           IC Accounting & Service <br />
           <span className="text-blue-300">พาร์ทเนอร์ที่ช่วยให้เรื่องภาษีและบัญชีเป็นเรื่องง่าย</span>
@@ -44,7 +44,7 @@ export function HeroSection() {
           เพื่อให้คุณมีเวลาโฟกัสกับการเติบโตของธุรกิจได้อย่างเต็มที่
         </p>
 
-        <div className="relative w-full max-w-4xl mx-auto aspect-video rounded-xl overflow-hidden shadow-2xl mb-12 bg-black/20">
+        <div data-aos="fade-up" data-aos-delay="200" className="relative w-full max-w-4xl mx-auto aspect-video rounded-xl overflow-hidden shadow-2xl mb-12 bg-black/20">
            {isMounted && (
             <div
                 className="wistia_responsive_padding"
@@ -75,7 +75,7 @@ export function HeroSection() {
            )}
         </div>
 
-        <div className="flex flex-col sm:flex-row gap-4">
+        <div data-aos="fade-up" data-aos-delay="400" className="flex flex-col sm:flex-row gap-4">
           <Button
             asChild
             className="bg-white text-blue-900 px-8 py-4 rounded-full font-bold hover:bg-blue-50 transition shadow-xl"

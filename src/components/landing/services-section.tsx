@@ -95,7 +95,7 @@ export function ServicesSection() {
 
   return (
     <section id="services" className="py-20 md:py-28 bg-secondary">
-      <div className="container mx-auto px-4 md:px-6">
+      <div data-aos="fade-up" className="container mx-auto px-4 md:px-6">
         <h2 className="text-3xl md:text-4xl font-bold font-headline text-center mb-12 text-foreground">
           บริการของเรา
         </h2>

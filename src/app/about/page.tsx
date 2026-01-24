@@ -1,21 +1,33 @@
+'use client';
 import Image from 'next/image';
 import { Header } from '@/components/landing/header';
 import { Footer } from '@/components/landing/footer';
 import { Heart, Target, CheckCircle } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
+import { useEffect } from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 export default function AboutPage() {
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      once: true,
+      offset: 100,
+    });
+  }, []);
+
   return (
     <div className="flex flex-col min-h-dvh bg-background text-foreground">
       <Header />
       <main className="flex-1">
         <section className="py-20 md:py-28">
           <div className="container mx-auto px-4 md:px-6">
-            <h1 className="text-4xl md:text-5xl font-bold font-headline text-center mb-16 text-primary">
+            <h1 data-aos="fade-up" className="text-4xl md:text-5xl font-bold font-headline text-center mb-16 text-primary">
               เรื่องราวของ IC Accounting & Service
             </h1>
 
-            <div className="grid md:grid-cols-2 gap-16 items-center mb-24">
+            <div data-aos="fade-up" className="grid md:grid-cols-2 gap-16 items-center mb-24">
               <div className="space-y-6">
                 <div className="flex items-center gap-4">
                   <Heart className="h-10 w-10 text-primary" />
@@ -42,31 +54,31 @@ export default function AboutPage() {
               </div>
             </div>
 
-            <div className="mb-24">
+            <div data-aos="fade-up" className="mb-24">
                <h2 className="text-3xl md:text-4xl font-bold font-headline text-center mb-12 text-foreground">
                 ทำไมต้องเลือกเรา? (Why Choose IC)
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <Card className="bg-primary text-center p-6 flex flex-col items-center justify-start shadow-sm hover:shadow-lg transition-shadow">
+                <Card data-aos="fade-up" data-aos-delay="0" className="bg-primary text-center p-6 flex flex-col items-center justify-start shadow-sm hover:shadow-lg transition-shadow">
                     <h3 className="text-xl font-semibold text-primary-foreground mb-2">Modern & Partner Mindset</h3>
                     <p className="text-primary-foreground/90">เราทำงานเหมือนเป็นพาร์ทเนอร์ในทีมของคุณ พร้อมให้คำปรึกษาที่เข้าใจง่าย ไม่ใช้ศัพท์เทคนิคที่ซับซ้อน</p>
                 </Card>
-                <Card className="bg-primary text-center p-6 flex flex-col items-center justify-start shadow-sm hover:shadow-lg transition-shadow">
+                <Card data-aos="fade-up" data-aos-delay="100" className="bg-primary text-center p-6 flex flex-col items-center justify-start shadow-sm hover:shadow-lg transition-shadow">
                      <h3 className="text-xl font-semibold text-primary-foreground mb-2">One Stop Solution</h3>
                     <p className="text-primary-foreground/90">ดูแลครบวงจรในที่เดียว ตั้งแต่จดทะเบียนบริษัท วางระบบบัญชี งานเอกสารต่างชาติ ไปจนถึงการทำสื่อการตลาด</p>
                 </Card>
-                <Card className="bg-primary text-center p-6 flex flex-col items-center justify-start shadow-sm hover:shadow-lg transition-shadow">
+                <Card data-aos="fade-up" data-aos-delay="200" className="bg-primary text-center p-6 flex flex-col items-center justify-start shadow-sm hover:shadow-lg transition-shadow">
                      <h3 className="text-xl font-semibold text-primary-foreground mb-2">Action Oriented</h3>
                     <p className="text-primary-foreground/90">เราเน้นการลงพื้นที่จริง (Consult) เพื่อวางระบบหลังบ้านให้เหมาะสมกับประเภทธุรกิจของคุณมากที่สุด</p>
                 </Card>
-                <Card className="bg-primary text-center p-6 flex flex-col items-center justify-start shadow-sm hover:shadow-lg transition-shadow">
+                <Card data-aos="fade-up" data-aos-delay="300" className="bg-primary text-center p-6 flex flex-col items-center justify-start shadow-sm hover:shadow-lg transition-shadow">
                      <h3 className="text-xl font-semibold text-primary-foreground mb-2">Creative Thinking</h3>
                     <p className="text-primary-foreground/90">เราเป็นสำนักงานบัญชีไม่กี่แห่งที่เข้าใจการตลาด และพร้อมช่วยคุณผลิต Media Content เพื่ออัปเกรดแบรนด์ให้ดูเป็นมืออาชีพ</p>
                 </Card>
               </div>
             </div>
 
-            <div className="text-center max-w-3xl mx-auto mb-24 bg-secondary p-8 rounded-xl">
+            <div data-aos="fade-up" className="text-center max-w-3xl mx-auto mb-24 bg-secondary p-8 rounded-xl">
               <div className="flex justify-center items-center gap-4 mb-4">
                  <Target className="h-10 w-10 text-primary" />
                  <h2 className="text-3xl font-bold font-headline">ภารกิจของเรา (Our Mission)</h2>
@@ -76,7 +88,7 @@ export default function AboutPage() {
               </blockquote>
             </div>
 
-            <div>
+            <div data-aos="fade-up">
               <h2 className="text-3xl md:text-4xl font-bold font-headline text-center mb-12 text-foreground">
                 สรุปบริการของเรา (Our Services at a Glance)
               </h2>

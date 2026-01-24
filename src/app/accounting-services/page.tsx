@@ -15,6 +15,9 @@ import {
 } from "@/components/ui/carousel";
 import Image from "next/image";
 import Autoplay from "embla-carousel-autoplay";
+import { useEffect } from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const packages = [
   {
@@ -79,13 +82,21 @@ const packages = [
 ];
 
 export default function AccountingServicesPage() {
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      once: true,
+      offset: 100,
+    });
+  }, []);
+
   return (
     <div className="flex flex-col min-h-dvh bg-secondary/50 text-foreground">
       <Header />
       <main className="flex-1">
         {/* Promotion Section */}
         <section className="py-12 bg-background">
-          <div className="container mx-auto px-4 md:px-6">
+          <div data-aos="fade-up" className="container mx-auto px-4 md:px-6">
              <Carousel
                 opts={{
                   align: "start",
@@ -119,7 +130,7 @@ export default function AccountingServicesPage() {
         
         {/* Service Description Section */}
         <section className="animate-gradient text-primary-foreground py-20 md:py-28">
-            <div className="container mx-auto px-4 md:px-6">
+            <div data-aos="fade-up" className="container mx-auto px-4 md:px-6">
                 <nav className="text-sm mb-4 opacity-80">
                     <Link href="/" className="hover:opacity-100 transition-opacity">หน้าแรก</Link> / <span>บริการทำบัญชี</span>
                 </nav>
@@ -130,12 +141,12 @@ export default function AccountingServicesPage() {
 
         <section className="py-20 md:py-28">
           <div className="container mx-auto px-4 md:px-6">
-            <h1 className="text-4xl md:text-5xl font-bold font-headline text-center mb-16 text-primary">
+            <h1 data-aos="fade-up" className="text-4xl md:text-5xl font-bold font-headline text-center mb-16 text-primary">
               แพ็กเกจบริการจัดทำบัญชี
             </h1>
             <div className="max-w-5xl mx-auto flex flex-col gap-16">
-              {packages.map((pkg) => (
-                <div key={pkg.name} className="grid md:grid-cols-2 gap-8 items-start">
+              {packages.map((pkg, index) => (
+                <div key={pkg.name} data-aos="fade-up" data-aos-delay={index * 100} className="grid md:grid-cols-2 gap-8 items-start">
                   <Card className="flex flex-col text-center items-center p-8 rounded-xl shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 bg-card h-full">
                     <div className={`w-24 h-24 rounded-full flex items-center justify-center ${pkg.bgColor} mb-6`}>
                       <span className="text-5xl font-bold text-white">{pkg.size}</span>

@@ -27,12 +27,12 @@ export function WhyUsSection() {
   return (
     <section className="py-20 md:py-28 bg-secondary">
       <div className="container mx-auto px-4 md:px-6 text-center">
-        <h2 className="text-3xl md:text-4xl font-bold font-headline mb-16 text-foreground">
+        <h2 data-aos="fade-up" className="text-3xl md:text-4xl font-bold font-headline mb-16 text-foreground">
           ทำไมต้องเลือก IC Accounting & Service?
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {features.map((feature, index) => (
-            <div key={index} className="flex flex-col items-center bg-card p-8 rounded-xl shadow-sm transition-shadow hover:shadow-lg">
+            <div key={index} data-aos="fade-up" data-aos-delay={index * 100} className="flex flex-col items-center bg-card p-8 rounded-xl shadow-sm transition-shadow hover:shadow-lg">
               {feature.icon}
               <h3 className="text-xl font-bold text-primary mb-4 text-center">{feature.title}</h3>
               <p className="text-muted-foreground text-center leading-relaxed">{feature.description}</p>

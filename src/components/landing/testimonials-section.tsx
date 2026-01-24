@@ -35,12 +35,12 @@ export function TestimonialsSection() {
   return (
     <section id="testimonials" className="py-20 md:py-28 bg-primary">
       <div className="container mx-auto px-4 md:px-6">
-        <h2 className="text-3xl md:text-4xl font-bold font-headline text-center mb-12 text-primary-foreground">
+        <h2 data-aos="fade-up" className="text-3xl md:text-4xl font-bold font-headline text-center mb-12 text-primary-foreground">
           เสียงจากลูกค้าของเรา
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {testimonials.map((testimonial) => (
-            <Card key={testimonial.id} className="bg-card p-6 rounded-xl shadow-sm hover:shadow-lg transition-shadow duration-300">
+          {testimonials.map((testimonial, index) => (
+            <Card key={testimonial.id} data-aos="fade-up" data-aos-delay={index * 100} className="bg-card p-6 rounded-xl shadow-sm hover:shadow-lg transition-shadow duration-300">
               <CardContent className="p-0 flex flex-col items-center text-center">
                 <Avatar className="w-20 h-20 mb-4">
                   <AvatarImage src={testimonial.avatarUrl} alt={testimonial.name} data-ai-hint={testimonial.imageHint} />

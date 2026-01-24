@@ -14,6 +14,9 @@ import {
 } from "@/components/ui/carousel";
 import Image from "next/image";
 import Autoplay from "embla-carousel-autoplay";
+import { useEffect } from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const auditServices = [
     {
@@ -50,12 +53,20 @@ const whyChooseUs = [
 ]
 
 export default function AuditServicesPage() {
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      once: true,
+      offset: 100,
+    });
+  }, []);
+
   return (
     <div className="flex flex-col min-h-dvh bg-background text-foreground">
       <Header />
       <main className="flex-1">
         <section className="py-12 bg-background">
-          <div className="container mx-auto px-4 md:px-6">
+          <div data-aos="fade-up" className="container mx-auto px-4 md:px-6">
              <Carousel
                 opts={{
                   align: "start",
@@ -87,7 +98,7 @@ export default function AuditServicesPage() {
           </div>
         </section>
         <section className="animate-gradient text-primary-foreground py-20 md:py-28">
-            <div className="container mx-auto px-4 md:px-6">
+            <div data-aos="fade-up" className="container mx-auto px-4 md:px-6">
                 <nav className="text-sm mb-4 opacity-80">
                     <Link href="/" className="hover:opacity-100 transition-opacity">หน้าแรก</Link> / <span>บริการตรวจสอบบัญชี</span>
                 </nav>
@@ -98,7 +109,7 @@ export default function AuditServicesPage() {
 
         <section className="py-20 md:py-28 bg-background">
             <div className="container mx-auto px-4 md:px-6">
-                <div className="grid lg:grid-cols-3 gap-12 items-center">
+                <div data-aos="fade-up" className="grid lg:grid-cols-3 gap-12 items-center">
                     <div className="lg:col-span-1 space-y-6">
                         <h2 className="text-3xl font-bold font-headline text-foreground">ให้มากกว่าแค่การลงลายมือชื่อ</h2>
                         <p className="text-muted-foreground leading-relaxed">เราไม่ได้เพียงแค่ตรวจสอบความถูกต้อง แต่เราช่วยค้นหาจุดอ่อนในระบบควบคุมภายใน เพื่อให้ผู้ประกอบการนำไปปรับปรุงธุรกิจได้จริง</p>
@@ -127,10 +138,10 @@ export default function AuditServicesPage() {
 
         <section className="py-20 md:py-28 bg-secondary">
             <div className="container mx-auto px-4 md:px-6 text-center">
-                <h2 className="text-3xl md:text-4xl font-bold font-headline mb-16 text-foreground">ทำไมผู้ประกอบการจึงเลือก IC Accounting & Service</h2>
+                <h2 data-aos="fade-up" className="text-3xl md:text-4xl font-bold font-headline mb-16 text-foreground">ทำไมผู้ประกอบการจึงเลือก IC Accounting & Service</h2>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
                     {whyChooseUs.map((item, index) => (
-                        <Card key={index} className="bg-card text-center p-6 shadow-sm hover:shadow-lg transition-shadow">
+                        <Card key={index} data-aos="fade-up" data-aos-delay={index * 100} className="bg-card text-center p-6 shadow-sm hover:shadow-lg transition-shadow">
                             <h3 className="text-5xl font-bold text-primary mb-4">0{index + 1}</h3>
                             <CardHeader className="p-0">
                               <CardTitle className="text-xl mb-2">{item.title}</CardTitle>

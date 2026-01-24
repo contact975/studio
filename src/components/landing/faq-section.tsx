@@ -46,10 +46,10 @@ export function FaqSection() {
   return (
     <section id="faq" className="py-20 md:py-28 animate-gradient-soft">
       <div className="container mx-auto px-4 md:px-6">
-        <h2 className="text-3xl md:text-4xl font-bold font-headline text-center mb-12 text-foreground">
+        <h2 data-aos="fade-up" className="text-3xl md:text-4xl font-bold font-headline text-center mb-12 text-foreground">
           FAQ: คำถามที่พบบ่อยเกี่ยวกับเรา
         </h2>
-        <div className="max-w-3xl mx-auto">
+        <div data-aos="fade-up" data-aos-delay="200" className="max-w-3xl mx-auto">
           <Accordion type="single" collapsible className="w-full space-y-4">
             {faqItems.map((item, index) => (
               <AccordionItem key={index} value={`item-${index}`} className="bg-secondary/50 border border-border/50 rounded-lg shadow-sm">

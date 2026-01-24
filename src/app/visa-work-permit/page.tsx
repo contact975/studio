@@ -10,8 +10,19 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Briefcase, BadgeHelp, Star } from 'lucide-react';
+import { useEffect } from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 export default function VisaWorkPermitPage() {
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      once: true,
+      offset: 100,
+    });
+  }, []);
+
   return (
     <div className="flex flex-col min-h-dvh bg-background text-foreground">
       <Header />
@@ -26,7 +37,7 @@ export default function VisaWorkPermitPage() {
                     data-ai-hint="passport immigration"
                 />
             </div>
-            <div className="container mx-auto px-6 relative z-10">
+            <div data-aos="fade-up" className="container mx-auto px-6 relative z-10">
                 <h1 className="text-4xl md:text-5xl font-bold font-headline mb-6">Expert Visa & Work Permit Services</h1>
                 <p className="text-xl opacity-90 max-w-2xl leading-relaxed">
                     ช่วยให้การพำนักและทำงานในประเทศไทยเป็นเรื่องง่าย เราดูแลทุกขั้นตอนอย่างมืออาชีพ เพื่อให้คุณโฟกัสกับการทำธุรกิจและใช้ชีวิตในเชียงใหม่ได้อย่างเต็มที่
@@ -36,13 +47,13 @@ export default function VisaWorkPermitPage() {
 
         <section className="py-20 bg-background">
             <div className="container mx-auto px-6">
-                <div className="text-center mb-16">
+                <div data-aos="fade-up" className="text-center mb-16">
                     <h2 className="text-3xl md:text-4xl font-bold font-headline text-foreground">บริการหลักของเรา</h2>
                     <div className="w-24 h-1.5 bg-primary mx-auto mt-4 rounded-full"></div>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <Card className="p-8 text-center shadow-sm hover:shadow-lg transition-shadow">
+                    <Card data-aos="fade-up" data-aos-delay="0" className="p-8 text-center shadow-sm hover:shadow-lg transition-shadow">
                         <div className="flex justify-center mb-4">
                            <Briefcase className="h-12 w-12 text-primary" />
                         </div>
@@ -50,7 +61,7 @@ export default function VisaWorkPermitPage() {
                         <p className="text-muted-foreground leading-relaxed">บริการยื่นขอและต่ออายุวีซ่าธุรกิจ สำหรับชาวต่างชาติที่เข้ามาทำงานหรือประกอบธุรกิจในไทย</p>
                     </Card>
 
-                    <Card className="p-8 text-center shadow-sm hover:shadow-lg transition-shadow">
+                    <Card data-aos="fade-up" data-aos-delay="100" className="p-8 text-center shadow-sm hover:shadow-lg transition-shadow">
                          <div className="flex justify-center mb-4">
                            <BadgeHelp className="h-12 w-12 text-primary" />
                         </div>
@@ -58,7 +69,7 @@ export default function VisaWorkPermitPage() {
                         <p className="text-muted-foreground leading-relaxed">ดำเนินการขอใบอนุญาตทำงาน เปลี่ยนแปลงข้อมูลนายจ้าง หรือแจ้งออกตามระเบียบกรมการจัดหางาน</p>
                     </Card>
 
-                    <Card className="p-8 text-center shadow-sm hover:shadow-lg transition-shadow">
+                    <Card data-aos="fade-up" data-aos-delay="200" className="p-8 text-center shadow-sm hover:shadow-lg transition-shadow">
                          <div className="flex justify-center mb-4">
                            <Star className="h-12 w-12 text-primary" />
                         </div>
@@ -72,7 +83,7 @@ export default function VisaWorkPermitPage() {
         <section className="py-20 bg-secondary">
             <div className="container mx-auto px-6">
                 <div className="flex flex-wrap items-center -mx-4">
-                    <div className="w-full lg:w-1/2 px-4 mb-10 lg:mb-0">
+                    <div data-aos="fade-right" className="w-full lg:w-1/2 px-4 mb-10 lg:mb-0">
                         <h2 className="text-3xl md:text-4xl font-bold font-headline text-foreground mb-8">ทำไมต้องเลือกใช้บริการกับเรา?</h2>
                         <div className="space-y-8">
                             <div className="flex gap-4">
@@ -99,7 +110,7 @@ export default function VisaWorkPermitPage() {
                         </div>
                     </div>
                     <div className="w-full lg:w-1/2 px-4">
-                        <Card className="p-8 rounded-2xl shadow-lg">
+                        <Card data-aos="fade-left" className="p-8 rounded-2xl shadow-lg">
                             <CardHeader className="p-0 mb-6 text-center">
                                 <CardTitle className="text-2xl font-bold">ปรึกษาเรื่องวีซ่าฟรีวันนี้</CardTitle>
                             </CardHeader>
