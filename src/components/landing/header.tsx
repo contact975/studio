@@ -23,7 +23,6 @@ const serviceSubLinks = [
   { href: "/audit-services", label: "บริการตรวจสอบบัญชี" },
   { href: "/visa-work-permit", label: "บริการทำ Visa & Work Permit" },
   { href: "/organization-system", label: "บริการวางระบบองค์กร" },
-  { href: "/media-content", label: "บริการผลิต Media Content Online" },
 ];
 
 const navLinks = [
@@ -91,6 +90,9 @@ export function Header() {
           )}
         </nav>
         <div className="flex items-center gap-4 ml-auto">
+          <Link href="/media-content" className="hidden md:flex text-foreground/70 transition-colors hover:text-foreground text-base font-medium">
+            บริการผลิต Media Content
+          </Link>
           <Button asChild className="hidden sm:flex rounded-full">
             <Link href="https://line.me/ti/p/~" target="_blank">
               ติดต่อเรา
@@ -147,6 +149,13 @@ export function Header() {
                       </Link>
                     )
                   )}
+                  <Link
+                    href="/media-content"
+                    className="text-muted-foreground hover:text-foreground"
+                    prefetch={false}
+                  >
+                    บริการผลิต Media Content Online
+                  </Link>
                   <Button asChild className="rounded-full mt-4">
                     <Link href="https://line.me/ti/p/~" target="_blank">
                       ติดต่อเรา
