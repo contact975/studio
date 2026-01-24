@@ -118,31 +118,13 @@ export default function AccountingServicesPage() {
         </section>
         
         {/* Service Description Section */}
-        <section className="py-20 md:py-28 bg-primary text-primary-foreground">
+        <section className="bg-primary text-primary-foreground py-20 md:py-28">
             <div className="container mx-auto px-4 md:px-6">
-                <div className="max-w-3xl mx-auto text-center space-y-8">
-                    <div className="inline-flex items-center gap-4">
-                        <div className="bg-background/20 p-3 rounded-full">
-                            <Calculator className="h-8 w-8 text-primary-foreground" />
-                        </div>
-                        <h2 className="text-3xl font-bold font-headline">บริการจัดทำบัญชี</h2>
-                    </div>
-                    <p className="text-lg text-primary-foreground/90 leading-relaxed">ดูแลครบวงจรตั้งแต่ลงบัญชี ยื่นภาษี จนถึงปิดงบฯ เราให้คุณมากกว่าแค่ตัวเลข ด้วยการวิเคราะห์ต้นทุนและสถานะการเงิน เสมือนมี CFO ส่วนตัว อยู่เคียงข้างธุรกิจคุณ</p>
-                    <ul className="space-y-4 inline-block text-left">
-                      <li className="flex items-start gap-3">
-                        <CheckCircle className="h-6 w-6 text-primary-foreground mt-1 flex-shrink-0" />
-                        <span>เชื่อมต่อระบบขายหน้าร้านและออนไลน์โดยอัตโนมัติ</span>
-                      </li>
-                      <li className="flex items-start gap-3">
-                        <CheckCircle className="h-6 w-6 text-primary-foreground mt-1 flex-shrink-0" />
-                        <span>ดูแลการยื่นภาษีครบถ้วนเพื่อลดความเสี่ยงทางกฎหมาย</span>
-                      </li>
-                      <li className="flex items-start gap-3">
-                        <CheckCircle className="h-6 w-6 text-primary-foreground mt-1 flex-shrink-0" />
-                        <span>พร้อมรายงานวิเคราะห์สถานะการเงินเพื่อการบริหารจัดการ</span>
-                      </li>
-                    </ul>
-                </div>
+                <nav className="text-sm mb-4 opacity-80">
+                    <Link href="/" className="hover:opacity-100 transition-opacity">หน้าแรก</Link> / <span>บริการทำบัญชี</span>
+                </nav>
+                <h1 className="text-4xl md:text-5xl font-bold font-headline mb-4">บริการจัดทำบัญชี (Accounting Services)</h1>
+                <p className="text-lg md:text-xl opacity-90 max-w-3xl">ดูแลครบวงจรตั้งแต่ลงบัญชี ยื่นภาษี จนถึงปิดงบฯ เราให้คุณมากกว่าแค่ตัวเลข ด้วยการวิเคราะห์ต้นทุนและสถานะการเงิน เสมือนมี CFO ส่วนตัว อยู่เคียงข้างธุรกิจคุณ</p>
             </div>
         </section>
 
