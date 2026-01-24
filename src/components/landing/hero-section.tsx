@@ -34,10 +34,15 @@ export function HeroSection() {
           ดูแลครบทั้งระบบบัญชีและงานมีเดียคอนเทนต์ ให้คำปรึกษาพร้อมวางระบบหลังบ้านถึงที่ เพื่อการเติบโตของธุรกิจคุณอย่างมั่นคง
         </p>
         <div className="mt-12">
-          <div className="relative aspect-video max-w-3xl mx-auto bg-black/20 rounded-xl overflow-hidden shadow-2xl group cursor-pointer">
-            <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-t from-black/20 to-transparent">
-              <PlayCircle className="w-16 h-16 md:w-20 md:h-20 text-white/80 group-hover:text-white group-hover:scale-110 transition-transform duration-300 drop-shadow-lg" />
-            </div>
+          <div className="relative aspect-video max-w-3xl mx-auto rounded-xl overflow-hidden shadow-2xl">
+            <iframe
+              className="absolute top-0 left-0 w-full h-full"
+              src="https://www.youtube.com/embed/FRIdNiGFQwo"
+              title="YouTube video player"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+            ></iframe>
           </div>
         </div>
       </div>
