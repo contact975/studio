@@ -24,6 +24,18 @@ export default function RootLayout({
       <body className={cn('font-body antialiased')}>
         {children}
         <Toaster />
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              AOS.init({
+                duration: 1000, // ความเร็วในการ Fade (1000ms = 1 วินาที)
+                once: false,    // true = เล่นครั้งเดียว, false = เล่นซ้ำทุกครั้งที่เลื่อนขึ้น-ลงมาเจอ
+                offset: 120,    // ระยะห่างจากขอบจอ (px) ก่อนเริ่มแสดงผล
+              });
+            `,
+          }}
+        />
       </body>
     </html>
   );
