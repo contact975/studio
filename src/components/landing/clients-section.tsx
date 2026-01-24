@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
 
-const partners = [
+const allLogos = [
   {
     name: "Bualuang Ventures",
     logoUrl: "https://picsum.photos/seed/bualuang/200/100",
@@ -41,9 +41,6 @@ const partners = [
     logoUrl: "https://picsum.photos/seed/shopee/200/100",
     imageHint: "Shopee logo"
   },
-];
-
-const peakUsers = [
   {
     name: "Health at Home",
     logoUrl: "https://picsum.photos/seed/healthathome/200/100",
@@ -76,44 +73,6 @@ const peakUsers = [
   },
 ];
 
-const LogoCarousel = ({ logos, title }: { logos: typeof partners, title: string }) => (
-  <div className="w-full">
-    <h3 className="text-2xl font-semibold text-center mb-8 text-foreground">{title}</h3>
-    <Carousel
-      opts={{
-        align: "start",
-        loop: true,
-      }}
-      plugins={[
-        Autoplay({
-          delay: 2000,
-          stopOnInteraction: false,
-        }),
-      ]}
-      className="w-full max-w-6xl mx-auto"
-    >
-      <CarouselContent>
-        {logos.map((logo, index) => (
-          <CarouselItem key={index} className="basis-1/3 md:basis-1/4 lg:basis-1/6 flex items-center justify-center">
-            <div className="p-4">
-              <Image
-                src={logo.logoUrl}
-                alt={logo.name}
-                width={140}
-                height={70}
-                className="object-contain"
-                data-ai-hint={logo.imageHint}
-              />
-            </div>
-          </CarouselItem>
-        ))}
-      </CarouselContent>
-      <CarouselPrevious className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-12 hidden xl:inline-flex" />
-      <CarouselNext className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-12 hidden xl:inline-flex" />
-    </Carousel>
-  </div>
-);
-
 
 export function ClientsSection() {
   return (
@@ -122,10 +81,38 @@ export function ClientsSection() {
         <h2 className="text-3xl md:text-4xl font-bold font-headline text-center mb-16 text-foreground">
           ลูกค้าที่อยู่ในการดูแลของเรา
         </h2>
-        <div className="space-y-16">
-          <LogoCarousel logos={partners} title="พันธมิตรและสถาบันการศึกษาในความร่วมมือ" />
-          <LogoCarousel logos={peakUsers} title="ผู้ใช้งาน PEAK" />
-        </div>
+        <Carousel
+          opts={{
+            align: "start",
+            loop: true,
+          }}
+          plugins={[
+            Autoplay({
+              delay: 2000,
+              stopOnInteraction: false,
+            }),
+          ]}
+          className="w-full max-w-6xl mx-auto"
+        >
+          <CarouselContent>
+            {allLogos.map((logo, index) => (
+              <CarouselItem key={index} className="basis-1/3 md:basis-1/4 lg:basis-1/6 flex items-center justify-center">
+                <div className="p-4">
+                  <Image
+                    src={logo.logoUrl}
+                    alt={logo.name}
+                    width={140}
+                    height={70}
+                    className="object-contain"
+                    data-ai-hint={logo.imageHint}
+                  />
+                </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-12 hidden xl:inline-flex" />
+          <CarouselNext className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-12 hidden xl:inline-flex" />
+        </Carousel>
       </div>
     </section>
   );
