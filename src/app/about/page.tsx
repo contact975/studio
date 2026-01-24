@@ -32,7 +32,7 @@ export default function AboutPage() {
               </div>
               <div className="relative aspect-[4/3] rounded-xl overflow-hidden shadow-2xl group">
                  <Image
-                    src="https://live.staticflickr.com/65535/55057964151_523a54b38d_b.jpg"
+                    src="https://live.staticflickr.com/65535/55057964151_2951cd7360_b.jpg"
                     alt="Founder of IC Accounting & Service"
                     fill
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
