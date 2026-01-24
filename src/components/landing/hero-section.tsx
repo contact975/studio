@@ -18,7 +18,7 @@ export function HeroSection() {
             asChild
             className="bg-white text-blue-900 px-8 py-4 rounded-full font-bold hover:bg-blue-50 transition shadow-xl"
           >
-            <Link href="https://business.facebook.com/latest/inbox/messenger?asset_id=112724647856946&business_id=407535307601147&selected_item_id=741749623&thread_type=FB_MESSAGE&mailbox_id=112724647856946" target="_blank" rel="noopener noreferrer">ปรึกษาเราฟรี</Link>
+            <Link href="https://www.facebook.com/icaccservice" target="_blank" rel="noopener noreferrer">ปรึกษาเราฟรี</Link>
           </Button>
           <Button
             asChild
