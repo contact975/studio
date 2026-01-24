@@ -5,6 +5,7 @@ import { WhyUsSection } from '@/components/landing/why-us-section';
 import { TestimonialsSection } from '@/components/landing/testimonials-section';
 import { FaqSection } from '@/components/landing/faq-section';
 import { Footer } from '@/components/landing/footer';
+import { ClientsSection } from '@/components/landing/clients-section';
 
 export default function Home() {
   return (
@@ -13,6 +14,7 @@ export default function Home() {
       <main className="flex-1">
         <HeroSection />
         <ServicesSection />
+        <ClientsSection />
         <WhyUsSection />
         <TestimonialsSection />
         <FaqSection />
