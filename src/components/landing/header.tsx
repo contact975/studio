@@ -1,4 +1,3 @@
-
 "use client";
 
 import * as React from "react";
@@ -90,9 +89,9 @@ export function Header() {
           )}
         </nav>
         <div className="flex items-center gap-4 ml-auto">
-          <Link href="/media-content" className="hidden md:flex text-foreground/70 transition-colors hover:text-foreground text-base font-medium">
-            บริการผลิต Media Content
-          </Link>
+          <Button asChild className="hidden md:flex rounded-full bg-gradient-to-r from-red-500 to-orange-400 text-white hover:opacity-90 transition-opacity">
+              <Link href="/media-content">บริการ Exclusive Media</Link>
+          </Button>
           <Button asChild className="hidden sm:flex rounded-full">
             <Link href="https://line.me/ti/p/~" target="_blank">
               ติดต่อเรา
@@ -149,13 +148,9 @@ export function Header() {
                       </Link>
                     )
                   )}
-                  <Link
-                    href="/media-content"
-                    className="text-muted-foreground hover:text-foreground"
-                    prefetch={false}
-                  >
-                    บริการผลิต Media Content Online
-                  </Link>
+                  <Button asChild className="rounded-full mt-4 bg-gradient-to-r from-red-500 to-orange-400 text-white hover:opacity-90 transition-opacity">
+                      <Link href="/media-content">บริการ Exclusive Media</Link>
+                  </Button>
                   <Button asChild className="rounded-full mt-4">
                     <Link href="https://line.me/ti/p/~" target="_blank">
                       ติดต่อเรา
