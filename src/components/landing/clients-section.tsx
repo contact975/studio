@@ -28,9 +28,9 @@ export function ClientsSection() {
   );
 
   return (
-    <section id="clients" className="py-16 md:py-24 bg-background">
+    <section id="clients" className="py-16 md:py-24 bg-gradient-to-b from-primary to-background">
       <div className="container mx-auto px-4 md:px-6">
-        <h2 className="text-3xl font-bold font-headline text-center mb-12 text-foreground">
+        <h2 className="text-3xl font-bold font-headline text-center mb-12 text-primary-foreground">
           ลูกค้าที่ไว้วางใจใช้บริการกับเรา
         </h2>
         <Carousel
