@@ -49,7 +49,7 @@ export function Header() {
       <div className="container mx-auto flex h-16 items-center px-4 md:px-6">
         <Link href="/" className="mr-6 flex items-center gap-2" prefetch={false}>
           <Image src="https://live.staticflickr.com/65535/55057079017_ab04e1a929_q.jpg" alt="IC Accounting Logo" width={40} height={40} />
-          <span className="font-bold text-lg text-primary">IC Accounting</span>
+          <Image src="https://live.staticflickr.com/65535/55057990986_3f24fbba55_t.jpg" alt="IC Accounting" width={100} height={29} />
         </Link>
         <nav className="hidden flex-1 items-center justify-center gap-8 text-base font-medium md:flex">
           {navLinks.map((link) =>
