@@ -54,8 +54,8 @@ export default function MediaContentPage() {
 
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center group" data-aos="fade-up">
                 <div className="lg:col-span-5 order-2 lg:order-1">
-                    <span className="text-blue-500 text-sm font-mono mb-4 block">Online Branding</span>
-                    <h3 className="text-4xl font-bold mb-6">Executive <br /> Branding.</h3>
+                    <span className="text-blue-500 text-sm font-mono mb-4 block">Executive Content</span>
+                    <h3 className="text-4xl font-bold mb-6">Online <br /> Branding.</h3>
                     <p className="text-gray-500 mb-8">
                         สร้างตัวตนผู้บริหารให้ดูน่าเชื่อถือและทันสมัย เหมาะสำหรับคอนเทนต์ยุคใหม่ที่ต้องการความชัดเจนและคุณภาพระดับสูง
                     </p>
