@@ -101,13 +101,13 @@ export default function AccountingServicesPage() {
               >
               <CarouselContent>
                 <CarouselItem>
-                  <div className="relative aspect-video w-full overflow-hidden rounded-xl">
-                     <Image src="https://picsum.photos/seed/promo-account/1280/720" fill alt="บริการทำบัญชี โปรโมชั่น" className="object-cover" data-ai-hint="accounting promotion banner"/>
+                  <div className="relative aspect-[3/1] w-full overflow-hidden rounded-xl">
+                     <Image src="https://picsum.photos/seed/promo-account/1280/427" fill alt="บริการทำบัญชี โปรโมชั่น" className="object-cover" data-ai-hint="accounting promotion banner"/>
                   </div>
                 </CarouselItem>
                  <CarouselItem>
-                  <div className="relative aspect-video w-full overflow-hidden rounded-xl">
-                     <Image src="https://picsum.photos/seed/promo-tax/1280/720" fill alt="บริการยื่นภาษี โปรโมชั่น" className="object-cover" data-ai-hint="tax service banner"/>
+                  <div className="relative aspect-[3/1] w-full overflow-hidden rounded-xl">
+                     <Image src="https://picsum.photos/seed/promo-tax/1280/427" fill alt="บริการยื่นภาษี โปรโมชั่น" className="object-cover" data-ai-hint="tax service banner"/>
                   </div>
                 </CarouselItem>
               </CarouselContent>
