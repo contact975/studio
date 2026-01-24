@@ -16,7 +16,7 @@ const testimonials = [
     name: "คุณสิตา พัฒนาซอฟต์แวร์",
     company: "กรรมการผู้จัดการ บริษัท เทคโลโลยี จำกัด",
     quote: "ประทับใจในความรวดเร็วและความแม่นยำมากค่ะ การใช้เทคโนโลยีเข้ามาช่วยทำให้เราเห็นภาพรวมธุรกิจได้ชัดเจนขึ้นเยอะเลย",
-    avatarUrl: "https://picsum.photos/seed/avatar2/80/80",
+    avatarUrl: "https://live.staticflickr.com/65535/55057964151_523a54b38d_b.jpg",
     avatarFallback: "ส",
     imageHint: "woman portrait"
   },
