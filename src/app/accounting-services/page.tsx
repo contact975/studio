@@ -4,7 +4,15 @@ import { Footer } from '@/components/landing/footer';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { CheckCircle } from 'lucide-react';
+import { CheckCircle, Calculator } from 'lucide-react';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+import Image from "next/image";
 
 const packages = [
   {
@@ -73,6 +81,68 @@ export default function AccountingServicesPage() {
     <div className="flex flex-col min-h-dvh bg-secondary/50 text-foreground">
       <Header />
       <main className="flex-1">
+        {/* Promotion Section */}
+        <section className="py-12 bg-background">
+          <div className="container mx-auto px-4 md:px-6">
+             <Carousel
+                opts={{
+                  align: "start",
+                  loop: true,
+                }}
+                className="w-full"
+              >
+              <CarouselContent>
+                <CarouselItem>
+                  <div className="relative aspect-[21/9] w-full overflow-hidden rounded-xl">
+                     <Image src="https://picsum.photos/seed/promo-account/1260/540" fill alt="บริการทำบัญชี โปรโมชั่น" className="object-cover" data-ai-hint="accounting promotion banner"/>
+                  </div>
+                </CarouselItem>
+                 <CarouselItem>
+                  <div className="relative aspect-[21/9] w-full overflow-hidden rounded-xl">
+                     <Image src="https://picsum.photos/seed/promo-tax/1260/540" fill alt="บริการยื่นภาษี โปรโมชั่น" className="object-cover" data-ai-hint="tax service banner"/>
+                  </div>
+                </CarouselItem>
+              </CarouselContent>
+              <CarouselPrevious className="absolute left-2 top-1/2 -translate-y-1/2 hidden sm:inline-flex" />
+              <CarouselNext className="absolute right-2 top-1/2 -translate-y-1/2 hidden sm:inline-flex" />
+            </Carousel>
+          </div>
+        </section>
+        
+        {/* Service Description Section */}
+        <section className="py-20 md:py-28 bg-card">
+            <div className="container mx-auto px-4 md:px-6">
+                <div className="grid md:grid-cols-2 gap-16 items-center">
+                    <div className="space-y-6">
+                        <div className="flex items-center gap-4">
+                            <div className="bg-primary/10 p-3 rounded-full">
+                                <Calculator className="h-8 w-8 text-primary" />
+                            </div>
+                            <h2 className="text-3xl font-bold font-headline">บริการจัดทำบัญชี</h2>
+                        </div>
+                        <p className="text-lg text-muted-foreground leading-relaxed">ดูแลครบวงจรตั้งแต่ลงบัญชี ยื่นภาษี จนถึงปิดงบฯ เราให้คุณมากกว่าแค่ตัวเลข ด้วยการวิเคราะห์ต้นทุนและสถานะการเงิน เสมือนมี CFO ส่วนตัว อยู่เคียงข้างธุรกิจคุณ</p>
+                        <ul className="space-y-4">
+                          <li className="flex items-start gap-3">
+                            <CheckCircle className="h-6 w-6 text-green-500 mt-1 flex-shrink-0" />
+                            <span className="text-foreground">เชื่อมต่อระบบขายหน้าร้านและออนไลน์โดยอัตโนมัติ</span>
+                          </li>
+                          <li className="flex items-start gap-3">
+                            <CheckCircle className="h-6 w-6 text-green-500 mt-1 flex-shrink-0" />
+                            <span className="text-foreground">ดูแลการยื่นภาษีครบถ้วนเพื่อลดความเสี่ยงทางกฎหมาย</span>
+                          </li>
+                          <li className="flex items-start gap-3">
+                            <CheckCircle className="h-6 w-6 text-green-500 mt-1 flex-shrink-0" />
+                            <span className="text-foreground">พร้อมรายงานวิเคราะห์สถานะการเงินเพื่อการบริหารจัดการ</span>
+                          </li>
+                        </ul>
+                    </div>
+                    <div className="relative aspect-[4/3] rounded-xl overflow-hidden shadow-lg">
+                        <Image src="https://picsum.photos/seed/accountant-consult/800/600" alt="Accountant with client" fill className="object-cover" data-ai-hint="business meeting"/>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section className="py-20 md:py-28">
           <div className="container mx-auto px-4 md:px-6">
             <h1 className="text-4xl md:text-5xl font-bold font-headline text-center mb-16 text-primary">
