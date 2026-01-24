@@ -37,7 +37,7 @@ const navLinks = [
     subLinks: serviceSubLinks,
   },
   { href: "/about", label: "เกี่ยวกับเรา" },
-  { href: "/#contact", label: "ติดต่อเรา" },
+  { href: "/#contact", label: "ขอใบเสนอราคา" },
 ];
 
 export function Header() {
