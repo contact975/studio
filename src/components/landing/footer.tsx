@@ -9,30 +9,24 @@ export function Footer() {
         <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
           
           {/* Left Column: Contact Info */}
-          <div className="space-y-6">
-            <h3 className="font-headline text-2xl font-bold text-primary-foreground">ติดต่อเรา (Contact Us)</h3>
+          <div className="space-y-8">
+            <Link href="/" className="font-bold text-2xl text-primary-foreground font-headline">
+              IC Accounting & Service
+            </Link>
             
             <div className="space-y-4 text-base">
-              <div className="flex items-start gap-3">
-                <MapPin className="h-5 w-5 text-primary-foreground mt-1 flex-shrink-0" />
-                <div>
-                  <p className="font-semibold">ที่อยู่</p>
-                  <p className="text-primary-foreground/80">80/142 ต.สันปู่เลย อ.ดอยสะเก็ด เชียงใหม่ 50220</p>
-                </div>
+               <h3 className="font-headline text-xl font-bold text-primary-foreground">ติดต่อเรา (Contact Us)</h3>
+              <div className="flex items-start gap-4">
+                <MapPin className="h-5 w-5 text-primary-foreground/80 mt-1 flex-shrink-0" />
+                <p className="text-primary-foreground/80">80/142 ต.สันปู่เลย อ.ดอยสะเก็ด เชียงใหม่ 50220</p>
               </div>
-              <div className="flex items-start gap-3">
-                <Phone className="h-5 w-5 text-primary-foreground mt-1 flex-shrink-0" />
-                <div>
-                  <p className="font-semibold">โทรศัพท์</p>
-                  <p className="text-primary-foreground/80">095-716-1422</p>
-                </div>
+              <div className="flex items-center gap-4">
+                <Phone className="h-5 w-5 text-primary-foreground/80 flex-shrink-0" />
+                <a href="tel:0957161422" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors">095-716-1422</a>
               </div>
-              <div className="flex items-start gap-3">
-                <Mail className="h-5 w-5 text-primary-foreground mt-1 flex-shrink-0" />
-                <div>
-                  <p className="font-semibold">Email</p>
-                  <p className="text-primary-foreground/80">contact@icaccservice.com</p>
-                </div>
+              <div className="flex items-center gap-4">
+                <Mail className="h-5 w-5 text-primary-foreground/80 flex-shrink-0" />
+                <a href="mailto:contact@icaccservice.com" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors">contact@icaccservice.com</a>
               </div>
             </div>
 
@@ -66,10 +60,11 @@ export function Footer() {
           </div>
         </div>
         
-        <Separator className="my-6 bg-primary-foreground/20" />
+        <Separator className="my-8 bg-primary-foreground/20" />
 
-        <div className="text-center text-primary-foreground/70 text-xs">
-          © {new Date().getFullYear()} IC Accounting & Service. All rights reserved.
+        <div className="flex flex-col sm:flex-row justify-between items-center text-primary-foreground/70 text-xs">
+          <p>© {new Date().getFullYear()} IC Accounting & Service. All rights reserved.</p>
+           {/* Future links can go here e.g. Terms, Privacy */}
         </div>
       </div>
     </footer>
