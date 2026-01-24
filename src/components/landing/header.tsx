@@ -6,6 +6,11 @@ import Image from "next/image";
 import {
   Menu,
   ChevronDown,
+  FileText,
+  Calculator,
+  FileCheck,
+  Briefcase,
+  Workflow,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
@@ -17,11 +22,11 @@ import {
 } from "@/components/ui/accordion";
 
 const serviceSubLinks = [
-  { href: "/company-registration", label: "บริการจดทะเบียนบริษัท" },
-  { href: "/accounting-services", label: "บริการทำบัญชี" },
-  { href: "/audit-services", label: "บริการตรวจสอบบัญชี" },
-  { href: "/visa-work-permit", label: "บริการทำ Visa & Work Permit" },
-  { href: "/organization-system", label: "บริการวางระบบองค์กร" },
+  { href: "/company-registration", label: "บริการจดทะเบียนบริษัท", icon: <FileText className="h-4 w-4" /> },
+  { href: "/accounting-services", label: "บริการทำบัญชี", icon: <Calculator className="h-4 w-4" /> },
+  { href: "/audit-services", label: "บริการตรวจสอบบัญชี", icon: <FileCheck className="h-4 w-4" /> },
+  { href: "/visa-work-permit", label: "บริการทำ Visa & Work Permit", icon: <Briefcase className="h-4 w-4" /> },
+  { href: "/organization-system", label: "บริการวางระบบองค์กร", icon: <Workflow className="h-4 w-4" /> },
 ];
 
 const navLinks = [
@@ -38,6 +43,7 @@ const navLinks = [
 export function Header() {
   const [isServicesOpen, setIsServicesOpen] = React.useState(false);
   const [isClient, setIsClient] = React.useState(false);
+  const [isSheetOpen, setIsSheetOpen] = React.useState(false);
 
   React.useEffect(() => {
     setIsClient(true);
@@ -70,6 +76,7 @@ export function Header() {
                         className="relative flex select-none items-center gap-2 rounded-sm px-3 py-2 text-base outline-none transition-colors hover:bg-accent hover:text-accent-foreground cursor-pointer"
                         onClick={() => setIsServicesOpen(false)}
                       >
+                        {subLink.icon}
                         {subLink.label}
                       </Link>
                     ))}
@@ -98,7 +105,7 @@ export function Header() {
             </Link>
           </Button>
           {isClient && (
-            <Sheet>
+            <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
               <SheetTrigger asChild>
                 <Button variant="outline" size="icon" className="md:hidden">
                   <Menu className="h-6 w-6" />
@@ -109,6 +116,7 @@ export function Header() {
                 <nav className="grid gap-6 text-lg font-medium mt-8">
                   <Link
                     href="/"
+                    onClick={() => setIsSheetOpen(false)}
                     className="flex items-center gap-2 text-lg font-semibold"
                     prefetch={false}
                   >
@@ -127,9 +135,11 @@ export function Header() {
                                   <Link
                                     key={subLink.label}
                                     href={subLink.href}
-                                    className="text-muted-foreground hover:text-foreground"
+                                    onClick={() => setIsSheetOpen(false)}
+                                    className="flex items-center gap-3 text-muted-foreground hover:text-foreground"
                                     prefetch={false}
                                   >
+                                    {React.cloneElement(subLink.icon, { className: "h-5 w-5"})}
                                     {subLink.label}
                                   </Link>
                                 ))}
@@ -141,6 +151,7 @@ export function Header() {
                       <Link
                         key={link.label}
                         href={link.href}
+                        onClick={() => setIsSheetOpen(false)}
                         className="text-muted-foreground hover:text-foreground"
                         prefetch={false}
                       >
@@ -149,10 +160,10 @@ export function Header() {
                     )
                   )}
                   <Button asChild className="rounded-full mt-4 bg-gradient-to-r from-red-500 to-orange-400 text-white hover:opacity-90 transition-opacity btn-light-sweep">
-                      <Link href="/media-content">บริการ Exclusive Media</Link>
+                      <Link href="/media-content" onClick={() => setIsSheetOpen(false)}>บริการ Exclusive Media</Link>
                   </Button>
                   <Button asChild className="rounded-full mt-4">
-                    <Link href="https://line.me/ti/p/~" target="_blank">
+                    <Link href="https://line.me/ti/p/~" target="_blank" onClick={() => setIsSheetOpen(false)}>
                       ติดต่อเรา
                     </Link>
                   </Button>
