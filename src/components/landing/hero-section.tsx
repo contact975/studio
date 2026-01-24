@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export function HeroSection() {
   return (
-    <section id="hero" className="flex items-center justify-center bg-gradient-to-br from-[#1e3a8a] via-[#1e40af] to-[#2563eb] text-white" style={{ minHeight: 'calc(100vh - 4rem)' }}>
+    <section id="hero" className="flex items-center justify-center animate-gradient text-white" style={{ minHeight: 'calc(100vh - 4rem)' }}>
       <div className="container mx-auto px-6 py-20 flex flex-col items-center text-center">
         <h1 className="text-5xl md:text-6xl font-bold mb-8 leading-tight font-headline">
           IC Accounting & Service <br />
