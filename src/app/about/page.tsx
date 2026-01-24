@@ -47,21 +47,21 @@ export default function AboutPage() {
                 ทำไมต้องเลือกเรา? (Why Choose IC)
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <Card className="text-center p-6 flex flex-col items-center justify-start shadow-sm hover:shadow-lg transition-shadow">
-                    <h3 className="text-xl font-semibold text-foreground mb-2">Modern & Partner Mindset</h3>
-                    <p className="text-muted-foreground">เราทำงานเหมือนเป็นพาร์ทเนอร์ในทีมของคุณ พร้อมให้คำปรึกษาที่เข้าใจง่าย ไม่ใช้ศัพท์เทคนิคที่ซับซ้อน</p>
+                <Card className="bg-primary text-center p-6 flex flex-col items-center justify-start shadow-sm hover:shadow-lg transition-shadow">
+                    <h3 className="text-xl font-semibold text-primary-foreground mb-2">Modern & Partner Mindset</h3>
+                    <p className="text-primary-foreground/90">เราทำงานเหมือนเป็นพาร์ทเนอร์ในทีมของคุณ พร้อมให้คำปรึกษาที่เข้าใจง่าย ไม่ใช้ศัพท์เทคนิคที่ซับซ้อน</p>
                 </Card>
-                <Card className="text-center p-6 flex flex-col items-center justify-start shadow-sm hover:shadow-lg transition-shadow">
-                     <h3 className="text-xl font-semibold text-foreground mb-2">One Stop Solution</h3>
-                    <p className="text-muted-foreground">ดูแลครบวงจรในที่เดียว ตั้งแต่จดทะเบียนบริษัท วางระบบบัญชี งานเอกสารต่างชาติ ไปจนถึงการทำสื่อการตลาด</p>
+                <Card className="bg-primary text-center p-6 flex flex-col items-center justify-start shadow-sm hover:shadow-lg transition-shadow">
+                     <h3 className="text-xl font-semibold text-primary-foreground mb-2">One Stop Solution</h3>
+                    <p className="text-primary-foreground/90">ดูแลครบวงจรในที่เดียว ตั้งแต่จดทะเบียนบริษัท วางระบบบัญชี งานเอกสารต่างชาติ ไปจนถึงการทำสื่อการตลาด</p>
                 </Card>
-                <Card className="text-center p-6 flex flex-col items-center justify-start shadow-sm hover:shadow-lg transition-shadow">
-                     <h3 className="text-xl font-semibold text-foreground mb-2">Action Oriented</h3>
-                    <p className="text-muted-foreground">เราเน้นการลงพื้นที่จริง (Consult) เพื่อวางระบบหลังบ้านให้เหมาะสมกับประเภทธุรกิจของคุณมากที่สุด</p>
+                <Card className="bg-primary text-center p-6 flex flex-col items-center justify-start shadow-sm hover:shadow-lg transition-shadow">
+                     <h3 className="text-xl font-semibold text-primary-foreground mb-2">Action Oriented</h3>
+                    <p className="text-primary-foreground/90">เราเน้นการลงพื้นที่จริง (Consult) เพื่อวางระบบหลังบ้านให้เหมาะสมกับประเภทธุรกิจของคุณมากที่สุด</p>
                 </Card>
-                <Card className="text-center p-6 flex flex-col items-center justify-start shadow-sm hover:shadow-lg transition-shadow">
-                     <h3 className="text-xl font-semibold text-foreground mb-2">Creative Thinking</h3>
-                    <p className="text-muted-foreground">เราเป็นสำนักงานบัญชีไม่กี่แห่งที่เข้าใจการตลาด และพร้อมช่วยคุณผลิต Media Content เพื่ออัปเกรดแบรนด์ให้ดูเป็นมืออาชีพ</p>
+                <Card className="bg-primary text-center p-6 flex flex-col items-center justify-start shadow-sm hover:shadow-lg transition-shadow">
+                     <h3 className="text-xl font-semibold text-primary-foreground mb-2">Creative Thinking</h3>
+                    <p className="text-primary-foreground/90">เราเป็นสำนักงานบัญชีไม่กี่แห่งที่เข้าใจการตลาด และพร้อมช่วยคุณผลิต Media Content เพื่ออัปเกรดแบรนด์ให้ดูเป็นมืออาชีพ</p>
                 </Card>
               </div>
             </div>
