@@ -8,7 +8,7 @@ export default function OrganizationSystemPage() {
     <div className="flex flex-col min-h-dvh bg-background text-foreground">
       <Header />
       <main className="flex-1">
-        <section className="bg-primary py-24 text-primary-foreground">
+        <section className="animate-gradient py-24 text-primary-foreground">
           <div className="container mx-auto px-6">
             <div className="max-w-3xl">
               <h1 className="text-4xl md:text-5xl font-bold font-headline mb-6">วางระบบองค์กรและบัญชีดิจิทัล</h1>

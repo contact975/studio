@@ -16,7 +16,7 @@ export default function VisaWorkPermitPage() {
     <div className="flex flex-col min-h-dvh bg-background text-foreground">
       <Header />
       <main className="flex-1">
-        <section className="relative bg-primary py-24 text-primary-foreground overflow-hidden">
+        <section className="relative animate-gradient py-24 text-primary-foreground overflow-hidden">
             <div className="absolute inset-0 opacity-20">
                 <Image 
                     src="https://images.unsplash.com/photo-1544027993-37dbfe43562a?auto=format&fit=crop&q=80&w=2000" 
