@@ -1,9 +1,22 @@
+'use client';
+
 import { Header } from '@/components/landing/header';
 import { Footer } from '@/components/landing/footer';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useEffect } from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 export default function MediaContentPage() {
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      once: false,
+      offset: 120,
+    });
+  }, []);
+
   return (
     <div className="bg-slate-950 text-white min-h-screen font-sans selection:bg-blue-500 selection:text-white">
       <Header />
