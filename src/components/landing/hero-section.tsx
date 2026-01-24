@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import Image from "next/image";
 import { Calculator, FileText, TrendingUp, Clapperboard, Camera, PlayCircle, BarChart2 } from 'lucide-react';
 
 export function HeroSection() {
@@ -34,6 +35,21 @@ export function HeroSection() {
           เราดูแลบัญชี ภาษี และวางระบบองค์กรด้วยเทคโนโลยีสมัยใหม่ในเชียงใหม่ 
           เพื่อให้คุณมีเวลาโฟกัสกับการเติบโตของธุรกิจได้อย่างเต็มที่
         </p>
+
+        <div className="relative w-full max-w-4xl mx-auto aspect-video rounded-xl overflow-hidden shadow-2xl mb-12 group cursor-pointer">
+            <Image
+                src="https://picsum.photos/seed/hero-video/1280/720"
+                alt="IC Accounting & Service Introduction Video"
+                fill
+                className="object-cover transition-transform duration-500 group-hover:scale-105"
+                data-ai-hint="business presentation"
+            />
+            <div className="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-colors"></div>
+            <div className="absolute inset-0 flex items-center justify-center">
+                <PlayCircle className="h-24 w-24 text-white/80 group-hover:text-white transition-colors drop-shadow-lg" />
+            </div>
+        </div>
+
         <div className="flex flex-col sm:flex-row gap-4">
           <Button
             asChild
