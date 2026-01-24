@@ -25,7 +25,7 @@ const features = [
 
 export function WhyUsSection() {
   return (
-    <section className="py-20 md:py-28 bg-background">
+    <section className="py-20 md:py-28 animate-gradient-soft">
       <div className="container mx-auto px-4 md:px-6 text-center">
         <h2 className="text-3xl md:text-4xl font-bold font-headline mb-16 text-foreground">
           ทำไมต้องเลือก IC Accounting & Service?
