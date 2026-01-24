@@ -1,8 +1,17 @@
+"use client";
+
+import * as React from "react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Calculator, FileText, TrendingUp, Clapperboard, Camera, PlayCircle, BarChart2 } from 'lucide-react';
 
 export function HeroSection() {
+  const [isMounted, setIsMounted] = React.useState(false);
+
+  React.useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
   const floatingIcons = [
     { Icon: Calculator, size: 'h-16 w-16', position: 'top-1/4 left-[15%]', delay: '0s' },
     { Icon: FileText, size: 'h-12 w-12', position: 'top-2/3 left-[10%]', delay: '1.5s' },
@@ -35,8 +44,9 @@ export function HeroSection() {
           เพื่อให้คุณมีเวลาโฟกัสกับการเติบโตของธุรกิจได้อย่างเต็มที่
         </p>
 
-        <div className="relative w-full max-w-4xl mx-auto aspect-video rounded-xl overflow-hidden shadow-2xl mb-12">
-           <div
+        <div className="relative w-full max-w-4xl mx-auto aspect-video rounded-xl overflow-hidden shadow-2xl mb-12 bg-black/20">
+           {isMounted && (
+            <div
                 className="wistia_responsive_padding"
                 style={{ paddingTop: '56.25%', position: 'relative' }}
             >
@@ -62,6 +72,7 @@ export function HeroSection() {
                     </div>
                 </div>
             </div>
+           )}
         </div>
 
         <div className="flex flex-col sm:flex-row gap-4">
