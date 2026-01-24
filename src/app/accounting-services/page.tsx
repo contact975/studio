@@ -1,3 +1,4 @@
+"use client";
 
 import { Header } from '@/components/landing/header';
 import { Footer } from '@/components/landing/footer';
@@ -13,6 +14,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import Image from "next/image";
+import Autoplay from "embla-carousel-autoplay";
 
 const packages = [
   {
@@ -89,17 +91,23 @@ export default function AccountingServicesPage() {
                   align: "start",
                   loop: true,
                 }}
+                plugins={[
+                  Autoplay({
+                    delay: 3000,
+                    stopOnInteraction: false,
+                  }),
+                ]}
                 className="w-full"
               >
               <CarouselContent>
                 <CarouselItem>
-                  <div className="relative aspect-[21/9] w-full overflow-hidden rounded-xl">
-                     <Image src="https://picsum.photos/seed/promo-account/1260/540" fill alt="บริการทำบัญชี โปรโมชั่น" className="object-cover" data-ai-hint="accounting promotion banner"/>
+                  <div className="relative aspect-video w-full overflow-hidden rounded-xl">
+                     <Image src="https://picsum.photos/seed/promo-account/1280/720" fill alt="บริการทำบัญชี โปรโมชั่น" className="object-cover" data-ai-hint="accounting promotion banner"/>
                   </div>
                 </CarouselItem>
                  <CarouselItem>
-                  <div className="relative aspect-[21/9] w-full overflow-hidden rounded-xl">
-                     <Image src="https://picsum.photos/seed/promo-tax/1260/540" fill alt="บริการยื่นภาษี โปรโมชั่น" className="object-cover" data-ai-hint="tax service banner"/>
+                  <div className="relative aspect-video w-full overflow-hidden rounded-xl">
+                     <Image src="https://picsum.photos/seed/promo-tax/1280/720" fill alt="บริการยื่นภาษี โปรโมชั่น" className="object-cover" data-ai-hint="tax service banner"/>
                   </div>
                 </CarouselItem>
               </CarouselContent>
