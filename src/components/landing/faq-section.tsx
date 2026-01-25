@@ -6,6 +6,9 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { useEffect } from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const faqItems = [
   {
@@ -43,8 +46,16 @@ const faqItems = [
 ];
 
 export function FaqSection() {
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      once: true,
+      offset: 100,
+    });
+  }, []);
+
   return (
-    <section id="faq" className="py-20 md:py-28 animate-gradient-soft">
+    <section id="faq" className="py-20 md:py-28 bg-secondary">
       <div className="container mx-auto px-4 md:px-6">
         <h2 data-aos="fade-up" className="text-3xl md:text-4xl font-bold font-headline text-center mb-12 text-foreground">
           FAQ: คำถามที่พบบ่อยเกี่ยวกับเรา
@@ -52,7 +63,7 @@ export function FaqSection() {
         <div data-aos="fade-up" data-aos-delay="200" className="max-w-3xl mx-auto">
           <Accordion type="single" collapsible className="w-full space-y-4">
             {faqItems.map((item, index) => (
-              <AccordionItem key={index} value={`item-${index}`} className="bg-secondary/50 border border-border/50 rounded-lg shadow-sm">
+              <AccordionItem key={index} value={`item-${index}`} className="bg-card border border-border/50 rounded-lg shadow-sm">
                 <AccordionTrigger className="p-6 text-left font-semibold text-lg hover:no-underline text-foreground">
                   {item.question}
                 </AccordionTrigger>
