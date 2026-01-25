@@ -100,7 +100,7 @@ export function Header() {
               <Link href="/media-content">บริการ Exclusive Media</Link>
           </Button>
           <Button asChild className="hidden sm:flex rounded-full">
-            <Link href="https://line.me/ti/p/~" target="_blank">
+            <Link href="https://line.me/R/ti/p/@374jshvh" target="_blank">
               ติดต่อเรา
             </Link>
           </Button>
@@ -163,7 +163,7 @@ export function Header() {
                       <Link href="/media-content" onClick={() => setIsSheetOpen(false)}>บริการ Exclusive Media</Link>
                   </Button>
                   <Button asChild className="rounded-full mt-4">
-                    <Link href="https://line.me/ti/p/~" target="_blank" onClick={() => setIsSheetOpen(false)}>
+                    <Link href="https://line.me/R/ti/p/@374jshvh" target="_blank" onClick={() => setIsSheetOpen(false)}>
                       ติดต่อเรา
                     </Link>
                   </Button>
