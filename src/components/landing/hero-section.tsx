@@ -60,7 +60,7 @@ export function HeroSection() {
                     }}
                 >
                     <div
-                        className="wistia_embed wistia_async_le8f20crj0 videoFoam=true silentAutoPlay=true"
+                        className="wistia_embed wistia_async_hd04a418nd videoFoam=true silentAutoPlay=true"
                         style={{
                             height: '100%',
                             position: 'relative',

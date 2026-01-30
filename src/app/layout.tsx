@@ -19,7 +19,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600;700&display=swap" rel="stylesheet" />
-        <script src="https://fast.wistia.com/embed/medias/le8f20crj0.jsonp" async></script>
+        <script src="https://fast.wistia.com/embed/medias/hd04a418nd.jsonp" async></script>
         <script src="https://fast.wistia.com/assets/external/E-v1.js" async></script>
       </head>
       <body className={cn('font-body antialiased')} suppressHydrationWarning>
