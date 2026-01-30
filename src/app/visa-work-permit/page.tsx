@@ -7,8 +7,6 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Briefcase, BadgeHelp, Star } from 'lucide-react';
 import { useEffect } from 'react';
 import AOS from 'aos';
@@ -110,27 +108,14 @@ export default function VisaWorkPermitPage() {
                         </div>
                     </div>
                     <div className="w-full lg:w-1/2 px-4">
-                        <Card data-aos="fade-left" className="p-8 rounded-2xl shadow-lg">
-                            <CardHeader className="p-0 mb-6 text-center">
+                        <Card data-aos="fade-left" className="p-8 rounded-2xl shadow-lg text-center">
+                            <CardHeader className="p-0 mb-6">
                                 <CardTitle className="text-2xl font-bold">ปรึกษาเรื่องวีซ่าฟรีวันนี้</CardTitle>
                             </CardHeader>
                             <CardContent className="p-0">
-                                <form className="space-y-4">
-                                    <Input type="text" placeholder="Full Name" />
-                                    <Input type="email" placeholder="Email Address" />
-                                    <Select>
-                                        <SelectTrigger>
-                                            <SelectValue placeholder="Select Visa Type" />
-                                        </SelectTrigger>
-                                        <SelectContent>
-                                            <SelectItem value="non-b">Non-Immigrant B</SelectItem>
-                                            <SelectItem value="work-permit">Work Permit</SelectItem>
-                                            <SelectItem value="ltr">LTR Visa</SelectItem>
-                                            <SelectItem value="other">Other</SelectItem>
-                                        </SelectContent>
-                                    </Select>
-                                    <Button type="submit" className="w-full" size="lg">Get a Free Consultation</Button>
-                                </form>
+                                <Button asChild size="lg">
+                                    <Link href="https://line.me/R/ti/p/@374jshvh" target="_blank">คลิกเลย</Link>
+                                </Button>
                             </CardContent>
                         </Card>
                     </div>
