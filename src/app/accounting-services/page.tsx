@@ -36,7 +36,7 @@ const packages = [
   },
   {
     size: 'M',
-    name: 'Orbit Growth',
+    name: 'Standard Package',
     price: '6000',
     description: 'เหมาะสำหรับธุรกิจที่ต้องการทีมซัพพอร์ตและข้อมูลเชิงลึกมากขึ้น',
     limit: 'จำนวนรายการต่อเดือนไม่เกิน 60 รายการ',
