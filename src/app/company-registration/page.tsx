@@ -23,7 +23,8 @@ const registrationPackages = [
     {
         type: "Partnership",
         name: "ห้างหุ้นส่วน",
-        price: "9000",
+        price: "6000",
+        originalPrice: "9000",
         description: "ราคารวมค่าบริการและค่าธรรมเนียมที่ต้องชำระทั้งหมดแล้ว",
         buttonText: "ขอใบเสนอราคา"
     },
@@ -109,7 +110,20 @@ export default function CompanyRegistrationPage() {
                             <CardTitle className="text-2xl font-bold">{pkg.name}</CardTitle>
                         </CardHeader>
                         <CardContent className="flex-grow p-0">
-                            <p className="text-3xl font-bold text-primary my-4">฿ {new Intl.NumberFormat('th-TH').format(Number(pkg.price))}</p>
+                            {pkg.originalPrice ? (
+                              <div className="my-4">
+                                <p className="text-xl text-muted-foreground line-through">
+                                  ฿ {new Intl.NumberFormat('th-TH').format(Number(pkg.originalPrice))}
+                                </p>
+                                <p className="text-3xl font-bold text-primary">
+                                  ฿ {new Intl.NumberFormat('th-TH').format(Number(pkg.price))}
+                                </p>
+                              </div>
+                            ) : (
+                              <p className="text-3xl font-bold text-primary my-4">
+                                ฿ {new Intl.NumberFormat('th-TH').format(Number(pkg.price))}
+                              </p>
+                            )}
                             <p className="text-muted-foreground text-sm min-h-[40px]">
                                 {pkg.description}
                             </p>
@@ -207,5 +221,3 @@ export default function CompanyRegistrationPage() {
     </div>
   );
 }
-
-    
