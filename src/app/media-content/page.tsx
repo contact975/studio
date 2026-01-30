@@ -4,12 +4,15 @@ import { Header } from '@/components/landing/header';
 import { Footer } from '@/components/landing/footer';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
 export default function MediaContentPage() {
+  const [isMounted, setIsMounted] = useState(false);
+
   useEffect(() => {
+    setIsMounted(true);
     AOS.init({
       duration: 1000,
       once: false,
@@ -43,13 +46,35 @@ export default function MediaContentPage() {
         <section id="portfolio" className="py-24 container mx-auto px-6">
             
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center mb-32 group" data-aos="fade-up">
-                <div className="lg:col-span-7 overflow-hidden rounded-2xl bg-zinc-900 relative h-[500px]">
-                    <Image src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?q=80&w=2070" 
-                         alt="Corporate Masterpiece"
-                         fill
-                         className="object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-1000"
-                         data-ai-hint="camera film"
-                         />
+                <div className="lg:col-span-7 overflow-hidden rounded-2xl bg-zinc-900 relative aspect-video">
+                    {isMounted && (
+                        <div
+                            className="wistia_responsive_padding"
+                            style={{ paddingTop: '56.25%', position: 'relative' }}
+                        >
+                            <div
+                                className="wistia_responsive_wrapper"
+                                style={{
+                                    height: '100%',
+                                    left: 0,
+                                    position: 'absolute',
+                                    top: 0,
+                                    width: '100%',
+                                }}
+                            >
+                                <div
+                                    className="wistia_embed wistia_async_le8f20crj0 videoFoam=true silentAutoPlay=true"
+                                    style={{
+                                        height: '100%',
+                                        position: 'relative',
+                                        width: '100%',
+                                    }}
+                                >
+                                    &nbsp;
+                                </div>
+                            </div>
+                        </div>
+                    )}
                 </div>
                 <div className="lg:col-span-5">
                     <span className="text-blue-500 text-sm font-mono mb-4 block">Visual Storytelling</span>
