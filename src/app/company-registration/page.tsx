@@ -32,6 +32,7 @@ const registrationPackages = [
         type: "Company",
         name: "บริษัท",
         price: "12000",
+        originalPrice: "15000",
         description: "ราคารวมค่าบริการและค่าธรรมเนียมที่ต้องชำระทั้งหมดแล้ว",
         buttonText: "ขอใบเสนอราคา"
     }
