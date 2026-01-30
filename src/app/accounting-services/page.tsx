@@ -22,7 +22,7 @@ import 'aos/dist/aos.css';
 const packages = [
   {
     size: 'S',
-    name: 'Orbit Starter',
+    name: 'Basic Package',
     price: '2000',
     description: 'เหมาะสำหรับธุรกิจขนาดเล็กที่เริ่มจัดระบบบัญชี',
     limit: 'จำนวนรายการต่อเดือนไม่เกิน 20 รายการ',
