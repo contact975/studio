@@ -66,7 +66,7 @@ const packages = [
   },
   {
     size: 'XL',
-    name: 'Orbit Enterprise',
+    name: 'Pro Max Package',
     price: '24000',
     description: 'เหมาะสำหรับธุรกิจทุกขนาดที่ต้องการความต่อเนื่องและตรวจสอบได้',
     limit: 'จำนวนรายการต่อเดือนมากกว่า 120 รายการ',
