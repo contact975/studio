@@ -23,7 +23,7 @@ const registrationPackages = [
     {
         type: "Partnership",
         name: "ห้างหุ้นส่วน",
-        price: "6000",
+        price: "9000",
         description: "ราคารวมค่าบริการและค่าธรรมเนียมที่ต้องชำระทั้งหมดแล้ว",
         buttonText: "ขอใบเสนอราคา"
     },
@@ -49,8 +49,8 @@ export default function CompanyRegistrationPage() {
     <div className="flex flex-col min-h-dvh bg-background text-foreground">
       <Header />
       <main className="flex-1">
-        <section className="py-12 bg-background">
-          <div data-aos="fade-up" className="container mx-auto px-4 md:px-6">
+        <section className="py-12 bg-background" data-aos="fade-up">
+          <div className="container mx-auto px-4 md:px-6">
              <Carousel
                 opts={{
                   align: "start",
@@ -82,8 +82,8 @@ export default function CompanyRegistrationPage() {
           </div>
         </section>
 
-        <section className="animate-gradient text-primary-foreground py-20 md:py-28">
-          <div data-aos="fade-up" className="container mx-auto px-4 md:px-6">
+        <section className="animate-gradient text-primary-foreground py-20 md:py-28" data-aos="fade-up">
+          <div className="container mx-auto px-4 md:px-6">
               <nav className="text-sm mb-4 opacity-80">
                   <Link href="/" className="hover:opacity-100 transition-opacity">หน้าแรก</Link> / <span>บริการจดทะเบียนนิติบุคคล</span>
               </nav>
@@ -92,9 +92,9 @@ export default function CompanyRegistrationPage() {
           </div>
         </section>
         
-        <section className="py-20 md:py-28 bg-secondary/60">
+        <section className="py-20 md:py-28 bg-secondary/60" data-aos="fade-up">
             <div className="container mx-auto px-4 md:px-6">
-                <h2 data-aos="fade-up" className="text-3xl md:text-4xl font-bold font-headline text-center mb-16 text-foreground">
+                <h2 className="text-3xl md:text-4xl font-bold font-headline text-center mb-16 text-foreground">
                 แพ็กเกจบริการจดทะเบียน
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
@@ -125,9 +125,9 @@ export default function CompanyRegistrationPage() {
             </div>
         </section>
 
-        <section className="py-20 md:py-28 bg-primary text-primary-foreground">
+        <section className="py-20 md:py-28 bg-primary text-primary-foreground" data-aos="fade-up">
           <div className="container mx-auto px-4 md:px-6">
-            <div data-aos="fade-up" className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
               <div className="space-y-6">
                 <h2 className="text-3xl font-bold font-headline">จดทะเบียนธุรกิจใหม่ (New Setup)</h2>
                 <p className="text-primary-foreground/90 leading-relaxed">
@@ -178,9 +178,9 @@ export default function CompanyRegistrationPage() {
           </div>
         </section>
 
-        <section className="py-20 md:py-28 bg-secondary">
+        <section className="py-20 md:py-28 bg-secondary" data-aos="fade-up">
             <div className="container mx-auto px-4 md:px-6 text-center">
-                <h2 data-aos="fade-up" className="text-3xl md:text-4xl font-bold font-headline mb-4 text-foreground">เริ่มต้นธุรกิจใน 1 วัน</h2>
+                <h2 className="text-3xl md:text-4xl font-bold font-headline mb-4 text-foreground">เริ่มต้นธุรกิจใน 1 วัน</h2>
                 <p className="text-muted-foreground mb-12 max-w-xl mx-auto">เราจัดการทุกขั้นตอนให้คุณพร้อมดำเนินธุรกิจได้ทันที</p>
                 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
@@ -207,3 +207,5 @@ export default function CompanyRegistrationPage() {
     </div>
   );
 }
+
+    
