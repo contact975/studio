@@ -114,7 +114,7 @@ export default function AuditServicesPage() {
                         <h2 className="text-3xl font-bold font-headline text-foreground">ให้มากกว่าแค่การลงลายมือชื่อ</h2>
                         <p className="text-muted-foreground leading-relaxed">เราไม่ได้เพียงแค่ตรวจสอบความถูกต้อง แต่เราช่วยค้นหาจุดอ่อนในระบบควบคุมภายใน เพื่อให้ผู้ประกอบการนำไปปรับปรุงธุรกิจได้จริง</p>
                         <Button asChild size="lg" className="rounded-full">
-                            <Link href="/#contact">ขอใบเสนอราคาตรวจสอบบัญชี</Link>
+                            <Link href="https://line.me/R/ti/p/@374jshvh" target="_blank">ขอใบเสนอราคาตรวจสอบบัญชี</Link>
                         </Button>
                     </div>
 

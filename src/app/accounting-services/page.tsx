@@ -163,7 +163,7 @@ export default function AccountingServicesPage() {
                     </CardContent>
                     <CardFooter className="p-0 pt-8 w-full">
                       <Button asChild size="lg" className="w-full rounded-full">
-                        <Link href="/#contact">ขอใบเสนอราคา</Link>
+                        <Link href="https://line.me/R/ti/p/@374jshvh" target="_blank">ขอใบเสนอราคา</Link>
                       </Button>
                     </CardFooter>
                   </Card>
