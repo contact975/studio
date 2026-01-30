@@ -131,7 +131,7 @@ export default function CompanyRegistrationPage() {
                         </CardContent>
                         <CardFooter className="justify-center pt-6 flex-shrink-0 p-0">
                             <Button asChild className="w-full rounded-full" size="lg">
-                                <Link href="/#contact">{pkg.buttonText}</Link>
+                                <Link href="https://line.me/R/ti/p/@374jshvh" target="_blank">{pkg.buttonText}</Link>
                             </Button>
                         </CardFooter>
                     </Card>
