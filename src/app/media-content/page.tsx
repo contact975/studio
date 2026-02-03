@@ -8,6 +8,14 @@ import { useEffect, useState } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
+declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+      'wistia-player': any;
+    }
+  }
+}
+
 export default function MediaContentPage() {
   const [isMounted, setIsMounted] = useState(false);
 
@@ -48,31 +56,22 @@ export default function MediaContentPage() {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center mb-32 group" data-aos="fade-up">
                 <div className="lg:col-span-7 overflow-hidden rounded-2xl bg-zinc-900 relative aspect-video">
                     {isMounted ? (
-                        <div
-                            className="wistia_responsive_padding"
-                            style={{ paddingTop: '56.25%', position: 'relative' }}
-                        >
-                            <div
-                                className="wistia_responsive_wrapper"
-                                style={{
-                                    height: '100%',
-                                    left: 0,
-                                    position: 'absolute',
-                                    top: 0,
-                                    width: '100%',
-                                }}
-                            >
-                                <div
-                                    className="wistia_embed wistia_async_le8f20crj0 videoFoam=true silentAutoPlay=true"
-                                    style={{
-                                        height: '100%',
-                                        position: 'relative',
-                                        width: '100%',
-                                    }}
-                                >
-                                    &nbsp;
-                                </div>
-                            </div>
+                        <div className="w-full h-full relative">
+                           <style dangerouslySetInnerHTML={{ __html: `
+                             wistia-player[media-id='le8f20crj0']:not(:defined) { 
+                               background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/le8f20crj0/swatch'); 
+                               display: block; 
+                               filter: blur(5px); 
+                               padding-top:56.25%; 
+                             }
+                           `}} />
+                           <wistia-player 
+                             media-id="le8f20crj0" 
+                             aspect="1.7777777777777777"
+                             muted="true"
+                             autoplay="true"
+                             style={{ width: '100%', height: '100%' }}
+                           ></wistia-player>
                         </div>
                     ) : (
                       <div className="w-full h-full bg-slate-900 animate-pulse flex items-center justify-center">

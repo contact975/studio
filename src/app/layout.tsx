@@ -24,10 +24,8 @@ export default function RootLayout({
       <body className={cn('font-body antialiased')} suppressHydrationWarning>
         {children}
         <Toaster />
-        {/* Wistia Scripts loaded with Next.js Script component for better performance and error handling */}
-        <Script src="https://fast.wistia.com/assets/external/E-v1.js" strategy="afterInteractive" />
-        <Script src="https://fast.wistia.com/embed/medias/hd04a418nd.jsonp" strategy="afterInteractive" />
-        <Script src="https://fast.wistia.com/embed/medias/le8f20crj0.jsonp" strategy="afterInteractive" />
+        {/* Modern Wistia Player Script */}
+        <Script src="https://fast.wistia.com/player.js" strategy="afterInteractive" />
       </body>
     </html>
   );

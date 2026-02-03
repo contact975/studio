@@ -5,6 +5,14 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Calculator, FileText, TrendingUp, Clapperboard, Camera, PlayCircle, BarChart2 } from 'lucide-react';
 
+declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+      'wistia-player': any;
+    }
+  }
+}
+
 export function HeroSection() {
   const [isMounted, setIsMounted] = React.useState(false);
 
@@ -45,32 +53,23 @@ export function HeroSection() {
 
         <div data-aos="fade-up" data-aos-delay="200" className="relative w-full max-w-4xl mx-auto aspect-video rounded-xl overflow-hidden shadow-2xl mb-12 bg-black/20">
            {isMounted ? (
-            <div
-                className="wistia_responsive_padding"
-                style={{ paddingTop: '56.25%', position: 'relative' }}
-            >
-                <div
-                    className="wistia_responsive_wrapper"
-                    style={{
-                        height: '100%',
-                        left: 0,
-                        position: 'absolute',
-                        top: 0,
-                        width: '100%',
-                    }}
-                >
-                    <div
-                        className="wistia_embed wistia_async_hd04a418nd videoFoam=true silentAutoPlay=true"
-                        style={{
-                            height: '100%',
-                            position: 'relative',
-                            width: '100%',
-                        }}
-                    >
-                        &nbsp;
-                    </div>
-                </div>
-            </div>
+             <div className="w-full h-full relative">
+               <style dangerouslySetInnerHTML={{ __html: `
+                 wistia-player[media-id='hd04a418nd']:not(:defined) { 
+                   background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/hd04a418nd/swatch'); 
+                   display: block; 
+                   filter: blur(5px); 
+                   padding-top:56.25%; 
+                 }
+               `}} />
+               <wistia-player 
+                 media-id="hd04a418nd" 
+                 aspect="1.7777777777777777"
+                 muted="true"
+                 autoplay="true"
+                 style={{ width: '100%', height: '100%' }}
+               ></wistia-player>
+             </div>
            ) : (
              <div className="w-full h-full bg-slate-900 animate-pulse flex items-center justify-center">
                <span className="text-white/20">Loading Video...</span>

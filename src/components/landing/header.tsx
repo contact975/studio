@@ -1,9 +1,7 @@
-
 "use client";
 
 import * as React from "react";
 import Link from "next/link";
-import Image from "next/image";
 import {
   Menu,
   ChevronDown,
@@ -101,8 +99,8 @@ export function Header() {
               <Link href="/media-content">บริการ Exclusive Media</Link>
           </Button>
           <Button asChild className="hidden sm:flex rounded-full">
-            <Link href="https://line.me/R/ti/p/@374jshvh" target="_blank">
-              ติดต่อเรา
+            <Link href="/quote">
+              นัดหมายปรึกษา
             </Link>
           </Button>
           {isClient && (
@@ -164,8 +162,8 @@ export function Header() {
                       <Link href="/media-content" onClick={() => setIsSheetOpen(false)}>บริการ Exclusive Media</Link>
                   </Button>
                   <Button asChild className="rounded-full mt-4">
-                    <Link href="https://line.me/R/ti/p/@374jshvh" target="_blank" onClick={() => setIsSheetOpen(false)}>
-                      ติดต่อเรา
+                    <Link href="/quote" onClick={() => setIsSheetOpen(false)}>
+                      นัดหมายปรึกษา
                     </Link>
                   </Button>
                 </nav>
