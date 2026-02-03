@@ -1,3 +1,4 @@
+
 "use client";
 
 import * as React from "react";
@@ -37,7 +38,7 @@ const navLinks = [
     subLinks: serviceSubLinks,
   },
   { href: "/about", label: "เกี่ยวกับเรา" },
-  { href: "/quote", label: "ขอใบเสนอราคา" },
+  { href: "/quote", label: "นัดหมาย" },
 ];
 
 export function Header() {
