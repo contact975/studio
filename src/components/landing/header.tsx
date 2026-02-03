@@ -1,3 +1,4 @@
+
 "use client";
 
 import * as React from "react";
@@ -99,8 +100,8 @@ export function Header() {
               <Link href="/media-content">บริการ Exclusive Media</Link>
           </Button>
           <Button asChild className="hidden sm:flex rounded-full">
-            <Link href="/quote">
-              นัดหมายปรึกษา
+            <Link href="https://qr-official.line.me/gs/M_374jshvh_GW.png?oat_content=qr" target="_blank">
+              ติดต่อ
             </Link>
           </Button>
           {isClient && (
@@ -162,8 +163,8 @@ export function Header() {
                       <Link href="/media-content" onClick={() => setIsSheetOpen(false)}>บริการ Exclusive Media</Link>
                   </Button>
                   <Button asChild className="rounded-full mt-4">
-                    <Link href="/quote" onClick={() => setIsSheetOpen(false)}>
-                      นัดหมายปรึกษา
+                    <Link href="https://qr-official.line.me/gs/M_374jshvh_GW.png?oat_content=qr" onClick={() => setIsSheetOpen(false)} target="_blank">
+                      ติดต่อ
                     </Link>
                   </Button>
                 </nav>
