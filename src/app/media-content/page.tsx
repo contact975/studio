@@ -47,7 +47,7 @@ export default function MediaContentPage() {
             
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center mb-32 group" data-aos="fade-up">
                 <div className="lg:col-span-7 overflow-hidden rounded-2xl bg-zinc-900 relative aspect-video">
-                    {isMounted && (
+                    {isMounted ? (
                         <div
                             className="wistia_responsive_padding"
                             style={{ paddingTop: '56.25%', position: 'relative' }}
@@ -74,6 +74,10 @@ export default function MediaContentPage() {
                                 </div>
                             </div>
                         </div>
+                    ) : (
+                      <div className="w-full h-full bg-slate-900 animate-pulse flex items-center justify-center">
+                        <span className="text-white/20">Loading Showreel...</span>
+                      </div>
                     )}
                 </div>
                 <div className="lg:col-span-5">

@@ -44,7 +44,7 @@ export function HeroSection() {
         </p>
 
         <div data-aos="fade-up" data-aos-delay="200" className="relative w-full max-w-4xl mx-auto aspect-video rounded-xl overflow-hidden shadow-2xl mb-12 bg-black/20">
-           {isMounted && (
+           {isMounted ? (
             <div
                 className="wistia_responsive_padding"
                 style={{ paddingTop: '56.25%', position: 'relative' }}
@@ -71,6 +71,10 @@ export function HeroSection() {
                     </div>
                 </div>
             </div>
+           ) : (
+             <div className="w-full h-full bg-slate-900 animate-pulse flex items-center justify-center">
+               <span className="text-white/20">Loading Video...</span>
+             </div>
            )}
         </div>
 
@@ -79,7 +83,7 @@ export function HeroSection() {
             asChild
             className="bg-white text-blue-900 px-8 py-4 rounded-full font-bold hover:bg-blue-50 transition shadow-xl"
           >
-            <Link href="https://www.facebook.com/icaccservice" target="_blank" rel="noopener noreferrer">ปรึกษาเราฟรี</Link>
+            <Link href="https://line.me/R/ti/p/@374jshvh" target="_blank" rel="noopener noreferrer">ปรึกษาเราฟรี</Link>
           </Button>
           <Button
             asChild
