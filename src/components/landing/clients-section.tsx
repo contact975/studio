@@ -62,6 +62,11 @@ const allLogos = [
     logoUrl: "https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Customer10.png?alt=media",
     imageHint: "Customer logo 10"
   },
+  {
+    name: "Customer 11",
+    logoUrl: "https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Customer11.png?alt=media",
+    imageHint: "Customer logo 11"
+  },
 ];
 
 
