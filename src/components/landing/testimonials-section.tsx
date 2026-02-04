@@ -5,7 +5,7 @@ const testimonials = [
   {
     id: "testimonial-1",
     name: "คุณสมชาย รักธุรกิจ",
-    company: "เจ้าของร้านกาแฟ",
+    company: "เจ้าของร้าน Smash Daddy's",
     quote: "IC Accounting ช่วยทำให้การจัดการหลังบ้านเป็นเรื่องที่ง่ายขึ้น เป็นที่ปรึกษาที่ดี และคอยให้คำแนะนำเสนอ มีความเป็นมืออาชีพ ทำให้เรามีเวลาไปโฟกัสเรื่องอื่นได้มากขึ้น",
     avatarUrl: "https://picsum.photos/seed/avatar1/80/80",
     avatarFallback: "ส",
