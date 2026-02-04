@@ -37,6 +37,11 @@ const allLogos = [
     imageHint: "Customer logo 05"
   },
   {
+    name: "Customer 06",
+    logoUrl: "https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Customer06.png?alt=media",
+    imageHint: "Customer logo 06"
+  },
+  {
     name: "Ananda Development",
     logoUrl: "https://picsum.photos/seed/ananda/200/100",
     imageHint: "Ananda Development logo"
