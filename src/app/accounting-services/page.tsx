@@ -124,7 +124,13 @@ export default function AccountingServicesPage() {
                 </CarouselItem>
                  <CarouselItem>
                   <div className="relative aspect-[3/1] w-full overflow-hidden rounded-xl">
-                     <Image src="https://picsum.photos/seed/promo-tax/1280/427" fill alt="บริการยื่นภาษี โปรโมชั่น" className="object-cover" data-ai-hint="tax service banner"/>
+                     <Image 
+                        src="https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Promotion%2FPromotion02.png?alt=media" 
+                        fill 
+                        alt="บริการยื่นภาษี โปรโมชั่น" 
+                        className="object-cover" 
+                        data-ai-hint="tax service banner"
+                      />
                   </div>
                 </CarouselItem>
               </CarouselContent>
