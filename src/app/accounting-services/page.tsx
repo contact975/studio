@@ -116,9 +116,9 @@ export default function AccountingServicesPage() {
                      <Image 
                         src="https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Promotion%2FPromotion01.png?alt=media" 
                         fill 
-                        alt="บริการทำบัญชี โปรโมชั่น" 
+                        alt="บริการทำบัญชี โปรโมชั่น 1" 
                         className="object-cover" 
-                        data-ai-hint="accounting promotion banner"
+                        data-ai-hint="accounting promotion banner 1"
                       />
                   </div>
                 </CarouselItem>
@@ -127,9 +127,20 @@ export default function AccountingServicesPage() {
                      <Image 
                         src="https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Promotion%2FPromotion02.png?alt=media" 
                         fill 
-                        alt="บริการยื่นภาษี โปรโมชั่น" 
+                        alt="บริการทำบัญชี โปรโมชั่น 2" 
                         className="object-cover" 
-                        data-ai-hint="tax service banner"
+                        data-ai-hint="accounting promotion banner 2"
+                      />
+                  </div>
+                </CarouselItem>
+                <CarouselItem>
+                  <div className="relative aspect-[3/1] w-full overflow-hidden rounded-xl">
+                     <Image 
+                        src="https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Promotion%2FCustomer03.png?alt=media" 
+                        fill 
+                        alt="บริการทำบัญชี โปรโมชั่น 3" 
+                        className="object-cover" 
+                        data-ai-hint="accounting promotion banner 3"
                       />
                   </div>
                 </CarouselItem>
