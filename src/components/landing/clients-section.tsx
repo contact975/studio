@@ -12,9 +12,9 @@ import Autoplay from "embla-carousel-autoplay";
 
 const allLogos = [
   {
-    name: "Bualuang Ventures",
-    logoUrl: "https://picsum.photos/seed/bualuang/200/100",
-    imageHint: "Bualuang Ventures logo"
+    name: "Customer 01",
+    logoUrl: "https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Customer01.png?alt=media",
+    imageHint: "Customer logo 01"
   },
   {
     name: "Ananda Development",
