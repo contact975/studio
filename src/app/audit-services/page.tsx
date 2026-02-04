@@ -5,15 +5,7 @@ import { Footer } from '@/components/landing/footer';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
-import Image from "next/image";
-import Autoplay from "embla-carousel-autoplay";
+import { PromoCarousel } from '@/components/landing/promo-carousel';
 import { useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
@@ -65,38 +57,8 @@ export default function AuditServicesPage() {
     <div className="flex flex-col min-h-dvh bg-background text-foreground">
       <Header />
       <main className="flex-1">
-        <section className="py-12 bg-background">
-          <div data-aos="fade-up" className="container mx-auto px-4 md:px-6">
-             <Carousel
-                opts={{
-                  align: "start",
-                  loop: true,
-                }}
-                plugins={[
-                  Autoplay({
-                    delay: 3000,
-                    stopOnInteraction: false,
-                  }),
-                ]}
-                className="w-full"
-              >
-              <CarouselContent>
-                <CarouselItem>
-                  <div className="relative aspect-[3/1] w-full overflow-hidden rounded-xl">
-                     <Image src="https://picsum.photos/seed/promo-audit/1280/427" fill alt="บริการตรวจสอบบัญชี โปรโมชั่น" className="object-cover" data-ai-hint="audit service banner"/>
-                  </div>
-                </CarouselItem>
-                 <CarouselItem>
-                  <div className="relative aspect-[3/1] w-full overflow-hidden rounded-xl">
-                     <Image src="https://picsum.photos/seed/promo-cpa/1280/427" fill alt="CPA โปรโมชั่น" className="object-cover" data-ai-hint="cpa promotion banner"/>
-                  </div>
-                </CarouselItem>
-              </CarouselContent>
-              <CarouselPrevious className="absolute left-2 top-1/2 -translate-y-1/2 hidden sm:inline-flex" />
-              <CarouselNext className="absolute right-2 top-1/2 -translate-y-1/2 hidden sm:inline-flex" />
-            </Carousel>
-          </div>
-        </section>
+        <PromoCarousel />
+        
         <section className="animate-gradient text-primary-foreground py-20 md:py-28">
             <div data-aos="fade-up" className="container mx-auto px-4 md:px-6">
                 <nav className="text-sm mb-4 opacity-80">

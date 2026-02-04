@@ -1,4 +1,3 @@
-
 "use client";
 
 import { Header } from '@/components/landing/header';
@@ -8,6 +7,7 @@ import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Briefcase, BadgeHelp, Star } from 'lucide-react';
+import { PromoCarousel } from '@/components/landing/promo-carousel';
 import { useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
@@ -25,6 +25,8 @@ export default function VisaWorkPermitPage() {
     <div className="flex flex-col min-h-dvh bg-background text-foreground">
       <Header />
       <main className="flex-1">
+        <PromoCarousel />
+
         <section className="relative animate-gradient py-24 text-primary-foreground overflow-hidden">
             <div className="absolute inset-0 opacity-20">
                 <Image 

@@ -3,6 +3,7 @@ import { Header } from '@/components/landing/header';
 import { Footer } from '@/components/landing/footer';
 import { BarChart, ShieldCheck, Users } from 'lucide-react';
 import { Card } from '@/components/ui/card';
+import { PromoCarousel } from '@/components/landing/promo-carousel';
 import { useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
@@ -20,6 +21,8 @@ export default function OrganizationSystemPage() {
     <div className="flex flex-col min-h-dvh bg-background text-foreground">
       <Header />
       <main className="flex-1">
+        <PromoCarousel />
+        
         <section className="animate-gradient py-24 text-primary-foreground">
           <div className="container mx-auto px-6">
             <div data-aos="fade-up" className="max-w-3xl">

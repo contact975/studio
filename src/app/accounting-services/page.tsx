@@ -5,16 +5,8 @@ import { Footer } from '@/components/landing/footer';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { CheckCircle, Calculator } from 'lucide-react';
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
-import Image from "next/image";
-import Autoplay from "embla-carousel-autoplay";
+import { CheckCircle } from 'lucide-react';
+import { PromoCarousel } from '@/components/landing/promo-carousel';
 import { useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
@@ -94,62 +86,7 @@ export default function AccountingServicesPage() {
     <div className="flex flex-col min-h-dvh bg-secondary/50 text-foreground">
       <Header />
       <main className="flex-1">
-        {/* Promotion Section */}
-        <section className="py-12 bg-background">
-          <div data-aos="fade-up" className="container mx-auto px-4 md:px-6">
-             <Carousel
-                opts={{
-                  align: "start",
-                  loop: true,
-                }}
-                plugins={[
-                  Autoplay({
-                    delay: 3000,
-                    stopOnInteraction: false,
-                  }),
-                ]}
-                className="w-full"
-              >
-              <CarouselContent>
-                <CarouselItem>
-                  <div className="relative aspect-[3/1] w-full overflow-hidden rounded-xl">
-                     <Image 
-                        src="https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Promotion%2FPromotion01.png?alt=media" 
-                        fill 
-                        alt="บริการทำบัญชี โปรโมชั่น 1" 
-                        className="object-cover" 
-                        data-ai-hint="accounting promotion banner 1"
-                      />
-                  </div>
-                </CarouselItem>
-                 <CarouselItem>
-                  <div className="relative aspect-[3/1] w-full overflow-hidden rounded-xl">
-                     <Image 
-                        src="https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Promotion%2FPromotion02.png?alt=media" 
-                        fill 
-                        alt="บริการทำบัญชี โปรโมชั่น 2" 
-                        className="object-cover" 
-                        data-ai-hint="accounting promotion banner 2"
-                      />
-                  </div>
-                </CarouselItem>
-                <CarouselItem>
-                  <div className="relative aspect-[3/1] w-full overflow-hidden rounded-xl">
-                     <Image 
-                        src="https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Promotion%2FCustomer03.png?alt=media" 
-                        fill 
-                        alt="บริการทำบัญชี โปรโมชั่น 3" 
-                        className="object-cover" 
-                        data-ai-hint="accounting promotion banner 3"
-                      />
-                  </div>
-                </CarouselItem>
-              </CarouselContent>
-              <CarouselPrevious className="absolute left-2 top-1/2 -translate-y-1/2 hidden sm:inline-flex" />
-              <CarouselNext className="absolute right-2 top-1/2 -translate-y-1/2 hidden sm:inline-flex" />
-            </Carousel>
-          </div>
-        </section>
+        <PromoCarousel />
         
         {/* Service Description Section */}
         <section className="animate-gradient text-primary-foreground py-20 md:py-28">
