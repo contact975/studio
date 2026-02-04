@@ -113,7 +113,13 @@ export default function AccountingServicesPage() {
               <CarouselContent>
                 <CarouselItem>
                   <div className="relative aspect-[3/1] w-full overflow-hidden rounded-xl">
-                     <Image src="https://picsum.photos/seed/promo-account/1280/427" fill alt="บริการทำบัญชี โปรโมชั่น" className="object-cover" data-ai-hint="accounting promotion banner"/>
+                     <Image 
+                        src="https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Promotion%2FPromotion01.png?alt=media" 
+                        fill 
+                        alt="บริการทำบัญชี โปรโมชั่น" 
+                        className="object-cover" 
+                        data-ai-hint="accounting promotion banner"
+                      />
                   </div>
                 </CarouselItem>
                  <CarouselItem>
