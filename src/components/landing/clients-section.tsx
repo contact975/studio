@@ -1,3 +1,4 @@
+
 "use client";
 
 import Image from "next/image";
@@ -60,61 +61,6 @@ const allLogos = [
     name: "Customer 10",
     logoUrl: "https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Customer10.png?alt=media",
     imageHint: "Customer logo 10"
-  },
-  {
-    name: "Ananda Development",
-    logoUrl: "https://picsum.photos/seed/ananda/200/100",
-    imageHint: "Ananda Development logo"
-  },
-  {
-    name: "UOB",
-    logoUrl: "https://picsum.photos/seed/uob/200/100",
-    imageHint: "UOB logo"
-  },
-  {
-    name: "ออมสิน",
-    logoUrl: "https://picsum.photos/seed/gsb/200/100",
-    imageHint: "GSB logo"
-  },
-  {
-    name: "Lazada",
-    logoUrl: "https://picsum.photos/seed/lazada/200/100",
-    imageHint: "Lazada logo"
-  },
-  {
-    name: "Shopee",
-    logoUrl: "https://picsum.photos/seed/shopee/200/100",
-    imageHint: "Shopee logo"
-  },
-  {
-    name: "Health at Home",
-    logoUrl: "https://picsum.photos/seed/healthathome/200/100",
-    imageHint: "Health at Home logo"
-  },
-  {
-    name: "SellSuki",
-    logoUrl: "https://picsum.photos/seed/sellsuki/200/100",
-    imageHint: "SellSuki logo"
-  },
-  {
-    name: "Punpromotion",
-    logoUrl: "https://picsum.photos/seed/punpro/200/100",
-    imageHint: "Punpromotion logo"
-  },
-  {
-    name: "Fastship",
-    logoUrl: "https://picsum.photos/seed/fastship/200/100",
-    imageHint: "Fastship logo"
-  },
-  {
-    name: "CloudCommerce",
-    logoUrl: "https://picsum.photos/seed/cloudcommerce/200/100",
-    imageHint: "CloudCommerce logo"
-  },
-  {
-    name: "Baby Swimming",
-    logoUrl: "https://picsum.photos/seed/babyswimming/200/100",
-    imageHint: "Baby Swimming logo"
   },
 ];
 
