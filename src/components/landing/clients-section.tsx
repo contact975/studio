@@ -40,14 +40,14 @@ export function ClientsSection() {
   }, []);
 
   return (
-    <section id="clients" className="py-20 md:py-28 bg-background overflow-hidden">
+    <section id="clients" className="py-12 md:py-16 bg-background overflow-hidden">
       <div data-aos="fade-up" className="container mx-auto px-4 md:px-6">
-        <h2 className="text-3xl md:text-4xl font-bold font-headline text-center mb-16 text-foreground">
+        <h2 className="text-3xl md:text-4xl font-bold font-headline text-center mb-8 text-foreground">
           ลูกค้าที่อยู่ในการดูแลของเรา
         </h2>
         
         {isMounted ? (
-          <div className="space-y-12">
+          <div className="space-y-4">
             {/* Row 1 - Right to Left (Default) */}
             <Carousel
               opts={{
@@ -115,7 +115,7 @@ export function ClientsSection() {
             </Carousel>
           </div>
         ) : (
-          <div className="h-[200px] flex items-center justify-center">
+          <div className="h-[150px] flex items-center justify-center">
             <div className="w-10 h-10 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
           </div>
         )}
