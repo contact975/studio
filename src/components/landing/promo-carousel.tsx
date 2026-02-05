@@ -30,41 +30,40 @@ const promoImages = [
 
 export function PromoCarousel() {
   return (
-    <section className="py-12 bg-background">
-      <div className="container mx-auto px-4 md:px-6">
-        <Carousel
-          opts={{
-            align: "start",
-            loop: true,
-          }}
-          plugins={[
-            Autoplay({
-              delay: 3000,
-              stopOnInteraction: false,
-            }),
-          ]}
-          className="w-full"
-        >
-          <CarouselContent>
-            {promoImages.map((image, index) => (
-              <CarouselItem key={index}>
-                <div className="relative aspect-[3/1] w-full overflow-hidden rounded-xl">
-                  <Image
-                    src={image.src}
-                    fill
-                    alt={image.alt}
-                    className="object-cover"
-                    sizes="(max-width: 1280px) 100vw, 1280px"
-                    data-ai-hint={image.hint}
-                  />
-                </div>
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-          <CarouselPrevious className="absolute left-2 top-1/2 -translate-y-1/2 hidden sm:inline-flex" />
-          <CarouselNext className="absolute right-2 top-1/2 -translate-y-1/2 hidden sm:inline-flex" />
-        </Carousel>
-      </div>
+    <section className="w-full bg-background overflow-hidden">
+      <Carousel
+        opts={{
+          align: "start",
+          loop: true,
+        }}
+        plugins={[
+          Autoplay({
+            delay: 4000,
+            stopOnInteraction: false,
+          }),
+        ]}
+        className="w-full"
+      >
+        <CarouselContent className="-ml-0">
+          {promoImages.map((image, index) => (
+            <CarouselItem key={index} className="pl-0">
+              <div className="relative aspect-[16/9] md:aspect-[21/7] lg:aspect-[3/1] w-full overflow-hidden">
+                <Image
+                  src={image.src}
+                  fill
+                  alt={image.alt}
+                  className="object-cover"
+                  sizes="100vw"
+                  data-ai-hint={image.hint}
+                  priority={index === 0}
+                />
+              </div>
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+        <CarouselPrevious className="absolute left-4 top-1/2 -translate-y-1/2 hidden md:inline-flex bg-white/20 hover:bg-white/40 border-none text-white h-12 w-12" />
+        <CarouselNext className="absolute right-4 top-1/2 -translate-y-1/2 hidden md:inline-flex bg-white/20 hover:bg-white/40 border-none text-white h-12 w-12" />
+      </Carousel>
     </section>
   );
 }
