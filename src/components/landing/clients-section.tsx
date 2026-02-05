@@ -6,8 +6,6 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
 
@@ -71,7 +69,6 @@ const allLogos = [
 
 
 export function ClientsSection() {
-  // แยกโลโก้เป็น 2 ชุด หรือใช้ชุดเดิมแต่สลับด้าน
   const reversedLogos = [...allLogos].reverse();
 
   return (
@@ -82,7 +79,7 @@ export function ClientsSection() {
         </h2>
         
         <div className="space-y-8">
-          {/* แถวที่ 1: เลื่อนปกติ (ขวาไปซ้าย) */}
+          {/* Row 1: Normal slide (Right to Left) */}
           <Carousel
             opts={{
               align: "start",
@@ -99,7 +96,7 @@ export function ClientsSection() {
             <CarouselContent>
               {allLogos.map((logo, index) => (
                 <CarouselItem key={`row1-${index}`} className="basis-1/3 md:basis-1/4 lg:basis-1/6 flex items-center justify-center">
-                  <div className="p-4 grayscale hover:grayscale-0 transition-all duration-300 opacity-70 hover:opacity-100">
+                  <div className="p-4 transition-all duration-300">
                     <Image
                       src={logo.logoUrl}
                       alt={logo.name}
@@ -114,7 +111,7 @@ export function ClientsSection() {
             </CarouselContent>
           </Carousel>
 
-          {/* แถวที่ 2: เลื่อนย้อนกลับ (ซ้ายไปขวา) */}
+          {/* Row 2: Reverse slide (Left to Right) */}
           <Carousel
             opts={{
               align: "start",
@@ -132,7 +129,7 @@ export function ClientsSection() {
             <CarouselContent>
               {reversedLogos.map((logo, index) => (
                 <CarouselItem key={`row2-${index}`} className="basis-1/3 md:basis-1/4 lg:basis-1/6 flex items-center justify-center">
-                  <div className="p-4 grayscale hover:grayscale-0 transition-all duration-300 opacity-70 hover:opacity-100">
+                  <div className="p-4 transition-all duration-300">
                     <Image
                       src={logo.logoUrl}
                       alt={logo.name}
