@@ -40,9 +40,9 @@ export function ClientsSection() {
   }, []);
 
   return (
-    <section id="clients" className="py-10 md:py-14 bg-background overflow-hidden">
+    <section id="clients" className="py-14 md:py-20 bg-background overflow-hidden">
       <div data-aos="fade-up" className="container mx-auto px-4 md:px-6">
-        <h2 className="text-2xl md:text-3xl font-bold font-headline text-center mb-8 text-foreground">
+        <h2 className="text-3xl md:text-4xl font-bold font-headline text-center mb-12 text-foreground">
           ลูกค้าที่อยู่ในการดูแลของเรา
         </h2>
         
