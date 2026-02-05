@@ -70,6 +70,8 @@ export default function MediaContentPage() {
                              aspect="1.7777777777777777"
                              muted="true"
                              autoplay="true"
+                             silent-autoplay="true"
+                             playButton="false"
                              style={{ width: '100%', height: '100%' }}
                            ></wistia-player>
                         </div>
