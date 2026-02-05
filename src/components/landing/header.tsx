@@ -64,7 +64,7 @@ export function Header() {
                 onMouseEnter={() => setIsServicesOpen(true)}
                 onMouseLeave={() => setIsServicesOpen(false)}
               >
-                <div className="flex items-center gap-1 text-foreground/70 transition-colors hover:text-foreground outline-none cursor-default h-16">
+                <div className="flex items-center gap-1 text-foreground/70 transition-colors hover:text-primary outline-none cursor-default h-16">
                   {link.label} <ChevronDown className={`relative top-[1px] h-4 w-4 transition-transform duration-200 ${isServicesOpen ? 'rotate-180' : ''}`} />
                 </div>
                 {isServicesOpen && (
@@ -73,7 +73,7 @@ export function Header() {
                       <Link 
                         key={subLink.label} 
                         href={subLink.href}
-                        className="relative flex select-none items-center gap-2 rounded-sm px-3 py-2 text-base outline-none transition-colors hover:bg-accent hover:text-accent-foreground cursor-pointer"
+                        className="relative flex select-none items-center gap-2 rounded-sm px-3 py-2 text-base outline-none transition-colors hover:bg-primary hover:text-primary-foreground cursor-pointer"
                         onClick={() => setIsServicesOpen(false)}
                       >
                         {subLink.icon}
@@ -87,7 +87,7 @@ export function Header() {
               <Link
                 key={link.label}
                 href={link.href}
-                className="text-foreground/70 transition-colors hover:text-foreground"
+                className="text-foreground/70 transition-colors hover:text-primary"
                 prefetch={false}
               >
                 {link.label}
@@ -126,7 +126,7 @@ export function Header() {
                     link.subLinks ? (
                       <Accordion key={link.label} type="single" collapsible className="w-full">
                           <AccordionItem value="services" className="border-b-0">
-                            <AccordionTrigger className="py-0 text-lg font-medium text-muted-foreground hover:text-foreground hover:no-underline">
+                            <AccordionTrigger className="py-0 text-lg font-medium text-muted-foreground hover:text-primary hover:no-underline">
                               {link.label}
                             </AccordionTrigger>
                             <AccordionContent className="pt-4 pl-4">
@@ -136,7 +136,7 @@ export function Header() {
                                     key={subLink.label}
                                     href={subLink.href}
                                     onClick={() => setIsSheetOpen(false)}
-                                    className="flex items-center gap-3 text-muted-foreground hover:text-foreground"
+                                    className="flex items-center gap-3 text-muted-foreground hover:text-primary"
                                     prefetch={false}
                                   >
                                     {React.cloneElement(subLink.icon, { className: "h-5 w-5"})}
@@ -152,7 +152,7 @@ export function Header() {
                         key={link.label}
                         href={link.href}
                         onClick={() => setIsSheetOpen(false)}
-                        className="text-muted-foreground hover:text-foreground"
+                        className="text-muted-foreground hover:text-primary"
                         prefetch={false}
                       >
                         {link.label}
