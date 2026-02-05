@@ -93,7 +93,7 @@ export function ClientsSection() {
               </CarouselContent>
             </Carousel>
 
-            {/* Row 2 - Left to Right */}
+            {/* Row 2 - Left to Right (Reverse direction using rtl opt) */}
             <Carousel
               opts={{
                 align: "start",
