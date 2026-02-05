@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
 
-const allLogos = [
+const logosRow1 = [
   {
     name: "Customer 01",
     logoUrl: "https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Customer01.png?alt=media",
@@ -40,6 +40,9 @@ const allLogos = [
     logoUrl: "https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Customer06.png?alt=media",
     imageHint: "Customer logo 06"
   },
+];
+
+const logosRow2 = [
   {
     name: "Customer 07",
     logoUrl: "https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Customer07.png?alt=media",
@@ -65,6 +68,11 @@ const allLogos = [
     logoUrl: "https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Customer11.png?alt=media",
     imageHint: "Customer logo 11"
   },
+  {
+    name: "Customer 01", // Repeat one to match row 1 count if needed
+    logoUrl: "https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Customer01.png?alt=media",
+    imageHint: "Customer logo 01"
+  },
 ];
 
 
@@ -77,7 +85,7 @@ export function ClientsSection() {
         </h2>
         
         <div className="space-y-8">
-          {/* Row 1 */}
+          {/* Row 1 - Top slider */}
           <Carousel
             opts={{
               align: "start",
@@ -92,7 +100,7 @@ export function ClientsSection() {
             className="w-full max-w-6xl mx-auto"
           >
             <CarouselContent>
-              {allLogos.map((logo, index) => (
+              {logosRow1.map((logo, index) => (
                 <CarouselItem key={`row1-${index}`} className="basis-1/3 md:basis-1/4 lg:basis-1/6 flex items-center justify-center">
                   <div className="p-4 transition-all duration-300">
                     <Image
@@ -109,7 +117,7 @@ export function ClientsSection() {
             </CarouselContent>
           </Carousel>
 
-          {/* Row 2 - Same animation settings */}
+          {/* Row 2 - Bottom slider with different images */}
           <Carousel
             opts={{
               align: "start",
@@ -124,7 +132,7 @@ export function ClientsSection() {
             className="w-full max-w-6xl mx-auto"
           >
             <CarouselContent>
-              {allLogos.map((logo, index) => (
+              {logosRow2.map((logo, index) => (
                 <CarouselItem key={`row2-${index}`} className="basis-1/3 md:basis-1/4 lg:basis-1/6 flex items-center justify-center">
                   <div className="p-4 transition-all duration-300">
                     <Image
