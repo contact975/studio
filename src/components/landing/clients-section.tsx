@@ -69,8 +69,6 @@ const allLogos = [
 
 
 export function ClientsSection() {
-  const reversedLogos = [...allLogos].reverse();
-
   return (
     <section id="clients" className="py-20 md:py-28 bg-background overflow-hidden">
       <div data-aos="fade-up" className="container mx-auto px-4 md:px-6">
@@ -79,7 +77,7 @@ export function ClientsSection() {
         </h2>
         
         <div className="space-y-8">
-          {/* Row 1: Normal slide (Right to Left) */}
+          {/* Row 1 */}
           <Carousel
             opts={{
               align: "start",
@@ -111,12 +109,11 @@ export function ClientsSection() {
             </CarouselContent>
           </Carousel>
 
-          {/* Row 2: Reverse slide (Left to Right) */}
+          {/* Row 2 - Same animation settings */}
           <Carousel
             opts={{
               align: "start",
               loop: true,
-              direction: "rtl"
             }}
             plugins={[
               Autoplay({
@@ -127,7 +124,7 @@ export function ClientsSection() {
             className="w-full max-w-6xl mx-auto"
           >
             <CarouselContent>
-              {reversedLogos.map((logo, index) => (
+              {allLogos.map((logo, index) => (
                 <CarouselItem key={`row2-${index}`} className="basis-1/3 md:basis-1/4 lg:basis-1/6 flex items-center justify-center">
                   <div className="p-4 transition-all duration-300">
                     <Image
