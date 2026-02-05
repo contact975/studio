@@ -1,6 +1,7 @@
 
 "use client";
 
+import * as React from "react";
 import Image from "next/image";
 import {
   Carousel,
@@ -40,6 +41,25 @@ const logosRow2 = [
 ];
 
 export function ClientsSection() {
+  const [isMounted, setIsMounted] = React.useState(false);
+
+  React.useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  if (!isMounted) {
+    return (
+      <section id="clients" className="py-20 md:py-28 bg-background overflow-hidden">
+        <div className="container mx-auto px-4 md:px-6">
+          <h2 className="text-3xl md:text-4xl font-bold font-headline text-center mb-16 text-foreground">
+            ลูกค้าที่อยู่ในการดูแลของเรา
+          </h2>
+          <div className="h-20 w-full animate-pulse bg-muted rounded-lg"></div>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section id="clients" className="py-20 md:py-28 bg-background overflow-hidden">
       <div data-aos="fade-up" className="container mx-auto px-4 md:px-6">
@@ -48,7 +68,7 @@ export function ClientsSection() {
         </h2>
         
         <div className="space-y-8">
-          {/* Row 1 - Left to Right (Default) */}
+          {/* Row 1 - Right to Left */}
           <Carousel
             opts={{
               align: "start",
@@ -80,7 +100,7 @@ export function ClientsSection() {
             </CarouselContent>
           </Carousel>
 
-          {/* Row 2 - Right to Left (using RTL direction) */}
+          {/* Row 2 - Left to Right */}
           <Carousel
             opts={{
               align: "start",
