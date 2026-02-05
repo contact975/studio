@@ -10,71 +10,34 @@ import {
 import Autoplay from "embla-carousel-autoplay";
 
 const logosRow1 = [
-  {
-    name: "Customer 01",
-    logoUrl: "https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Customer01.png?alt=media",
-    imageHint: "Customer logo 01"
-  },
-  {
-    name: "Customer 02",
-    logoUrl: "https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Customer02.png?alt=media",
-    imageHint: "Customer logo 02"
-  },
-  {
-    name: "Customer 03",
-    logoUrl: "https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Customer03.png?alt=media",
-    imageHint: "Customer logo 03"
-  },
-  {
-    name: "Customer 04",
-    logoUrl: "https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Customer04.png?alt=media",
-    imageHint: "Customer logo 04"
-  },
-  {
-    name: "Customer 05",
-    logoUrl: "https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Customer05.png?alt=media",
-    imageHint: "Customer logo 05"
-  },
-  {
-    name: "Customer 06",
-    logoUrl: "https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Customer06.png?alt=media",
-    imageHint: "Customer logo 06"
-  },
+  { name: "Customer 01", logoUrl: "https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Customer01.png?alt=media", imageHint: "Customer logo 01" },
+  { name: "Customer 02", logoUrl: "https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Customer02.png?alt=media", imageHint: "Customer logo 02" },
+  { name: "Customer 03", logoUrl: "https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Customer03.png?alt=media", imageHint: "Customer logo 03" },
+  { name: "Customer 04", logoUrl: "https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Customer04.png?alt=media", imageHint: "Customer logo 04" },
+  { name: "Customer 05", logoUrl: "https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Customer05.png?alt=media", imageHint: "Customer logo 05" },
+  { name: "Customer 06", logoUrl: "https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Customer06.png?alt=media", imageHint: "Customer logo 06" },
+  { name: "Customer 01", logoUrl: "https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Customer01.png?alt=media", imageHint: "Customer logo 01" },
+  { name: "Customer 02", logoUrl: "https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Customer02.png?alt=media", imageHint: "Customer logo 02" },
+  { name: "Customer 03", logoUrl: "https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Customer03.png?alt=media", imageHint: "Customer logo 03" },
+  { name: "Customer 04", logoUrl: "https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Customer04.png?alt=media", imageHint: "Customer logo 04" },
+  { name: "Customer 05", logoUrl: "https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Customer05.png?alt=media", imageHint: "Customer logo 05" },
+  { name: "Customer 06", logoUrl: "https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Customer06.png?alt=media", imageHint: "Customer logo 06" },
 ];
 
 const logosRow2 = [
-  {
-    name: "Customer 07",
-    logoUrl: "https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Customer07.png?alt=media",
-    imageHint: "Customer logo 07"
-  },
-  {
-    name: "Customer 08",
-    logoUrl: "https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Customer08.png?alt=media",
-    imageHint: "Customer logo 08"
-  },
-  {
-    name: "Customer 09",
-    logoUrl: "https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Customer09.png?alt=media",
-    imageHint: "Customer logo 09"
-  },
-  {
-    name: "Customer 10",
-    logoUrl: "https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Customer10.png?alt=media",
-    imageHint: "Customer logo 10"
-  },
-  {
-    name: "Customer 11",
-    logoUrl: "https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Customer11.png?alt=media",
-    imageHint: "Customer logo 11"
-  },
-  {
-    name: "Customer 01", // Repeat one to match row 1 count if needed
-    logoUrl: "https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Customer01.png?alt=media",
-    imageHint: "Customer logo 01"
-  },
+  { name: "Customer 07", logoUrl: "https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Customer07.png?alt=media", imageHint: "Customer logo 07" },
+  { name: "Customer 08", logoUrl: "https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Customer08.png?alt=media", imageHint: "Customer logo 08" },
+  { name: "Customer 09", logoUrl: "https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Customer09.png?alt=media", imageHint: "Customer logo 09" },
+  { name: "Customer 10", logoUrl: "https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Customer10.png?alt=media", imageHint: "Customer logo 10" },
+  { name: "Customer 11", logoUrl: "https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Customer11.png?alt=media", imageHint: "Customer logo 11" },
+  { name: "Customer 07", logoUrl: "https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Customer07.png?alt=media", imageHint: "Customer logo 07" },
+  { name: "Customer 08", logoUrl: "https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Customer08.png?alt=media", imageHint: "Customer logo 08" },
+  { name: "Customer 09", logoUrl: "https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Customer09.png?alt=media", imageHint: "Customer logo 09" },
+  { name: "Customer 10", logoUrl: "https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Customer10.png?alt=media", imageHint: "Customer logo 10" },
+  { name: "Customer 11", logoUrl: "https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Customer11.png?alt=media", imageHint: "Customer logo 11" },
+  { name: "Customer 07", logoUrl: "https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Customer07.png?alt=media", imageHint: "Customer logo 07" },
+  { name: "Customer 08", logoUrl: "https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Customer08.png?alt=media", imageHint: "Customer logo 08" },
 ];
-
 
 export function ClientsSection() {
   return (
@@ -85,7 +48,7 @@ export function ClientsSection() {
         </h2>
         
         <div className="space-y-8">
-          {/* Row 1 - Top slider */}
+          {/* Row 1 - Right to Left */}
           <Carousel
             opts={{
               align: "start",
@@ -97,7 +60,7 @@ export function ClientsSection() {
                 stopOnInteraction: false,
               }),
             ]}
-            className="w-full max-w-6xl mx-auto"
+            className="w-full max-w-7xl mx-auto"
           >
             <CarouselContent>
               {logosRow1.map((logo, index) => (
@@ -117,11 +80,12 @@ export function ClientsSection() {
             </CarouselContent>
           </Carousel>
 
-          {/* Row 2 - Bottom slider with different images */}
+          {/* Row 2 - Left to Right (using RTL direction) */}
           <Carousel
             opts={{
               align: "start",
               loop: true,
+              direction: "rtl",
             }}
             plugins={[
               Autoplay({
@@ -129,7 +93,8 @@ export function ClientsSection() {
                 stopOnInteraction: false,
               }),
             ]}
-            className="w-full max-w-6xl mx-auto"
+            className="w-full max-w-7xl mx-auto"
+            dir="rtl"
           >
             <CarouselContent>
               {logosRow2.map((logo, index) => (
