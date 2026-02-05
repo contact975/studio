@@ -71,44 +71,82 @@ const allLogos = [
 
 
 export function ClientsSection() {
+  // แยกโลโก้เป็น 2 ชุด หรือใช้ชุดเดิมแต่สลับด้าน
+  const reversedLogos = [...allLogos].reverse();
+
   return (
-    <section id="clients" className="py-20 md:py-28 bg-background">
+    <section id="clients" className="py-20 md:py-28 bg-background overflow-hidden">
       <div data-aos="fade-up" className="container mx-auto px-4 md:px-6">
         <h2 className="text-3xl md:text-4xl font-bold font-headline text-center mb-16 text-foreground">
           ลูกค้าที่อยู่ในการดูแลของเรา
         </h2>
-        <Carousel
-          opts={{
-            align: "start",
-            loop: true,
-          }}
-          plugins={[
-            Autoplay({
-              delay: 2000,
-              stopOnInteraction: false,
-            }),
-          ]}
-          className="w-full max-w-6xl mx-auto"
-        >
-          <CarouselContent>
-            {allLogos.map((logo, index) => (
-              <CarouselItem key={index} className="basis-1/3 md:basis-1/4 lg:basis-1/6 flex items-center justify-center">
-                <div className="p-4">
-                  <Image
-                    src={logo.logoUrl}
-                    alt={logo.name}
-                    width={140}
-                    height={70}
-                    className="object-contain"
-                    data-ai-hint={logo.imageHint}
-                  />
-                </div>
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-          <CarouselPrevious className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-12 hidden xl:inline-flex" />
-          <CarouselNext className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-12 hidden xl:inline-flex" />
-        </Carousel>
+        
+        <div className="space-y-8">
+          {/* แถวที่ 1: เลื่อนปกติ (ขวาไปซ้าย) */}
+          <Carousel
+            opts={{
+              align: "start",
+              loop: true,
+            }}
+            plugins={[
+              Autoplay({
+                delay: 2500,
+                stopOnInteraction: false,
+              }),
+            ]}
+            className="w-full max-w-6xl mx-auto"
+          >
+            <CarouselContent>
+              {allLogos.map((logo, index) => (
+                <CarouselItem key={`row1-${index}`} className="basis-1/3 md:basis-1/4 lg:basis-1/6 flex items-center justify-center">
+                  <div className="p-4 grayscale hover:grayscale-0 transition-all duration-300 opacity-70 hover:opacity-100">
+                    <Image
+                      src={logo.logoUrl}
+                      alt={logo.name}
+                      width={140}
+                      height={70}
+                      className="object-contain"
+                      data-ai-hint={logo.imageHint}
+                    />
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+          </Carousel>
+
+          {/* แถวที่ 2: เลื่อนย้อนกลับ (ซ้ายไปขวา) */}
+          <Carousel
+            opts={{
+              align: "start",
+              loop: true,
+              direction: "rtl"
+            }}
+            plugins={[
+              Autoplay({
+                delay: 2500,
+                stopOnInteraction: false,
+              }),
+            ]}
+            className="w-full max-w-6xl mx-auto"
+          >
+            <CarouselContent>
+              {reversedLogos.map((logo, index) => (
+                <CarouselItem key={`row2-${index}`} className="basis-1/3 md:basis-1/4 lg:basis-1/6 flex items-center justify-center">
+                  <div className="p-4 grayscale hover:grayscale-0 transition-all duration-300 opacity-70 hover:opacity-100">
+                    <Image
+                      src={logo.logoUrl}
+                      alt={logo.name}
+                      width={140}
+                      height={70}
+                      className="object-contain"
+                      data-ai-hint={logo.imageHint}
+                    />
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+          </Carousel>
+        </div>
       </div>
     </section>
   );
