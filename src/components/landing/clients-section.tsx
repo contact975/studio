@@ -40,14 +40,14 @@ export function ClientsSection() {
   }, []);
 
   return (
-    <section id="clients" className="py-12 md:py-16 bg-background overflow-hidden">
+    <section id="clients" className="py-6 md:py-8 bg-background overflow-hidden">
       <div data-aos="fade-up" className="container mx-auto px-4 md:px-6">
-        <h2 className="text-3xl md:text-4xl font-bold font-headline text-center mb-8 text-foreground">
+        <h2 className="text-xl md:text-2xl font-bold font-headline text-center mb-4 text-foreground">
           ลูกค้าที่อยู่ในการดูแลของเรา
         </h2>
         
         {isMounted ? (
-          <div className="space-y-4">
+          <div className="space-y-1">
             {/* Row 1 - Right to Left (Default) */}
             <Carousel
               opts={{
@@ -64,13 +64,13 @@ export function ClientsSection() {
             >
               <CarouselContent>
                 {logosRow1.map((logo, index) => (
-                  <CarouselItem key={`row1-${index}`} className="basis-1/2 md:basis-1/4 lg:basis-1/6 flex items-center justify-center">
-                    <div className="p-4 transition-all duration-300">
+                  <CarouselItem key={`row1-${index}`} className="basis-1/3 md:basis-1/4 lg:basis-1/6 flex items-center justify-center">
+                    <div className="p-2 transition-all duration-300">
                       <Image
                         src={logo.logoUrl}
                         alt={logo.name}
-                        width={140}
-                        height={70}
+                        width={110}
+                        height={55}
                         className="object-contain"
                         data-ai-hint={logo.imageHint}
                       />
@@ -98,13 +98,13 @@ export function ClientsSection() {
             >
               <CarouselContent>
                 {logosRow2.map((logo, index) => (
-                  <CarouselItem key={`row2-${index}`} className="basis-1/2 md:basis-1/4 lg:basis-1/6 flex items-center justify-center">
-                    <div className="p-4 transition-all duration-300">
+                  <CarouselItem key={`row2-${index}`} className="basis-1/3 md:basis-1/4 lg:basis-1/6 flex items-center justify-center">
+                    <div className="p-2 transition-all duration-300">
                       <Image
                         src={logo.logoUrl}
                         alt={logo.name}
-                        width={140}
-                        height={70}
+                        width={110}
+                        height={55}
                         className="object-contain"
                         data-ai-hint={logo.imageHint}
                       />
@@ -115,8 +115,8 @@ export function ClientsSection() {
             </Carousel>
           </div>
         ) : (
-          <div className="h-[150px] flex items-center justify-center">
-            <div className="w-10 h-10 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
+          <div className="h-[100px] flex items-center justify-center">
+            <div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
           </div>
         )}
       </div>
