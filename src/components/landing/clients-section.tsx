@@ -57,7 +57,7 @@ export function ClientsSection() {
         </h2>
         
         <div className="space-y-12">
-          {/* Row 1 - Right to Left */}
+          {/* Row 1 - Left to Right (Autoplay default) */}
           <Carousel
             opts={{
               align: "start",
@@ -89,7 +89,7 @@ export function ClientsSection() {
             </CarouselContent>
           </Carousel>
 
-          {/* Row 2 - Left to Right (RTL direction) */}
+          {/* Row 2 - Right to Left (Using direction rtl for carousel) */}
           <Carousel
             opts={{
               align: "start",
