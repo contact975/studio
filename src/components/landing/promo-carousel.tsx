@@ -12,7 +12,7 @@ import Autoplay from "embla-carousel-autoplay";
 
 const promoImages = [
   {
-    src: "https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Promotion%2FPromotion01.png?alt=media",
+    src: "https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Promotion%2FPromotion01.jpg?alt=media",
     alt: "บริการทำบัญชี โปรโมชั่น 1",
     hint: "accounting promotion banner 1"
   },
