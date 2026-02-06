@@ -22,7 +22,7 @@ const promoImages = [
     hint: "accounting promotion banner 2"
   },
   {
-    src: "https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Promotion%2FCustomer03.png?alt=media",
+    src: "https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Promotion%2FPromotion03.jpg?alt=media",
     alt: "บริการทำบัญชี โปรโมชั่น 3",
     hint: "accounting promotion banner 3"
   }
