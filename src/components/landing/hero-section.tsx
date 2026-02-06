@@ -44,7 +44,7 @@ export function HeroSection() {
       
       <div data-aos="fade-up" className="container mx-auto px-6 py-20 flex flex-col items-center text-center relative z-10">
         <h1 className="text-5xl md:text-6xl font-bold mb-8 leading-relaxed font-headline">
-          <span className="text-blue-300">พาร์ทเนอร์ที่ช่วยให้เรื่องภาษีและบัญชีเป็นเรื่องง่าย</span>
+          <span className="text-blue-300">ให้เรื่องบัญชีเป็นเรื่องง่าย... ให้เราเป็นเพื่อนคู่คิดข้างธุรกิจคุณ</span>
         </h1>
         <p className="text-xl opacity-90 mb-10 max-w-2xl">
           เราดูแลบัญชี ภาษี และวางระบบองค์กรด้วยเทคโนโลยีสมัยใหม่ในเชียงใหม่ 
