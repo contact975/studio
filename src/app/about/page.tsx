@@ -56,20 +56,21 @@ export default function AboutPage() {
             </div>
 
             {/* Visionary Founder Section */}
-            <div data-aos="fade-up" className="mb-24 bg-white/50 p-8 md:p-12 rounded-2xl border border-primary/10 shadow-sm">
-              <div className="max-w-4xl mx-auto">
+            <div data-aos="fade-up" className="mb-24 bg-primary p-8 md:p-12 rounded-2xl shadow-xl text-primary-foreground relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -translate-y-32 translate-x-32 blur-3xl"></div>
+              <div className="max-w-4xl mx-auto relative z-10">
                 <div className="flex justify-center mb-8">
-                  <Quote className="h-12 w-12 text-primary opacity-20" />
+                  <Quote className="h-12 w-12 text-primary-foreground opacity-20" />
                 </div>
-                <h2 className="text-3xl md:text-4xl font-bold font-headline text-center mb-8 text-foreground">
+                <h2 className="text-3xl md:text-4xl font-bold font-headline text-center mb-8">
                   วิสัยทัศน์จากผู้ก่อตั้ง (Visionary Founder)
                 </h2>
                 <div className="space-y-6 text-center">
-                  <h3 className="text-xl font-semibold text-primary">ประสบการณ์กว่า 10 ปี ที่หลอมรวมเป็น IC ACC Service</h3>
-                  <p className="text-lg text-muted-foreground italic leading-relaxed">
+                  <h3 className="text-xl font-semibold opacity-90 underline underline-offset-8 decoration-white/30">ประสบการณ์กว่า 10 ปี ที่หลอมรวมเป็น IC ACC Service</h3>
+                  <p className="text-lg italic leading-relaxed opacity-90">
                     "ตลอดเส้นทางการทำงานในสายงานบัญชีและภาษีกว่า 10 ปี ไอซ์ได้เห็นการเติบโตและการปรับตัวของธุรกิจไทยมาอย่างต่อเนื่อง สิ่งหนึ่งที่ไอซ์เชื่อมั่นเสมอคือ บัญชีไม่ควรเป็นเรื่องที่เข้าใจยากหรือเป็นภาระของเจ้าของธุรกิจ"
                   </p>
-                  <p className="text-lg text-muted-foreground leading-relaxed">
+                  <p className="text-lg leading-relaxed opacity-90">
                     ไอซ์จึงก่อตั้ง IC ACC Service ขึ้นมาด้วยความตั้งใจที่จะเปลี่ยนภาพจำแบบเดิมๆ ให้กลายเป็น 'สำนักงานบัญชีรุ่นใหม่' ที่พร้อมเป็นเพื่อนคู่คิดและสนับสนุนทุกความฝันของนักธุรกิจด้วยความเข้าใจจริงค่ะ
                   </p>
                 </div>
