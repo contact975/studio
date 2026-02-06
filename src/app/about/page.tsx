@@ -68,7 +68,7 @@ export default function AboutPage() {
                 <div className="space-y-6 text-center">
                   <h3 className="text-xl font-semibold opacity-90 underline underline-offset-8 decoration-white/30">ประสบการณ์กว่า 10 ปี ที่หลอมรวมเป็น IC ACC Service</h3>
                   <p className="text-lg italic leading-relaxed opacity-90">
-                    "ตลอดเส้นทางการทำงานในสายงานบัญชีและภาษีกว่า 10 ปี ไอซ์ได้เห็นการเติบโตและการปรับตัวของธุรกิจไทยมาอย่างต่อเนื่อง สิ่งหนึ่งที่ไอซ์เชื่อมั่นเสมอคือ บัญชีไม่ควรเป็นเรื่องที่เข้าใจยากหรือเป็นภาระของเจ้าของธุรกิจ"
+                    "ตลอดเส้นทางการทำงานในสายงานบัญชีและภาษีกกว่า 10 ปี ไอซ์ได้เห็นการเติบโตและการปรับตัวของธุรกิจไทยมาอย่างต่อเนื่อง สิ่งหนึ่งที่ไอซ์เชื่อมั่นเสมอคือ บัญชีไม่ควรเป็นเรื่องที่เข้าใจยากหรือเป็นภาระของเจ้าของธุรกิจ"
                   </p>
                   <p className="text-lg leading-relaxed opacity-90">
                     ไอซ์จึงก่อตั้ง IC ACC Service ขึ้นมาด้วยความตั้งใจที่จะเปลี่ยนภาพจำแบบเดิมๆ ให้กลายเป็น 'สำนักงานบัญชีรุ่นใหม่' ที่พร้อมเป็นเพื่อนคู่คิดและสนับสนุนทุกความฝันของนักธุรกิจด้วยความเข้าใจจริงค่ะ
@@ -80,7 +80,6 @@ export default function AboutPage() {
             {/* Point 1: Modern & Digital Transformation */}
             <div data-aos="fade-up" className="mb-24">
               <h2 className="text-3xl font-bold font-headline text-center mb-12 flex flex-col items-center gap-2">
-                <span className="text-primary text-sm tracking-widest uppercase">ส่วนที่ 1</span>
                 Modern & Digital Transformation
                 <span className="text-lg font-normal text-muted-foreground mt-2">"เราเปลี่ยน 'ตัวเลข' ให้เป็น 'โอกาส' ด้วยเทคโนโลยี"</span>
               </h2>
@@ -112,7 +111,6 @@ export default function AboutPage() {
             {/* Point 2: Agility & Comfort */}
             <div data-aos="fade-up" className="mb-24">
                <h2 className="text-3xl font-bold font-headline text-center mb-12 flex flex-col items-center gap-2">
-                <span className="text-primary text-sm tracking-widest uppercase">ส่วนที่ 2</span>
                 Agility & Comfort
                 <span className="text-lg font-normal text-muted-foreground mt-2">"องค์กรที่ปรับตัวเพื่อความสะดวกสบายของคุณ"</span>
               </h2>
@@ -146,7 +144,6 @@ export default function AboutPage() {
               <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-16 translate-x-16 blur-3xl"></div>
               <div className="absolute bottom-0 left-0 w-32 h-32 bg-black/10 rounded-full translate-y-16 -translate-x-16 blur-3xl"></div>
               
-              <span className="text-sm tracking-[0.3em] uppercase opacity-70 mb-4 block">ส่วนที่ 3</span>
               <h2 className="text-2xl md:text-3xl font-bold font-headline mb-6">Closing Statement</h2>
               <p className="text-xl italic leading-relaxed mb-6">
                 "ที่ IC ACC Service เราไม่ได้มองลูกค้าเป็นเพียงผู้ใช้บริการ แต่เรามองว่าคุณคือ 'พาร์ทเนอร์' ที่เราพร้อมจะเติบโตไปด้วยกัน ด้วยประสบการณ์ที่สะสมมาและเทคโนโลยีที่เราเลือกใช้ ไอซ์มั่นใจว่าเราจะเป็นเบื้องหลังที่ทำให้ธุรกิจของคุณเดินหน้าได้อย่างมั่นคงและสวยงามค่ะ"
