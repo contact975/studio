@@ -11,6 +11,7 @@ import {
   FileCheck,
   Briefcase,
   Workflow,
+  LucideIcon,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
@@ -21,12 +22,18 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
-const serviceSubLinks = [
-  { href: "/company-registration", label: "บริการจดทะเบียนบริษัท", icon: <FileText className="h-4 w-4" /> },
-  { href: "/accounting-services", label: "บริการทำบัญชี", icon: <Calculator className="h-4 w-4" /> },
-  { href: "/audit-services", label: "บริการตรวจสอบบัญชี", icon: <FileCheck className="h-4 w-4" /> },
-  { href: "/visa-work-permit", label: "บริการทำ Visa & Work Permit", icon: <Briefcase className="h-4 w-4" /> },
-  { href: "/organization-system", label: "บริการวางระบบองค์กร", icon: <Workflow className="h-4 w-4" /> },
+interface SubLink {
+  href: string;
+  label: string;
+  icon: LucideIcon;
+}
+
+const serviceSubLinks: SubLink[] = [
+  { href: "/company-registration", label: "บริการจดทะเบียนบริษัท", icon: FileText },
+  { href: "/accounting-services", label: "บริการทำบัญชี", icon: Calculator },
+  { href: "/audit-services", label: "บริการตรวจสอบบัญชี", icon: FileCheck },
+  { href: "/visa-work-permit", label: "บริการทำ Visa & Work Permit", icon: Briefcase },
+  { href: "/organization-system", label: "บริการวางระบบองค์กร", icon: Workflow },
 ];
 
 const navLinks = [
@@ -76,7 +83,7 @@ export function Header() {
                         className="relative flex select-none items-center gap-2 rounded-sm px-3 py-2 text-base outline-none transition-colors hover:bg-primary hover:text-primary-foreground cursor-pointer"
                         onClick={() => setIsServicesOpen(false)}
                       >
-                        {subLink.icon}
+                        <subLink.icon className="h-4 w-4" />
                         {subLink.label}
                       </Link>
                     ))}
@@ -139,7 +146,7 @@ export function Header() {
                                     className="flex items-center gap-3 text-muted-foreground hover:text-primary"
                                     prefetch={false}
                                   >
-                                    {React.cloneElement(subLink.icon, { className: "h-5 w-5"})}
+                                    <subLink.icon className="h-5 w-5" />
                                     {subLink.label}
                                   </Link>
                                 ))}
