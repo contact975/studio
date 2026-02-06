@@ -2,7 +2,7 @@
 import Image from 'next/image';
 import { Header } from '@/components/landing/header';
 import { Footer } from '@/components/landing/footer';
-import { Heart, Target, CheckCircle } from 'lucide-react';
+import { Heart, Target, CheckCircle, Quote, Cloud, Zap, LineChart, ShieldCheck, Users, Briefcase } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { useEffect } from 'react';
 import AOS from 'aos';
@@ -27,6 +27,7 @@ export default function AboutPage() {
               เรื่องราวของ IC Accounting & Service
             </h1>
 
+            {/* Core Heart Section */}
             <div data-aos="fade-up" className="grid md:grid-cols-2 gap-16 items-center mb-24">
               <div className="space-y-6">
                 <div className="flex items-center gap-4">
@@ -54,6 +55,104 @@ export default function AboutPage() {
               </div>
             </div>
 
+            {/* Visionary Founder Section */}
+            <div data-aos="fade-up" className="mb-24 bg-white/50 p-8 md:p-12 rounded-2xl border border-primary/10 shadow-sm">
+              <div className="max-w-4xl mx-auto">
+                <div className="flex justify-center mb-8">
+                  <Quote className="h-12 w-12 text-primary opacity-20" />
+                </div>
+                <h2 className="text-3xl md:text-4xl font-bold font-headline text-center mb-8 text-foreground">
+                  วิสัยทัศน์จากผู้ก่อตั้ง (Visionary Founder)
+                </h2>
+                <div className="space-y-6 text-center">
+                  <h3 className="text-xl font-semibold text-primary">ประสบการณ์กว่า 10 ปี ที่หลอมรวมเป็น IC ACC Service</h3>
+                  <p className="text-lg text-muted-foreground italic leading-relaxed">
+                    "ตลอดเส้นทางการทำงานในสายงานบัญชีและภาษีกว่า 10 ปี ไอซ์ได้เห็นการเติบโตและการปรับตัวของธุรกิจไทยมาอย่างต่อเนื่อง สิ่งหนึ่งที่ไอซ์เชื่อมั่นเสมอคือ บัญชีไม่ควรเป็นเรื่องที่เข้าใจยากหรือเป็นภาระของเจ้าของธุรกิจ"
+                  </p>
+                  <p className="text-lg text-muted-foreground leading-relaxed">
+                    ไอซ์จึงก่อตั้ง IC ACC Service ขึ้นมาด้วยความตั้งใจที่จะเปลี่ยนภาพจำแบบเดิมๆ ให้กลายเป็น 'สำนักงานบัญชีรุ่นใหม่' ที่พร้อมเป็นเพื่อนคู่คิดและสนับสนุนทุกความฝันของนักธุรกิจด้วยความเข้าใจจริงค่ะ
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Point 1: Modern & Digital Transformation */}
+            <div data-aos="fade-up" className="mb-24">
+              <h2 className="text-3xl font-bold font-headline text-center mb-12 flex flex-col items-center gap-2">
+                <span className="text-primary text-sm tracking-widest uppercase">ส่วนที่ 1</span>
+                Modern & Digital Transformation
+                <span className="text-lg font-normal text-muted-foreground mt-2">"เราเปลี่ยน 'ตัวเลข' ให้เป็น 'โอกาส' ด้วยเทคโนโลยี"</span>
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <Card className="p-8 border-none shadow-sm hover:shadow-md transition-all text-center">
+                  <div className="w-16 h-16 bg-primary/10 text-primary rounded-full flex items-center justify-center mx-auto mb-6">
+                    <Cloud className="h-8 w-8" />
+                  </div>
+                  <h4 className="text-xl font-bold mb-4">Cloud Accounting Solution</h4>
+                  <p className="text-muted-foreground">ให้คุณเข้าถึงข้อมูลทางการเงินได้แบบ Real-time ทุกที่ทุกเวลา เพื่อการตัดสินใจที่แม่นยำ</p>
+                </Card>
+                <Card className="p-8 border-none shadow-sm hover:shadow-md transition-all text-center">
+                  <div className="w-16 h-16 bg-primary/10 text-primary rounded-full flex items-center justify-center mx-auto mb-6">
+                    <Zap className="h-8 w-8" />
+                  </div>
+                  <h4 className="text-xl font-bold mb-4">Digital Workflow</h4>
+                  <p className="text-muted-foreground">ลดขั้นตอนเอกสารที่ยุ่งยากด้วยระบบ Paperless ที่ทันสมัย ปลอดภัย และรวดเร็ว</p>
+                </Card>
+                <Card className="p-8 border-none shadow-sm hover:shadow-md transition-all text-center">
+                  <div className="w-16 h-16 bg-primary/10 text-primary rounded-full flex items-center justify-center mx-auto mb-6">
+                    <LineChart className="h-8 w-8" />
+                  </div>
+                  <h4 className="text-xl font-bold mb-4">Data-Driven Insights</h4>
+                  <p className="text-muted-foreground">เราไม่ได้แค่ทำตัวเลขให้ถูกต้อง แต่เราใช้ข้อมูลเพื่อช่วยวิเคราะห์และวางแผนทิศทางธุรกิจในอนาคต</p>
+                </Card>
+              </div>
+            </div>
+
+            {/* Point 2: Agility & Comfort */}
+            <div data-aos="fade-up" className="mb-24">
+               <h2 className="text-3xl font-bold font-headline text-center mb-12 flex flex-col items-center gap-2">
+                <span className="text-primary text-sm tracking-widest uppercase">ส่วนที่ 2</span>
+                Agility & Comfort
+                <span className="text-lg font-normal text-muted-foreground mt-2">"องค์กรที่ปรับตัวเพื่อความสะดวกสบายของคุณ"</span>
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <Card className="p-8 border-none bg-primary/5 shadow-sm hover:shadow-md transition-all">
+                   <div className="flex items-start gap-4 mb-4">
+                      <Zap className="h-6 w-6 text-primary mt-1" />
+                      <h4 className="text-xl font-bold">Modern Professionalism</h4>
+                   </div>
+                   <p className="text-muted-foreground">เราผสมผสานความแม่นยำในฐานะนิติบุคคล เข้ากับความคล่องตัวแบบ Digital Age</p>
+                </Card>
+                <Card className="p-8 border-none bg-primary/5 shadow-sm hover:shadow-md transition-all">
+                   <div className="flex items-start gap-4 mb-4">
+                      <Users className="h-6 w-6 text-primary mt-1" />
+                      <h4 className="text-xl font-bold">Personal Touch</h4>
+                   </div>
+                   <p className="text-muted-foreground">ไอซ์และทีมงานยังคงให้ความสำคัญกับการดูแลอย่างใกล้ชิด เป็นกันเอง และพร้อมให้คำปรึกษาเหมือนคนในครอบครัว</p>
+                </Card>
+                <Card className="p-8 border-none bg-primary/5 shadow-sm hover:shadow-md transition-all">
+                   <div className="flex items-start gap-4 mb-4">
+                      <Briefcase className="h-6 w-6 text-primary mt-1" />
+                      <h4 className="text-xl font-bold">One-Stop Solutions</h4>
+                   </div>
+                   <p className="text-muted-foreground">ดูแลครบวงจร ตั้งแต่บัญชี ภาษี งานจดทะเบียน ไปจนถึงมีเดียคอนเทนต์ เพื่อให้คุณจบทุกความกังวลได้ในที่เดียว</p>
+                </Card>
+              </div>
+            </div>
+
+            {/* Point 3: Closing Statement */}
+            <div data-aos="fade-up" className="text-center max-w-3xl mx-auto mb-24 py-12 px-6 bg-primary text-primary-foreground rounded-3xl shadow-xl overflow-hidden relative">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-16 translate-x-16 blur-3xl"></div>
+              <div className="absolute bottom-0 left-0 w-32 h-32 bg-black/10 rounded-full translate-y-16 -translate-x-16 blur-3xl"></div>
+              
+              <span className="text-sm tracking-[0.3em] uppercase opacity-70 mb-4 block">ส่วนที่ 3</span>
+              <h2 className="text-2xl md:text-3xl font-bold font-headline mb-6">Closing Statement</h2>
+              <p className="text-xl italic leading-relaxed mb-6">
+                "ที่ IC ACC Service เราไม่ได้มองลูกค้าเป็นเพียงผู้ใช้บริการ แต่เรามองว่าคุณคือ 'พาร์ทเนอร์' ที่เราพร้อมจะเติบโตไปด้วยกัน ด้วยประสบการณ์ที่สะสมมาและเทคโนโลยีที่เราเลือกใช้ ไอซ์มั่นใจว่าเราจะเป็นเบื้องหลังที่ทำให้ธุรกิจของคุณเดินหน้าได้อย่างมั่นคงและสวยงามค่ะ"
+              </p>
+            </div>
+
+            {/* Original Why Choose Us Section */}
             <div data-aos="fade-up" className="mb-24">
                <h2 className="text-3xl md:text-4xl font-bold font-headline text-center mb-12 text-foreground">
                 ทำไมต้องเลือกเรา? (Why Choose IC)
