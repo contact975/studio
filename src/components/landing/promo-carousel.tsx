@@ -1,5 +1,6 @@
 "use client";
 
+import * as React from "react";
 import Image from "next/image";
 import {
   Carousel,
@@ -29,6 +30,16 @@ const promoImages = [
 ];
 
 export function PromoCarousel() {
+  const [isMounted, setIsMounted] = React.useState(false);
+
+  React.useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  if (!isMounted) {
+    return <div className="w-full aspect-[16/9] md:aspect-[21/7] lg:aspect-[3/1] bg-muted animate-pulse" />;
+  }
+
   return (
     <section className="w-full bg-background overflow-hidden">
       <Carousel

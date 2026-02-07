@@ -1,4 +1,3 @@
-
 "use client";
 
 import * as React from "react";
@@ -40,14 +39,14 @@ export function ClientsSection() {
   }, []);
 
   return (
-    <section id="clients" className="py-10 md:py-12 bg-background overflow-hidden">
+    <section id="clients" className="py-4 md:py-6 bg-background overflow-hidden">
       <div data-aos="fade-up" className="container mx-auto px-4 md:px-6">
-        <h2 className="text-3xl md:text-4xl font-bold font-headline text-center mb-8 text-foreground">
+        <h2 className="text-3xl md:text-4xl font-bold font-headline text-center mb-4 text-foreground">
           ลูกค้าที่อยู่ในการดูแลของเรา
         </h2>
         
         {isMounted ? (
-          <div className="space-y-2">
+          <div className="space-y-1">
             {/* Row 1 - Right to Left (Default) */}
             <Carousel
               opts={{
