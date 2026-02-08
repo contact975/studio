@@ -3,6 +3,7 @@
 
 import * as React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import {
   Menu,
   ChevronDown,
@@ -60,7 +61,14 @@ export function Header() {
     <header className="sticky top-0 z-50 w-full border-b bg-card/95 backdrop-blur supports-[backdrop-filter]:bg-card/60">
       <div className="container mx-auto flex h-16 items-center px-4 md:px-6">
         <Link href="/" className="mr-6 flex items-center gap-2" prefetch={false}>
-          <span className="font-bold text-lg text-primary">IC Accounting & Service</span>
+          <Image 
+            src="https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/logo%20ic.png?alt=media" 
+            alt="IC Accounting & Service Logo" 
+            width={180} 
+            height={45}
+            className="object-contain h-10 w-auto"
+            priority
+          />
         </Link>
         <nav className="hidden flex-1 items-center justify-center gap-8 text-base font-medium md:flex">
           {navLinks.map((link) =>
@@ -127,7 +135,13 @@ export function Header() {
                     className="flex items-center gap-2 text-lg font-semibold"
                     prefetch={false}
                   >
-                    <span className="font-bold text-primary">IC Accounting & Service</span>
+                    <Image 
+                      src="https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/logo%20ic.png?alt=media" 
+                      alt="IC Accounting & Service Logo" 
+                      width={150} 
+                      height={40}
+                      className="object-contain"
+                    />
                   </Link>
                   {navLinks.map((link) =>
                     link.subLinks ? (
