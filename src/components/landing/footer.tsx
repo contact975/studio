@@ -1,4 +1,6 @@
+
 import Link from "next/link";
+import Image from "next/image";
 import { Facebook, MessageCircle, MapPin, Phone, Mail } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 
@@ -10,8 +12,14 @@ export function Footer() {
           
           {/* Left Column: Contact Info */}
           <div className="space-y-8">
-            <Link href="/" className="font-bold text-2xl text-primary-foreground font-headline">
-              IC Accounting & Service
+            <Link href="/" className="flex items-center gap-2" prefetch={false}>
+              <Image 
+                src="https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Logo%20ic.png?alt=media" 
+                alt="IC Accounting & Service Logo" 
+                width={200} 
+                height={50}
+                className="object-contain brightness-0 invert"
+              />
             </Link>
             
             <div className="space-y-4 text-base">

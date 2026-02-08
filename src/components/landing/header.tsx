@@ -62,7 +62,7 @@ export function Header() {
       <div className="container mx-auto flex h-16 items-center px-4 md:px-6">
         <Link href="/" className="mr-6 flex items-center gap-2" prefetch={false}>
           <Image 
-            src="https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/logo%20ic.png?alt=media" 
+            src="https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Logo%20ic.png?alt=media" 
             alt="IC Accounting & Service Logo" 
             width={180} 
             height={45}
@@ -129,20 +129,15 @@ export function Header() {
               </SheetTrigger>
               <SheetContent side="right">
                 <nav className="grid gap-6 text-lg font-medium mt-8">
-                  <Link
-                    href="/"
-                    onClick={() => setIsSheetOpen(false)}
-                    className="flex items-center gap-2 text-lg font-semibold"
-                    prefetch={false}
-                  >
+                  <div className="flex items-center gap-2 mb-4">
                     <Image 
-                      src="https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/logo%20ic.png?alt=media" 
+                      src="https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Logo%20ic.png?alt=media" 
                       alt="IC Accounting & Service Logo" 
                       width={150} 
                       height={40}
                       className="object-contain"
                     />
-                  </Link>
+                  </div>
                   {navLinks.map((link) =>
                     link.subLinks ? (
                       <Accordion key={link.label} type="single" collapsible className="w-full">
