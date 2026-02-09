@@ -1,4 +1,3 @@
-
 'use client';
 
 import { Header } from '@/components/landing/header';
@@ -143,8 +142,10 @@ export default function BlogPage() {
                     </p>
                   </CardHeader>
                   <CardContent className="pt-0">
-                    <Button variant="link" className="p-0 h-auto text-primary font-semibold flex items-center gap-2 group/btn">
-                      อ่านเพิ่มเติม <ArrowRight className="h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
+                    <Button asChild variant="link" className="p-0 h-auto text-primary font-semibold flex items-center gap-2 group/btn">
+                      <Link href={`/blog/${post.id}`}>
+                        อ่านเพิ่มเติม <ArrowRight className="h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
+                      </Link>
                     </Button>
                   </CardContent>
                 </Card>
