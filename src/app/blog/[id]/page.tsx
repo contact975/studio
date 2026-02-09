@@ -12,6 +12,7 @@ import { Badge } from '@/components/ui/badge';
 import { Calendar, User, ChevronLeft, Facebook, Share2, MessageCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
+import { Card, CardHeader, CardTitle } from '@/components/ui/card';
 
 const blogPosts = [
   {
