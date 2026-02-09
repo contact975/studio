@@ -13,6 +13,7 @@ import {
   Briefcase,
   Workflow,
   LucideIcon,
+  BookOpen,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
@@ -45,6 +46,7 @@ const navLinks = [
     subLinks: serviceSubLinks,
   },
   { href: "/about", label: "เกี่ยวกับเรา" },
+  { href: "/blog", label: "บทความน่ารู้" },
   { href: "/quote", label: "นัดหมาย" },
 ];
 
