@@ -48,7 +48,7 @@ export function HeroSection() {
           <span className="text-blue-300">ครบจบทุกเรื่องบัญชีและหลังบ้านธุรกิจ ให้คุณเติบโตอย่างมั่นใจในที่เดียว</span>
         </h1>
         <p className="text-xl opacity-90 mb-10 max-w-2xl">
-          บริการรับทำบัญชี ภาษี และจดทะเบียนครบวงจร เปลี่ยนตัวเลขที่ซับซ้อนให้เป็นกลยุทธ์เพื่อความสำเร็จ
+          สำนักงานบัญชีเชียงใหม่ ภาษี จดทะเบียนครบวงจร เปลี่ยนตัวเลขที่ซับซ้อนให้เป็นกลยุทธ์เพื่อความสำเร็จ
         </p>
 
         <div data-aos="fade-up" data-aos-delay="200" className="relative w-full max-w-4xl mx-auto aspect-video rounded-xl overflow-hidden shadow-2xl mb-12 bg-black/20">
