@@ -5,8 +5,11 @@ import { cn } from '@/lib/utils';
 import Script from 'next/script';
 
 export const metadata: Metadata = {
-  title: 'IC Accounting & Service | รับทำบัญชี เชียงใหม่',
-  description: 'บริการรับทำบัญชีและจดทะเบียนบริษัทในจังหวัดเชียงใหม่ ครอบคลุมทุกเรื่องบัญชีและภาษี เพื่อให้คุณโฟกัสกับธุรกิจได้อย่างเต็มที่',
+  title: 'IC Accounting & Service | สำนักงานบัญชีเชียงใหม่ บัญชี ภาษี มีเดียครบวงจร',
+  description: 'ครบจบในที่เดียวที่ IC Accounting & Service สำนักงานบัญชีเชียงใหม่ยุคใหม่ บริการทำบัญชี วางแผนภาษี จดทะเบียนธุรกิจ และผลิตมีเดียคอนเทนต์ โดยทีมงานมืออาชีพกว่า 10 ปี',
+  icons: {
+    icon: '/logo icon.png',
+  },
 };
 
 export default function RootLayout({
