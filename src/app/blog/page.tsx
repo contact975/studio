@@ -2,7 +2,7 @@
 
 import { Header } from '@/components/landing/header';
 import { Footer } from '@/components/landing/footer';
-import Image from 'next/image';
+import Image from 'next/image'; // แก้ไขจุดนี้เรียบร้อยครับ
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import AOS from 'aos';
@@ -14,7 +14,7 @@ import { Button } from '@/components/ui/button';
 
 const blogPosts = [
   {
-    id: 1,
+    id: 'tax-document-preparation-tips',
     title: '5 เคล็ดลับการเตรียมเอกสารภาษีสำหรับ SME มือใหม่',
     excerpt: 'การจัดการภาษีไม่ใช่เรื่องยาก หากคุณมีการเตรียมตัวที่ดีและเป็นระบบ มาดูขั้นตอนง่ายๆ ที่จะช่วยให้คุณประหยัดเวลา...',
     category: 'ภาษีธุรกิจ',
@@ -24,7 +24,7 @@ const blogPosts = [
     imageHint: 'tax documents'
   },
   {
-    id: 2,
+    id: 'company-vs-partnership-comparison',
     title: 'จดทะเบียนบริษัท vs ห้างหุ้นส่วน แบบไหนเหมาะกับคุณมากกว่ากัน?',
     excerpt: 'เปรียบเทียบข้อดีและข้อเสียของการจดทะเบียนนิติบุคคลแต่ละประเภท เพื่อให้คุณตัดสินใจเลือกสิ่งที่คุ้มค่าที่สุดสำหรับธุรกิจของคุณ...',
     category: 'จดทะเบียนธุรกิจ',
@@ -34,7 +34,7 @@ const blogPosts = [
     imageHint: 'business meeting'
   },
   {
-    id: 3,
+    id: '5-common-accounting-mistakes-sme-chiangmai',
     title: '5 ข้อผิดพลาดที่ SME เชียงใหม่มักเจอ เมื่อถึงฤดูกาลปิดงบการเงิน',
     excerpt: 'การทำธุรกิจในเชียงใหม่ช่วงต้นปี สิ่งที่เจ้าของกิจการหลายท่านกังวลใจที่สุดคงหนีไม่พ้นการ "ปิดงบการเงิน" สรุปข้อควรระวังมาให้แล้วครับ...',
     category: 'ภาษีธุรกิจ',
@@ -44,7 +44,7 @@ const blogPosts = [
     imageHint: 'accounting error check'
   },
   {
-    id: 4,
+    id: 'sme-chiang-mai-accounting-guide',
     title: 'คัมภีร์ SME เชียงใหม่: บริหารจัดการบัญชีและภาษีอย่างไรให้ธุรกิจโตแบบก้าวกระโดดในปี 2026',
     excerpt: 'ในยุคที่เศรษฐกิจเชียงใหม่กลับมาคึกคักอีกครั้ง การบริหารจัดการ "หลังบ้าน" โดยเฉพาะเรื่องตัวเลขและภาษี คือหัวใจสำคัญ...',
     category: 'ภาษีธุรกิจ',
@@ -54,7 +54,7 @@ const blogPosts = [
     imageHint: 'e-commerce box'
   },
   {
-    id: 5,
+    id: 'tax-guide-chiang-mai-restaurants',
     title: 'ภาษีร้านอาหารและคาเฟ่ในเชียงใหม่: บริหารจัดการอย่างไรให้ไม่โดนเรียกตรวจย้อนหลัง',
     excerpt: 'เชียงใหม่คือเมืองแห่งคาเฟ่และร้านอาหาร การจัดการบัญชีและภาษีของธุรกิจอาหารมีรายละเอียดที่ซับซ้อน ตั้งแต่การคุมสต็อกไปจนถึงภาษีที่ดิน...',
     category: 'ภาษีธุรกิจ',
@@ -64,7 +64,7 @@ const blogPosts = [
     imageHint: 'restaurant cafe interior'
   },
   {
-    id: 6,
+    id: 'pool-villa-tax-guide-chiang-mai',
     title: 'เปิดเช่าที่พัก/Pool Villa ในเชียงใหม่ ต้องเสียภาษีอะไรบ้าง? คู่มือสำหรับเจ้าของธุรกิจมือใหม่',
     excerpt: 'ธุรกิจ Pool Villa ในเชียงใหม่เติบโตอย่างก้าวกระโดด แต่เจ้าของธุรกิจมือใหม่หลายคนยังมีความกังวลและสับสนเรื่องการจัดการภาษีหลังบ้าน...',
     category: 'ภาษีธุรกิจ',
@@ -157,12 +157,6 @@ export default function BlogPage() {
                   </CardContent>
                 </Card>
               ))}
-            </div>
-
-            <div data-aos="fade-up" className="mt-16 flex justify-center gap-2">
-              <Button variant="outline" className="w-10 h-10 p-0 rounded-full bg-white">1</Button>
-              <Button variant="outline" className="w-10 h-10 p-0 rounded-full bg-white hover:bg-primary hover:text-white">2</Button>
-              <Button variant="outline" className="w-10 h-10 p-0 rounded-full bg-white hover:bg-primary hover:text-white">3</Button>
             </div>
           </div>
         </section>
