@@ -118,7 +118,7 @@ const blogPosts = [
     category: 'ภาษีธุรกิจ',
     date: '01 มี.ค. 2567',
     author: 'ทีมงาน IC ACC',
-    image: 'https://picsum.photos/seed/blog4/800/500',
+    image: 'https://images.unsplash.com/photo-1758115271914-6d5d8bb3d277?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxNHx8Y2hpYW5nbWFpfGVufDB8fHx8MTc3MDg5MDM4MHww&ixlib=rb-4.1.0&q=80&w=1080',
     imageHint: 'e-commerce box'
   },
   {
@@ -143,7 +143,7 @@ const blogPosts = [
     id: 6,
     title: 'สวัสดิการพนักงานและการจัดการประกันสังคมที่ถูกต้อง',
     content: `
-      หน้าที่ของนายจ้างในการดูแลสวัสดิการพนักงานตามกฎหมาย และเทคนิคการบริหารจัดการที่ช่วยลดภาระองค์กร
+      หน้าที่ of นายจ้างในการดูแลสวัสดิการพนักงานตามกฎหมาย และเทคนิคการบริหารจัดการที่ช่วยลดภาระองค์กร
 
       1. การขึ้นทะเบียนนายจ้างและลูกจ้างต่อสำนักงานประกันสังคมภายในกำหนดเวลา
       2. การคำนวณและนำส่งเงินสมทบประกันสังคมในแต่ละเดือนอย่างถูกต้อง
