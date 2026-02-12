@@ -89,7 +89,7 @@ const blogPosts = [
 export default function BlogDetailPage() {
   const params = useParams();
   const [post, setPost] = useState<any>(null);
-  const [currentDate, setCurrentDate] = useState('20 มี.ค. 2567');
+  const [currentDate, setCurrentDate] = useState('');
 
   useEffect(() => {
     AOS.init({
@@ -149,7 +149,7 @@ export default function BlogDetailPage() {
                 <div className="flex flex-wrap items-center gap-6 text-muted-foreground">
                   <div className="flex items-center gap-2">
                     <Calendar className="h-4 w-4" />
-                    <span>เผยแพร่เมื่อ: {post.id === 3 ? currentDate : post.date}</span>
+                    <span>เผยแพร่เมื่อ: {currentDate || post.date}</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <User className="h-4 w-4" />

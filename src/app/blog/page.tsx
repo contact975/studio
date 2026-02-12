@@ -76,7 +76,7 @@ const blogPosts = [
 ];
 
 export default function BlogPage() {
-  const [currentDate, setCurrentDate] = useState('20 มี.ค. 2567');
+  const [currentDate, setCurrentDate] = useState('');
 
   useEffect(() => {
     AOS.init({
@@ -97,7 +97,6 @@ export default function BlogPage() {
     <div className="flex flex-col min-h-dvh bg-slate-50 text-foreground font-body">
       <Header />
       <main className="flex-1">
-        {/* Blog Hero Section */}
         <section className="bg-primary text-primary-foreground py-20 md:py-28 relative overflow-hidden">
           <div className="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full blur-[100px] -z-0"></div>
           <div className="container mx-auto px-4 md:px-6 relative z-10 text-center">
@@ -109,7 +108,6 @@ export default function BlogPage() {
           </div>
         </section>
 
-        {/* Blog Posts Grid */}
         <section className="py-20 md:py-28">
           <div className="container mx-auto px-4 md:px-6">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
@@ -137,7 +135,7 @@ export default function BlogPage() {
                   <CardHeader className="flex-grow">
                     <div className="flex items-center gap-4 text-xs text-muted-foreground mb-3">
                       <span className="flex items-center gap-1">
-                        <Calendar className="h-3 w-3" /> {post.id === 3 ? currentDate : post.date}
+                        <Calendar className="h-3 w-3" /> {currentDate || post.date}
                       </span>
                       <span className="flex items-center gap-1">
                         <User className="h-3 w-3" /> {post.author}
@@ -161,7 +159,6 @@ export default function BlogPage() {
               ))}
             </div>
 
-            {/* Pagination Placeholder */}
             <div data-aos="fade-up" className="mt-16 flex justify-center gap-2">
               <Button variant="outline" className="w-10 h-10 p-0 rounded-full bg-white">1</Button>
               <Button variant="outline" className="w-10 h-10 p-0 rounded-full bg-white hover:bg-primary hover:text-white">2</Button>
@@ -170,7 +167,6 @@ export default function BlogPage() {
           </div>
         </section>
 
-        {/* Newsletter / CTA Section */}
         <section className="py-20 bg-secondary/50">
           <div className="container mx-auto px-4 md:px-6">
             <div data-aos="zoom-in" className="max-w-4xl mx-auto bg-white p-8 md:p-12 rounded-3xl shadow-lg text-center">
