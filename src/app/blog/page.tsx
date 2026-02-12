@@ -60,7 +60,7 @@ const blogPosts = [
     category: 'ภาษีธุรกิจ',
     date: '25 ก.พ. 2567',
     author: 'ทีมงาน IC ACC',
-    image: 'https://images.unsplash.com/photo-1550966841-3962f33f0538?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxyZXN0YXVyYW50fGVufDB8fHx8MTc3MDkwOTg0NHww&ixlib=rb-4.1.0&q=80&w=1080',
+    image: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxyZXN0YXVyYW50fGVufDB8fHx8MTc3MDg5MDcxNnww&ixlib=rb-4.1.0&q=80&w=1080',
     imageHint: 'restaurant cafe interior'
   },
   {
