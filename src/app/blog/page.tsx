@@ -4,7 +4,7 @@ import { Header } from '@/components/landing/header';
 import { Footer } from '@/components/landing/footer';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -76,12 +76,21 @@ const blogPosts = [
 ];
 
 export default function BlogPage() {
+  const [currentDate, setCurrentDate] = useState('20 มี.ค. 2567');
+
   useEffect(() => {
     AOS.init({
       duration: 1000,
       once: true,
       offset: 100,
     });
+
+    const now = new Date();
+    setCurrentDate(now.toLocaleDateString('th-TH', {
+      day: 'numeric',
+      month: 'short',
+      year: 'numeric',
+    }));
   }, []);
 
   return (
@@ -128,7 +137,7 @@ export default function BlogPage() {
                   <CardHeader className="flex-grow">
                     <div className="flex items-center gap-4 text-xs text-muted-foreground mb-3">
                       <span className="flex items-center gap-1">
-                        <Calendar className="h-3 w-3" /> {post.date}
+                        <Calendar className="h-3 w-3" /> {post.id === 3 ? currentDate : post.date}
                       </span>
                       <span className="flex items-center gap-1">
                         <User className="h-3 w-3" /> {post.author}
