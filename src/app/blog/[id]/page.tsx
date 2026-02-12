@@ -69,18 +69,23 @@ export default function BlogDetailPage() {
       once: true,
     });
 
-    const postId = Number(params.id);
-    const foundPost = blogPosts.find(p => p.id === postId) || blogPosts[0];
-    setPost(foundPost);
-  }, [params.id]);
+    if (params?.id) {
+      const postId = Number(params.id);
+      const foundPost = blogPosts.find(p => p.id === postId) || blogPosts[0];
+      setPost(foundPost);
+    }
+  }, [params]);
 
-  if (!post) return null;
+  if (!post) return (
+    <div className="min-h-screen flex items-center justify-center">
+      <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div>
+    </div>
+  );
 
   return (
     <div className="flex flex-col min-h-dvh bg-white text-foreground font-body">
       <Header />
       <main className="flex-1">
-        {/* Breadcrumb & Navigation */}
         <section className="py-6 border-b bg-slate-50">
           <div className="container mx-auto px-4 md:px-6">
             <nav className="flex items-center gap-2 text-sm text-muted-foreground mb-4">
@@ -96,7 +101,6 @@ export default function BlogDetailPage() {
           </div>
         </section>
 
-        {/* Article Content */}
         <article className="py-12 md:py-20">
           <div className="container mx-auto px-4 md:px-6">
             <div className="max-w-4xl mx-auto">
@@ -137,7 +141,6 @@ export default function BlogDetailPage() {
 
               <Separator className="my-12" />
 
-              {/* Share Section */}
               <div data-aos="fade-up" className="flex flex-col sm:flex-row items-center justify-between gap-6 bg-slate-50 p-6 rounded-2xl">
                 <div className="font-semibold text-slate-900 flex items-center gap-2">
                   <Share2 className="h-5 w-5 text-primary" /> แบ่งปันบทความนี้
@@ -152,7 +155,6 @@ export default function BlogDetailPage() {
                 </div>
               </div>
 
-              {/* Author Bio (Optional) */}
               <div data-aos="fade-up" className="mt-16 flex items-start gap-6 p-8 border rounded-2xl bg-white shadow-sm">
                 <div className="w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
                   <User className="h-10 w-10 text-primary" />
@@ -168,12 +170,11 @@ export default function BlogDetailPage() {
           </div>
         </article>
 
-        {/* Related Posts Section */}
         <section className="py-20 bg-slate-50">
           <div className="container mx-auto px-4 md:px-6">
             <h2 className="text-2xl md:text-3xl font-bold font-headline mb-10 text-center">บทความที่คุณอาจสนใจ</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {blogPosts.filter(p => p.id !== Number(params.id)).slice(0, 3).map((post) => (
+              {blogPosts.filter(p => p.id !== (params?.id ? Number(params.id) : 0)).slice(0, 3).map((post) => (
                 <Link href={`/blog/${post.id}`} key={post.id} className="group">
                   <Card className="h-full border-none shadow-sm hover:shadow-md transition-all overflow-hidden">
                     <div className="relative aspect-video">
@@ -191,7 +192,6 @@ export default function BlogDetailPage() {
           </div>
         </section>
 
-        {/* CTA Section */}
         <section className="py-20 bg-primary text-primary-foreground">
           <div className="container mx-auto px-4 md:px-6 text-center">
             <h2 className="text-3xl md:text-4xl font-bold mb-6 font-headline">มีข้อสงสัยเกี่ยวกับเรื่องบัญชีและภาษี?</h2>

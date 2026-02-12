@@ -1,4 +1,3 @@
-
 import Link from "next/link";
 import Image from "next/image";
 import { Facebook, MessageCircle, MapPin, Phone, Mail } from "lucide-react";
@@ -72,7 +71,6 @@ export function Footer() {
 
         <div className="flex flex-col sm:flex-row justify-between items-center text-primary-foreground/70 text-xs">
           <p>© {new Date().getFullYear()} IC Accounting & Service. All rights reserved.</p>
-           {/* Future links can go here e.g. Terms, Privacy */}
         </div>
       </div>
     </footer>

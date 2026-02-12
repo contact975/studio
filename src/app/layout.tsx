@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   title: 'IC Accounting & Service | สำนักงานบัญชีเชียงใหม่ บัญชี ภาษี มีเดียครบวงจร',
   description: 'ครบจบในที่เดียวที่ IC Accounting & Service สำนักงานบัญชีเชียงใหม่ยุคใหม่ บริการทำบัญชี วางแผนภาษี จดทะเบียนธุรกิจ และผลิตมีเดียคอนเทนต์ โดยทีมงานมืออาชีพกว่า 10 ปี',
   icons: {
-    icon: '/logo icon.png',
+    icon: 'https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Logo%20ic.png?alt=media',
   },
 };
 
@@ -27,7 +27,6 @@ export default function RootLayout({
       <body className={cn('font-body antialiased')} suppressHydrationWarning>
         {children}
         <Toaster />
-        {/* Modern Wistia Player Script */}
         <Script src="https://fast.wistia.com/player.js" strategy="afterInteractive" />
       </body>
     </html>
