@@ -30,7 +30,7 @@ const blogPosts = [
     category: 'จดทะเบียนธุรกิจ',
     date: '10 มี.ค. 2567',
     author: 'ผู้เชี่ยวชาญด้านกฎหมาย',
-    image: 'https://picsum.photos/seed/blog2/800/500',
+    image: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMXx8QnVzaW5lc3N8ZW58MHx8fHwxNzcwODg4NzkwfDA&ixlib=rb-4.1.0&q=80&w=1080',
     imageHint: 'business meeting'
   },
   {
