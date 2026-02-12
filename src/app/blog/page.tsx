@@ -75,7 +75,7 @@ const blogPosts = [
   }
 ];
 
-export function BlogPage() {
+export default function BlogPage() {
   useEffect(() => {
     AOS.init({
       duration: 1000,
