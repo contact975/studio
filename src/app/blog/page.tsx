@@ -65,13 +65,13 @@ const blogPosts = [
   },
   {
     id: 6,
-    title: 'สวัสดิการพนักงานและการจัดการประกันสังคมที่ถูกต้อง',
-    excerpt: 'หน้าที่ของนายจ้างในการดูแลสวัสดิการพนักงานตามกฎหมาย และเทคนิคการบริหารจัดการที่ช่วยลดภาระองค์กร...',
-    category: 'งานบุคคล',
+    title: 'เปิดเช่าที่พัก/Pool Villa ในเชียงใหม่ ต้องเสียภาษีอะไรบ้าง? คู่มือสำหรับเจ้าของธุรกิจมือใหม่',
+    excerpt: 'ธุรกิจ Pool Villa ในเชียงใหม่เติบโตอย่างก้าวกระโดด แต่เจ้าของธุรกิจมือใหม่หลายคนยังมีความกังวลและสับสนเรื่องการจัดการภาษีหลังบ้าน...',
+    category: 'ภาษีธุรกิจ',
     date: '20 ก.พ. 2567',
-    author: 'ทีมงาน HR',
-    image: 'https://picsum.photos/seed/blog6/800/500',
-    imageHint: 'happy office workers'
+    author: 'ทีมงาน IC ACC',
+    image: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxwb29sJTIwdmlsbGF8ZW58MHx8fHwxNzcwODkxNjA0fDA&ixlib=rb-4.1.0&q=80&w=1080',
+    imageHint: 'pool villa'
   }
 ];
 
