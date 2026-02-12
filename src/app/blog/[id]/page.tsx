@@ -88,7 +88,7 @@ const blogPosts = [
     id: 'sme-chiang-mai-accounting-guide',
     title: 'คัมภีร์ SME เชียงใหม่: บริหารจัดการบัญชีและภาษีอย่างไรให้ธุรกิจโตแบบก้าวกระโดดในปี 2026',
     content: `
-      เกริ่นนำ: ในยุคที่เศรษฐกิจเชียงใหม่กลับมาคึกคักอีกครั้ง ไม่ว่าจะเป็นธุรกิจคาเฟ่ ร้านอาหาร หรือที่พักขนาดเล็ก (SME) การบริหารจัดการ "หลังบ้าน" โดยเฉพาะเรื่องตัวเลขและภาษี คือหัวใจสำคัญที่จะตัดสินว่าธุรกิจจะอยู่รอดหรือไปต่อได้ไกลแค่ไหน IC Accounting & Service ในฐานะเพื่อนคู่คิด of SME ในเชียงใหม่มากว่า 10 ปี เราสรุปแนวทางการบริหารบัญชีที่เจ้าของธุรกิจยุคใหม่ต้องรู้มาให้แล้วครับ
+      เกริ่นนำ: ในยุคที่เศรษฐกิจเชียงใหม่กลับมาคึกคักอีกครั้ง ไม่ว่าจะเป็นธุรกิจคาเฟ่ ร้านอาหาร หรือที่พักขนาดเล็ก (SME) การบริหารจัดการ "หลังบ้าน" โดยเฉพาะเรื่องตัวเลขและภาษี คือหัวใจสำคัญที่จะตัดสินว่าธุรกิจจะอยู่รอดหรือไปต่อได้ไกลแค่ไหน IC Accounting & Service ในฐานะเพื่อนคู่คิดของ SME ในเชียงใหม่มากว่า 10 ปี เราสรุปแนวทางการบริหารบัญชีที่เจ้าของธุรกิจยุคใหม่ต้องรู้มาให้แล้วครับ
 
       1. การวางรากฐาน "บัญชีเดียว" เพื่อความยั่งยืน
       ผู้ประกอบการ SME ในเชียงใหม่หลายรายยังติดกับการทำบัญชีหลายเล่มเพื่อประหยัดภาษี แต่ในความเป็นจริง การทำบัญชีชุดเดียวให้ถูกต้องตั้งแต่วันแรกมีข้อดีมากกว่าที่คิด:
@@ -180,7 +180,7 @@ const blogPosts = [
       - การทำบัญชี: แม้จะไม่ได้จดเป็นโรงแรม แต่การจัดทำบัญชีรายรับ-รายจ่ายที่ชัดเจนยังคงเป็นสิ่งจำเป็น เพื่อใช้เป็นหลักฐานในการยื่นเสียภาษีเงินได้บุคคลธรรมดาหรือนิติบุคคลครับ
 
       3. การวางแผนภาษีที่ดินและสิ่งปลูกสร้าง
-      สำหรับที่พักเชิงพาณิชย อัตราภาษีจะแตกต่างจากการอยู่อาศัยปกติครับ:
+      สำหรับที่พักเชิงพาณิชย์ อัตราภาษีจะแตกต่างจากการอยู่อาศัยปกติครับ:
       - การประเมิน: องค์กรปกครองส่วนท้องถิ่นในเชียงใหม่จะประเมินภาษีตามมูลค่าทรัพย์สินและประเภทการใช้ประโยชน์
       - การจัดการ: การวางแผนโครงสร้างธุรกิจและการจัดเก็บเอกสารที่ถูกต้อง จะช่วยให้การประเมินภาษีเป็นไปอย่างเหมาะสมและเป็นธรรมกับเจ้าของธุรกิจครับ
 
@@ -194,8 +194,6 @@ const blogPosts = [
       - วางโครงสร้างตั้งแต่เริ่มต้น: เราช่วยแนะนำตั้งแต่การเลือกว่าจะประกอบธุรกิจในนามบุคคลหรือบริษัท เพื่อให้ประหยัดภาษีสูงสุดตั้งแต่ปีแรก
       - ประสบการณ์กว่า 10 ปี: คุณไอซ์และทีมงานเข้าใจลึกถึงปัญหาที่เจ้าของที่พักมักเจอ และพร้อมให้คำปรึกษาอย่างใกล้ชิด
       - ครบวงจร: นอกจากงานบัญชี เรายังมีบริการสื่อคอนเทนต์ (Media Content) เพื่อช่วยถ่ายทอดความสวยงามของ Pool Villa ของคุณให้เป็นที่รู้จักบนโลกออนไลน์อีกด้วย
-
-      บทสรุป: การทำธุรกิจที่พักในเชียงใหม่ให้ยั่งยืน ต้องเริ่มจากการมี "หลังบ้าน" ที่สะอาดและถูกต้อง หากท่านกำลังมองหา สำนักงานบัญชีเชียงใหม่ ที่เข้าใจหัวอกคนทำที่พัก ติดต่อปรึกษา IC Accounting & Service ได้ตั้งแต่วันนี้
     `,
     category: 'ภาษีธุรกิจ',
     date: '20 ก.พ. 2567',
@@ -225,7 +223,6 @@ export default function BlogDetailPage() {
 
     if (params?.id) {
       const postId = params.id;
-      // แก้ไขการค้นหาบทความโดยไม่ใช้ Number()
       const foundPost = blogPosts.find(p => String(p.id) === String(postId)) || blogPosts[0];
       setPost(foundPost);
     }
@@ -301,11 +298,36 @@ export default function BlogDetailPage() {
                   <Share2 className="h-5 w-5 text-primary" /> แบ่งปันบทความนี้
                 </div>
                 <div className="flex gap-4">
-                  <Button variant="outline" size="sm" className="rounded-full gap-2 hover:bg-blue-600 hover:text-white transition-all">
-                    <Facebook className="h-4 w-4" /> Facebook
+                  {/* ปุ่ม Facebook Share */}
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="rounded-full gap-2 hover:bg-blue-600 hover:text-white transition-all"
+                    asChild
+                  >
+                    <a
+                      href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(`https://icaccservice.com/blog/${post.id}`)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <Facebook className="h-4 w-4" /> Facebook
+                    </a>
                   </Button>
-                  <Button variant="outline" size="sm" className="rounded-full gap-2 hover:bg-green-500 hover:text-white transition-all">
-                    <MessageCircle className="h-4 w-4" /> Line
+
+                  {/* ปุ่ม Line Share */}
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="rounded-full gap-2 hover:bg-green-500 hover:text-white transition-all"
+                    asChild
+                  >
+                    <a
+                      href={`https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(`https://icaccservice.com/blog/${post.id}`)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <MessageCircle className="h-4 w-4" /> Line
+                    </a>
                   </Button>
                 </div>
               </div>
@@ -329,7 +351,6 @@ export default function BlogDetailPage() {
           <div className="container mx-auto px-4 md:px-6">
             <h2 className="text-2xl md:text-3xl font-bold font-headline mb-10 text-center">บทความที่คุณอาจสนใจ</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {/* แก้ไขการฟิลเตอร์บทความโดยใช้ String() แทน Number() */}
               {blogPosts.filter(p => String(p.id) !== String(params?.id)).slice(0, 3).map((post) => (
                 <Link href={`/blog/${post.id}`} key={post.id} className="group">
                   <Card className="h-full border-none shadow-sm hover:shadow-md transition-all overflow-hidden">
