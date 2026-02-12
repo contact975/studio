@@ -81,7 +81,7 @@ const blogPosts = [
     category: 'ภาษีธุรกิจ',
     date: '20 มี.ค. 2567',
     author: 'ทีมงาน IC ACC',
-    image: 'https://picsum.photos/seed/blog3/1200/600',
+    image: 'https://images.unsplash.com/photo-1737622020870-73d9f15e8a46?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxzbWUlMjBjaGlhbmdtYWl8ZW58MHx8fHwxNzcwODg4NDIyfDA&ixlib=rb-4.1.0&q=80&w=1080',
     imageHint: 'accounting error check'
   }
 ];
