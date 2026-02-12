@@ -20,7 +20,7 @@ const blogPosts = [
     category: 'ภาษีธุรกิจ',
     date: '15 มี.ค. 2567',
     author: 'ทีมงาน IC ACC',
-    image: 'https://picsum.photos/seed/blog1/800/500',
+    image: 'https://images.unsplash.com/photo-1562654501-a0ccc0fc3fb1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxEb2N1bWVudHxlbnwwfHx8fDE3NzA4ODg1NTd8MA&ixlib=rb-4.1.0&q=80&w=1080',
     imageHint: 'tax documents'
   },
   {
@@ -75,7 +75,7 @@ const blogPosts = [
   }
 ];
 
-export default function BlogPage() {
+export function BlogPage() {
   useEffect(() => {
     AOS.init({
       duration: 1000,
