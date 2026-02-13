@@ -3,44 +3,44 @@ import { Metadata } from 'next';
 export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
   const id = params.id;
   
-  // 1. เพิ่มฟิลด์ image ให้ตรงกับรูปภาพในแต่ละบทความที่คุณไอซ์ใช้ในไฟล์ page.tsx
+  // 1. แผนผังข้อมูลบทความที่ปรับจูนลิงก์รูปภาพให้เหมาะสมกับการแชร์
   const blogData: { [key: string]: { title: string; description: string; image: string } } = {
     'tax-document-preparation-tips': {
       title: '5 เคล็ดลับการเตรียมเอกสารภาษีสำหรับ SME มือใหม่',
       description: 'เรียนรู้วิธีการจัดการเอกสารภาษีอย่างเป็นระบบ เพื่อความถูกต้องและรวดเร็ว',
-      image: 'https://images.unsplash.com/photo-1562654501-a0ccc0fc3fb1' //
+      image: 'https://images.unsplash.com/photo-1562654501-a0ccc0fc3fb1?q=80&w=1200&auto=format&fit=crop'
     },
     'company-vs-partnership-comparison': {
       title: 'จดทะเบียนบริษัท vs ห้างหุ้นส่วน แบบไหนเหมาะกับคุณมากกว่ากัน?',
       description: 'เปรียบเทียบข้อดีและข้อเสียของการจดทะเบียนธุรกิจแต่ละประเภท',
-      image: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf' //
+      image: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=1200&auto=format&fit=crop'
     },
     '5-common-accounting-mistakes-sme-chiangmai': {
       title: '5 ข้อผิดพลาดที่ SME เชียงใหม่มักเจอ เมื่อถึงฤดูกาลปิดงบการเงิน',
       description: 'สรุปประเด็นสำคัญที่เจ้าของธุรกิจในเชียงใหม่ต้องระวังเพื่อลดความเสี่ยงทางภาษี',
-      image: 'https://images.unsplash.com/photo-1737622020870-73d9f15e8a46' //
+      image: 'https://images.unsplash.com/photo-1737622020870-73d9f15e8a46?q=80&w=1200&auto=format&fit=crop'
     },
     'sme-chiang-mai-accounting-guide': {
       title: 'คัมภีร์ SME เชียงใหม่: บริหารจัดการบัญชีและภาษีให้ธุรกิจโตแบบก้าวกระโดด',
       description: 'คู่มือฉบับสมบูรณ์สำหรับผู้ประกอบการในเชียงใหม่ โดยผู้เชี่ยวชาญกว่า 10 ปี',
-      image: 'https://images.unsplash.com/photo-1758115271914-6d5d8bb3d277' //
+      image: 'https://images.unsplash.com/photo-1758115271914-6d5d8bb3d277?q=80&w=1200&auto=format&fit=crop'
     },
     'tax-guide-chiang-mai-restaurants': {
       title: 'ภาษีร้านอาหารและคาเฟ่ในเชียงใหม่: บริหารจัดการอย่างไรไม่ให้โดนตรวจย้อนหลัง',
       description: 'เจาะลึกการทำบัญชีสต็อกและภาษีที่เกี่ยวข้องกับธุรกิจอาหารและเครื่องดื่ม',
-      image: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5' //
+      image: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=1200&auto=format&fit=crop'
     },
     'pool-villa-tax-guide-chiang-mai': {
       title: 'เปิดเช่าที่พัก/Pool Villa ในเชียงใหม่ ต้องเสียภาษีอะไรบ้าง?',
       description: 'คู่มือภาษีสำหรับเจ้าของธุรกิจที่พักและพูลวิลล่ามือใหม่ในเชียงใหม่',
-      image: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750' //
+      image: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=1200&auto=format&fit=crop'
     }
   };
 
   const currentPost = blogData[id] || {
     title: 'บทความน่ารู้ด้านบัญชีและภาษี | IC Accounting & Service',
     description: 'ที่ปรึกษาด้านบัญชีและภาษีมืออาชีพในเชียงใหม่ ประสบการณ์กว่า 10 ปี',
-    image: 'https://icaccservice.com/og-image.jpg' // รูปสำรองกรณีหา ID ไม่เจอ
+    image: 'https://icaccservice.com/logo%20icon.png' // ใช้โลโก้ที่มีอยู่ใน public เป็นรูปสำรอง
   };
 
   return {
@@ -53,8 +53,8 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
       siteName: 'IC Accounting & Service',
       images: [
         {
-          url: currentPost.image, // ดึงรูปภาพตามบทความมาแสดง
-          width: 1200,
+          url: currentPost.image,
+          width: 1200, // กำหนดขนาดมาตรฐานที่โซเชียลมีเดียชอบ
           height: 630,
           alt: currentPost.title,
         },
