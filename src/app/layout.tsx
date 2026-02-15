@@ -7,8 +7,11 @@ import Script from 'next/script';
 export const metadata: Metadata = {
   title: 'IC Accounting & Service | สำนักงานบัญชีเชียงใหม่ บัญชี ภาษี มีเดียครบวงจร',
   description: 'ครบจบในที่เดียวที่ IC Accounting & Service สำนักงานบัญชีเชียงใหม่ยุคใหม่ บริการทำบัญชี วางแผนภาษี จดทะเบียนธุรกิจ และผลิตมีเดียคอนเทนต์ โดยทีมงานมืออาชีพกว่า 10 ปี',
+  // ปรับให้ดึงจากชื่อไฟล์ใหม่ icon.png
   icons: {
-    icon: 'https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Logo%20ic.png?alt=media',
+    icon: '/icon.png', 
+    shortcut: '/icon.png',
+    apple: '/icon.png',
   },
 };
 
