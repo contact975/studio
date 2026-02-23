@@ -13,6 +13,7 @@ import {
   Briefcase,
   Workflow,
   LucideIcon,
+  X,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
@@ -53,6 +54,7 @@ export function Header() {
   const [isServicesOpen, setIsServicesOpen] = React.useState(false);
   const [isClient, setIsClient] = React.useState(false);
   const [isSheetOpen, setIsSheetOpen] = React.useState(false);
+  const [isPromoVisible, setIsPromoVisible] = React.useState(true);
 
   React.useEffect(() => {
     setIsClient(true);
@@ -192,16 +194,25 @@ export function Header() {
       </div>
 
       {/* Scrolling Promo Bar */}
-      <div className="bg-[#0a2558] text-white py-2 overflow-hidden whitespace-nowrap text-sm border-t border-white/5">
-        <div className="animate-marquee inline-block">
-          <span className="mx-10 inline-flex items-center gap-2">🔥 โปรโมชั่นพิเศษ! จดทะเบียนบริษัทวันนี้ รับฟรี! ตรายางบริษัท และให้คำปรึกษาบัญชี-ภาษีเบื้องต้น 🔥</span>
-          <span className="mx-10 inline-flex items-center gap-2">📞 ติดต่อสอบถาม: 095-716-1422</span>
-          <span className="mx-10 inline-flex items-center gap-2">💼 บริการทำบัญชีเชียงใหม่ เริ่มต้นเพียง 2,000.-/เดือน</span>
-          <span className="mx-10 inline-flex items-center gap-2">🚀 บริการวางระบบองค์กร สอนใช้งานโปรแกรมบัญชี Cloud</span>
-          <span className="mx-10 inline-flex items-center gap-2">🛂 บริการทำ Visa & Work Permit สำหรับชาวต่างชาติ ครบวงจร</span>
-          <span className="mx-10 inline-flex items-center gap-2">✨ IC Accounting & Service เพื่อนคู่คิด SME เชียงใหม่ ✨</span>
+      {isPromoVisible && (
+        <div className="relative bg-[#0a2558] text-white py-2 overflow-hidden whitespace-nowrap text-sm border-t border-white/5">
+          <div className="animate-marquee inline-block pr-10">
+            <span className="mx-10 inline-flex items-center gap-2">🔥 โปรโมชั่นพิเศษ! จดทะเบียนบริษัทวันนี้ รับฟรี! ตรายางบริษัท และให้คำปรึกษาบัญชี-ภาษีเบื้องต้น 🔥</span>
+            <span className="mx-10 inline-flex items-center gap-2">📞 ติดต่อสอบถาม: 095-716-1422</span>
+            <span className="mx-10 inline-flex items-center gap-2">💼 บริการทำบัญชีเชียงใหม่ เริ่มต้นเพียง 2,000.-/เดือน</span>
+            <span className="mx-10 inline-flex items-center gap-2">🚀 บริการวางระบบองค์กร สอนใช้งานโปรแกรมบัญชี Cloud</span>
+            <span className="mx-10 inline-flex items-center gap-2">🛂 บริการทำ Visa & Work Permit สำหรับชาวต่างชาติ ครบวงจร</span>
+            <span className="mx-10 inline-flex items-center gap-2">✨ IC Accounting & Service เพื่อนคู่คิด SME เชียงใหม่ ✨</span>
+          </div>
+          <button 
+            onClick={() => setIsPromoVisible(false)}
+            className="absolute right-2 top-1/2 -translate-y-1/2 bg-[#0a2558] p-1 rounded-full hover:bg-white/20 transition-colors z-10"
+            aria-label="Close promotion bar"
+          >
+            <X className="h-4 w-4" />
+          </button>
         </div>
-      </div>
+      )}
     </header>
   );
 }
