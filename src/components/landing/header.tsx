@@ -23,6 +23,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { cn } from "@/lib/utils";
 
 interface SubLink {
   href: string;
@@ -61,8 +62,17 @@ export function Header() {
   }, []);
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-card/95 backdrop-blur supports-[backdrop-filter]:bg-card/60 shadow-sm">
-      <div className="border-b">
+    <header className="sticky top-0 z-50 w-full">
+      {/* Background Blur Overlay for the rest of the page */}
+      <div 
+        className={cn(
+          "fixed inset-0 bg-black/30 backdrop-blur-md transition-all duration-500 pointer-events-none z-[-1]",
+          isServicesOpen ? "opacity-100" : "opacity-0"
+        )}
+        aria-hidden="true"
+      />
+
+      <div className="relative bg-card/95 backdrop-blur supports-[backdrop-filter]:bg-card/60 shadow-sm border-b">
         <div className="container mx-auto flex h-16 items-center px-4 md:px-6">
           <Link href="/" className="mr-6 flex items-center gap-2" prefetch={false}>
             <Image 
@@ -79,23 +89,23 @@ export function Header() {
               link.subLinks ? (
                 <div 
                   key={link.label}
-                  className="relative"
+                  className="relative h-16 flex items-center"
                   onMouseEnter={() => setIsServicesOpen(true)}
                   onMouseLeave={() => setIsServicesOpen(false)}
                 >
-                  <div className="flex items-center gap-1 text-foreground/70 transition-colors hover:text-primary outline-none cursor-default h-16">
+                  <div className="flex items-center gap-1 text-foreground/70 transition-colors hover:text-primary outline-none cursor-default py-4">
                     {link.label} <ChevronDown className={`relative top-[1px] h-4 w-4 transition-transform duration-200 ${isServicesOpen ? 'rotate-180' : ''}`} />
                   </div>
                   {isServicesOpen && (
-                    <div className="absolute top-full left-0 w-64 z-50 min-w-[8rem] overflow-hidden rounded-md border bg-popover p-1 text-popover-foreground shadow-md animate-in fade-in-0 slide-in-from-top-2 duration-300">
+                    <div className="absolute top-full left-1/2 -translate-x-1/2 w-64 z-50 overflow-hidden rounded-xl border bg-popover p-2 text-popover-foreground shadow-2xl animate-in fade-in-0 slide-in-from-top-2 duration-300">
                       {link.subLinks.map((subLink) => (
                         <Link 
                           key={subLink.label} 
                           href={subLink.href}
-                          className="relative flex select-none items-center gap-2 rounded-sm px-3 py-2 text-base outline-none transition-colors hover:bg-primary hover:text-primary-foreground cursor-pointer"
+                          className="relative flex select-none items-center gap-3 rounded-lg px-4 py-3 text-base outline-none transition-all hover:bg-primary hover:text-primary-foreground cursor-pointer"
                           onClick={() => setIsServicesOpen(false)}
                         >
-                          <subLink.icon className="h-4 w-4" />
+                          <subLink.icon className="h-5 w-5" />
                           {subLink.label}
                         </Link>
                       ))}
@@ -193,28 +203,28 @@ export function Header() {
             )}
           </div>
         </div>
-      </div>
 
-      {/* Scrolling Promo Bar */}
-      {isPromoVisible && (
-        <div className="relative bg-[#0a2558] text-white py-2 overflow-hidden whitespace-nowrap text-sm">
-          <div className="animate-marquee inline-block">
-            <span className="inline-flex items-center gap-4">
-              🔥 โปรโมชั่นพิเศษ! จดทะเบียนบริษัทวันนี้ รับฟรี! ตรายางบริษัท และให้คำปรึกษาบัญชี-ภาษีเบื้องต้น 🔥
-              <Link href="https://line.me/R/ti/p/@374jshvh" target="_blank" className="px-3 py-1 bg-red-600 hover:bg-red-700 text-white text-xs font-bold rounded-full transition-colors">
-                คลิกที่นี่
-              </Link>
-            </span>
+        {/* Scrolling Promo Bar inside the header container */}
+        {isPromoVisible && (
+          <div className="relative bg-[#0a2558] text-white py-2 overflow-hidden whitespace-nowrap text-sm">
+            <div className="animate-marquee inline-block">
+              <span className="inline-flex items-center gap-4">
+                🔥 โปรโมชั่นพิเศษ! จดทะเบียนบริษัทวันนี้ รับฟรี! ตรายางบริษัท และให้คำปรึกษาบัญชี-ภาษีเบื้องต้น 🔥
+                <Link href="https://line.me/R/ti/p/@374jshvh" target="_blank" className="px-3 py-1 bg-red-600 hover:bg-red-700 text-white text-xs font-bold rounded-full transition-colors">
+                  คลิกที่นี่
+                </Link>
+              </span>
+            </div>
+            <button 
+              onClick={() => setIsPromoVisible(false)}
+              className="absolute right-2 top-1/2 -translate-y-1/2 bg-[#0a2558] p-1 rounded-full hover:bg-white/20 transition-colors z-10"
+              aria-label="Close promotion bar"
+            >
+              <X className="h-4 w-4" />
+            </button>
           </div>
-          <button 
-            onClick={() => setIsPromoVisible(false)}
-            className="absolute right-2 top-1/2 -translate-y-1/2 bg-[#0a2558] p-1 rounded-full hover:bg-white/20 transition-colors z-10"
-            aria-label="Close promotion bar"
-          >
-            <X className="h-4 w-4" />
-          </button>
-        </div>
-      )}
+        )}
+      </div>
     </header>
   );
 }
