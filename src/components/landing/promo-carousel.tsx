@@ -45,7 +45,7 @@ export function PromoCarousel() {
   }
 
   return (
-    <section className="w-full bg-primary py-10 md:py-16 overflow-hidden">
+    <section className="w-full animate-gradient py-10 md:py-16 overflow-hidden">
       <div className="container mx-auto px-4 md:px-12 lg:px-24">
         <Carousel
           opts={{
