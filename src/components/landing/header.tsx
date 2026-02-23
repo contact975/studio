@@ -75,7 +75,8 @@ export function Header() {
       )}
 
       <div className="relative bg-card/95 backdrop-blur supports-[backdrop-filter]:bg-card/60 shadow-sm">
-        <div className="border-b">
+        {/* Main Navigation Bar - Removed border-b to eliminate line above promo bar */}
+        <div>
           <div className="container mx-auto flex h-16 items-center px-4 md:px-6">
             <Link href="/" className="mr-6 flex items-center gap-2" prefetch={false}>
               <Image 
@@ -100,8 +101,9 @@ export function Header() {
                       {link.label} <ChevronDown className={cn("relative top-[1px] h-4 w-4 transition-transform duration-200", isServicesOpen ? 'rotate-180' : '')} />
                     </div>
                     {isServicesOpen && (
+                      /* Fixed animation for straight slide down */
                       <div className="absolute top-full left-1/2 -translate-x-1/2 w-64 z-50 pt-0">
-                        <div className="overflow-hidden rounded-xl border bg-popover p-2 text-popover-foreground shadow-2xl animate-in fade-in-0 slide-in-from-top-4 duration-300">
+                        <div className="overflow-hidden rounded-xl border bg-popover p-2 text-popover-foreground shadow-2xl animate-in fade-in-0 slide-in-from-top-4 duration-500 fill-mode-both">
                           {link.subLinks.map((subLink) => (
                             <Link 
                               key={subLink.label} 
