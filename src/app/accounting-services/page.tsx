@@ -15,7 +15,7 @@ const packages = [
   {
     size: 'S',
     name: 'Basic Package',
-    price: '2000',
+    price: '2500',
     description: 'เหมาะสำหรับธุรกิจขนาดเล็กที่เริ่มจัดระบบบัญชี',
     limit: 'จำนวนรายการต่อเดือนไม่เกิน 20 รายการ',
     bgColor: 'bg-blue-400',
