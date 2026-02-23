@@ -37,44 +37,50 @@ export function PromoCarousel() {
   }, []);
 
   if (!isMounted) {
-    return <div className="w-full aspect-[16/9] md:aspect-[21/7] lg:aspect-[3/1] bg-muted animate-pulse" />;
+    return (
+      <div className="container mx-auto px-4 py-10">
+        <div className="w-full max-w-5xl mx-auto aspect-[2.5/1] bg-muted animate-pulse rounded-[2rem]" />
+      </div>
+    );
   }
 
   return (
-    <section className="w-full bg-background overflow-hidden">
-      <Carousel
-        opts={{
-          align: "start",
-          loop: true,
-        }}
-        plugins={[
-          Autoplay({
-            delay: 4000,
-            stopOnInteraction: false,
-          }),
-        ]}
-        className="w-full"
-      >
-        <CarouselContent className="-ml-0">
-          {promoImages.map((image, index) => (
-            <CarouselItem key={index} className="pl-0">
-              <div className="relative aspect-[16/9] md:aspect-[21/7] lg:aspect-[3/1] w-full overflow-hidden">
-                <Image
-                  src={image.src}
-                  fill
-                  alt={image.alt}
-                  className="object-cover"
-                  sizes="100vw"
-                  data-ai-hint={image.hint}
-                  priority={index === 0}
-                />
-              </div>
-            </CarouselItem>
-          ))}
-        </CarouselContent>
-        <CarouselPrevious className="absolute left-4 top-1/2 -translate-y-1/2 hidden md:inline-flex bg-white/20 hover:bg-white/40 border-none text-white h-12 w-12" />
-        <CarouselNext className="absolute right-4 top-1/2 -translate-y-1/2 hidden md:inline-flex bg-white/20 hover:bg-white/40 border-none text-white h-12 w-12" />
-      </Carousel>
+    <section className="w-full bg-background py-10 md:py-16 overflow-hidden">
+      <div className="container mx-auto px-4 md:px-12 lg:px-24">
+        <Carousel
+          opts={{
+            align: "start",
+            loop: true,
+          }}
+          plugins={[
+            Autoplay({
+              delay: 4000,
+              stopOnInteraction: false,
+            }),
+          ]}
+          className="w-full max-w-5xl mx-auto group relative"
+        >
+          <CarouselContent className="-ml-0">
+            {promoImages.map((image, index) => (
+              <CarouselItem key={index} className="pl-0">
+                <div className="relative aspect-[16/7] md:aspect-[21/7] lg:aspect-[2.5/1] w-full overflow-hidden rounded-[1.5rem] md:rounded-[2.5rem] shadow-xl border-4 border-white/10">
+                  <Image
+                    src={image.src}
+                    fill
+                    alt={image.alt}
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
+                    data-ai-hint={image.hint}
+                    priority={index === 0}
+                  />
+                </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious className="absolute -left-4 md:-left-12 lg:-left-16 top-1/2 -translate-y-1/2 bg-blue-100 hover:bg-blue-200 text-blue-600 border-none h-10 w-10 md:h-12 md:w-12 shadow-md flex items-center justify-center rounded-full transition-all opacity-0 group-hover:opacity-100 md:opacity-100" />
+          <CarouselNext className="absolute -right-4 md:-right-12 lg:-right-16 top-1/2 -translate-y-1/2 bg-blue-100 hover:bg-blue-200 text-blue-600 border-none h-10 w-10 md:h-12 md:w-12 shadow-md flex items-center justify-center rounded-full transition-all opacity-0 group-hover:opacity-100 md:opacity-100" />
+        </Carousel>
+      </div>
     </section>
   );
 }
