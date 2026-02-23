@@ -11,6 +11,7 @@ import { TestimonialsSection } from '@/components/landing/testimonials-section';
 import { FaqSection } from '@/components/landing/faq-section';
 import { Footer } from '@/components/landing/footer';
 import { ClientsSection } from '@/components/landing/clients-section';
+import { PromoCarousel } from '@/components/landing/promo-carousel';
 
 export default function Home() {
   useEffect(() => {
@@ -28,6 +29,9 @@ export default function Home() {
         <HeroSection />
         <ClientsSection />
         <ServicesSection />
+        <div data-aos="fade-up">
+          <PromoCarousel />
+        </div>
         <WhyUsSection />
         <TestimonialsSection />
         <FaqSection />
