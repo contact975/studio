@@ -12,9 +12,9 @@ import {
   FileCheck,
   Briefcase,
   Workflow,
-  LucideIcon,
   X,
 } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import {
@@ -63,17 +63,18 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 w-full">
-      {/* Background Blur Overlay for the rest of the page when menu is open */}
-      <div 
-        className={cn(
-          "fixed inset-0 bg-black/30 backdrop-blur-md transition-all duration-500 pointer-events-none z-[-1]",
-          isServicesOpen ? "opacity-100" : "opacity-0"
-        )}
-        aria-hidden="true"
-      />
+      {/* Background Blur Overlay */}
+      {isClient && (
+        <div 
+          className={cn(
+            "fixed inset-0 bg-black/30 backdrop-blur-md transition-all duration-500 pointer-events-none z-[-1]",
+            isServicesOpen ? "opacity-100" : "opacity-0"
+          )}
+          aria-hidden="true"
+        />
+      )}
 
       <div className="relative bg-card/95 backdrop-blur supports-[backdrop-filter]:bg-card/60 shadow-sm">
-        {/* Navbar Container with border-b between menu and promo bar */}
         <div className="border-b">
           <div className="container mx-auto flex h-16 items-center px-4 md:px-6">
             <Link href="/" className="mr-6 flex items-center gap-2" prefetch={false}>
@@ -96,10 +97,10 @@ export function Header() {
                     onMouseLeave={() => setIsServicesOpen(false)}
                   >
                     <div className="flex items-center gap-1 text-foreground/70 transition-colors hover:text-primary outline-none cursor-default py-4">
-                      {link.label} <ChevronDown className={`relative top-[1px] h-4 w-4 transition-transform duration-200 ${isServicesOpen ? 'rotate-180' : ''}`} />
+                      {link.label} <ChevronDown className={cn("relative top-[1px] h-4 w-4 transition-transform duration-200", isServicesOpen ? 'rotate-180' : '')} />
                     </div>
                     {isServicesOpen && (
-                      <div className="absolute top-full left-1/2 -translate-x-1/2 w-64 z-50 pt-1">
+                      <div className="absolute top-full left-1/2 -translate-x-1/2 w-64 z-50 pt-0">
                         <div className="overflow-hidden rounded-xl border bg-popover p-2 text-popover-foreground shadow-2xl animate-in fade-in-0 slide-in-from-top-4 duration-300">
                           {link.subLinks.map((subLink) => (
                             <Link 

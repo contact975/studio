@@ -1,3 +1,4 @@
+
 "use client";
 
 import * as React from "react";
@@ -38,8 +39,10 @@ export function PromoCarousel() {
 
   if (!isMounted) {
     return (
-      <div className="container mx-auto px-4 py-10">
-        <div className="w-full max-w-5xl mx-auto aspect-[2.5/1] bg-muted animate-pulse rounded-[2rem]" />
+      <div className="w-full bg-primary/20 py-10 md:py-16">
+        <div className="container mx-auto px-4">
+          <div className="w-full max-w-5xl mx-auto aspect-[16/7] md:aspect-[2.5/1] bg-muted animate-pulse rounded-[2.5rem]" />
+        </div>
       </div>
     );
   }
