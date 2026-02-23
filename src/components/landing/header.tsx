@@ -63,7 +63,7 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 w-full">
-      {/* Background Blur Overlay for the rest of the page */}
+      {/* Background Blur Overlay for the rest of the page when menu is open */}
       <div 
         className={cn(
           "fixed inset-0 bg-black/30 backdrop-blur-md transition-all duration-500 pointer-events-none z-[-1]",
@@ -72,139 +72,142 @@ export function Header() {
         aria-hidden="true"
       />
 
-      <div className="relative bg-card/95 backdrop-blur supports-[backdrop-filter]:bg-card/60 shadow-sm border-b">
-        <div className="container mx-auto flex h-16 items-center px-4 md:px-6">
-          <Link href="/" className="mr-6 flex items-center gap-2" prefetch={false}>
-            <Image 
-              src="https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Logo%20ic.png?alt=media" 
-              alt="IC Accounting & Service Logo" 
-              width={180} 
-              height={45}
-              className="object-contain h-10 w-auto"
-              priority
-            />
-          </Link>
-          <nav className="hidden flex-1 items-center justify-center gap-8 text-base font-medium md:flex">
-            {navLinks.map((link) =>
-              link.subLinks ? (
-                <div 
-                  key={link.label}
-                  className="relative h-16 flex items-center"
-                  onMouseEnter={() => setIsServicesOpen(true)}
-                  onMouseLeave={() => setIsServicesOpen(false)}
-                >
-                  <div className="flex items-center gap-1 text-foreground/70 transition-colors hover:text-primary outline-none cursor-default py-4">
-                    {link.label} <ChevronDown className={`relative top-[1px] h-4 w-4 transition-transform duration-200 ${isServicesOpen ? 'rotate-180' : ''}`} />
-                  </div>
-                  {isServicesOpen && (
-                    <div className="absolute top-full left-1/2 -translate-x-1/2 w-64 z-50 overflow-hidden rounded-xl border bg-popover p-2 text-popover-foreground shadow-2xl animate-in fade-in-0 slide-in-from-top-2 duration-300">
-                      {link.subLinks.map((subLink) => (
-                        <Link 
-                          key={subLink.label} 
-                          href={subLink.href}
-                          className="relative flex select-none items-center gap-3 rounded-lg px-4 py-3 text-base outline-none transition-all hover:bg-primary hover:text-primary-foreground cursor-pointer"
-                          onClick={() => setIsServicesOpen(false)}
-                        >
-                          <subLink.icon className="h-5 w-5" />
-                          {subLink.label}
-                        </Link>
-                      ))}
+      <div className="relative bg-card/95 backdrop-blur supports-[backdrop-filter]:bg-card/60 shadow-sm">
+        {/* Navbar Container with border-b moved here */}
+        <div className="border-b">
+          <div className="container mx-auto flex h-16 items-center px-4 md:px-6">
+            <Link href="/" className="mr-6 flex items-center gap-2" prefetch={false}>
+              <Image 
+                src="https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Logo%20ic.png?alt=media" 
+                alt="IC Accounting & Service Logo" 
+                width={180} 
+                height={45}
+                className="object-contain h-10 w-auto"
+                priority
+              />
+            </Link>
+            <nav className="hidden flex-1 items-center justify-center gap-8 text-base font-medium md:flex">
+              {navLinks.map((link) =>
+                link.subLinks ? (
+                  <div 
+                    key={link.label}
+                    className="relative h-16 flex items-center"
+                    onMouseEnter={() => setIsServicesOpen(true)}
+                    onMouseLeave={() => setIsServicesOpen(false)}
+                  >
+                    <div className="flex items-center gap-1 text-foreground/70 transition-colors hover:text-primary outline-none cursor-default py-4">
+                      {link.label} <ChevronDown className={`relative top-[1px] h-4 w-4 transition-transform duration-200 ${isServicesOpen ? 'rotate-180' : ''}`} />
                     </div>
-                  )}
-                </div>
-              ) : (
-                <Link
-                  key={link.label}
-                  href={link.href}
-                  className="text-foreground/70 transition-colors hover:text-primary"
-                  prefetch={false}
-                >
-                  {link.label}
-                </Link>
-              )
-            )}
-          </nav>
-          <div className="flex items-center gap-4 ml-auto">
-            <Button asChild className="hidden md:flex rounded-full bg-gradient-to-r from-red-500 to-orange-400 text-white hover:opacity-90 transition-opacity btn-light-sweep">
-                <Link href="/media-content">บริการ Exclusive Media</Link>
-            </Button>
-            <Button asChild className="hidden sm:flex rounded-full">
-              <Link href="https://qr-official.line.me/gs/M_374jshvh_GW.png?oat_content=qr" target="_blank">
-                ติดต่อ
-              </Link>
-            </Button>
-            {isClient && (
-              <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
-                <SheetTrigger asChild>
-                  <Button variant="outline" size="icon" className="md:hidden">
-                    <Menu className="h-6 w-6" />
-                    <span className="sr-only">Toggle navigation menu</span>
-                  </Button>
-                </SheetTrigger>
-                <SheetContent side="right">
-                  <nav className="grid gap-6 text-lg font-medium mt-8">
-                    <div className="flex items-center gap-2 mb-4">
-                      <Image 
-                        src="https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Logo%20ic.png?alt=media" 
-                        alt="IC Accounting & Service Logo" 
-                        width={150} 
-                        height={40}
-                        className="object-contain"
-                      />
-                    </div>
-                    {navLinks.map((link) =>
-                      link.subLinks ? (
-                        <Accordion key={link.label} type="single" collapsible className="w-full">
-                            <AccordionItem value="services" className="border-b-0">
-                              <AccordionTrigger className="py-0 text-lg font-medium text-muted-foreground hover:text-primary hover:no-underline">
-                                {link.label}
-                              </AccordionTrigger>
-                              <AccordionContent className="pt-4 pl-4">
-                                <div className="grid gap-4">
-                                  {link.subLinks.map((subLink) => (
-                                    <Link
-                                      key={subLink.label}
-                                      href={subLink.href}
-                                      onClick={() => setIsSheetOpen(false)}
-                                      className="flex items-center gap-3 text-muted-foreground hover:text-primary"
-                                      prefetch={false}
-                                    >
-                                      <subLink.icon className="h-5 w-5" />
-                                      {subLink.label}
-                                    </Link>
-                                  ))}
-                                </div>
-                              </AccordionContent>
-                            </AccordionItem>
-                          </Accordion>
-                      ) : (
-                        <Link
-                          key={link.label}
-                          href={link.href}
-                          onClick={() => setIsSheetOpen(false)}
-                          className="text-muted-foreground hover:text-primary"
-                          prefetch={false}
-                        >
-                          {link.label}
-                        </Link>
-                      )
+                    {isServicesOpen && (
+                      <div className="absolute top-full left-1/2 -translate-x-1/2 w-64 z-50 overflow-hidden rounded-xl border bg-popover p-2 text-popover-foreground shadow-2xl animate-in fade-in-0 slide-in-from-top-2 duration-300">
+                        {link.subLinks.map((subLink) => (
+                          <Link 
+                            key={subLink.label} 
+                            href={subLink.href}
+                            className="relative flex select-none items-center gap-3 rounded-lg px-4 py-3 text-base outline-none transition-all hover:bg-primary hover:text-primary-foreground cursor-pointer"
+                            onClick={() => setIsServicesOpen(false)}
+                          >
+                            <subLink.icon className="h-5 w-5" />
+                            {subLink.label}
+                          </Link>
+                        ))}
+                      </div>
                     )}
-                    <Button asChild className="rounded-full mt-4 bg-gradient-to-r from-red-500 to-orange-400 text-white hover:opacity-90 transition-opacity btn-light-sweep">
-                        <Link href="/media-content" onClick={() => setIsSheetOpen(false)}>บริการ Exclusive Media</Link>
+                  </div>
+                ) : (
+                  <Link
+                    key={link.label}
+                    href={link.href}
+                    className="text-foreground/70 transition-colors hover:text-primary"
+                    prefetch={false}
+                  >
+                    {link.label}
+                  </Link>
+                )
+              )}
+            </nav>
+            <div className="flex items-center gap-4 ml-auto">
+              <Button asChild className="hidden md:flex rounded-full bg-gradient-to-r from-red-500 to-orange-400 text-white hover:opacity-90 transition-opacity btn-light-sweep">
+                  <Link href="/media-content">บริการ Exclusive Media</Link>
+              </Button>
+              <Button asChild className="hidden sm:flex rounded-full">
+                <Link href="https://qr-official.line.me/gs/M_374jshvh_GW.png?oat_content=qr" target="_blank">
+                  ติดต่อ
+                </Link>
+              </Button>
+              {isClient && (
+                <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
+                  <SheetTrigger asChild>
+                    <Button variant="outline" size="icon" className="md:hidden">
+                      <Menu className="h-6 w-6" />
+                      <span className="sr-only">Toggle navigation menu</span>
                     </Button>
-                    <Button asChild className="rounded-full mt-4">
-                      <Link href="https://qr-official.line.me/gs/M_374jshvh_GW.png?oat_content=qr" onClick={() => setIsSheetOpen(false)} target="_blank">
-                        ติดต่อ
-                      </Link>
-                    </Button>
-                  </nav>
-                </SheetContent>
-              </Sheet>
-            )}
+                  </SheetTrigger>
+                  <SheetContent side="right">
+                    <nav className="grid gap-6 text-lg font-medium mt-8">
+                      <div className="flex items-center gap-2 mb-4">
+                        <Image 
+                          src="https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Logo%20ic.png?alt=media" 
+                          alt="IC Accounting & Service Logo" 
+                          width={150} 
+                          height={40}
+                          className="object-contain"
+                        />
+                      </div>
+                      {navLinks.map((link) =>
+                        link.subLinks ? (
+                          <Accordion key={link.label} type="single" collapsible className="w-full">
+                              <AccordionItem value="services" className="border-b-0">
+                                <AccordionTrigger className="py-0 text-lg font-medium text-muted-foreground hover:text-primary hover:no-underline">
+                                  {link.label}
+                                </AccordionTrigger>
+                                <AccordionContent className="pt-4 pl-4">
+                                  <div className="grid gap-4">
+                                    {link.subLinks.map((subLink) => (
+                                      <Link
+                                        key={subLink.label}
+                                        href={subLink.href}
+                                        onClick={() => setIsSheetOpen(false)}
+                                        className="flex items-center gap-3 text-muted-foreground hover:text-primary"
+                                        prefetch={false}
+                                      >
+                                        <subLink.icon className="h-5 w-5" />
+                                        {subLink.label}
+                                      </Link>
+                                    ))}
+                                  </div>
+                                </AccordionContent>
+                              </AccordionItem>
+                            </Accordion>
+                        ) : (
+                          <Link
+                            key={link.label}
+                            href={link.href}
+                            onClick={() => setIsSheetOpen(false)}
+                            className="text-muted-foreground hover:text-primary"
+                            prefetch={false}
+                          >
+                            {link.label}
+                          </Link>
+                        )
+                      )}
+                      <Button asChild className="rounded-full mt-4 bg-gradient-to-r from-red-500 to-orange-400 text-white hover:opacity-90 transition-opacity btn-light-sweep">
+                          <Link href="/media-content" onClick={() => setIsSheetOpen(false)}>บริการ Exclusive Media</Link>
+                      </Button>
+                      <Button asChild className="rounded-full mt-4">
+                        <Link href="https://qr-official.line.me/gs/M_374jshvh_GW.png?oat_content=qr" onClick={() => setIsSheetOpen(false)} target="_blank">
+                          ติดต่อ
+                        </Link>
+                      </Button>
+                    </nav>
+                  </SheetContent>
+                </Sheet>
+              )}
+            </div>
           </div>
         </div>
 
-        {/* Scrolling Promo Bar inside the header container */}
+        {/* Scrolling Promo Bar - Now without a border-b below it */}
         {isPromoVisible && (
           <div className="relative bg-[#0a2558] text-white py-2 overflow-hidden whitespace-nowrap text-sm">
             <div className="animate-marquee inline-block">
