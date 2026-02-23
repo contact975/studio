@@ -197,12 +197,18 @@ export function Header() {
       {isPromoVisible && (
         <div className="relative bg-[#0a2558] text-white py-2 overflow-hidden whitespace-nowrap text-sm border-t border-white/5">
           <div className="animate-marquee inline-block pr-10">
-            <span className="mx-10 inline-flex items-center gap-2">🔥 โปรโมชั่นพิเศษ! จดทะเบียนบริษัทวันนี้ รับฟรี! ตรายางบริษัท และให้คำปรึกษาบัญชี-ภาษีเบื้องต้น 🔥</span>
-            <span className="mx-10 inline-flex items-center gap-2">📞 ติดต่อสอบถาม: 095-716-1422</span>
-            <span className="mx-10 inline-flex items-center gap-2">💼 บริการทำบัญชีเชียงใหม่ เริ่มต้นเพียง 2,000.-/เดือน</span>
-            <span className="mx-10 inline-flex items-center gap-2">🚀 บริการวางระบบองค์กร สอนใช้งานโปรแกรมบัญชี Cloud</span>
-            <span className="mx-10 inline-flex items-center gap-2">🛂 บริการทำ Visa & Work Permit สำหรับชาวต่างชาติ ครบวงจร</span>
-            <span className="mx-10 inline-flex items-center gap-2">✨ IC Accounting & Service เพื่อนคู่คิด SME เชียงใหม่ ✨</span>
+            <span className="mx-10 inline-flex items-center gap-4">
+              🔥 โปรโมชั่นพิเศษ! จดทะเบียนบริษัทวันนี้ รับฟรี! ตรายางบริษัท และให้คำปรึกษาบัญชี-ภาษีเบื้องต้น 🔥
+              <Link href="https://line.me/R/ti/p/@374jshvh" target="_blank" className="px-3 py-1 bg-red-600 hover:bg-red-700 text-white text-xs font-bold rounded-full transition-colors">
+                คลิกที่นี่
+              </Link>
+            </span>
+            <span className="mx-10 inline-flex items-center gap-4">
+              🔥 โปรโมชั่นพิเศษ! จดทะเบียนบริษัทวันนี้ รับฟรี! ตรายางบริษัท และให้คำปรึกษาบัญชี-ภาษีเบื้องต้น 🔥
+              <Link href="https://line.me/R/ti/p/@374jshvh" target="_blank" className="px-3 py-1 bg-red-600 hover:bg-red-700 text-white text-xs font-bold rounded-full transition-colors">
+                คลิกที่นี่
+              </Link>
+            </span>
           </div>
           <button 
             onClick={() => setIsPromoVisible(false)}
