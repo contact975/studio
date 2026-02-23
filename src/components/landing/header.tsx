@@ -195,7 +195,7 @@ export function Header() {
 
       {/* Scrolling Promo Bar */}
       {isPromoVisible && (
-        <div className="relative bg-[#0a2558] text-white py-2 overflow-hidden whitespace-nowrap text-sm border-t border-white/5">
+        <div className="relative bg-[#0a2558] text-white py-2 overflow-hidden whitespace-nowrap text-sm">
           <div className="animate-marquee inline-block pr-10">
             <span className="mx-10 inline-flex items-center gap-4">
               🔥 โปรโมชั่นพิเศษ! จดทะเบียนบริษัทวันนี้ รับฟรี! ตรายางบริษัท และให้คำปรึกษาบัญชี-ภาษีเบื้องต้น 🔥
