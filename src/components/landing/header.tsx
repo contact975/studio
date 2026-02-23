@@ -13,7 +13,6 @@ import {
   Briefcase,
   Workflow,
   LucideIcon,
-  BookOpen,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
@@ -60,7 +59,7 @@ export function Header() {
   }, []);
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-card/95 backdrop-blur supports-[backdrop-filter]:bg-card/60">
+    <header className="sticky top-0 z-50 w-full border-b bg-card/95 backdrop-blur supports-[backdrop-filter]:bg-card/60 shadow-sm">
       <div className="container mx-auto flex h-16 items-center px-4 md:px-6">
         <Link href="/" className="mr-6 flex items-center gap-2" prefetch={false}>
           <Image 
@@ -189,6 +188,18 @@ export function Header() {
               </SheetContent>
             </Sheet>
           )}
+        </div>
+      </div>
+
+      {/* Scrolling Promo Bar */}
+      <div className="bg-[#0a2558] text-white py-2 overflow-hidden whitespace-nowrap text-sm border-t border-white/5">
+        <div className="animate-marquee inline-block">
+          <span className="mx-10 inline-flex items-center gap-2">🔥 โปรโมชั่นพิเศษ! จดทะเบียนบริษัทวันนี้ รับฟรี! ตรายางบริษัท และให้คำปรึกษาบัญชี-ภาษีเบื้องต้น 🔥</span>
+          <span className="mx-10 inline-flex items-center gap-2">📞 ติดต่อสอบถาม: 095-716-1422</span>
+          <span className="mx-10 inline-flex items-center gap-2">💼 บริการทำบัญชีเชียงใหม่ เริ่มต้นเพียง 2,000.-/เดือน</span>
+          <span className="mx-10 inline-flex items-center gap-2">🚀 บริการวางระบบองค์กร สอนใช้งานโปรแกรมบัญชี Cloud</span>
+          <span className="mx-10 inline-flex items-center gap-2">🛂 บริการทำ Visa & Work Permit สำหรับชาวต่างชาติ ครบวงจร</span>
+          <span className="mx-10 inline-flex items-center gap-2">✨ IC Accounting & Service เพื่อนคู่คิด SME เชียงใหม่ ✨</span>
         </div>
       </div>
     </header>
