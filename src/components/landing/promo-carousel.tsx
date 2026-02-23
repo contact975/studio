@@ -45,7 +45,7 @@ export function PromoCarousel() {
   }
 
   return (
-    <section className="w-full bg-background py-10 md:py-16 overflow-hidden">
+    <section className="w-full bg-primary py-10 md:py-16 overflow-hidden">
       <div className="container mx-auto px-4 md:px-12 lg:px-24">
         <Carousel
           opts={{
@@ -77,8 +77,8 @@ export function PromoCarousel() {
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselPrevious className="absolute -left-4 md:-left-12 lg:-left-16 top-1/2 -translate-y-1/2 bg-primary hover:bg-primary/90 text-primary-foreground border-none h-10 w-10 md:h-12 md:w-12 shadow-md flex items-center justify-center rounded-full transition-all opacity-0 group-hover:opacity-100 md:opacity-100" />
-          <CarouselNext className="absolute -right-4 md:-right-12 lg:-right-16 top-1/2 -translate-y-1/2 bg-primary hover:bg-primary/90 text-primary-foreground border-none h-10 w-10 md:h-12 md:w-12 shadow-md flex items-center justify-center rounded-full transition-all opacity-0 group-hover:opacity-100 md:opacity-100" />
+          <CarouselPrevious className="absolute -left-4 md:-left-12 lg:-left-16 top-1/2 -translate-y-1/2 bg-white hover:bg-white/90 text-primary border-none h-10 w-10 md:h-12 md:w-12 shadow-md flex items-center justify-center rounded-full transition-all opacity-0 group-hover:opacity-100 md:opacity-100" />
+          <CarouselNext className="absolute -right-4 md:-right-12 lg:-right-16 top-1/2 -translate-y-1/2 bg-white hover:bg-white/90 text-primary border-none h-10 w-10 md:h-12 md:w-12 shadow-md flex items-center justify-center rounded-full transition-all opacity-0 group-hover:opacity-100 md:opacity-100" />
         </Carousel>
       </div>
     </section>
