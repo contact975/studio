@@ -99,8 +99,8 @@ export default {
           '100%': { transform: 'translateX(100%)' },
         },
         'marquee': {
-          '0%': { transform: 'translateX(0)' },
-          '100%': { transform: 'translateX(-50%)' },
+          '0%': { transform: 'translateX(100vw)' },
+          '100%': { transform: 'translateX(-100%)' },
         },
       },
       animation: {
@@ -108,7 +108,7 @@ export default {
         'accordion-up': 'accordion-up 0.2s ease-out',
         'float': 'float 6s ease-in-out infinite',
         'light-sweep': 'light-sweep 1.5s ease-in-out infinite',
-        'marquee': 'marquee 30s linear infinite',
+        'marquee': 'marquee 25s linear infinite',
       },
     },
   },

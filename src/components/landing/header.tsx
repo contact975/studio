@@ -197,13 +197,7 @@ export function Header() {
       {isPromoVisible && (
         <div className="relative bg-[#0a2558] text-white py-2 overflow-hidden whitespace-nowrap text-sm">
           <div className="animate-marquee inline-block">
-            <span className="inline-flex items-center gap-4 px-32">
-              🔥 โปรโมชั่นพิเศษ! จดทะเบียนบริษัทวันนี้ รับฟรี! ตรายางบริษัท และให้คำปรึกษาบัญชี-ภาษีเบื้องต้น 🔥
-              <Link href="https://line.me/R/ti/p/@374jshvh" target="_blank" className="px-3 py-1 bg-red-600 hover:bg-red-700 text-white text-xs font-bold rounded-full transition-colors">
-                คลิกที่นี่
-              </Link>
-            </span>
-            <span className="inline-flex items-center gap-4 px-32">
+            <span className="inline-flex items-center gap-4">
               🔥 โปรโมชั่นพิเศษ! จดทะเบียนบริษัทวันนี้ รับฟรี! ตรายางบริษัท และให้คำปรึกษาบัญชี-ภาษีเบื้องต้น 🔥
               <Link href="https://line.me/R/ti/p/@374jshvh" target="_blank" className="px-3 py-1 bg-red-600 hover:bg-red-700 text-white text-xs font-bold rounded-full transition-colors">
                 คลิกที่นี่
