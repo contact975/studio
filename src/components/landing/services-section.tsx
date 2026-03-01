@@ -21,7 +21,7 @@ const services = [
     title: "บริการทำบัญชี",
     fullTitle: "บริการจัดทำบัญชี (Accounting Services)",
     description: "จัดระเบียบเอกสารรายรับ-รายจ่าย บันทึกบัญชี และดูแลเรื่องภาษีรายเดือนให้ถูกต้องแม่นยำ ช่วยให้เจ้าของธุรกิจเห็นกระแสเงินสดและลดความเสี่ยงจากการโดนค่าปรับย้อนหลัง",
-    imageUrl: "https://images.unsplash.com/photo-1707157284454-553ef0a4ed0d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxhY2NvdW50aW5nfGVufDB8fHx8MTc2OTE4ODE2Nnww&ixlib=rb-4.1.0&q=80&w=1080",
+    imageUrl: "https://images.unsplash.com/photo-1707157284454-553ef0a4ed0d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxhY2NvdW50aW5nfGVufDB8fHx8MTc2OTE4ODE2Nnww&ixlib=rb-4.1.0&q=80&w=1080",
     imageHint: "accounting paperwork",
     href: "/accounting-services"
   },
@@ -132,8 +132,8 @@ export function ServicesSection() {
             {services.map((service) => (
               <CarouselItem key={service.id}>
                  <div className="p-1">
-                  <div className="grid md:grid-cols-2 gap-8 md:gap-16 items-center bg-primary text-primary-foreground p-8 md:p-12 rounded-xl shadow-sm">
-                    <div className="relative aspect-[4/3] rounded-lg overflow-hidden">
+                  <div className="grid md:grid-cols-2 gap-8 md:gap-16 items-center bg-transparent border-2 border-primary p-8 md:p-12 rounded-2xl shadow-sm">
+                    <div className="relative aspect-[4/3] rounded-lg overflow-hidden border border-border">
                       <Image
                         src={service.imageUrl}
                         alt={service.fullTitle}
@@ -143,13 +143,13 @@ export function ServicesSection() {
                       />
                     </div>
                     <div className="space-y-6">
-                      <h3 className="text-2xl md:text-3xl font-bold font-headline">
+                      <h3 className="text-2xl md:text-3xl font-bold font-headline text-primary">
                         {service.fullTitle}
                       </h3>
-                      <p className="opacity-90 leading-relaxed text-lg">
+                      <p className="text-muted-foreground leading-relaxed text-lg">
                         {service.description}
                       </p>
-                      <Button asChild variant="secondary" className="rounded-full font-bold group">
+                      <Button asChild variant="default" className="rounded-full font-bold group">
                         <Link href={service.href}>
                           ดูรายละเอียดและอัตราค่าบริการ <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                         </Link>
