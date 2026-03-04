@@ -5,26 +5,27 @@ import { cn } from '@/lib/utils';
 import Script from 'next/script';
 
 export const metadata: Metadata = {
-  title: 'IC Accounting & Service | สำนักงานบัญชีเชียงใหม่ บัญชี ภาษี มีเดียครบวงจร',
-  description: 'ครบจบในที่เดียวที่ IC Accounting & Service สำนักงานบัญชีเชียงใหม่ยุคใหม่ บริการทำบัญชี วางแผนภาษี จดทะเบียนธุรกิจ และผลิตมีเดียคอนเทนต์ โดยทีมงานมืออาชีพกว่า 10 ปี',
-  // --- ส่วนที่เพิ่มใหม่สำหรับรูปแชร์ Facebook/Line ---
+  // เน้นคีย์เวิร์ดหลักขึ้นก่อนชื่อแบรนด์ เพื่อดึงอันดับ Google
+  title: 'สำนักงานบัญชีเชียงใหม่ บัญชี ภาษี ครบวงจร | IC Accounting & Service',
+  description: 'บริการสำนักงานบัญชีเชียงใหม่ ยุคใหม่ ครบวงจร ทำบัญชี วางแผนภาษี จดทะเบียนธุรกิจ และผลิตมีเดียคอนเทนต์ สำหรับธุรกิจทั่วเชียงใหม่ โดยทีมงานมืออาชีพประสบการณ์กว่า 10 ปี',
+  
   openGraph: {
-    title: 'IC Accounting & Service | สำนักงานบัญชีเชียงใหม่ บัญชี ภาษี มีเดียครบวงจร',
-    description: 'ครบจบในที่เดียวที่ IC Accounting & Service สำนักงานบัญชีเชียงใหม่ยุคใหม่ บริการทำบัญชี วางแผนภาษี จดทะเบียนธุรกิจ และผลิตมีเดียคอนเทนต์ โดยทีมงานมืออาชีพกว่า 10 ปี',
+    title: 'สำนักงานบัญชีเชียงใหม่ บัญชี ภาษี ครบวงจร | IC Accounting & Service',
+    description: 'บริการสำนักงานบัญชีเชียงใหม่ ยุคใหม่ ครบวงจร ทำบัญชี วางแผนภาษี จดทะเบียนธุรกิจ และผลิตมีเดียคอนเทนต์ สำหรับธุรกิจทั่วเชียงใหม่ โดยทีมงานมืออาชีพประสบการณ์กว่า 10 ปี',
     url: 'https://icaccservice.com',
     siteName: 'IC Accounting & Service',
     images: [
       {
-        url: 'https://icaccservice.com/share-preview.jpg', // ชื่อไฟล์รูปที่คุณไอซ์ต้องเอาไปวางในโฟลเดอร์ public
+        url: 'https://icaccservice.com/share-preview.jpg',
         width: 1200,
         height: 630,
-        alt: 'IC Accounting & Service Preview',
+        alt: 'สำนักงานบัญชีเชียงใหม่ IC Accounting & Service',
       },
     ],
     locale: 'th_TH',
     type: 'website',
   },
-  // ปรับให้ดึงจากชื่อไฟล์ใหม่ icon.png
+  // ... ส่วน icons คงเดิม ...
   icons: {
     icon: '/icon.png', 
     shortcut: '/icon.png',
