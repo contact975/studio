@@ -9,8 +9,8 @@ export const metadata: Metadata = {
   description: 'ครบจบในที่เดียวที่ IC Accounting & Service สำนักงานบัญชีเชียงใหม่ยุคใหม่ บริการทำบัญชี วางแผนภาษี จดทะเบียนธุรกิจ และผลิตมีเดียคอนเทนต์ โดยทีมงานมืออาชีพกว่า 10 ปี',
   // --- ส่วนที่เพิ่มใหม่สำหรับรูปแชร์ Facebook/Line ---
   openGraph: {
-    title: 'IC Accounting & Service | สำนักงานบัญชีเชียงใหม่',
-    description: 'บริการทำบัญชี วางแผนภาษี ครบวงจร โดยทีมงานมืออาชีพกว่า 10 ปี',
+    title: 'IC Accounting & Service | สำนักงานบัญชีเชียงใหม่ บัญชี ภาษี มีเดียครบวงจร',
+    description: 'ครบจบในที่เดียวที่ IC Accounting & Service สำนักงานบัญชีเชียงใหม่ยุคใหม่ บริการทำบัญชี วางแผนภาษี จดทะเบียนธุรกิจ และผลิตมีเดียคอนเทนต์ โดยทีมงานมืออาชีพกว่า 10 ปี',
     url: 'https://icaccservice.com',
     siteName: 'IC Accounting & Service',
     images: [
