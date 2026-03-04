@@ -7,6 +7,23 @@ import Script from 'next/script';
 export const metadata: Metadata = {
   title: 'IC Accounting & Service | สำนักงานบัญชีเชียงใหม่ บัญชี ภาษี มีเดียครบวงจร',
   description: 'ครบจบในที่เดียวที่ IC Accounting & Service สำนักงานบัญชีเชียงใหม่ยุคใหม่ บริการทำบัญชี วางแผนภาษี จดทะเบียนธุรกิจ และผลิตมีเดียคอนเทนต์ โดยทีมงานมืออาชีพกว่า 10 ปี',
+  // --- ส่วนที่เพิ่มใหม่สำหรับรูปแชร์ Facebook/Line ---
+  openGraph: {
+    title: 'IC Accounting & Service | สำนักงานบัญชีเชียงใหม่',
+    description: 'บริการทำบัญชี วางแผนภาษี ครบวงจร โดยทีมงานมืออาชีพกว่า 10 ปี',
+    url: 'https://icaccservice.com',
+    siteName: 'IC Accounting & Service',
+    images: [
+      {
+        url: '/share-preview.png', // ชื่อไฟล์รูปที่คุณไอซ์ต้องเอาไปวางในโฟลเดอร์ public
+        width: 1200,
+        height: 630,
+        alt: 'IC Accounting & Service Preview',
+      },
+    ],
+    locale: 'th_TH',
+    type: 'website',
+  },
   // ปรับให้ดึงจากชื่อไฟล์ใหม่ icon.png
   icons: {
     icon: '/icon.png', 
