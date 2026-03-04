@@ -1,4 +1,3 @@
-
 'use client';
 
 import * as React from "react";
@@ -44,11 +43,14 @@ export function HeroSection() {
       </div>
       
       <div data-aos="fade-up" className="container mx-auto px-6 py-20 flex flex-col items-center text-center relative z-10">
+        {/* จุดแก้ที่ 1: ดึงคำว่าสำนักงานบัญชีเชียงใหม่ขึ้นมาเป็น H1 (หัวข้อหลัก) */}
         <h1 className="text-5xl md:text-6xl font-bold mb-8 leading-relaxed font-headline">
-          <span className="text-blue-300">ครบจบทุกเรื่องบัญชีและหลังบ้านธุรกิจ ให้คุณเติบโตอย่างมั่นใจในที่เดียว</span>
+          <span className="text-blue-300">สำนักงานบัญชีเชียงใหม่</span> ครบจบทุกเรื่องบัญชีและหลังบ้านธุรกิจ
         </h1>
+
+        {/* จุดแก้ที่ 2: ปรับประโยคบรรยายให้รองรับการค้นหาที่กว้างขึ้น */}
         <p className="text-xl opacity-90 mb-10 max-w-2xl">
-          สำนักงานบัญชีเชียงใหม่ ครบจบที่เดียว บัญชี ภาษี และมีเดียคอนเทนต์ เปลี่ยนตัวเลขที่ซับซ้อน เป็นโอกาสสู่ความสำเร็จ ด้วยประสบการณ์กว่า 10 ปี
+          IC Accounting & Service บริการทำบัญชี ภาษี และมีเดียคอนเทนต์ สำหรับธุรกิจในเชียงใหม่และทั่วประเทศ เปลี่ยนตัวเลขที่ซับซ้อน เป็นโอกาสสู่ความสำเร็จ ด้วยประสบการณ์กว่า 10 ปี
         </p>
 
         <div data-aos="fade-up" data-aos-delay="200" className="relative w-full max-w-4xl mx-auto aspect-video rounded-xl overflow-hidden shadow-2xl mb-12 bg-black/20">
