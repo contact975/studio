@@ -18,9 +18,10 @@ import { ArrowRight } from "lucide-react";
 const services = [
   {
     id: "accounting",
-    title: "บริการทำบัญชี",
-    fullTitle: "บริการจัดทำบัญชี (Accounting Services)",
-    description: "จัดระเบียบเอกสารรายรับ-รายจ่าย บันทึกบัญชี และดูแลเรื่องภาษีรายเดือนให้ถูกต้องแม่นยำ ช่วยให้เจ้าของธุรกิจเห็นกระแสเงินสดและลดความเสี่ยงจากการโดนค่าปรับย้อนหลัง",
+    title: "ทำบัญชี",
+    // ปรับชื่อให้มีคำว่าเชียงใหม่ เพื่อรองรับคนค้นหาคำว่า "ทำบัญชี เชียงใหม่"
+    fullTitle: "บริการทำบัญชี เชียงใหม่ (Accounting Services)",
+    description: "รับทำบัญชีครบวงจรในเชียงใหม่ จัดระเบียบเอกสารรายรับ-รายจ่าย บันทึกบัญชี และดูแลเรื่องภาษีรายเดือนให้ถูกต้องแม่นยำ ช่วยให้เจ้าของธุรกิจเห็นกระแสเงินสดและลดความเสี่ยงจากการโดนค่าปรับย้อนหลัง",
     imageUrl: "https://images.unsplash.com/photo-1707157284454-553ef0a4ed0d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxhY2NvdW50aW5nfGVufDB8fHx8MTc2OTE4ODE2Nnww&ixlib=rb-4.1.0&q=80&w=1080",
     imageHint: "accounting paperwork",
     href: "/accounting-services"
@@ -28,8 +29,8 @@ const services = [
   {
     id: "audit",
     title: "ปิดงบประจำปี",
-    fullTitle: "บริการตรวจสอบบัญชี (Audit Services)",
-    description: "ตรวจสอบและจัดทำงบการเงินเพื่อยื่นต่อกรมพัฒนาธุรกิจการค้าและกรมสรรพากรให้ทันตามกำหนด ดูแลโดยทีมงานคนรุ่นใหม่ที่อัปเดตกฎหมายสม่ำเสมอ เพื่อความถูกต้อง 100%",
+    fullTitle: "ตรวจสอบบัญชีและปิดงบ เชียงใหม่ (Audit Services)",
+    description: "ตรวจสอบและจัดทำงบการเงินยื่นกรมพัฒนาธุรกิจการค้าและกรมสรรพากรให้ทันกำหนด ดูแลโดยทีมงานสำนักงานบัญชีเชียงใหม่ที่อัปเดตกฎหมายสม่ำเสมอ เพื่อความถูกต้อง 100%",
     imageUrl: "https://images.unsplash.com/photo-1649209979970-f01d950cc5ed?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxmaW5hbmNlJTIwYXVkaXR8ZW58MHx8fHwxNzY5MTg5MjY3fDA&ixlib=rb-4.1.0&q=80&w=1080",
     imageHint: "financial report",
     href: "/audit-services"
@@ -37,8 +38,8 @@ const services = [
   {
     id: "registration",
     title: "จดทะเบียนบริษัท",
-    fullTitle: "บริการจดทะเบียนธุรกิจ (Company Registration)",
-    description: "เริ่มต้นธุรกิจให้ถูกกฎหมาย ครบทุกขั้นตอนตั้งแต่การจองชื่อจนถึงได้รับหนังสือรับรอง ให้คำปรึกษาเรื่องโครงสร้างธุรกิจเพื่อให้คุณเริ่มต้นได้อย่างมั่นใจและประหยัดเวลา",
+    fullTitle: "จดทะเบียนบริษัท เชียงใหม่ (Company Registration)",
+    description: "รับจดทะเบียนธุรกิจในเชียงใหม่ ครบทุกขั้นตอนตั้งแต่จองชื่อจนถึงได้รับหนังสือรับรอง ให้คำปรึกษาโครงสร้างธุรกิจเพื่อให้คุณเริ่มต้นได้อย่างมั่นใจและประหยัดเวลา",
     imageUrl: "https://images.unsplash.com/photo-1681505504714-4ded1bc247e7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxDb21wYW55JTIwUmVnaXN0cmF0aW9ufGVufDB8fHx8MTc2OTE4OTU5OHww&ixlib=rb-4.1.0&q=80&w=1080",
     imageHint: "business handshake",
     href: "/company-registration"
@@ -46,8 +47,8 @@ const services = [
   {
     id: "expat",
     title: "Visa & Work Permit",
-    fullTitle: "บริการทำ Visa & Work Permit (Expat Services)",
-    description: "ทำ Visa: ดูแลการขอและต่ออายุวีซ่าทุกประเภท ให้พำนักในไทยได้อย่างถูกต้อง Work Permit: จัดการใบอนุญาตทำงานและประสานงานหน่วยงานราชการให้ครบทุกขั้นตอน",
+    fullTitle: "บริการ Visa & Work Permit เชียงใหม่ (Expat Services)",
+    description: "ดูแลการขอและต่ออายุวีซ่าทุกประเภทในพื้นที่เชียงใหม่ และจัดการใบอนุญาตทำงาน ประสานงานหน่วยงานราชการให้ครบทุกขั้นตอนสำหรับชาวต่างชาติ",
     imageUrl: "https://images.unsplash.com/photo-1641939872097-8626e3134d88?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxNnx8VmlzYSUyMFdvcmtwZXJtaXR8ZW58MHx8fHwxNzY5MTg5NjgxfDA&ixlib=rb-4.1.0&q=80&w=1080",
     imageHint: "passport document",
     href: "/visa-work-permit"
@@ -55,8 +56,8 @@ const services = [
   {
     id: "system",
     title: "วางระบบองค์กร",
-    fullTitle: "วางระบบองค์กร (Organization System Design)",
-    description: "ปรับการจัดการหลังบ้าน สอนใช้งานโปรแกรมบัญชี และวางขั้นตอนการเดินเอกสารให้เป็นระบบ ออกแบบระบบให้เหมาะสมกับธุรกิจที่สุด เพื่อการตรวจสอบที่ง่ายและการเติบโตที่ยั่งยืน",
+    fullTitle: "วางระบบบัญชีและองค์กร (Organization System)",
+    description: "ปรับการจัดการหลังบ้านสำหรับธุรกิจเชียงใหม่ สอนใช้งานโปรแกรมบัญชี และวางขั้นตอนเอกสารให้เป็นระบบ เพื่อการตรวจสอบที่ง่ายและการเติบโตที่ยั่งยืน",
     imageUrl: "https://images.unsplash.com/photo-1743385779347-1549dabf1320?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxTeXN0ZW0lMjBEZXNpZ24lMjBPcmdhbml6YXRpb258ZW58MHx8fHwxNzY5MTkwMDQ2fDA&ixlib=rb-4.1.0&q=80&w=1080",
     imageHint: "team meeting",
     href: "/organization-system"
@@ -64,17 +65,17 @@ const services = [
   {
     id: "media",
     title: "ผลิต Media Content",
-    fullTitle: "ผลิต Media Content Online (Marketing Content)",
-    description: "รับผลิตวิดีโอและกราฟิกคุณภาพสูงเพื่อสร้างภาพลักษณ์ให้น่าเชื่อถือและอัปเกรดแบรนด์ ช่วยให้ธุรกิจมีตัวตนบนโลกออนไลน์ควบคู่ไปกับระบบบัญชีที่แข็งแกร่ง",
+    fullTitle: "รับผลิต Media Content เชียงใหม่ (Marketing Online)",
+    description: "สร้างภาพลักษณ์ธุรกิจให้น่าเชื่อถือด้วยบริการผลิตวิดีโอและกราฟิกคุณภาพสูงในเชียงใหม่ ช่วยให้แบรนด์ของคุณมีตัวตนบนโลกออนไลน์ควบคู่ไปกับระบบบัญชีที่แข็งแกร่ง",
     imageUrl: "https://images.unsplash.com/photo-1764664035133-0d2ca12016dd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxNZWRpYSUyMENvbnRlbnR8ZW58MHx8fHwxNzY5MTkwMTMzfDA&ixlib=rb-4.1.0&q=80&w=1080",
     imageHint: "camera setup",
     href: "/media-content"
   },
   {
     id: "support",
-    title: "ดูแลลูกค้า",
-    fullTitle: "นัดหมายปรึกษา (Customer Support)",
-    description: "พร้อมให้คำปรึกษาแบบใกล้ชิดและเป็นกันเองในฐานะ 'เลขาส่วนตัวธุรกิจ' ซัพพอร์ตทุกปัญหาเพื่อให้ธุรกิจของคุณลื่นไหลและไม่สะดุด",
+    title: "นัดหมายปรึกษา",
+    fullTitle: "ปรึกษาสำนักงานบัญชีเชียงใหม่ (Customer Support)",
+    description: "ทีมงาน IC Accounting พร้อมให้คำปรึกษาแบบใกล้ชิดและเป็นกันเองในฐานะ 'เลขาส่วนตัวธุรกิจ' สำหรับผู้ประกอบการในเชียงใหม่และพื้นที่ใกล้เคียง",
     imageUrl: "https://images.unsplash.com/photo-1604881990409-b9f246db39da?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxNHx8c3VwcG9ydHxlbnwwfHx8fDE3NjkxOTAyNzd8MA&ixlib=rb-4.1.0&q=80&w=1080",
     imageHint: "customer service",
     href: "/quote"
@@ -105,8 +106,9 @@ export function ServicesSection() {
   return (
     <section id="services" className="py-20 md:py-28 bg-background">
       <div data-aos="fade-up" className="container mx-auto px-4 md:px-6">
+        {/* แก้หัวข้อใหญ่ให้มีคีย์เวิร์ดสำนักงานบัญชีเชียงใหม่เพื่อย้ำ SEO */}
         <h2 className="text-3xl md:text-4xl font-bold font-headline text-center mb-12 text-foreground">
-          บริการของเรา
+          บริการจากสำนักงานบัญชีเชียงใหม่ IC Accounting
         </h2>
         
         <div className="flex justify-center flex-wrap gap-2 md:gap-4 mb-12">
@@ -136,7 +138,7 @@ export function ServicesSection() {
                     <div className="relative aspect-[4/3] rounded-lg overflow-hidden border border-border">
                       <Image
                         src={service.imageUrl}
-                        alt={service.fullTitle}
+                        alt={service.fullTitle} // Alt text จะช่วยให้รูปติดอันดับการค้นหารูปภาพด้วย
                         fill
                         className="object-cover"
                         data-ai-hint={service.imageHint}
