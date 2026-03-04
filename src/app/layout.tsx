@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     siteName: 'IC Accounting & Service',
     images: [
       {
-        url: '/share-preview.png', // ชื่อไฟล์รูปที่คุณไอซ์ต้องเอาไปวางในโฟลเดอร์ public
+        url: '/share-preview.jpg', // ชื่อไฟล์รูปที่คุณไอซ์ต้องเอาไปวางในโฟลเดอร์ public
         width: 1200,
         height: 630,
         alt: 'IC Accounting & Service Preview',
