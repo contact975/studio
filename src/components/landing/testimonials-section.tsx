@@ -43,15 +43,14 @@ export function TestimonialsSection() {
             <Card key={testimonial.id} data-aos="fade-up" data-aos-delay={index * 100} className="bg-primary p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 border-none group">
               <CardContent className="p-0 flex flex-col items-center text-center">
                 <Avatar className="w-20 h-20 mb-6 ring-4 ring-white/20 transition-all group-hover:ring-white/40">
-                  <AvatarImage src={testimonial.avatarUrl} alt={testimonial.name} data-ai-hint={testimonial.imageHint} />
+                  <AvatarImage src={testimonial.avatarUrl} alt={testimonial.company} data-ai-hint={testimonial.imageHint} />
                   <AvatarFallback className="bg-white/10 text-white">{testimonial.avatarFallback}</AvatarFallback>
                 </Avatar>
                 <blockquote className="text-primary-foreground/90 mb-6 italic text-lg leading-relaxed">
                   "{testimonial.quote}"
                 </blockquote>
                 <div className="space-y-1">
-                  <p className="font-bold text-white text-xl">{testimonial.name}</p>
-                  <p className="text-primary-foreground/70">{testimonial.company}</p>
+                  <p className="text-primary-foreground/90 font-medium">{testimonial.company}</p>
                 </div>
               </CardContent>
             </Card>
