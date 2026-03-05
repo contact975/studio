@@ -8,16 +8,16 @@ const testimonials = [
     company: "เจ้าของร้าน Smash Daddy's",
     quote: "IC Accounting ช่วยทำให้การจัดการหลังบ้านเป็นเรื่องที่ง่ายขึ้น เป็นที่ปรึกษาที่ดี และคอยให้คำแนะนำเสนอ มีความเป็นมืออาชีพ ทำให้เรามีเวลาไปโฟกัสเรื่องอื่นได้มากขึ้น",
     avatarUrl: "https://picsum.photos/seed/avatar1/80/80",
-    avatarFallback: "ส",
+    avatarFallback: "S",
     imageHint: "man portrait"
   },
   {
     id: "testimonial-2",
     name: "คุณสิตา พัฒนาซอฟต์แวร์",
-    company: "กรรมการผู้จัดการ บริษัท เทคโลโลยี จำกัด",
+    company: "บริษัท iChiangmai",
     quote: "ประทับใจในความรวดเร็วและความแม่นยำมากค่ะ การใช้เทคโนโลยีเข้ามาช่วยทำให้เราเห็นภาพรวมธุรกิจได้ชัดเจนขึ้นเยอะเลย",
     avatarUrl: "https://picsum.photos/seed/avatar2/80/80",
-    avatarFallback: "ส",
+    avatarFallback: "I",
     imageHint: "woman portrait"
   },
   {
