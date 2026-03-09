@@ -26,7 +26,7 @@ export function FaqSection() {
       answer: (
         <span>
           หากคุณกำลังมองหา สำนักงานบัญชีเชียงใหม่ ที่มีความเชี่ยวชาญ{" "}
-          <Link href="/accounting-services" className="text-primary font-bold hover:underline">
+          <Link href="/" className="text-primary font-bold hover:underline">
             IC Accounting Service
           </Link>{" "}
           คือคำตอบ เรามี
