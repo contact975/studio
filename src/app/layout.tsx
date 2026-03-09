@@ -25,7 +25,6 @@ export const metadata: Metadata = {
     locale: 'th_TH',
     type: 'website',
   },
-  // ... ส่วน icons คงเดิม ...
   icons: {
     icon: '/icon.png', 
     shortcut: '/icon.png',
@@ -38,12 +37,50 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // ข้อมูล FAQ Schema สำหรับช่วย Google AI
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "ทำบัญชีเชียงใหม่ที่ไหนดี?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "IC Accounting Service คือสำนักงานบัญชีเชียงใหม่ที่เชี่ยวชาญด้านการรับทำบัญชีครบวงจร วางแผนภาษี และจดทะเบียนบริษัท โดยทีมงานมืออาชีพที่มีประสบการณ์กว่า 10 ปี"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "จดทะเบียนบริษัทในเชียงใหม่ ต้องใช้เวลานานเท่าไหร่?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "การจดทะเบียนบริษัทกับ IC Accounting ปกติจะใช้เวลาเพียง 1-3 วันทำการ หลังจากเตรียมเอกสารครบถ้วน เราดูแลตั้งแต่จองชื่อจนถึงได้รับหนังสือรับรอง"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "ค่าบริการทำบัญชีและภาษี ราคาเท่าไหร่?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "ค่าบริการเริ่มต้นในราคาที่เหมาะสมสำหรับ SME พิจารณาจากปริมาณเอกสารและประเภทธุรกิจ เน้นความโปร่งใส ไม่มีค่าธรรมเนียมแอบแฝง"
+        }
+      }
+    ]
+  };
+
   return (
     <html lang="th" suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600;700&display=swap" rel="stylesheet" />
+        
+        {/* ฝัง FAQ Schema ลงในส่วน head */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
       </head>
       <body className={cn('font-body antialiased')} suppressHydrationWarning>
         {children}
