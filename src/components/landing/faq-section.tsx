@@ -29,7 +29,11 @@ export function FaqSection() {
           <Link href="/accounting-services" className="text-primary font-bold hover:underline">
             IC Accounting Service
           </Link>{" "}
-          คือคำตอบ เราให้บริการรับทำบัญชีครบวงจร วางแผนภาษี และจดทะเบียนบริษัท โดยทีมงานมืออาชีพที่เข้าใจบริบทธุรกิจในเชียงใหม่และภาคเหนือ พร้อมให้คำปรึกษาที่ใกล้ชิดและถูกต้องตามกฎหมาย
+          คือคำตอบ เรามี
+          <Link href="/accounting-services" className="text-primary font-bold hover:underline mx-1">
+            บริการรับทำบัญชีครบวงจร
+          </Link>
+          วางแผนภาษี และจดทะเบียนบริษัท โดยทีมงานมืออาชีพที่เข้าใจบริบทธุรกิจในเชียงใหม่และภาคเหนือ พร้อมให้คำปรึกษาที่ใกล้ชิดและถูกต้องตามกฎหมาย
         </span>
       ),
     },
