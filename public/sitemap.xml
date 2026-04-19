@@ -2,60 +2,98 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://icaccservice.com/</loc>
-    <lastmod>2026-02-24</lastmod>
+    <lastmod>2026-04-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
-
   <url>
-    <loc>https://icaccservice.com/services</loc>
-    <lastmod>2026-02-24</lastmod>
+    <loc>https://icaccservice.com/about</loc>
+    <lastmod>2026-04-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-
+  <url>
+    <loc>https://icaccservice.com/accounting-services</loc>
+    <lastmod>2026-04-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://icaccservice.com/audit-services</loc>
+    <lastmod>2026-04-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://icaccservice.com/company-registration</loc>
+    <lastmod>2026-04-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://icaccservice.com/visa-work-permit</loc>
+    <lastmod>2026-04-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://icaccservice.com/organization-system</loc>
+    <lastmod>2026-04-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
   <url>
     <loc>https://icaccservice.com/media-content</loc>
-    <lastmod>2026-02-24</lastmod>
+    <lastmod>2026-04-20</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
-
   <url>
     <loc>https://icaccservice.com/blog</loc>
-    <lastmod>2026-02-24</lastmod>
+    <lastmod>2026-04-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
-
+  <url>
+    <loc>https://icaccservice.com/quote</loc>
+    <lastmod>2026-04-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
   <url>
     <loc>https://icaccservice.com/blog/tax-document-preparation-tips</loc>
-    <lastmod>2026-02-24</lastmod>
+    <lastmod>2026-04-20</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://icaccservice.com/blog/company-vs-partnership-comparison</loc>
-    <lastmod>2026-02-24</lastmod>
+    <lastmod>2026-04-20</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://icaccservice.com/blog/5-common-accounting-mistakes-sme-chiangmai</loc>
-    <lastmod>2026-02-24</lastmod>
+    <lastmod>2026-04-20</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://icaccservice.com/blog/sme-chiang-mai-accounting-guide</loc>
-    <lastmod>2026-02-24</lastmod>
+    <lastmod>2026-04-20</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://icaccservice.com/blog/tax-guide-chiang-mai-restaurants</loc>
-    <lastmod>2026-02-24</lastmod>
+    <lastmod>2026-04-20</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://icaccservice.com/blog/pool-villa-tax-guide-chiang-mai</loc>
-    <lastmod>2026-02-24</lastmod>
+    <lastmod>2026-04-20</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 </urlset>
