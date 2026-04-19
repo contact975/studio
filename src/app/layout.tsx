@@ -5,12 +5,13 @@ import { cn } from '@/lib/utils';
 import Script from 'next/script';
 
 export const metadata: Metadata = {
-  // เน้นคีย์เวิร์ดหลักขึ้นก่อนชื่อแบรนด์ เพื่อดึงอันดับ Google
-  title: 'สำนักงานบัญชีเชียงใหม่ บัญชี ภาษี ครบวงจร | IC Accounting & Service',
+  title: 'สำนักงานบัญชีเชียงใหม่ ครบวงจร | IC Accounting',
   description: 'บริการสำนักงานบัญชีเชียงใหม่ ยุคใหม่ ครบวงจร ทำบัญชี วางแผนภาษี จดทะเบียนธุรกิจ และผลิตมีเดียคอนเทนต์ สำหรับธุรกิจทั่วเชียงใหม่ โดยทีมงานมืออาชีพประสบการณ์กว่า 10 ปี',
-  
+  alternates: {
+    canonical: 'https://icaccservice.com',
+  },
   openGraph: {
-    title: 'สำนักงานบัญชีเชียงใหม่ บัญชี ภาษี ครบวงจร | IC Accounting & Service',
+    title: 'สำนักงานบัญชีเชียงใหม่ ครบวงจร | IC Accounting',
     description: 'บริการสำนักงานบัญชีเชียงใหม่ ยุคใหม่ ครบวงจร ทำบัญชี วางแผนภาษี จดทะเบียนธุรกิจ และผลิตมีเดียคอนเทนต์ สำหรับธุรกิจทั่วเชียงใหม่ โดยทีมงานมืออาชีพประสบการณ์กว่า 10 ปี',
     url: 'https://icaccservice.com',
     siteName: 'IC Accounting & Service',
@@ -26,7 +27,7 @@ export const metadata: Metadata = {
     type: 'website',
   },
   icons: {
-    icon: '/icon.png', 
+    icon: '/icon.png',
     shortcut: '/icon.png',
     apple: '/icon.png',
   },
@@ -37,7 +38,6 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // ข้อมูล FAQ Schema สำหรับช่วย Google AI
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -75,8 +75,6 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600;700&display=swap" rel="stylesheet" />
-        
-        {/* ฝัง FAQ Schema ลงในส่วน head */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}

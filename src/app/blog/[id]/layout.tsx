@@ -6,7 +6,7 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
   // 1. แผนผังข้อมูลบทความที่ปรับจูนลิงก์รูปภาพให้เหมาะสมกับการแชร์
   const blogData: { [key: string]: { title: string; description: string; image: string } } = {
     'tax-document-preparation-tips': {
-      title: '5 เคล็ดลับการเตรียมเอกสารภาษีสำหรับ SME มือใหม่',
+      title: '5 เคล็ดลับการเตรียมเอกสารภาษีสำหรับ SME มือใหม่ | IC Accounting',
       description: 'เรียนรู้วิธีการจัดการเอกสารภาษีอย่างเป็นระบบ เพื่อความถูกต้องและรวดเร็ว',
       image: 'https://images.unsplash.com/photo-1562654501-a0ccc0fc3fb1?q=80&w=1200&auto=format&fit=crop'
     },
@@ -44,10 +44,10 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
   };
 
   return {
-    title: currentPost.title,
+    title: `${currentPost.title} | IC Accounting`,
     description: currentPost.description,
     openGraph: {
-      title: currentPost.title,
+      title: `${currentPost.title} | IC Accounting`,
       description: currentPost.description,
       url: `https://icaccservice.com/blog/${id}`,
       siteName: 'IC Accounting & Service',
