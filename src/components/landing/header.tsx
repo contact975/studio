@@ -13,7 +13,6 @@ import {
   Briefcase,
   Workflow,
   X,
-  Languages,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -24,12 +23,6 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import { cn } from "@/lib/utils";
 
 interface SubLink {
@@ -63,31 +56,10 @@ export function Header() {
   const [isClient, setIsClient] = React.useState(false);
   const [isSheetOpen, setIsSheetOpen] = React.useState(false);
   const [isPromoVisible, setIsPromoVisible] = React.useState(true);
-  const [lang, setLang] = React.useState<"TH" | "EN">("TH");
 
   React.useEffect(() => {
     setIsClient(true);
   }, []);
-
-  const LanguageSwitcher = () => (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="sm" className="flex items-center gap-2 font-bold hover:bg-transparent hover:text-primary">
-          <Languages className="h-4 w-4" />
-          <span>{lang}</span>
-          <ChevronDown className="h-3 w-3 opacity-50" />
-        </Button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className="w-24">
-        <DropdownMenuItem onClick={() => setLang("TH")} className={cn(lang === "TH" && "bg-accent font-bold")}>
-          ภาษาไทย
-        </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setLang("EN")} className={cn(lang === "EN" && "bg-accent font-bold")}>
-          English
-        </DropdownMenuItem>
-      </DropdownMenuContent>
-    </DropdownMenu>
-  );
 
   return (
     <header className="sticky top-0 z-50 w-full">
@@ -167,10 +139,6 @@ export function Header() {
                   ติดต่อ
                 </Link>
               </Button>
-              
-              <div className="hidden md:flex">
-                <LanguageSwitcher />
-              </div>
 
               {isClient && (
                 <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
@@ -238,13 +206,6 @@ export function Header() {
                           </Link>
                         </Button>
                       </nav>
-                      
-                      <div className="mt-auto pb-8 border-t pt-4">
-                        <div className="flex items-center justify-between">
-                          <span className="text-sm font-medium">เปลี่ยนภาษา / Language</span>
-                          <LanguageSwitcher />
-                        </div>
-                      </div>
                     </div>
                   </SheetContent>
                 </Sheet>
