@@ -1,60 +1,46 @@
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Card, CardContent } from "@/components/ui/card";
+"use client";
 
-const testimonials = [
-  {
-    id: "testimonial-1",
-    name: "คุณสมชาย รักธุรกิจ",
-    company: "เจ้าของร้าน Smash Daddy's",
-    quote: "IC Accounting ช่วยทำให้การจัดการหลังบ้านเป็นเรื่องที่ง่ายขึ้น เป็นที่ปรึกษาที่ดี และคอยให้คำแนะนำเสนอ มีความเป็นมืออาชีพ ทำให้เรามีเวลาไปโฟกัสเรื่องอื่นได้มากขึ้น",
-    avatarUrl: "https://picsum.photos/seed/avatar1/80/80",
-    avatarFallback: "S",
-    imageHint: "man portrait"
-  },
-  {
-    id: "testimonial-2",
-    name: "คุณสิตา พัฒนาซอฟต์แวร์",
-    company: "บริษัท iChiangmai",
-    quote: "ประทับใจในความรวดเร็วและความแม่นยำมากค่ะ การใช้เทคโนโลยีเข้ามาช่วยทำให้เราเห็นภาพรวมธุรกิจได้ชัดเจนขึ้นเยอะเลย",
-    avatarUrl: "https://picsum.photos/seed/avatar2/80/80",
-    avatarFallback: "I",
-    imageHint: "woman portrait"
-  },
-  {
-    id: "testimonial-3",
-    name: "Mr. John Smith",
-    company: "Foreign Entrepreneur",
-    quote: "The team was incredibly helpful with my Visa and Work Permit application. They made a complex process feel simple and stress-free. Highly recommended!",
-    avatarUrl: "https://picsum.photos/seed/avatar3/80/80",
-    avatarFallback: "JS",
-    imageHint: "man portrait"
-  },
-];
+import * as React from "react";
+import Script from 'next/script';
+import { useEffect } from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 export function TestimonialsSection() {
+  useEffect(() => {
+    // ตรวจสอบว่า AOS เริ่มต้นทำงานหรือยัง
+    AOS.init({
+      duration: 1000,
+      once: true,
+      offset: 100,
+    });
+  }, []);
+
   return (
-    <section id="testimonials" className="py-20 md:py-28 bg-background">
+    <section id="testimonials" className="py-20 md:py-28 bg-[#f2f7f4]">
       <div className="container mx-auto px-4 md:px-6">
-        <h2 data-aos="fade-up" className="text-3xl md:text-4xl font-bold font-headline text-center mb-12 text-primary">
-          เสียงจากลูกค้าของเรา
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {testimonials.map((testimonial, index) => (
-            <Card key={testimonial.id} data-aos="fade-up" data-aos-delay={index * 100} className="bg-primary p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 border-none group">
-              <CardContent className="p-0 flex flex-col items-center text-center">
-                <Avatar className="w-20 h-20 mb-6 ring-4 ring-white/20 transition-all group-hover:ring-white/40">
-                  <AvatarImage src={testimonial.avatarUrl} alt={testimonial.company} data-ai-hint={testimonial.imageHint} />
-                  <AvatarFallback className="bg-white/10 text-white">{testimonial.avatarFallback}</AvatarFallback>
-                </Avatar>
-                <blockquote className="text-primary-foreground/90 mb-6 italic text-lg leading-relaxed">
-                  "{testimonial.quote}"
-                </blockquote>
-                <div className="space-y-1">
-                  <p className="text-primary-foreground/90 font-medium">{testimonial.company}</p>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
+        {/* ส่วนหัวข้อตามภาพตัวอย่าง */}
+        <div data-aos="fade-up" className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold font-headline mb-4 text-[#0d2a23]">
+            สำนักงานบัญชีที่ไม่ทิ้ง ไม่เท ไม่โกงคุณ
+          </h2>
+          <p className="text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
+            มากกว่า 300 บริษัทและหจก.ที่ไว้วางใจ และใช้บริการกับ IC Accounting & Service
+          </p>
+        </div>
+
+        {/* ส่วนแสดงรีวิวจาก Google Maps ผ่าน Trustindex Widget */}
+        <div data-aos="fade-up" data-aos-delay="200" className="w-full max-w-7xl mx-auto overflow-hidden">
+          {/* 
+            วิดเจ็ตของ Trustindex จะทำการแทรกตัวเองเข้าไปในตำแหน่งที่มีสคริปต์นี้อยู่
+            โดยจะดึงข้อมูลรีวิวล่าสุดจาก Google Maps มาแสดงผลในรูปแบบ Carousel ตามที่ตั้งค่าไว้
+          */}
+          <div className="trustindex-widget-container min-h-[300px]">
+            <Script 
+              src="https://cdn.trustindex.io/loader.js?582ed80703c7161ab7966834ee1" 
+              strategy="afterInteractive"
+            />
+          </div>
         </div>
       </div>
     </section>
