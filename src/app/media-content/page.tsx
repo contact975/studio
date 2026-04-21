@@ -132,7 +132,7 @@ export default function MediaContentPage() {
 
               <p data-aos="fade-up" data-aos-delay="200"
                 className="text-gray-400 text-lg md:text-xl max-w-2xl leading-relaxed mb-10">
-                ไม่ใช่แค่คนทำคอนเทนต์ — เราคือผู้สร้างภาพลักษณ์ระดับพรีเมียม ด้วยมาตรฐานโปรดัคชั่นที่เปลี่ยนวิสัยทัศน์ให้กลายเป็นความจริง
+                ไม่ใช่แค่คนทำคอนเทนต์ — เราคือผู้สร้างภาพลักษณ์ระดับพรีเมียม <br className="hidden md:block" /> ด้วยมาตรฐานโปรดัคชั่นที่เปลี่ยนวิสัยทัศน์ให้กลายเป็นความจริง
               </p>
 
               <div data-aos="fade-up" data-aos-delay="300" className="flex flex-wrap gap-4 mb-20">
