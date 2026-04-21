@@ -24,7 +24,7 @@ export function TestimonialsSection() {
             สิ่งที่เราภูมิใจที่สุด คือเสียงของลูกค้า
           </h2>
           <p className="text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
-            มากกว่า 300 บริษัทและหจก.ที่ไว้วางใจ และใช้บริการกับ IC Accounting & Service
+            มากกว่า 100 บริษัทและหจก.ที่ไว้วางใจ และใช้บริการกับ IC Accounting & Service
           </p>
         </div>
 
