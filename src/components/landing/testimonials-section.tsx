@@ -5,6 +5,7 @@ import * as React from "react";
 import { useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import Script from 'next/script';
 
 export function TestimonialsSection() {
   useEffect(() => {
@@ -29,11 +30,17 @@ export function TestimonialsSection() {
         </div>
 
         {/* ส่วนแสดงรีวิวจาก Trustindex (Google Maps) */}
-        <div data-aos="fade-up" data-aos-delay="200" className="w-full max-w-7xl mx-auto min-h-[300px]">
+        <div data-aos="fade-up" data-aos-delay="200" className="w-full max-w-7xl mx-auto min-h-[400px]">
           {/* Trustindex Widget Container */}
           <div className="ti-widget" data-widget-id="582ed80703c7161ab7966834ee1"></div>
         </div>
       </div>
+      
+      {/* Load script directly in the component where the widget is located */}
+      <Script 
+        src="https://cdn.trustindex.io/loader.js?582ed80703c7161ab7966834ee1" 
+        strategy="afterInteractive"
+      />
     </section>
   );
 }

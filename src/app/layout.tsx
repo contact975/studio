@@ -85,8 +85,6 @@ export default function RootLayout({
         {children}
         <Toaster />
         <Script src="https://fast.wistia.com/player.js" strategy="afterInteractive" />
-        {/* Trustindex script for Google Reviews */}
-        <Script src="https://cdn.trustindex.io/loader.js?582ed80703c7161ab7966834ee1" strategy="lazyOnload" />
       </body>
     </html>
   );
