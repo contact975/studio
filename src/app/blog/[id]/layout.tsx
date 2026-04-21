@@ -1,9 +1,9 @@
 import { Metadata } from 'next';
 
-export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
+export async function generateMetadata(props: { params: Promise<{ id: string }> }): Promise<Metadata> {
+  const params = await props.params;
   const id = params.id;
   
-  // 1. แผนผังข้อมูลบทความที่ปรับจูนลิงก์รูปภาพให้เหมาะสมกับการแชร์
   const blogData: { [key: string]: { title: string; description: string; image: string } } = {
     'tax-document-preparation-tips': {
       title: '5 เคล็ดลับการเตรียมเอกสารภาษีสำหรับ SME มือใหม่ | IC Accounting',
@@ -40,7 +40,7 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
   const currentPost = blogData[id] || {
     title: 'บทความน่ารู้ด้านบัญชีและภาษี | IC Accounting & Service',
     description: 'ที่ปรึกษาด้านบัญชีและภาษีมืออาชีพในเชียงใหม่ ประสบการณ์กว่า 10 ปี',
-    image: 'https://icaccservice.com/logo%20icon.png' // ใช้โลโก้ที่มีอยู่ใน public เป็นรูปสำรอง
+    image: 'https://icaccservice.com/logo%20icon.png'
   };
 
   return {
@@ -54,7 +54,7 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
       images: [
         {
           url: currentPost.image,
-          width: 1200, // กำหนดขนาดมาตรฐานที่โซเชียลมีเดียชอบ
+          width: 1200,
           height: 630,
           alt: currentPost.title,
         },
