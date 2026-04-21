@@ -1,4 +1,3 @@
-
 "use client";
 
 import * as React from "react";
@@ -31,14 +30,14 @@ export function TestimonialsSection() {
 
         {/* ส่วนแสดงรีวิวจาก Trustindex (Google Maps) */}
         <div data-aos="fade-up" data-aos-delay="200" className="w-full max-w-7xl mx-auto min-h-[400px]">
-          {/* Trustindex Widget Container */}
-          <div className="ti-widget" data-widget-id="582ed80703c7161ab7966834ee1"></div>
+          {/* Updated Trustindex Widget Container with new ID provided by user */}
+          <div className="ti-widget" data-widget-id="d07bdaa700891641ec465ec59b6"></div>
         </div>
       </div>
       
-      {/* Load script directly in the component where the widget is located */}
+      {/* Load script directly in the component with the new URL provided by user */}
       <Script 
-        src="https://cdn.trustindex.io/loader.js?582ed80703c7161ab7966834ee1" 
+        src="https://cdn.trustindex.io/loader.js?d07bdaa700891641ec465ec59b6" 
         strategy="afterInteractive"
       />
     </section>
