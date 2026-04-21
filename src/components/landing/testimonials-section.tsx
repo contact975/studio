@@ -30,7 +30,7 @@ export function TestimonialsSection() {
 
         {/* ส่วนแสดงรีวิวจาก Trustindex (Google Maps) */}
         <div data-aos="fade-up" data-aos-delay="200" className="w-full max-w-7xl mx-auto min-h-[300px]">
-          {/* Trustindex Widget Placeholder */}
+          {/* Trustindex Widget Container */}
           <div className="ti-widget" data-widget-id="582ed80703c7161ab7966834ee1"></div>
         </div>
       </div>
