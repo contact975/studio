@@ -1,3 +1,4 @@
+
 "use client";
 
 import * as React from "react";
@@ -35,7 +36,7 @@ export function TestimonialsSection() {
         </div>
       </div>
       
-      {/* Load script directly in the component with the new URL provided by user */}
+      {/* Load script directly in the component with the ID provided by user */}
       <Script 
         src="https://cdn.trustindex.io/loader.js?d07bdaa700891641ec465ec59b6" 
         strategy="afterInteractive"
