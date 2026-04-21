@@ -1,4 +1,3 @@
-
 "use client";
 
 import * as React from "react";
@@ -22,7 +21,7 @@ export function TestimonialsSection() {
         {/* หัวข้อส่วนรีวิว */}
         <div data-aos="fade-up" className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold font-headline mb-4 text-[#0d2a23]">
-            สำนักงานบัญชีที่ไม่ทิ้ง ไม่เท ไม่โกงคุณ
+            สิ่งที่เราภูมิใจที่สุด คือเสียงของลูกค้า
           </h2>
           <p className="text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
             มากกว่า 300 บริษัทและหจก.ที่ไว้วางใจ และใช้บริการกับ IC Accounting & Service
