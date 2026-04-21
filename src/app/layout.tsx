@@ -1,3 +1,4 @@
+
 import type { Metadata } from 'next';
 import './globals.css';
 import { Toaster } from '@/components/ui/toaster';
@@ -84,6 +85,7 @@ export default function RootLayout({
         {children}
         <Toaster />
         <Script src="https://fast.wistia.com/player.js" strategy="afterInteractive" />
+        <Script src="https://cdn.trustindex.io/loader.js?582ed80703c7161ab7966834ee1" strategy="afterInteractive" />
       </body>
     </html>
   );
