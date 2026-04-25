@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import { Header } from '@/components/landing/header';
 import { Footer } from '@/components/landing/footer';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
@@ -5,6 +6,17 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { CheckCircle } from 'lucide-react';
 import { PromoCarousel } from '@/components/landing/promo-carousel';
+
+export const metadata: Metadata = {
+  title: 'รับทำบัญชีเชียงใหม่ เริ่ม 2,500/เดือน | IC Accounting',
+  description: 'รับทำบัญชีครบวงจรในเชียงใหม่ จัดระเบียบเอกสาร บันทึกบัญชี ยื่นภาษีรายเดือน โดยทีมมืออาชีพ ประสบการณ์กว่า 10 ปี',
+  alternates: { canonical: 'https://icaccservice.com/accounting-services' },
+  openGraph: {
+    title: 'รับทำบัญชีเชียงใหม่ เริ่ม 2,500/เดือน | IC Accounting',
+    description: 'รับทำบัญชีครบวงจรในเชียงใหม่ จัดระเบียบเอกสาร บันทึกบัญชี ยื่นภาษีรายเดือน',
+    url: 'https://icaccservice.com/accounting-services',
+  },
+};
 
 const packages = [
   {
