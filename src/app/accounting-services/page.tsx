@@ -1,5 +1,3 @@
-"use client";
-
 import { Header } from '@/components/landing/header';
 import { Footer } from '@/components/landing/footer';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
@@ -7,9 +5,6 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { CheckCircle } from 'lucide-react';
 import { PromoCarousel } from '@/components/landing/promo-carousel';
-import { useEffect } from 'react';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
 
 const packages = [
   {
@@ -74,39 +69,28 @@ const packages = [
 ];
 
 export default function AccountingServicesPage() {
-  useEffect(() => {
-    AOS.init({
-      duration: 1000,
-      once: true,
-      offset: 100,
-    });
-  }, []);
-
   return (
     <div className="flex flex-col min-h-dvh bg-secondary/50 text-foreground">
       <Header />
       <main className="flex-1">
         <PromoCarousel />
-        
-        {/* Service Description Section */}
         <section className="animate-gradient text-primary-foreground py-20 md:py-28">
-            <div data-aos="fade-up" className="container mx-auto px-4 md:px-6">
-                <nav className="text-sm mb-4 opacity-80">
-                    <Link href="/" className="hover:opacity-100 transition-opacity">หน้าแรก</Link> / <span>บริการทำบัญชี</span>
-                </nav>
-                <h1 className="text-4xl md:text-5xl font-bold font-headline mb-4">บริการจัดทำบัญชี (Accounting Services)</h1>
-                <p className="text-lg md:text-xl opacity-90 max-w-3xl">ดูแลครบวงจรตั้งแต่ลงบัญชี ยื่นภาษี จนถึงปิดงบฯ เราให้คุณมากกว่าแค่ตัวเลข ด้วยการวิเคราะห์ต้นทุนและสถานะการเงิน เสมือนมี CFO ส่วนตัว อยู่เคียงข้างธุรกิจคุณ</p>
-            </div>
+          <div className="container mx-auto px-4 md:px-6">
+            <nav className="text-sm mb-4 opacity-80">
+              <Link href="/" className="hover:opacity-100 transition-opacity">หน้าแรก</Link> / <span>บริการทำบัญชี</span>
+            </nav>
+            <h1 className="text-4xl md:text-5xl font-bold font-headline mb-4">บริการจัดทำบัญชี (Accounting Services)</h1>
+            <p className="text-lg md:text-xl opacity-90 max-w-3xl">ดูแลครบวงจรตั้งแต่ลงบัญชี ยื่นภาษี จนถึงปิดงบฯ เราให้คุณมากกว่าแค่ตัวเลข ด้วยการวิเคราะห์ต้นทุนและสถานะการเงิน เสมือนมี CFO ส่วนตัว อยู่เคียงข้างธุรกิจคุณ</p>
+          </div>
         </section>
-
         <section className="py-20 md:py-28">
           <div className="container mx-auto px-4 md:px-6">
-            <h1 data-aos="fade-up" className="text-4xl md:text-5xl font-bold font-headline text-center mb-16 text-primary">
+            <h2 className="text-4xl md:text-5xl font-bold font-headline text-center mb-16 text-primary">
               แพ็กเกจบริการจัดทำบัญชี
-            </h1>
+            </h2>
             <div className="max-w-5xl mx-auto flex flex-col gap-16">
               {packages.map((pkg, index) => (
-                <div key={pkg.name} data-aos="fade-up" data-aos-delay={index * 100} className="grid md:grid-cols-2 gap-8 items-start">
+                <div key={pkg.name} className="grid md:grid-cols-2 gap-8 items-start">
                   <Card className="flex flex-col text-center items-center p-8 rounded-xl shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 bg-card h-full">
                     <div className={`w-24 h-24 rounded-full flex items-center justify-center ${pkg.bgColor} mb-6`}>
                       <span className="text-5xl font-bold text-white">{pkg.size}</span>
@@ -133,8 +117,8 @@ export default function AccountingServicesPage() {
                     </CardHeader>
                     <CardContent className="p-0">
                       <ul className="space-y-3 text-left">
-                        {pkg.details.map((detail, index) => (
-                          <li key={index} className="flex items-start gap-3">
+                        {pkg.details.map((detail, i) => (
+                          <li key={i} className="flex items-start gap-3">
                             <CheckCircle className="h-5 w-5 text-green-500 mt-1 flex-shrink-0" />
                             <span className="text-muted-foreground">{detail}</span>
                           </li>
