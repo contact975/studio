@@ -1,4 +1,3 @@
-
 import type { Metadata } from 'next';
 import './globals.css';
 import { Toaster } from '@/components/ui/toaster';
@@ -6,7 +5,10 @@ import { cn } from '@/lib/utils';
 import Script from 'next/script';
 
 export const metadata: Metadata = {
-  title: 'สำนักงานบัญชีเชียงใหม่ ครบวงจร | IC Accounting',
+  title: {
+    default: 'สำนักงานบัญชีเชียงใหม่ ครบวงจร | IC Accounting',
+    template: '%s',
+  },
   description: 'บริการสำนักงานบัญชีเชียงใหม่ ยุคใหม่ ครบวงจร ทำบัญชี วางแผนภาษี จดทะเบียนธุรกิจ และผลิตมีเดียคอนเทนต์ สำหรับธุรกิจทั่วเชียงใหม่ โดยทีมงานมืออาชีพประสบการณ์กว่า 10 ปี',
   alternates: {
     canonical: 'https://icaccservice.com',
