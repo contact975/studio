@@ -72,6 +72,54 @@ export default function RootLayout({
     ]
   };
 
+  const localBusinessSchema = {
+    "@context": "https://schema.org",
+    "@type": "AccountingService",
+    "name": "IC Accounting & Service",
+    "image": "https://icaccservice.com/share-preview.jpg",
+    "url": "https://icaccservice.com",
+    "telephone": "095-716-1422",
+    "email": "contact@icaccservice.com",
+    "description": "สำนักงานบัญชีเชียงใหม่ ครบวงจร ทำบัญชี วางแผนภาษี จดทะเบียนธุรกิจ และผลิตมีเดียคอนเทนต์",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "80/142 ต.สันปู่เลย อ.ดอยสะเก็ด",
+      "addressLocality": "เชียงใหม่",
+      "postalCode": "50220",
+      "addressCountry": "TH"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 18.8796,
+      "longitude": 99.0353
+    },
+    "openingHoursSpecification": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      "opens": "09:00",
+      "closes": "18:00"
+    },
+    "sameAs": [
+      "https://www.facebook.com/icaccservice"
+    ],
+    "priceRange": "฿฿",
+    "areaServed": {
+      "@type": "City",
+      "name": "เชียงใหม่"
+    },
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "บริการสำนักงานบัญชี",
+      "itemListElement": [
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "รับทำบัญชี" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "ปิดงบการเงิน" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "จดทะเบียนบริษัท" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Visa & Work Permit" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "ผลิต Media Content" } }
+      ]
+    }
+  };
+
   return (
     <html lang="th" suppressHydrationWarning>
       <head>
@@ -81,6 +129,10 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
         />
       </head>
       <body className={cn('font-body antialiased')} suppressHydrationWarning>
