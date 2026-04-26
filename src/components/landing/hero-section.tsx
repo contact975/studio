@@ -27,7 +27,7 @@ export function HeroSection() {
   }, []);
 
   return (
-    <section id="hero" className="relative bg-primary text-white overflow-hidden" suppressHydrationWarning>
+    <section id="hero" className="relative bg-[#0a2558] text-white overflow-hidden" suppressHydrationWarning>
       <div className="absolute inset-0 opacity-10"
         style={{ backgroundImage: 'linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(90deg, #ffffff 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
       <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-white/5 rounded-full blur-[120px] pointer-events-none" />
@@ -80,12 +80,10 @@ export function HeroSection() {
                 media-id="hd04a418nd"
                 aspect="1.7777777777777777"
                 style={{ width: '100%', height: '100%', display: 'block' }}
-                {...({
-                  muted: true,
-                  autoplay: true,
-                  'silent-autoplay': true,
-                  'play-button': false
-                } as any)}
+                muted
+                autoplay
+                silent-autoplay
+                play-button={false}
               ></wistia-player>
             </React.Fragment>
           ) : (
