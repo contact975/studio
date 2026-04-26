@@ -66,27 +66,26 @@ export function HeroSection() {
           </Link>
         </div>
 
-        {/* Video */}
-        <div 
+        {/* Video — lazy load เมื่อ user scroll มาถึงเท่านั้น */}
+        <div
           className="relative w-full max-w-4xl mx-auto aspect-video rounded-2xl overflow-hidden shadow-2xl border border-white/10 mb-10 bg-black/20"
           suppressHydrationWarning
         >
           {isMounted ? (
             <React.Fragment>
-              <style dangerouslySetInnerHTML={{ 
-                __html: `wistia-player[media-id='hd04a418nd']:not(:defined){background:center/contain no-repeat url('https://fast.wistia.com/embed/medias/hd04a418nd/swatch');display:block;filter:blur(5px);padding-top:56.25%}` 
+              <style dangerouslySetInnerHTML={{
+                __html: `wistia-player[media-id='hd04a418nd']:not(:defined){background:center/contain no-repeat url('https://fast.wistia.com/embed/medias/hd04a418nd/swatch');display:block;filter:blur(5px);padding-top:56.25%}`
               }} />
               <wistia-player
                 media-id="hd04a418nd"
                 aspect="1.7777777777777777"
-                muted={true}
-                autoplay={true}
-                playButton={false}
+                muted="false"
+                autoplay="false"
                 style={{ width: '100%', height: '100%', display: 'block' }}
-              />
+              ></wistia-player>
             </React.Fragment>
           ) : (
-            <div className="w-full h-full bg-slate-900 animate-pulse flex items-center justify-center">
+            <div className="w-full h-full bg-slate-900 flex items-center justify-center">
               <span className="text-white/20 text-sm">Loading Video...</span>
             </div>
           )}
