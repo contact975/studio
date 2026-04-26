@@ -73,17 +73,22 @@ export function HeroSection() {
         >
           {isMounted ? (
             <React.Fragment>
-              <style dangerouslySetInnerHTML={{
-                __html: `wistia-player[media-id='hd04a418nd']:not(:defined){background:center/contain no-repeat url('https://fast.wistia.com/embed/medias/hd04a418nd/swatch');display:block;filter:blur(5px);padding-top:56.25%}`
-              }} />
+              <style>{`
+                wistia-player[media-id='hd04a418nd']:not(:defined) {
+                  background: center/contain no-repeat url('https://fast.wistia.com/embed/medias/hd04a418nd/swatch');
+                  display: block;
+                  filter: blur(5px);
+                  padding-top: 56.25%;
+                }
+              `}</style>
               <wistia-player
                 media-id="hd04a418nd"
                 aspect="1.7777777777777777"
                 style={{ width: '100%', height: '100%', display: 'block' }}
-                muted
-                autoplay
-                silent-autoplay
-                play-button={false}
+                muted="true"
+                autoplay="true"
+                silent-autoplay="true"
+                play-button="false"
               ></wistia-player>
             </React.Fragment>
           ) : (

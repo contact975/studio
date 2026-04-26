@@ -166,10 +166,25 @@ export default function MediaClient() {
           </div>
           <div data-aos="zoom-in" className="relative aspect-video rounded-2xl overflow-hidden border border-white/5 bg-zinc-900" suppressHydrationWarning>
             {isMounted ? (
-              <>
-                <style dangerouslySetInnerHTML={{ __html: `wistia-player[media-id='le8f20crj0']:not(:defined){background:center/contain no-repeat url('https://fast.wistia.com/embed/medias/le8f20crj0/swatch');display:block;filter:blur(5px);padding-top:56.25%}` }} />
-                <wistia-player media-id="le8f20crj0" aspect="1.7777777777777777" muted="true" autoplay="true" silent-autoplay="true" playButton="false" style={{ width: '100%', height: '100%', display: 'block' }} />
-              </>
+              <React.Fragment>
+                <style>{`
+                  wistia-player[media-id='le8f20crj0']:not(:defined) {
+                    background: center/contain no-repeat url('https://fast.wistia.com/embed/medias/le8f20crj0/swatch');
+                    display: block;
+                    filter: blur(5px);
+                    padding-top: 56.25%;
+                  }
+                `}</style>
+                <wistia-player
+                  media-id="le8f20crj0"
+                  aspect="1.7777777777777777"
+                  style={{ width: '100%', height: '100%', display: 'block' }}
+                  muted="true"
+                  autoplay="true"
+                  silent-autoplay="true"
+                  play-button="false"
+                ></wistia-player>
+              </React.Fragment>
             ) : (
               <div className="w-full h-full bg-zinc-900 animate-pulse flex items-center justify-center">
                 <span className="text-white/10 text-sm">Loading...</span>
