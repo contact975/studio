@@ -1,222 +1,269 @@
-'use client';
+import type { Metadata } from 'next';
 import Image from 'next/image';
+import Link from 'next/link';
 import { Header } from '@/components/landing/header';
 import { Footer } from '@/components/landing/footer';
-import { Heart, Target, CheckCircle, Quote, Cloud, Zap, LineChart, ShieldCheck, Users, Briefcase } from 'lucide-react';
-import { Card, CardContent } from '@/components/ui/card';
-import { useEffect } from 'react';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
+import { CheckCircle, ArrowRight } from 'lucide-react';
+
+export const metadata: Metadata = {
+  title: 'เกี่ยวกับเรา | IC Accounting & Service เชียงใหม่',
+  description: 'รู้จัก IC Accounting & Service สำนักงานบัญชียุคใหม่เชียงใหม่ ก่อตั้งโดยคุณจตุพร ยะเปียงปลูก ประสบการณ์กว่า 10 ปี',
+  alternates: { canonical: 'https://icaccservice.com/about' },
+};
+
+const timeline = [
+  {
+    year: '2557–2559',
+    title: 'จุดเริ่มต้น — Internal Auditor',
+    desc: 'เริ่มต้นสายงานในฐานะผู้ตรวจสอบบัญชีภายใน 3 ปี สร้างรากฐานความละเอียดรอบคอบ และความเข้าใจในระบบการควบคุมภายในองค์กร',
+    tag: 'Foundation',
+    color: 'bg-blue-500',
+  },
+  {
+    year: '2560–2561',
+    title: 'โลก Startup — Finance & Accounting Officer',
+    desc: 'ก้าวเข้าสู่โลกธุรกิจ Startup ในเชียงใหม่ สัมผัสความรวดเร็ว ความคล่องตัว และ Mindset ของนักธุรกิจยุคใหม่ที่ต้องการข้อมูลแบบ Real-time',
+    tag: 'Growth',
+    color: 'bg-indigo-500',
+  },
+  {
+    year: '2565',
+    title: 'ก้าวแรกของตัวเอง — Freelance Accountant',
+    desc: 'ด้วยประสบการณ์กว่า 5 ปี ตัดสินใจเริ่มรับงานบัญชีอิสระ ด้วยสไตล์คนรุ่นใหม่ที่เน้นความถูกต้อง แม่นยำ และสื่อสารเข้าใจง่าย จนลูกค้าบอกต่อเป็นวงกว้าง',
+    tag: 'Independence',
+    color: 'bg-violet-500',
+  },
+  {
+    year: '2 ก.ค. 2568',
+    title: 'IC Accounting & Service จดทะเบียนอย่างเป็นทางการ',
+    desc: 'รองรับฐานลูกค้ากว่า 100 ราย และยกระดับการบริการให้ครอบคลุมยิ่งขึ้น ผนึกกำลังกับคุณบรรลือศักดิ์ จินดากุล ผู้เชี่ยวชาญด้านมีเดีย สู่ One Stop Service เต็มรูปแบบ',
+    tag: 'Official Launch',
+    color: 'bg-primary',
+  },
+];
+
+const values = [
+  { title: 'Modern & Partner Mindset', desc: 'ทำงานเหมือนเป็นพาร์ทเนอร์ในทีม พร้อมให้คำปรึกษาที่เข้าใจง่าย ไม่ใช้ศัพท์เทคนิค' },
+  { title: 'One Stop Solution', desc: 'ดูแลครบวงจรในที่เดียว ตั้งแต่บัญชี ภาษี จดทะเบียน Visa ไปจนถึง Media Content' },
+  { title: 'Action Oriented', desc: 'เน้นการลงพื้นที่จริง (Consult) เพื่อวางระบบหลังบ้านที่เหมาะสมกับธุรกิจของคุณ' },
+  { title: 'Creative Thinking', desc: 'สำนักงานบัญชีที่เข้าใจการตลาด พร้อมช่วยผลิต Media Content เพื่ออัปเกรดแบรนด์' },
+];
+
+const services = [
+  { label: 'Accounting & Tax', desc: 'รับทำบัญชีรายเดือน ปิดงบประจำปี และวางแผนภาษี' },
+  { label: 'Business Registration', desc: 'บริการจดทะเบียนบริษัทและห้างหุ้นส่วน' },
+  { label: 'Expat Services', desc: 'ดูแลเรื่อง Visa และ Work Permit สำหรับชาวต่างชาติ' },
+  { label: 'Organization System', desc: 'วางระบบหลังบ้าน สอนใช้งานโปรแกรมบัญชี' },
+  { label: 'Creative Media', desc: 'รับผลิตวิดีโอและกราฟิกเพื่อการตลาดออนไลน์' },
+];
 
 export default function AboutPage() {
-  useEffect(() => {
-    AOS.init({
-      duration: 1000,
-      once: true,
-      offset: 100,
-    });
-  }, []);
-
   return (
     <div className="flex flex-col min-h-dvh bg-background text-foreground">
       <Header />
       <main className="flex-1">
-        <section className="py-20 md:py-28">
-          <div className="container mx-auto px-4 md:px-6">
-            <h1 data-aos="fade-up" className="text-4xl md:text-5xl font-bold font-headline text-center mb-16 text-primary">
-              เรื่องราวของ IC Accounting & Service
+
+        {/* ── HERO ── */}
+        <section className="relative animate-gradient text-primary-foreground py-28 md:py-36 overflow-hidden">
+          <div className="absolute inset-0 opacity-10"
+            style={{ backgroundImage: 'linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(90deg, #ffffff 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
+          <div className="container mx-auto px-6 relative z-10 max-w-4xl text-center">
+            <p className="text-xs font-bold tracking-[0.3em] uppercase mb-6 opacity-70">Our Story</p>
+            <h1 className="text-4xl md:text-6xl font-black leading-tight mb-6">
+              จากความฝันของคนคนหนึ่ง<br />สู่สำนักงานบัญชียุคใหม่
             </h1>
-
-            {/* Core Heart Section */}
-            <div data-aos="fade-up" className="grid md:grid-cols-2 gap-16 items-center mb-24">
-              <div className="space-y-6">
-                <div className="flex items-center gap-4">
-                  <Heart className="h-10 w-10 text-primary" />
-                  <h2 className="text-3xl font-bold font-headline">
-                    หัวใจหลักของเรา (Our Core Heart)
-                  </h2>
-                </div>
-                <p className="text-lg text-muted-foreground leading-relaxed">
-                  ที่ IC Accounting & Service เราไม่ได้มองตัวเองเป็นเพียงสำนักงานบัญชีที่จัดการแค่ตัวเลข แต่เราคือ "เลขาส่วนตัวธุรกิจ" ที่พร้อมเดินเคียงข้างคุณ เราเชื่อว่าเบื้องหลังธุรกิจที่เติบโตอย่างก้าวกระโดด คือระบบหลังบ้านที่แข็งแรงและโปร่งใส
-                </p>
-                <p className="text-lg text-muted-foreground leading-relaxed">
-                  เราจึงมุ่งมั่นที่จะเปลี่ยนภาพจำของงานบัญชีที่ยุ่งยาก ให้กลายเป็นเรื่องง่ายและเข้าถึงได้สำหรับ SME รุ่นใหม่ ด้วยบริการที่จริงใจ เข้าใจหน้างานจริง และการนำเทคโนโลยีเข้ามาช่วยให้การบริหารจัดการมีประสิทธิภาพสูงสุด
-                </p>
-              </div>
-              <div className="relative aspect-[4/3] rounded-xl overflow-hidden shadow-2xl group">
-                 <Image
-                    src="https://live.staticflickr.com/65535/55057964151_2951cd7360_b.jpg"
-                    alt="Founder of IC Accounting & Service"
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                    data-ai-hint="woman portrait"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
-              </div>
-            </div>
-
-            {/* Visionary Founder Section */}
-            <div data-aos="fade-up" className="mb-24 bg-primary p-8 md:p-12 rounded-2xl shadow-xl text-primary-foreground relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -translate-y-32 translate-x-32 blur-3xl"></div>
-              <div className="max-w-4xl mx-auto relative z-10">
-                <div className="flex justify-center mb-8">
-                  <Quote className="h-12 w-12 text-primary-foreground opacity-20" />
-                </div>
-                <h2 className="text-3xl md:text-4xl font-bold font-headline text-center mb-8">
-                  วิสัยทัศน์จากผู้ก่อตั้ง (Visionary Founder)
-                </h2>
-                <div className="space-y-6 text-center">
-                  <h3 className="text-xl font-semibold opacity-90 underline underline-offset-8 decoration-white/30">ประสบการณ์กว่า 10 ปี ที่หลอมรวมเป็น IC ACC Service</h3>
-                  <p className="text-lg italic leading-relaxed opacity-90">
-                    "ตลอดเส้นทางการทำงานในสายงานบัญชีและภาษีกกว่า 10 ปี ไอซ์ได้เห็นการเติบโตและการปรับตัวของธุรกิจไทยมาอย่างต่อเนื่อง สิ่งหนึ่งที่ไอซ์เชื่อมั่นเสมอคือ บัญชีไม่ควรเป็นเรื่องที่เข้าใจยากหรือเป็นภาระของเจ้าของธุรกิจ"
-                  </p>
-                  <p className="text-lg leading-relaxed opacity-90">
-                    ไอซ์จึงก่อตั้ง IC ACC Service ขึ้นมาด้วยความตั้งใจที่จะเปลี่ยนภาพจำแบบเดิมๆ ให้กลายเป็น 'สำนักงานบัญชีรุ่นใหม่' ที่พร้อมเป็นเพื่อนคู่คิดและสนับสนุนทุกความฝันของนักธุรกิจด้วยความเข้าใจจริงค่ะ
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Point 1: Modern & Digital Transformation */}
-            <div data-aos="fade-up" className="mb-24">
-              <h2 className="text-3xl font-bold font-headline text-center mb-12 flex flex-col items-center gap-2">
-                Modern & Digital Transformation
-                <span className="text-lg font-normal text-muted-foreground mt-2">"เราเปลี่ยน 'ตัวเลข' ให้เป็น 'โอกาส' ด้วยเทคโนโลยี"</span>
-              </h2>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <Card className="p-8 border-none shadow-sm hover:shadow-md transition-all text-center">
-                  <div className="w-16 h-16 bg-primary/10 text-primary rounded-full flex items-center justify-center mx-auto mb-6">
-                    <Cloud className="h-8 w-8" />
-                  </div>
-                  <h4 className="text-xl font-bold mb-4">Cloud Accounting Solution</h4>
-                  <p className="text-muted-foreground">ให้คุณเข้าถึงข้อมูลทางการเงินได้แบบ Real-time ทุกที่ทุกเวลา เพื่อการตัดสินใจที่แม่นยำ</p>
-                </Card>
-                <Card className="p-8 border-none shadow-sm hover:shadow-md transition-all text-center">
-                  <div className="w-16 h-16 bg-primary/10 text-primary rounded-full flex items-center justify-center mx-auto mb-6">
-                    <Zap className="h-8 w-8" />
-                  </div>
-                  <h4 className="text-xl font-bold mb-4">Digital Workflow</h4>
-                  <p className="text-muted-foreground">ลดขั้นตอนเอกสารที่ยุ่งยากด้วยระบบ Paperless ที่ทันสมัย ปลอดภัย และรวดเร็ว</p>
-                </Card>
-                <Card className="p-8 border-none shadow-sm hover:shadow-md transition-all text-center">
-                  <div className="w-16 h-16 bg-primary/10 text-primary rounded-full flex items-center justify-center mx-auto mb-6">
-                    <LineChart className="h-8 w-8" />
-                  </div>
-                  <h4 className="text-xl font-bold mb-4">Data-Driven Insights</h4>
-                  <p className="text-muted-foreground">เราไม่ได้แค่ทำตัวเลขให้ถูกต้อง แต่เราใช้ข้อมูลเพื่อช่วยวิเคราะห์และวางแผนทิศทางธุรกิจในอนาคต</p>
-                </Card>
-              </div>
-            </div>
-
-            {/* Point 2: Agility & Comfort */}
-            <div data-aos="fade-up" className="mb-24">
-               <h2 className="text-3xl font-bold font-headline text-center mb-12 flex flex-col items-center gap-2">
-                Agility & Comfort
-                <span className="text-lg font-normal text-muted-foreground mt-2">"องค์กรที่ปรับตัวเพื่อความสะดวกสบายของคุณ"</span>
-              </h2>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <Card className="p-8 border-none bg-primary/5 shadow-sm hover:shadow-md transition-all">
-                   <div className="flex items-start gap-4 mb-4">
-                      <Zap className="h-6 w-6 text-primary mt-1" />
-                      <h4 className="text-xl font-bold">Modern Professionalism</h4>
-                   </div>
-                   <p className="text-muted-foreground">เราผสมผสานความแม่นยำในฐานะนิติบุคคล เข้ากับความคล่องตัวแบบ Digital Age</p>
-                </Card>
-                <Card className="p-8 border-none bg-primary/5 shadow-sm hover:shadow-md transition-all">
-                   <div className="flex items-start gap-4 mb-4">
-                      <Users className="h-6 w-6 text-primary mt-1" />
-                      <h4 className="text-xl font-bold">Personal Touch</h4>
-                   </div>
-                   <p className="text-muted-foreground">ไอซ์และทีมงานยังคงให้ความสำคัญกับการดูแลอย่างใกล้ชิด เป็นกันเอง และพร้อมให้คำปรึกษาเหมือนคนในครอบครัว</p>
-                </Card>
-                <Card className="p-8 border-none bg-primary/5 shadow-sm hover:shadow-md transition-all">
-                   <div className="flex items-start gap-4 mb-4">
-                      <Briefcase className="h-6 w-6 text-primary mt-1" />
-                      <h4 className="text-xl font-bold">One-Stop Solutions</h4>
-                   </div>
-                   <p className="text-muted-foreground">ดูแลครบวงจร ตั้งแต่บัญชี ภาษี งานจดทะเบียน ไปจนถึงมีเดียคอนเทนต์ เพื่อให้คุณจบทุกความกังวลได้ในที่เดียว</p>
-                </Card>
-              </div>
-            </div>
-
-            {/* Point 3: Closing Statement */}
-            <div data-aos="fade-up" className="text-center max-w-3xl mx-auto mb-24 py-12 px-6 bg-primary text-primary-foreground rounded-3xl shadow-xl overflow-hidden relative">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-16 translate-x-16 blur-3xl"></div>
-              <div className="absolute bottom-0 left-0 w-32 h-32 bg-black/10 rounded-full translate-y-16 -translate-x-16 blur-3xl"></div>
-              
-              <h2 className="text-2xl md:text-3xl font-bold font-headline mb-6">Closing Statement</h2>
-              <p className="text-xl italic leading-relaxed mb-6">
-                "ที่ IC ACC Service เราไม่ได้มองลูกค้าเป็นเพียงผู้ใช้บริการ แต่เรามองว่าคุณคือ 'พาร์ทเนอร์' ที่เราพร้อมจะเติบโตไปด้วยกัน ด้วยประสบการณ์ที่สะสมมาและเทคโนโลยีที่เราเลือกใช้ ไอซ์มั่นใจว่าเราจะเป็นเบื้องหลังที่ทำให้ธุรกิจของคุณเดินหน้าได้อย่างมั่นคงและสวยงามค่ะ"
-              </p>
-            </div>
-
-            {/* Original Why Choose Us Section */}
-            <div data-aos="fade-up" className="mb-24">
-               <h2 className="text-3xl md:text-4xl font-bold font-headline text-center mb-12 text-foreground">
-                ทำไมต้องเลือกเรา? (Why Choose IC)
-              </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <Card data-aos="fade-up" data-aos-delay="0" className="bg-primary text-center p-6 flex flex-col items-center justify-start shadow-sm hover:shadow-lg transition-shadow">
-                    <h3 className="text-xl font-semibold text-primary-foreground mb-2">Modern & Partner Mindset</h3>
-                    <p className="text-primary-foreground/90">เราทำงานเหมือนเป็นพาร์ทเนอร์ในทีมของคุณ พร้อมให้คำปรึกษาที่เข้าใจง่าย ไม่ใช้ศัพท์เทคนิคที่ซับซ้อน</p>
-                </Card>
-                <Card data-aos="fade-up" data-aos-delay="100" className="bg-primary text-center p-6 flex flex-col items-center justify-start shadow-sm hover:shadow-lg transition-shadow">
-                     <h3 className="text-xl font-semibold text-primary-foreground mb-2">One Stop Solution</h3>
-                    <p className="text-primary-foreground/90">ดูแลครบวงจรในที่เดียว ตั้งแต่จดทะเบียนบริษัท วางระบบบัญชี งานเอกสารต่างชาติ ไปจนถึงการทำสื่อการตลาด</p>
-                </Card>
-                <Card data-aos="fade-up" data-aos-delay="200" className="bg-primary text-center p-6 flex flex-col items-center justify-start shadow-sm hover:shadow-lg transition-shadow">
-                     <h3 className="text-xl font-semibold text-primary-foreground mb-2">Action Oriented</h3>
-                    <p className="text-primary-foreground/90">เราเน้นการลงพื้นที่จริง (Consult) เพื่อวางระบบหลังบ้านให้เหมาะสมกับประเภทธุรกิจของคุณมากที่สุด</p>
-                </Card>
-                <Card data-aos="fade-up" data-aos-delay="300" className="bg-primary text-center p-6 flex flex-col items-center justify-start shadow-sm hover:shadow-lg transition-shadow">
-                     <h3 className="text-xl font-semibold text-primary-foreground mb-2">Creative Thinking</h3>
-                    <p className="text-primary-foreground/90">เราเป็นสำนักงานบัญชีไม่กี่แห่งที่เข้าใจการตลาด และพร้อมช่วยคุณผลิต Media Content เพื่ออัปเกรดแบรนด์ให้ดูเป็นมืออาชีพ</p>
-                </Card>
-              </div>
-            </div>
-
-            <div data-aos="fade-up" className="text-center max-w-3xl mx-auto mb-24 bg-secondary p-8 rounded-xl">
-              <div className="flex justify-center items-center gap-4 mb-4">
-                 <Target className="h-10 w-10 text-primary" />
-                 <h2 className="text-3xl font-bold font-headline">ภารกิจของเรา (Our Mission)</h2>
-              </div>
-              <blockquote className="text-xl italic text-muted-foreground">
-                "ส่งมอบความสบายใจให้เจ้าของธุรกิจ ด้วยระบบบัญชีที่เป๊ะ และบริการที่เป็นมากกว่าคู่สัญญา แต่คือเพื่อนคู่คิดที่ช่วยคุณปั้นผลกำไรให้เติบโตอย่างยั่งยืน"
-              </blockquote>
-            </div>
-
-            <div data-aos="fade-up">
-              <h2 className="text-3xl md:text-4xl font-bold font-headline text-center mb-12 text-foreground">
-                สรุปบริการของเรา (Our Services at a Glance)
-              </h2>
-              <div className="max-w-3xl mx-auto bg-card p-8 rounded-xl shadow-sm">
-                <ul className="space-y-4 text-lg">
-                  <li className="flex items-start gap-4">
-                    <CheckCircle className="h-6 w-6 text-green-500 mt-1 flex-shrink-0" />
-                    <span><b>Accounting & Tax:</b> รับทำบัญชีรายเดือน ปิดงบประจำปี และวางแผนภาษี</span>
-                  </li>
-                  <li className="flex items-start gap-4">
-                    <CheckCircle className="h-6 w-6 text-green-500 mt-1 flex-shrink-0" />
-                    <span><b>Business Registration:</b> บริการจดทะเบียนบริษัทและห้างหุ้นส่วน</span>
-                  </li>
-                  <li className="flex items-start gap-4">
-                    <CheckCircle className="h-6 w-6 text-green-500 mt-1 flex-shrink-0" />
-                    <span><b>Expat Services:</b> ดูแลเรื่อง Visa และ Work Permit สำหรับชาวต่างชาติ</span>
-                  </li>
-                  <li className="flex items-start gap-4">
-                    <CheckCircle className="h-6 w-6 text-green-500 mt-1 flex-shrink-0" />
-                    <span><b>Organization System:</b> วางระบบหลังบ้าน สอนใช้งานโปรแกรมบัญชี และจัดระเบียบเอกสาร</span>
-                  </li>
-                  <li className="flex items-start gap-4">
-                    <CheckCircle className="h-6 w-6 text-green-500 mt-1 flex-shrink-0" />
-                    <span><b>Creative Media:</b> รับผลิตวิดีโอและกราฟิกเพื่อการตลาดออนไลน์</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-
+            <p className="text-lg md:text-xl opacity-80 max-w-2xl mx-auto leading-relaxed">
+              เรื่องราวของ IC Accounting & Service ไม่ได้เริ่มจากสำนักงานใหญ่โต แต่เริ่มจากความเชื่อที่ว่า "บัญชีไม่ควรเป็นเรื่องยาก"
+            </p>
           </div>
         </section>
+
+        {/* ── FOUNDER STORY ── */}
+        <section className="py-24 container mx-auto px-6 max-w-6xl">
+          <div className="grid md:grid-cols-2 gap-16 items-center">
+            <div className="relative">
+              <div className="relative aspect-[3/4] rounded-2xl overflow-hidden shadow-2xl">
+                <Image
+                  src="https://live.staticflickr.com/65535/55057964151_2951cd7360_b.jpg"
+                  alt="คุณจตุพร ยะเปียงปลูก ผู้ก่อตั้ง IC Accounting"
+                  fill
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                <div className="absolute bottom-6 left-6 right-6">
+                  <p className="text-white font-black text-xl">คุณจตุพร ยะเปียงปลูก</p>
+                  <p className="text-white/70 text-sm">ผู้ก่อตั้ง & CEO · IC Accounting & Service</p>
+                </div>
+              </div>
+              {/* Floating badge */}
+              <div className="absolute -top-4 -right-4 bg-primary text-primary-foreground px-4 py-2 rounded-xl shadow-lg text-sm font-bold">
+                ประสบการณ์ 10+ ปี
+              </div>
+            </div>
+
+            <div className="space-y-6">
+              <div>
+                <p className="text-primary text-xs font-bold tracking-[0.3em] uppercase mb-3">The Founder</p>
+                <h2 className="text-3xl md:text-4xl font-black mb-4 leading-tight">
+                  "ไอซ์" — บัณฑิตบัญชี<br />ที่เชื่อว่าตัวเลขคือโอกาส
+                </h2>
+              </div>
+              <p className="text-muted-foreground leading-relaxed text-lg">
+                คุณจตุพร ยะเปียงปลูก หรือ "ไอซ์" บัณฑิตคณะบริหารธุรกิจ สาขาการบัญชี มหาวิทยาลัยแม่โจ้ (รุ่นที่ 78) เริ่มต้นเส้นทางสายบัญชีอย่างจริงจัง ด้วยความเชื่อว่าระบบบัญชีที่ดีคือรากฐานของทุกธุรกิจที่เติบโต
+              </p>
+              <p className="text-muted-foreground leading-relaxed">
+                ผ่านมาแล้วทั้งองค์กรขนาดใหญ่และ Startup ที่เต็มไปด้วยความเคลื่อนไหว ทำให้ไอซ์เข้าใจความต้องการของนักธุรกิจทุกระดับได้อย่างลึกซึ้ง และนำมาออกแบบบริการที่ "เหมาะกับชีวิตจริง" ของเจ้าของธุรกิจยุคใหม่
+              </p>
+              <blockquote className="border-l-4 border-primary pl-6 py-2">
+                <p className="text-lg italic text-foreground font-medium">
+                  "บัญชีไม่ควรเป็นเรื่องที่เข้าใจยากหรือเป็นภาระของเจ้าของธุรกิจ"
+                </p>
+                <p className="text-sm text-muted-foreground mt-2">— คุณจตุพร ยะเปียงปลูก</p>
+              </blockquote>
+            </div>
+          </div>
+        </section>
+
+        {/* ── TIMELINE ── */}
+        <section className="py-24 bg-secondary/40">
+          <div className="container mx-auto px-6 max-w-4xl">
+            <div className="text-center mb-16">
+              <p className="text-primary text-xs font-bold tracking-[0.3em] uppercase mb-3">Journey</p>
+              <h2 className="text-3xl md:text-4xl font-black">เส้นทางกว่าจะมาเป็น IC</h2>
+              <p className="text-muted-foreground mt-3">ทุกประสบการณ์ล้วนหล่อหลอมให้เราเป็นในแบบที่เราเป็นวันนี้</p>
+            </div>
+
+            <div className="relative">
+              {/* Timeline line */}
+              <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-border hidden md:block" />
+
+              <div className="space-y-12">
+                {timeline.map((item, i) => (
+                  <div key={i} className="md:flex gap-8 items-start">
+                    {/* Dot */}
+                    <div className="hidden md:flex flex-col items-center flex-shrink-0">
+                      <div className={`w-4 h-4 rounded-full ${item.color} ring-4 ring-background shadow-lg mt-1`} />
+                    </div>
+                    {/* Card */}
+                    <div className="flex-1 bg-background rounded-2xl p-6 shadow-sm border border-border hover:shadow-md transition-shadow">
+                      <div className="flex flex-wrap items-start justify-between gap-3 mb-3">
+                        <div>
+                          <span className={`inline-block text-xs font-bold px-3 py-1 rounded-full text-white ${item.color} mb-2`}>
+                            {item.tag}
+                          </span>
+                          <h3 className="text-xl font-black text-foreground">{item.title}</h3>
+                        </div>
+                        <span className="text-sm font-bold text-muted-foreground bg-secondary px-3 py-1 rounded-full whitespace-nowrap">
+                          {item.year}
+                        </span>
+                      </div>
+                      <p className="text-muted-foreground leading-relaxed">{item.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ── CO-FOUNDER ── */}
+        <section className="py-24 container mx-auto px-6 max-w-6xl">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div className="space-y-6 order-2 md:order-1">
+              <div>
+                <p className="text-primary text-xs font-bold tracking-[0.3em] uppercase mb-3">Co-Founder</p>
+                <h2 className="text-3xl md:text-4xl font-black leading-tight">
+                  ผนึกกำลังกับ<br />ผู้เชี่ยวชาญด้านมีเดีย
+                </h2>
+              </div>
+              <p className="text-muted-foreground leading-relaxed text-lg">
+                ความพิเศษของ IC Accounting คือการจับมือกับ <strong>พาร์ทเนอร์ ทีมโปรดัคชั่น</strong> ผู้เชี่ยวชาญที่มีประสบการณ์สูงด้านมีเดียสื่อออนไลน์และออฟไลน์
+              </p>
+              <p className="text-muted-foreground leading-relaxed">
+                ทำให้เราไม่ได้เป็นเพียงสำนักงานบัญชีทั่วไป แต่คือ <strong>One Stop Service</strong> ที่พร้อมสนับสนุนธุรกิจทั้งในด้านการวางรากฐานบัญชีภาษี และการเสริมภาพลักษณ์ผ่านงานมีเดียคุณภาพสูง
+              </p>
+              <div className="flex flex-wrap gap-3">
+                {['บัญชี & ภาษี', 'จดทะเบียนธุรกิจ', 'Visa & Work Permit', 'Media Content'].map((tag) => (
+                  <span key={tag} className="px-4 py-2 rounded-full border border-primary/30 text-primary text-sm font-medium">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+            <div className="order-1 md:order-2">
+              <div className="bg-primary/5 rounded-2xl p-8 border border-primary/10">
+                <div className="text-center mb-6">
+                  <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <span className="text-3xl font-black text-primary">IC</span>
+                  </div>
+                  <h3 className="text-xl font-black">IC Accounting & Service</h3>
+                  <p className="text-muted-foreground text-sm mt-1">จดทะเบียน 2 กรกฎาคม 2568</p>
+                </div>
+                <div className="space-y-3">
+                  {services.map((s, i) => (
+                    <div key={i} className="flex items-start gap-3">
+                      <CheckCircle className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                      <div>
+                        <span className="font-bold text-sm">{s.label}</span>
+                        <span className="text-muted-foreground text-sm"> — {s.desc}</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ── VALUES ── */}
+        <section className="py-24 bg-secondary/40">
+          <div className="container mx-auto px-6 max-w-6xl">
+            <div className="text-center mb-16">
+              <p className="text-primary text-xs font-bold tracking-[0.3em] uppercase mb-3">Why Choose IC</p>
+              <h2 className="text-3xl md:text-4xl font-black">สิ่งที่ทำให้เราแตกต่าง</h2>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {values.map((v, i) => (
+                <div key={i} className="bg-background rounded-2xl p-6 shadow-sm border border-border hover:border-primary/30 hover:shadow-md transition-all">
+                  <div className="w-10 h-10 bg-primary text-primary-foreground rounded-xl flex items-center justify-center font-black text-lg mb-4">
+                    {String(i + 1).padStart(2, '0')}
+                  </div>
+                  <h3 className="font-black text-lg mb-2">{v.title}</h3>
+                  <p className="text-muted-foreground text-sm leading-relaxed">{v.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ── MISSION + CTA ── */}
+        <section className="py-24 container mx-auto px-6 max-w-4xl text-center">
+          <p className="text-primary text-xs font-bold tracking-[0.3em] uppercase mb-3">Our Mission</p>
+          <h2 className="text-3xl md:text-4xl font-black mb-6">ภารกิจของเรา</h2>
+          <blockquote className="text-xl md:text-2xl italic text-muted-foreground leading-relaxed mb-12 max-w-3xl mx-auto">
+            "ส่งมอบความสบายใจให้เจ้าของธุรกิจ ด้วยระบบบัญชีที่เป๊ะ และบริการที่เป็นมากกว่าคู่สัญญา แต่คือเพื่อนคู่คิดที่ช่วยคุณปั้นผลกำไรให้เติบโตอย่างยั่งยืน"
+          </blockquote>
+
+          <div className="bg-primary text-primary-foreground rounded-3xl p-10 relative overflow-hidden">
+            <div className="absolute inset-0 opacity-5"
+              style={{ backgroundImage: 'linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(90deg, #ffffff 1px, transparent 1px)', backgroundSize: '30px 30px' }} />
+            <div className="relative z-10">
+              <h3 className="text-2xl md:text-3xl font-black mb-4">พร้อมให้เราดูแลธุรกิจของคุณแล้วหรือยัง?</h3>
+              <p className="opacity-80 mb-8 text-lg">ปรึกษาฟรี ไม่มีค่าใช้จ่าย ทีมงาน IC พร้อมดูแลคุณทุกวัน</p>
+              <div className="flex flex-wrap gap-4 justify-center">
+                <Link href="/quote"
+                  className="inline-flex items-center gap-2 bg-white text-primary font-bold px-8 py-3 rounded-full hover:bg-white/90 transition-all">
+                  นัดหมายปรึกษาฟรี <ArrowRight className="h-4 w-4" />
+                </Link>
+                <Link href="https://line.me/R/ti/p/@374jshvh" target="_blank"
+                  className="inline-flex items-center gap-2 border border-white/40 text-white font-bold px-8 py-3 rounded-full hover:border-white transition-all">
+                  ติดต่อผ่าน Line
+                </Link>
+              </div>
+            </div>
+          </div>
+        </section>
+
       </main>
       <Footer />
     </div>
