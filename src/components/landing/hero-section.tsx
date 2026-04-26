@@ -1,9 +1,8 @@
 'use client';
 
 import * as React from "react";
-import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { Calculator, FileText, TrendingUp, Clapperboard, Camera, PlayCircle, BarChart2 } from 'lucide-react';
+import { ArrowRight, PlayCircle } from 'lucide-react';
 
 declare global {
   namespace JSX {
@@ -13,6 +12,13 @@ declare global {
   }
 }
 
+const stats = [
+  { num: '100+', label: 'ลูกค้าที่ไว้วางใจ' },
+  { num: '10+', label: 'ปีประสบการณ์' },
+  { num: '5', label: 'บริการครบวงจร' },
+  { num: '5.0', label: 'คะแนน Google' },
+];
+
 export function HeroSection() {
   const [isMounted, setIsMounted] = React.useState(false);
 
@@ -20,80 +26,79 @@ export function HeroSection() {
     setIsMounted(true);
   }, []);
 
-  const floatingIcons = [
-    { Icon: Calculator, size: 'h-16 w-16', position: 'top-1/4 left-[15%]', delay: '0s' },
-    { Icon: FileText, size: 'h-12 w-12', position: 'top-2/3 left-[10%]', delay: '1.5s' },
-    { Icon: TrendingUp, size: 'h-20 w-20', position: 'top-1/2 right-[12%]', delay: '0.5s' },
-    { Icon: Clapperboard, size: 'h-14 w-14', position: 'top-[15%] right-[20%]', delay: '2s' },
-    { Icon: Camera, size: 'h-12 w-12', position: 'bottom-[15%] left-[30%]', delay: '2.5s' },
-    { Icon: PlayCircle, size: 'h-24 w-24', position: 'bottom-[20%] right-[25%]', delay: '1s' },
-    { Icon: BarChart2, size: 'h-16 w-16', position: 'top-1/3 left-[45%]', delay: '3s' },
-  ];
-
   return (
-    <section id="hero" className="relative flex items-center justify-center animate-gradient text-white overflow-hidden" style={{ minHeight: 'calc(100vh - 4rem)' }}>
-       <div className="absolute inset-0 pointer-events-none z-0">
-        {floatingIcons.map(({ Icon, size, position, delay }, index) => (
-          <Icon
-            key={index}
-            className={`absolute ${size} ${position} text-white/10 animate-float`}
-            style={{ animationDelay: delay }}
-          />
-        ))}
-      </div>
-      
-      <div data-aos="fade-up" className="container mx-auto px-6 py-20 flex flex-col items-center text-center relative z-10">
-        {/* จุดแก้ที่ 1: ดึงคำว่าสำนักงานบัญชีเชียงใหม่ขึ้นมาเป็น H1 (หัวข้อหลัก) */}
-        <h1 className="text-5xl md:text-6xl font-bold mb-8 leading-relaxed font-headline">
-          <span className="text-blue-300">สำนักงานบัญชีเชียงใหม่</span> ครบจบทุกเรื่องบัญชีและหลังบ้านธุรกิจ
+    <section id="hero" className="relative animate-gradient text-white overflow-hidden">
+      {/* Grid background */}
+      <div className="absolute inset-0 opacity-10"
+        style={{ backgroundImage: 'linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(90deg, #ffffff 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
+
+      {/* Glow blobs */}
+      <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-white/5 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-blue-400/10 rounded-full blur-[100px] pointer-events-none" />
+
+      <div className="container mx-auto px-6 py-28 md:py-36 relative z-10 max-w-6xl">
+
+        {/* Label */}
+        <div className="flex justify-center mb-8">
+          <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-5 py-2 rounded-full text-sm font-medium border border-white/20">
+            <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
+            IC Accounting & Service — เชียงใหม่
+          </div>
+        </div>
+
+        {/* Headline */}
+        <h1 className="text-5xl md:text-7xl font-black text-center leading-[0.95] tracking-tight mb-8">
+          <span className="block text-white">สำนักงานบัญชีเชียงใหม่</span>
+          <span className="block text-white/40 text-4xl md:text-5xl font-black mt-3">ครบจบทุกเรื่อง หลังบ้านธุรกิจ</span>
         </h1>
 
-        {/* จุดแก้ที่ 2: ปรับประโยคบรรยายให้รองรับการค้นหาที่กว้างขึ้น */}
-        <p className="text-xl opacity-90 mb-10 max-w-2xl">
-          IC Accounting & Service บริการทำบัญชี ภาษี และมีเดียคอนเทนต์ สำหรับธุรกิจในเชียงใหม่และทั่วประเทศ เปลี่ยนตัวเลขที่ซับซ้อน เป็นโอกาสสู่ความสำเร็จ ด้วยประสบการณ์กว่า 10 ปี
+        {/* Sub */}
+        <p className="text-center text-lg md:text-xl text-white/70 max-w-2xl mx-auto leading-relaxed mb-12">
+          บริการทำบัญชี ภาษี และมีเดียคอนเทนต์ สำหรับธุรกิจในเชียงใหม่และทั่วประเทศ เปลี่ยนตัวเลขที่ซับซ้อน เป็นโอกาสสู่ความสำเร็จ ด้วยประสบการณ์กว่า 10 ปี
         </p>
 
-        <div data-aos="fade-up" data-aos-delay="200" className="relative w-full max-w-4xl mx-auto aspect-video rounded-xl overflow-hidden shadow-2xl mb-12 bg-black/20">
-           {isMounted ? (
-             <div className="w-full h-full relative">
-               <style dangerouslySetInnerHTML={{ __html: `
-                 wistia-player[media-id='hd04a418nd']:not(:defined) { 
-                   background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/hd04a418nd/swatch'); 
-                   display: block; 
-                   filter: blur(5px); 
-                   padding-top:56.25%; 
-                 }
-               `}} />
-               <wistia-player 
-                 media-id="hd04a418nd" 
-                 aspect="1.7777777777777777"
-                 muted="true"
-                 autoplay="true"
-                 style={{ width: '100%', height: '100%' }}
-               ></wistia-player>
-             </div>
-           ) : (
-             <div className="w-full h-full bg-slate-900 animate-pulse flex items-center justify-center">
-               <span className="text-white/20">Loading Video...</span>
-             </div>
-           )}
+        {/* CTA Buttons */}
+        <div className="flex flex-wrap gap-4 justify-center mb-20">
+          <Link href="https://line.me/R/ti/p/@374jshvh" target="_blank"
+            className="inline-flex items-center gap-3 bg-white text-blue-900 font-black px-8 h-14 rounded-full transition-all hover:scale-105 hover:shadow-xl hover:shadow-white/20 text-base">
+            ปรึกษาเราฟรี <ArrowRight className="h-4 w-4" />
+          </Link>
+          <Link href="/#services"
+            className="inline-flex items-center gap-3 border-2 border-white/30 hover:border-white/60 text-white/80 hover:text-white px-8 h-14 rounded-full transition-all text-base">
+            <PlayCircle className="h-5 w-5" /> ดูบริการทั้งหมด
+          </Link>
         </div>
 
-        <div data-aos="fade-up" data-aos-delay="400" className="flex flex-col sm:flex-row gap-4">
-          <Button
-            asChild
-            className="bg-white text-blue-900 px-8 py-4 rounded-full font-bold hover:bg-blue-50 transition shadow-xl"
-          >
-            <Link href="https://line.me/R/ti/p/@374jshvh" target="_blank" rel="noopener noreferrer">ปรึกษาเราฟรี</Link>
-          </Button>
-          <Button
-            asChild
-            variant="outline"
-            className="border-2 border-white bg-transparent px-8 py-4 rounded-full font-bold text-white hover:bg-white hover:text-blue-900 transition"
-          >
-            <Link href="/#services">ดูบริการทั้งหมด</Link>
-          </Button>
+        {/* Video */}
+        <div className="relative w-full max-w-4xl mx-auto aspect-video rounded-2xl overflow-hidden shadow-2xl border border-white/10 mb-20 bg-black/20">
+          {isMounted ? (
+            <>
+              <style dangerouslySetInnerHTML={{ __html: `wistia-player[media-id='hd04a418nd']:not(:defined){background:center/contain no-repeat url('https://fast.wistia.com/embed/medias/hd04a418nd/swatch');display:block;filter:blur(5px);padding-top:56.25%}` }} />
+              <wistia-player
+                media-id="hd04a418nd"
+                aspect="1.7777777777777777"
+                muted="true"
+                autoplay="true"
+                style={{ width: '100%', height: '100%' }}
+              />
+            </>
+          ) : (
+            <div className="w-full h-full bg-slate-900 animate-pulse flex items-center justify-center">
+              <span className="text-white/20 text-sm">Loading Video...</span>
+            </div>
+          )}
         </div>
+
+        {/* Stats */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-12 border-t border-white/10 max-w-4xl mx-auto">
+          {stats.map((s) => (
+            <div key={s.label} className="text-center">
+              <div className="text-4xl md:text-5xl font-black text-white mb-1">{s.num}</div>
+              <div className="text-xs text-white/50 uppercase tracking-wider">{s.label}</div>
+            </div>
+          ))}
+        </div>
+
       </div>
     </section>
   );

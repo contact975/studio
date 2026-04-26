@@ -3,9 +3,7 @@ import { Header } from '@/components/landing/header';
 import { Footer } from '@/components/landing/footer';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Briefcase, BadgeHelp, Star } from 'lucide-react';
+import { Briefcase, BadgeHelp, Star, CheckCircle, ArrowRight, MessageSquare } from 'lucide-react';
 import { PromoCarousel } from '@/components/landing/promo-carousel';
 
 export const metadata: Metadata = {
@@ -19,6 +17,33 @@ export const metadata: Metadata = {
   },
 };
 
+const services = [
+  {
+    icon: <Briefcase className="h-6 w-6" />,
+    title: 'Non-Immigrant B Visa',
+    desc: 'บริการยื่นขอและต่ออายุวีซ่าธุรกิจ สำหรับชาวต่างชาติที่เข้ามาทำงานหรือประกอบธุรกิจในไทย',
+    tag: 'Business Visa',
+  },
+  {
+    icon: <BadgeHelp className="h-6 w-6" />,
+    title: 'Work Permit',
+    desc: 'ดำเนินการขอใบอนุญาตทำงาน เปลี่ยนแปลงข้อมูลนายจ้าง หรือแจ้งออกตามระเบียบกรมการจัดหางาน',
+    tag: 'Work Authorization',
+  },
+  {
+    icon: <Star className="h-6 w-6" />,
+    title: 'LTR & SMART Visa',
+    desc: 'บริการที่ปรึกษาสำหรับวีซ่าระยะยาวประเภทพิเศษ สำหรับผู้เชี่ยวชาญ นักลงทุน หรือกลุ่ม Digital Nomad',
+    tag: 'Long-term Visa',
+  },
+];
+
+const whyUs = [
+  { num: '01', title: 'ภาษาไม่ใช่ปัญหา', desc: 'เรามีทีมงานที่สื่อสารภาษาอังกฤษได้อย่างคล่องแคล่ว พร้อมประสานงานกับเจ้าหน้าที่แทนคุณ' },
+  { num: '02', title: 'ความถูกต้อง 100%', desc: 'ตรวจสอบเอกสารอย่างละเอียด ลดโอกาสการถูกปฏิเสธจากกองตรวจคนเข้าเมือง' },
+  { num: '03', title: 'บริการครบวงจร', desc: 'เชื่อมต่อกับบริการบัญชีและภาษี ช่วยให้การต่อวีซ่าในปีต่อๆ ไปทำได้อย่างราบรื่น' },
+];
+
 export default function VisaWorkPermitPage() {
   return (
     <div className="flex flex-col min-h-dvh bg-background text-foreground">
@@ -26,91 +51,137 @@ export default function VisaWorkPermitPage() {
       <main className="flex-1">
         <PromoCarousel />
 
-        <section className="relative animate-gradient py-24 text-primary-foreground overflow-hidden">
-          <div className="absolute inset-0 opacity-20">
+        {/* ── HERO ── */}
+        <section className="relative animate-gradient py-24 md:py-32 text-primary-foreground overflow-hidden">
+          <div className="absolute inset-0 opacity-10"
+            style={{ backgroundImage: 'linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(90deg, #ffffff 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
+          <div className="absolute inset-0 opacity-15">
             <Image
               src="https://images.unsplash.com/photo-1544027993-37dbfe43562a?auto=format&fit=crop&q=80&w=2000"
               fill
-              className="w-full h-full object-cover"
+              className="object-cover"
               alt="Thailand Visa documents"
             />
           </div>
-          <div className="container mx-auto px-6 relative z-10">
-            <h1 className="text-4xl md:text-5xl font-bold font-headline mb-6">Expert Visa & Work Permit Services</h1>
-            <p className="text-xl opacity-90 max-w-2xl leading-relaxed">
-              ช่วยให้การพำนักและทำงานในประเทศไทยเป็นเรื่องง่าย เราดูแลทุกขั้นตอนอย่างมืออาชีพ เพื่อให้คุณโฟกัสกับการทำธุรกิจและใช้ชีวิตในเชียงใหม่ได้อย่างเต็มที่
+          <div className="container mx-auto px-6 relative z-10 max-w-4xl">
+            <nav className="text-sm mb-6 opacity-70">
+              <Link href="/" className="hover:opacity-100 transition-opacity">หน้าแรก</Link>
+              <span className="mx-2">/</span>
+              <span>Visa & Work Permit</span>
+            </nav>
+            <p className="text-xs font-bold tracking-[0.3em] uppercase mb-4 opacity-70">Expat Services</p>
+            <h1 className="text-4xl md:text-6xl font-black leading-tight mb-6">
+              Visa & Work Permit<br />Chiang Mai
+            </h1>
+            <p className="text-lg md:text-xl opacity-80 max-w-2xl leading-relaxed mb-8">
+              ช่วยให้การพำนักและทำงานในประเทศไทยเป็นเรื่องง่าย เราดูแลทุกขั้นตอนอย่างมืออาชีพ เพื่อให้คุณโฟกัสกับธุรกิจและชีวิตในเชียงใหม่ได้อย่างเต็มที่
             </p>
+            <div className="flex flex-wrap gap-3">
+              {['English-speaking Team', 'ความถูกต้อง 100%', 'ครบทุกประเภทวีซ่า', 'ปรึกษาฟรีก่อนตัดสินใจ'].map((item) => (
+                <div key={item} className="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full text-sm">
+                  <CheckCircle className="h-4 w-4 text-green-300 flex-shrink-0" />
+                  <span>{item}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 
-        <section className="py-20 bg-background">
-          <div className="container mx-auto px-6">
+        {/* ── SERVICES ── */}
+        <section className="py-24">
+          <div className="container mx-auto px-6 max-w-6xl">
             <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold font-headline text-foreground">บริการหลักของเรา</h2>
-              <div className="w-24 h-1.5 bg-primary mx-auto mt-4 rounded-full"></div>
+              <p className="text-primary text-xs font-bold tracking-[0.3em] uppercase mb-3">Our Services</p>
+              <h2 className="text-3xl md:text-4xl font-black mb-3">บริการ Visa & Work Permit</h2>
+              <p className="text-muted-foreground">ครอบคลุมทุกประเภทวีซ่าสำหรับชาวต่างชาติในเชียงใหม่</p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <Card className="p-8 text-center shadow-sm hover:shadow-lg transition-shadow">
-                <div className="flex justify-center mb-4">
-                  <Briefcase className="h-12 w-12 text-primary" />
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {services.map((s, i) => (
+                <div key={i}
+                  className="bg-secondary/40 rounded-2xl p-8 border border-border hover:border-primary/30 hover:shadow-md transition-all">
+                  <div className="flex items-start justify-between mb-6">
+                    <div className="w-12 h-12 bg-primary/10 text-primary rounded-xl flex items-center justify-center">
+                      {s.icon}
+                    </div>
+                    <span className="text-xs font-bold text-primary bg-primary/10 px-3 py-1 rounded-full">{s.tag}</span>
+                  </div>
+                  <h3 className="font-black text-xl mb-3">{s.title}</h3>
+                  <p className="text-muted-foreground text-sm leading-relaxed">{s.desc}</p>
                 </div>
-                <h3 className="text-xl font-bold mb-3">Non-Immigrant B Visa</h3>
-                <p className="text-muted-foreground leading-relaxed">บริการยื่นขอและต่ออายุวีซ่าธุรกิจ สำหรับชาวต่างชาติที่เข้ามาทำงานหรือประกอบธุรกิจในไทย</p>
-              </Card>
-              <Card className="p-8 text-center shadow-sm hover:shadow-lg transition-shadow">
-                <div className="flex justify-center mb-4">
-                  <BadgeHelp className="h-12 w-12 text-primary" />
-                </div>
-                <h3 className="text-xl font-bold mb-3">Work Permit</h3>
-                <p className="text-muted-foreground leading-relaxed">ดำเนินการขอใบอนุญาตทำงาน เปลี่ยนแปลงข้อมูลนายจ้าง หรือแจ้งออกตามระเบียบกรมการจัดหางาน</p>
-              </Card>
-              <Card className="p-8 text-center shadow-sm hover:shadow-lg transition-shadow">
-                <div className="flex justify-center mb-4">
-                  <Star className="h-12 w-12 text-primary" />
-                </div>
-                <h3 className="text-xl font-bold mb-3">LTR & SMART Visa</h3>
-                <p className="text-muted-foreground leading-relaxed">บริการที่ปรึกษาสำหรับวีซ่าระยะยาวประเภทพิเศษ สำหรับผู้เชี่ยวชาญ นักลงทุน หรือกลุ่ม Digital Nomad</p>
-              </Card>
+              ))}
             </div>
           </div>
         </section>
 
-        <section className="py-20 bg-secondary">
-          <div className="container mx-auto px-6">
-            <div className="flex flex-wrap items-center -mx-4">
-              <div className="w-full lg:w-1/2 px-4 mb-10 lg:mb-0">
-                <h2 className="text-3xl md:text-4xl font-bold font-headline text-foreground mb-8">ทำไมต้องเลือกใช้บริการกับเรา?</h2>
-                <div className="space-y-8">
-                  {[
-                    { num: '1', title: 'ภาษาไม่ใช่ปัญหา', desc: 'เรามีทีมงานที่สื่อสารภาษาอังกฤษได้อย่างคล่องแคล่ว พร้อมประสานงานกับเจ้าหน้าที่แทนคุณ' },
-                    { num: '2', title: 'ความถูกต้อง 100%', desc: 'ตรวจสอบเอกสารอย่างละเอียด ลดโอกาสการถูกปฏิเสธจากกองตรวจคนเข้าเมือง' },
-                    { num: '3', title: 'บริการครบวงจร', desc: 'เชื่อมต่อกับบริการบัญชีและภาษี ช่วยให้การต่อวีซ่าในปีต่อๆ ไปทำได้อย่างราบรื่น' },
-                  ].map((item) => (
-                    <div key={item.num} className="flex gap-4">
-                      <div className="flex-shrink-0 w-12 h-12 bg-primary text-primary-foreground rounded-full flex items-center justify-center font-bold text-xl">{item.num}</div>
+        {/* ── WHY US ── */}
+        <section className="py-24 bg-secondary/40">
+          <div className="container mx-auto px-6 max-w-6xl">
+            <div className="grid md:grid-cols-2 gap-16 items-center">
+              <div className="space-y-6">
+                <div>
+                  <p className="text-primary text-xs font-bold tracking-[0.3em] uppercase mb-3">Why Choose IC</p>
+                  <h2 className="text-3xl md:text-4xl font-black mb-4">ทำไมต้องเลือกใช้บริการกับเรา?</h2>
+                </div>
+                <div className="space-y-4">
+                  {whyUs.map((item) => (
+                    <div key={item.num} className="flex gap-4 bg-background rounded-2xl p-5 border border-border hover:border-primary/30 transition-colors">
+                      <div className="flex-shrink-0 w-12 h-12 bg-primary text-primary-foreground rounded-xl flex items-center justify-center font-black text-sm">
+                        {item.num}
+                      </div>
                       <div>
-                        <h4 className="font-bold text-lg mb-1">{item.title}</h4>
-                        <p className="text-muted-foreground">{item.desc}</p>
+                        <h4 className="font-black text-base mb-1">{item.title}</h4>
+                        <p className="text-muted-foreground text-sm leading-relaxed">{item.desc}</p>
                       </div>
                     </div>
                   ))}
                 </div>
               </div>
-              <div className="w-full lg:w-1/2 px-4">
-                <Card className="p-8 rounded-2xl shadow-lg text-center">
-                  <CardHeader className="p-0 mb-6">
-                    <CardTitle className="text-2xl font-bold">ปรึกษาเรื่องวีซ่าฟรีวันนี้</CardTitle>
-                  </CardHeader>
-                  <CardContent className="p-0">
-                    <Button asChild size="lg">
-                      <Link href="https://line.me/R/ti/p/@374jshvh" target="_blank">คลิกเลย</Link>
-                    </Button>
-                  </CardContent>
-                </Card>
+
+              <div className="bg-background rounded-3xl p-8 border border-border shadow-sm">
+                <p className="text-primary text-xs font-bold tracking-[0.3em] uppercase mb-4">Free Consultation</p>
+                <h3 className="text-2xl font-black mb-3">ปรึกษาเรื่องวีซ่าฟรีวันนี้</h3>
+                <p className="text-muted-foreground mb-8 leading-relaxed">
+                  ไม่แน่ใจว่าต้องใช้วีซ่าประเภทไหน? ทีมงาน IC พร้อมให้คำแนะนำที่ถูกต้องและตรงกับสถานการณ์ของคุณ
+                </p>
+                <div className="space-y-3">
+                  <Link href="https://line.me/R/ti/p/@374jshvh" target="_blank"
+                    className="flex items-center justify-center gap-2 w-full bg-primary text-primary-foreground font-bold py-3 rounded-2xl hover:opacity-90 transition-all">
+                    <MessageSquare className="h-4 w-4" /> ติดต่อผ่าน Line
+                  </Link>
+                  <Link href="/quote"
+                    className="flex items-center justify-center gap-2 w-full border-2 border-primary text-primary font-bold py-3 rounded-2xl hover:bg-primary hover:text-primary-foreground transition-all">
+                    นัดหมายปรึกษาฟรี <ArrowRight className="h-4 w-4" />
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
         </section>
+
+        {/* ── CTA ── */}
+        <section className="py-16">
+          <div className="container mx-auto px-6 max-w-4xl">
+            <div className="bg-primary text-primary-foreground rounded-3xl p-10 relative overflow-hidden text-center">
+              <div className="absolute inset-0 opacity-5"
+                style={{ backgroundImage: 'linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(90deg, #ffffff 1px, transparent 1px)', backgroundSize: '30px 30px' }} />
+              <div className="relative z-10">
+                <h3 className="text-2xl md:text-3xl font-black mb-3">Ready to Start Your Thailand Journey?</h3>
+                <p className="opacity-80 mb-8">เราพร้อมดูแลทุกขั้นตอนให้คุณ ตั้งแต่เอกสารจนถึงการยื่นคำร้อง</p>
+                <div className="flex flex-wrap gap-4 justify-center">
+                  <Link href="/quote"
+                    className="inline-flex items-center gap-2 bg-white text-primary font-bold px-8 py-3 rounded-full hover:bg-white/90 transition-all">
+                    นัดหมายปรึกษาฟรี <ArrowRight className="h-4 w-4" />
+                  </Link>
+                  <Link href="https://line.me/R/ti/p/@374jshvh" target="_blank"
+                    className="inline-flex items-center gap-2 border border-white/40 text-white font-bold px-8 py-3 rounded-full hover:border-white transition-all">
+                    Contact via Line
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
       </main>
       <Footer />
     </div>

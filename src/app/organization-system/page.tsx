@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 import { Header } from '@/components/landing/header';
 import { Footer } from '@/components/landing/footer';
-import { BarChart, ShieldCheck, Users } from 'lucide-react';
-import { Card } from '@/components/ui/card';
+import Link from 'next/link';
+import { BarChart, ShieldCheck, Users, ArrowRight, MessageSquare, CheckCircle } from 'lucide-react';
 import { PromoCarousel } from '@/components/landing/promo-carousel';
 
 export const metadata: Metadata = {
@@ -16,6 +16,43 @@ export const metadata: Metadata = {
   },
 };
 
+const solutions = [
+  {
+    icon: <BarChart className="h-6 w-6" />,
+    title: 'ระบบบัญชีและภาษี Cloud',
+    desc: 'วางรากฐานการบันทึกบัญชีผ่านระบบ Cloud (Clero) เชื่อมโยงหน้าบ้านและหลังบ้านเข้าด้วยกันอย่างราบรื่น',
+    tag: 'Cloud Accounting',
+  },
+  {
+    icon: <ShieldCheck className="h-6 w-6" />,
+    title: 'ระบบควบคุมภายใน',
+    desc: 'ออกแบบผังการอนุมัติ (Approval Flow) และการเช็คสต็อกสินค้า เพื่อป้องกันความผิดพลาดและการทุจริต',
+    tag: 'Internal Control',
+  },
+  {
+    icon: <Users className="h-6 w-6" />,
+    title: 'ระบบงานบุคคลและเงินเดือน',
+    desc: 'จัดระเบียบงาน HR ตั้งแต่การลงเวลาทำงาน จนถึงการจ่ายเงินเดือนและยื่นประกันสังคมอัตโนมัติ',
+    tag: 'HR & Payroll',
+  },
+];
+
+const steps = [
+  { step: '01', title: 'Audit & Analysis', desc: 'สำรวจขั้นตอนการทำงานปัจจุบันและค้นหาจุดที่ต้องการการปรับปรุง (Pain Points)' },
+  { step: '02', title: 'Design & Tools', desc: 'ออกแบบ workflow ใหม่และเลือกใช้ซอฟต์แวร์ที่เหมาะสมกับขนาดธุรกิจ' },
+  { step: '03', title: 'Implement & Training', desc: 'ติดตั้งระบบจริง พร้อมจัดอบรมทีมงานให้ใช้งานได้อย่างชำนาญ' },
+  { step: '04', title: 'Support & Optimize', desc: 'ติดตามผลและปรับแต่งระบบให้เสถียรที่สุดเพื่อการเติบโตในระยะยาว' },
+];
+
+const benefits = [
+  'ลดเวลางานเอกสารที่ซ้ำซ้อน',
+  'เข้าถึงข้อมูลการเงินแบบ Real-time',
+  'ลดความเสี่ยงจากความผิดพลาดของมนุษย์',
+  'ระบบที่ scale ได้ตามการเติบโตของธุรกิจ',
+  'ทีมงานทำงานได้ง่ายและมีประสิทธิภาพขึ้น',
+  'รายงานทางการเงินที่แม่นยำและทันเวลา',
+];
+
 export default function OrganizationSystemPage() {
   return (
     <div className="flex flex-col min-h-dvh bg-background text-foreground">
@@ -23,69 +60,156 @@ export default function OrganizationSystemPage() {
       <main className="flex-1">
         <PromoCarousel />
 
-        <section className="animate-gradient py-24 text-primary-foreground">
-          <div className="container mx-auto px-6">
-            <div className="max-w-3xl">
-              <h1 className="text-4xl md:text-5xl font-bold font-headline mb-6">วางระบบองค์กรและบัญชีดิจิทัล</h1>
-              <p className="text-xl opacity-90 leading-relaxed">
-                ยกระดับธุรกิจของคุณด้วยระบบการจัดการที่แม่นยำ ลดความซ้ำซ้อน และเข้าถึงข้อมูลได้แบบ Real-time
-                เปลี่ยน "งานเอกสาร" ให้เป็น "กลยุทธ์" ด้วยเทคโนโลยีล่าสุด
-              </p>
-            </div>
-          </div>
-        </section>
-
-        <section className="py-20 bg-background">
-          <div className="container mx-auto px-6">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl font-bold font-headline text-foreground">โซลูชันเพื่อการจัดการที่เหนือกว่า</h2>
-              <div className="w-20 h-1.5 bg-primary mx-auto mt-4 rounded-full"></div>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-              <Card className="text-center p-8 border-0 shadow-sm hover:shadow-lg transition-shadow bg-card">
-                <div className="w-16 h-16 bg-primary/10 text-primary rounded-2xl flex items-center justify-center mx-auto mb-6">
-                  <BarChart className="h-8 w-8" />
+        {/* ── HERO ── */}
+        <section className="animate-gradient text-primary-foreground py-24 md:py-32 overflow-hidden relative">
+          <div className="absolute inset-0 opacity-10"
+            style={{ backgroundImage: 'linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(90deg, #ffffff 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
+          <div className="container mx-auto px-6 relative z-10 max-w-4xl">
+            <nav className="text-sm mb-6 opacity-70">
+              <Link href="/" className="hover:opacity-100 transition-opacity">หน้าแรก</Link>
+              <span className="mx-2">/</span>
+              <span>วางระบบองค์กร</span>
+            </nav>
+            <p className="text-xs font-bold tracking-[0.3em] uppercase mb-4 opacity-70">Organization System</p>
+            <h1 className="text-4xl md:text-6xl font-black leading-tight mb-6">
+              วางระบบองค์กร<br />และบัญชีดิจิทัล
+            </h1>
+            <p className="text-lg md:text-xl opacity-80 max-w-2xl leading-relaxed mb-8">
+              ยกระดับธุรกิจด้วยระบบการจัดการที่แม่นยำ ลดความซ้ำซ้อน เข้าถึงข้อมูลแบบ Real-time เปลี่ยน "งานเอกสาร" ให้เป็น "กลยุทธ์"
+            </p>
+            <div className="flex flex-wrap gap-3">
+              {['ระบบ Cloud-based', 'Real-time Data', 'ลดงาน Manual', 'ซัพพอร์ตหลังติดตั้ง'].map((item) => (
+                <div key={item} className="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full text-sm">
+                  <CheckCircle className="h-4 w-4 text-green-300 flex-shrink-0" />
+                  <span>{item}</span>
                 </div>
-                <h3 className="text-xl font-bold mb-4 text-foreground">ระบบบัญชีและภาษี Cloud</h3>
-                <p className="text-muted-foreground">วางรากฐานการบันทึกบัญชีผ่านระบบ Cloud (Clero) เชื่อมโยงหน้าบ้านและหลังบ้านเข้าด้วยกันอย่างราบรื่น</p>
-              </Card>
-              <Card className="text-center p-8 border-0 shadow-sm hover:shadow-lg transition-shadow bg-card">
-                <div className="w-16 h-16 bg-primary/10 text-primary rounded-2xl flex items-center justify-center mx-auto mb-6">
-                  <ShieldCheck className="h-8 w-8" />
-                </div>
-                <h3 className="text-xl font-bold mb-4 text-foreground">ระบบควบคุมภายใน (Internal Control)</h3>
-                <p className="text-muted-foreground">ออกแบบผังการอนุมัติ (Approval Flow) และการเช็คสต็อกสินค้า เพื่อป้องกันความผิดพลาดและการทุจริต</p>
-              </Card>
-              <Card className="text-center p-8 border-0 shadow-sm hover:shadow-lg transition-shadow bg-card">
-                <div className="w-16 h-16 bg-primary/10 text-primary rounded-2xl flex items-center justify-center mx-auto mb-6">
-                  <Users className="h-8 w-8" />
-                </div>
-                <h3 className="text-xl font-bold mb-4 text-foreground">ระบบงานบุคคลและเงินเดือน</h3>
-                <p className="text-muted-foreground">จัดระเบียบงาน HR ตั้งแต่การลงเวลาทำงาน จนถึงการจ่ายเงินเดือนและยื่นประกันสังคมอัตโนมัติ</p>
-              </Card>
-            </div>
-          </div>
-        </section>
-
-        <section className="py-16 bg-secondary">
-          <div className="container mx-auto px-6">
-            <h2 className="text-2xl font-bold text-center mb-12 text-foreground">ขั้นตอนการพัฒนาระบบร่วมกับเรา</h2>
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 items-stretch">
-              {[
-                { step: '01', title: 'Audit & Analysis', desc: 'สำรวจขั้นตอนการทำงานปัจจุบันและค้นหาจุดที่ต้องการการปรับปรุง (Pain Points)' },
-                { step: '02', title: 'Design & Tools', desc: 'ออกแบบ workflow ใหม่และเลือกใช้ซอฟต์แวร์ที่เหมาะสมกับขนาดธุรกิจ' },
-                { step: '03', title: 'Implement & Training', desc: 'ติดตั้งระบบจริง พร้อมจัดอบรมทีมงานให้ใช้งานได้อย่างชำนาญ' },
-                { step: '04', title: 'Support & Optimize', desc: 'ติดตามผลและปรับแต่งระบบให้เสถียรที่สุดเพื่อการเติบโตในระยะยาว' },
-              ].map((item) => (
-                <Card key={item.step} className="flex-1 bg-card p-6 rounded-xl shadow-sm border-l-4 border-primary">
-                  <span className="text-primary font-bold">Step {item.step}</span>
-                  <h4 className="font-bold mt-2 text-foreground">{item.title}</h4>
-                  <p className="text-sm text-muted-foreground mt-2">{item.desc}</p>
-                </Card>
               ))}
             </div>
           </div>
         </section>
+
+        {/* ── SOLUTIONS ── */}
+        <section className="py-24">
+          <div className="container mx-auto px-6 max-w-6xl">
+            <div className="text-center mb-16">
+              <p className="text-primary text-xs font-bold tracking-[0.3em] uppercase mb-3">Solutions</p>
+              <h2 className="text-3xl md:text-4xl font-black mb-3">โซลูชันเพื่อการจัดการที่เหนือกว่า</h2>
+              <p className="text-muted-foreground">ระบบที่ออกแบบมาเพื่อธุรกิจ SME ในยุคดิจิทัล</p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {solutions.map((s, i) => (
+                <div key={i}
+                  className="bg-secondary/40 rounded-2xl p-8 border border-border hover:border-primary/30 hover:shadow-md transition-all">
+                  <div className="flex items-start justify-between mb-6">
+                    <div className="w-12 h-12 bg-primary/10 text-primary rounded-xl flex items-center justify-center">
+                      {s.icon}
+                    </div>
+                    <span className="text-xs font-bold text-primary bg-primary/10 px-3 py-1 rounded-full">{s.tag}</span>
+                  </div>
+                  <h3 className="font-black text-xl mb-3">{s.title}</h3>
+                  <p className="text-muted-foreground text-sm leading-relaxed">{s.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ── BENEFITS ── */}
+        <section className="py-24 bg-secondary/40">
+          <div className="container mx-auto px-6 max-w-6xl">
+            <div className="grid md:grid-cols-2 gap-16 items-center">
+              <div className="space-y-6">
+                <div>
+                  <p className="text-primary text-xs font-bold tracking-[0.3em] uppercase mb-3">Benefits</p>
+                  <h2 className="text-3xl md:text-4xl font-black mb-4">ธุรกิจของคุณจะได้อะไร?</h2>
+                  <p className="text-muted-foreground leading-relaxed">
+                    เมื่อระบบหลังบ้านแข็งแกร่ง คุณจะมีเวลาโฟกัสกับสิ่งที่สำคัญจริงๆ — การเติบโตของธุรกิจ
+                  </p>
+                </div>
+                <ul className="space-y-3">
+                  {benefits.map((b, i) => (
+                    <li key={i} className="flex items-center gap-3 bg-background rounded-xl p-4 border border-border">
+                      <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
+                      <span className="font-medium">{b}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="bg-background rounded-3xl p-8 border border-border shadow-sm">
+                <p className="text-primary text-xs font-bold tracking-[0.3em] uppercase mb-4">Powered by</p>
+                <h3 className="text-2xl font-black mb-3">ใช้งานร่วมกับ Clero</h3>
+                <p className="text-muted-foreground mb-6 leading-relaxed">
+                  IC Accounting เป็นพาร์ทเนอร์กับ Clero ซอฟต์แวร์บัญชีรุ่นใหม่ที่ออกแบบมาสำหรับ SME ไทยโดยเฉพาะ เชื่อมโยงบัญชี ภาษี และการเงินไว้ในที่เดียว
+                </p>
+                <div className="space-y-3 mb-8">
+                  {['Dashboard แบบ Real-time', 'ออกใบกำกับภาษีอิเล็กทรอนิกส์', 'เชื่อมต่อกับ e-Tax Invoice', 'รายงานทางการเงินอัตโนมัติ'].map((f) => (
+                    <div key={f} className="flex items-center gap-3 text-sm">
+                      <div className="w-2 h-2 bg-primary rounded-full flex-shrink-0" />
+                      <span className="text-muted-foreground">{f}</span>
+                    </div>
+                  ))}
+                </div>
+                <Link href="https://line.me/R/ti/p/@374jshvh" target="_blank"
+                  className="flex items-center justify-center gap-2 w-full bg-primary text-primary-foreground font-bold py-3 rounded-2xl hover:opacity-90 transition-all">
+                  <MessageSquare className="h-4 w-4" /> สอบถามรายละเอียด
+                </Link>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ── PROCESS ── */}
+        <section className="py-24">
+          <div className="container mx-auto px-6 max-w-6xl">
+            <div className="text-center mb-16">
+              <p className="text-primary text-xs font-bold tracking-[0.3em] uppercase mb-3">Process</p>
+              <h2 className="text-3xl md:text-4xl font-black mb-3">ขั้นตอนการพัฒนาระบบร่วมกับเรา</h2>
+              <p className="text-muted-foreground">4 ขั้นตอนที่ออกแบบมาให้ราบรื่นที่สุด</p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+              {steps.map((item, i) => (
+                <div key={item.step}
+                  className="relative bg-secondary/40 rounded-2xl p-6 border border-border hover:border-primary/30 hover:shadow-md transition-all">
+                  <div className="text-5xl font-black text-primary/10 mb-4 leading-none">{item.step}</div>
+                  <span className="text-primary text-xs font-bold">Step {item.step}</span>
+                  <h4 className="font-black text-lg mt-1 mb-3">{item.title}</h4>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
+                  {i < steps.length - 1 && (
+                    <div className="hidden md:block absolute top-8 -right-3 z-10 text-border">
+                      <ArrowRight className="h-5 w-5" />
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ── CTA ── */}
+        <section className="py-16 bg-secondary/40">
+          <div className="container mx-auto px-6 max-w-4xl">
+            <div className="bg-primary text-primary-foreground rounded-3xl p-10 relative overflow-hidden text-center">
+              <div className="absolute inset-0 opacity-5"
+                style={{ backgroundImage: 'linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(90deg, #ffffff 1px, transparent 1px)', backgroundSize: '30px 30px' }} />
+              <div className="relative z-10">
+                <h3 className="text-2xl md:text-3xl font-black mb-3">พร้อมยกระดับระบบหลังบ้านของคุณ?</h3>
+                <p className="opacity-80 mb-8">ปรึกษาทีมงาน IC ฟรี เราจะวิเคราะห์ Pain Points และแนะนำระบบที่เหมาะสมที่สุดสำหรับธุรกิจของคุณ</p>
+                <div className="flex flex-wrap gap-4 justify-center">
+                  <Link href="/quote"
+                    className="inline-flex items-center gap-2 bg-white text-primary font-bold px-8 py-3 rounded-full hover:bg-white/90 transition-all">
+                    นัดหมายปรึกษาฟรี <ArrowRight className="h-4 w-4" />
+                  </Link>
+                  <Link href="https://line.me/R/ti/p/@374jshvh" target="_blank"
+                    className="inline-flex items-center gap-2 border border-white/40 text-white font-bold px-8 py-3 rounded-full hover:border-white transition-all">
+                    ติดต่อผ่าน Line
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
       </main>
       <Footer />
     </div>

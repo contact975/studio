@@ -2,11 +2,9 @@ import type { Metadata } from 'next';
 import { Header } from '@/components/landing/header';
 import { Footer } from '@/components/landing/footer';
 import Link from 'next/link';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { PromoCarousel } from '@/components/landing/promo-carousel';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { CheckCircle2, ShieldCheck, BadgeCheck, Zap } from 'lucide-react';
+import { CheckCircle2, ShieldCheck, BadgeCheck, Zap, ArrowRight, MessageSquare } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'ปิดงบการเงินเชียงใหม่ ถูกต้อง ทันกำหนด | IC Accounting',
@@ -23,34 +21,29 @@ const auditServices = [
   {
     title: "ตรวจสอบงบการเงินประจำปี",
     description: "ตรวจสอบและแสดงความเห็นต่องบการเงินเพื่อให้เป็นไปตามมาตรฐานการรายงานทางการเงิน (TFRS)",
+    icon: <ShieldCheck className="h-6 w-6" />,
   },
   {
     title: "ตรวจสอบกรณีพิเศษ (Special Audit)",
     description: "ตรวจสอบตามวัตถุประสงค์เฉพาะด้าน เช่น การตรวจสอบทุจริต หรือตรวจสอบตามเงื่อนไขของ BOI",
+    icon: <BadgeCheck className="h-6 w-6" />,
   },
   {
     title: "ตรวจสอบภายใน (Internal Audit)",
     description: "ประเมินระบบการควบคุมภายในขององค์กร เพื่อลดความเสี่ยงและเพิ่มประสิทธิภาพการทำงาน",
+    icon: <Zap className="h-6 w-6" />,
   },
   {
     title: "จัดทำงบกระแสเงินสด",
     description: "บริการจัดเตรียมข้อมูลและวิเคราะห์งบกระแสเงินสดเพื่อการบริหารจัดการเงินทุนอย่างมีประสิทธิภาพ",
-  }
+    icon: <CheckCircle2 className="h-6 w-6" />,
+  },
 ];
 
 const whyChooseUs = [
-  {
-    title: "ทีมงาน CPA มืออาชีพ",
-    description: "ดูแลโดยผู้สอบบัญชีรับอนุญาต (CPA) ที่มีประสบการณ์ตรงในหลากหลายอุตสาหกรรม"
-  },
-  {
-    title: "ตรงไปตรงมา",
-    description: "ชี้แจงทุกประเด็นความเสี่ยงอย่างชัดเจน พร้อมแนวทางแก้ไขที่ถูกต้องตามกฎหมาย"
-  },
-  {
-    title: "ทำงานรวดเร็ว",
-    description: "มีระบบการจัดการเอกสารที่เป็นระบบ (Digital Based) ช่วยให้งานตรวจสอบจบได้ตามกำหนด"
-  }
+  { num: '01', title: "ทีมงาน CPA มืออาชีพ", description: "ดูแลโดยผู้สอบบัญชีรับอนุญาต (CPA) ที่มีประสบการณ์ตรงในหลากหลายอุตสาหกรรม" },
+  { num: '02', title: "ตรงไปตรงมา", description: "ชี้แจงทุกประเด็นความเสี่ยงอย่างชัดเจน พร้อมแนวทางแก้ไขที่ถูกต้องตามกฎหมาย" },
+  { num: '03', title: "ทำงานรวดเร็ว", description: "มีระบบการจัดการเอกสารที่เป็นระบบ (Digital Based) ช่วยให้งานตรวจสอบจบได้ตามกำหนด" },
 ];
 
 const pricingData = [
@@ -81,135 +74,170 @@ export default function AuditServicesPage() {
       <main className="flex-1">
         <PromoCarousel />
 
-        <section className="animate-gradient text-primary-foreground py-20 md:py-28">
-          <div className="container mx-auto px-4 md:px-6">
-            <nav className="text-sm mb-4 opacity-80">
-              <Link href="/" className="hover:opacity-100 transition-opacity">หน้าแรก</Link> / <span>บริการตรวจสอบบัญชี</span>
+        {/* ── HERO ── */}
+        <section className="animate-gradient text-primary-foreground py-24 md:py-32 overflow-hidden relative">
+          <div className="absolute inset-0 opacity-10"
+            style={{ backgroundImage: 'linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(90deg, #ffffff 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
+          <div className="container mx-auto px-6 relative z-10 max-w-4xl">
+            <nav className="text-sm mb-6 opacity-70">
+              <Link href="/" className="hover:opacity-100 transition-opacity">หน้าแรก</Link>
+              <span className="mx-2">/</span>
+              <span>บริการตรวจสอบบัญชี</span>
             </nav>
-            <h1 className="text-4xl md:text-5xl font-bold font-headline mb-4">บริการตรวจสอบบัญชี (Audit Services)</h1>
-            <p className="text-lg md:text-xl opacity-90 max-w-3xl">สร้างความเชื่อมั่นในงบการเงินของคุณ ด้วยการตรวจสอบที่แม่นยำ ตามมาตรฐานการสอบบัญชีที่รับรองโดยสภาวิชาชีพบัญชี</p>
+            <p className="text-xs font-bold tracking-[0.3em] uppercase mb-4 opacity-70">Audit Services</p>
+            <h1 className="text-4xl md:text-6xl font-black leading-tight mb-6">
+              ปิดงบการเงินเชียงใหม่<br />ถูกต้อง ทันกำหนด
+            </h1>
+            <p className="text-lg md:text-xl opacity-80 max-w-2xl leading-relaxed mb-8">
+              สร้างความเชื่อมั่นในงบการเงินของคุณ ด้วยการตรวจสอบที่แม่นยำ ตามมาตรฐานการสอบบัญชีที่รับรองโดยสภาวิชาชีพบัญชี
+            </p>
+            <div className="flex flex-wrap gap-3">
+              {['ตรวจสอบโดย CPA', 'รายงานตามมาตรฐานสากล', 'ให้คำปรึกษาลดความเสี่ยง', 'ราคาโปร่งใส'].map((item) => (
+                <div key={item} className="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full text-sm">
+                  <CheckCircle2 className="h-4 w-4 text-green-300 flex-shrink-0" />
+                  <span>{item}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 
-        <section className="py-20 md:py-28 bg-background">
-          <div className="container mx-auto px-4 md:px-6">
-            <div className="grid lg:grid-cols-3 gap-12 items-center">
-              <div className="lg:col-span-1 space-y-6">
-                <h2 className="text-3xl font-bold font-headline text-foreground">ให้มากกว่าแค่การลงลายมือชื่อ</h2>
-                <p className="text-muted-foreground leading-relaxed">เราไม่ได้เพียงแค่ตรวจสอบความถูกต้อง แต่เราช่วยค้นหาจุดอ่อนในระบบควบคุมภายใน เพื่อให้ผู้ประกอบการนำไปปรับปรุงธุรกิจได้จริง</p>
-                <div className="space-y-3">
-                  <div className="flex items-center gap-2 text-primary font-medium">
-                    <CheckCircle2 className="h-5 w-5" /> ตรวจสอบโดย CPA ประสบการณ์สูง
-                  </div>
-                  <div className="flex items-center gap-2 text-primary font-medium">
-                    <CheckCircle2 className="h-5 w-5" /> รายงานตามมาตรฐานสากล
-                  </div>
-                  <div className="flex items-center gap-2 text-primary font-medium">
-                    <CheckCircle2 className="h-5 w-5" /> ให้คำปรึกษาเพื่อลดความเสี่ยง
-                  </div>
+        {/* ── SERVICES ── */}
+        <section className="py-24">
+          <div className="container mx-auto px-6 max-w-6xl">
+            <div className="grid lg:grid-cols-2 gap-16 items-start">
+              <div className="space-y-6">
+                <div>
+                  <p className="text-primary text-xs font-bold tracking-[0.3em] uppercase mb-3">What We Do</p>
+                  <h2 className="text-3xl md:text-4xl font-black mb-4">ให้มากกว่าแค่การลงลายมือชื่อ</h2>
+                  <p className="text-muted-foreground leading-relaxed text-lg">
+                    เราไม่ได้เพียงแค่ตรวจสอบความถูกต้อง แต่เราช่วยค้นหาจุดอ่อนในระบบควบคุมภายใน เพื่อให้ผู้ประกอบการนำไปปรับปรุงธุรกิจได้จริง
+                  </p>
                 </div>
-                <Button asChild size="lg" className="rounded-full w-full sm:w-auto">
-                  <Link href="https://line.me/R/ti/p/@374jshvh" target="_blank">ขอใบเสนอราคาตรวจสอบบัญชี</Link>
-                </Button>
+                <Link href="https://line.me/R/ti/p/@374jshvh" target="_blank"
+                  className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-bold px-8 py-3 rounded-full hover:opacity-90 transition-all">
+                  <MessageSquare className="h-4 w-4" /> ขอใบเสนอราคาตรวจสอบบัญชี
+                </Link>
               </div>
-              <div className="lg:col-span-2">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  {auditServices.map((service, index) => (
-                    <Card key={index} className="bg-secondary/30 border-none shadow-sm hover:shadow-md transition-shadow">
-                      <CardHeader>
-                        <CardTitle className="text-xl text-primary flex items-center gap-2">
-                          {index === 0 && <ShieldCheck className="h-5 w-5" />}
-                          {index === 1 && <BadgeCheck className="h-5 w-5" />}
-                          {index === 2 && <Zap className="h-5 w-5" />}
-                          {service.title}
-                        </CardTitle>
-                      </CardHeader>
-                      <CardContent>
-                        <p className="text-muted-foreground">{service.description}</p>
-                      </CardContent>
-                    </Card>
-                  ))}
-                </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {auditServices.map((service, index) => (
+                  <div key={index}
+                    className="bg-secondary/40 rounded-2xl p-6 border border-border hover:border-primary/30 hover:shadow-md transition-all">
+                    <div className="w-10 h-10 bg-primary/10 text-primary rounded-xl flex items-center justify-center mb-4">
+                      {service.icon}
+                    </div>
+                    <h3 className="font-black text-base mb-2">{service.title}</h3>
+                    <p className="text-muted-foreground text-sm leading-relaxed">{service.description}</p>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
         </section>
 
-        <section className="py-20 md:py-28 bg-slate-50 border-y">
-          <div className="container mx-auto px-4 md:px-6">
-            <div className="text-center max-w-3xl mx-auto mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold font-headline text-primary mb-6">ราคาจัดทำบัญชี และตรวจสอบบัญชีประจำปี</h2>
-              <p className="text-lg text-muted-foreground">
-                ค่าบริการที่คุ้มค่า มาพร้อมความถูกต้องและความสบายใจ <br className="hidden md:block" />
-                ราคาโปร่งใสตามฐานรายได้ ไม่มีค่าธรรมเนียมแอบแฝง
-              </p>
+        {/* ── PRICING TABLE ── */}
+        <section className="py-24 bg-secondary/40">
+          <div className="container mx-auto px-6 max-w-5xl">
+            <div className="text-center mb-16">
+              <p className="text-primary text-xs font-bold tracking-[0.3em] uppercase mb-3">Pricing</p>
+              <h2 className="text-3xl md:text-4xl font-black mb-3">ราคาตรวจสอบบัญชีประจำปี</h2>
+              <p className="text-muted-foreground">ราคาโปร่งใสตามฐานรายได้ ไม่มีค่าธรรมเนียมแอบแฝง</p>
             </div>
-            <div className="max-w-4xl mx-auto bg-white rounded-2xl shadow-xl overflow-hidden border border-primary/20">
-              <div className="bg-primary text-primary-foreground p-4 text-center font-bold text-lg md:text-xl">
+
+            <div className="bg-background rounded-3xl shadow-xl overflow-hidden border border-border">
+              <div className="bg-primary text-primary-foreground p-5 text-center font-black text-lg">
                 ประมาณการค่าธรรมเนียมตามเกณฑ์รายได้
               </div>
               <Table>
-                <TableHeader className="bg-slate-100">
+                <TableHeader className="bg-secondary/50">
                   <TableRow>
-                    <TableHead className="text-center font-bold text-slate-900 h-14 text-base">รายการรายได้</TableHead>
-                    <TableHead className="text-center font-bold text-slate-900 h-14 text-base">ราคาเริ่มต้น (บาท)</TableHead>
+                    <TableHead className="text-center font-black text-foreground h-14 text-base">รายการรายได้</TableHead>
+                    <TableHead className="text-center font-black text-foreground h-14 text-base">ราคาเริ่มต้น (บาท)</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
                   {pricingData.map((row, index) => (
-                    <TableRow key={index} className={index % 2 === 0 ? "bg-white" : "bg-slate-50/50"}>
-                      <TableCell className="text-center py-4 font-medium text-slate-700">{row.revenue}</TableCell>
-                      <TableCell className="text-center py-4 font-bold text-primary text-lg">{row.price}</TableCell>
+                    <TableRow key={index} className={index % 2 === 0 ? 'bg-background' : 'bg-secondary/20'}>
+                      <TableCell className="text-center py-4 font-medium text-muted-foreground">{row.revenue}</TableCell>
+                      <TableCell className="text-center py-4 font-black text-primary text-lg">{row.price}</TableCell>
                     </TableRow>
                   ))}
                 </TableBody>
               </Table>
-              <div className="bg-slate-50 p-6 text-center border-t">
+              <div className="p-6 text-center border-t border-border bg-secondary/20">
                 <p className="text-sm text-muted-foreground mb-4 italic">
-                  * อัตราค่าบริการข้างต้นเป็นราคาเริ่มต้น และอาจเปลี่ยนแปลงตามความซับซ้อนของรายการค้า <br />
-                  รบกวนส่งไฟล์งบการเงินหรือทดลองเพื่อให้เจ้าหน้าที่ประเมินราคาที่แน่นอนอีกครั้งค่ะ
+                  * ราคาเริ่มต้น อาจเปลี่ยนแปลงตามความซับซ้อนของรายการค้า<br />
+                  รบกวนส่งไฟล์งบการเงินให้เจ้าหน้าที่ประเมินราคาที่แน่นอนอีกครั้งค่ะ
                 </p>
-                <Button asChild variant="outline" className="rounded-full border-primary text-primary hover:bg-primary hover:text-white">
-                  <Link href="https://line.me/R/ti/p/@374jshvh" target="_blank">สอบถามราคาสำหรับธุรกิจของคุณ</Link>
-                </Button>
+                <Link href="https://line.me/R/ti/p/@374jshvh" target="_blank"
+                  className="inline-flex items-center gap-2 border-2 border-primary text-primary font-bold px-8 py-3 rounded-full hover:bg-primary hover:text-primary-foreground transition-all">
+                  สอบถามราคาสำหรับธุรกิจของคุณ
+                </Link>
               </div>
             </div>
-            <div className="mt-16 grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+
+            <div className="mt-16 grid md:grid-cols-3 gap-6">
               {[
                 { title: "ประหยัดภาษีได้จริง", desc: "เราแนะนำการวางแผนภาษีที่ถูกต้องเพื่อให้คุณเสียภาษีอย่างคุ้มค่าที่สุด" },
                 { title: "ถูกต้องตามกฎหมาย", desc: "มั่นใจได้ 100% ว่างบการเงินผ่านการตรวจสอบตามมาตรฐานสภาวิชาชีพ" },
                 { title: "ซัพพอร์ตตลอดปี", desc: "ไม่ได้แค่ตรวจสอบแล้วจบ แต่เราพร้อมเป็นที่ปรึกษาให้คุณตลอดอายุสัญญา" },
               ].map((item, i) => (
-                <div key={i} className="text-center p-6 space-y-3">
-                  <div className="w-12 h-12 bg-primary/10 text-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                <div key={i} className="bg-background rounded-2xl p-6 border border-border text-center hover:border-primary/30 hover:shadow-md transition-all">
+                  <div className="w-12 h-12 bg-primary/10 text-primary rounded-2xl flex items-center justify-center mx-auto mb-4">
                     <CheckCircle2 className="h-6 w-6" />
                   </div>
-                  <h4 className="font-bold text-lg">{item.title}</h4>
-                  <p className="text-sm text-muted-foreground">{item.desc}</p>
+                  <h4 className="font-black text-lg mb-2">{item.title}</h4>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        <section className="py-20 md:py-28 bg-secondary">
-          <div className="container mx-auto px-4 md:px-6 text-center">
-            <h2 className="text-3xl md:text-4xl font-bold font-headline mb-16 text-foreground">ทำไมผู้ประกอบการจึงเลือก IC Accounting & Service</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-              {whyChooseUs.map((item, index) => (
-                <Card key={index} className="bg-card text-center p-6 shadow-sm hover:shadow-lg transition-shadow">
-                  <h3 className="text-5xl font-bold text-primary mb-4">0{index + 1}</h3>
-                  <CardHeader className="p-0">
-                    <CardTitle className="text-xl mb-2">{item.title}</CardTitle>
-                  </CardHeader>
-                  <CardContent className="p-0">
-                    <p className="text-muted-foreground">{item.description}</p>
-                  </CardContent>
-                </Card>
+        {/* ── WHY US ── */}
+        <section className="py-24">
+          <div className="container mx-auto px-6 max-w-6xl">
+            <div className="text-center mb-16">
+              <p className="text-primary text-xs font-bold tracking-[0.3em] uppercase mb-3">Why IC</p>
+              <h2 className="text-3xl md:text-4xl font-black">ทำไมผู้ประกอบการจึงเลือก IC</h2>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {whyChooseUs.map((item) => (
+                <div key={item.num} className="bg-secondary/40 rounded-2xl p-8 border border-border hover:border-primary/30 hover:shadow-md transition-all">
+                  <div className="text-6xl font-black text-primary/10 mb-4 leading-none">{item.num}</div>
+                  <h3 className="font-black text-xl mb-3">{item.title}</h3>
+                  <p className="text-muted-foreground leading-relaxed">{item.description}</p>
+                </div>
               ))}
             </div>
           </div>
         </section>
+
+        {/* ── CTA ── */}
+        <section className="py-16 bg-secondary/40">
+          <div className="container mx-auto px-6 max-w-4xl">
+            <div className="bg-primary text-primary-foreground rounded-3xl p-10 relative overflow-hidden text-center">
+              <div className="absolute inset-0 opacity-5"
+                style={{ backgroundImage: 'linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(90deg, #ffffff 1px, transparent 1px)', backgroundSize: '30px 30px' }} />
+              <div className="relative z-10">
+                <h3 className="text-2xl md:text-3xl font-black mb-3">พร้อมปิดงบให้ถูกต้องและทันกำหนด?</h3>
+                <p className="opacity-80 mb-8">ปรึกษาทีมงาน IC ฟรี ไม่มีค่าใช้จ่าย พร้อมประเมินราคาให้ตรงกับธุรกิจของคุณ</p>
+                <div className="flex flex-wrap gap-4 justify-center">
+                  <Link href="/quote"
+                    className="inline-flex items-center gap-2 bg-white text-primary font-bold px-8 py-3 rounded-full hover:bg-white/90 transition-all">
+                    นัดหมายปรึกษาฟรี <ArrowRight className="h-4 w-4" />
+                  </Link>
+                  <Link href="https://line.me/R/ti/p/@374jshvh" target="_blank"
+                    className="inline-flex items-center gap-2 border border-white/40 text-white font-bold px-8 py-3 rounded-full hover:border-white transition-all">
+                    ติดต่อผ่าน Line
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
       </main>
       <Footer />
     </div>
