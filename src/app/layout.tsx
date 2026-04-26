@@ -138,7 +138,7 @@ export default function RootLayout({
       <body className={cn('font-body antialiased')} suppressHydrationWarning>
         {children}
         <Toaster />
-        <Script src="https://fast.wistia.com/player.js" strategy="afterInteractive" />
+        <Script src="https://fast.wistia.com/player.js" strategy="lazyOnload" />
       </body>
     </html>
   );

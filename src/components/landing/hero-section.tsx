@@ -71,7 +71,7 @@ export function HeroSection() {
           className="relative w-full max-w-4xl mx-auto aspect-video rounded-2xl overflow-hidden shadow-2xl border border-white/10 mb-10 bg-black/20"
           suppressHydrationWarning
         >
-          {isMounted ? (
+          {isMounted && (
             <React.Fragment>
               <style dangerouslySetInnerHTML={{
                 __html: `wistia-player[media-id='hd04a418nd']:not(:defined){background:center/contain no-repeat url('https://fast.wistia.com/embed/medias/hd04a418nd/swatch');display:block;filter:blur(5px);padding-top:56.25%}`
@@ -79,12 +79,11 @@ export function HeroSection() {
               <wistia-player
                 media-id="hd04a418nd"
                 aspect="1.7777777777777777"
-                muted="false"
-                autoplay="false"
                 style={{ width: '100%', height: '100%', display: 'block' }}
               ></wistia-player>
             </React.Fragment>
-          ) : (
+          )}
+          {!isMounted && (
             <div className="w-full h-full bg-slate-900 flex items-center justify-center">
               <span className="text-white/20 text-sm">Loading Video...</span>
             </div>

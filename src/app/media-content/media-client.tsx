@@ -164,11 +164,11 @@ export default function MediaClient() {
             </div>
             <p className="text-gray-500 max-w-xs text-sm text-right">ตัวอย่างงานที่เราภูมิใจ นำเสนอผ่านทุกรูปแบบของ Media Production</p>
           </div>
-          <div data-aos="zoom-in" className="relative aspect-video rounded-2xl overflow-hidden border border-white/5 bg-zinc-900">
+          <div data-aos="zoom-in" className="relative aspect-video rounded-2xl overflow-hidden border border-white/5 bg-zinc-900" suppressHydrationWarning>
             {isMounted ? (
               <>
                 <style dangerouslySetInnerHTML={{ __html: `wistia-player[media-id='le8f20crj0']:not(:defined){background:center/contain no-repeat url('https://fast.wistia.com/embed/medias/le8f20crj0/swatch');display:block;filter:blur(5px);padding-top:56.25%}` }} />
-                <wistia-player media-id="le8f20crj0" aspect="1.7777777777777777" muted="true" autoplay="true" silent-autoplay="true" playButton="false" style={{ width: '100%', height: '100%' }} />
+                <wistia-player media-id="le8f20crj0" aspect="1.7777777777777777" muted="true" autoplay="true" silent-autoplay="true" playButton="false" style={{ width: '100%', height: '100%', display: 'block' }} />
               </>
             ) : (
               <div className="w-full h-full bg-zinc-900 animate-pulse flex items-center justify-center">
