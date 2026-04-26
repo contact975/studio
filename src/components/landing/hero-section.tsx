@@ -27,7 +27,7 @@ export function HeroSection() {
   }, []);
 
   return (
-    <section id="hero" className="relative animate-gradient text-white overflow-hidden">
+    <section id="hero" className="relative bg-primary text-white overflow-hidden" suppressHydrationWarning>
       <div className="absolute inset-0 opacity-10"
         style={{ backgroundImage: 'linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(90deg, #ffffff 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
       <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-white/5 rounded-full blur-[120px] pointer-events-none" />
@@ -66,12 +66,12 @@ export function HeroSection() {
           </Link>
         </div>
 
-        {/* Video — lazy load เมื่อ user scroll มาถึงเท่านั้น */}
+        {/* Video container with Hydration Safety */}
         <div
           className="relative w-full max-w-4xl mx-auto aspect-video rounded-2xl overflow-hidden shadow-2xl border border-white/10 mb-10 bg-black/20"
           suppressHydrationWarning
         >
-          {isMounted && (
+          {isMounted ? (
             <React.Fragment>
               <style dangerouslySetInnerHTML={{
                 __html: `wistia-player[media-id='hd04a418nd']:not(:defined){background:center/contain no-repeat url('https://fast.wistia.com/embed/medias/hd04a418nd/swatch');display:block;filter:blur(5px);padding-top:56.25%}`
@@ -80,10 +80,15 @@ export function HeroSection() {
                 media-id="hd04a418nd"
                 aspect="1.7777777777777777"
                 style={{ width: '100%', height: '100%', display: 'block' }}
+                {...({
+                  muted: true,
+                  autoplay: true,
+                  'silent-autoplay': true,
+                  'play-button': false
+                } as any)}
               ></wistia-player>
             </React.Fragment>
-          )}
-          {!isMounted && (
+          ) : (
             <div className="w-full h-full bg-slate-900 flex items-center justify-center">
               <span className="text-white/20 text-sm">Loading Video...</span>
             </div>
