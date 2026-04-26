@@ -28,18 +28,15 @@ export function HeroSection() {
 
   return (
     <section id="hero" className="relative animate-gradient text-white overflow-hidden">
-      {/* Grid background */}
       <div className="absolute inset-0 opacity-10"
         style={{ backgroundImage: 'linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(90deg, #ffffff 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
-
-      {/* Glow blobs */}
       <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-white/5 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-blue-400/10 rounded-full blur-[100px] pointer-events-none" />
 
-      <div className="container mx-auto px-6 py-28 md:py-36 relative z-10 max-w-6xl">
+      <div className="container mx-auto px-6 py-16 md:py-20 relative z-10 max-w-6xl">
 
         {/* Label */}
-        <div className="flex justify-center mb-8">
+        <div className="flex justify-center mb-6">
           <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-5 py-2 rounded-full text-sm font-medium border border-white/20">
             <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
             IC Accounting & Service — เชียงใหม่
@@ -47,18 +44,18 @@ export function HeroSection() {
         </div>
 
         {/* Headline */}
-        <h1 className="text-5xl md:text-7xl font-black text-center leading-[0.95] tracking-tight mb-8">
+        <h1 className="text-5xl md:text-7xl font-black text-center leading-[0.95] tracking-tight mb-4">
           <span className="block text-white">สำนักงานบัญชีเชียงใหม่</span>
           <span className="block text-white/40 text-4xl md:text-5xl font-black mt-3">ครบจบทุกเรื่อง หลังบ้านธุรกิจ</span>
         </h1>
 
         {/* Sub */}
-        <p className="text-center text-lg md:text-xl text-white/70 max-w-2xl mx-auto leading-relaxed mb-12">
+        <p className="text-center text-lg md:text-xl text-white/70 max-w-2xl mx-auto leading-relaxed mb-8">
           บริการทำบัญชี ภาษี และมีเดียคอนเทนต์ สำหรับธุรกิจในเชียงใหม่และทั่วประเทศ เปลี่ยนตัวเลขที่ซับซ้อน เป็นโอกาสสู่ความสำเร็จ ด้วยประสบการณ์กว่า 10 ปี
         </p>
 
         {/* CTA Buttons */}
-        <div className="flex flex-wrap gap-4 justify-center mb-20">
+        <div className="flex flex-wrap gap-4 justify-center mb-10">
           <Link href="https://line.me/R/ti/p/@374jshvh" target="_blank"
             className="inline-flex items-center gap-3 bg-white text-blue-900 font-black px-8 h-14 rounded-full transition-all hover:scale-105 hover:shadow-xl hover:shadow-white/20 text-base">
             ปรึกษาเราฟรี <ArrowRight className="h-4 w-4" />
@@ -70,18 +67,24 @@ export function HeroSection() {
         </div>
 
         {/* Video */}
-        <div className="relative w-full max-w-4xl mx-auto aspect-video rounded-2xl overflow-hidden shadow-2xl border border-white/10 mb-20 bg-black/20">
+        <div 
+          className="relative w-full max-w-4xl mx-auto aspect-video rounded-2xl overflow-hidden shadow-2xl border border-white/10 mb-10 bg-black/20"
+          suppressHydrationWarning
+        >
           {isMounted ? (
-            <>
-              <style dangerouslySetInnerHTML={{ __html: `wistia-player[media-id='hd04a418nd']:not(:defined){background:center/contain no-repeat url('https://fast.wistia.com/embed/medias/hd04a418nd/swatch');display:block;filter:blur(5px);padding-top:56.25%}` }} />
+            <React.Fragment>
+              <style dangerouslySetInnerHTML={{ 
+                __html: `wistia-player[media-id='hd04a418nd']:not(:defined){background:center/contain no-repeat url('https://fast.wistia.com/embed/medias/hd04a418nd/swatch');display:block;filter:blur(5px);padding-top:56.25%}` 
+              }} />
               <wistia-player
                 media-id="hd04a418nd"
                 aspect="1.7777777777777777"
-                muted="true"
-                autoplay="true"
-                style={{ width: '100%', height: '100%' }}
+                muted={true}
+                autoplay={true}
+                playButton={false}
+                style={{ width: '100%', height: '100%', display: 'block' }}
               />
-            </>
+            </React.Fragment>
           ) : (
             <div className="w-full h-full bg-slate-900 animate-pulse flex items-center justify-center">
               <span className="text-white/20 text-sm">Loading Video...</span>
@@ -90,7 +93,7 @@ export function HeroSection() {
         </div>
 
         {/* Stats */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-12 border-t border-white/10 max-w-4xl mx-auto">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-8 border-t border-white/10 max-w-4xl mx-auto">
           {stats.map((s) => (
             <div key={s.label} className="text-center">
               <div className="text-4xl md:text-5xl font-black text-white mb-1">{s.num}</div>
