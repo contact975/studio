@@ -2,12 +2,6 @@
 
 import * as React from "react";
 import Image from "next/image";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-} from "@/components/ui/carousel";
-import Autoplay from "embla-carousel-autoplay";
 
 const logosRow1 = [
   { name: "Customer 01", logoUrl: "https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Customer01.png?alt=media", imageHint: "customer logo" },
@@ -32,93 +26,75 @@ const logosRow2 = [
 ];
 
 export function ClientsSection() {
-  const [isMounted, setIsMounted] = React.useState(false);
-
-  React.useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
   return (
-    <section id="clients" className="py-4 md:py-6 bg-background overflow-hidden">
+    <section id="clients" className="py-8 md:py-12 bg-background overflow-hidden">
       <div data-aos="fade-up" className="container mx-auto px-4 md:px-6">
-        <h2 className="text-3xl md:text-4xl font-bold font-headline text-center mb-4 text-foreground">
+        <h2 className="text-2xl md:text-3xl font-bold font-headline text-center mb-8 text-foreground">
           ลูกค้าที่อยู่ในการดูแลของเรา
         </h2>
         
-        {isMounted ? (
-          <div className="space-y-1">
-            {/* Row 1 - Right to Left (Default) */}
-            <Carousel
-              opts={{
-                align: "start",
-                loop: true,
-              }}
-              plugins={[
-                Autoplay({
-                  delay: 2000,
-                  stopOnInteraction: false,
-                }),
-              ]}
-              className="w-full max-w-7xl mx-auto"
-            >
-              <CarouselContent>
-                {logosRow1.map((logo, index) => (
-                  <CarouselItem key={`row1-${index}`} className="basis-1/3 md:basis-1/4 lg:basis-1/6 flex items-center justify-center">
-                    <div className="p-2 transition-all duration-300">
-                      <Image
-                        src={logo.logoUrl}
-                        alt={logo.name}
-                        width={140}
-                        height={70}
-                        className="object-contain"
-                        data-ai-hint={logo.imageHint}
-                      />
-                    </div>
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-            </Carousel>
+        <div className="space-y-4">
+          {/* Row 1 - LTR Marquee using GPU-accelerated CSS */}
+          <div className="relative flex overflow-x-hidden">
+            <div className="animate-marquee-slow flex items-center gap-12 py-4">
+              {[...logosRow1, ...logosRow1].map((logo, index) => (
+                <div key={`row1-${index}`} className="flex-shrink-0 w-32 md:w-40 flex items-center justify-center grayscale hover:grayscale-0 transition-all opacity-60 hover:opacity-100">
+                  <Image
+                    src={logo.logoUrl}
+                    alt={logo.name}
+                    width={140}
+                    height={70}
+                    className="object-contain"
+                    data-ai-hint={logo.imageHint}
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
 
-            {/* Row 2 - Left to Right (RTL mode for opposite slide) */}
-            <Carousel
-              opts={{
-                align: "start",
-                loop: true,
-                direction: "rtl",
-              }}
-              plugins={[
-                Autoplay({
-                  delay: 2000,
-                  stopOnInteraction: false,
-                }),
-              ]}
-              className="w-full max-w-7xl mx-auto"
-              dir="rtl"
-            >
-              <CarouselContent>
-                {logosRow2.map((logo, index) => (
-                  <CarouselItem key={`row2-${index}`} className="basis-1/3 md:basis-1/4 lg:basis-1/6 flex items-center justify-center">
-                    <div className="p-2 transition-all duration-300">
-                      <Image
-                        src={logo.logoUrl}
-                        alt={logo.name}
-                        width={140}
-                        height={70}
-                        className="object-contain"
-                        data-ai-hint={logo.imageHint}
-                      />
-                    </div>
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-            </Carousel>
+          {/* Row 2 - RTL Marquee using GPU-accelerated CSS */}
+          <div className="relative flex overflow-x-hidden">
+            <div className="animate-marquee-reverse flex items-center gap-12 py-4">
+              {[...logosRow2, ...logosRow2].map((logo, index) => (
+                <div key={`row2-${index}`} className="flex-shrink-0 w-32 md:w-40 flex items-center justify-center grayscale hover:grayscale-0 transition-all opacity-60 hover:opacity-100">
+                  <Image
+                    src={logo.logoUrl}
+                    alt={logo.name}
+                    width={140}
+                    height={70}
+                    className="object-contain"
+                    data-ai-hint={logo.imageHint}
+                  />
+                </div>
+              ))}
+            </div>
           </div>
-        ) : (
-          <div className="h-[100px] flex items-center justify-center">
-            <div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
-          </div>
-        )}
+        </div>
       </div>
+
+      <style jsx>{`
+        @keyframes marquee-slow {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(calc(-50% - 1.5rem)); }
+        }
+        @keyframes marquee-reverse {
+          0% { transform: translateX(calc(-50% - 1.5rem)); }
+          100% { transform: translateX(0); }
+        }
+        .animate-marquee-slow {
+          animation: marquee-slow 40s linear infinite;
+          will-change: transform;
+        }
+        .animate-marquee-reverse {
+          animation: marquee-reverse 40s linear infinite;
+          will-change: transform;
+        }
+        @media (max-width: 768px) {
+          .animate-marquee-slow, .animate-marquee-reverse {
+            animation-duration: 25s;
+          }
+        }
+      `}</style>
     </section>
   );
 }

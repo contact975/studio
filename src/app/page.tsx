@@ -15,10 +15,12 @@ import { PromoCarousel } from '@/components/landing/promo-carousel';
 
 export default function Home() {
   useEffect(() => {
+    // Optimized AOS settings for performance
     AOS.init({
-      duration: 1000,
-      once: true,
-      offset: 100,
+      duration: 600, // Faster animations feel snappier
+      once: true, // Only animate once
+      offset: 50, // Trigger sooner
+      disable: 'mobile', // Disable animations on small screens if they still lag, or keep it light
     });
   }, []);
   
