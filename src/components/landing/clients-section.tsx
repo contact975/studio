@@ -41,14 +41,14 @@ function MarqueeRow({ logos, direction }: MarqueeRowProps) {
       {/* Animation wrapper */}
       <div 
         className={cn(
-          "flex items-center gap-12 py-8",
+          "flex items-center gap-4 md:gap-6 py-4 md:py-8",
           direction === "ltr" ? "animate-marquee-ltr" : "animate-marquee-rtl"
         )}
       >
-        {[...logos, ...logos, ...logos].map((logo, index) => (
+        {[...logos, ...logos, ...logos, ...logos].map((logo, index) => (
           <div
             key={index}
-            className="flex-shrink-0 w-44 md:w-56 h-20 md:h-24 flex items-center justify-center"
+            className="flex-shrink-0 w-32 md:w-48 h-20 md:h-24 flex items-center justify-center"
           >
             <Image
               src={logo.logoUrl}
@@ -64,28 +64,28 @@ function MarqueeRow({ logos, direction }: MarqueeRowProps) {
 
       <style jsx>{`
         @keyframes marquee-ltr {
-          0% { transform: translate3d(-33.33%, 0, 0); }
+          0% { transform: translate3d(-50%, 0, 0); }
           100% { transform: translate3d(0, 0, 0); }
         }
         @keyframes marquee-rtl {
           0% { transform: translate3d(0, 0, 0); }
-          100% { transform: translate3d(-33.33%, 0, 0); }
+          100% { transform: translate3d(-50%, 0, 0); }
         }
         .animate-marquee-ltr {
           display: flex;
           width: max-content;
-          animation: marquee-ltr 50s linear infinite;
+          animation: marquee-ltr 40s linear infinite;
           will-change: transform;
         }
         .animate-marquee-rtl {
           display: flex;
           width: max-content;
-          animation: marquee-rtl 50s linear infinite;
+          animation: marquee-rtl 40s linear infinite;
           will-change: transform;
         }
         @media (max-width: 768px) {
           .animate-marquee-ltr, .animate-marquee-rtl {
-            animation-duration: 35s;
+            animation-duration: 30s;
           }
         }
       `}</style>
@@ -96,7 +96,7 @@ function MarqueeRow({ logos, direction }: MarqueeRowProps) {
 export function ClientsSection() {
   return (
     <section id="clients" className="py-16 md:py-24 bg-background overflow-hidden border-y border-border/50">
-      <div className="max-w-6xl mx-auto px-4 md:px-6 mb-12">
+      <div className="max-w-6xl mx-auto px-4 md:px-6 mb-8 md:mb-12">
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
           <div>
             <p className="text-primary text-xs font-bold tracking-[0.3em] uppercase mb-3">Trusted By</p>
@@ -111,7 +111,7 @@ export function ClientsSection() {
       </div>
 
       <div className="overflow-hidden">
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-2 md:gap-4">
           <MarqueeRow logos={logosRow1} direction="ltr" />
           <MarqueeRow logos={logosRow2} direction="rtl" />
         </div>
