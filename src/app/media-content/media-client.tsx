@@ -4,8 +4,9 @@ import { Header } from '@/components/landing/header';
 import { Footer } from '@/components/landing/footer';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, Fragment } from 'react';
 import { ArrowRight, PlayCircle, ChevronRight, MessageSquare } from 'lucide-react';
+import Script from "next/script";
 
 declare global {
   namespace JSX {
@@ -101,6 +102,7 @@ export default function MediaClient() {
   return (
     <div className="bg-[#080810] text-white min-h-screen font-body overflow-x-hidden">
       <Header />
+      <Script src="https://fast.wistia.com/player.js" strategy="lazyOnload" />
       <main>
 
         {/* ── HERO ── */}
@@ -166,8 +168,15 @@ export default function MediaClient() {
           </div>
           <div className="relative aspect-video rounded-2xl overflow-hidden border border-white/5 bg-zinc-900" suppressHydrationWarning>
             {isMounted ? (
-              <>
-                <style>{`wistia-player[media-id='le8f20crj0']:not(:defined){background:center/contain no-repeat url('https://fast.wistia.com/embed/medias/le8f20crj0/swatch');display:block;filter:blur(5px);padding-top:56.25%}`}</style>
+              <Fragment>
+                <style dangerouslySetInnerHTML={{ __html: `
+                  wistia-player[media-id='le8f20crj0']:not(:defined) {
+                    background: center/contain no-repeat url('https://fast.wistia.com/embed/medias/le8f20crj0/swatch');
+                    display: block;
+                    filter: blur(5px);
+                    padding-top: 56.25%;
+                  }
+                `}} />
                 <wistia-player
                   media-id="le8f20crj0"
                   aspect="1.7777777777777777"
@@ -177,7 +186,7 @@ export default function MediaClient() {
                   silent-autoplay="true"
                   play-button="false"
                 ></wistia-player>
-              </>
+              </Fragment>
             ) : (
               <div className="w-full h-full bg-zinc-900 flex items-center justify-center">
                 <span className="text-white/10 text-sm">Loading...</span>

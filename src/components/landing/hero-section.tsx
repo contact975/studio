@@ -3,6 +3,7 @@
 import * as React from "react";
 import Link from "next/link";
 import { ArrowRight, PlayCircle } from 'lucide-react';
+import Script from "next/script";
 
 declare global {
   namespace JSX {
@@ -24,21 +25,16 @@ export function HeroSection() {
 
   React.useEffect(() => {
     setIsMounted(true);
-
-    // โหลด Wistia เฉพาะหน้าแรกเท่านั้น ไม่โหลดทุกหน้า
-    const script = document.createElement('script');
-    script.src = 'https://fast.wistia.com/player.js';
-    script.async = true;
-    document.body.appendChild(script);
-
-    return () => {
-      const existing = document.querySelector('script[src*="wistia.com/player.js"]');
-      if (existing) existing.remove();
-    };
   }, []);
 
   return (
     <section id="hero" className="relative bg-[#163674] text-white overflow-hidden" suppressHydrationWarning>
+      {/* Load Wistia script only when needed, with lazy strategy to prevent hydration errors */}
+      <Script 
+        src="https://fast.wistia.com/player.js" 
+        strategy="lazyOnload"
+      />
+      
       <div className="absolute inset-0 opacity-10 pointer-events-none"
         style={{ backgroundImage: 'linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(90deg, #ffffff 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
       <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-white/5 rounded-full blur-[120px] pointer-events-none" />
@@ -77,21 +73,21 @@ export function HeroSection() {
           </Link>
         </div>
 
-        {/* Video */}
+        {/* Video Container with Hydration Guard */}
         <div
           className="relative w-full max-w-4xl mx-auto aspect-video rounded-2xl overflow-hidden shadow-2xl border border-white/10 mb-10 bg-black/20"
           suppressHydrationWarning
         >
           {isMounted ? (
             <React.Fragment>
-              <style>{`
+              <style dangerouslySetInnerHTML={{ __html: `
                 wistia-player[media-id='hd04a418nd']:not(:defined) {
                   background: center/contain no-repeat url('https://fast.wistia.com/embed/medias/hd04a418nd/swatch');
                   display: block;
                   filter: blur(5px);
                   padding-top: 56.25%;
                 }
-              `}</style>
+              `}} />
               <wistia-player
                 media-id="hd04a418nd"
                 aspect="1.7777777777777777"
@@ -109,8 +105,8 @@ export function HeroSection() {
 
         {/* Stats */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-8 border-t border-white/10 max-w-4xl mx-auto">
-          {stats.map((s) => (
-            <div key={s.label} className="text-center">
+          {stats.map((s, idx) => (
+            <div key={`${s.label}-${idx}`} className="text-center">
               <div className="text-3xl md:text-5xl font-black text-white mb-1">{s.num}</div>
               <div className="text-[10px] md:text-xs text-white/50 uppercase tracking-wider">{s.label}</div>
             </div>
