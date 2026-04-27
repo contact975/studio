@@ -24,6 +24,17 @@ export function HeroSection() {
 
   React.useEffect(() => {
     setIsMounted(true);
+
+    // โหลด Wistia เฉพาะหน้าแรกเท่านั้น ไม่โหลดทุกหน้า
+    const script = document.createElement('script');
+    script.src = 'https://fast.wistia.com/player.js';
+    script.async = true;
+    document.body.appendChild(script);
+
+    return () => {
+      const existing = document.querySelector('script[src*="wistia.com/player.js"]');
+      if (existing) existing.remove();
+    };
   }, []);
 
   return (
@@ -66,7 +77,7 @@ export function HeroSection() {
           </Link>
         </div>
 
-        {/* Video container with Hydration Safety */}
+        {/* Video */}
         <div
           className="relative w-full max-w-4xl mx-auto aspect-video rounded-2xl overflow-hidden shadow-2xl border border-white/10 mb-10 bg-black/20"
           suppressHydrationWarning
@@ -85,10 +96,8 @@ export function HeroSection() {
                 media-id="hd04a418nd"
                 aspect="1.7777777777777777"
                 style={{ width: '100%', height: '100%', display: 'block' }}
-                muted
-                autoPlay
-                silentAutoPlay
-                playButton={false}
+                muted="true"
+                autoplay="true"
               ></wistia-player>
             </React.Fragment>
           ) : (
