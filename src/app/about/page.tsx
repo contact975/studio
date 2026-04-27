@@ -64,7 +64,7 @@ export default function AboutPage() {
       <main className="flex-1">
 
         {/* ── HERO ── */}
-        <section className="relative animate-gradient text-primary-foreground py-28 md:py-36 overflow-hidden">
+        <section className="relative bg-[#163674] text-primary-foreground py-28 md:py-36 overflow-hidden">
           <div className="absolute inset-0 opacity-10"
             style={{ backgroundImage: 'linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(90deg, #ffffff 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
           <div className="container mx-auto px-6 relative z-10 max-w-4xl text-center">
@@ -79,7 +79,7 @@ export default function AboutPage() {
         </section>
 
         {/* ── FOUNDER STORY ── */}
-        <section className="py-24 container mx-auto px-6 max-w-6xl">
+        <section className="py-24 container mx-auto px-6 max-w-6xl" data-aos="fade-up">
           <div className="grid md:grid-cols-2 gap-16 items-center">
             <div className="relative">
               <div className="relative aspect-[3/4] rounded-2xl overflow-hidden shadow-2xl">
@@ -112,7 +112,7 @@ export default function AboutPage() {
                 คุณจตุพร ยะเปียงปลูก หรือ "ไอซ์" บัณฑิตคณะบริหารธุรกิจ สาขาการบัญชี มหาวิทยาลัยแม่โจ้ (รุ่นที่ 78) เริ่มต้นเส้นทางสายบัญชีอย่างจริงจัง ด้วยความเชื่อว่าระบบบัญชีที่ดีคือรากฐานของทุกธุรกิจที่เติบโต
               </p>
               <p className="text-muted-foreground leading-relaxed">
-                ผ่านมาแล้วทั้งองค์กรขนาดใหญ่และ Startup ที่เต็มไปด้วยความเคลื่อนไหว ทำให้ไอซ์เข้าใจความต้องการของนักธุรกิจทุกระดับได้อย่างลึกซึ้ง และนำมาออกแบบบริการที่ "เหมาะกับชีวิตจริง" ของเจ้าของธุรกิจยุคใหม่
+                ผ่านมาแล้วทั้งองค์กรขนาดใหญ่และ Startup ที่เต็มไปด้วยความเคลื่อนไหว ทำให้ไอซ์เข้าใจความต้องการ of นักธุรกิจทุกระดับได้อย่างลึกซึ้ง และนำมาออกแบบบริการที่ "เหมาะกับชีวิตจริง" ของเจ้าของธุรกิจยุคใหม่
               </p>
               <blockquote className="border-l-4 border-primary pl-6 py-2">
                 <p className="text-lg italic text-foreground font-medium">
@@ -125,7 +125,7 @@ export default function AboutPage() {
         </section>
 
         {/* ── TIMELINE ── */}
-        <section className="py-24 bg-secondary/40">
+        <section className="py-24 bg-secondary/40" data-aos="fade-up">
           <div className="container mx-auto px-6 max-w-4xl">
             <div className="text-center mb-16">
               <p className="text-primary text-xs font-bold tracking-[0.3em] uppercase mb-3">Journey</p>
@@ -139,7 +139,7 @@ export default function AboutPage() {
 
               <div className="space-y-12">
                 {timeline.map((item, i) => (
-                  <div key={i} className="md:flex gap-8 items-start">
+                  <div key={i} className="md:flex gap-8 items-start" data-aos="fade-up" data-aos-delay={i * 100}>
                     {/* Dot */}
                     <div className="hidden md:flex flex-col items-center flex-shrink-0">
                       <div className={`w-4 h-4 rounded-full ${item.color} ring-4 ring-background shadow-lg mt-1`} />
@@ -167,7 +167,7 @@ export default function AboutPage() {
         </section>
 
         {/* ── CO-FOUNDER ── */}
-        <section className="py-24 container mx-auto px-6 max-w-6xl">
+        <section className="py-24 container mx-auto px-6 max-w-6xl" data-aos="fade-up">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="space-y-6 order-2 md:order-1">
               <div>
@@ -216,7 +216,7 @@ export default function AboutPage() {
         </section>
 
         {/* ── VALUES ── */}
-        <section className="py-24 bg-secondary/40">
+        <section className="py-24 bg-secondary/40" data-aos="fade-up">
           <div className="container mx-auto px-6 max-w-6xl">
             <div className="text-center mb-16">
               <p className="text-primary text-xs font-bold tracking-[0.3em] uppercase mb-3">Why Choose IC</p>
@@ -224,7 +224,7 @@ export default function AboutPage() {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {values.map((v, i) => (
-                <div key={i} className="bg-background rounded-2xl p-6 shadow-sm border border-border hover:border-primary/30 hover:shadow-md transition-all">
+                <div key={i} className="bg-background rounded-2xl p-6 shadow-sm border border-border hover:border-primary/30 hover:shadow-md transition-all" data-aos="fade-up" data-aos-delay={i * 100}>
                   <div className="w-10 h-10 bg-primary text-primary-foreground rounded-xl flex items-center justify-center font-black text-lg mb-4">
                     {String(i + 1).padStart(2, '0')}
                   </div>
@@ -237,7 +237,7 @@ export default function AboutPage() {
         </section>
 
         {/* ── MISSION + CTA ── */}
-        <section className="py-24 container mx-auto px-6 max-w-4xl text-center">
+        <section className="py-24 container mx-auto px-6 max-w-4xl text-center" data-aos="fade-up">
           <p className="text-primary text-xs font-bold tracking-[0.3em] uppercase mb-3">Our Mission</p>
           <h2 className="text-3xl md:text-4xl font-black mb-6">ภารกิจของเรา</h2>
           <blockquote className="text-xl md:text-2xl italic text-muted-foreground leading-relaxed mb-12 max-w-3xl mx-auto">

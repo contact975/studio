@@ -75,10 +75,10 @@ export default function AuditServicesPage() {
         <PromoCarousel />
 
         {/* ── HERO ── */}
-        <section className="animate-gradient text-primary-foreground py-24 md:py-32 overflow-hidden relative">
+        <section className="bg-[#163674] text-primary-foreground py-24 md:py-32 overflow-hidden relative">
           <div className="absolute inset-0 opacity-10"
             style={{ backgroundImage: 'linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(90deg, #ffffff 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
-          <div className="container mx-auto px-6 relative z-10 max-w-4xl">
+          <div className="container mx-auto px-6 relative z-10 max-w-4xl" data-aos="fade-up">
             <nav className="text-sm mb-6 opacity-70">
               <Link href="/" className="hover:opacity-100 transition-opacity">หน้าแรก</Link>
               <span className="mx-2">/</span>
@@ -103,7 +103,7 @@ export default function AuditServicesPage() {
         </section>
 
         {/* ── SERVICES ── */}
-        <section className="py-24">
+        <section className="py-24" data-aos="fade-up">
           <div className="container mx-auto px-6 max-w-6xl">
             <div className="grid lg:grid-cols-2 gap-16 items-start">
               <div className="space-y-6">
@@ -123,6 +123,8 @@ export default function AuditServicesPage() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {auditServices.map((service, index) => (
                   <div key={index}
+                    data-aos="fade-up"
+                    data-aos-delay={index * 100}
                     className="bg-secondary/40 rounded-2xl p-6 border border-border hover:border-primary/30 hover:shadow-md transition-all">
                     <div className="w-10 h-10 bg-primary/10 text-primary rounded-xl flex items-center justify-center mb-4">
                       {service.icon}
@@ -137,7 +139,7 @@ export default function AuditServicesPage() {
         </section>
 
         {/* ── PRICING TABLE ── */}
-        <section className="py-24 bg-secondary/40">
+        <section className="py-24 bg-secondary/40" data-aos="fade-up">
           <div className="container mx-auto px-6 max-w-5xl">
             <div className="text-center mb-16">
               <p className="text-primary text-xs font-bold tracking-[0.3em] uppercase mb-3">Pricing</p>
@@ -183,7 +185,7 @@ export default function AuditServicesPage() {
                 { title: "ถูกต้องตามกฎหมาย", desc: "มั่นใจได้ 100% ว่างบการเงินผ่านการตรวจสอบตามมาตรฐานสภาวิชาชีพ" },
                 { title: "ซัพพอร์ตตลอดปี", desc: "ไม่ได้แค่ตรวจสอบแล้วจบ แต่เราพร้อมเป็นที่ปรึกษาให้คุณตลอดอายุสัญญา" },
               ].map((item, i) => (
-                <div key={i} className="bg-background rounded-2xl p-6 border border-border text-center hover:border-primary/30 hover:shadow-md transition-all">
+                <div key={i} data-aos="fade-up" data-aos-delay={i * 100} className="bg-background rounded-2xl p-6 border border-border text-center hover:border-primary/30 hover:shadow-md transition-all">
                   <div className="w-12 h-12 bg-primary/10 text-primary rounded-2xl flex items-center justify-center mx-auto mb-4">
                     <CheckCircle2 className="h-6 w-6" />
                   </div>
@@ -196,15 +198,15 @@ export default function AuditServicesPage() {
         </section>
 
         {/* ── WHY US ── */}
-        <section className="py-24">
+        <section className="py-24" data-aos="fade-up">
           <div className="container mx-auto px-6 max-w-6xl">
             <div className="text-center mb-16">
               <p className="text-primary text-xs font-bold tracking-[0.3em] uppercase mb-3">Why IC</p>
               <h2 className="text-3xl md:text-4xl font-black">ทำไมผู้ประกอบการจึงเลือก IC</h2>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {whyChooseUs.map((item) => (
-                <div key={item.num} className="bg-secondary/40 rounded-2xl p-8 border border-border hover:border-primary/30 hover:shadow-md transition-all">
+              {whyChooseUs.map((item, i) => (
+                <div key={item.num} data-aos="fade-up" data-aos-delay={i * 100} className="bg-secondary/40 rounded-2xl p-8 border border-border hover:border-primary/30 hover:shadow-md transition-all">
                   <div className="text-6xl font-black text-primary/10 mb-4 leading-none">{item.num}</div>
                   <h3 className="font-black text-xl mb-3">{item.title}</h3>
                   <p className="text-muted-foreground leading-relaxed">{item.description}</p>
@@ -215,7 +217,7 @@ export default function AuditServicesPage() {
         </section>
 
         {/* ── CTA ── */}
-        <section className="py-16 bg-secondary/40">
+        <section className="py-16 bg-secondary/40" data-aos="fade-up">
           <div className="container mx-auto px-6 max-w-4xl">
             <div className="bg-primary text-primary-foreground rounded-3xl p-10 relative overflow-hidden text-center">
               <div className="absolute inset-0 opacity-5"

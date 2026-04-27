@@ -111,7 +111,7 @@ export default function MediaClient() {
             style={{ backgroundImage: 'linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(90deg, #ffffff 1px, transparent 1px)', backgroundSize: '60px 60px' }} />
           <div className="absolute top-1/4 left-1/3 w-[500px] h-[500px] bg-blue-600/20 rounded-full blur-[120px] pointer-events-none" />
           <div className="absolute bottom-1/4 right-1/4 w-[300px] h-[300px] bg-indigo-500/10 rounded-full blur-[100px] pointer-events-none" />
-          <div className="container mx-auto relative z-10">
+          <div className="container mx-auto relative z-10" data-aos="fade-up">
             <div className="max-w-6xl">
               <p className="text-blue-400 text-xs font-bold tracking-[0.3em] uppercase mb-6 flex items-center gap-3">
                 <span className="w-8 h-px bg-blue-400" />IC Production Studio
@@ -133,7 +133,7 @@ export default function MediaClient() {
                   <PlayCircle className="h-5 w-5 text-blue-400" /> ดู Showreel
                 </a>
               </div>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-10 border-t border-white/10">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-10 border-t border-white/10" data-aos="fade-up" data-aos-delay="200">
                 {stats.map((s) => (
                   <div key={s.label}>
                     <div className="text-3xl md:text-4xl font-black text-white mb-1">{s.num}</div>
@@ -146,7 +146,7 @@ export default function MediaClient() {
         </section>
 
         {/* ── CLIENT MARQUEE ── */}
-        <section className="py-12 border-y border-white/5 overflow-hidden">
+        <section className="py-12 border-y border-white/5 overflow-hidden" data-aos="fade-up">
           <div className="flex gap-12 animate-[marquee_30s_linear_infinite] whitespace-nowrap w-max">
             {[...clients, ...clients].map((c, i) => (
               <span key={i} className="text-white/20 text-sm font-bold uppercase tracking-widest hover:text-white/50 transition-colors cursor-default">{c}</span>
@@ -156,7 +156,7 @@ export default function MediaClient() {
         </section>
 
         {/* ── SHOWREEL ── */}
-        <section id="showreel" className="py-24 container mx-auto px-6">
+        <section id="showreel" className="py-24 container mx-auto px-6" data-aos="fade-up">
           <div className="flex items-end justify-between mb-10 gap-4 flex-wrap">
             <div>
               <p className="text-blue-400 text-xs tracking-[0.3em] uppercase mb-2 flex items-center gap-2">
@@ -196,7 +196,7 @@ export default function MediaClient() {
         </section>
 
         {/* ── SERVICES ── */}
-        <section className="py-24 bg-zinc-950/50">
+        <section className="py-24 bg-zinc-950/50" data-aos="fade-up">
           <div className="container mx-auto px-6">
             <div className="mb-16">
               <p className="text-blue-400 text-xs tracking-[0.3em] uppercase mb-3 flex items-center gap-2">
@@ -270,7 +270,7 @@ export default function MediaClient() {
         </section>
 
         {/* ── PORTFOLIO ── */}
-        <section className="py-24 container mx-auto px-6">
+        <section className="py-24 container mx-auto px-6" data-aos="fade-up">
           <div className="mb-16">
             <p className="text-blue-400 text-xs tracking-[0.3em] uppercase mb-3 flex items-center gap-2">
               <span className="w-6 h-px bg-blue-400" /> ผลงาน
@@ -284,7 +284,7 @@ export default function MediaClient() {
               { label: 'Photo Content', img: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=800', span: 'col-span-1' },
               { label: 'Motion Media', img: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=800', span: 'col-span-2' },
             ].map((item, i) => (
-              <div key={i} className={`${item.span} relative rounded-2xl overflow-hidden group cursor-pointer`} style={{ minHeight: '200px' }}>
+              <div key={i} data-aos="zoom-in" data-aos-delay={i * 100} className={`${item.span} relative rounded-2xl overflow-hidden group cursor-pointer`} style={{ minHeight: '200px' }}>
                 <Image src={item.img} alt={item.label} fill className="object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" sizes="(max-width: 768px) 50vw, 33vw" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
                 <div className="absolute bottom-4 left-4">
@@ -302,7 +302,7 @@ export default function MediaClient() {
         </section>
 
         {/* ── DIFFERENCES ── */}
-        <section className="py-24 bg-zinc-950/50">
+        <section className="py-24 bg-zinc-950/50" data-aos="fade-up">
           <div className="container mx-auto px-6">
             <div className="text-center mb-16">
               <p className="text-blue-400 text-xs tracking-[0.3em] uppercase mb-3 flex items-center gap-2 justify-center">
@@ -313,7 +313,7 @@ export default function MediaClient() {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
               {differences.map((d, i) => (
-                <div key={i} className={`rounded-2xl p-8 border ${d.negative ? 'border-white/5 bg-white/[0.02]' : 'border-blue-500/30 bg-blue-600/10'}`}>
+                <div key={i} data-aos="fade-up" data-aos-delay={i * 100} className={`rounded-2xl p-8 border ${d.negative ? 'border-white/5 bg-white/[0.02]' : 'border-blue-500/30 bg-blue-600/10'}`}>
                   <div className="flex items-center gap-3 mb-6">
                     <div className={`w-2 h-2 rounded-full ${d.negative ? 'bg-red-500/50' : 'bg-blue-500'}`} />
                     <p className={`font-bold text-sm uppercase tracking-wider ${d.negative ? 'text-gray-500' : 'text-blue-400'}`}>{d.label}</p>
@@ -333,7 +333,7 @@ export default function MediaClient() {
         </section>
 
         {/* ── PROCESS ── */}
-        <section className="py-24 container mx-auto px-6">
+        <section className="py-24 container mx-auto px-6" data-aos="fade-up">
           <div className="mb-16">
             <p className="text-blue-400 text-xs tracking-[0.3em] uppercase mb-3 flex items-center gap-2">
               <span className="w-6 h-px bg-blue-400" /> กระบวนการ
@@ -342,7 +342,7 @@ export default function MediaClient() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
             {process.map((p, i) => (
-              <div key={i} className="relative p-8 rounded-2xl border border-white/5 bg-white/[0.02] hover:border-blue-500/30 hover:bg-blue-600/5 transition-all group">
+              <div key={i} data-aos="fade-up" data-aos-delay={i * 100} className="relative p-8 rounded-2xl border border-white/5 bg-white/[0.02] hover:border-blue-500/30 hover:bg-blue-600/5 transition-all group">
                 <div className="text-6xl font-black text-white/[0.04] group-hover:text-blue-600/10 transition-colors mb-4 leading-none">{p.num}</div>
                 <h3 className="text-lg font-black mb-3 text-white">{p.title}</h3>
                 <p className="text-gray-500 text-sm leading-relaxed">{p.desc}</p>
@@ -357,7 +357,7 @@ export default function MediaClient() {
         </section>
 
         {/* ── CLIENTS ── */}
-        <section className="py-24 bg-zinc-950/50">
+        <section className="py-24 bg-zinc-950/50" data-aos="fade-up">
           <div className="container mx-auto px-6">
             <div className="text-center mb-16">
               <p className="text-blue-400 text-xs tracking-[0.3em] uppercase mb-3 flex items-center gap-2 justify-center">
@@ -367,7 +367,7 @@ export default function MediaClient() {
             </div>
             <div className="flex flex-wrap justify-center gap-4 max-w-4xl mx-auto">
               {clients.map((c, i) => (
-                <div key={i} className="px-6 py-3 rounded-full border border-white/10 bg-white/[0.02] hover:border-blue-500/40 hover:bg-blue-600/5 transition-all cursor-default">
+                <div key={i} data-aos="zoom-in" data-aos-delay={i * 50} className="px-6 py-3 rounded-full border border-white/10 bg-white/[0.02] hover:border-blue-500/40 hover:bg-blue-600/5 transition-all cursor-default">
                   <span className="text-gray-400 text-sm font-medium">{c}</span>
                 </div>
               ))}
@@ -379,7 +379,7 @@ export default function MediaClient() {
                 { num: '14.9K', label: 'Reach' },
                 { num: '10.4K', label: 'Interactions' },
               ].map((s, i) => (
-                <div key={i} className="text-center p-6 rounded-2xl border border-white/5 bg-white/[0.02]">
+                <div key={i} data-aos="fade-up" data-aos-delay={i * 100} className="text-center p-6 rounded-2xl border border-white/5 bg-white/[0.02]">
                   <p className="text-2xl font-black text-blue-400 mb-1">{s.num}</p>
                   <p className="text-xs text-gray-600 uppercase tracking-wider">{s.label}</p>
                 </div>
@@ -389,7 +389,7 @@ export default function MediaClient() {
         </section>
 
         {/* ── CTA ── */}
-        <section className="py-24 container mx-auto px-6">
+        <section className="py-24 container mx-auto px-6" data-aos="fade-up">
           <div className="relative rounded-3xl overflow-hidden p-12 md:p-20 text-center border border-blue-500/20"
             style={{ background: 'radial-gradient(ellipse at 50% 0%, rgba(37,99,235,0.3) 0%, transparent 70%), #0a0a14' }}>
             <div className="absolute inset-0 opacity-[0.03]"

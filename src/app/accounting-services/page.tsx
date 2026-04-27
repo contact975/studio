@@ -98,10 +98,10 @@ export default function AccountingServicesPage() {
         <PromoCarousel />
 
         {/* ── HERO ── */}
-        <section className="animate-gradient text-primary-foreground py-24 md:py-32 overflow-hidden relative">
+        <section className="bg-[#163674] text-primary-foreground py-24 md:py-32 overflow-hidden relative">
           <div className="absolute inset-0 opacity-10"
             style={{ backgroundImage: 'linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(90deg, #ffffff 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
-          <div className="container mx-auto px-6 relative z-10 max-w-4xl">
+          <div className="container mx-auto px-6 relative z-10 max-w-4xl" data-aos="fade-up">
             <nav className="text-sm mb-6 opacity-70">
               <Link href="/" className="hover:opacity-100 transition-opacity">หน้าแรก</Link>
               <span className="mx-2">/</span>
@@ -126,7 +126,7 @@ export default function AccountingServicesPage() {
         </section>
 
         {/* ── PACKAGES ── */}
-        <section className="py-24">
+        <section className="py-24" data-aos="fade-up">
           <div className="container mx-auto px-6 max-w-6xl">
             <div className="text-center mb-16">
               <p className="text-primary text-xs font-bold tracking-[0.3em] uppercase mb-3">Pricing Plans</p>
@@ -135,8 +135,10 @@ export default function AccountingServicesPage() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {packages.map((pkg) => (
+              {packages.map((pkg, i) => (
                 <div key={pkg.name}
+                  data-aos="fade-up"
+                  data-aos-delay={i * 100}
                   className={`relative rounded-3xl overflow-hidden border transition-all duration-300 hover:shadow-xl hover:-translate-y-1 ${pkg.highlight ? 'border-primary shadow-lg shadow-primary/10' : 'border-border'}`}>
 
                   {pkg.highlight && (
@@ -189,7 +191,7 @@ export default function AccountingServicesPage() {
         </section>
 
         {/* ── CTA ── */}
-        <section className="py-16 bg-secondary/40">
+        <section className="py-16 bg-secondary/40" data-aos="fade-up">
           <div className="container mx-auto px-6 max-w-4xl">
             <div className="bg-primary text-primary-foreground rounded-3xl p-10 relative overflow-hidden text-center">
               <div className="absolute inset-0 opacity-5"

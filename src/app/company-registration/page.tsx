@@ -66,10 +66,10 @@ export default function CompanyRegistrationPage() {
         <PromoCarousel />
 
         {/* ── HERO ── */}
-        <section className="animate-gradient text-primary-foreground py-24 md:py-32 overflow-hidden relative">
+        <section className="bg-[#163674] text-primary-foreground py-24 md:py-32 overflow-hidden relative">
           <div className="absolute inset-0 opacity-10"
             style={{ backgroundImage: 'linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(90deg, #ffffff 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
-          <div className="container mx-auto px-6 relative z-10 max-w-4xl">
+          <div className="container mx-auto px-6 relative z-10 max-w-4xl" data-aos="fade-up">
             <nav className="text-sm mb-6 opacity-70">
               <Link href="/" className="hover:opacity-100 transition-opacity">หน้าแรก</Link>
               <span className="mx-2">/</span>
@@ -94,7 +94,7 @@ export default function CompanyRegistrationPage() {
         </section>
 
         {/* ── PACKAGES ── */}
-        <section className="py-24">
+        <section className="py-24" data-aos="fade-up">
           <div className="container mx-auto px-6 max-w-4xl">
             <div className="text-center mb-16">
               <p className="text-primary text-xs font-bold tracking-[0.3em] uppercase mb-3">Pricing</p>
@@ -102,8 +102,10 @@ export default function CompanyRegistrationPage() {
               <p className="text-muted-foreground">ราคารวมค่าบริการและค่าธรรมเนียมทั้งหมดแล้ว ไม่มีค่าใช้จ่ายแอบแฝง</p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {packages.map((pkg) => (
+              {packages.map((pkg, i) => (
                 <div key={pkg.name}
+                  data-aos="fade-up"
+                  data-aos-delay={i * 100}
                   className={`relative rounded-3xl overflow-hidden border transition-all duration-300 hover:shadow-xl hover:-translate-y-1 ${pkg.highlight ? 'border-primary shadow-lg shadow-primary/10' : 'border-border'}`}>
                   {pkg.highlight && (
                     <div className="absolute top-4 right-4 bg-primary text-primary-foreground text-xs font-black px-3 py-1 rounded-full z-10">
@@ -135,7 +137,7 @@ export default function CompanyRegistrationPage() {
         </section>
 
         {/* ── NEW SETUP + CHANGES ── */}
-        <section className="py-24 bg-secondary/40">
+        <section className="py-24 bg-secondary/40" data-aos="fade-up">
           <div className="container mx-auto px-6 max-w-6xl">
             <div className="grid md:grid-cols-2 gap-12 items-start">
               <div className="space-y-6">
@@ -148,7 +150,7 @@ export default function CompanyRegistrationPage() {
                 </div>
                 <ul className="space-y-3">
                   {newSetupItems.map((item, i) => (
-                    <li key={i} className="flex items-center gap-3 bg-background rounded-xl p-4 border border-border">
+                    <li key={i} data-aos="fade-up" data-aos-delay={i * 100} className="flex items-center gap-3 bg-background rounded-xl p-4 border border-border">
                       <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
                       <span className="font-medium">{item}</span>
                     </li>
@@ -165,8 +167,8 @@ export default function CompanyRegistrationPage() {
                   </p>
                 </div>
                 <div className="space-y-3">
-                  {changeItems.map((item) => (
-                    <div key={item.num} className="flex items-center gap-4 bg-background rounded-xl p-4 border border-border hover:border-primary/30 transition-colors">
+                  {changeItems.map((item, i) => (
+                    <div key={item.num} data-aos="fade-up" data-aos-delay={i * 100} className="flex items-center gap-4 bg-background rounded-xl p-4 border border-border hover:border-primary/30 transition-colors">
                       <span className="font-black text-primary text-sm w-8 flex-shrink-0">{item.num}.</span>
                       <span className="font-medium">{item.label}</span>
                     </div>
@@ -178,7 +180,7 @@ export default function CompanyRegistrationPage() {
         </section>
 
         {/* ── STEPS ── */}
-        <section className="py-24">
+        <section className="py-24" data-aos="fade-up">
           <div className="container mx-auto px-6 max-w-5xl">
             <div className="text-center mb-16">
               <p className="text-primary text-xs font-bold tracking-[0.3em] uppercase mb-3">Process</p>
@@ -187,7 +189,7 @@ export default function CompanyRegistrationPage() {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {steps.map((step, i) => (
-                <div key={i} className="relative bg-secondary/40 rounded-2xl p-8 border border-border hover:border-primary/30 hover:shadow-md transition-all text-center">
+                <div key={i} data-aos="fade-up" data-aos-delay={i * 100} className="relative bg-secondary/40 rounded-2xl p-8 border border-border hover:border-primary/30 hover:shadow-md transition-all text-center">
                   <div className="w-14 h-14 bg-primary text-primary-foreground rounded-2xl flex items-center justify-center mx-auto mb-6 text-2xl font-black">
                     {step.num}
                   </div>
@@ -205,7 +207,7 @@ export default function CompanyRegistrationPage() {
         </section>
 
         {/* ── CTA ── */}
-        <section className="py-16 bg-secondary/40">
+        <section className="py-16 bg-secondary/40" data-aos="fade-up">
           <div className="container mx-auto px-6 max-w-4xl">
             <div className="bg-primary text-primary-foreground rounded-3xl p-10 relative overflow-hidden text-center">
               <div className="absolute inset-0 opacity-5"

@@ -61,10 +61,10 @@ export default function OrganizationSystemPage() {
         <PromoCarousel />
 
         {/* ── HERO ── */}
-        <section className="animate-gradient text-primary-foreground py-24 md:py-32 overflow-hidden relative">
+        <section className="bg-[#163674] text-primary-foreground py-24 md:py-32 overflow-hidden relative">
           <div className="absolute inset-0 opacity-10"
             style={{ backgroundImage: 'linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(90deg, #ffffff 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
-          <div className="container mx-auto px-6 relative z-10 max-w-4xl">
+          <div className="container mx-auto px-6 relative z-10 max-w-4xl" data-aos="fade-up">
             <nav className="text-sm mb-6 opacity-70">
               <Link href="/" className="hover:opacity-100 transition-opacity">หน้าแรก</Link>
               <span className="mx-2">/</span>
@@ -89,7 +89,7 @@ export default function OrganizationSystemPage() {
         </section>
 
         {/* ── SOLUTIONS ── */}
-        <section className="py-24">
+        <section className="py-24" data-aos="fade-up">
           <div className="container mx-auto px-6 max-w-6xl">
             <div className="text-center mb-16">
               <p className="text-primary text-xs font-bold tracking-[0.3em] uppercase mb-3">Solutions</p>
@@ -99,6 +99,8 @@ export default function OrganizationSystemPage() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {solutions.map((s, i) => (
                 <div key={i}
+                  data-aos="fade-up"
+                  data-aos-delay={i * 100}
                   className="bg-secondary/40 rounded-2xl p-8 border border-border hover:border-primary/30 hover:shadow-md transition-all">
                   <div className="flex items-start justify-between mb-6">
                     <div className="w-12 h-12 bg-primary/10 text-primary rounded-xl flex items-center justify-center">
@@ -115,7 +117,7 @@ export default function OrganizationSystemPage() {
         </section>
 
         {/* ── BENEFITS ── */}
-        <section className="py-24 bg-secondary/40">
+        <section className="py-24 bg-secondary/40" data-aos="fade-up">
           <div className="container mx-auto px-6 max-w-6xl">
             <div className="grid md:grid-cols-2 gap-16 items-center">
               <div className="space-y-6">
@@ -128,7 +130,7 @@ export default function OrganizationSystemPage() {
                 </div>
                 <ul className="space-y-3">
                   {benefits.map((b, i) => (
-                    <li key={i} className="flex items-center gap-3 bg-background rounded-xl p-4 border border-border">
+                    <li key={i} data-aos="fade-up" data-aos-delay={i * 100} className="flex items-center gap-3 bg-background rounded-xl p-4 border border-border">
                       <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
                       <span className="font-medium">{b}</span>
                     </li>
@@ -136,7 +138,7 @@ export default function OrganizationSystemPage() {
                 </ul>
               </div>
 
-              <div className="bg-background rounded-3xl p-8 border border-border shadow-sm">
+              <div className="bg-background rounded-3xl p-8 border border-border shadow-sm" data-aos="fade-up">
                 <p className="text-primary text-xs font-bold tracking-[0.3em] uppercase mb-4">Powered by</p>
                 <h3 className="text-2xl font-black mb-3">ใช้งานร่วมกับ Clero</h3>
                 <p className="text-muted-foreground mb-6 leading-relaxed">
@@ -160,7 +162,7 @@ export default function OrganizationSystemPage() {
         </section>
 
         {/* ── PROCESS ── */}
-        <section className="py-24">
+        <section className="py-24" data-aos="fade-up">
           <div className="container mx-auto px-6 max-w-6xl">
             <div className="text-center mb-16">
               <p className="text-primary text-xs font-bold tracking-[0.3em] uppercase mb-3">Process</p>
@@ -170,6 +172,8 @@ export default function OrganizationSystemPage() {
             <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
               {steps.map((item, i) => (
                 <div key={item.step}
+                  data-aos="fade-up"
+                  data-aos-delay={i * 100}
                   className="relative bg-secondary/40 rounded-2xl p-6 border border-border hover:border-primary/30 hover:shadow-md transition-all">
                   <div className="text-5xl font-black text-primary/10 mb-4 leading-none">{item.step}</div>
                   <span className="text-primary text-xs font-bold">Step {item.step}</span>
@@ -187,7 +191,7 @@ export default function OrganizationSystemPage() {
         </section>
 
         {/* ── CTA ── */}
-        <section className="py-16 bg-secondary/40">
+        <section className="py-16 bg-secondary/40" data-aos="fade-up">
           <div className="container mx-auto px-6 max-w-4xl">
             <div className="bg-primary text-primary-foreground rounded-3xl p-10 relative overflow-hidden text-center">
               <div className="absolute inset-0 opacity-5"

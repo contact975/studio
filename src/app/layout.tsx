@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 import { Toaster } from '@/components/ui/toaster';
 import { cn } from '@/lib/utils';
+import { AOSProvider } from '@/components/aos-provider';
 
 export const metadata: Metadata = {
   title: {
@@ -71,9 +72,10 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }} />
       </head>
       <body className={cn('font-body antialiased')} suppressHydrationWarning>
-        {children}
-        <Toaster />
-        {/* ลบ Wistia Script ออกแล้ว — ย้ายไปโหลดใน hero-section แทน */}
+        <AOSProvider>
+          {children}
+          <Toaster />
+        </AOSProvider>
       </body>
     </html>
   );
