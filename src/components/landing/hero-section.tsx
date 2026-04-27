@@ -13,11 +13,48 @@ declare global {
   }
 }
 
+interface AnimatedCounterProps {
+  value: number;
+  duration?: number;
+  suffix?: string;
+}
+
+function AnimatedCounter({ value, duration = 2000, suffix = "" }: AnimatedCounterProps) {
+  const [count, setCount] = React.useState(0);
+  const [hasStarted, setHasStarted] = React.useState(false);
+
+  React.useEffect(() => {
+    setHasStarted(true);
+  }, []);
+
+  React.useEffect(() => {
+    if (!hasStarted) return;
+
+    let startTimestamp: number | null = null;
+    const step = (timestamp: number) => {
+      if (!startTimestamp) startTimestamp = timestamp;
+      const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+      setCount(progress * value);
+      if (progress < 1) {
+        window.requestAnimationFrame(step);
+      }
+    };
+    window.requestAnimationFrame(step);
+  }, [value, duration, hasStarted]);
+
+  return (
+    <span>
+      {suffix === ".0" ? count.toFixed(1) : Math.floor(count)}
+      {suffix !== ".0" ? suffix : ""}
+    </span>
+  );
+}
+
 const stats = [
-  { num: '100+', label: 'ลูกค้าที่ไว้วางใจ' },
-  { num: '10+', label: 'ปีประสบการณ์' },
-  { num: '5', label: 'บริการครบวงจร' },
-  { num: '5.0', label: 'คะแนน Google' },
+  { value: 100, suffix: '+', label: 'ลูกค้าที่ไว้วางใจ' },
+  { value: 10, suffix: '+', label: 'ปีประสบการณ์' },
+  { value: 5, suffix: '', label: 'บริการครบวงจร' },
+  { value: 5, suffix: '.0', label: 'คะแนน Google' },
 ];
 
 export function HeroSection() {
@@ -29,7 +66,6 @@ export function HeroSection() {
 
   return (
     <section id="hero" className="relative bg-[#163674] text-white overflow-hidden" suppressHydrationWarning>
-      {/* Load Wistia script only when needed, with lazy strategy to prevent hydration errors */}
       <Script 
         src="https://fast.wistia.com/player.js" 
         strategy="lazyOnload"
@@ -42,7 +78,6 @@ export function HeroSection() {
 
       <div className="container mx-auto px-6 py-16 md:py-24 relative z-10 max-w-6xl">
 
-        {/* Label */}
         <div className="flex justify-center mb-6">
           <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-5 py-2 rounded-full text-sm font-medium border border-white/20">
             <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
@@ -50,18 +85,15 @@ export function HeroSection() {
           </div>
         </div>
 
-        {/* Headline */}
         <h1 className="text-4xl md:text-7xl font-black text-center leading-[0.95] tracking-tight mb-4">
           <span className="block text-white">สำนักงานบัญชีเชียงใหม่</span>
           <span className="block text-white/40 text-3xl md:text-5xl font-black mt-3">ครบจบทุกเรื่อง หลังบ้านธุรกิจ</span>
         </h1>
 
-        {/* Sub */}
         <p className="text-center text-base md:text-xl text-white/70 max-w-2xl mx-auto leading-relaxed mb-8">
           บริการทำบัญชี ภาษี และมีเดียคอนเทนต์ สำหรับธุรกิจในเชียงใหม่และทั่วประเทศ เปลี่ยนตัวเลขที่ซับซ้อน เป็นโอกาสสู่ความสำเร็จ ด้วยประสบการณ์กว่า 10 ปี
         </p>
 
-        {/* CTA Buttons */}
         <div className="flex flex-wrap gap-4 justify-center mb-10">
           <Link href="https://line.me/R/ti/p/@374jshvh" target="_blank"
             className="inline-flex items-center gap-3 bg-white text-blue-900 font-black px-8 h-12 md:h-14 rounded-full transition-all hover:scale-105 hover:shadow-xl hover:shadow-white/20 text-sm md:text-base">
@@ -73,7 +105,6 @@ export function HeroSection() {
           </Link>
         </div>
 
-        {/* Video Container with Hydration Guard */}
         <div
           className="relative w-full max-w-4xl mx-auto aspect-video rounded-2xl overflow-hidden shadow-2xl border border-white/10 mb-10 bg-black/20"
           suppressHydrationWarning
@@ -103,11 +134,12 @@ export function HeroSection() {
           )}
         </div>
 
-        {/* Stats */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-8 border-t border-white/10 max-w-4xl mx-auto">
           {stats.map((s, idx) => (
             <div key={`${s.label}-${idx}`} className="text-center">
-              <div className="text-3xl md:text-5xl font-black text-white mb-1">{s.num}</div>
+              <div className="text-3xl md:text-5xl font-black text-white mb-1">
+                <AnimatedCounter value={s.value} suffix={s.suffix} />
+              </div>
               <div className="text-[10px] md:text-xs text-white/50 uppercase tracking-wider">{s.label}</div>
             </div>
           ))}
