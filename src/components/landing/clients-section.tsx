@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import Image from "next/image";
+import { cn } from "@/lib/utils";
 
 const logosRow1 = [
   { name: "Customer 01", logoUrl: "https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Customer01.png?alt=media" },
@@ -25,7 +26,12 @@ const logosRow2 = [
   { name: "Customer 16", logoUrl: "https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Customer16.png?alt=media" },
 ];
 
-function MarqueeRow({ logos }: { logos: typeof logosRow1 }) {
+interface MarqueeRowProps {
+  logos: typeof logosRow1;
+  direction: "ltr" | "rtl";
+}
+
+function MarqueeRow({ logos, direction }: MarqueeRowProps) {
   return (
     <div className="relative flex overflow-x-hidden">
       {/* Gradients for smooth fade-in/out edges */}
@@ -33,7 +39,12 @@ function MarqueeRow({ logos }: { logos: typeof logosRow1 }) {
       <div className="absolute right-0 top-0 bottom-0 w-12 md:w-32 z-10 bg-gradient-to-l from-background to-transparent pointer-events-none" />
 
       {/* Animation wrapper */}
-      <div className="flex items-center gap-12 py-6 animate-marquee-ltr">
+      <div 
+        className={cn(
+          "flex items-center gap-12 py-6",
+          direction === "ltr" ? "animate-marquee-ltr" : "animate-marquee-rtl"
+        )}
+      >
         {[...logos, ...logos, ...logos].map((logo, index) => (
           <div
             key={index}
@@ -56,15 +67,25 @@ function MarqueeRow({ logos }: { logos: typeof logosRow1 }) {
           0% { transform: translate3d(-33.33%, 0, 0); }
           100% { transform: translate3d(0, 0, 0); }
         }
+        @keyframes marquee-rtl {
+          0% { transform: translate3d(0, 0, 0); }
+          100% { transform: translate3d(-33.33%, 0, 0); }
+        }
         .animate-marquee-ltr {
           display: flex;
           width: max-content;
-          animation: marquee-ltr 40s linear infinite;
+          animation: marquee-ltr 50s linear infinite;
+          will-change: transform;
+        }
+        .animate-marquee-rtl {
+          display: flex;
+          width: max-content;
+          animation: marquee-rtl 50s linear infinite;
           will-change: transform;
         }
         @media (max-width: 768px) {
-          .animate-marquee-ltr {
-            animation-duration: 25s;
+          .animate-marquee-ltr, .animate-marquee-rtl {
+            animation-duration: 30s;
           }
         }
       `}</style>
@@ -91,8 +112,8 @@ export function ClientsSection() {
 
       <div className="overflow-hidden">
         <div className="flex flex-col gap-2">
-          <MarqueeRow logos={logosRow1} />
-          <MarqueeRow logos={logosRow2} />
+          <MarqueeRow logos={logosRow1} direction="ltr" />
+          <MarqueeRow logos={logosRow2} direction="rtl" />
         </div>
       </div>
     </section>
