@@ -25,67 +25,40 @@ const logosRow2 = [
   { name: "Customer 16", logoUrl: "https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Customer16.png?alt=media" },
 ];
 
-function MarqueeRow({ logos, reverse = false }: { logos: typeof logosRow1, reverse?: boolean }) {
+function MarqueeRow({ logos }: { logos: typeof logosRow1 }) {
   return (
     <div className="relative flex overflow-x-hidden">
       {/* Gradients for smooth fade-in/out edges */}
-      <div className="absolute left-0 top-0 bottom-0 w-12 md:w-20 z-10 bg-gradient-to-r from-background to-transparent pointer-events-none" />
-      <div className="absolute right-0 top-0 bottom-0 w-12 md:w-20 z-10 bg-gradient-to-l from-background to-transparent pointer-events-none" />
+      <div className="absolute left-0 top-0 bottom-0 w-12 md:w-32 z-10 bg-gradient-to-r from-background to-transparent pointer-events-none" />
+      <div className="absolute right-0 top-0 bottom-0 w-12 md:w-32 z-10 bg-gradient-to-l from-background to-transparent pointer-events-none" />
 
-      {/* Animation direction is now Left to Right by default */}
-      <div className={`flex items-center gap-12 py-4 animate-marquee-ltr`}>
-        {[...logos, ...logos].map((logo, index) => (
+      {/* Animation wrapper */}
+      <div className="flex items-center gap-12 py-6 animate-marquee-ltr">
+        {[...logos, ...logos, ...logos].map((logo, index) => (
           <div
             key={index}
-            className="flex-shrink-0 w-36 md:w-44 h-16 flex items-center justify-center opacity-80 hover:opacity-100 transition-opacity duration-300"
+            className="flex-shrink-0 w-36 md:w-44 h-16 flex items-center justify-center opacity-60 hover:opacity-100 transition-opacity duration-300"
           >
             <Image
               src={logo.logoUrl}
               alt={logo.name}
               width={160}
               height={75}
-              className="object-contain max-h-16"
+              className="object-contain max-h-12 md:max-h-16 grayscale hover:grayscale-0 transition-all duration-300"
               loading="lazy"
             />
           </div>
         ))}
       </div>
-    </div>
-  );
-}
-
-export function ClientsSection() {
-  return (
-    <section id="clients" className="py-16 bg-background overflow-hidden">
-      {/* Header */}
-      <div className="max-w-4xl mx-auto px-4 md:px-6 mb-10">
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
-          <div>
-            <p className="text-primary text-xs font-bold tracking-[0.3em] uppercase mb-3">Trusted By</p>
-            <h2 className="text-2xl md:text-3xl font-black text-foreground">
-              ลูกค้าที่อยู่ในการดูแลของเรา
-            </h2>
-          </div>
-          <p className="text-muted-foreground text-sm max-w-xs">
-            กว่า 100 ธุรกิจในเชียงใหม่และทั่วประเทศที่เลือกให้ IC ดูแลหลังบ้าน
-          </p>
-        </div>
-      </div>
-
-      {/* Marquee Rows - Both sliding Left to Right */}
-      <div className="max-w-4xl mx-auto overflow-hidden">
-        <div className="space-y-4">
-          <MarqueeRow logos={logosRow1} />
-          <MarqueeRow logos={logosRow2} />
-        </div>
-      </div>
 
       <style jsx>{`
         @keyframes marquee-ltr {
-          0% { transform: translateX(calc(-50% - 1.5rem)); }
-          100% { transform: translateX(0); }
+          0% { transform: translate3d(-33.33%, 0, 0); }
+          100% { transform: translate3d(0, 0, 0); }
         }
         .animate-marquee-ltr {
+          display: flex;
+          width: max-content;
           animation: marquee-ltr 40s linear infinite;
           will-change: transform;
         }
@@ -95,6 +68,33 @@ export function ClientsSection() {
           }
         }
       `}</style>
+    </div>
+  );
+}
+
+export function ClientsSection() {
+  return (
+    <section id="clients" className="py-16 md:py-24 bg-background overflow-hidden border-y border-border/50">
+      <div className="max-w-6xl mx-auto px-4 md:px-6 mb-12">
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+          <div>
+            <p className="text-primary text-xs font-bold tracking-[0.3em] uppercase mb-3">Trusted By</p>
+            <h2 className="text-2xl md:text-3xl font-black text-foreground">
+              ลูกค้าที่อยู่ในการดูแลของเรา
+            </h2>
+          </div>
+          <p className="text-muted-foreground text-sm max-w-xs md:text-right">
+            กว่า 100 ธุรกิจในเชียงใหม่และทั่วประเทศที่เลือกให้ IC ดูแลหลังบ้าน
+          </p>
+        </div>
+      </div>
+
+      <div className="overflow-hidden">
+        <div className="flex flex-col gap-2">
+          <MarqueeRow logos={logosRow1} />
+          <MarqueeRow logos={logosRow2} />
+        </div>
+      </div>
     </section>
   );
 }
