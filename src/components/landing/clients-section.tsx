@@ -48,14 +48,14 @@ function MarqueeRow({ logos, direction }: MarqueeRowProps) {
         {[...logos, ...logos, ...logos].map((logo, index) => (
           <div
             key={index}
-            className="flex-shrink-0 w-36 md:w-44 h-16 flex items-center justify-center opacity-60 hover:opacity-100 transition-opacity duration-300"
+            className="flex-shrink-0 w-36 md:w-44 h-16 flex items-center justify-center transition-opacity duration-300"
           >
             <Image
               src={logo.logoUrl}
               alt={logo.name}
               width={160}
               height={75}
-              className="object-contain max-h-12 md:max-h-16 grayscale hover:grayscale-0 transition-all duration-300"
+              className="object-contain max-h-12 md:max-h-16 transition-all duration-300"
               loading="lazy"
             />
           </div>
