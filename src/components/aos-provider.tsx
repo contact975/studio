@@ -10,15 +10,21 @@ export function AOSProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     AOS.init({
-      duration: 800,
+      duration: 600, // Faster animation for perceived speed
       once: true,
       easing: 'ease-out-quad',
-      offset: 100,
+      offset: 60, // Smaller offset for mobile responsiveness
+      disable: 'mobile', // Optionally disable on mobile if still too slow, but we'll try optimizing first
+      startEvent: 'DOMContentLoaded',
     });
   }, []);
 
   useEffect(() => {
-    AOS.refresh();
+    // Small timeout to ensure DOM is ready after navigation
+    const timer = setTimeout(() => {
+      AOS.refresh();
+    }, 100);
+    return () => clearTimeout(timer);
   }, [pathname]);
 
   return <>{children}</>;

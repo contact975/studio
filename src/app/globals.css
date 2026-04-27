@@ -78,11 +78,13 @@
     background: linear-gradient(-45deg, #2657c1, #1d4292, #142e68, #1d4292, #2657c1);
     background-size: 400% 400%;
     animation: gradientBG 15s ease infinite;
+    /* Hardware acceleration */
+    transform: translate3d(0,0,0);
 }
 
 @keyframes light-sweep {
-  0% { transform: translateX(-100%); }
-  100% { transform: translateX(100%); }
+  0% { transform: translate3d(-100%, 0, 0); }
+  100% { transform: translate3d(100%, 0, 0); }
 }
 
 .animate-light-sweep {
@@ -105,7 +107,12 @@ video {
   }
   
   .animate-gradient {
-    background-attachment: scroll; /* Fixed backgrounds can lag on mobile */
-    animation-duration: 20s;
+    background-attachment: scroll;
+    animation-duration: 25s; /* Slower animation for less CPU usage on mobile */
+  }
+
+  /* Simplify backdrop blurs for mobile performance */
+  .backdrop-blur-md {
+    backdrop-filter: blur(8px);
   }
 }
