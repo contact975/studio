@@ -38,25 +38,27 @@ function MarqueeRow({ logos, direction }: MarqueeRowProps) {
       <div className="absolute left-0 top-0 bottom-0 w-12 md:w-32 z-10 bg-gradient-to-r from-background to-transparent pointer-events-none" />
       <div className="absolute right-0 top-0 bottom-0 w-12 md:w-32 z-10 bg-gradient-to-l from-background to-transparent pointer-events-none" />
 
-      {/* Animation wrapper */}
+      {/* Animation wrapper with GPU acceleration */}
       <div 
         className={cn(
-          "flex items-center gap-4 md:gap-6 py-4 md:py-8",
+          "flex items-center gap-4 md:gap-6 py-4 md:py-6",
           direction === "ltr" ? "animate-marquee-ltr" : "animate-marquee-rtl"
         )}
+        style={{ willChange: 'transform' }}
       >
-        {[...logos, ...logos, ...logos, ...logos].map((logo, index) => (
+        {[...logos, ...logos, ...logos].map((logo, index) => (
           <div
             key={index}
-            className="flex-shrink-0 w-32 md:w-48 h-20 md:h-24 flex items-center justify-center"
+            className="flex-shrink-0 w-32 md:w-44 h-20 md:h-24 flex items-center justify-center p-2"
           >
             <Image
               src={logo.logoUrl}
               alt={logo.name}
-              width={200}
-              height={100}
-              className="object-contain max-h-16 md:max-h-20"
+              width={180}
+              height={90}
+              className="object-contain max-h-16 md:max-h-20 w-auto h-auto"
               loading="lazy"
+              sizes="(max-width: 768px) 128px, 176px"
             />
           </div>
         ))}
@@ -64,28 +66,26 @@ function MarqueeRow({ logos, direction }: MarqueeRowProps) {
 
       <style jsx>{`
         @keyframes marquee-ltr {
-          0% { transform: translate3d(-50%, 0, 0); }
+          0% { transform: translate3d(-33.33%, 0, 0); }
           100% { transform: translate3d(0, 0, 0); }
         }
         @keyframes marquee-rtl {
           0% { transform: translate3d(0, 0, 0); }
-          100% { transform: translate3d(-50%, 0, 0); }
+          100% { transform: translate3d(-33.33%, 0, 0); }
         }
         .animate-marquee-ltr {
           display: flex;
           width: max-content;
-          animation: marquee-ltr 40s linear infinite;
-          will-change: transform;
+          animation: marquee-ltr 30s linear infinite;
         }
         .animate-marquee-rtl {
           display: flex;
           width: max-content;
-          animation: marquee-rtl 40s linear infinite;
-          will-change: transform;
+          animation: marquee-rtl 30s linear infinite;
         }
         @media (max-width: 768px) {
           .animate-marquee-ltr, .animate-marquee-rtl {
-            animation-duration: 30s;
+            animation-duration: 20s;
           }
         }
       `}</style>
