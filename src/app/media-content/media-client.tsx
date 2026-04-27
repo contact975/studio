@@ -6,8 +6,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { ArrowRight, PlayCircle, ChevronRight, MessageSquare } from 'lucide-react';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
 
 declare global {
   namespace JSX {
@@ -98,13 +96,14 @@ export default function MediaClient() {
 
   useEffect(() => {
     setIsMounted(true);
-    AOS.init({ duration: 900, once: true, offset: 80 });
   }, []);
 
   return (
     <div className="bg-[#080810] text-white min-h-screen font-body overflow-x-hidden">
       <Header />
       <main>
+
+        {/* ── HERO ── */}
         <section className="relative min-h-screen flex items-center pt-24 pb-20 px-6 overflow-hidden">
           <div className="absolute inset-0 opacity-[0.04]"
             style={{ backgroundImage: 'linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(90deg, #ffffff 1px, transparent 1px)', backgroundSize: '60px 60px' }} />
@@ -112,19 +111,18 @@ export default function MediaClient() {
           <div className="absolute bottom-1/4 right-1/4 w-[300px] h-[300px] bg-indigo-500/10 rounded-full blur-[100px] pointer-events-none" />
           <div className="container mx-auto relative z-10">
             <div className="max-w-6xl">
-              <p data-aos="fade-up" className="text-blue-400 text-xs font-bold tracking-[0.3em] uppercase mb-6 flex items-center gap-3">
+              <p className="text-blue-400 text-xs font-bold tracking-[0.3em] uppercase mb-6 flex items-center gap-3">
                 <span className="w-8 h-px bg-blue-400" />IC Production Studio
               </p>
-              <h1 data-aos="fade-up" data-aos-delay="100"
-                className="text-[clamp(3rem,10vw,8rem)] font-black leading-[0.9] tracking-tight mb-8">
+              <h1 className="text-[clamp(3rem,10vw,8rem)] font-black leading-[0.9] tracking-tight mb-8">
                 <span className="block text-white">ELEVATE</span>
                 <span className="block" style={{ WebkitTextStroke: '1px rgba(255,255,255,0.25)', color: 'transparent' }}>YOUR BRAND</span>
                 <span className="block text-blue-500">IDENTITY.</span>
               </h1>
-              <p data-aos="fade-up" data-aos-delay="200" className="text-gray-400 text-lg md:text-xl max-w-2xl leading-relaxed mb-10">
+              <p className="text-gray-400 text-lg md:text-xl max-w-2xl leading-relaxed mb-10">
                 ไม่ใช่แค่คนทำคอนเทนต์ — เราคือผู้สร้างภาพลักษณ์ระดับพรีเมียม <br className="hidden md:block" /> ด้วยมาตรฐานโปรดัคชั่นที่เปลี่ยนวิสัยทัศน์ให้กลายเป็นความจริง
               </p>
-              <div data-aos="fade-up" data-aos-delay="300" className="flex flex-wrap gap-4 mb-20">
+              <div className="flex flex-wrap gap-4 mb-20">
                 <Link href="https://line.me/R/ti/p/@374jshvh" target="_blank"
                   className="inline-flex items-center gap-3 bg-blue-600 hover:bg-blue-500 text-white font-bold px-8 h-14 rounded-full transition-all hover:scale-105 text-base">
                   เริ่มต้นโปรเจคของคุณ <ArrowRight className="h-4 w-4" />
@@ -133,7 +131,7 @@ export default function MediaClient() {
                   <PlayCircle className="h-5 w-5 text-blue-400" /> ดู Showreel
                 </a>
               </div>
-              <div data-aos="fade-up" data-aos-delay="400" className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-10 border-t border-white/10">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-10 border-t border-white/10">
                 {stats.map((s) => (
                   <div key={s.label}>
                     <div className="text-3xl md:text-4xl font-black text-white mb-1">{s.num}</div>
@@ -145,6 +143,7 @@ export default function MediaClient() {
           </div>
         </section>
 
+        {/* ── CLIENT MARQUEE ── */}
         <section className="py-12 border-y border-white/5 overflow-hidden">
           <div className="flex gap-12 animate-[marquee_30s_linear_infinite] whitespace-nowrap w-max">
             {[...clients, ...clients].map((c, i) => (
@@ -154,8 +153,9 @@ export default function MediaClient() {
           <style>{`@keyframes marquee { from { transform: translateX(0) } to { transform: translateX(-50%) } }`}</style>
         </section>
 
+        {/* ── SHOWREEL ── */}
         <section id="showreel" className="py-24 container mx-auto px-6">
-          <div data-aos="fade-up" className="flex items-end justify-between mb-10 gap-4 flex-wrap">
+          <div className="flex items-end justify-between mb-10 gap-4 flex-wrap">
             <div>
               <p className="text-blue-400 text-xs tracking-[0.3em] uppercase mb-2 flex items-center gap-2">
                 <span className="w-6 h-px bg-blue-400" /> Our Work
@@ -164,17 +164,10 @@ export default function MediaClient() {
             </div>
             <p className="text-gray-500 max-w-xs text-sm text-right">ตัวอย่างงานที่เราภูมิใจ นำเสนอผ่านทุกรูปแบบของ Media Production</p>
           </div>
-          <div data-aos="zoom-in" className="relative aspect-video rounded-2xl overflow-hidden border border-white/5 bg-zinc-900" suppressHydrationWarning>
+          <div className="relative aspect-video rounded-2xl overflow-hidden border border-white/5 bg-zinc-900" suppressHydrationWarning>
             {isMounted ? (
-              <React.Fragment>
-                <style>{`
-                  wistia-player[media-id='le8f20crj0']:not(:defined) {
-                    background: center/contain no-repeat url('https://fast.wistia.com/embed/medias/le8f20crj0/swatch');
-                    display: block;
-                    filter: blur(5px);
-                    padding-top: 56.25%;
-                  }
-                `}</style>
+              <>
+                <style>{`wistia-player[media-id='le8f20crj0']:not(:defined){background:center/contain no-repeat url('https://fast.wistia.com/embed/medias/le8f20crj0/swatch');display:block;filter:blur(5px);padding-top:56.25%}`}</style>
                 <wistia-player
                   media-id="le8f20crj0"
                   aspect="1.7777777777777777"
@@ -184,25 +177,26 @@ export default function MediaClient() {
                   silent-autoplay="true"
                   play-button="false"
                 ></wistia-player>
-              </React.Fragment>
+              </>
             ) : (
-              <div className="w-full h-full bg-zinc-900 animate-pulse flex items-center justify-center">
+              <div className="w-full h-full bg-zinc-900 flex items-center justify-center">
                 <span className="text-white/10 text-sm">Loading...</span>
               </div>
             )}
           </div>
         </section>
 
+        {/* ── SERVICES ── */}
         <section className="py-24 bg-zinc-950/50">
           <div className="container mx-auto px-6">
-            <div data-aos="fade-up" className="mb-16">
+            <div className="mb-16">
               <p className="text-blue-400 text-xs tracking-[0.3em] uppercase mb-3 flex items-center gap-2">
                 <span className="w-6 h-px bg-blue-400" /> บริการของเรา
               </p>
               <h2 className="text-4xl md:text-5xl font-black mb-4">Services & Pricing</h2>
               <p className="text-gray-500">ราคาเริ่มต้น — สอบถามรายละเอียดเพิ่มเติมเพื่อรับใบเสนอราคา</p>
             </div>
-            <div className="flex gap-3 flex-wrap mb-12" data-aos="fade-up">
+            <div className="flex gap-3 flex-wrap mb-12">
               {services.map((s, i) => (
                 <button key={i} onClick={() => setActiveService(i)}
                   className={`px-5 py-2 rounded-full text-sm font-bold transition-all border ${activeService === i ? 'bg-blue-600 border-blue-600 text-white' : 'border-white/10 text-gray-400 hover:border-white/30 hover:text-white'}`}>
@@ -211,8 +205,8 @@ export default function MediaClient() {
               ))}
             </div>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-              <div data-aos="fade-right" className="relative aspect-[4/3] rounded-2xl overflow-hidden">
-                <Image src={services[activeService].image} alt={services[activeService].nameEn} fill className="object-cover transition-all duration-700" />
+              <div className="relative aspect-[4/3] rounded-2xl overflow-hidden">
+                <Image src={services[activeService].image} alt={services[activeService].nameEn} fill className="object-cover transition-all duration-700" sizes="(max-width: 768px) 100vw, 50vw" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
                 <div className="absolute bottom-6 left-6 right-6 flex items-end justify-between">
                   <div>
@@ -227,7 +221,7 @@ export default function MediaClient() {
                   </div>
                 </div>
               </div>
-              <div data-aos="fade-left" className="space-y-6">
+              <div className="space-y-6">
                 <div>
                   <span className="text-8xl font-black text-white/5">{services[activeService].id}</span>
                   <h3 className="text-3xl font-black -mt-8 whitespace-pre-line">{services[activeService].name}</h3>
@@ -251,7 +245,7 @@ export default function MediaClient() {
                 </div>
               </div>
             </div>
-            <div data-aos="fade-up" className="mt-16 grid grid-cols-1 md:grid-cols-5 gap-4">
+            <div className="mt-16 grid grid-cols-1 md:grid-cols-5 gap-4">
               {services.map((s, i) => (
                 <button key={i} onClick={() => setActiveService(i)}
                   className={`p-5 rounded-2xl border text-left transition-all ${activeService === i ? 'border-blue-500/50 bg-blue-600/10' : 'border-white/5 bg-white/[0.02] hover:border-white/10'}`}>
@@ -266,8 +260,9 @@ export default function MediaClient() {
           </div>
         </section>
 
+        {/* ── PORTFOLIO ── */}
         <section className="py-24 container mx-auto px-6">
-          <div data-aos="fade-up" className="mb-16">
+          <div className="mb-16">
             <p className="text-blue-400 text-xs tracking-[0.3em] uppercase mb-3 flex items-center gap-2">
               <span className="w-6 h-px bg-blue-400" /> ผลงาน
             </p>
@@ -280,10 +275,8 @@ export default function MediaClient() {
               { label: 'Photo Content', img: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=800', span: 'col-span-1' },
               { label: 'Motion Media', img: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=800', span: 'col-span-2' },
             ].map((item, i) => (
-              <div key={i} data-aos="fade-up" data-aos-delay={i * 80}
-                className={`${item.span} relative rounded-2xl overflow-hidden group cursor-pointer`}
-                style={{ minHeight: '200px' }}>
-                <Image src={item.img} alt={item.label} fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
+              <div key={i} className={`${item.span} relative rounded-2xl overflow-hidden group cursor-pointer`} style={{ minHeight: '200px' }}>
+                <Image src={item.img} alt={item.label} fill className="object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" sizes="(max-width: 768px) 50vw, 33vw" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
                 <div className="absolute bottom-4 left-4">
                   <p className="text-white font-bold text-sm">{item.label}</p>
@@ -291,7 +284,7 @@ export default function MediaClient() {
               </div>
             ))}
           </div>
-          <div data-aos="fade-up" className="text-center mt-10">
+          <div className="text-center mt-10">
             <Link href="https://line.me/R/ti/p/@374jshvh" target="_blank"
               className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 font-bold text-sm border border-blue-500/30 hover:border-blue-400 px-6 py-3 rounded-full transition-all">
               ดูผลงานทั้งหมด <ChevronRight className="h-4 w-4" />
@@ -299,16 +292,17 @@ export default function MediaClient() {
           </div>
         </section>
 
+        {/* ── DIFFERENCES ── */}
         <section className="py-24 bg-zinc-950/50">
           <div className="container mx-auto px-6">
-            <div data-aos="fade-up" className="text-center mb-16">
+            <div className="text-center mb-16">
               <p className="text-blue-400 text-xs tracking-[0.3em] uppercase mb-3 flex items-center gap-2 justify-center">
                 <span className="w-6 h-px bg-blue-400" /> ความแตกต่าง
               </p>
               <h2 className="text-4xl md:text-5xl font-black mb-4">ทำไมต้องเลือก Production Quality?</h2>
               <p className="text-gray-500 max-w-xl mx-auto">ความแตกต่างระหว่างคอนเทนต์ทั่วไปกับงานแบบโปรดัคชั่น</p>
             </div>
-            <div data-aos="fade-up" className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
               {differences.map((d, i) => (
                 <div key={i} className={`rounded-2xl p-8 border ${d.negative ? 'border-white/5 bg-white/[0.02]' : 'border-blue-500/30 bg-blue-600/10'}`}>
                   <div className="flex items-center gap-3 mb-6">
@@ -329,8 +323,9 @@ export default function MediaClient() {
           </div>
         </section>
 
+        {/* ── PROCESS ── */}
         <section className="py-24 container mx-auto px-6">
-          <div data-aos="fade-up" className="mb-16">
+          <div className="mb-16">
             <p className="text-blue-400 text-xs tracking-[0.3em] uppercase mb-3 flex items-center gap-2">
               <span className="w-6 h-px bg-blue-400" /> กระบวนการ
             </p>
@@ -338,8 +333,7 @@ export default function MediaClient() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
             {process.map((p, i) => (
-              <div key={i} data-aos="fade-up" data-aos-delay={i * 100}
-                className="relative p-8 rounded-2xl border border-white/5 bg-white/[0.02] hover:border-blue-500/30 hover:bg-blue-600/5 transition-all group">
+              <div key={i} className="relative p-8 rounded-2xl border border-white/5 bg-white/[0.02] hover:border-blue-500/30 hover:bg-blue-600/5 transition-all group">
                 <div className="text-6xl font-black text-white/[0.04] group-hover:text-blue-600/10 transition-colors mb-4 leading-none">{p.num}</div>
                 <h3 className="text-lg font-black mb-3 text-white">{p.title}</h3>
                 <p className="text-gray-500 text-sm leading-relaxed">{p.desc}</p>
@@ -353,22 +347,23 @@ export default function MediaClient() {
           </div>
         </section>
 
+        {/* ── CLIENTS ── */}
         <section className="py-24 bg-zinc-950/50">
           <div className="container mx-auto px-6">
-            <div data-aos="fade-up" className="text-center mb-16">
+            <div className="text-center mb-16">
               <p className="text-blue-400 text-xs tracking-[0.3em] uppercase mb-3 flex items-center gap-2 justify-center">
                 <span className="w-6 h-px bg-blue-400" /> ลูกค้าของเรา
               </p>
               <h2 className="text-4xl md:text-5xl font-black">Trusted By</h2>
             </div>
-            <div data-aos="fade-up" className="flex flex-wrap justify-center gap-4 max-w-4xl mx-auto">
+            <div className="flex flex-wrap justify-center gap-4 max-w-4xl mx-auto">
               {clients.map((c, i) => (
                 <div key={i} className="px-6 py-3 rounded-full border border-white/10 bg-white/[0.02] hover:border-blue-500/40 hover:bg-blue-600/5 transition-all cursor-default">
                   <span className="text-gray-400 text-sm font-medium">{c}</span>
                 </div>
               ))}
             </div>
-            <div data-aos="fade-up" className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto">
+            <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto">
               {[
                 { num: '18.5K', label: 'Views สูงสุด' },
                 { num: '12.2K', label: 'Engagement' },
@@ -384,9 +379,9 @@ export default function MediaClient() {
           </div>
         </section>
 
+        {/* ── CTA ── */}
         <section className="py-24 container mx-auto px-6">
-          <div data-aos="zoom-in"
-            className="relative rounded-3xl overflow-hidden p-12 md:p-20 text-center border border-blue-500/20"
+          <div className="relative rounded-3xl overflow-hidden p-12 md:p-20 text-center border border-blue-500/20"
             style={{ background: 'radial-gradient(ellipse at 50% 0%, rgba(37,99,235,0.3) 0%, transparent 70%), #0a0a14' }}>
             <div className="absolute inset-0 opacity-[0.03]"
               style={{ backgroundImage: 'linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(90deg, #ffffff 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
@@ -413,6 +408,7 @@ export default function MediaClient() {
             </div>
           </div>
         </section>
+
       </main>
       <Footer />
     </div>
