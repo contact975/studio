@@ -41,21 +41,21 @@ function MarqueeRow({ logos, direction }: MarqueeRowProps) {
       {/* Animation wrapper */}
       <div 
         className={cn(
-          "flex items-center gap-12 py-6",
+          "flex items-center gap-12 py-8",
           direction === "ltr" ? "animate-marquee-ltr" : "animate-marquee-rtl"
         )}
       >
         {[...logos, ...logos, ...logos].map((logo, index) => (
           <div
             key={index}
-            className="flex-shrink-0 w-36 md:w-44 h-16 flex items-center justify-center transition-opacity duration-300"
+            className="flex-shrink-0 w-44 md:w-56 h-20 md:h-24 flex items-center justify-center"
           >
             <Image
               src={logo.logoUrl}
               alt={logo.name}
-              width={160}
-              height={75}
-              className="object-contain max-h-12 md:max-h-16 transition-all duration-300"
+              width={200}
+              height={100}
+              className="object-contain max-h-16 md:max-h-20"
               loading="lazy"
             />
           </div>
@@ -85,7 +85,7 @@ function MarqueeRow({ logos, direction }: MarqueeRowProps) {
         }
         @media (max-width: 768px) {
           .animate-marquee-ltr, .animate-marquee-rtl {
-            animation-duration: 30s;
+            animation-duration: 35s;
           }
         }
       `}</style>
@@ -111,7 +111,7 @@ export function ClientsSection() {
       </div>
 
       <div className="overflow-hidden">
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-4">
           <MarqueeRow logos={logosRow1} direction="ltr" />
           <MarqueeRow logos={logosRow2} direction="rtl" />
         </div>
