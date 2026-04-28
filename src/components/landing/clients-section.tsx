@@ -46,7 +46,8 @@ function MarqueeRow({ logos, direction }: MarqueeRowProps) {
         )}
         style={{ willChange: "transform" }}
       >
-        {[...logos, ...logos].map((logo, index) => (
+        {/* Triple the logos for a seamless infinity loop especially on mobile */}
+        {[...logos, ...logos, ...logos].map((logo, index) => (
           <div
             key={index}
             className="flex-shrink-0 w-28 md:w-44 h-16 md:h-24 flex items-center justify-center p-2"
@@ -66,12 +67,12 @@ function MarqueeRow({ logos, direction }: MarqueeRowProps) {
 
       <style jsx>{`
         @keyframes marquee-ltr {
-          0% { transform: translate3d(-50%, 0, 0); }
+          0% { transform: translate3d(-33.33%, 0, 0); }
           100% { transform: translate3d(0, 0, 0); }
         }
         @keyframes marquee-rtl {
           0% { transform: translate3d(0, 0, 0); }
-          100% { transform: translate3d(-50%, 0, 0); }
+          100% { transform: translate3d(-33.33%, 0, 0); }
         }
         .animate-marquee-ltr {
           display: flex;
@@ -95,7 +96,7 @@ function MarqueeRow({ logos, direction }: MarqueeRowProps) {
 
 export function ClientsSection() {
   return (
-    <section id="clients" className="py-12 md:py-24 bg-background overflow-hidden border-y border-border/50">
+    <section id="clients" className="py-12 md:py-24 bg-background overflow-hidden">
       <div className="max-w-6xl mx-auto px-4 md:px-6 mb-6 md:mb-12">
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
           <div>
@@ -110,7 +111,7 @@ export function ClientsSection() {
         </div>
       </div>
 
-      {/* กรอบครอบ marquee ทั้งหมด (เอาเส้นกรอบออกแล้ว) */}
+      {/* Marquee Row without borders */}
       <div className="max-w-6xl mx-auto px-4 md:px-6">
         <div className="overflow-hidden py-2 md:py-4">
           <div className="flex flex-col gap-1 md:gap-4">
