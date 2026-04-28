@@ -38,13 +38,13 @@ function MarqueeRow({ logos, direction }: MarqueeRowProps) {
       <div className="absolute left-0 top-0 bottom-0 w-8 md:w-32 z-10 bg-gradient-to-r from-background to-transparent pointer-events-none" />
       <div className="absolute right-0 top-0 bottom-0 w-8 md:w-32 z-10 bg-gradient-to-l from-background to-transparent pointer-events-none" />
 
-      {/* Animation wrapper with GPU acceleration - Using only 2 sets for mobile optimization */}
-      <div 
+      {/* Animation wrapper with GPU acceleration */}
+      <div
         className={cn(
-          "flex items-center gap-4 md:gap-6 py-4 md:py-6",
+          "flex items-center gap-1 md:gap-2 py-4 md:py-6",
           direction === "ltr" ? "animate-marquee-ltr" : "animate-marquee-rtl"
         )}
-        style={{ willChange: 'transform' }}
+        style={{ willChange: "transform" }}
       >
         {[...logos, ...logos].map((logo, index) => (
           <div
@@ -56,7 +56,7 @@ function MarqueeRow({ logos, direction }: MarqueeRowProps) {
               alt={logo.name}
               width={140}
               height={70}
-              className="object-contain max-h-12 md:max-h-20 w-auto h-auto"
+              className="object-contain max-h-16 md:max-h-24 w-auto h-auto"
               loading="lazy"
               sizes="(max-width: 768px) 112px, 176px"
             />
@@ -110,10 +110,13 @@ export function ClientsSection() {
         </div>
       </div>
 
-      <div className="overflow-hidden">
-        <div className="flex flex-col gap-1 md:gap-4">
-          <MarqueeRow logos={logosRow1} direction="ltr" />
-          <MarqueeRow logos={logosRow2} direction="rtl" />
+      {/* กรอบครอบ marquee ทั้งหมด (เอาเส้นกรอบออกแล้ว) */}
+      <div className="max-w-6xl mx-auto px-4 md:px-6">
+        <div className="overflow-hidden py-2 md:py-4">
+          <div className="flex flex-col gap-1 md:gap-4">
+            <MarqueeRow logos={logosRow1} direction="ltr" />
+            <MarqueeRow logos={logosRow2} direction="rtl" />
+          </div>
         </div>
       </div>
     </section>
