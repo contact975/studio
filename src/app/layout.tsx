@@ -20,7 +20,11 @@ export const metadata: Metadata = {
     locale: 'th_TH',
     type: 'website',
   },
-  icons: { icon: '/icon.png', shortcut: '/icon.png', apple: '/icon.png' },
+  icons: { 
+    icon: '/icon.png?v=2', 
+    shortcut: '/icon.png?v=2', 
+    apple: '/icon.png?v=2' 
+  },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
