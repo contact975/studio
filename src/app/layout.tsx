@@ -22,9 +22,13 @@ export const metadata: Metadata = {
     type: 'website',
   },
   icons: { 
-    icon: '/favicon.png?v=2', 
-    shortcut: '/favicon.png?v=2', 
-    apple: '/favicon.png?v=2' 
+    icon: [
+      { url: '/favicon-96x96.png?v=3', sizes: '96x96', type: 'image/png' },
+      { url: '/web-app-manifest-192x192.png?v=3', sizes: '192x192', type: 'image/png' },
+      { url: '/web-app-manifest-512x512.png?v=3', sizes: '512x512', type: 'image/png' },
+    ],
+    shortcut: '/favicon-96x96.png?v=3',
+    apple: '/web-app-manifest-192x192.png?v=3',
   },
 };
 
