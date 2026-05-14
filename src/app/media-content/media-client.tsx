@@ -6,7 +6,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState, Fragment } from 'react';
 import { ArrowRight, PlayCircle, ChevronRight, MessageSquare } from 'lucide-react';
-import Script from "next/script";
 
 declare global {
   namespace JSX {
@@ -102,7 +101,6 @@ export default function MediaClient() {
   return (
     <div className="bg-[#080810] text-white min-h-screen font-body overflow-x-hidden">
       <Header />
-      <Script src="https://fast.wistia.com/player.js" strategy="lazyOnload" />
       <main>
 
         {/* ── HERO ── */}
@@ -166,7 +164,7 @@ export default function MediaClient() {
             </div>
             <p className="text-gray-500 max-w-xs text-sm text-right">ตัวอย่างงานที่เราภูมิใจ นำเสนอผ่านทุกรูปแบบของ Media Production</p>
           </div>
-          <div className="relative aspect-video rounded-2xl overflow-hidden border border-white/5 bg-zinc-900" suppressHydrationWarning>
+          <div className="relative aspect-video rounded-2xl overflow-hidden border border-white/5 bg-zinc-900">
             {isMounted ? (
               <Fragment>
                 <style dangerouslySetInnerHTML={{ __html: `
@@ -184,7 +182,6 @@ export default function MediaClient() {
                   muted="true"
                   autoplay="true"
                   silent-autoplay="true"
-                  play-button="false"
                 ></wistia-player>
               </Fragment>
             ) : (

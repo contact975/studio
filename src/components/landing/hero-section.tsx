@@ -3,7 +3,6 @@
 import * as React from "react";
 import Link from "next/link";
 import { ArrowRight, PlayCircle } from 'lucide-react';
-import Script from "next/script";
 
 declare global {
   namespace JSX {
@@ -65,12 +64,7 @@ export function HeroSection() {
   }, []);
 
   return (
-    <section id="hero" className="relative bg-[#163674] text-white overflow-hidden" suppressHydrationWarning>
-      <Script 
-        src="https://fast.wistia.com/player.js" 
-        strategy="lazyOnload"
-      />
-      
+    <section id="hero" className="relative bg-[#163674] text-white overflow-hidden">
       <div className="absolute inset-0 opacity-10 pointer-events-none"
         style={{ backgroundImage: 'linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(90deg, #ffffff 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
       <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-white/5 rounded-full blur-[120px] pointer-events-none" />
@@ -107,10 +101,9 @@ export function HeroSection() {
 
         <div
           className="relative w-full max-w-4xl mx-auto aspect-video rounded-2xl overflow-hidden shadow-2xl border border-white/10 mb-10 bg-black/20"
-          suppressHydrationWarning
         >
           {isMounted ? (
-            <React.Fragment>
+            <>
               <style dangerouslySetInnerHTML={{ __html: `
                 wistia-player[media-id='hd04a418nd']:not(:defined) {
                   background: center/contain no-repeat url('https://fast.wistia.com/embed/medias/hd04a418nd/swatch');
@@ -126,7 +119,7 @@ export function HeroSection() {
                 muted="true"
                 autoplay="true"
               ></wistia-player>
-            </React.Fragment>
+            </>
           ) : (
             <div className="w-full h-full bg-slate-900 flex items-center justify-center">
               <span className="text-white/20 text-sm">Loading Video...</span>
