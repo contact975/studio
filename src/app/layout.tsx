@@ -7,13 +7,13 @@ import Script from 'next/script';
 
 export const metadata: Metadata = {
   title: {
-    default: 'สำนักงานบัญชีเชียงใหม่ ครบวงจร | IC Accounting',
+    default: 'สำนักงานบัญชีเชียงใหม่ | รับทำบัญชี จดทะเบียนบริษัท วางแผนภาษี | IC Accounting',
     template: '%s',
   },
   description: 'IC Accounting & Service เชียงใหม่ บริการทำบัญชี จดทะเบียนบริษัท วางแผนภาษี และ Visa Work Permit ครบวงจร ประสบการณ์กว่า 10 ปี ปรึกษาฟรี โทรหาเราได้เลย',
   alternates: { canonical: 'https://icaccservice.com' },
   openGraph: {
-    title: 'สำนักงานบัญชีเชียงใหม่ ครบวงจร | IC Accounting',
+    title: 'สำนักงานบัญชีเชียงใหม่ | รับทำบัญชี จดทะเบียนบริษัท วางแผนภาษี | IC Accounting',
     description: 'IC Accounting & Service เชียงใหม่ บริการทำบัญชี จดทะเบียนบริษัท วางแผนภาษี และ Visa Work Permit ครบวงจร ประสบการณ์กว่า 10 ปี ปรึกษาฟรี โทรหาเราได้เลย',
     url: 'https://icaccservice.com',
     siteName: 'IC Accounting & Service',
