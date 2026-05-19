@@ -72,7 +72,57 @@ const blogPosts = [
     author: 'ทีมงาน IC ACC',
     image: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxwb29sJTIwdmlsbGF8ZW58MHx8fHwxNzcwODkxNjA0fDA&ixlib=rb-4.1.0&q=80&w=1080',
     imageHint: 'pool villa'
-  }
+  },
+    {
+        id: 'accounting-fee-chiangmai',
+            title: 'รับทำบัญชีเชียงใหม่ ราคาเท่าไหร่? เปรียบเทียบค่าบริการที่ควรรู้',
+                excerpt: 'ค่าทำบัญชีเชียงใหม่เริ่มต้นที่ 1,500 บาท/เดือน บทความนี้เปรียบเทียบค่าบริการตามขนาดธุรกิจ และช่วยให้คุณเลือกสำนักงานบัญชีได้คุ้มค่าที่สุด...',
+                    category: 'บัญชีธุรกิจ',
+                        date: '12 พ.ค. 2568',
+                            author: 'ทีมงาน IC ACC',
+                                image: 'https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Photo%20Services%2Fic-accounting-chiangmai-service-account.jpg?alt=media&token=fc1cee19-5765-4cea-b2ca-81b6a08b3cb5',
+                                    imageHint: 'accounting service chiang mai',
+                                      },
+                                        {
+                                            id: 'company-registration-chiangmai',
+                                                title: 'จดทะเบียนบริษัทเชียงใหม่ ขั้นตอนและเอกสารที่ต้องเตรียม ปี 2568',
+                                                    excerpt: 'อยากจดทะเบียนบริษัทในเชียงใหม่แต่ไม่รู้จะเริ่มต้นอย่างไร? บทความนี้รวบรวมเอกสาร ขั้นตอน ค่าธรรมเนียม และระยะเวลาทั้งหมดที่คุณต้องรู้ในปี 2568...',
+                                                        category: 'จดทะเบียนธุรกิจ',
+                                                            date: '5 พ.ค. 2568',
+                                                                author: 'ทีมงาน IC ACC',
+                                                                    image: 'https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Photo%20Services%2Fic-accounting-chiangmai-service-register.jpg?alt=media&token=34939e7f-da54-48c1-b5de-83d5c82aa9ba',
+                                                                        imageHint: 'company registration chiangmai',
+                                                                          },
+                                                                            {
+                                                                                id: 'how-to-choose-accounting-office-chiangmai',
+                                                                                    title: 'เลือกสำนักงานบัญชีเชียงใหม่ อย่างไรให้ธุรกิจได้ประโยชน์สูงสุด',
+                                                                                        excerpt: 'ราคาไม่ใช่ปัจจัยเดียวในการเลือกสำนักงานบัญชี บทความนี้แนะนำ 5 เกณฑ์สำคัญที่ต้องตรวจสอบ ตั้งแต่ใบอนุญาต ประสบการณ์ ไปจนถึงระบบจัดการเอกสาร...',
+                                                                                            category: 'บัญชีธุรกิจ',
+                                                                                                date: '1 พ.ค. 2568',
+                                                                                                    author: 'ทีมงาน IC ACC',
+                                                                                                        image: 'https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Photo%20Services%2Fic-accounting-chiangmai-service-consult.jpg?alt=media&token=7383c116-df92-4925-ab8b-9c0c148ba0dc',
+                                                                                                            imageHint: 'accounting office consultation chiangmai',
+                                                                                                              },
+                                                                                                                {
+                                                                                                                    id: 'corporate-tax-chiangmai-guide',
+                                                                                                                        title: 'ภาษีนิติบุคคลเชียงใหม่ 2568 เจ้าของธุรกิจต้องรู้อะไรบ้าง',
+                                                                                                                            excerpt: 'SME เชียงใหม่ที่กำไรไม่เกิน 300,000 บาทได้รับยกเว้นภาษี 0% บทความนี้อธิบายอัตราภาษีนิติบุคคล รายการหักได้ กำหนดยื่น และวิธีวางแผนภาษีที่ถูกกฎหมาย...',
+                                                                                                                                category: 'ภาษีธุรกิจ',
+                                                                                                                                    date: '25 เม.ย. 2568',
+                                                                                                                                        author: 'ทีมงาน IC ACC',
+                                                                                                                                            image: 'https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Photo%20Services%2Fic-accounting-chiangmai-service-audit.jpg?alt=media&token=b0fbb4a8-886e-4d3d-95ec-91a4a5824058',
+                                                                                                                                                imageHint: 'corporate tax accounting chiangmai',
+                                                                                                                                                  },
+                                                                                                                                                    {
+                                                                                                                                                        id: 'work-permit-chiangmai',
+                                                                                                                                                            title: 'Work Permit เชียงใหม่ ขั้นตอน เอกสาร และค่าใช้จ่ายที่ต้องรู้ ปี 2568',
+                                                                                                                                                                excerpt: 'ชาวต่างชาติที่ทำงานในเชียงใหม่ต้องมี Work Permit ก่อนเริ่มงาน บทความนี้รวบรวมเอกสาร ขั้นตอน อัตราส่วนพนักงาน และค่าใช้จ่ายทั้งหมดที่ต้องรู้ในปี 2568...',
+                                                                                                                                                                    category: 'Expat & Visa',
+                                                                                                                                                                        date: '20 เม.ย. 2568',
+                                                                                                                                                                            author: 'ทีมงาน IC ACC',
+                                                                                                                                                                                image: 'https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Photo%20Services%2Fvisa-work-permit-chiangmai.jpg?alt=media&token=8d3e33b0-12ec-4921-b9d6-ad4d10393047',
+                                                                                                                                                                                    imageHint: 'work permit visa chiangmai',
+                                                                                                                                                                                      },
 ];
 
 export default function BlogPage() {
