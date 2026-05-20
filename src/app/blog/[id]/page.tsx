@@ -494,29 +494,6 @@ const blogPosts = [
                                                                                                                                                                                     imageHint: 'work permit visa chiangmai',
                                                                                                                                                                                       },
 ];
-export async function generateMetadata({ params }: { params: { id: string } }) {
-    const post = blogPosts.find(p => String(p.id) === String(params?.id));
-      if (!post) return {};
-        const description = post.content.substring(0, 160).replace(/\n/g, ' ');
-          return {
-              title: `${post.title} | IC Accounting & Service เชียงใหม่`,
-    description,
-        openGraph: {
-              title: post.title,
-                    description,
-                          images: [{ url: post.image, width: 1200, height: 630 }],
-                                type: 'article',
-                                      locale: 'th_TH',
-                                            siteName: 'IC Accounting & Service เชียงใหม่',
-                                                },
-                                                    twitter: {
-                                                          card: 'summary_large_image',
-                                                                title: post.title,
-                                                                      description,
-                                                                            images: [post.image],
-                                                                                },
-                                                                                  };
-                                                                                  }
 
 export default function BlogDetailPage() {
   const params = useParams();
