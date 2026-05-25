@@ -3,7 +3,6 @@ import './globals.css';
 import { Toaster } from '@/components/ui/toaster';
 import { cn } from '@/lib/utils';
 import { AOSProvider } from '@/components/aos-provider';
-import Script from 'next/script';
 
 export const metadata: Metadata = {
   title: {
@@ -79,7 +78,6 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600;700&display=swap" rel="stylesheet" />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }} />
-        <Script src="https://fast.wistia.com/player.js" strategy="afterInteractive" />
       </head>
       <body className={cn('font-body antialiased')} suppressHydrationWarning>
         <AOSProvider>
