@@ -14,11 +14,11 @@ export function Footer() {
   }, []);
 
   return (
-    <footer id="contact" className="bg-primary text-primary-foreground py-12 md:py-16">
+    <footer id="contact" className="bg-primary text-primary-foreground py-8 md:py-10">
       <div className="container mx-auto px-4 md:px-6 max-w-7xl">
-        <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
+        <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
           
-          <div className="space-y-8">
+          <div className="space-y-5">
             <Link href="/" className="flex items-center gap-2" prefetch={false}>
               <Image 
                 src="https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Logo%20ic.png?alt=media" 
@@ -29,7 +29,7 @@ export function Footer() {
               />
             </Link>
             
-            <div className="space-y-4 text-base">
+            <div className="space-y-3 text-sm">
                <h3 className="font-headline text-xl font-bold text-primary-foreground">ติดต่อเรา (Contact Us)</h3>
               <div className="flex items-start gap-4">
                 <MapPin className="h-5 w-5 text-primary-foreground/80 mt-1 flex-shrink-0" />
@@ -46,7 +46,7 @@ export function Footer() {
             </div>
 
             <div>
-              <h4 className="text-lg font-semibold mb-3 text-primary-foreground">ติดตามเรา (Follow Us)</h4>
+              <h4 className="text-lg font-semibold mb-2 text-primary-foreground">ติดตามเรา (Follow Us)</h4>
               <div className="flex space-x-3">
                 <Link href="https://www.facebook.com/icaccservice" target="_blank" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors" prefetch={false}>
                   <Facebook className="h-6 w-6" />
@@ -60,7 +60,7 @@ export function Footer() {
             </div>
           </div>
 
-          <div className="relative w-full h-full min-h-[250px] md:min-h-full rounded-xl overflow-hidden shadow-lg border-2 border-primary-foreground/20">
+          <div className="relative w-full h-full min-h-[180px] md:min-h-full rounded-xl overflow-hidden shadow-lg border-2 border-primary-foreground/20">
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3777.300649716109!2d99.0672194!3d18.7822907!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30da2518e755b42f%3A0x99c60fd368c56643!2sIC%20Accounting%20%26%20Service!5e0!3m2!1sen!2sth"
               width="100%"
@@ -74,7 +74,7 @@ export function Footer() {
           </div>
         </div>
         
-        <Separator className="my-8 bg-primary-foreground/20" />
+        <Separator className="my-5 bg-primary-foreground/20" />
 
         <div className="flex flex-col sm:flex-row justify-between items-center text-primary-foreground/70 text-xs">
           <p>© {currentYear} IC Accounting & Service. All rights reserved.</p>
