@@ -4,14 +4,6 @@ import * as React from "react";
 import Link from "next/link";
 import { ArrowRight, PlayCircle } from 'lucide-react';
 
-declare global {
-  namespace JSX {
-    interface IntrinsicElements {
-      'wistia-player': any;
-    }
-  }
-}
-
 interface AnimatedCounterProps {
   value: number;
   duration?: number;
@@ -57,11 +49,7 @@ const stats = [
 ];
 
 export function HeroSection() {
-  const [isMounted, setIsMounted] = React.useState(false);
 
-  React.useEffect(() => {
-    setIsMounted(true);
-  }, []);
 
   return (
     <section id="hero" className="relative bg-[#163674] text-white overflow-hidden">
