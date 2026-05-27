@@ -87,8 +87,6 @@ export function HeroSection() {
           </Link>
         </div>
 
-        </div>
-
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-8 border-t border-white/10 max-w-4xl mx-auto">
           {stats.map((s, idx) => (
             <div key={`${s.label}-${idx}`} className="text-center">
