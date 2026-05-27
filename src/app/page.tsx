@@ -2,6 +2,7 @@
 
 import { Header } from '@/components/landing/header';
 import { HeroSection } from '@/components/landing/hero-section';
+import { VideoSection } from '@/components/landing/video-section';
 import { ServicesSection } from '@/components/landing/services-section';
 import { WhyUsSection } from '@/components/landing/why-us-section';
 import { TestimonialsSection } from '@/components/landing/testimonials-section';
@@ -16,6 +17,7 @@ export default function Home() {
       <Header />
       <main className="flex-1">
         <HeroSection />
+        <VideoSection />
         <div data-aos="fade-up">
           <ClientsSection />
         </div>
