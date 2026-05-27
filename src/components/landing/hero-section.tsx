@@ -58,20 +58,9 @@ const stats = [
 
 export function HeroSection() {
   const [isMounted, setIsMounted] = React.useState(false);
-  const [isPlaying, setIsPlaying] = React.useState(false);
 
   React.useEffect(() => {
     setIsMounted(true);
-  }, []);
-
-  const handlePlay = React.useCallback(() => {
-    if (!document.querySelector('script[src*="fast.wistia.com/player.js"]')) {
-      const s = document.createElement('script');
-      s.src = 'https://fast.wistia.com/player.js';
-      s.async = true;
-      document.head.appendChild(s);
-    }
-    setIsPlaying(true);
   }, []);
 
   return (
@@ -110,41 +99,6 @@ export function HeroSection() {
           </Link>
         </div>
 
-        <div
-          className="relative w-full max-w-4xl mx-auto aspect-video rounded-2xl overflow-hidden shadow-2xl border border-white/10 mb-10 bg-black/20"
-        >
-          {isPlaying ? (
-            <>
-              <style dangerouslySetInnerHTML={{ __html: `
-                wistia-player[media-id='hd04a418nd']:not(:defined) {
-                  background: center/contain no-repeat url('https://fast.wistia.com/embed/medias/hd04a418nd/swatch');
-                  display: block;
-                  filter: blur(5px);
-                  padding-top: 56.25%;
-                }
-              `}} />
-              <wistia-player
-                media-id="hd04a418nd"
-                aspect="1.7777777777777777"
-                style={{ width: '100%', height: '100%', display: 'block' }}
-                autoplay="true"
-              ></wistia-player>
-            </>
-          ) : (
-            <div
-              className="relative w-full h-full bg-slate-800 cursor-pointer group"
-              style={{ backgroundImage: `url('https://fast.wistia.com/embed/medias/hd04a418nd/swatch')`, backgroundSize: 'cover', backgroundPosition: 'center' }}
-              onClick={isMounted ? handlePlay : undefined}
-            >
-              <div className="absolute inset-0 bg-black/40 group-hover:bg-black/25 transition-colors duration-200" />
-              <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 z-10">
-                <div className="w-16 h-16 md:w-20 md:h-20 bg-white/90 group-hover:bg-white rounded-full flex items-center justify-center shadow-2xl group-hover:scale-110 transition-all duration-200">
-                  <svg className="w-7 h-7 md:w-9 md:h-9 text-[#163674] ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                </div>
-                <span className="text-white text-sm font-semibold drop-shadow-lg">ดูวิดีโอแนะนำ</span>
-              </div>
-            </div>
-          )}
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-8 border-t border-white/10 max-w-4xl mx-auto">
