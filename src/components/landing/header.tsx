@@ -11,8 +11,7 @@ import {
   Calculator,
   FileCheck,
   Briefcase,
-  Workflow,
-  X,
+  Workflow
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -55,7 +54,6 @@ export function Header() {
   const [isServicesOpen, setIsServicesOpen] = React.useState(false);
   const [isClient, setIsClient] = React.useState(false);
   const [isSheetOpen, setIsSheetOpen] = React.useState(false);
-  const [isPromoVisible, setIsPromoVisible] = React.useState(true);
 
   React.useEffect(() => {
     setIsClient(true);
@@ -213,27 +211,6 @@ export function Header() {
             </div>
           </div>
         </div>
-
-        {/* Scrolling Promo Bar */}
-        {isPromoVisible && (
-          <div className="relative bg-[#0a2558] text-white py-2 overflow-hidden whitespace-nowrap text-sm">
-            <div className="animate-marquee inline-block">
-              <span className="inline-flex items-center gap-4">
-                โปรโมชั่นพิเศษ! จดทะเบียนบริษัทวันนี้ รับฟรี! ตรายางบริษัท และให้คำปรึกษาบัญชี-ภาษีเบื้องต้น
-                <Link href="https://line.me/R/ti/p/@374jshvh" target="_blank" className="px-3 py-1 bg-red-600 hover:bg-red-700 text-white text-xs font-bold rounded-full transition-colors">
-                  คลิกที่นี่
-                </Link>
-              </span>
-            </div>
-            <button 
-              onClick={() => setIsPromoVisible(false)}
-              className="absolute right-2 top-1/2 -translate-y-1/2 bg-[#0a2558] p-1 rounded-full hover:bg-white/20 transition-colors z-10"
-              aria-label="Close promotion bar"
-            >
-              <X className="h-4 w-4" />
-            </button>
-          </div>
-        )}
       </div>
     </header>
   );
