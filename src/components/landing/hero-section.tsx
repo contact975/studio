@@ -49,51 +49,63 @@ const stats = [
 ];
 
 export function HeroSection() {
-
-
   return (
-    <section id="hero" className="relative bg-[#163674] text-white overflow-hidden">
-      <div className="absolute inset-0 opacity-10 pointer-events-none"
-        style={{ backgroundImage: 'linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(90deg, #ffffff 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
-      <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-white/5 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-blue-400/10 rounded-full blur-[100px] pointer-events-none" />
+    <section id="hero" className="relative bg-white overflow-hidden border-b border-gray-100">
+      {/* Subtle decorative blobs */}
+      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#163674]/5 rounded-full blur-[140px] pointer-events-none -translate-y-1/3 translate-x-1/4" />
+      <div className="absolute bottom-0 left-0 w-[350px] h-[350px] bg-blue-100/50 rounded-full blur-[100px] pointer-events-none" />
 
       <div className="container mx-auto px-6 py-16 md:py-24 relative z-10 max-w-6xl">
 
-        <div className="flex justify-center mb-6">
-          <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-5 py-2 rounded-full text-sm font-medium border border-white/20">
-            <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
-            IC Accounting & Service — เชียงใหม่
+        {/* Badge */}
+        <div className="flex mb-8 md:mb-12">
+          <div className="inline-flex items-center gap-2 bg-[#163674]/6 px-4 py-2 rounded-full text-sm font-semibold border border-[#163674]/15 text-[#163674]">
+            <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+            IC Accounting &amp; Service — เชียงใหม่
           </div>
         </div>
 
-        <h1 className="text-4xl md:text-7xl font-black text-center leading-[0.95] tracking-tight mb-4">
-          <span className="block text-white">สำนักงานบัญชีเชียงใหม่</span>
-          <span className="block text-white/40 text-3xl md:text-5xl font-black mt-3">ครบจบทุกเรื่อง หลังบ้านธุรกิจ</span>
-        </h1>
+        {/* 2-column layout */}
+        <div className="grid md:grid-cols-2 gap-8 md:gap-16 items-center mb-14 md:mb-20">
 
-        <p className="text-center text-base md:text-xl text-white/70 max-w-2xl mx-auto leading-relaxed mb-8">
-          บริการทำบัญชี ภาษี และมีเดียคอนเทนต์ สำหรับธุรกิจในเชียงใหม่และทั่วประเทศ เปลี่ยนตัวเลขที่ซับซ้อน เป็นโอกาสสู่ความสำเร็จ ด้วยประสบการณ์กว่า 10 ปี
-        </p>
+          {/* Left: Big stacked headline */}
+          <div>
+            <h1 className="text-[clamp(3rem,8vw,6.5rem)] font-black leading-[0.88] tracking-tight text-[#163674]">
+              <span className="block">สำนักงาน</span>
+              <span className="block">บัญชี</span>
+              <span className="block text-[#163674]/25">เชียงใหม่</span>
+            </h1>
+          </div>
 
-        <div className="flex flex-wrap gap-4 justify-center mb-10">
-          <Link href="https://line.me/R/ti/p/@374jshvh" target="_blank"
-            className="inline-flex items-center gap-3 bg-white text-blue-900 font-black px-8 h-12 md:h-14 rounded-full transition-all hover:scale-105 hover:shadow-xl hover:shadow-white/20 text-sm md:text-base">
-            ปรึกษาเราฟรี <ArrowRight className="h-4 w-4" />
-          </Link>
-          <Link href="/#services"
-            className="inline-flex items-center gap-3 border-2 border-white/30 hover:border-white/60 text-white/80 hover:text-white px-8 h-12 md:h-14 rounded-full transition-all text-sm md:text-base">
-            <PlayCircle className="h-5 w-5" /> ดูบริการทั้งหมด
-          </Link>
+          {/* Right: Tagline + description + CTAs */}
+          <div className="flex flex-col gap-5">
+            <p className="text-xl md:text-2xl font-bold text-[#163674] leading-snug">
+              ครบจบทุกเรื่อง<br />หลังบ้านธุรกิจ
+            </p>
+            <p className="text-base md:text-lg text-gray-500 leading-relaxed max-w-md">
+              บริการทำบัญชี ภาษี และมีเดียคอนเทนต์ สำหรับธุรกิจในเชียงใหม่และทั่วประเทศ เปลี่ยนตัวเลขที่ซับซ้อน เป็นโอกาสสู่ความสำเร็จ ด้วยประสบการณ์กว่า 10 ปี
+            </p>
+            <div className="flex flex-wrap gap-3 pt-1">
+              <Link href="https://line.me/R/ti/p/@374jshvh" target="_blank"
+                className="inline-flex items-center gap-3 bg-[#163674] text-white font-black px-8 h-12 md:h-14 rounded-full transition-all hover:scale-105 hover:shadow-xl hover:shadow-[#163674]/25 text-sm md:text-base">
+                ปรึกษาเราฟรี <ArrowRight className="h-4 w-4" />
+              </Link>
+              <Link href="/#services"
+                className="inline-flex items-center gap-3 border-2 border-[#163674]/20 hover:border-[#163674]/60 text-[#163674]/70 hover:text-[#163674] px-8 h-12 md:h-14 rounded-full transition-all text-sm md:text-base">
+                <PlayCircle className="h-5 w-5" /> ดูบริการทั้งหมด
+              </Link>
+            </div>
+          </div>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-8 border-t border-white/10 max-w-4xl mx-auto">
+        {/* Stats row */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-8 border-t border-gray-100 max-w-4xl">
           {stats.map((s, idx) => (
-            <div key={`${s.label}-${idx}`} className="text-center">
-              <div className="text-3xl md:text-5xl font-black text-white mb-1">
+            <div key={`${s.label}-${idx}`} className="text-center md:text-left">
+              <div className="text-3xl md:text-5xl font-black text-[#163674] mb-1">
                 <AnimatedCounter value={s.value} suffix={s.suffix} />
               </div>
-              <div className="text-[10px] md:text-xs text-white/50 uppercase tracking-wider">{s.label}</div>
+              <div className="text-[10px] md:text-xs text-gray-400 uppercase tracking-wider">{s.label}</div>
             </div>
           ))}
         </div>
