@@ -58,7 +58,7 @@ export function HeroSection() {
       <div className="container mx-auto px-6 pt-10 pb-14 relative z-10 max-w-6xl w-full flex flex-col flex-1">
 
         {/* Badge */}
-        <div className="flex mb-auto pb-6">
+        <div className="flex mb-6">
           <div className="inline-flex items-center gap-2 bg-[#2657c1]/6 px-4 py-2 rounded-full text-sm font-semibold border border-[#2657c1]/15 text-[#2657c1]">
             <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
             IC Accounting &amp; Service — เชียงใหม่
@@ -66,12 +66,13 @@ export function HeroSection() {
         </div>
 
         {/* 2-column layout */}
-        <div className="grid md:grid-cols-2 gap-8 md:gap-16 items-end">
+        <div className="grid md:grid-cols-2 gap-8 md:gap-16 items-end flex-1">
 
           {/* Left: Big stacked headline */}
           <div className="pb-2 overflow-hidden">
             <h1 className="text-[clamp(4.5rem,9vw,8.5rem)] font-black leading-[0.85] tracking-tight text-[#2657c1]">
-              <span className="block">สำนักงานบัญชี</span>
+              <span className="block">สำนักงาน</span>
+              <span className="block">บัญชี</span>
               <span className="block text-[#2657c1]/25">เชียงใหม่</span>
             </h1>
           </div>
