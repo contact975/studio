@@ -71,8 +71,7 @@ export function HeroSection() {
           {/* Left: Big stacked headline */}
           <div>
             <h1 className="text-[clamp(3rem,8vw,6.5rem)] font-black leading-[0.88] tracking-tight text-[#163674]">
-              <span className="block">สำนักงาน</span>
-              <span className="block">บัญชี</span>
+              <span className="block">สำนักงานบัญชี</span>
               <span className="block text-[#163674]/25">เชียงใหม่</span>
             </h1>
           </div>
@@ -80,7 +79,7 @@ export function HeroSection() {
           {/* Right: Tagline + description + CTAs */}
           <div className="flex flex-col gap-5">
             <p className="text-xl md:text-2xl font-bold text-[#163674] leading-snug">
-              ครบจบทุกเรื่อง<br />หลังบ้านธุรกิจ
+              ครบจบทุกเรื่องหลังบ้านธุรกิจ
             </p>
             <p className="text-base md:text-lg text-gray-500 leading-relaxed max-w-md">
               บริการทำบัญชี ภาษี และมีเดียคอนเทนต์ สำหรับธุรกิจในเชียงใหม่และทั่วประเทศ เปลี่ยนตัวเลขที่ซับซ้อน เป็นโอกาสสู่ความสำเร็จ ด้วยประสบการณ์กว่า 10 ปี
