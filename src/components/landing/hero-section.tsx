@@ -66,10 +66,10 @@ export function HeroSection() {
         </div>
 
         {/* 2-column layout */}
-        <div className="grid md:grid-cols-2 gap-8 md:gap-16 items-center mb-14 md:mb-20">
+        <div className="grid md:grid-cols-2 gap-8 md:gap-16 items-end mb-10 md:mb-16">
 
           {/* Left: Big stacked headline */}
-          <div>
+          <div className="pb-2">
             <h1 className="text-[clamp(2.8rem,5vw,5rem)] font-black leading-[0.9] tracking-tight text-[#2657c1]">
               <span className="block whitespace-nowrap">สำนักงานบัญชี</span>
               <span className="block text-[#2657c1]/25">เชียงใหม่</span>
@@ -77,11 +77,11 @@ export function HeroSection() {
           </div>
 
           {/* Right: Tagline + description + CTAs */}
-          <div className="flex flex-col gap-5">
-            <p className="text-xl md:text-2xl font-bold text-[#2657c1] leading-snug">
+          <div className="flex flex-col gap-4 pt-8 md:pt-16">
+            <p className="text-base md:text-lg font-bold text-[#2657c1] leading-snug">
               ครบจบทุกเรื่องหลังบ้านธุรกิจ
             </p>
-            <p className="text-base md:text-lg text-gray-500 leading-relaxed max-w-md">
+            <p className="text-sm md:text-base text-gray-500 leading-relaxed max-w-md">
               บริการทำบัญชี ภาษี และมีเดียคอนเทนต์ สำหรับธุรกิจในเชียงใหม่และทั่วประเทศ เปลี่ยนตัวเลขที่ซับซ้อน เป็นโอกาสสู่ความสำเร็จ ด้วยประสบการณ์กว่า 10 ปี
             </p>
             <div className="flex flex-wrap gap-3 pt-1">
@@ -98,7 +98,7 @@ export function HeroSection() {
         </div>
 
         {/* Stats row */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-8 border-t border-gray-100 max-w-4xl">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-12 md:pt-16 border-t border-gray-100 max-w-4xl">
           {stats.map((s, idx) => (
             <div key={`${s.label}-${idx}`} className="text-center md:text-left">
               <div className="text-3xl md:text-5xl font-black text-[#2657c1] mb-1">
