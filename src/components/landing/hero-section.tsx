@@ -50,12 +50,12 @@ const stats = [
 
 export function HeroSection() {
   return (
-    <section id="hero" className="relative bg-white overflow-hidden border-b border-gray-100">
+    <section id="hero" className="relative bg-white overflow-hidden border-b border-gray-100 min-h-[calc(100vh-4rem)] flex items-center">
       {/* Subtle decorative blobs */}
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#2657c1]/5 rounded-full blur-[140px] pointer-events-none -translate-y-1/3 translate-x-1/4" />
       <div className="absolute bottom-0 left-0 w-[350px] h-[350px] bg-blue-100/50 rounded-full blur-[100px] pointer-events-none" />
 
-      <div className="container mx-auto px-6 py-16 md:py-24 relative z-10 max-w-6xl">
+      <div className="container mx-auto px-6 py-12 md:py-16 relative z-10 max-w-6xl w-full">
 
         {/* Badge */}
         <div className="flex mb-8 md:mb-12">
@@ -70,7 +70,7 @@ export function HeroSection() {
 
           {/* Left: Big stacked headline */}
           <div>
-            <h1 className="text-[clamp(1.9rem,3.5vw,3.2rem)] font-black leading-[0.9] tracking-tight text-[#2657c1]">
+            <h1 className="text-[clamp(2.8rem,5vw,5rem)] font-black leading-[0.9] tracking-tight text-[#2657c1]">
               <span className="block whitespace-nowrap">สำนักงานบัญชี</span>
               <span className="block text-[#2657c1]/25">เชียงใหม่</span>
             </h1>
