@@ -65,19 +65,19 @@ export function HeroSection() {
           </div>
         </div>
 
-        {/* 2-column layout */}
-        <div className="grid md:grid-cols-[3fr_2fr] gap-8 md:gap-12 items-end flex-1">
+        {/* 2-column layout: headline top-left, content bottom-right */}
+        <div className="grid md:grid-cols-[3fr_2fr] gap-8 md:gap-12 flex-1">
 
-          {/* Left: Big stacked headline */}
-          <div className="pb-2 overflow-hidden self-start">
+          {/* Left: Big stacked headline — top-aligned */}
+          <div className="flex flex-col justify-start pb-2 overflow-hidden">
             <h1 className="text-[clamp(3rem,6.5vw,6.5rem)] font-black leading-[0.85] tracking-tight text-[#2657c1]">
               <span className="block whitespace-nowrap">สำนักงานบัญชี</span>
               <span className="block text-[#2657c1]/25">เชียงใหม่</span>
             </h1>
           </div>
 
-          {/* Right: Tagline + description + CTAs */}
-          <div className="flex flex-col gap-4">
+          {/* Right: Tagline + description + CTAs — bottom-aligned */}
+          <div className="flex flex-col justify-end gap-4">
             <p className="text-base md:text-lg font-bold text-[#2657c1] leading-snug">
               ครบจบทุกเรื่องหลังบ้านธุรกิจ
             </p>
