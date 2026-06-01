@@ -72,7 +72,7 @@ export function Header() {
         />
       )}
 
-      <div className="relative bg-card/95 backdrop-blur supports-[backdrop-filter]:bg-card/60 shadow-sm">
+      <div className="relative bg-card/95 backdrop-blur supports-[backdrop-filter]:bg-card/60">
         {/* Main Navigation Bar */}
         <div className="border-b">
           <div className="container mx-auto flex h-16 items-center px-4 md:px-6">
