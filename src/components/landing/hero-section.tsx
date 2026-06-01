@@ -57,19 +57,17 @@ export function HeroSection() {
 
       <div className="container mx-auto px-6 pt-10 pb-14 relative z-10 max-w-6xl w-full flex flex-col flex-1">
 
-        {/* Badge */}
-        <div className="flex mb-6">
-          <div className="inline-flex items-center gap-2 bg-[#2657c1]/6 px-4 py-2 rounded-full text-sm font-semibold border border-[#2657c1]/15 text-[#2657c1]">
-            <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-            IC Accounting &amp; Service — เชียงใหม่
-          </div>
-        </div>
-
-        {/* 2-column layout: headline top-left, content bottom-right */}
+        {/* 2-column layout: left = badge+headline centered, right = content bottom */}
         <div className="grid md:grid-cols-[3fr_2fr] gap-8 md:gap-12 flex-1">
 
-          {/* Left: Big stacked headline — top-aligned */}
-          <div className="flex flex-col justify-center pb-2 overflow-hidden">
+          {/* Left: Badge + headline — centered together vertically */}
+          <div className="flex flex-col justify-center gap-5 overflow-hidden">
+            <div className="flex">
+              <div className="inline-flex items-center gap-2 bg-[#2657c1]/6 px-4 py-2 rounded-full text-sm font-semibold border border-[#2657c1]/15 text-[#2657c1]">
+                <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+                IC Accounting &amp; Service — เชียงใหม่
+              </div>
+            </div>
             <h1 className="text-[clamp(3rem,6.5vw,6.5rem)] font-black leading-[0.85] tracking-tight text-[#2657c1]">
               <span className="block whitespace-nowrap">สำนักงานบัญชี</span>
               <span className="block text-[#2657c1]/25">เชียงใหม่</span>
