@@ -52,14 +52,14 @@ export function HeroSection() {
   return (
     <section id="hero" className="relative bg-white overflow-hidden border-b border-gray-100">
       {/* Subtle decorative blobs */}
-      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#163674]/5 rounded-full blur-[140px] pointer-events-none -translate-y-1/3 translate-x-1/4" />
+      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#2657c1]/5 rounded-full blur-[140px] pointer-events-none -translate-y-1/3 translate-x-1/4" />
       <div className="absolute bottom-0 left-0 w-[350px] h-[350px] bg-blue-100/50 rounded-full blur-[100px] pointer-events-none" />
 
       <div className="container mx-auto px-6 py-16 md:py-24 relative z-10 max-w-6xl">
 
         {/* Badge */}
         <div className="flex mb-8 md:mb-12">
-          <div className="inline-flex items-center gap-2 bg-[#163674]/6 px-4 py-2 rounded-full text-sm font-semibold border border-[#163674]/15 text-[#163674]">
+          <div className="inline-flex items-center gap-2 bg-[#2657c1]/6 px-4 py-2 rounded-full text-sm font-semibold border border-[#2657c1]/15 text-[#2657c1]">
             <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
             IC Accounting &amp; Service — เชียงใหม่
           </div>
@@ -70,15 +70,15 @@ export function HeroSection() {
 
           {/* Left: Big stacked headline */}
           <div>
-            <h1 className="text-[clamp(3rem,8vw,6.5rem)] font-black leading-[0.88] tracking-tight text-[#163674]">
-              <span className="block">สำนักงานบัญชี</span>
-              <span className="block text-[#163674]/25">เชียงใหม่</span>
+            <h1 className="text-[clamp(1.9rem,3.5vw,3.2rem)] font-black leading-[0.9] tracking-tight text-[#2657c1]">
+              <span className="block whitespace-nowrap">สำนักงานบัญชี</span>
+              <span className="block text-[#2657c1]/25">เชียงใหม่</span>
             </h1>
           </div>
 
           {/* Right: Tagline + description + CTAs */}
           <div className="flex flex-col gap-5">
-            <p className="text-xl md:text-2xl font-bold text-[#163674] leading-snug">
+            <p className="text-xl md:text-2xl font-bold text-[#2657c1] leading-snug">
               ครบจบทุกเรื่องหลังบ้านธุรกิจ
             </p>
             <p className="text-base md:text-lg text-gray-500 leading-relaxed max-w-md">
@@ -86,11 +86,11 @@ export function HeroSection() {
             </p>
             <div className="flex flex-wrap gap-3 pt-1">
               <Link href="https://line.me/R/ti/p/@374jshvh" target="_blank"
-                className="inline-flex items-center gap-3 bg-[#163674] text-white font-black px-8 h-12 md:h-14 rounded-full transition-all hover:scale-105 hover:shadow-xl hover:shadow-[#163674]/25 text-sm md:text-base">
+                className="inline-flex items-center gap-3 bg-[#2657c1] text-white font-black px-8 h-12 md:h-14 rounded-full transition-all hover:scale-105 hover:shadow-xl hover:shadow-[#2657c1]/25 text-sm md:text-base">
                 ปรึกษาเราฟรี <ArrowRight className="h-4 w-4" />
               </Link>
               <Link href="/#services"
-                className="inline-flex items-center gap-3 border-2 border-[#163674]/20 hover:border-[#163674]/60 text-[#163674]/70 hover:text-[#163674] px-8 h-12 md:h-14 rounded-full transition-all text-sm md:text-base">
+                className="inline-flex items-center gap-3 border-2 border-[#2657c1]/20 hover:border-[#2657c1]/60 text-[#2657c1]/70 hover:text-[#2657c1] px-8 h-12 md:h-14 rounded-full transition-all text-sm md:text-base">
                 <PlayCircle className="h-5 w-5" /> ดูบริการทั้งหมด
               </Link>
             </div>
@@ -101,7 +101,7 @@ export function HeroSection() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-8 border-t border-gray-100 max-w-4xl">
           {stats.map((s, idx) => (
             <div key={`${s.label}-${idx}`} className="text-center md:text-left">
-              <div className="text-3xl md:text-5xl font-black text-[#163674] mb-1">
+              <div className="text-3xl md:text-5xl font-black text-[#2657c1] mb-1">
                 <AnimatedCounter value={s.value} suffix={s.suffix} />
               </div>
               <div className="text-[10px] md:text-xs text-gray-400 uppercase tracking-wider">{s.label}</div>
