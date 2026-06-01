@@ -69,7 +69,7 @@ export function HeroSection() {
         <div className="grid md:grid-cols-[3fr_2fr] gap-8 md:gap-12 flex-1">
 
           {/* Left: Big stacked headline — top-aligned */}
-          <div className="flex flex-col justify-start pb-2 overflow-hidden">
+          <div className="flex flex-col justify-center pb-2 overflow-hidden">
             <h1 className="text-[clamp(3rem,6.5vw,6.5rem)] font-black leading-[0.85] tracking-tight text-[#2657c1]">
               <span className="block whitespace-nowrap">สำนักงานบัญชี</span>
               <span className="block text-[#2657c1]/25">เชียงใหม่</span>
