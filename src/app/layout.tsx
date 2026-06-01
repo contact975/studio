@@ -10,11 +10,15 @@ export const metadata: Metadata = {
     template: '%s',
   },
   description: 'IC Accounting & Service เชียงใหม่ บริการทำบัญชี จดทะเบียนบริษัท วางแผนภาษี และ Visa Work Permit ครบวงจร ประสบการณ์กว่า 10 ปี ปรึกษาฟรี โทรหาเราได้เลย',
-  alternates: { canonical: 'https://icaccservice.com' },
+  alternates: { canonical: 'https://icaccservice.com/' },
+  robots: {
+    index: true,
+    follow: true,
+  },
   openGraph: {
     title: 'สำนักงานบัญชีเชียงใหม่ | รับทำบัญชี จดทะเบียนบริษัท วางแผนภาษี | IC Accounting',
     description: 'IC Accounting & Service เชียงใหม่ บริการทำบัญชี จดทะเบียนบริษัท วางแผนภาษี และ Visa Work Permit ครบวงจร ประสบการณ์กว่า 10 ปี ปรึกษาฟรี โทรหาเราได้เลย',
-    url: 'https://icaccservice.com',
+    url: 'https://icaccservice.com/',
     siteName: 'IC Accounting & Service',
     images: [{ url: 'https://icaccservice.com/share-preview.jpg', width: 1200, height: 630, alt: 'สำนักงานบัญชีเชียงใหม่ IC Accounting & Service' }],
     locale: 'th_TH',
