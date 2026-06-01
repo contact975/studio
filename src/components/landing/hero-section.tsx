@@ -50,15 +50,15 @@ const stats = [
 
 export function HeroSection() {
   return (
-    <section id="hero" className="relative bg-white overflow-hidden border-b border-gray-100 min-h-[calc(100vh-4rem)] flex items-center">
+    <section id="hero" className="relative bg-white overflow-hidden border-b border-gray-100 min-h-[calc(100vh-4rem)] flex flex-col">
       {/* Subtle decorative blobs */}
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#2657c1]/5 rounded-full blur-[140px] pointer-events-none -translate-y-1/3 translate-x-1/4" />
       <div className="absolute bottom-0 left-0 w-[350px] h-[350px] bg-blue-100/50 rounded-full blur-[100px] pointer-events-none" />
 
-      <div className="container mx-auto px-6 py-12 md:py-16 relative z-10 max-w-6xl w-full">
+      <div className="container mx-auto px-6 pt-10 pb-14 relative z-10 max-w-6xl w-full flex flex-col flex-1">
 
         {/* Badge */}
-        <div className="flex mb-8 md:mb-12">
+        <div className="flex mb-auto pb-6">
           <div className="inline-flex items-center gap-2 bg-[#2657c1]/6 px-4 py-2 rounded-full text-sm font-semibold border border-[#2657c1]/15 text-[#2657c1]">
             <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
             IC Accounting &amp; Service — เชียงใหม่
@@ -66,18 +66,18 @@ export function HeroSection() {
         </div>
 
         {/* 2-column layout */}
-        <div className="grid md:grid-cols-2 gap-8 md:gap-16 items-end mb-10 md:mb-16">
+        <div className="grid md:grid-cols-2 gap-8 md:gap-16 items-end">
 
           {/* Left: Big stacked headline */}
           <div className="pb-2">
-            <h1 className="text-[clamp(2.8rem,5vw,5rem)] font-black leading-[0.9] tracking-tight text-[#2657c1]">
+            <h1 className="text-[clamp(4.5rem,9vw,8.5rem)] font-black leading-[0.85] tracking-tight text-[#2657c1]">
               <span className="block whitespace-nowrap">สำนักงานบัญชี</span>
               <span className="block text-[#2657c1]/25">เชียงใหม่</span>
             </h1>
           </div>
 
           {/* Right: Tagline + description + CTAs */}
-          <div className="flex flex-col gap-4 pt-8 md:pt-16">
+          <div className="flex flex-col gap-4">
             <p className="text-base md:text-lg font-bold text-[#2657c1] leading-snug">
               ครบจบทุกเรื่องหลังบ้านธุรกิจ
             </p>
@@ -98,7 +98,7 @@ export function HeroSection() {
         </div>
 
         {/* Stats row */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-12 md:pt-16 border-t border-gray-100 max-w-4xl">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-8 mt-10 border-t border-gray-100 max-w-4xl">
           {stats.map((s, idx) => (
             <div key={`${s.label}-${idx}`} className="text-center md:text-left">
               <div className="text-3xl md:text-5xl font-black text-[#2657c1] mb-1">
