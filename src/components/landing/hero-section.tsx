@@ -66,13 +66,12 @@ export function HeroSection() {
         </div>
 
         {/* 2-column layout */}
-        <div className="grid md:grid-cols-2 gap-8 md:gap-16 items-end flex-1">
+        <div className="grid md:grid-cols-[3fr_2fr] gap-8 md:gap-12 items-end flex-1">
 
           {/* Left: Big stacked headline */}
           <div className="pb-2 overflow-hidden">
-            <h1 className="text-[clamp(4.5rem,9vw,8.5rem)] font-black leading-[0.85] tracking-tight text-[#2657c1]">
-              <span className="block">สำนักงาน</span>
-              <span className="block">บัญชี</span>
+            <h1 className="text-[clamp(3rem,6.5vw,6.5rem)] font-black leading-[0.85] tracking-tight text-[#2657c1]">
+              <span className="block whitespace-nowrap">สำนักงานบัญชี</span>
               <span className="block text-[#2657c1]/25">เชียงใหม่</span>
             </h1>
           </div>
