@@ -2,8 +2,8 @@
 
 import * as React from "react";
 import { useEffect, useRef, useState } from 'react';
-
-export function TestimonialsSection() {
+import { motion } from 'framer-motion';
+animate: scroll reveal animations in testimonials sectionexport function TestimonialsSection() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isLoaded, setIsLoaded] = useState(false);
 
@@ -33,7 +33,13 @@ export function TestimonialsSection() {
       <div className="container mx-auto px-4 md:px-6 max-w-7xl">
 
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-16">
+        <motion.div
+          className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-16"
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+        >
           <div>
             <p className="text-primary text-xs font-bold tracking-[0.3em] uppercase mb-3">
               Reviews
@@ -43,7 +49,13 @@ export function TestimonialsSection() {
               คือเสียงของลูกค้า
             </h2>
           </div>
-          <div className="flex items-center gap-4 bg-secondary/40 rounded-2xl px-6 py-4 border border-border self-start md:self-auto">
+          <motion.div
+            className="flex items-center gap-4 bg-secondary/40 rounded-2xl px-6 py-4 border border-border self-start md:self-auto"
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1], delay: 0.15 }}
+          >
             <div className="text-center">
               <p className="text-3xl font-black text-foreground">5.0</p>
               <div className="flex gap-0.5 my-1">
@@ -60,13 +72,17 @@ export function TestimonialsSection() {
               <p className="text-3xl font-black text-foreground">100+</p>
               <p className="text-xs text-muted-foreground font-medium mt-1">ลูกค้าที่ไว้วางใจ</p>
             </div>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
         {/* Widget container */}
-        <div
+        <motion.div
           ref={containerRef}
           className="w-full max-w-7xl mx-auto min-h-[300px]"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
         >
           {!isLoaded && (
             <div className="flex flex-col items-center gap-4 text-muted-foreground/30 py-16">
@@ -74,7 +90,7 @@ export function TestimonialsSection() {
               <p className="text-sm">กำลังโหลดรีวิวจาก Google...</p>
             </div>
           )}
-        </div>
+        </motion.div>
 
       </div>
     </section>
