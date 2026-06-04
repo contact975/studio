@@ -3,8 +3,8 @@
 import * as React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
-import { cn } from "@/lib/utils";
+animate: scroll reveal + AnimatePresence transitions in services sectionimport { cn } from "@/lib/utils";
+import { motion, AnimatePresence } from "framer-motion";
 
 const services = [
   {
@@ -87,17 +87,29 @@ export function ServicesSection() {
       <div className="container mx-auto px-4 md:px-6 max-w-7xl">
 
         {/* Header */}
-        <div className="mb-16">
+        <motion.div
+          className="mb-16"
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+        >
           <p className="text-primary text-xs font-bold tracking-[0.3em] uppercase mb-3">Our Services</p>
           <h2 className="text-3xl md:text-4xl font-black text-foreground">
             บริการจากสำนักงานบัญชีเชียงใหม่
           </h2>
-        </div>
+        </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-8 items-start">
 
           {/* Service list — left column */}
-          <div className="flex flex-row lg:flex-col gap-2 overflow-x-auto pb-2 lg:pb-0 lg:sticky lg:top-24">
+          <motion.div
+            className="flex flex-row lg:flex-col gap-2 overflow-x-auto pb-2 lg:pb-0 lg:sticky lg:top-24"
+            initial={{ opacity: 0, x: -24 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
+          >
             {services.map((service, index) => (
               <button
                 key={service.id}
@@ -118,63 +130,72 @@ export function ServicesSection() {
                 <span className="font-bold text-sm">{service.title}</span>
               </button>
             ))}
-          </div>
+          </motion.div>
 
-          {/* Service detail — right column */}
-          <div className="grid md:grid-cols-2 gap-8 items-center">
-            {/* Image */}
-            <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-secondary/20">
-              <Image
-                src={services[active].imageUrl}
-                alt={services[active].fullTitle}
-                fill
-                className="object-cover transition-opacity duration-300"
-                loading={active === 0 ? "eager" : "lazy"}
-                sizes="(max-width: 768px) 100vw, 40vw"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
-              <div className="absolute bottom-4 left-4">
-                <span className="text-white text-xs font-bold bg-black/40 backdrop-blur-sm px-3 py-1 rounded-full">
-                  {services[active].tag}
-                </span>
+          {/* Service detail — right column with AnimatePresence */}
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={active}
+              className="grid md:grid-cols-2 gap-8 items-center"
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.35, ease: "easeOut" }}
+            >
+              {/* Image */}
+              <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-secondary/20">
+                <Image
+                  src={services[active].imageUrl}
+                  alt={services[active].fullTitle}
+                  fill
+                  className="object-cover transition-opacity duration-300"
+                  loading={active === 0 ? "eager" : "lazy"}
+                  sizes="(max-width: 768px) 100vw, 40vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+                <div className="absolute bottom-4 left-4">
+                  <span className="text-white text-xs font-bold bg-black/40 backdrop-blur-sm px-3 py-1 rounded-full">
+                    {services[active].tag}
+                  </span>
+                </div>
               </div>
-            </div>
 
-            {/* Content */}
-            <div className="space-y-6">
-              <div>
-                <span className="text-6xl font-black text-primary/10 leading-none block mb-2">
-                  {services[active].num}
-                </span>
-                <h3 className="text-2xl md:text-3xl font-black text-foreground -mt-4">
-                  {services[active].fullTitle}
-                </h3>
-              </div>
-              <p className="text-muted-foreground leading-relaxed">
-                {services[active].description}
-              </p>
-              <Link
-                href={services[active].href}
-                className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-bold px-6 py-3 rounded-full hover:opacity-90 transition-all hover:gap-3 text-sm"
-              >
-                ดูรายละเอียดและราคา <ArrowRight className="h-4 w-4" />
-              </Link>
+              {/* Content */}
+              <div className="space-y-6">
+                <div>
+                  <span className="text-6xl font-black text-primary/10 leading-none block mb-2">
+                    {services[active].num}
+                  </span>
+                  <h3 className="text-2xl md:text-3xl font-black text-foreground -mt-4">
+                    {services[active].fullTitle}
+                  </h3>
+                </div>
+                <p className="text-muted-foreground leading-relaxed">
+                  {services[active].description}
+                </p>
+                <Link
+                  href={services[active].href}
+                  className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-bold px-6 py-3 rounded-full hover:opacity-90 transition-all hover:gap-3 text-sm"
+                >
+                  ดูรายละเอียดและราคา <ArrowRight className="h-4 w-4" />
+                </Link>
 
-              {/* Dot navigation */}
-              <div className="flex gap-2 pt-2">
-                {services.map((_, i) => (
-                  <button
-                    key={i}
-                    onClick={() => setActive(i)}
-                    className={cn(
-                      "transition-all rounded-full",
-                      active === i ? "w-6 h-2 bg-primary" : "w-2 h-2 bg-border hover:bg-muted-foreground"
-                    )}
-                  />
-                ))}
+                {/* Dot navigation */}
+                <div className="flex gap-2 pt-2">
+                  {services.map((_, i) => (
+                    <button
+                      key={i}
+                      onClick={() => setActive(i)}
+                      className={cn(
+                        "transition-all rounded-full",
+                        active === i ? "w-6 h-2 bg-primary" : "w-2 h-2 bg-border hover:bg-muted-foreground"
+                      )}
+                    />
+                  ))}
+                </div>
               </div>
-            </div>
-          </div>
+            </motion.div>
+          </AnimatePresence>
         </div>
 
       </div>
