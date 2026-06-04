@@ -1,6 +1,9 @@
 runConfig:
   maxInstances: 1
 
+scripts:
+  buildCommand: npm install && npm run build
+
 env:
   - variable: MAKE_WEBHOOK_URL
     value: https://hook.eu1.make.com/detvatwu4cil2qn9yidxbih42a1redyt
