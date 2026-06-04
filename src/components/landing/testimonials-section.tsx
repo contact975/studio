@@ -2,21 +2,29 @@
 
 import * as React from "react";
 import { useEffect, useRef, useState } from 'react';
-import { motion } from 'framer-motion';
-animate: scroll reveal animations in testimonials sectionexport function TestimonialsSection() {
+
+export function TestimonialsSection() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isLoaded, setIsLoaded] = useState(false);
+
+  // Scroll reveal
+  const headerRef = useRef<HTMLDivElement>(null);
+  const [headerVis, setHeaderVis] = useState(false);
+
+  useEffect(() => {
+    const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) setHeaderVis(true); }, { threshold: 0.2 });
+    if (headerRef.current) obs.observe(headerRef.current);
+    return () => obs.disconnect();
+  }, []);
 
   useEffect(() => {
     const timer = setTimeout(() => {
       if (!containerRef.current) return;
       if (containerRef.current.querySelector('.ti-widget')) return;
-
       const widgetDiv = document.createElement('div');
       widgetDiv.className = 'ti-widget';
       widgetDiv.setAttribute('data-widget-id', 'd07bdaa700891641ec465ec59b6');
       containerRef.current.appendChild(widgetDiv);
-
       const script = document.createElement('script');
       script.src = 'https://cdn.trustindex.io/loader.js?d07bdaa700891641ec465ec59b6';
       script.defer = true;
@@ -24,7 +32,6 @@ animate: scroll reveal animations in testimonials sectionexport function Testimo
       script.onload = () => setIsLoaded(true);
       containerRef.current.appendChild(script);
     }, 2000);
-
     return () => clearTimeout(timer);
   }, []);
 
@@ -32,29 +39,21 @@ animate: scroll reveal animations in testimonials sectionexport function Testimo
     <section id="testimonials" className="py-20 md:py-28 bg-background">
       <div className="container mx-auto px-4 md:px-6 max-w-7xl">
 
-        {/* Header */}
-        <motion.div
+        {/* Header — scroll reveal */}
+        <div
+          ref={headerRef}
+          style={{ opacity: headerVis ? 1 : 0, transform: headerVis ? 'translateY(0)' : 'translateY(24px)', transition: 'opacity 0.6s ease, transform 0.6s ease' }}
           className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-16"
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
         >
           <div>
-            <p className="text-primary text-xs font-bold tracking-[0.3em] uppercase mb-3">
-              Reviews
-            </p>
+            <p className="text-primary text-xs font-bold tracking-[0.3em] uppercase mb-3">Reviews</p>
             <h2 className="text-3xl md:text-4xl font-black text-foreground">
-              สิ่งที่เราภูมิใจที่สุด<br className="hidden md:block" />
-              คือเสียงของลูกค้า
+              สิ่งที่เราภูมิใจที่สุด<br className="hidden md:block" />คือเสียงของลูกค้า
             </h2>
           </div>
-          <motion.div
+          <div
+            style={{ opacity: headerVis ? 1 : 0, transform: headerVis ? 'scale(1)' : 'scale(0.95)', transition: 'opacity 0.5s ease, transform 0.5s ease', transitionDelay: '150ms' }}
             className="flex items-center gap-4 bg-secondary/40 rounded-2xl px-6 py-4 border border-border self-start md:self-auto"
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1], delay: 0.15 }}
           >
             <div className="text-center">
               <p className="text-3xl font-black text-foreground">5.0</p>
@@ -72,26 +71,18 @@ animate: scroll reveal animations in testimonials sectionexport function Testimo
               <p className="text-3xl font-black text-foreground">100+</p>
               <p className="text-xs text-muted-foreground font-medium mt-1">ลูกค้าที่ไว้วางใจ</p>
             </div>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
 
-        {/* Widget container */}
-        <motion.div
-          ref={containerRef}
-          className="w-full max-w-7xl mx-auto min-h-[300px]"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
-        >
+        {/* Widget */}
+        <div ref={containerRef} className="w-full max-w-7xl mx-auto min-h-[300px]">
           {!isLoaded && (
             <div className="flex flex-col items-center gap-4 text-muted-foreground/30 py-16">
               <div className="w-8 h-8 border-2 border-current border-t-transparent rounded-full animate-spin" />
               <p className="text-sm">กำลังโหลดรีวิวจาก Google...</p>
             </div>
           )}
-        </motion.div>
-
+        </div>
       </div>
     </section>
   );
