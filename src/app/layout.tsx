@@ -1,8 +1,15 @@
 import type { Metadata } from 'next';
 import './globals.css';
+import { Kanit } from 'next/font/google';
 import { Toaster } from '@/components/ui/toaster';
 import { cn } from '@/lib/utils';
 import { AOSProvider } from '@/components/aos-provider';
+
+const kanit = Kanit({
+  subsets: ['latin'],
+  weight: ['300', '400', '600', '700'],
+  display: 'swap',
+});
 
 export const metadata: Metadata = {
   title: {
@@ -10,11 +17,7 @@ export const metadata: Metadata = {
     template: '%s',
   },
   description: 'IC Accounting & Service เชียงใหม่ บริการทำบัญชี จดทะเบียนบริษัท วางแผนภาษี และ Visa Work Permit ครบวงจร ประสบการณ์กว่า 10 ปี ปรึกษาฟรี โทรหาเราได้เลย',
-  alternates: { canonical: 'https://icaccservice.com/' },
-  robots: {
-    index: true,
-    follow: true,
-  },
+  robots: { index: true, follow: true },
   openGraph: {
     title: 'สำนักงานบัญชีเชียงใหม่ | รับทำบัญชี จดทะเบียนบริษัท วางแผนภาษี | IC Accounting',
     description: 'IC Accounting & Service เชียงใหม่ บริการทำบัญชี จดทะเบียนบริษัท วางแผนภาษี และ Visa Work Permit ครบวงจร ประสบการณ์กว่า 10 ปี ปรึกษาฟรี โทรหาเราได้เลย',
@@ -24,7 +27,7 @@ export const metadata: Metadata = {
     locale: 'th_TH',
     type: 'website',
   },
-  icons: { 
+  icons: {
     icon: [
       { url: '/favicon-96x96.png?v=3', sizes: '96x96', type: 'image/png' },
       { url: '/web-app-manifest-192x192.png?v=3', sizes: '192x192', type: 'image/png' },
@@ -45,7 +48,6 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       { "@type": "Question", "name": "ค่าบริการทำบัญชีและภาษี ราคาเท่าไหร่?", "acceptedAnswer": { "@type": "Answer", "text": "ค่าบริการเริ่มต้นในราคาที่เหมาะสมสำหรับ SME พิจารณาจากปริมาณเอกสารและประเภทธุรกิจ เน้นความโปร่งใส ไม่มีค่าธรรมเนียมแอบแฝง" } }
     ]
   };
-
   const localBusinessSchema = {
     "@context": "https://schema.org",
     "@type": "AccountingService",
@@ -57,7 +59,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     "description": "สำนักงานบัญชีเชียงใหม่ ครบวงจร ทำบัญชี วางแผนภาษี จดทะเบียนธุรกิจ และผลิตมีเดียคอนเทนต์",
     "address": { "@type": "PostalAddress", "streetAddress": "80/142 ต.สันปู่เลย อ.ดอยสะเก็ด", "addressLocality": "เชียงใหม่", "postalCode": "50220", "addressCountry": "TH" },
     "geo": { "@type": "GeoCoordinates", "latitude": 18.8796, "longitude": 99.0353 },
-    "openingHoursSpecification": { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], "opens": "09:00", "closes": "18:00" },
+    "openingHoursSpecification": { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "09:00", "closes": "18:00" },
     "sameAs": ["https://www.facebook.com/icaccservice"],
     "priceRange": "฿฿",
     "areaServed": { "@type": "City", "name": "เชียงใหม่" },
@@ -77,13 +79,10 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="th" suppressHydrationWarning>
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600;700&display=swap" rel="stylesheet" />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }} />
       </head>
-      <body className={cn('font-body antialiased')} suppressHydrationWarning>
+      <body className={cn(kanit.className, 'font-body antialiased')} suppressHydrationWarning>
         <AOSProvider>
           {children}
           <Toaster />
