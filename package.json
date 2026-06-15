@@ -11,7 +11,7 @@
     "lint": "next lint",
     "typecheck": "tsc --noEmit"
   },
-  "dependencies": {h
+  "dependencies": {
     "@genkit-ai/google-genai": "^1.20.0",
     "@genkit-ai/next": "^1.20.0",
     "@hookform/resolvers": "^4.1.3",
