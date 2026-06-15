@@ -9,6 +9,21 @@ export const metadata: Metadata = {
   title: 'เกี่ยวกับเรา | IC Accounting & Service เชียงใหม่',
   description: 'รู้จัก IC Accounting & Service สำนักงานบัญชียุคใหม่เชียงใหม่ ก่อตั้งโดยคุณจตุพร ยะเปียงปลูก ประสบการณ์กว่า 10 ปี',
   alternates: { canonical: 'https://icaccservice.com/about' },
+    openGraph: {
+          title: 'เกี่ยวกับเรา | IC Accounting & Service เชียงใหม่',
+          description: 'รู้จัก IC Accounting & Service สำนักงานบัญชียุคใหม่เชียงใหม่ ก่อตั้งโดยคุณจตุพร ยะเปียงปลูก ประสบการณ์กว่า 10 ปี',
+          url: 'https://icaccservice.com/about',
+          siteName: 'IC Accounting & Service',
+          images: [{ url: 'https://icaccservice.com/share-preview.jpg', width: 1200, height: 630, alt: 'เกี่ยวกับ IC Accounting & Service เชียงใหม่' }],
+          locale: 'th_TH',
+          type: 'website',
+    },
+    twitter: {
+          card: 'summary_large_image',
+          title: 'เกี่ยวกับเรา | IC Accounting & Service เชียงใหม่',
+          description: 'รู้จัก IC Accounting & Service สำนักงานบัญชียุคใหม่เชียงใหม่ ก่อตั้งโดยคุณจตุพร ยะเปียงปลูก ประสบการณ์กว่า 10 ปี',
+          images: ['https://icaccservice.com/share-preview.jpg'],
+    },
 };
 
 const timeline = [
