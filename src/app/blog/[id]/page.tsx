@@ -412,7 +412,7 @@ const blogPosts = [
                                                                                                                             - เตรียมความพร้อมรองรับการตรวจสอบจากกรมสรรพากร
 
                                                                                                                             ปรึกษาเรื่องภาษีนิติบุคคลได้ฟรีวันนี้ โทรหาเราหรือส่งข้อความผ่าน LINE`,
-                                                                                                                                category: 'ภาษีธุรกิจ',
+                                                                                                                                   category: 'ภาษีธุรกิจ',
                                                                                                                                     date: '25 เม.ย. 2568',
                                                                                                                                         author: 'ทีมงาน IC ACC',
                                                                                                                                             image: 'https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Photo%20Services%2Fic-accounting-chiangmai-service-audit.jpg?alt=media&token=b0fbb4a8-886e-4d3d-95ec-91a4a5824058',
@@ -480,10 +480,10 @@ const blogPosts = [
                                                                                                                                                                 - ให้คำปรึกษาเรื่อง BOI Visa และ Thailand Elite Visa
 
                                                                                                                                                                 ติดต่อเราเพื่อขอคำปรึกษาฟรีเรื่อง Work Permit เชียงใหม่ได้ตลอดเวลาทำการ`,
-                                                                                                                                                                    category: 'Expat & Visa',
+                                                                                                                                                                     category: 'Expat & Visa',
                                                                                                                                                                         date: '20 เม.ย. 2568',
                                                                                                                                                                             author: 'ทีมงาน IC ACC',
-                                                                                                                                                                                image: 'https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Photo%20Services%2Fvisa-work-permit-chiangmai.jpg?alt=media&token=8d3e33b0-12ec-4921-b9d6-ad4d10393047',
+                                                                                                                                                                               image: 'https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Photo%20Services%2Fvisa-work-permit-chiangmai.jpg?alt=media&token=8d3e33b0-12ec-4921-b9d6-ad4d10393047',
                                                                                                                                                                                     imageHint: 'work permit visa chiangmai',
                                                                                                                                                                                       },
 ];
@@ -521,6 +521,26 @@ export default function BlogDetailPage() {
 
   return (
     <div className="flex flex-col min-h-dvh bg-white text-foreground font-body">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'Article',
+            headline: post.title,
+            image: post.image,
+            datePublished: post.date,
+            author: { '@type': 'Person', name: post.author },
+            publisher: {
+              '@type': 'Organization',
+              name: 'IC Accounting & Service',
+              logo: { '@type': 'ImageObject', url: 'https://icaccservice.com/share-preview.jpg' }
+            },
+            description: post.title,
+            url: `https://icaccservice.com/blog/${post.id}`
+          })
+        }}
+      />
       <Header />
       <main className="flex-1">
         <section className="py-6 border-b bg-slate-50">
