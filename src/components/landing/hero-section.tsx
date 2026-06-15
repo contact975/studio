@@ -3,7 +3,6 @@
 import * as React from "react";
 import Link from "next/link";
 import { ArrowRight, PlayCircle } from 'lucide-react';
-import { motion } from 'framer-motion';
 
 interface AnimatedCounterProps {
   value: number;
@@ -58,44 +57,24 @@ export function HeroSection() {
 
           {/* Left: Badge + headline */}
           <div className="flex flex-col justify-center gap-5 overflow-hidden">
-            <motion.div
-              className="flex"
-              initial={{ opacity: 0, y: -16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
-            >
+            <div className="flex">
               <div className="inline-flex items-center gap-2 bg-[#2657c1]/6 px-4 py-2 rounded-full text-sm font-semibold border border-[#2657c1]/15 text-[#2657c1]">
                 <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
                 IC Accounting &amp; Service — เชียงใหม่
               </div>
-            </motion.div>
+            </div>
             <h1 className="text-[clamp(3rem,6.5vw,6.5rem)] font-black leading-[0.85] tracking-tight text-[#2657c1]">
-              <motion.span
-                className="block whitespace-nowrap"
-                initial={{ opacity: 0, y: 48 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
-              >
+              <span className="block whitespace-nowrap">
                 สำนักงานบัญชี
-              </motion.span>
-              <motion.span
-                className="block text-[#2657c1]/25"
-                initial={{ opacity: 0, y: 48 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1], delay: 0.35 }}
-              >
+              </span>
+              <span className="block text-[#2657c1]/25">
                 เชียงใหม่
-              </motion.span>
+              </span>
             </h1>
           </div>
 
           {/* Right: content */}
-          <motion.div
-            className="flex flex-col justify-end gap-4"
-            initial={{ opacity: 0, x: 24 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.5 }}
-          >
+          <div className="flex flex-col justify-end gap-4">
             <p className="text-base md:text-lg font-bold text-[#2657c1] leading-snug">
               ครบจบทุกเรื่องหลังบ้านธุรกิจ
             </p>
@@ -112,17 +91,11 @@ export function HeroSection() {
                 <PlayCircle className="h-5 w-5" /> ดูบริการทั้งหมด
               </Link>
             </div>
-          </motion.div>
+          </div>
         </div>
 
         {/* Stats */}
-        <motion.div
-          className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-8 mt-10 border-t border-gray-100 max-w-4xl"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
-        >
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-8 mt-10 border-t border-gray-100 max-w-4xl">
           {stats.map((s, idx) => (
             <div key={`${s.label}-${idx}`} className="text-center md:text-left">
               <div className="text-3xl md:text-5xl font-black text-[#2657c1] mb-1">
@@ -131,7 +104,7 @@ export function HeroSection() {
               <div className="text-[10px] md:text-xs text-gray-400 uppercase tracking-wider">{s.label}</div>
             </div>
           ))}
-        </motion.div>
+        </div>
 
       </div>
     </section>
