@@ -5,22 +5,22 @@ export const metadata: Metadata = {
     description: 'รวมบทความน่ารู้เรื่องบัญชี ภาษี จดทะเบียนบริษัท และการบริหารธุรกิจ SME ในเชียงใหม่ จากทีมผู้เชี่ยวชาญประสบการณ์กว่า 10 ปี',
     alternates: { canonical: 'https://icaccservice.com/blog' },
     openGraph: {
-          title: 'บทความบัญชีและภาษีเชียงใหม่ | IC Accounting & Service',
-          description: 'รวมบทความน่ารู้เรื่องบัญชี ภาษี จดทะเบียนบริษัท และการบริหารธุรกิจ SME ในเชียงใหม่ จากทีมผู้เชี่ยวชาญประสบการณ์กว่า 10 ปี',
-          url: 'https://icaccservice.com/blog',
-          siteName: 'IC Accounting & Service',
-          images: [{ url: 'https://icaccservice.com/share-preview.jpg', width: 1200, height: 630, alt: 'บทความบัญชีและภาษีเชียงใหม่ IC Accounting & Service' }],
-          locale: 'th_TH',
-          type: 'website',
+        title: 'บทความบัญชีและภาษีเชียงใหม่ | IC Accounting & Service',
+        description: 'รวมบทความน่ารู้เรื่องบัญชี ภาษี จดทะเบียนบริษัท และการบริหารธุรกิจ SME ในเชียงใหม่ จากทีมผู้เชี่ยวชาญประสบการณ์กว่า 10 ปี',
+        url: 'https://icaccservice.com/blog',
+        siteName: 'IC Accounting & Service',
+        images: [{ url: 'https://icaccservice.com/share-preview.jpg', width: 1200, height: 630, alt: 'บทความบัญชีและภาษีเชียงใหม่ IC Accounting & Service' }],
+        locale: 'th_TH',
+        type: 'website',
     },
     twitter: {
-          card: 'summary_large_image',
-          title: 'บทความบัญชีและภาษีเชียงใหม่ | IC Accounting & Service',
-          description: 'รวมบทความน่ารู้เรื่องบัญชี ภาษี จดทะเบียนบริษัท และการบริหารธุรกิจ SME ในเชียงใหม่',
-          images: ['https://icaccservice.com/share-preview.jpg'],
+        card: 'summary_large_image',
+        title: 'บทความบัญชีและภาษีเชียงใหม่ | IC Accounting & Service',
+        description: 'รวมบทความน่ารู้เรื่องบัญชี ภาษี จดทะเบียนบริษัท และการบริหารธุรกิจ SME ในเชียงใหม่',
+        images: ['https://icaccservice.com/share-preview.jpg'],
     },
 };
 
 export default function BlogLayout({ children }: { children: React.ReactNode }) {
-    return <>{children}</>>;
-}</>
+    return <>{children}</>;
+}
