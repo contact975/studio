@@ -6,6 +6,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState, Fragment } from 'react';
 import { ArrowRight, PlayCircle, ChevronRight, MessageSquare } from 'lucide-react';
+import Script from 'next/script';
 
 declare global {
   namespace JSX {
@@ -100,6 +101,7 @@ export default function MediaClient() {
 
   return (
     <div className="bg-[#080810] text-white min-h-screen font-body overflow-x-hidden">
+      <Script src="https://fast.wistia.com/player.js" strategy="afterInteractive" />
       <Header />
       <main>
 
