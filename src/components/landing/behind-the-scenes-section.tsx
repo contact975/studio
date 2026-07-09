@@ -4,19 +4,10 @@ import { Upload, ChevronLeft, ChevronRight } from "lucide-react";
 import { useEffect, useState } from "react";
 
 type Slide = {
-  tag: string;
-  caption: string;
   image?: string;
 };
 
-const slides: Slide[] = [
-  { tag: "ทีมงาน", caption: "ทีมนักบัญชีและผู้สอบบัญชีตัวจริง ดูแลคุณเอง" },
-  { tag: "ระบบงาน", caption: "ทำงานเป็นระบบ ตรวจสอบได้ทุกขั้นตอน" },
-  { tag: "ภาษี", caption: "ดูแลยื่นเอกสารถึงกรมสรรพากรและหน่วยงานราชการ" },
-  { tag: "ความรู้", caption: "แบ่งปันความรู้บัญชี-ภาษี สู่ธุรกิจของคุณ" },
-  { tag: "ปรึกษา", caption: "ให้คำปรึกษาใกล้ชิด เข้าใจธุรกิจในพื้นที่" },
-  { tag: "เอกสาร", caption: "จัดระเบียบเอกสารรายรับ-รายจ่ายให้ครบถ้วน" },
-];
+const slides: Slide[] = [{}, {}, {}, {}, {}, {}];
 
 export function BehindTheScenesSection() {
   const [perView, setPerView] = useState(4);
@@ -83,7 +74,7 @@ export function BehindTheScenesSection() {
                 {slide.image ? (
                   <img
                     src={slide.image}
-                    alt={slide.caption}
+                    alt="ผลงานและกิจกรรมของ IC"
                     className="absolute inset-0 h-full w-full object-cover"
                   />
                 ) : (
@@ -94,17 +85,6 @@ export function BehindTheScenesSection() {
                     <span className="text-sm font-medium opacity-90">อัปโหลดรูปการทำงาน</span>
                   </div>
                 )}
-
-                <div className="absolute inset-0 bg-gradient-to-t from-[rgba(5,12,32,0.9)] via-[rgba(5,12,32,0.25)] to-transparent" />
-
-                <div className="absolute inset-x-5 bottom-5">
-                  <span className="mb-3 inline-block rounded-full bg-primary px-4 py-1.5 text-xs font-bold text-primary-foreground">
-                    {slide.tag}
-                  </span>
-                  <p className="text-base font-semibold leading-snug text-white drop-shadow md:text-lg">
-                    {slide.caption}
-                  </p>
-                </div>
               </div>
             ))}
           </div>
