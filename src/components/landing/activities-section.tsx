@@ -3,7 +3,7 @@
 import { Award, Mic, GraduationCap, Heart, MapPin, Star, ArrowRight } from "lucide-react";
 
 const activities = [
-  { Icon: Award, tag: "อบรม & มาตรฐาน", date: "มิถุนายน 2569", title: "ยกระดับมาตรฐานสำนักงานบัญชีสู่คุณภาพระดับสากล", desc: "เข้าร่วมโครงการพัฒนาศักยภาพและรับรองคุณภาพสำนักงานบัญชี เพื่อยกระดับการให้บริการอย่างมืออาชีพ" },
+  { Icon: Award, tag: "อบรม & มาตรฐาน", date: "มิถุนายน 2569", title: "ยกระดับมาตรฐานสำนักงานบัญชีสู่คุณภาพระดับสากล", desc: "เข้าร่วมโครงการพัฒนาศักยภาพและรับรองคุณภาพสำนักงานบัญชี เพื่อยกระดับการให้บริการอย่างมืออาชีพ", image: "https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Event%20Company%2FEvent%2001.jpg?alt=media" },
   { Icon: Mic, tag: "วิทยากร", date: "พฤษภาคม 2569", title: "ได้รับเชิญเป็นวิทยากรบรรยายด้านบัญชีและภาษีธุรกิจ", desc: "แบ่งปันความรู้การวางแผนภาษีและการบริหารการเงิน ให้กับผู้ประกอบการรุ่นใหม่" },
   { Icon: GraduationCap, tag: "ฝึกประสบการณ์", date: "2569", title: "ต้อนรับนักศึกษาฝึกประสบการณ์วิชาชีพบัญชี", desc: "เปิดโอกาสให้นักศึกษาเรียนรู้และลงมือทำงานจริงร่วมกับทีมงานมืออาชีพของ IC" },
   { Icon: Heart, tag: "CSR", date: "พฤษภาคม 2569", title: "ร่วมกิจกรรมเพื่อสังคมและชุมชนในเชียงใหม่", desc: "ส่งต่อความสุขและช่วยเหลือชุมชน เป็นส่วนหนึ่งของพันธกิจด้านสังคมที่เราให้ความสำคัญ" },
@@ -33,9 +33,15 @@ export function ActivitiesSection() {
                 key={i}
                 className="group flex flex-col rounded-[20px] border border-border overflow-hidden bg-card transition-all duration-300 hover:-translate-y-1.5 hover:border-primary/30 hover:shadow-[0_18px_40px_-22px_rgba(37,99,235,0.35)]"
               >
-                <div className="relative aspect-[16/10] bg-[#eef4ff] flex flex-col items-center justify-center gap-2">
-                  <Icon className="h-8 w-8 text-primary/80" />
-                  <span className="text-xs text-[#a9bfe6]">ภาพกิจกรรม</span>
+                <div className="relative aspect-[16/10] bg-[#eef4ff] overflow-hidden">
+                  {a.image ? (
+                    <img src={a.image} alt={a.title} className="absolute inset-0 h-full w-full object-cover" />
+                  ) : (
+                    <div className="absolute inset-0 flex flex-col items-center justify-center gap-2">
+                      <Icon className="h-8 w-8 text-primary/80" />
+                      <span className="text-xs text-[#a9bfe6]">ภาพกิจกรรม</span>
+                    </div>
+                  )}
                 </div>
                 <div className="flex flex-col gap-3 p-6 flex-1">
                   <div className="flex items-center gap-2.5">
