@@ -5,6 +5,7 @@ import { HeroSection } from '@/components/landing/hero-section';
 import { VideoSection } from '@/components/landing/video-section';
 import { ServicesSection } from '@/components/landing/services-section';
 import { WhyUsSection } from '@/components/landing/why-us-section';
+import { BehindTheScenesSection } from '@/components/landing/behind-the-scenes-section';
 import { TestimonialsSection } from '@/components/landing/testimonials-section';
 import { FaqSection } from '@/components/landing/faq-section';
 import { Footer } from '@/components/landing/footer';
@@ -29,6 +30,9 @@ export default function Home() {
         </div>
         <div data-aos="fade-up">
           <WhyUsSection />
+        </div>
+        <div data-aos="fade-up">
+          <BehindTheScenesSection />
         </div>
         <div data-aos="fade-up">
           <TestimonialsSection />
