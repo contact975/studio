@@ -7,7 +7,17 @@ type Slide = {
   image?: string;
 };
 
-const slides: Slide[] = [{}, {}, {}, {}, {}, {}];
+const slides: Slide[] = [
+  { image: "https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Behide%20Scene%2FBehide%20Scene%2001.jpg?alt=media" },
+  { image: "https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Behide%20Scene%2FBehide%20Scene%2003.jpg?alt=media" },
+  { image: "https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Behide%20Scene%2FBehide%20Scene%2004.jpg?alt=media" },
+  { image: "https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Behide%20Scene%2FBehide%20Scene%2005.jpg?alt=media" },
+  { image: "https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Behide%20Scene%2FBehide%20Scene%2006.jpg?alt=media" },
+  { image: "https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Behide%20Scene%2FBehide%20Scene%2007.jpg?alt=media" },
+  { image: "https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Behide%20Scene%2FBehide%20Scene%2008.jpg?alt=media" },
+  { image: "https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Behide%20Scene%2FBehide%20Scene%2009.jpg?alt=media" },
+  { image: "https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Behide%20Scene%2FBehide%20Scene%2010.jpg?alt=media" },
+];
 
 export function BehindTheScenesSection() {
   const [perView, setPerView] = useState(4);
