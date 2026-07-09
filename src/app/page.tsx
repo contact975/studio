@@ -7,6 +7,7 @@ import { ServicesSection } from '@/components/landing/services-section';
 import { WhyUsSection } from '@/components/landing/why-us-section';
 import { BehindTheScenesSection } from '@/components/landing/behind-the-scenes-section';
 import { TestimonialsSection } from '@/components/landing/testimonials-section';
+import { ActivitiesSection } from '@/components/landing/activities-section';
 import { FaqSection } from '@/components/landing/faq-section';
 import { CtaSection } from '@/components/landing/cta-section';
 import { Footer } from '@/components/landing/footer';
@@ -37,6 +38,9 @@ export default function Home() {
         </div>
         <div data-aos="fade-up">
           <TestimonialsSection />
+        </div>
+        <div data-aos="fade-up">
+          <ActivitiesSection />
         </div>
         <div data-aos="fade-up">
           <FaqSection />
