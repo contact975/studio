@@ -8,6 +8,7 @@ import { WhyUsSection } from '@/components/landing/why-us-section';
 import { BehindTheScenesSection } from '@/components/landing/behind-the-scenes-section';
 import { TestimonialsSection } from '@/components/landing/testimonials-section';
 import { FaqSection } from '@/components/landing/faq-section';
+import { CtaSection } from '@/components/landing/cta-section';
 import { Footer } from '@/components/landing/footer';
 import { ClientsSection } from '@/components/landing/clients-section';
 import { PromoCarousel } from '@/components/landing/promo-carousel';
@@ -39,6 +40,9 @@ export default function Home() {
         </div>
         <div data-aos="fade-up">
           <FaqSection />
+        </div>
+        <div data-aos="fade-up">
+          <CtaSection />
         </div>
       </main>
       <Footer />
