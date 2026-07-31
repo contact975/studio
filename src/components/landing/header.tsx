@@ -131,7 +131,7 @@ export function Header() {
               <Button asChild className="hidden md:flex rounded-full bg-gradient-to-r from-blue-600 to-cyan-400 text-white hover:opacity-90 transition-opacity">
                 <Link href="/expat-services">IC Expat Services</Link>
               </Button>
-              <Button asChild className="hidden md:flex rounded-full bg-gradient-to-r from-red-500 to-orange-400 text-white hover:opacity-90 transition-opacity btn-light-sweep">
+              <Button asChild className="hidden md:flex rounded-full bg-gradient-to-r from-red-500 to-orange-400 text-white hover:opacity-90 transition-opacity">
                 <Link href="/media-content">บริการ Exclusive Media</Link>
               </Button>
               <Button asChild className="hidden sm:flex rounded-full">
@@ -200,7 +200,7 @@ export function Header() {
                         <Button asChild className="rounded-full mt-4 bg-gradient-to-r from-blue-600 to-cyan-400 text-white hover:opacity-90 transition-opacity">
                           <Link href="/expat-services" onClick={() => setIsSheetOpen(false)}>IC Expat Services</Link>
                         </Button>
-                        <Button asChild className="rounded-full mt-4 bg-gradient-to-r from-red-500 to-orange-400 text-white hover:opacity-90 transition-opacity btn-light-sweep">
+                        <Button asChild className="rounded-full mt-4 bg-gradient-to-r from-red-500 to-orange-400 text-white hover:opacity-90 transition-opacity">
                           <Link href="/media-content" onClick={() => setIsSheetOpen(false)}>บริการ Exclusive Media</Link>
                         </Button>
                         <Button asChild className="rounded-full mt-4">
