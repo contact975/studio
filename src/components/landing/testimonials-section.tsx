@@ -4,8 +4,6 @@ import * as React from "react";
 import { useEffect, useRef, useState } from 'react';
 
 export function TestimonialsSection() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [isLoaded, setIsLoaded] = useState(false);
 
   // Scroll reveal
   const headerRef = useRef<HTMLDivElement>(null);
@@ -15,24 +13,6 @@ export function TestimonialsSection() {
     const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) setHeaderVis(true); }, { threshold: 0.2 });
     if (headerRef.current) obs.observe(headerRef.current);
     return () => obs.disconnect();
-  }, []);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      if (!containerRef.current) return;
-      if (containerRef.current.querySelector('.ti-widget')) return;
-      const widgetDiv = document.createElement('div');
-      widgetDiv.className = 'ti-widget';
-      widgetDiv.setAttribute('data-widget-id', 'd07bdaa700891641ec465ec59b6');
-      containerRef.current.appendChild(widgetDiv);
-      const script = document.createElement('script');
-      script.src = 'https://cdn.trustindex.io/loader.js?d07bdaa700891641ec465ec59b6';
-      script.defer = true;
-      script.async = true;
-      script.onload = () => setIsLoaded(true);
-      containerRef.current.appendChild(script);
-    }, 2000);
-    return () => clearTimeout(timer);
   }, []);
 
   return (
@@ -72,16 +52,6 @@ export function TestimonialsSection() {
               <p className="text-xs text-muted-foreground font-medium mt-1">ลูกค้าที่ไว้วางใจ</p>
             </div>
           </div>
-        </div>
-
-        {/* Widget */}
-        <div ref={containerRef} className="w-full max-w-7xl mx-auto min-h-[300px]">
-          {!isLoaded && (
-            <div className="flex flex-col items-center gap-4 text-muted-foreground/30 py-16">
-              <div className="w-8 h-8 border-2 border-current border-t-transparent rounded-full animate-spin" />
-              <p className="text-sm">กำลังโหลดรีวิวจาก Google...</p>
-            </div>
-          )}
         </div>
       </div>
     </section>
