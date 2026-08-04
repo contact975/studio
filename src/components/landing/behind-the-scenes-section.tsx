@@ -2,6 +2,7 @@
 
 import { Upload, ChevronLeft, ChevronRight } from "lucide-react";
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
 type Slide = {
   image?: string;
@@ -86,11 +87,7 @@ export function BehindTheScenesSection() {
                 }}
               >
                 {slide.image ? (
-                  <img
-                    src={slide.image}
-                    alt="ผลงานและกิจกรรมของ IC"
-                    className="absolute inset-0 h-full w-full object-cover"
-                  />
+                  <Image src={slide.image} alt="ผลงานและกิจกรรมของ IC" fill sizes="(max-width: 520px) 90vw, (max-width: 768px) 45vw, (max-width: 1024px) 30vw, 23vw" className="object-cover" />
                 ) : (
                   <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-gradient-to-br from-[#1e40af] via-[#2563eb] to-[#3b82f6] text-blue-100">
                     <div className="flex h-[74px] w-[74px] items-center justify-center rounded-full border-2 border-dashed border-blue-100/70 bg-white/10">
