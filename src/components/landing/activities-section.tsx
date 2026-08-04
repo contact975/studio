@@ -1,6 +1,7 @@
 "use client";
 
 import { Award, Mic, GraduationCap, Heart, MapPin, Star, ArrowRight } from "lucide-react";
+import Image from "next/image";
 
 const activities = [
   { Icon: Award, tag: "อบรม & มาตรฐาน", date: "มิถุนายน 2569", title: "ยกระดับมาตรฐานสำนักงานบัญชีสู่คุณภาพระดับสากล", desc: "เข้าร่วมโครงการพัฒนาศักยภาพและรับรองคุณภาพสำนักงานบัญชี เพื่อยกระดับการให้บริการอย่างมืออาชีพ", image: "https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Event%20Company%2FEvent%2001.jpg?alt=media" },
@@ -35,7 +36,7 @@ export function ActivitiesSection() {
               >
                 <div className="relative aspect-[16/10] bg-[#eef4ff] overflow-hidden">
                   {a.image ? (
-                    <img src={a.image} alt={a.title} className="absolute inset-0 h-full w-full object-cover" />
+                    <Image src={a.image} alt={a.title} fill sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw" className="object-cover" />
                   ) : (
                     <div className="absolute inset-0 flex flex-col items-center justify-center gap-2">
                       <Icon className="h-8 w-8 text-primary/80" />
