@@ -11,16 +11,35 @@ const kanit = Kanit({
   display: 'swap',
 });
 
+/**
+ * Title / description หน้าแรก เขียนใหม่ตามข้อมูล Search Console (3 เดือนล่าสุด)
+ *
+ * "สำนักงานบัญชีเชียงใหม่" ทุกรูปแบบการสะกดรวมกัน = 364 impressions (คำที่ใหญ่ที่สุดของเว็บ)
+ * เราอยู่อันดับ 6-10 แล้ว แต่ CTR ได้แค่ 1.1-3% ทั้งที่อันดับนั้นปกติควรได้ 2.5-5%
+ * → ปัญหาอยู่ที่ข้อความที่โชว์ในผลค้นหา ไม่ใช่อันดับ
+ *
+ * ของเดิมยาว 3 ท่อน Google ตัดท้ายทิ้ง และไม่มีตัวเลขให้คนตัดสินใจ
+ * ของใหม่: คีย์เวิร์ดหลักมาก่อน + ตัวเลขพิสูจน์ตัวตน + แบรนด์ปิดท้าย
+ * (ตัวเลข 100 ธุรกิจ / 10 ปี อ้างอิงจากข้อความที่ใช้อยู่แล้วในหน้าเว็บ)
+ */
+const SITE_TITLE = 'สำนักงานบัญชีเชียงใหม่ ดูแลกว่า 100 ธุรกิจ | IC Accounting';
+const SITE_DESCRIPTION =
+  'รับทำบัญชี ปิดงบการเงิน จดทะเบียนบริษัท และ Visa & Work Permit ครบจบที่เดียว ประสบการณ์กว่า 10 ปี ดูแลกว่า 100 ธุรกิจในเชียงใหม่และทั่วประเทศ ปรึกษาฟรีทาง LINE';
+
 export const metadata: Metadata = {
+  // ทำให้ path แบบสั้น เช่น canonical: '/' ขยายเป็น URL เต็มได้ถูกต้อง
+  metadataBase: new URL('https://icaccservice.com'),
   title: {
-    default: 'สำนักงานบัญชีเชียงใหม่ | รับทำบัญชี จดทะเบียนบริษัท วางแผนภาษี | IC Accounting',
+    default: SITE_TITLE,
     template: '%s',
   },
-  description: 'IC Accounting & Service เชียงใหม่ บริการทำบัญชี จดทะเบียนบริษัท วางแผนภาษี และ Visa Work Permit ครบวงจร ประสบการณ์กว่า 10 ปี ปรึกษาฟรี โทรหาเราได้เลย',
+  description: SITE_DESCRIPTION,
+  // หน้าบริการทุกหน้ามี canonical อยู่แล้ว ขาดแค่หน้าแรก
+  alternates: { canonical: '/' },
   robots: { index: true, follow: true },
   openGraph: {
-    title: 'สำนักงานบัญชีเชียงใหม่ | รับทำบัญชี จดทะเบียนบริษัท วางแผนภาษี | IC Accounting',
-    description: 'IC Accounting & Service เชียงใหม่ บริการทำบัญชี จดทะเบียนบริษัท วางแผนภาษี และ Visa Work Permit ครบวงจร ประสบการณ์กว่า 10 ปี ปรึกษาฟรี โทรหาเราได้เลย',
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
     url: 'https://icaccservice.com/',
     siteName: 'IC Accounting & Service',
     images: [{ url: 'https://icaccservice.com/share-preview.jpg', width: 1200, height: 630, alt: 'สำนักงานบัญชีเชียงใหม่ IC Accounting & Service' }],

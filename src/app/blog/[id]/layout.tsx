@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 
-const blogMeta: Record<string, { title: string; description: string; image: string }> = {
+// export ไว้ให้ app/sitemap.ts ใช้เป็นแหล่งข้อมูลเดียวกัน
+// เพิ่มบทความใหม่ที่นี่ที่เดียว sitemap จะอัปเดตตามเอง
+export const blogMeta: Record<string, { title: string; description: string; image: string }> = {
   'tax-document-preparation-tips': {
     title: '5 เคล็ดลับการเตรียมเอกสารภาษีสำหรับ SME มือใหม่',
     description: 'เรียนรู้ 5 เคล็ดลับสำคัญในการเตรียมเอกสารภาษีสำหรับ SME ที่มือใหม่ต้องรู้ เพื่อหลีกเลี่ยงปัญหาและลดความเสี่ยงในช่วงยื่นภาษี',
