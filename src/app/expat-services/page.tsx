@@ -152,9 +152,9 @@ export default function ExpatServicesPage() {
         <section className="hero">
           <div className="w">
             <span className="kb"><span className="dot" />A sub-brand of IC Accounting &amp; Service · Chiang Mai, Thailand</span>
-            <h1>Your <span className="g">expat concierge</span> for visas, work and business in Thailand.</h1>
-            <p className="lead">One English-speaking team for your Thai visa, work permit, company registration and tax — from the day you arrive to running a fully compliant business in Chiang Mai.</p>
-            <p className="kws">Popular: work permit Chiang Mai · visa Chiang Mai · business visa Thailand · Non-B visa · register company Thailand</p>
+            <h1>Work permit and visa services in <span className="g">Chiang Mai</span>.</h1>
+            <p className="lead">Non-B business visas, work permits and company registration &mdash; handled end to end by an English-speaking accounting team in Chiang Mai that also keeps your Thai books and tax filings in order.</p>
+            <p className="kws">For foreigners working, hiring or starting a business in Chiang Mai &mdash; whether you already have a Thai company or need one set up first.</p>
             <div className="hbtns">
               <a className="btn btn-g" href="https://line.me/R/ti/p/@374jshvh" target="_blank" rel="noopener noreferrer">Talk to us on LINE</a>
               <a className="btn btn-ghost" href="#services">Explore services</a>
@@ -170,7 +170,7 @@ export default function ExpatServicesPage() {
         <section id="services" className="sec alt">
           <div className="w center">
             <p className="eyebrow">Our Services</p>
-            <h2 className="title">Everything a foreigner needs in Thailand</h2>
+            <h2 className="title">Everything a foreigner needs in Chiang Mai</h2>
             <p className="sublead">From your first Thai visa to a fully compliant company — work permit, business visa (Non-B), company registration and tax, all in Chiang Mai.</p>
             <div className="grid">
               <div className="card"><div className="no">01</div><div className="ic"><svg viewBox="0 0 24 24" fill="none" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 4v5"/></svg></div><h3>Thai Visa</h3><p>Non-B, tourist-to-work conversion, retirement, LTR and SMART visa — applications and renewals.</p><span className="kw">visa chiang mai · non-b visa</span></div>
@@ -223,7 +223,7 @@ export default function ExpatServicesPage() {
 
         <div className="bandwrap">
           <div className="band">
-            <h2>Ready to start your Thailand journey?</h2>
+            <h2>Ready to sort out your Chiang Mai work permit?</h2>
             <p>Free, no-obligation consultation in English. Tell us your situation and we will map the right visa and business path for you.</p>
             <div className="hbtns">
               <a className="btn btn-w" href="https://line.me/R/ti/p/@374jshvh" target="_blank" rel="noopener noreferrer">Chat with us on LINE</a>
