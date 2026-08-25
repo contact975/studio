@@ -30,14 +30,33 @@ export default function QuoteClient() {
 
     setIsLoading(true);
     try {
-      await fetch('/api/booking', {
+      const res = await fetch('/api/booking', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name, phone, service, date, time, note }),
       });
+
+      /**
+       * ต้องเช็ก res.ok ด้วย — fetch จะ throw เฉพาะตอนเน็ตขาดเท่านั้น
+       * ถ้าเซิร์ฟเวอร์ตอบ 500 หรือ 502 กลับมา fetch ถือว่า "สำเร็จ"
+       *
+       * โค้ดเดิมเรียก setIsSuccess(true) ทันทีหลัง await จึงขึ้นว่าจองสำเร็จเสมอ
+       * แม้แจ้งเตือนจะไม่เคยไปถึง LINE — ลูกค้าไม่รู้ ทีมงานก็ไม่รู้
+       */
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        console.error('[booking] ส่งข้อมูลไม่สำเร็จ', res.status, data);
+        alert(
+          'ระบบบันทึกนัดหมายไม่สำเร็จ กรุณาติดต่อเราทาง LINE @374jshvh โดยตรง ' +
+          'ขออภัยในความไม่สะดวกครับ'
+        );
+        return;
+      }
+
       setIsSuccess(true);
     } catch (error) {
-      alert('เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง');
+      console.error('[booking] เชื่อมต่อเซิร์ฟเวอร์ไม่ได้', error);
+      alert('เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง หรือติดต่อเราทาง LINE @374jshvh');
     } finally {
       setIsLoading(false);
     }
