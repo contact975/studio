@@ -49,11 +49,23 @@ export function VideoSection() {
       (entries) => {
         if (!entries.some((e) => e.isIntersecting)) return;
         io.disconnect();
-        // รอให้ main thread ว่างก่อน จะได้ไม่ไปแย่งจังหวะที่ผู้ใช้กำลังเลื่อน
-        const idle =
-          (window as any).requestIdleCallback ??
-          ((cb: () => void) => window.setTimeout(cb, 200));
-        idle(loadPlayerScript);
+
+        /**
+         * รอให้ main thread ว่างก่อน จะได้ไม่ไปแย่งจังหวะที่ผู้ใช้กำลังเลื่อน
+         *
+         * ⚠️ ต้องใส่ timeout ด้วย: หน้าแรกของเว็บนี้มี AOS animate หลายสิบชิ้น
+         * main thread แทบไม่เคยว่างเลย ทำให้ requestIdleCallback แบบไม่มี timeout
+         * ไม่ถูกเรียกสักที (ทดสอบบนเว็บจริงแล้ว preload ไม่ทำงานเพราะสาเหตุนี้)
+         * ใส่ timeout 2 วินาที = ถ้าไม่ว่างจริงๆ เบราว์เซอร์จะบังคับรันให้
+         */
+        const w = window as unknown as {
+          requestIdleCallback?: (cb: () => void, opts?: { timeout: number }) => number;
+        };
+        if (typeof w.requestIdleCallback === 'function') {
+          w.requestIdleCallback(loadPlayerScript, { timeout: 2000 });
+        } else {
+          window.setTimeout(loadPlayerScript, 500);
+        }
       },
       { rootMargin: '300px 0px' }
     );
