@@ -72,7 +72,16 @@ export default function QuoteClient() {
                       เลือกประเภทบริการ
                     </h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      {['วางแผนบัญชีและภาษี', 'จดทะเบียนธุรกิจ', 'ปรึกษาการเงิน/ที่ปรึกษาธุรกิจ', 'Exclusive Media Production'].map((s) => (
+                      {[
+                        'วางแผนบัญชีและภาษี',
+                        'จดทะเบียนธุรกิจ',
+                        // เพิ่มเข้ามาให้ตรงกับหน้า /expat-services และ /visa-work-permit
+                        // ใส่ทั้งคำไทยและอังกฤษในบรรทัดเดียว เพราะหน้านี้เป็นภาษาไทย
+                        // แต่ผู้กรอกบางส่วนเป็นชาวต่างชาติที่รู้จักเฉพาะคำว่า Visa / Work Permit
+                        'Visa & Work Permit (วีซ่าและใบอนุญาตทำงาน)',
+                        'ปรึกษาการเงิน/ที่ปรึกษาธุรกิจ',
+                        'Exclusive Media Production',
+                      ].map((s) => (
                         <label key={s} className="relative flex items-center p-4 border rounded-xl cursor-pointer hover:bg-blue-50 transition">
                           <input type="radio" name="service_type" value={s} className="w-4 h-4 text-blue-600" />
                           <span className="ml-3 font-medium text-slate-700">{s}</span>
