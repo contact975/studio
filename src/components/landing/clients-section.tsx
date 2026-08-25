@@ -52,6 +52,10 @@ function MarqueeRow({ logos, direction }: MarqueeRowProps) {
             key={index}
             className="flex-shrink-0 w-28 md:w-44 h-16 md:h-24 flex items-center justify-center p-2"
           >
+            {/* ไม่ใส่ sizes โดยตั้งใจ:
+                sizes ที่เป็นหน่วย px ทำให้ Next สร้าง srcSet ครบทุกขนาด (16 ค่า ถึง w=3840)
+                พอไม่มี sizes จะได้ srcSet แบบ 1x/2x = w=256 และ w=384 เท่านั้น
+                ซึ่งพอดีกับ logo ที่แสดงจริงแค่ ~96px (mobile) / ~160px (desktop) */}
             <Image
               src={logo.logoUrl}
               alt={logo.name}
@@ -59,7 +63,7 @@ function MarqueeRow({ logos, direction }: MarqueeRowProps) {
               height={70}
               className="object-contain max-h-16 md:max-h-24 w-auto h-auto"
               loading="lazy"
-              sizes="(max-width: 768px) 112px, 176px"
+              quality={70}
             />
           </div>
         ))}

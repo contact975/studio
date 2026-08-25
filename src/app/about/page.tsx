@@ -102,7 +102,13 @@ export default function AboutPage() {
                   src="https://live.staticflickr.com/65535/55057964151_2951cd7360_b.jpg"
                   alt="คุณจตุพร ยะเปียงปลูก ผู้ก่อตั้ง IC Accounting"
                   fill
+                  /* ไม่ใส่ sizes = Next ตั้งให้เป็น "100vw" อัตโนมัติ
+                     ทำให้จอ 1920 ไปโหลด w=1920 ทั้งที่คอลัมน์กว้างจริงแค่ ~544px
+                     (container max-w-6xl 1152px, grid 2 คอลัมน์, gap-16) */
+                  sizes="(max-width: 768px) 100vw, 544px"
                   className="object-cover"
+                  loading="lazy"
+                  quality={75}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                 <div className="absolute bottom-6 left-6 right-6">
