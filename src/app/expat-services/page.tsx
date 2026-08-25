@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Sora, Inter } from "next/font/google";
 import { Header } from "@/components/landing/header";
 import { Footer } from "@/components/landing/footer";
 import { JsonLd } from "@/components/seo/json-ld";
@@ -36,10 +37,26 @@ export const metadata: Metadata = {
   },
 };
 
+/**
+ * ฟอนต์ของหน้านี้
+ *
+ * เดิมโหลดผ่าน @import url(fonts.googleapis.com) ที่อยู่บรรทัดแรกของสตริง CSS
+ * ซึ่งแย่ที่สุดในบรรดาวิธีโหลดฟอนต์ เพราะเบราว์เซอร์ต้องทำเป็นทอดๆ:
+ *   อ่าน <style> -> เจอ @import -> ไปโหลด CSS จาก Google -> ค่อยโหลดไฟล์ฟอนต์
+ * ระหว่างนั้นหน้าเว็บค้างรอ (render-blocking) และยังเป็นการต่อไปโดเมนภายนอกเพิ่ม
+ *
+ * next/font ดาวน์โหลดฟอนต์มาเก็บไว้ในเว็บเราตั้งแต่ตอน build จึงไม่ต้องต่อ
+ * ไปหา Google เลยสักครั้ง แถม preload ให้ และใส่ fallback ที่ปรับขนาดให้
+ * ใกล้เคียงของจริงเพื่อลดการกระตุกตอนฟอนต์โหลดเสร็จ (CLS)
+ *
+ * ไม่ระบุ weight เพราะทั้งสองตัวเป็น variable font — ได้ทุกน้ำหนักในไฟล์เดียว
+ */
+const sora = Sora({ subsets: ["latin"], display: "swap", variable: "--font-sora" });
+const inter = Inter({ subsets: ["latin"], display: "swap", variable: "--font-inter" });
+
 const css = `
-@import url("https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600&display=swap");
-.exp{font-family:"Inter",system-ui,sans-serif;color:#0f172a;line-height:1.6;}
-.exp h1,.exp h2,.exp h3,.exp .f{font-family:"Sora",sans-serif;letter-spacing:-.02em;}
+.exp{font-family:var(--font-inter),system-ui,sans-serif;color:#0f172a;line-height:1.6;}
+.exp h1,.exp h2,.exp h3,.exp .f{font-family:var(--font-sora),sans-serif;letter-spacing:-.02em;}
 .exp .w{max-width:1180px;margin:0 auto;padding:0 24px;}
 .exp .eyebrow{color:#2563eb;font-weight:700;letter-spacing:.2em;text-transform:uppercase;font-size:13px;margin-bottom:12px;}
 .exp .sec{padding:84px 0;}
@@ -63,14 +80,14 @@ const css = `
 .exp .hbtns{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:42px;}
 .exp .hstats{display:flex;gap:16px;flex-wrap:wrap;}
 .exp .hstat{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:16px 22px;}
-.exp .hstat b{font-family:"Sora";font-size:22px;display:block;}
+.exp .hstat b{font-family:var(--font-sora);font-size:22px;display:block;}
 .exp .hstat span{font-size:12.5px;color:#9fb2d6;}
 .exp .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;margin-top:46px;text-align:left;}
 .exp .card{position:relative;border:1px solid #e7edf5;border-radius:20px;padding:30px 28px;background:#fff;overflow:hidden;transition:.28s;}
 .exp .card::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(100deg,#2563eb,#22d3ee);transform:scaleX(0);transform-origin:left;transition:.3s;}
 .exp .card:hover{transform:translateY(-6px);border-color:#c7ddff;box-shadow:0 24px 50px -26px rgba(37,99,235,.4);}
 .exp .card:hover::before{transform:scaleX(1);}
-.exp .card .no{position:absolute;top:22px;right:26px;font-family:"Sora";font-weight:800;font-size:34px;color:#eef2f9;}
+.exp .card .no{position:absolute;top:22px;right:26px;font-family:var(--font-sora);font-weight:800;font-size:34px;color:#eef2f9;}
 .exp .ic{width:54px;height:54px;border-radius:15px;background:#eef5ff;display:flex;align-items:center;justify-content:center;margin-bottom:20px;}
 .exp .ic svg{width:27px;height:27px;stroke:#2563eb;}
 .exp .card h3{font-size:20px;font-weight:700;margin-bottom:9px;}
@@ -82,7 +99,7 @@ const css = `
 .exp .why .panel p{color:#b9c7e4;}
 .exp .whys{display:flex;flex-direction:column;gap:24px;}
 .exp .wrow{display:flex;gap:16px;}
-.exp .wrow .n{flex:0 0 auto;width:42px;height:42px;border-radius:12px;background:linear-gradient(100deg,#2563eb,#22d3ee);color:#fff;font-family:"Sora";font-weight:800;display:flex;align-items:center;justify-content:center;}
+.exp .wrow .n{flex:0 0 auto;width:42px;height:42px;border-radius:12px;background:linear-gradient(100deg,#2563eb,#22d3ee);color:#fff;font-family:var(--font-sora);font-weight:800;display:flex;align-items:center;justify-content:center;}
 .exp .wrow h3{font-size:18px;font-weight:700;margin-bottom:5px;}
 .exp .wrow p{color:#5b6b86;font-size:14.5px;}
 .exp .faq{max-width:820px;margin:46px auto 0;}
@@ -146,7 +163,7 @@ export default function ExpatServicesPage() {
       {/* หน้านี้เป็นภาษาอังกฤษล้วน แต่ <html> ของเว็บตั้ง lang="th" ไว้
           จึงต้องประกาศ lang="en" ตรงนี้ ไม่งั้นทั้ง Google และโปรแกรมอ่านหน้าจอ
           จะเข้าใจว่าเนื้อหาเป็นภาษาไทย */}
-      <main className="flex-1 exp" lang="en">
+      <main className={`flex-1 exp ${sora.variable} ${inter.variable}`} lang="en">
         <style dangerouslySetInnerHTML={{ __html: css }} />
 
         <section className="hero">
