@@ -1,16 +1,10 @@
-import type { Metadata } from 'next';
-
-export const metadata: Metadata = {
-  title: 'Visa & Work Permit Chiang Mai | IC Accounting',
-  description: 'Professional Visa and Work Permit services in Chiang Mai. Non-B Visa, Work Permit, LTR & SMART Visa. English-speaking team, 100% accuracy.',
-  alternates: { canonical: 'https://icaccservice.com/visa-work-permit' },
-  openGraph: {
-    title: 'Visa & Work Permit Chiang Mai | IC Accounting',
-    description: 'Professional Visa and Work Permit services in Chiang Mai. English-speaking team.',
-    url: 'https://icaccservice.com/visa-work-permit',
-  },
-};
-
+/**
+ * metadata ของหน้านี้ย้ายไปอยู่ใน page.tsx ที่เดียว
+ *
+ * เดิมประกาศไว้ทั้งสองไฟล์ด้วยค่าคนละชุด ซึ่ง Next จะให้ page ชนะอยู่แล้ว
+ * การเก็บของเก่าไว้ใน layout จึงมีแต่จะทำให้แก้ผิดที่แล้วไม่เห็นผล
+ * และสับสนว่าอันไหนคือของจริง
+ */
 export default function Layout({ children }: { children: React.ReactNode }) {
   return <>{children}</>;
 }

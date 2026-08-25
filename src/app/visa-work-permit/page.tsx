@@ -5,17 +5,73 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Briefcase, BadgeHelp, Star, CheckCircle, ArrowRight, MessageSquare } from 'lucide-react';
 import { PromoCarousel } from '@/components/landing/promo-carousel';
+import { JsonLd } from '@/components/seo/json-ld';
+import { ServiceFaq } from '@/components/seo/service-faq';
+import { RelatedArticles } from '@/components/seo/related-articles';
+import { breadcrumbSchema, faqSchema, serviceSchema, type Faq } from '@/lib/seo';
 
+/**
+ * หน้านี้ = ฝั่งภาษาไทย สำหรับ "นายจ้าง" ที่ต้องขอ Work Permit ให้พนักงานต่างชาติ
+ * หน้าคู่กันคือ /expat-services = ภาษาอังกฤษ สำหรับตัวชาวต่างชาติเอง
+ *
+ * เดิมสองหน้านี้ตั้ง title เป็นภาษาอังกฤษเหมือนกันทั้งคู่ ("...Chiang Mai")
+ * ทำให้แย่งคีย์เวิร์ดกันเอง และหน้านี้ยิ่งสับสนเพราะ meta เป็นอังกฤษ
+ * แต่เนื้อหาในหน้าเป็นภาษาไทย — Google อ่านแล้วไม่รู้ว่าจะจัดให้ใคร
+ *
+ * แยกภาษาให้ชัดแล้ว: หน้านี้ไทยล้วน จับคำค้นฝั่งนายจ้างซึ่งค้นเป็นภาษาไทย
+ * ซึ่งจากการสำรวจ SERP ยังไม่มีเจ้าไหนในเชียงใหม่จับตลาดนี้จริงจัง
+ */
 export const metadata: Metadata = {
-  title: 'Visa & Work Permit Chiang Mai | IC Accounting',
-  description: 'Professional Visa and Work Permit services in Chiang Mai. Non-B Visa, Work Permit, LTR & SMART Visa. English-speaking team, 100% accuracy.',
-  alternates: { canonical: 'https://icaccservice.com/visa-work-permit' },
+  title: 'รับทำ Work Permit และวีซ่าทำงาน เชียงใหม่ | IC Accounting',
+  description:
+    'สำนักงานบัญชีเชียงใหม่ รับยื่นขอ Work Permit และวีซ่า Non-B ให้พนักงานต่างชาติ ดูแลตั้งแต่เอกสารบริษัทจนถึงต่ออายุปีถัดไป ทีมสื่อสารภาษาอังกฤษได้ ปรึกษาฟรี',
+  alternates: {
+    canonical: 'https://icaccservice.com/visa-work-permit',
+    languages: {
+      th: 'https://icaccservice.com/visa-work-permit',
+      en: 'https://icaccservice.com/expat-services',
+    },
+  },
   openGraph: {
-    title: 'Visa & Work Permit Chiang Mai | IC Accounting',
-    description: 'Professional Visa and Work Permit services in Chiang Mai. English-speaking team, 100% accuracy.',
+    title: 'รับทำ Work Permit และวีซ่าทำงาน เชียงใหม่ | IC Accounting',
+    description:
+      'รับยื่นขอ Work Permit และวีซ่า Non-B ให้พนักงานต่างชาติ โดยสำนักงานบัญชีที่ดูแลงบการเงินของบริษัทนายจ้างได้ในทีมเดียว',
     url: 'https://icaccservice.com/visa-work-permit',
+    locale: 'th_TH',
   },
 };
+
+/**
+ * คำตอบทุกข้ออ้างอิงจากบริการที่ระบุไว้บนหน้านี้แล้ว
+ * ตั้งใจไม่ระบุตัวเลขเงื่อนไขทางกฎหมาย (ทุนจดทะเบียน / สัดส่วนพนักงานไทย)
+ * เพราะขึ้นกับประเภทกิจการและมีการเปลี่ยนแปลงได้ — ให้ทีมงานประเมินเป็นเคสไป
+ */
+const faqs: Faq[] = [
+  {
+    q: 'รับทำ Work Permit ที่เชียงใหม่ ครอบคลุมอะไรบ้าง?',
+    a: 'ดำเนินการขอใบอนุญาตทำงานให้พนักงานต่างชาติ รวมถึงการเปลี่ยนแปลงข้อมูลนายจ้าง และการแจ้งออกตามระเบียบของกรมการจัดหางาน โดยดูแลให้ครบตั้งแต่เตรียมเอกสารจนถึงยื่นแทน',
+  },
+  {
+    q: 'Non-B Visa กับ Work Permit ต่างกันอย่างไร ต้องมีทั้งคู่ไหม?',
+    a: 'วีซ่า Non-B คือสิทธิ์ในการพำนักอยู่ในประเทศไทยเพื่อทำธุรกิจ ออกโดยสำนักงานตรวจคนเข้าเมือง ส่วน Work Permit คือใบอนุญาตทำงาน ออกโดยกรมการจัดหางาน ชาวต่างชาติที่จะทำงานในไทยอย่างถูกกฎหมายต้องมีทั้งสองอย่างควบคู่กัน',
+  },
+  {
+    q: 'บริษัทต้องเตรียมอะไรก่อนขอ Work Permit ให้พนักงานต่างชาติ?',
+    a: 'โดยทั่วไปต้องใช้เอกสารของบริษัทนายจ้าง เช่น หนังสือรับรอง งบการเงิน และข้อมูลพนักงาน ส่วนเงื่อนไขเรื่องทุนจดทะเบียนและสัดส่วนพนักงานไทยจะแตกต่างกันตามประเภทกิจการและอาจมีการปรับเปลี่ยน แนะนำให้ปรึกษาทีมงานเพื่อประเมินเป็นรายกรณีก่อนยื่น',
+  },
+  {
+    q: 'ทำไมถึงควรใช้สำนักงานบัญชี แทนที่จะใช้เอเจนซี่วีซ่าทั่วไป?',
+    a: 'เพราะเอกสารที่ใช้ประกอบการขอและต่อ Work Permit ส่วนใหญ่มาจากงบการเงินและระบบบัญชีของบริษัทนายจ้าง เมื่อทีมเดียวกันดูแลทั้งบัญชี ภาษี และวีซ่า เอกสารจะสอดคล้องกันตั้งแต่ต้น และการต่ออายุในปีถัดๆ ไปก็ราบรื่นกว่า',
+  },
+  {
+    q: 'มีทีมที่สื่อสารภาษาอังกฤษกับพนักงานต่างชาติได้ไหม?',
+    a: 'มีครับ ทีมงานสื่อสารภาษาอังกฤษได้และประสานงานกับเจ้าหน้าที่แทนคุณ หากพนักงานต่างชาติต้องการอ่านข้อมูลเป็นภาษาอังกฤษเอง สามารถดูได้ที่หน้า IC Expat Services',
+  },
+  {
+    q: 'ให้คำปรึกษาเรื่อง LTR หรือ SMART Visa ด้วยไหม?',
+    a: 'มีบริการที่ปรึกษาสำหรับวีซ่าระยะยาวประเภทพิเศษ ทั้ง LTR และ SMART Visa สำหรับกลุ่มผู้เชี่ยวชาญ นักลงทุน และ Digital Nomad',
+  },
+];
 
 const services = [
   {
@@ -47,6 +103,21 @@ const whyUs = [
 export default function VisaWorkPermitPage() {
   return (
     <div className="flex flex-col min-h-dvh bg-background text-foreground">
+      <JsonLd
+        data={[
+          serviceSchema({
+            name: 'รับทำ Work Permit และวีซ่าทำงานเชียงใหม่',
+            description:
+              'บริการยื่นขอใบอนุญาตทำงาน (Work Permit) และวีซ่า Non-Immigrant B ให้พนักงานต่างชาติในเชียงใหม่ ครอบคลุมการเปลี่ยนแปลงข้อมูลนายจ้าง การแจ้งออก และให้คำปรึกษาวีซ่าระยะยาว LTR และ SMART Visa โดยทีมที่ดูแลบัญชีและงบการเงินของบริษัทนายจ้างได้ในทีมเดียว',
+            path: '/visa-work-permit',
+          }),
+          breadcrumbSchema([
+            { name: 'หน้าแรก', path: '/' },
+            { name: 'Visa & Work Permit', path: '/visa-work-permit' },
+          ]),
+          faqSchema(faqs),
+        ]}
+      />
       <Header />
       <main className="flex-1">
         <PromoCarousel />
@@ -69,9 +140,13 @@ export default function VisaWorkPermitPage() {
               <span className="mx-2">/</span>
               <span>Visa & Work Permit</span>
             </nav>
-            <p className="text-xs font-bold tracking-[0.3em] uppercase mb-4 opacity-70">Expat Services</p>
+            <p className="text-xs font-bold tracking-[0.3em] uppercase mb-4 opacity-70">Visa &amp; Work Permit</p>
+            {/* H1 ต้องเป็นภาษาไทยและมีคำว่า "เชียงใหม่" เพราะหน้านี้เล็งคำค้นฝั่งนายจ้าง
+                ซึ่งค้นเป็นภาษาไทย ของเดิมเป็น "Visa & Work Permit Chiang Mai" ล้วน
+                ซึ่งไปทับกับหน้า /expat-services ที่เป็นภาษาอังกฤษอยู่แล้ว
+                คำว่า Work Permit คงไว้เพราะคนไทยพิมพ์ทับศัพท์กันจริง */}
             <h1 className="text-4xl md:text-6xl font-black leading-tight mb-6">
-              Visa & Work Permit<br />Chiang Mai
+              รับทำ Work Permit เชียงใหม่<br />และวีซ่าทำงานต่างชาติ
             </h1>
             <p className="text-lg md:text-xl opacity-80 max-w-2xl leading-relaxed mb-8">
               ช่วยให้การพำนักและทำงานในประเทศไทยเป็นเรื่องง่าย เราดูแลทุกขั้นตอนอย่างมืออาชีพ เพื่อให้คุณโฟกัสกับธุรกิจและชีวิตในเชียงใหม่ได้อย่างเต็มที่
@@ -160,6 +235,37 @@ export default function VisaWorkPermitPage() {
           </div>
         </section>
 
+        {/* ── FAQ ── */}
+        <ServiceFaq
+          faqs={faqs}
+          title="คำถามที่พบบ่อยเรื่อง Work Permit และวีซ่าทำงาน"
+          intro="รวมคำถามที่นายจ้างในเชียงใหม่ถามเราบ่อยที่สุดก่อนจ้างพนักงานต่างชาติ"
+        />
+
+        {/* ── สะพานไปหน้าภาษาอังกฤษ ── */}
+        <section className="pb-4" data-aos="fade-up">
+          <div className="container mx-auto px-6 max-w-4xl">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 rounded-2xl border border-border bg-secondary/40 px-6 py-5">
+              <p className="text-sm md:text-base text-muted-foreground" lang="en">
+                Are you the foreign employee? Read this page in English.
+              </p>
+              <Link
+                href="/expat-services"
+                hrefLang="en"
+                className="inline-flex items-center gap-2 shrink-0 font-bold text-primary hover:underline"
+              >
+                <span lang="en">IC Expat Services</span>
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* ── บทความที่เกี่ยวข้อง ── */}
+        <RelatedArticles
+          slugs={['work-permit-chiangmai', 'company-registration-chiangmai', 'corporate-tax-chiangmai-guide']}
+        />
+
         {/* ── CTA ── */}
         <section className="py-16" data-aos="fade-up">
           <div className="container mx-auto px-6 max-w-4xl">
@@ -167,7 +273,7 @@ export default function VisaWorkPermitPage() {
               <div className="absolute inset-0 opacity-5"
                 style={{ backgroundImage: 'linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(90deg, #ffffff 1px, transparent 1px)', backgroundSize: '30px 30px' }} />
               <div className="relative z-10">
-                <h3 className="text-2xl md:text-3xl font-black mb-3">Ready to Start Your Thailand Journey?</h3>
+                <h3 className="text-2xl md:text-3xl font-black mb-3">พร้อมเริ่มขั้นตอน Work Permit แล้วหรือยัง?</h3>
                 <p className="opacity-80 mb-8">เราพร้อมดูแลทุกขั้นตอนให้คุณ ตั้งแต่เอกสารจนถึงการยื่นคำร้อง</p>
                 <div className="flex flex-wrap gap-4 justify-center">
                   <Link href="/quote"

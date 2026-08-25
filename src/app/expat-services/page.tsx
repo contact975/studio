@@ -1,26 +1,38 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Header } from "@/components/landing/header";
 import { Footer } from "@/components/landing/footer";
+import { JsonLd } from "@/components/seo/json-ld";
+import { breadcrumbSchema, faqSchema, serviceSchema } from "@/lib/seo";
 
+/**
+ * หน้านี้ = ฝั่งภาษาอังกฤษ สำหรับตัวชาวต่างชาติเอง
+ * หน้าคู่กันคือ /visa-work-permit = ภาษาไทย สำหรับนายจ้างที่จ้างต่างชาติ
+ *
+ * title เดิมยาว 84 ตัวอักษร โดน Google ตัดท้ายทิ้ง และขึ้นต้นด้วยชื่อแบรนด์
+ * ทำให้คีย์เวิร์ดจริง ("work permit chiang mai") ถูกดันไปอยู่กลางประโยค
+ * ของใหม่เอาคีย์เวิร์ดขึ้นหน้า และสั้นพอที่จะแสดงครบ
+ *
+ * ตัด keywords ออก — Google เลิกใช้ meta keywords มานานแล้ว ไม่มีผลใดๆ
+ */
 export const metadata: Metadata = {
-  title:
-    "IC Expat Services | Visa, Work Permit & Company Registration in Chiang Mai, Thailand",
+  title: "Work Permit & Non-B Visa in Chiang Mai | IC Expat Services",
   description:
-    "English-speaking experts for Thai visa, work permit (Chiang Mai), business visa (Non-B) and company registration in Thailand. IC Expat Services is a sub-brand of IC Accounting & Service.",
-  keywords: [
-    "work permit chiang mai",
-    "visa chiang mai",
-    "business visa thailand",
-    "non-b visa",
-    "register company thailand",
-  ],
-  alternates: { canonical: "https://icaccservice.com/expat-services" },
+    "English-speaking accountants in Chiang Mai handling Thai work permits, Non-B business visas and company registration — from setup through yearly renewal.",
+  alternates: {
+    canonical: "https://icaccservice.com/expat-services",
+    languages: {
+      en: "https://icaccservice.com/expat-services",
+      th: "https://icaccservice.com/visa-work-permit",
+    },
+  },
   openGraph: {
-    title: "IC Expat Services — Visa, Work Permit & Business in Chiang Mai",
+    title: "Work Permit & Non-B Visa in Chiang Mai | IC Expat Services",
     description:
-      "One English-speaking team for Thai visa, work permit, business visa (Non-B) and company registration in Chiang Mai, Thailand.",
+      "English-speaking accountants in Chiang Mai handling Thai work permits, Non-B business visas and company registration.",
     url: "https://icaccservice.com/expat-services",
     type: "website",
+    locale: "en_US",
   },
 };
 
@@ -87,42 +99,54 @@ const css = `
 @media(max-width:900px){.exp .why{grid-template-columns:1fr;}}
 `;
 
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "Service",
-      "name": "IC Expat Services",
-      "serviceType": "Visa, Work Permit and Company Registration for foreigners",
-      "areaServed": { "@type": "City", "name": "Chiang Mai, Thailand" },
-      "provider": { "@type": "Organization", "name": "IC Accounting & Service" },
-      "url": "https://icaccservice.com/expat-services",
-      "description": "English-speaking experts for Thai visa, work permit, business visa (Non-B) and company registration in Chiang Mai, Thailand.",
-    },
-    {
-      "@type": "FAQPage",
-      "mainEntity": [
-        { "@type": "Question", "name": "Can I convert my tourist visa to a work visa in Chiang Mai?", "acceptedAnswer": { "@type": "Answer", "text": "In most cases we can convert a tourist or visa-exempt entry to a Non-B business visa inside Thailand, then process your work permit in Chiang Mai." } },
-        { "@type": "Question", "name": "How long does a work permit in Chiang Mai take?", "acceptedAnswer": { "@type": "Answer", "text": "Typically 7 to 10 business days once your company documents are ready." } },
-        { "@type": "Question", "name": "Do I need a Thai company to get a work permit?", "acceptedAnswer": { "@type": "Answer", "text": "Usually yes. You need a sponsoring employer. We can register your Thai company and sponsor the work permit in one package." } },
-        { "@type": "Question", "name": "Can foreigners own 100% of a Thai business?", "acceptedAnswer": { "@type": "Answer", "text": "In specific cases, through BOI promotion, a US Amity Treaty company, or a Foreign Business License." } },
-      ],
-    },
-    {
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://icaccservice.com/" },
-        { "@type": "ListItem", "position": 2, "name": "IC Expat Services", "item": "https://icaccservice.com/expat-services" },
-      ],
-    },
-  ],
-};
+
+/**
+ * FAQ ชุดนี้คือคำถาม 4 ข้อที่แสดงอยู่ในหน้าอยู่แล้ว (ส่วน "Common questions from expats")
+ * นำมาทำเป็น FAQPage schema เพื่อให้ Google อ่านเป็นโครงสร้างได้
+ * ถ้าแก้ข้อความในหน้า ต้องแก้ตรงนี้ให้ตรงกันด้วย ไม่งั้นผิดกติกาของ Google
+ */
+const expatFaqs = [
+  {
+    q: "Can I convert my tourist visa to a work visa in Chiang Mai?",
+    a: "Yes — in most cases we convert a tourist or visa-exempt entry to a Non-B business visa inside Thailand, then process your work permit. We handle the paperwork and appointments.",
+  },
+  {
+    q: "How long does a work permit in Chiang Mai take?",
+    a: "Typically 7 to 10 business days once your company documents are ready. We prepare everything in advance to avoid delays.",
+  },
+  {
+    q: "Do I need a Thai company to get a work permit?",
+    a: "Usually yes — you need a sponsoring employer. We can register your Thai company and sponsor the work permit in one package.",
+  },
+  {
+    q: "Can foreigners own 100% of a Thai business?",
+    a: "In specific cases — via BOI promotion, a US Amity Treaty company, or a Foreign Business License. We advise the best route for you.",
+  },
+];
 
 export default function ExpatServicesPage() {
   return (
     <div className="flex flex-col min-h-dvh bg-background text-foreground">
+      <JsonLd
+        data={[
+          serviceSchema({
+            name: "Work Permit & Non-B Visa Services in Chiang Mai",
+            description:
+              "English-speaking accountants in Chiang Mai handling Thai work permits, Non-Immigrant B business visas, company registration, Thai tax and BOI advisory for foreigners living and working in Thailand.",
+            path: "/expat-services",
+          }),
+          breadcrumbSchema([
+            { name: "Home", path: "/" },
+            { name: "IC Expat Services", path: "/expat-services" },
+          ]),
+          faqSchema(expatFaqs),
+        ]}
+      />
       <Header />
-      <main className="flex-1 exp">
+      {/* หน้านี้เป็นภาษาอังกฤษล้วน แต่ <html> ของเว็บตั้ง lang="th" ไว้
+          จึงต้องประกาศ lang="en" ตรงนี้ ไม่งั้นทั้ง Google และโปรแกรมอ่านหน้าจอ
+          จะเข้าใจว่าเนื้อหาเป็นภาษาไทย */}
+      <main className="flex-1 exp" lang="en">
         <style dangerouslySetInnerHTML={{ __html: css }} />
 
         <section className="hero">
@@ -188,6 +212,12 @@ export default function ExpatServicesPage() {
               <div className="qa"><h4>Do I need a Thai company to get a work permit?</h4><p>Usually yes — you need a sponsoring employer. We can register your Thai company and sponsor the work permit in one package.</p></div>
               <div className="qa"><h4>Can foreigners own 100% of a Thai business?</h4><p>In specific cases — via BOI promotion, a US Amity Treaty company, or a Foreign Business License. We advise the best route for you.</p></div>
             </div>
+            <p className="center" style={{ marginTop: 28, fontSize: 14.5, color: '#5b6b86' }}>
+              Hiring a foreigner for your Thai company?{' '}
+              <Link href="/visa-work-permit" hrefLang="th" lang="th" style={{ color: '#2563eb', fontWeight: 600 }}>
+                อ่านหน้าสำหรับนายจ้าง (ภาษาไทย)
+              </Link>
+            </p>
           </div>
         </section>
 
@@ -201,8 +231,6 @@ export default function ExpatServicesPage() {
             </div>
           </div>
         </div>
-
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       </main>
       <Footer />
     </div>
