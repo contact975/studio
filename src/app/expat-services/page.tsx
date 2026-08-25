@@ -72,6 +72,9 @@ const css = `
 .exp .hero{position:relative;overflow:hidden;background:radial-gradient(900px 500px at 80% -10%,rgba(34,211,238,.18),transparent 60%),radial-gradient(700px 500px at 5% 10%,rgba(37,99,235,.28),transparent 55%),linear-gradient(160deg,#0a1730,#0f2350 60%,#0a1730);color:#fff;}
 .exp .hero::before{content:"";position:absolute;inset:0;opacity:.5;background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:52px 52px;-webkit-mask-image:radial-gradient(700px 400px at 60% 20%,#000,transparent);mask-image:radial-gradient(700px 400px at 60% 20%,#000,transparent);}
 .exp .hero .w{position:relative;padding:88px 24px 92px;}
+.exp .crumb{font-size:13px;color:#8ea6d4;margin-bottom:18px;display:flex;gap:9px;align-items:center;}
+.exp .crumb a{color:#cfe7ff;text-decoration:none;}
+.exp .crumb a:hover{text-decoration:underline;}
 .exp .kb{display:inline-flex;align-items:center;gap:9px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);color:#cfe7ff;font-size:13px;font-weight:600;padding:8px 16px;border-radius:999px;margin-bottom:26px;}
 .exp .kb .dot{width:7px;height:7px;border-radius:50%;background:#22d3ee;box-shadow:0 0 10px #22d3ee;}
 .exp .hero h1{font-size:clamp(38px,6vw,64px);font-weight:800;line-height:1.04;max-width:16ch;margin-bottom:20px;color:#fff;}
@@ -102,6 +105,12 @@ const css = `
 .exp .wrow .n{flex:0 0 auto;width:42px;height:42px;border-radius:12px;background:linear-gradient(100deg,#2563eb,#22d3ee);color:#fff;font-family:var(--font-sora);font-weight:800;display:flex;align-items:center;justify-content:center;}
 .exp .wrow h3{font-size:18px;font-weight:700;margin-bottom:5px;}
 .exp .wrow p{color:#5b6b86;font-size:14.5px;}
+.exp .whofor{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;margin-top:44px;text-align:left;}
+.exp .whorow{display:flex;gap:14px;align-items:flex-start;background:#fff;border:1px solid #e7edf5;border-radius:16px;padding:20px 22px;}
+.exp .whorow .tick{flex:0 0 auto;width:26px;height:26px;border-radius:8px;background:#eef5ff;display:flex;align-items:center;justify-content:center;margin-top:2px;}
+.exp .whorow .tick svg{width:15px;height:15px;stroke:#2563eb;fill:none;stroke-width:2.6;}
+.exp .whorow h3{font-size:16px;font-weight:700;margin-bottom:4px;}
+.exp .whorow p{font-size:14px;color:#5b6b86;}
 .exp .faq{max-width:820px;margin:46px auto 0;}
 .exp .qa{border:1px solid #e7edf5;border-radius:16px;padding:22px 26px;margin-bottom:14px;background:#fff;}
 .exp .qa h4{font-size:16.5px;font-weight:600;margin-bottom:8px;}
@@ -168,6 +177,11 @@ export default function ExpatServicesPage() {
 
         <section className="hero">
           <div className="w">
+            <nav className="crumb" aria-label="Breadcrumb">
+              <Link href="/">Home</Link>
+              <span aria-hidden="true">/</span>
+              <span>IC Expat Services</span>
+            </nav>
             <span className="kb"><span className="dot" />A sub-brand of IC Accounting &amp; Service · Chiang Mai, Thailand</span>
             <h1>Work permit and visa services in <span className="g">Chiang Mai</span>.</h1>
             <p className="lead">Non-B business visas, work permits and company registration &mdash; handled end to end by an English-speaking accounting team in Chiang Mai that also keeps your Thai books and tax filings in order.</p>
@@ -190,13 +204,13 @@ export default function ExpatServicesPage() {
             <h2 className="title">Everything a foreigner needs in Chiang Mai</h2>
             <p className="sublead">From your first Thai visa to a fully compliant company — work permit, business visa (Non-B), company registration and tax, all in Chiang Mai.</p>
             <div className="grid">
-              <div className="card"><div className="no">01</div><div className="ic"><svg viewBox="0 0 24 24" fill="none" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 4v5"/></svg></div><h3>Thai Visa</h3><p>Non-B, tourist-to-work conversion, retirement, LTR and SMART visa — applications and renewals.</p><span className="kw">visa chiang mai · non-b visa</span></div>
-              <div className="card"><div className="no">02</div><div className="ic"><svg viewBox="0 0 24 24" fill="none" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M20 7h-4V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v3H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/></svg></div><h3>Work Permit</h3><p>New permits, renewals, employer changes and 90-day reporting handled end to end.</p><span className="kw">work permit chiang mai</span></div>
-              <div className="card"><div className="no">03</div><div className="ic"><svg viewBox="0 0 24 24" fill="none" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6"/></svg></div><h3>Company Registration</h3><p>Register a Thai Limited Company, VAT, social security and shareholder structuring for foreigners.</p><span className="kw">register company thailand</span></div>
-              <div className="card"><div className="no">04</div><div className="ic"><svg viewBox="0 0 24 24" fill="none" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div><h3>Thai Tax</h3><p>Personal and corporate tax filing, bookkeeping and monthly compliance for foreign-owned businesses.</p><span className="kw">thai tax for foreigners</span></div>
-              <div className="card"><div className="no">05</div><div className="ic"><svg viewBox="0 0 24 24" fill="none" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2l3 6 6 .9-4.5 4.3 1 6.1L12 17l-5.5 2.3 1-6.1L3 8.9 9 8z"/></svg></div><h3>BOI</h3><p>Board of Investment promotion — eligibility, application and the visa and work-permit privileges it unlocks.</p><span className="kw">boi thailand</span></div>
-              <div className="card"><div className="no">06</div><div className="ic"><svg viewBox="0 0 24 24" fill="none" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20 15 15 0 0 1 0-20z"/></svg></div><h3>Foreign Business</h3><p>Foreign Business License, US Amity Treaty, and structures for majority foreign ownership.</p><span className="kw">foreign business license</span></div>
-              <div className="card"><div className="no">07</div><div className="ic"><svg viewBox="0 0 24 24" fill="none" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg></div><h3>Living in Chiang Mai</h3><p>Practical settling-in help — bank accounts, driving licence, TM.30 and everyday admin.</p><span className="kw">living in chiang mai</span></div>
+              <div className="card"><div className="no">01</div><div className="ic"><svg viewBox="0 0 24 24" fill="none" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 4v5"/></svg></div><h3>Thai Visa</h3><p>Non-B, tourist-to-work conversion, retirement, LTR and SMART visa — applications and renewals.</p><span className="kw">Non-B · Retirement · LTR · SMART</span></div>
+              <div className="card"><div className="no">02</div><div className="ic"><svg viewBox="0 0 24 24" fill="none" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M20 7h-4V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v3H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/></svg></div><h3>Work Permit</h3><p>New permits, renewals, employer changes and 90-day reporting handled end to end.</p><span className="kw">New · Renewal · 90-day reports</span></div>
+              <div className="card"><div className="no">03</div><div className="ic"><svg viewBox="0 0 24 24" fill="none" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6"/></svg></div><h3>Company Registration</h3><p>Register a Thai Limited Company, VAT, social security and shareholder structuring for foreigners.</p><span className="kw">Thai Limited · VAT · Social security</span></div>
+              <div className="card"><div className="no">04</div><div className="ic"><svg viewBox="0 0 24 24" fill="none" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div><h3>Thai Tax</h3><p>Personal and corporate tax filing, bookkeeping and monthly compliance for foreign-owned businesses.</p><span className="kw">Bookkeeping · Monthly filing · Year-end</span></div>
+              <div className="card"><div className="no">05</div><div className="ic"><svg viewBox="0 0 24 24" fill="none" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2l3 6 6 .9-4.5 4.3 1 6.1L12 17l-5.5 2.3 1-6.1L3 8.9 9 8z"/></svg></div><h3>BOI</h3><p>Board of Investment promotion — eligibility, application and the visa and work-permit privileges it unlocks.</p><span className="kw">Eligibility · Application · Visa privileges</span></div>
+              <div className="card"><div className="no">06</div><div className="ic"><svg viewBox="0 0 24 24" fill="none" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20 15 15 0 0 1 0-20z"/></svg></div><h3>Foreign Business</h3><p>Foreign Business License, US Amity Treaty, and structures for majority foreign ownership.</p><span className="kw">FBL · US Amity Treaty · Ownership</span></div>
+              <div className="card"><div className="no">07</div><div className="ic"><svg viewBox="0 0 24 24" fill="none" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg></div><h3>Living in Chiang Mai</h3><p>Practical settling-in help — bank accounts, driving licence, TM.30 and everyday admin.</p><span className="kw">Bank account · Driving licence · TM.30</span></div>
             </div>
           </div>
         </section>
@@ -215,6 +229,22 @@ export default function ExpatServicesPage() {
                 <div className="wrow"><div className="n f">3</div><div><h3>Chiang Mai experts</h3><p>First-hand knowledge of the local immigration and labour offices — faster, predictable results.</p></div></div>
                 <div className="wrow"><div className="n f">4</div><div><h3>100% compliant</h3><p>Documents checked in detail to minimise rejections and keep you fully within Thai law.</p></div></div>
               </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="sec">
+          <div className="w center">
+            <p className="eyebrow">Who we work with</p>
+            <h2 className="title">Is this you?</h2>
+            <p className="sublead">Every situation below is one we handle week in, week out in Chiang Mai.</p>
+            <div className="whofor">
+              <div className="whorow"><span className="tick"><svg viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round"><path d="m4 12 5.5 5.5L20 7"/></svg></span><div><h3>Employees hired by a Thai company</h3><p>You have a job offer in Chiang Mai and need a Non-B visa plus a work permit before you can legally start.</p></div></div>
+              <div className="whorow"><span className="tick"><svg viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round"><path d="m4 12 5.5 5.5L20 7"/></svg></span><div><h3>Owners setting up a Thai company</h3><p>You are registering a Thai Limited Company and need the structure, VAT and social security done right from day one.</p></div></div>
+              <div className="whorow"><span className="tick"><svg viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round"><path d="m4 12 5.5 5.5L20 7"/></svg></span><div><h3>Teachers and school staff</h3><p>Schools and language centres in Chiang Mai sponsor your permit — the paperwork still has to match the school's filings.</p></div></div>
+              <div className="whorow"><span className="tick"><svg viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round"><path d="m4 12 5.5 5.5L20 7"/></svg></span><div><h3>Retirees and long-stay residents</h3><p>Retirement, LTR and SMART visa applications and renewals, kept on schedule year after year.</p></div></div>
+              <div className="whorow"><span className="tick"><svg viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round"><path d="m4 12 5.5 5.5L20 7"/></svg></span><div><h3>Foreign-owned businesses</h3><p>Bookkeeping, monthly filings and year-end accounts that keep your permit renewals straightforward.</p></div></div>
+              <div className="whorow"><span className="tick"><svg viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round"><path d="m4 12 5.5 5.5L20 7"/></svg></span><div><h3>People who just arrived</h3><p>Bank account, driving licence and TM.30 — the everyday admin nobody explains to you.</p></div></div>
             </div>
           </div>
         </section>
