@@ -4,6 +4,10 @@ import { Footer } from '@/components/landing/footer';
 import Link from 'next/link';
 import { CheckCircle, ArrowRight, MessageSquare } from 'lucide-react';
 import { PromoCarousel } from '@/components/landing/promo-carousel';
+import { JsonLd } from '@/components/seo/json-ld';
+import { ServiceFaq } from '@/components/seo/service-faq';
+import { RelatedArticles } from '@/components/seo/related-articles';
+import { breadcrumbSchema, faqSchema, serviceSchema, type Faq } from '@/lib/seo';
 
 export const metadata: Metadata = {
   title: 'จดทะเบียนบริษัทเชียงใหม่ เริ่ม 9,000 | IC Accounting',
@@ -58,9 +62,72 @@ const steps = [
   { num: '3', title: 'ได้รับเอกสาร', desc: 'รับหนังสือรับรองบริษัทและเปิดบัญชีธนาคารได้ทันที' },
 ];
 
+/**
+ * คำถามชุดนี้เขียนจากคำค้นจริงใน Search Console ที่หน้านี้ควรรับผิดชอบ
+ * แต่ยังติดอันดับ 22-31 (หน้า 3) จึงยังไม่เคยได้คลิกเลย:
+ *   จดบริษัท เชียงใหม่ (25) · รับจดบริษัท เชียงใหม่ (20)
+ *   รับจดทะเบียนบริษัท เชียงใหม่ (15) · รับเลิกบริษัท / รับปิดบริษัท เชียงใหม่ (12)
+ *
+ * คำตอบทุกข้ออ้างอิงจากข้อมูลที่มีอยู่บนหน้านี้แล้ว (แพ็กเกจ ขั้นตอน รายการบริการ)
+ * ไม่ได้เพิ่มข้อเสนอหรือคำสัญญาใหม่
+ */
+const faqs: Faq[] = [
+  {
+    q: 'รับจดบริษัทเชียงใหม่ ราคาเท่าไหร่?',
+    a: 'ห้างหุ้นส่วนจำกัด 6,000 บาท และบริษัทจำกัด 12,000 บาท ทั้งสองราคารวมค่าบริการและค่าธรรมเนียมที่ต้องชำระทั้งหมดแล้ว ไม่มีค่าใช้จ่ายแอบแฝงเพิ่มภายหลัง',
+  },
+  {
+    q: 'จดทะเบียนบริษัทที่เชียงใหม่ ใช้เวลากี่วัน?',
+    a: 'โดยทั่วไปใช้เวลา 1-3 วันทำการหลังจากเตรียมเอกสารครบถ้วน โดยเราดูแลให้ตั้งแต่ขั้นตอนให้คำปรึกษา เตรียมและเซ็นเอกสาร จนถึงรับหนังสือรับรองบริษัทเพื่อไปเปิดบัญชีธนาคารได้ทันที',
+  },
+  {
+    q: 'จดบริษัทจำกัด กับ ห้างหุ้นส่วนจำกัด ควรเลือกแบบไหน?',
+    a: 'ห้างหุ้นส่วนจำกัดมีขั้นตอนและค่าใช้จ่ายเริ่มต้นน้อยกว่า เหมาะกับกิจการขนาดเล็กที่หุ้นส่วนรู้จักกันดี ส่วนบริษัทจำกัดแยกความรับผิดของผู้ถือหุ้นออกจากตัวกิจการ และมักสร้างความน่าเชื่อถือกับคู่ค้าและธนาคารได้มากกว่า ทีมงานจะช่วยวิเคราะห์ให้ฟรีก่อนตัดสินใจ',
+  },
+  {
+    q: 'จดทะเบียนบริษัทเสร็จแล้ว ต้องทำอะไรต่อ?',
+    a: 'หลังได้รับหนังสือรับรอง ยังต้องขึ้นทะเบียนนายจ้างกับประกันสังคม และจดทะเบียนภาษีมูลค่าเพิ่ม (VAT) หากเข้าเงื่อนไข ซึ่งทั้งสองอย่างรวมอยู่ในบริการจดทะเบียนธุรกิจใหม่ของเราแล้ว',
+  },
+  {
+    q: 'รับจดทะเบียนเปลี่ยนแปลง เช่น เพิ่มทุน ย้ายที่ตั้ง เปลี่ยนกรรมการ ด้วยไหม?',
+    a: 'รับดูแลครบ ทั้งเปลี่ยนแปลงชื่อบริษัทและตราประทับ เพิ่มหรือลดทุนจดทะเบียน เปลี่ยนแปลงกรรมการและที่ตั้งสำนักงาน',
+  },
+  {
+    q: 'รับปิดบริษัทหรือเลิกกิจการที่เชียงใหม่ ทำได้ไหม?',
+    a: 'ได้ครับ เรารับจดทะเบียนเลิกบริษัทและชำระบัญชีให้ครบทุกขั้นตอน ซึ่งเป็นคนละเรื่องกับการหยุดยื่นงบเฉยๆ เพราะกิจการที่ยังไม่จดเลิกอย่างถูกต้องจะยังมีภาระต้องยื่นงบการเงินและอาจถูกปรับย้อนหลัง แนะนำให้ปรึกษาทีมงานก่อนเพื่อประเมินขั้นตอนและระยะเวลา',
+  },
+];
+
 export default function CompanyRegistrationPage() {
   return (
     <div className="flex flex-col min-h-dvh bg-background text-foreground">
+      <JsonLd
+        data={[
+          serviceSchema({
+            name: 'รับจดทะเบียนบริษัทเชียงใหม่',
+            description:
+              'รับจดทะเบียนบริษัทจำกัดและห้างหุ้นส่วนจำกัดในเชียงใหม่ ครบทุกขั้นตอนตั้งแต่จองชื่อจนถึงได้รับหนังสือรับรอง พร้อมขึ้นทะเบียนนายจ้างและจดทะเบียนภาษีมูลค่าเพิ่ม รวมถึงงานเปลี่ยนแปลงทางทะเบียนและจดทะเบียนเลิกบริษัท',
+            path: '/company-registration',
+            offers: [
+              {
+                name: 'จดทะเบียนห้างหุ้นส่วนจำกัด',
+                price: '6000',
+                description: 'ราคารวมค่าบริการและค่าธรรมเนียมที่ต้องชำระทั้งหมดแล้ว',
+              },
+              {
+                name: 'จดทะเบียนบริษัทจำกัด',
+                price: '12000',
+                description: 'ราคารวมค่าบริการและค่าธรรมเนียมที่ต้องชำระทั้งหมดแล้ว',
+              },
+            ],
+          }),
+          breadcrumbSchema([
+            { name: 'หน้าแรก', path: '/' },
+            { name: 'จดทะเบียนนิติบุคคล', path: '/company-registration' },
+          ]),
+          faqSchema(faqs),
+        ]}
+      />
       <Header />
       <main className="flex-1">
         <PromoCarousel />
@@ -143,7 +210,7 @@ export default function CompanyRegistrationPage() {
               <div className="space-y-6">
                 <div>
                   <p className="text-primary text-xs font-bold tracking-[0.3em] uppercase mb-3">New Setup</p>
-                  <h2 className="text-3xl font-black mb-4">จดทะเบียนธุรกิจใหม่</h2>
+                  <h2 className="text-3xl font-black mb-4">รับจดบริษัทเชียงใหม่ สำหรับธุรกิจใหม่</h2>
                   <p className="text-muted-foreground leading-relaxed">
                     เราช่วยดูแลตั้งแต่การจองชื่อนิติบุคคล จัดเตรียมเอกสารข้อบังคับบริษัท จนถึงการยื่นจดทะเบียนต่อกรมพัฒนาธุรกิจการค้า (DBD) พร้อมให้คำปรึกษาเรื่องโครงสร้างผู้ถือหุ้นและทุนจดทะเบียน
                   </p>
@@ -161,7 +228,7 @@ export default function CompanyRegistrationPage() {
               <div className="space-y-6">
                 <div>
                   <p className="text-primary text-xs font-bold tracking-[0.3em] uppercase mb-3">Changes</p>
-                  <h2 className="text-3xl font-black mb-4">บริการเปลี่ยนแปลงทางทะเบียน</h2>
+                  <h2 className="text-3xl font-black mb-4">เปลี่ยนแปลงทางทะเบียน และรับปิดบริษัทเชียงใหม่</h2>
                   <p className="text-muted-foreground leading-relaxed">
                     สำหรับการขยายธุรกิจหรือการปรับปรุงโครงสร้างนิติบุคคล
                   </p>
@@ -205,6 +272,23 @@ export default function CompanyRegistrationPage() {
             </div>
           </div>
         </section>
+
+        {/* ── FAQ ── */}
+        <ServiceFaq
+          faqs={faqs}
+          title="คำถามที่พบบ่อยเรื่องจดทะเบียนบริษัท"
+          intro="รวมคำถามที่ลูกค้าในเชียงใหม่ถามเราบ่อยที่สุดก่อนเริ่มจดทะเบียน"
+        />
+
+        {/* ── บทความที่เกี่ยวข้อง ── */}
+        <RelatedArticles
+          slugs={[
+            'company-registration-chiangmai',
+            'company-vs-partnership-comparison',
+            'corporate-tax-chiangmai-guide',
+            'sme-chiang-mai-accounting-guide',
+          ]}
+        />
 
         {/* ── CTA ── */}
         <section className="py-16 bg-secondary/40" data-aos="fade-up">

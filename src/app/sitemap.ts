@@ -1,5 +1,5 @@
 import type { MetadataRoute } from 'next';
-import { blogMeta } from './blog/[id]/layout';
+import { blogMeta } from '@/lib/blog-meta';
 
 const BASE_URL = 'https://icaccservice.com';
 
@@ -11,8 +11,8 @@ const BASE_URL = 'https://icaccservice.com';
  *  corporate-tax-chiangmai-guide, how-to-choose-accounting-office-chiangmai)
  * หลุดจาก sitemap ไป Google จึงอาจไม่รู้ว่ามีบทความเหล่านี้อยู่
  *
- * ตอนนี้รายชื่อบทความดึงจาก blogMeta ใน blog/[id]/layout.tsx โดยตรง
- * เพิ่มบทความใหม่ที่นั่นที่เดียว sitemap จะตามเองทันที
+ * ตอนนี้รายชื่อบทความดึงจาก lib/blog-meta.ts ซึ่งเป็นแหล่งข้อมูลเดียวของระบบ
+ * เพิ่มบทความใหม่ใน lib/blog-meta.ts ที่เดียว sitemap จะตามเองทันที
  *
  * ⚠️ ต้องลบ public/sitemap.xml ทิ้ง — ถ้ามีทั้งสองไฟล์ Next จะ build ไม่ผ่าน
  */

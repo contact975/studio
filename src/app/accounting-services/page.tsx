@@ -4,6 +4,10 @@ import { Header } from '@/components/landing/header';
 import { Footer } from '@/components/landing/footer';
 import { PromoCarousel } from '@/components/landing/promo-carousel';
 import { CheckCircle, ArrowRight, MessageSquare } from 'lucide-react';
+import { JsonLd } from '@/components/seo/json-ld';
+import { ServiceFaq } from '@/components/seo/service-faq';
+import { RelatedArticles } from '@/components/seo/related-articles';
+import { breadcrumbSchema, faqSchema, serviceSchema, type Faq } from '@/lib/seo';
 
 export const metadata: Metadata = {
   title: 'รับทำบัญชีเชียงใหม่ เริ่ม 2,500/เดือน | IC Accounting',
@@ -90,9 +94,66 @@ const included = [
   'ปรึกษาฟรีก่อนตัดสินใจ',
 ];
 
+/**
+ * คำถามชุดนี้เขียนจากคำค้นจริงใน Search Console ที่หน้านี้ควรรับผิดชอบ
+ * แต่ยังติดอันดับ 20-28 (หน้า 3) จึงยังไม่เคยได้คลิกเลย:
+ *   รับทำบัญชี เชียงใหม่ (59 impressions) · รับทําบัญชี เชียงใหม่ (11)
+ *   รับ ทํา บัญชี เชียงใหม่ (3) · รับปิดงบเปล่า เชียงใหม่ (11)
+ *
+ * คำตอบทุกข้ออ้างอิงจากรายละเอียดแพ็กเกจที่อยู่บนหน้านี้แล้ว
+ * ไม่ได้เพิ่มข้อเสนอหรือคำสัญญาใหม่
+ */
+const faqs: Faq[] = [
+  {
+    q: 'รับทำบัญชีเชียงใหม่ ราคาเริ่มต้นเท่าไหร่?',
+    a: 'เริ่มต้น 2,500 บาทต่อเดือน สำหรับแพ็กเกจ Basic ที่รองรับไม่เกิน 20 รายการต่อเดือน เหมาะกับธุรกิจขนาดเล็กที่เพิ่งเริ่มจัดระบบบัญชี ราคาไม่มีค่าธรรมเนียมแอบแฝง',
+  },
+  {
+    q: 'แพ็กเกจ S M L XL ต่างกันอย่างไร?',
+    a: 'แบ่งตามจำนวนรายการค้าต่อเดือนเป็นหลัก คือไม่เกิน 20, 60, 120 และมากกว่า 120 รายการตามลำดับ ยิ่งแพ็กเกจใหญ่ขึ้นจะเพิ่มบริการเชิงลึก เช่น รายงานภาษีซื้อ-ขายรายเดือน งบการเงินครึ่งปีและประจำปี บริการรับ-ส่งเอกสาร และการเข้าพบให้คำปรึกษาถึงที่',
+  },
+  {
+    q: 'ค่าบริการรวมการยื่นภาษีและประกันสังคมด้วยไหม?',
+    a: 'รวมตั้งแต่แพ็กเกจเริ่มต้น ครอบคลุมการบันทึกรายการค้าครบทุกสมุดรายวัน การจัดทำและยื่นภาษี ภ.พ.30 ภ.ง.ด.1 ภ.ง.ด.3 ภ.ง.ด.53 รวมถึงการจัดทำและนำส่งประกันสังคม',
+  },
+  {
+    q: 'ปิดงบการเงินประจำปีรวมอยู่ในแพ็กเกจไหม?',
+    a: 'งบการเงินครึ่งปี (ภ.ง.ด.51) รวมอยู่ตั้งแต่แพ็กเกจ M ส่วนงบการเงินประจำปี (ภ.ง.ด.50) รวมอยู่ตั้งแต่แพ็กเกจ L ขึ้นไป และในแพ็กเกจ XL เรายังประสานงานกับผู้สอบบัญชีรับอนุญาตให้ด้วย',
+  },
+  {
+    q: 'มีบริการรับ-ส่งเอกสารถึงที่ไหม?',
+    a: 'มีในแพ็กเกจ L ขึ้นไป สำหรับลูกค้าในพื้นที่เชียงใหม่ และในแพ็กเกจ L ยังรวมการเข้าพบให้คำปรึกษาที่สำนักงานลูกค้าไตรมาสละ 1 ครั้ง',
+  },
+  {
+    q: 'ถ้าถูกสรรพากรเรียกพบ ช่วยดูแลไหม?',
+    a: 'ในแพ็กเกจ Pro Max เราเป็นตัวแทนเข้าพบเจ้าหน้าที่สรรพากรให้ในกรณีที่มีหนังสือเชิญพบ พร้อมให้คำปรึกษาแบบไม่จำกัดจำนวนครั้ง',
+  },
+];
+
 export default function AccountingServicesPage() {
   return (
     <div className="flex flex-col min-h-dvh bg-background text-foreground">
+      <JsonLd
+        data={[
+          serviceSchema({
+            name: 'รับทำบัญชีเชียงใหม่',
+            description:
+              'บริการรับทำบัญชีรายเดือนสำหรับธุรกิจในเชียงใหม่ ครอบคลุมการบันทึกรายการค้า จัดทำและยื่นภาษี ภ.พ.30 ภ.ง.ด.1 ภ.ง.ด.3 ภ.ง.ด.53 ประกันสังคม จนถึงปิดงบการเงินครึ่งปีและประจำปี',
+            path: '/accounting-services',
+            offers: [
+              { name: 'Basic Package (S)', price: '2500', description: 'ไม่เกิน 20 รายการ/เดือน' },
+              { name: 'Standard Package (M)', price: '6000', description: 'ไม่เกิน 60 รายการ/เดือน' },
+              { name: 'Pro Package (L)', price: '12000', description: 'ไม่เกิน 120 รายการ/เดือน' },
+              { name: 'Pro Max Package (XL)', price: '24000', description: 'มากกว่า 120 รายการ/เดือน' },
+            ],
+          }),
+          breadcrumbSchema([
+            { name: 'หน้าแรก', path: '/' },
+            { name: 'บริการทำบัญชี', path: '/accounting-services' },
+          ]),
+          faqSchema(faqs),
+        ]}
+      />
       <Header />
       <main className="flex-1">
         <PromoCarousel />
@@ -189,6 +250,23 @@ export default function AccountingServicesPage() {
             </div>
           </div>
         </section>
+
+        {/* ── FAQ ── */}
+        <ServiceFaq
+          faqs={faqs}
+          title="คำถามที่พบบ่อยเรื่องรับทำบัญชี"
+          intro="รวมคำถามที่เจ้าของธุรกิจในเชียงใหม่ถามเราบ่อยที่สุดก่อนเริ่มใช้บริการ"
+        />
+
+        {/* ── บทความที่เกี่ยวข้อง ── */}
+        <RelatedArticles
+          slugs={[
+            'accounting-fee-chiangmai',
+            'how-to-choose-accounting-office-chiangmai',
+            '5-common-accounting-mistakes-sme-chiangmai',
+            'tax-document-preparation-tips',
+          ]}
+        />
 
         {/* ── CTA ── */}
         <section className="py-16 bg-secondary/40" data-aos="fade-up">
