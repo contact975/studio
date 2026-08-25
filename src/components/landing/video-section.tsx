@@ -2,7 +2,9 @@
 
 import * as React from "react";
 
-declare global {
+// React 19 ย้าย JSX namespace เข้าไปอยู่ใน module 'react' แล้ว
+// การ declare global namespace JSX แบบเดิมจึงไม่มีผล ทำให้ <wistia-player> ขึ้น type error
+declare module 'react' {
   namespace JSX {
     interface IntrinsicElements {
       'wistia-player': any;
@@ -13,23 +15,60 @@ declare global {
 export function VideoSection() {
   const [isMounted, setIsMounted] = React.useState(false);
   const [isPlaying, setIsPlaying] = React.useState(false);
+  const sectionRef = React.useRef<HTMLElement>(null);
 
   React.useEffect(() => {
     setIsMounted(true);
   }, []);
 
-  const handlePlay = React.useCallback(() => {
-    if (!document.querySelector('script[src*="fast.wistia.com/player.js"]')) {
-      const s = document.createElement('script');
-      s.src = 'https://fast.wistia.com/player.js';
-      s.async = true;
-      document.head.appendChild(s);
-    }
-    setIsPlaying(true);
+  /** โหลด player.js แบบ idempotent — เรียกซ้ำได้ไม่โหลดซ้ำ */
+  const loadPlayerScript = React.useCallback(() => {
+    if (document.querySelector('script[src*="fast.wistia.com/player.js"]')) return;
+    const s = document.createElement('script');
+    s.src = 'https://fast.wistia.com/player.js';
+    s.async = true;
+    document.head.appendChild(s);
   }, []);
 
+  /**
+   * Preload: พอเลื่อนมาใกล้ section (ก่อนถึงจริง 300px) ให้ดึง player.js มารอไว้
+   * แต่ยังไม่สร้าง <wistia-player> จึง "ไม่มีการโหลดตัววิดีโอ" — คนที่ไม่กดดู
+   * เสียแค่ไฟล์ script ไม่ใช่วิดีโอหลาย MB
+   *
+   * เมื่อผู้ใช้กดเล่น script พร้อมอยู่แล้ว วิดีโอจึงเริ่มได้แทบจะทันที
+   */
+  React.useEffect(() => {
+    const el = sectionRef.current;
+    if (!el || typeof IntersectionObserver === 'undefined') return;
+
+    // เคารพผู้ใช้ที่เปิดโหมดประหยัดเน็ต หรือเน็ตช้ามาก — ข้าม preload ไปเลย
+    const conn = (navigator as any).connection;
+    if (conn?.saveData || /(^|-)2g$/.test(conn?.effectiveType ?? '')) return;
+
+    const io = new IntersectionObserver(
+      (entries) => {
+        if (!entries.some((e) => e.isIntersecting)) return;
+        io.disconnect();
+        // รอให้ main thread ว่างก่อน จะได้ไม่ไปแย่งจังหวะที่ผู้ใช้กำลังเลื่อน
+        const idle =
+          (window as any).requestIdleCallback ??
+          ((cb: () => void) => window.setTimeout(cb, 200));
+        idle(loadPlayerScript);
+      },
+      { rootMargin: '300px 0px' }
+    );
+
+    io.observe(el);
+    return () => io.disconnect();
+  }, [loadPlayerScript]);
+
+  const handlePlay = React.useCallback(() => {
+    loadPlayerScript(); // เผื่อกรณี preload ไม่ทำงาน (save-data / เบราว์เซอร์เก่า)
+    setIsPlaying(true);
+  }, [loadPlayerScript]);
+
   return (
-    <section className="relative bg-[#050d1f] py-16 md:py-24 overflow-hidden">
+    <section ref={sectionRef} className="relative bg-[#050d1f] py-16 md:py-24 overflow-hidden">
       {/* Subtle gradient top */}
       <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-blue-500/30 to-transparent" />
       {/* Radial glow behind video */}
