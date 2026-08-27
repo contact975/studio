@@ -154,7 +154,7 @@ const expatFaqs = [
   },
   {
     q: "How long does a work permit in Chiang Mai take?",
-    a: "Typically 7 to 10 business days once your company documents are ready. We prepare everything in advance to avoid delays.",
+    a: "The labour office review takes 5 to 10 working days once your company documents are ready. We prepare everything in advance so nothing sends you back to the queue.",
   },
   {
     q: "Do I need a Thai company to get a work permit?",
@@ -363,7 +363,7 @@ export default function ExpatServicesPage() {
             <h2 className="title center">Common questions from expats</h2>
             <div className="faq">
               <div className="qa"><h4>Can I convert my tourist visa to a work visa in Chiang Mai?</h4><p>Yes — in most cases we convert a tourist or visa-exempt entry to a Non-B business visa inside Thailand, then process your work permit. We handle the paperwork and appointments.</p></div>
-              <div className="qa"><h4>How long does a work permit in Chiang Mai take?</h4><p>Typically 7 to 10 business days once your company documents are ready. We prepare everything in advance to avoid delays.</p></div>
+              <div className="qa"><h4>How long does a work permit in Chiang Mai take?</h4><p>The labour office review takes 5 to 10 working days once your company documents are ready. We prepare everything in advance so nothing sends you back to the queue.</p></div>
               <div className="qa"><h4>Do I need a Thai company to get a work permit?</h4><p>Usually yes — you need a sponsoring employer. We can register your Thai company and sponsor the work permit in one package.</p></div>
               <div className="qa"><h4>Can foreigners own 100% of a Thai business?</h4><p>In specific cases — via BOI promotion, a US Amity Treaty company, or a Foreign Business License. We advise the best route for you.</p></div>
             </div>

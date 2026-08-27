@@ -5,7 +5,7 @@ import { Header } from '@/components/landing/header';
 import { Footer } from '@/components/landing/footer';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { Badge } from '@/components/ui/badge';
@@ -31,6 +31,7 @@ const blogPosts = [
     `,
     category: 'ภาษีธุรกิจ',
     date: '15 มี.ค. 2567',
+    dateISO: '2024-03-15',
     author: 'ทีมงาน IC ACC',
     image: 'https://images.unsplash.com/photo-1562654501-a0ccc0fc3fb1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxEb2N1bWVudHxlbnwwfHx8fDE3NzA4ODg1NTd8MA&ixlib=rb-4.1.0&q=80&w=1080',
     imageHint: 'tax documents'
@@ -53,6 +54,7 @@ const blogPosts = [
     `,
     category: 'จดทะเบียนธุรกิจ',
     date: '10 มี.ค. 2567',
+    dateISO: '2024-03-10',
     author: 'ผู้เชี่ยวชาญด้านกฎหมาย',
     image: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMXx8QnVzaW5lc3N8ZW58MHx8fHwxNzcwODg4NzkwfDA&ixlib=rb-4.1.0&q=80&w=1080',
     imageHint: 'business meeting'
@@ -80,6 +82,7 @@ const blogPosts = [
     `,
     category: 'ภาษีธุรกิจ',
     date: '20 มี.ค. 2567',
+    dateISO: '2024-03-20',
     author: 'ทีมงาน IC ACC',
     image: 'https://images.unsplash.com/photo-1737622020870-73d9f15e8a46?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxzbWUlMjBjaGlhbmdtYWl8ZW58MHx8fHwxNzcwODg4NDIyfDA&ixlib=rb-4.1.0&q=80&w=1080',
     imageHint: 'accounting error check'
@@ -117,6 +120,7 @@ const blogPosts = [
     `,
     category: 'ภาษีธุรกิจ',
     date: '01 มี.ค. 2567',
+    dateISO: '2024-03-01',
     author: 'ทีมงาน IC ACC',
     image: 'https://images.unsplash.com/photo-1758115271914-6d5d8bb3d277?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxNHx8Y2hpYW5nbWFpfGVufDB8fHx8MTc3MDg5MDM4MHww&ixlib=rb-4.1.0&q=80&w=1080',
     imageHint: 'e-commerce box'
@@ -158,6 +162,7 @@ const blogPosts = [
     `,
     category: 'ภาษีธุรกิจ',
     date: '25 ก.พ. 2567',
+    dateISO: '2024-02-25',
     author: 'ทีมงาน IC ACC',
     image: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxyZXN0YXVyYW50fGVufDB8fHx8MTc3MDg5MDcxNnww&ixlib=rb-4.1.0&q=80&w=1080',
     imageHint: 'restaurant cafe interior'
@@ -197,6 +202,7 @@ const blogPosts = [
     `,
     category: 'ภาษีธุรกิจ',
     date: '20 ก.พ. 2567',
+    dateISO: '2024-02-20',
     author: 'ทีมงาน IC ACC',
     image: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxwb29sJTIwdmlsbGF8ZW58MHx8fHwxNzcwODkxNjA0fDA&ixlib=rb-4.1.0&q=80&w=1080',
     imageHint: 'pool villa'
@@ -249,6 +255,7 @@ const blogPosts = [
                 ต้องการทราบราคาที่แน่นอนสำหรับธุรกิจของคุณ? ติดต่อ IC Accounting & Service เชียงใหม่ได้เลย เราให้คำปรึกษาฟรี ไม่มีค่าใช้จ่าย`,
                     category: 'บัญชีธุรกิจ',
                         date: '12 พ.ค. 2568',
+                        dateISO: '2025-05-12',
                             author: 'ทีมงาน IC ACC',
                                 image: 'https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Photo%20Services%2Fic-accounting-chiangmai-service-account.jpg?alt=media&token=fc1cee19-5765-4cea-b2ca-81b6a08b3cb5',
                                     imageHint: 'accounting service chiang mai',
@@ -300,6 +307,7 @@ const blogPosts = [
                                                     เราดูแลกระบวนการจดทะเบียนบริษัทให้ครบทุกขั้นตอน ตั้งแต่ตรวจสอบชื่อ เตรียมเอกสาร ยื่นแบบ จนได้รับหนังสือรับรองบริษัท คุณไม่ต้องเสียเวลาวิ่งติดต่อราชการเอง โทรปรึกษาฟรีได้เลยวันนี้`,
                                                         category: 'จดทะเบียนธุรกิจ',
                                                             date: '5 พ.ค. 2568',
+                                                            dateISO: '2025-05-05',
                                                                 author: 'ทีมงาน IC ACC',
                                                                     image: 'https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Photo%20Services%2Fic-accounting-chiangmai-service-register.jpg?alt=media&token=34939e7f-da54-48c1-b5de-83d5c82aa9ba',
                                                                         imageHint: 'company registration chiangmai',
@@ -354,6 +362,7 @@ const blogPosts = [
                                                                                         เราผ่านทุกเกณฑ์ที่กล่าวมา ด้วยทีมผู้เชี่ยวชาญที่มีประสบการณ์กว่า 10 ปีในเชียงใหม่ ให้บริการลูกค้าหลากหลายประเภทธุรกิจ ทั้ง SME ไทยและธุรกิจต่างชาติ พร้อมให้คำปรึกษาฟรีก่อนตัดสินใจ`,
                                                                                             category: 'บัญชีธุรกิจ',
                                                                                                 date: '1 พ.ค. 2568',
+                                                                                                dateISO: '2025-05-01',
                                                                                                     author: 'ทีมงาน IC ACC',
                                                                                                         image: 'https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Photo%20Services%2Fic-accounting-chiangmai-service-consult.jpg?alt=media&token=7383c116-df92-4925-ab8b-9c0c148ba0dc',
                                                                                                             imageHint: 'accounting office consultation chiangmai',
@@ -414,14 +423,15 @@ const blogPosts = [
                                                                                                                             ปรึกษาเรื่องภาษีนิติบุคคลได้ฟรีวันนี้ โทรหาเราหรือส่งข้อความผ่าน LINE`,
                                                                                                                                    category: 'ภาษีธุรกิจ',
                                                                                                                                     date: '25 เม.ย. 2568',
+                                                                                                                                    dateISO: '2025-04-25',
                                                                                                                                         author: 'ทีมงาน IC ACC',
                                                                                                                                             image: 'https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Photo%20Services%2Fic-accounting-chiangmai-service-audit.jpg?alt=media&token=b0fbb4a8-886e-4d3d-95ec-91a4a5824058',
                                                                                                                                                 imageHint: 'corporate tax accounting chiangmai',
                                                                                                                                                   },
                                                                                                                                                     {
                                                                                                                                                         id: 'work-permit-chiangmai',
-                                                                                                                                                            title: 'Work Permit เชียงใหม่ ขั้นตอน เอกสาร และค่าใช้จ่ายที่ต้องรู้ ปี 2568',
-                                                                                                                                                                content: `Work Permit เชียงใหม่ ขั้นตอน เอกสาร และค่าใช้จ่ายที่ต้องรู้ ปี 2568
+                                                                                                                                                            title: 'Work Permit เชียงใหม่ ขั้นตอน เอกสาร และค่าใช้จ่ายที่ต้องรู้ ปี 2569',
+                                                                                                                                                                content: `Work Permit เชียงใหม่ ขั้นตอน เอกสาร และค่าใช้จ่ายที่ต้องรู้ ปี 2569
 
                                                                                                                                                                 ชาวต่างชาติที่ต้องการทำงานในเชียงใหม่ต้องมีใบอนุญาตทำงาน (Work Permit) ก่อนเริ่มทำงาน ไม่ว่าจะเป็นพนักงานประจำ ผู้บริหาร หรือเจ้าของกิจการต่างชาติ บทความนี้อธิบายกระบวนการทั้งหมดอย่างละเอียด
 
@@ -482,42 +492,89 @@ const blogPosts = [
                                                                                                                                                                 ติดต่อเราเพื่อขอคำปรึกษาฟรีเรื่อง Work Permit เชียงใหม่ได้ตลอดเวลาทำการ`,
                                                                                                                                                                      category: 'Expat & Visa',
                                                                                                                                                                         date: '20 เม.ย. 2568',
+                                                                                                                                                                        dateISO: '2025-04-20',
+                                                                                                                                                                        updated: '25 ส.ค. 2569',
+                                                                                                                                                                        updatedISO: '2026-08-25',
                                                                                                                                                                             author: 'ทีมงาน IC ACC',
                                                                                                                                                                                image: 'https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Photo%20Services%2Fvisa-work-permit-chiangmai.jpg?alt=media&token=8d3e33b0-12ec-4921-b9d6-ad4d10393047',
                                                                                                                                                                                     imageHint: 'work permit visa chiangmai',
                                                                                                                                                                                       },
 ];
 
+/**
+ * ลิงก์จากบทความ -> หน้าบริการ
+ *
+ * ก่อนหน้านี้บทความทุกหน้าไม่มีลิงก์ภายในเลยแม้แต่ลิงก์เดียว
+ * คนอ่านที่ค้นเจอบทความจาก Google จึงอ่านจบแล้วออกไป
+ * ไม่มีทางเดินต่อไปหาหน้าบริการ และหน้าบริการก็ไม่ได้รับ
+ * น้ำหนักลิงก์ภายในจากบทความที่ติดอันดับอยู่แล้วเลย
+ *
+ * แผนที่นี้จับคู่บทความกับหน้าบริการที่ตรงกับความตั้งใจของคนอ่านจริงๆ
+ * บทความไหนยังไม่มีคู่ ก็จะแสดง CTA เดิมเหมือนเดิม
+ */
+const SERVICE_CTA: Record<
+  string,
+  { href: string; eyebrow: string; heading: string; body: string; label: string }
+> = {
+  'work-permit-chiangmai': {
+    href: '/expat-services',
+    eyebrow: 'บริการที่เกี่ยวข้อง',
+    heading: 'ให้ IC ดูแล Work Permit และวีซ่าให้ทั้งกระบวนการ',
+    body: 'เราเข้ามารับช่วงตั้งแต่ขั้นตอนที่ 3 คือยื่นเอกสารที่สำนักงานจัดหางานจังหวัดเชียงใหม่ ตรวจเอกสารก่อนยื่น ติดตามสถานะ และต่ออายุให้ทุกปี — เอกสารครึ่งหนึ่งในรายการข้างบนมาจากบัญชีบริษัท ซึ่งเป็นส่วนที่เราดูแลอยู่แล้ว',
+    label: 'ดูบริการ Work Permit และวีซ่า',
+  },
+  'company-registration-chiangmai': {
+    href: '/company-registration',
+    eyebrow: 'บริการที่เกี่ยวข้อง',
+    heading: 'ให้เราจดทะเบียนบริษัทให้ตั้งแต่ต้นจนจบ',
+    body: 'ตรวจชื่อ จองชื่อ ร่างหนังสือบริคณห์สนธิ ยื่นจดทะเบียน ขึ้นทะเบียน VAT และประกันสังคม พร้อมดูแลบัญชีต่อเนื่องหลังเปิดบริษัท',
+    label: 'ดูบริการจดทะเบียนบริษัท',
+  },
+  'accounting-fee-chiangmai': {
+    href: '/accounting-services',
+    eyebrow: 'บริการที่เกี่ยวข้อง',
+    heading: 'ดูค่าบริการทำบัญชีจริงของ IC Accounting',
+    body: 'เราแจ้งราคาตามขนาดธุรกิจอย่างตรงไปตรงมา ตั้งแต่ธุรกิจเปิดใหม่ไปจนถึงบริษัทที่จด VAT แล้ว ไม่มีค่าใช้จ่ายแอบแฝง',
+    label: 'ดูบริการและราคารับทำบัญชี',
+  },
+  'how-to-choose-accounting-office-chiangmai': {
+    href: '/accounting-services',
+    eyebrow: 'บริการที่เกี่ยวข้อง',
+    heading: 'ลองเอาเกณฑ์ทั้ง 5 ข้อมาวัดกับเราดู',
+    body: 'ผู้ทำบัญชีขึ้นทะเบียนจริง ดูแลธุรกิจในเชียงใหม่มากกว่า 100 ราย และมีทีมที่ติดต่อได้จริงในเวลาทำการ',
+    label: 'ดูบริการรับทำบัญชี',
+  },
+  'corporate-tax-chiangmai-guide': {
+    href: '/accounting-services',
+    eyebrow: 'บริการที่เกี่ยวข้อง',
+    heading: 'วางแผนภาษีนิติบุคคลก่อนถึงกำหนดยื่น',
+    body: 'ปิดงบ ยื่น ภ.ง.ด.50 และ ภ.ง.ด.51 ให้ตรงเวลา พร้อมวางแผนล่วงหน้าเพื่อไม่ให้เสียภาษีเกินความจำเป็น',
+    label: 'ดูบริการบัญชีและภาษี',
+  },
+};
+
 export default function BlogDetailPage() {
   const params = useParams();
-  const [post, setPost] = useState<any>(null);
-  const [currentDate, setCurrentDate] = useState('');
+
+  /**
+   * เดิมโค้ดนี้ไปหาบทความใน useEffect แล้วเก็บไว้ใน useState
+   * useEffect ไม่ทำงานตอน server render — HTML ที่ Google และ
+   * ตัวอ่านลิงก์ของ LINE/Facebook ได้รับกลับไปจึงมีแค่วงกลมหมุนรอโหลด
+   * ไม่มีหัวข้อ ไม่มีเนื้อหา ไม่มี JSON-LD สักตัว
+   *
+   * ย้ายมาคำนวณตอน render ตรงๆ เนื้อหาทั้งบทความจึงอยู่ใน HTML
+   * ตั้งแต่ครั้งแรก โดยหน้าตายังเหมือนเดิมทุกอย่าง
+   */
+  const postId = params?.id ? String(params.id) : '';
+  const post = blogPosts.find((p) => p.id === postId) ?? blogPosts[0];
+  const cta = SERVICE_CTA[post.id];
 
   useEffect(() => {
     AOS.init({
       duration: 1000,
       once: true,
     });
-
-    const now = new Date();
-    setCurrentDate(now.toLocaleDateString('th-TH', {
-      day: 'numeric',
-      month: 'short',
-      year: 'numeric',
-    }));
-
-    if (params?.id) {
-      const postId = params.id;
-      const foundPost = blogPosts.find(p => String(p.id) === String(postId)) || blogPosts[0];
-      setPost(foundPost);
-    }
-  }, [params]);
-
-  if (!post) return (
-    <div className="min-h-screen flex items-center justify-center">
-      <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div>
-    </div>
-  );
+  }, []);
 
   return (
     <div className="flex flex-col min-h-dvh bg-white text-foreground font-body">
@@ -529,7 +586,10 @@ export default function BlogDetailPage() {
             '@type': 'Article',
             headline: post.title,
             image: post.image,
-            datePublished: post.date,
+            // schema.org ต้องการวันที่รูปแบบ ISO 8601
+            // ของเดิมส่ง '20 เม.ย. 2568' ไปตรงๆ ซึ่ง Google อ่านไม่ออก
+            datePublished: post.dateISO,
+            dateModified: (post as { updatedISO?: string }).updatedISO ?? post.dateISO,
             author: { '@type': 'Person', name: post.author },
             publisher: {
               '@type': 'Organization',
@@ -571,8 +631,15 @@ export default function BlogDetailPage() {
                 <div className="flex flex-wrap items-center gap-6 text-muted-foreground">
                   <div className="flex items-center gap-2">
                     <Calendar className="h-4 w-4" />
-                    <span>เผยแพร่เมื่อ: {currentDate || post.date}</span>
+                    {/* ของเดิมโชว์ "วันนี้" เป็นวันเผยแพร่ทุกครั้งที่มีคนเปิดหน้า */}
+                    <span>เผยแพร่เมื่อ: {post.date}</span>
                   </div>
+                  {(post as { updated?: string }).updated && (
+                    <div className="flex items-center gap-2">
+                      <Calendar className="h-4 w-4" />
+                      <span>อัปเดตล่าสุด: {(post as { updated?: string }).updated}</span>
+                    </div>
+                  )}
                   <div className="flex items-center gap-2">
                     <User className="h-4 w-4" />
                     <span>เขียนโดย: {post.author}</span>
@@ -595,6 +662,29 @@ export default function BlogDetailPage() {
                   {post.content}
                 </div>
               </div>
+
+              {cta && (
+                <div
+                  data-aos="fade-up"
+                  className="mt-12 rounded-2xl border border-primary/20 bg-primary/5 p-8"
+                >
+                  <p className="text-sm font-semibold uppercase tracking-widest text-primary mb-3">
+                    {cta.eyebrow}
+                  </p>
+                  <h2 className="text-2xl md:text-3xl font-bold font-headline mb-4 text-slate-900">
+                    {cta.heading}
+                  </h2>
+                  <p className="text-slate-700 leading-relaxed mb-6">{cta.body}</p>
+                  <div className="flex flex-col sm:flex-row gap-4">
+                    <Button asChild size="lg" className="rounded-full px-8 font-bold">
+                      <Link href={cta.href}>{cta.label}</Link>
+                    </Button>
+                    <Button asChild size="lg" variant="outline" className="rounded-full px-8 font-bold">
+                      <Link href="/quote">นัดหมายปรึกษาฟรี</Link>
+                    </Button>
+                  </div>
+                </div>
+              )}
 
               <Separator className="my-12" />
 
@@ -680,9 +770,21 @@ export default function BlogDetailPage() {
             <p className="text-xl opacity-90 mb-10 max-w-2xl mx-auto">
               ให้ทีมงาน IC Accounting & Service ดูแลคุณ เราพร้อมให้คำปรึกษาเบื้องต้นฟรี เพื่อให้ธุรกิจของคุณเดินหน้าได้อย่างถูกต้อง
             </p>
-            <Button asChild size="lg" variant="secondary" className="rounded-full px-12 h-14 text-lg font-bold">
-              <Link href="https://line.me/R/ti/p/@374jshvh" target="_blank">พูดคุยกับเราทาง Line</Link>
-            </Button>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button asChild size="lg" variant="secondary" className="rounded-full px-12 h-14 text-lg font-bold">
+                <Link href="https://line.me/R/ti/p/@374jshvh" target="_blank">พูดคุยกับเราทาง Line</Link>
+              </Button>
+              {cta && (
+                <Button
+                  asChild
+                  size="lg"
+                  variant="outline"
+                  className="rounded-full px-12 h-14 text-lg font-bold bg-transparent border-white/70 text-white hover:bg-white hover:text-primary"
+                >
+                  <Link href={cta.href}>{cta.label}</Link>
+                </Button>
+              )}
+            </div>
           </div>
         </section>
       </main>

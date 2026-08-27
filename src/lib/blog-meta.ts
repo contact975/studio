@@ -64,8 +64,8 @@ export const blogMeta: Record<string, { title: string; description: string; imag
     image: 'https://icaccservice.com/images/blog/ic-accounting-chiangmai-service-audit.jpg',
   },
   'work-permit-chiangmai': {
-    title: 'Work Permit เชียงใหม่ ขั้นตอนและเอกสารที่ชาวต่างชาติต้องรู้',
-    description: 'ทำ Work Permit เชียงใหม่ใช้เวลา 7-15 วันทำการ ค่าธรรมเนียม 3,000 บาท อธิบายทุกขั้นตอนตั้งแต่เตรียมเอกสารจนได้รับ Work Permit',
+    title: 'Work Permit เชียงใหม่ 2569 ขั้นตอนและเอกสารที่ชาวต่างชาติต้องรู้',
+    description: 'ขอ Work Permit เชียงใหม่ใช้เวลาพิจารณา 5-10 วันทำการ ค่าธรรมเนียมราชการ 750-3,000 บาท อธิบายครบทั้งเอกสาร ขั้นตอน และอัตราส่วนพนักงานไทย 4:1',
     image: 'https://icaccservice.com/images/blog/visa-work-permit-chiangmai.jpg',
   },
 };
