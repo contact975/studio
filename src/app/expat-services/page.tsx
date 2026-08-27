@@ -111,6 +111,22 @@ const css = `
 .exp .whorow .tick svg{width:15px;height:15px;stroke:#2563eb;fill:none;stroke-width:2.6;}
 .exp .whorow h3{font-size:16px;font-weight:700;margin-bottom:4px;}
 .exp .whorow p{font-size:14px;color:#5b6b86;}
+.exp .facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;margin-top:40px;text-align:left;}
+.exp .factbox{background:#fff;border:1px solid #e7edf5;border-radius:16px;padding:20px 22px;}
+.exp .factbox b{font-family:"Sora";font-size:26px;display:block;color:#0f172a;line-height:1.2;}
+.exp .factbox span{font-size:13.5px;color:#5b6b86;display:block;margin-top:4px;}
+.exp .steps{display:flex;flex-direction:column;gap:12px;margin-top:44px;text-align:left;}
+.exp .step{display:grid;grid-template-columns:44px 1fr;gap:18px;background:#fff;border:1px solid #e7edf5;border-radius:16px;padding:22px 24px;}
+.exp .step .sn{width:44px;height:44px;border-radius:13px;background:linear-gradient(100deg,#2563eb,#22d3ee);color:#fff;font-family:"Sora";font-weight:800;font-size:17px;display:flex;align-items:center;justify-content:center;}
+.exp .step h3{font-size:17px;font-weight:700;margin-bottom:5px;}
+.exp .step p{font-size:14.5px;color:#5b6b86;}
+.exp .step .when{display:inline-block;font-size:12px;font-weight:600;color:#0e7490;background:#e6fbff;padding:3px 10px;border-radius:999px;margin-top:9px;}
+.exp .docs{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px;margin-top:44px;text-align:left;}
+.exp .doccol{background:#fff;border:1px solid #e7edf5;border-radius:18px;padding:26px 28px;}
+.exp .doccol h3{font-size:17px;font-weight:700;margin-bottom:14px;}
+.exp .doccol ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;}
+.exp .doccol li{display:flex;gap:10px;font-size:14.5px;color:#5b6b86;align-items:flex-start;}
+.exp .doccol li svg{flex:0 0 auto;width:16px;height:16px;stroke:#2563eb;fill:none;stroke-width:2.6;margin-top:4px;}
 .exp .faq{max-width:820px;margin:46px auto 0;}
 .exp .qa{border:1px solid #e7edf5;border-radius:16px;padding:22px 26px;margin-bottom:14px;background:#fff;}
 .exp .qa h4{font-size:16.5px;font-weight:600;margin-bottom:8px;}
@@ -230,6 +246,98 @@ export default function ExpatServicesPage() {
                 <div className="wrow"><div className="n f">4</div><div><h3>100% compliant</h3><p>Documents checked in detail to minimise rejections and keep you fully within Thai law.</p></div></div>
               </div>
             </div>
+          </div>
+        </section>
+
+        <section className="sec">
+          <div className="w center">
+            <p className="eyebrow">The process</p>
+            <h2 className="title">How a Chiang Mai work permit actually works</h2>
+            <p className="sublead">Five steps, in order. We take over from step three.</p>
+            <div className="steps">
+              <div className="step">
+                <span className="sn">1</span>
+                <div>
+                  <h3>Get a Non-B visa</h3>
+                  <p>Apply for a Non-Immigrant B business visa at a Thai embassy in your country, or convert from a tourist or visa-exempt entry inside Thailand.</p>
+                </div>
+              </div>
+              <div className="step">
+                <span className="sn">2</span>
+                <div>
+                  <h3>Enter Thailand on the Non-B</h3>
+                  <p>The Non-B lets you stay for business. On its own it does not give you the right to work &mdash; that comes next.</p>
+                </div>
+              </div>
+              <div className="step">
+                <span className="sn">3</span>
+                <div>
+                  <h3>File at the Chiang Mai labour office</h3>
+                  <p>We submit your application and company documents to the Chiang Mai Provincial Employment Office on your behalf.</p>
+                </div>
+              </div>
+              <div className="step">
+                <span className="sn">4</span>
+                <div>
+                  <h3>Wait for the review</h3>
+                  <p>The labour office reviews your file.</p>
+                  <span className="when">5&ndash;10 working days</span>
+                </div>
+              </div>
+              <div className="step">
+                <span className="sn">5</span>
+                <div>
+                  <h3>Collect your work permit</h3>
+                  <p>Valid for one year and renewable. We handle the renewal each year alongside your company&rsquo;s accounts.</p>
+                  <span className="when">Valid 1 year</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="facts">
+              <div className="factbox"><b>5&ndash;10</b><span>working days for the labour office to review</span></div>
+              <div className="factbox"><b>4 : 1</b><span>Thai employees required per foreign work permit</span></div>
+              <div className="factbox"><b>1 year</b><span>validity, renewable annually</span></div>
+              <div className="factbox"><b>750&ndash;3,000&#3647;</b><span>government fee by duration &mdash; the official fee, not our service charge</span></div>
+            </div>
+          </div>
+        </section>
+
+        <section className="sec alt">
+          <div className="w center">
+            <p className="eyebrow">What to prepare</p>
+            <h2 className="title">Your work permit document checklist</h2>
+            <p className="sublead">Half of this list comes out of your employer&rsquo;s accounts &mdash; which is exactly the half we already look after.</p>
+            <div className="docs">
+              <div className="doccol">
+                <h3>From you</h3>
+                <p style={{ fontSize: 13.5, color: '#8ea6d4', marginBottom: 14 }}>The foreign applicant</p>
+                <ul>
+                  <li><svg viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round"><path d="m4 12 5.5 5.5L20 7"/></svg><span>Passport, original plus a copy of every page</span></li>
+                  <li><svg viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round"><path d="m4 12 5.5 5.5L20 7"/></svg><span>A valid Non-Immigrant B visa</span></li>
+                  <li><svg viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round"><path d="m4 12 5.5 5.5L20 7"/></svg><span>Three 3&times;4 cm photos on a white background</span></li>
+                  <li><svg viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round"><path d="m4 12 5.5 5.5L20 7"/></svg><span>Education and employment history, in Thai or English</span></li>
+                  <li><svg viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round"><path d="m4 12 5.5 5.5L20 7"/></svg><span>Medical certificate from a Thai hospital, issued within the last 6 months</span></li>
+                </ul>
+              </div>
+              <div className="doccol">
+                <h3>From your employer</h3>
+                <p style={{ fontSize: 13.5, color: '#8ea6d4', marginBottom: 14 }}>The sponsoring Thai company</p>
+                <ul>
+                  <li><svg viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round"><path d="m4 12 5.5 5.5L20 7"/></svg><span>Company affidavit from the DBD, issued within the last 6 months</span></li>
+                  <li><svg viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round"><path d="m4 12 5.5 5.5L20 7"/></svg><span>Latest shareholder list (Bor.Or.Jor. 5)</span></li>
+                  <li><svg viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round"><path d="m4 12 5.5 5.5L20 7"/></svg><span>VAT registration (Por.Por. 01)</span></li>
+                  <li><svg viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round"><path d="m4 12 5.5 5.5L20 7"/></svg><span>Employment letter stating position, salary and contract length</span></li>
+                  <li><svg viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round"><path d="m4 12 5.5 5.5L20 7"/></svg><span>List of Thai employees on the payroll</span></li>
+                </ul>
+              </div>
+            </div>
+            <p className="center" style={{ marginTop: 30, fontSize: 14.5, color: '#5b6b86' }}>
+              Want every detail? Read our full guide{' '}
+              <Link href="/blog/work-permit-chiangmai" hrefLang="th" style={{ color: '#2563eb', fontWeight: 600 }}>
+                Work Permit เชียงใหม่ (in Thai)
+              </Link>
+            </p>
           </div>
         </section>
 
