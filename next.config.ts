@@ -15,6 +15,17 @@ const nextConfig: NextConfig = {
         destination: 'https://icaccservice.com/:path*',
         permanent: true,
       },
+      {
+        // ยุบหน้าบริการวีซ่าสองหน้าให้เหลือหน้าเดียว
+        // /expat-services (อังกฤษ) + /visa-work-permit (ไทย) เป็นบริการเดียวกัน
+        // แยกไว้ทำให้ Google ต้องเลือกหนึ่ง แล้วสัญญาณถูกแบ่งครึ่ง
+        //
+        // permanent: true = 308 ซึ่ง Google ถือว่าเท่ากับ 301
+        // คือบอกว่า "ย้ายถาวร โอนอันดับไปหน้าปลายทางได้เลย"
+        source: '/expat-services',
+        destination: '/visa-work-permit',
+        permanent: true,
+      },
     ];
   },
   images: {

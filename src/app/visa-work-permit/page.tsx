@@ -1,103 +1,172 @@
-import type { Metadata } from 'next';
-import { Header } from '@/components/landing/header';
-import { Footer } from '@/components/landing/footer';
-import Link from 'next/link';
-import Image from 'next/image';
-import { Briefcase, BadgeHelp, Star, CheckCircle, ArrowRight, MessageSquare } from 'lucide-react';
-import { PromoCarousel } from '@/components/landing/promo-carousel';
-import { JsonLd } from '@/components/seo/json-ld';
-import { ServiceFaq } from '@/components/seo/service-faq';
-import { RelatedArticles } from '@/components/seo/related-articles';
-import { breadcrumbSchema, faqSchema, serviceSchema, type Faq } from '@/lib/seo';
+import type { Metadata } from "next";
+import Link from "next/link";
+import { Sora, Inter } from "next/font/google";
+import { Header } from "@/components/landing/header";
+import { Footer } from "@/components/landing/footer";
+import { JsonLd } from "@/components/seo/json-ld";
+import { breadcrumbSchema, faqSchema, serviceSchema } from "@/lib/seo";
 
 /**
- * หน้านี้ = ฝั่งภาษาไทย สำหรับ "นายจ้าง" ที่ต้องขอ Work Permit ให้พนักงานต่างชาติ
- * หน้าคู่กันคือ /expat-services = ภาษาอังกฤษ สำหรับตัวชาวต่างชาติเอง
+ * หน้าบริการวีซ่าและใบอนุญาตทำงาน — หน้าเดียวจบ
  *
- * เดิมสองหน้านี้ตั้ง title เป็นภาษาอังกฤษเหมือนกันทั้งคู่ ("...Chiang Mai")
- * ทำให้แย่งคีย์เวิร์ดกันเอง และหน้านี้ยิ่งสับสนเพราะ meta เป็นอังกฤษ
- * แต่เนื้อหาในหน้าเป็นภาษาไทย — Google อ่านแล้วไม่รู้ว่าจะจัดให้ใคร
+ * เดิมแยกเป็นสองหน้า: หน้าอังกฤษ 1,105 คำ กับหน้าไทย 285 คำ
+ * ซึ่งเป็นบริการเดียวกัน Google ต้องเลือกหนึ่ง สัญญาณจึงแตกเป็น
+ * สองทางและไม่ชนะสักหน้า
  *
- * แยกภาษาให้ชัดแล้ว: หน้านี้ไทยล้วน จับคำค้นฝั่งนายจ้างซึ่งค้นเป็นภาษาไทย
- * ซึ่งจากการสำรวจ SERP ยังไม่มีเจ้าไหนในเชียงใหม่จับตลาดนี้จริงจัง
+ * ตอนนี้ยุบมาไว้ที่ /visa-work-permit ที่เดียว เพราะ URL ตรงกับ
+ * คำที่คนค้นหาจริง และตรงกับชื่อแบรนด์ใหม่ IC Visa / Work Permit
+ *
+ * title เดิมยาว 84 ตัวอักษร โดน Google ตัดท้ายทิ้ง และขึ้นต้นด้วยชื่อแบรนด์
+ * ทำให้คีย์เวิร์ดจริง ("work permit chiang mai") ถูกดันไปอยู่กลางประโยค
+ * ของใหม่เอาคีย์เวิร์ดขึ้นหน้า และสั้นพอที่จะแสดงครบ
+ *
+ * ตัด keywords ออก — Google เลิกใช้ meta keywords มานานแล้ว ไม่มีผลใดๆ
  */
 export const metadata: Metadata = {
-  title: 'รับทำ Work Permit และวีซ่าทำงาน เชียงใหม่ | IC Accounting',
+  title: "Work Permit & Non-B Visa in Chiang Mai | IC Accounting",
   description:
-    'สำนักงานบัญชีเชียงใหม่ รับยื่นขอ Work Permit และวีซ่า Non-B ให้พนักงานต่างชาติ ดูแลตั้งแต่เอกสารบริษัทจนถึงต่ออายุปีถัดไป ทีมสื่อสารภาษาอังกฤษได้ ปรึกษาฟรี',
+    "English-speaking accountants in Chiang Mai handling Thai work permits, Non-B business visas and company registration — from setup through yearly renewal.",
+  // ไม่มี languages/hreflang แล้ว เพราะเหลือหน้าเดียว ไม่มีคู่ภาษาไทย
   alternates: {
-    canonical: 'https://icaccservice.com/visa-work-permit',
-    languages: {
-      th: 'https://icaccservice.com/visa-work-permit',
-      en: 'https://icaccservice.com/expat-services',
-    },
+    canonical: "https://icaccservice.com/visa-work-permit",
   },
   openGraph: {
-    title: 'รับทำ Work Permit และวีซ่าทำงาน เชียงใหม่ | IC Accounting',
+    title: "Work Permit & Non-B Visa in Chiang Mai | IC Accounting",
     description:
-      'รับยื่นขอ Work Permit และวีซ่า Non-B ให้พนักงานต่างชาติ โดยสำนักงานบัญชีที่ดูแลงบการเงินของบริษัทนายจ้างได้ในทีมเดียว',
-    url: 'https://icaccservice.com/visa-work-permit',
-    locale: 'th_TH',
+      "English-speaking accountants in Chiang Mai handling Thai work permits, Non-B business visas and company registration.",
+    url: "https://icaccservice.com/visa-work-permit",
+    type: "website",
+    locale: "en_US",
   },
 };
 
 /**
- * คำตอบทุกข้ออ้างอิงจากบริการที่ระบุไว้บนหน้านี้แล้ว
- * ตั้งใจไม่ระบุตัวเลขเงื่อนไขทางกฎหมาย (ทุนจดทะเบียน / สัดส่วนพนักงานไทย)
- * เพราะขึ้นกับประเภทกิจการและมีการเปลี่ยนแปลงได้ — ให้ทีมงานประเมินเป็นเคสไป
+ * ฟอนต์ของหน้านี้
+ *
+ * เดิมโหลดผ่าน @import url(fonts.googleapis.com) ที่อยู่บรรทัดแรกของสตริง CSS
+ * ซึ่งแย่ที่สุดในบรรดาวิธีโหลดฟอนต์ เพราะเบราว์เซอร์ต้องทำเป็นทอดๆ:
+ *   อ่าน <style> -> เจอ @import -> ไปโหลด CSS จาก Google -> ค่อยโหลดไฟล์ฟอนต์
+ * ระหว่างนั้นหน้าเว็บค้างรอ (render-blocking) และยังเป็นการต่อไปโดเมนภายนอกเพิ่ม
+ *
+ * next/font ดาวน์โหลดฟอนต์มาเก็บไว้ในเว็บเราตั้งแต่ตอน build จึงไม่ต้องต่อ
+ * ไปหา Google เลยสักครั้ง แถม preload ให้ และใส่ fallback ที่ปรับขนาดให้
+ * ใกล้เคียงของจริงเพื่อลดการกระตุกตอนฟอนต์โหลดเสร็จ (CLS)
+ *
+ * ไม่ระบุ weight เพราะทั้งสองตัวเป็น variable font — ได้ทุกน้ำหนักในไฟล์เดียว
  */
-const faqs: Faq[] = [
-  {
-    q: 'รับทำ Work Permit ที่เชียงใหม่ ครอบคลุมอะไรบ้าง?',
-    a: 'ดำเนินการขอใบอนุญาตทำงานให้พนักงานต่างชาติ รวมถึงการเปลี่ยนแปลงข้อมูลนายจ้าง และการแจ้งออกตามระเบียบของกรมการจัดหางาน โดยดูแลให้ครบตั้งแต่เตรียมเอกสารจนถึงยื่นแทน',
-  },
-  {
-    q: 'Non-B Visa กับ Work Permit ต่างกันอย่างไร ต้องมีทั้งคู่ไหม?',
-    a: 'วีซ่า Non-B คือสิทธิ์ในการพำนักอยู่ในประเทศไทยเพื่อทำธุรกิจ ออกโดยสำนักงานตรวจคนเข้าเมือง ส่วน Work Permit คือใบอนุญาตทำงาน ออกโดยกรมการจัดหางาน ชาวต่างชาติที่จะทำงานในไทยอย่างถูกกฎหมายต้องมีทั้งสองอย่างควบคู่กัน',
-  },
-  {
-    q: 'บริษัทต้องเตรียมอะไรก่อนขอ Work Permit ให้พนักงานต่างชาติ?',
-    a: 'โดยทั่วไปต้องใช้เอกสารของบริษัทนายจ้าง เช่น หนังสือรับรอง งบการเงิน และข้อมูลพนักงาน ส่วนเงื่อนไขเรื่องทุนจดทะเบียนและสัดส่วนพนักงานไทยจะแตกต่างกันตามประเภทกิจการและอาจมีการปรับเปลี่ยน แนะนำให้ปรึกษาทีมงานเพื่อประเมินเป็นรายกรณีก่อนยื่น',
-  },
-  {
-    q: 'ทำไมถึงควรใช้สำนักงานบัญชี แทนที่จะใช้เอเจนซี่วีซ่าทั่วไป?',
-    a: 'เพราะเอกสารที่ใช้ประกอบการขอและต่อ Work Permit ส่วนใหญ่มาจากงบการเงินและระบบบัญชีของบริษัทนายจ้าง เมื่อทีมเดียวกันดูแลทั้งบัญชี ภาษี และวีซ่า เอกสารจะสอดคล้องกันตั้งแต่ต้น และการต่ออายุในปีถัดๆ ไปก็ราบรื่นกว่า',
-  },
-  {
-    q: 'มีทีมที่สื่อสารภาษาอังกฤษกับพนักงานต่างชาติได้ไหม?',
-    a: 'มีครับ ทีมงานสื่อสารภาษาอังกฤษได้และประสานงานกับเจ้าหน้าที่แทนคุณ หากพนักงานต่างชาติต้องการอ่านข้อมูลเป็นภาษาอังกฤษเอง สามารถดูได้ที่หน้า IC Expat Services',
-  },
-  {
-    q: 'ให้คำปรึกษาเรื่อง LTR หรือ SMART Visa ด้วยไหม?',
-    a: 'มีบริการที่ปรึกษาสำหรับวีซ่าระยะยาวประเภทพิเศษ ทั้ง LTR และ SMART Visa สำหรับกลุ่มผู้เชี่ยวชาญ นักลงทุน และ Digital Nomad',
-  },
-];
+const sora = Sora({ subsets: ["latin"], display: "swap", variable: "--font-sora" });
+const inter = Inter({ subsets: ["latin"], display: "swap", variable: "--font-inter" });
 
-const services = [
-  {
-    icon: <Briefcase className="h-6 w-6" />,
-    title: 'Non-Immigrant B Visa',
-    desc: 'บริการยื่นขอและต่ออายุวีซ่าธุรกิจ สำหรับชาวต่างชาติที่เข้ามาทำงานหรือประกอบธุรกิจในไทย',
-    tag: 'Business Visa',
-  },
-  {
-    icon: <BadgeHelp className="h-6 w-6" />,
-    title: 'Work Permit',
-    desc: 'ดำเนินการขอใบอนุญาตทำงาน เปลี่ยนแปลงข้อมูลนายจ้าง หรือแจ้งออกตามระเบียบกรมการจัดหางาน',
-    tag: 'Work Authorization',
-  },
-  {
-    icon: <Star className="h-6 w-6" />,
-    title: 'LTR & SMART Visa',
-    desc: 'บริการที่ปรึกษาสำหรับวีซ่าระยะยาวประเภทพิเศษ สำหรับผู้เชี่ยวชาญ นักลงทุน หรือกลุ่ม Digital Nomad',
-    tag: 'Long-term Visa',
-  },
-];
+const css = `
+.exp{font-family:var(--font-inter),system-ui,sans-serif;color:#0f172a;line-height:1.6;}
+.exp h1,.exp h2,.exp h3,.exp .f{font-family:var(--font-sora),sans-serif;letter-spacing:-.02em;}
+.exp .w{max-width:1180px;margin:0 auto;padding:0 24px;}
+.exp .eyebrow{color:#2563eb;font-weight:700;letter-spacing:.2em;text-transform:uppercase;font-size:13px;margin-bottom:12px;}
+.exp .sec{padding:84px 0;}
+.exp .sec.alt{background:#f7faff;}
+.exp .title{font-size:clamp(28px,3.8vw,44px);font-weight:800;margin-bottom:14px;color:#0f172a;}
+.exp .sublead{color:#5b6b86;font-size:17px;max-width:660px;}
+.exp .center{text-align:center;}.exp .center .sublead{margin:0 auto;}
+.exp .g{background:linear-gradient(100deg,#2563eb,#22d3ee);-webkit-background-clip:text;background-clip:text;color:transparent;}
+.exp .btn{display:inline-flex;align-items:center;gap:9px;font-weight:600;font-size:16px;padding:15px 28px;border-radius:999px;text-decoration:none;transition:.2s;}
+.exp .btn-g{background:linear-gradient(100deg,#2563eb,#22d3ee);color:#fff;box-shadow:0 14px 30px -12px rgba(34,211,238,.6);}
+.exp .btn-ghost{border:1.5px solid rgba(255,255,255,.28);color:#fff;}
+.exp .btn-ghost:hover{background:rgba(255,255,255,.1);}
+.exp .hero{position:relative;overflow:hidden;background:radial-gradient(900px 500px at 80% -10%,rgba(34,211,238,.18),transparent 60%),radial-gradient(700px 500px at 5% 10%,rgba(37,99,235,.28),transparent 55%),linear-gradient(160deg,#0a1730,#0f2350 60%,#0a1730);color:#fff;}
+.exp .hero::before{content:"";position:absolute;inset:0;opacity:.5;background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:52px 52px;-webkit-mask-image:radial-gradient(700px 400px at 60% 20%,#000,transparent);mask-image:radial-gradient(700px 400px at 60% 20%,#000,transparent);}
+.exp .hero .w{position:relative;padding:88px 24px 92px;}
+.exp .crumb{font-size:13px;color:#8ea6d4;margin-bottom:18px;display:flex;gap:9px;align-items:center;}
+.exp .crumb a{color:#cfe7ff;text-decoration:none;}
+.exp .crumb a:hover{text-decoration:underline;}
+.exp .kb{display:inline-flex;align-items:center;gap:9px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);color:#cfe7ff;font-size:13px;font-weight:600;padding:8px 16px;border-radius:999px;margin-bottom:26px;}
+.exp .kb .dot{width:7px;height:7px;border-radius:50%;background:#22d3ee;box-shadow:0 0 10px #22d3ee;}
+.exp .hero h1{font-size:clamp(38px,6vw,64px);font-weight:800;line-height:1.04;max-width:16ch;margin-bottom:20px;color:#fff;}
+.exp .hero .lead{font-size:19px;color:#b9c7e4;max-width:620px;margin-bottom:14px;}
+.exp .kws{font-size:13.5px;color:#8ea6d4;max-width:640px;margin-bottom:32px;}
+.exp .hbtns{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:42px;}
+.exp .hstats{display:flex;gap:16px;flex-wrap:wrap;}
+.exp .hstat{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:16px 22px;}
+.exp .hstat b{font-family:var(--font-sora);font-size:22px;display:block;}
+.exp .hstat span{font-size:12.5px;color:#9fb2d6;}
+.exp .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;margin-top:46px;text-align:left;}
+.exp .card{position:relative;border:1px solid #e7edf5;border-radius:20px;padding:30px 28px;background:#fff;overflow:hidden;transition:.28s;}
+.exp .card::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(100deg,#2563eb,#22d3ee);transform:scaleX(0);transform-origin:left;transition:.3s;}
+.exp .card:hover{transform:translateY(-6px);border-color:#c7ddff;box-shadow:0 24px 50px -26px rgba(37,99,235,.4);}
+.exp .card:hover::before{transform:scaleX(1);}
+.exp .card .no{position:absolute;top:22px;right:26px;font-family:var(--font-sora);font-weight:800;font-size:34px;color:#eef2f9;}
+.exp .ic{width:54px;height:54px;border-radius:15px;background:#eef5ff;display:flex;align-items:center;justify-content:center;margin-bottom:20px;}
+.exp .ic svg{width:27px;height:27px;stroke:#2563eb;}
+.exp .card h3{font-size:20px;font-weight:700;margin-bottom:9px;}
+.exp .card p{font-size:14.5px;color:#5b6b86;margin-bottom:16px;}
+.exp .kw{font-size:12px;color:#0e7490;background:#e6fbff;padding:4px 11px;border-radius:999px;font-weight:600;}
+.exp .why{display:grid;grid-template-columns:1.1fr 1fr;gap:50px;align-items:center;}
+.exp .why .panel{background:linear-gradient(160deg,#0f2350,#0a1730);color:#fff;border-radius:26px;padding:44px;}
+.exp .why .panel h2{color:#fff;font-size:30px;margin-bottom:12px;}
+.exp .why .panel p{color:#b9c7e4;}
+.exp .whys{display:flex;flex-direction:column;gap:24px;}
+.exp .wrow{display:flex;gap:16px;}
+.exp .wrow .n{flex:0 0 auto;width:42px;height:42px;border-radius:12px;background:linear-gradient(100deg,#2563eb,#22d3ee);color:#fff;font-family:var(--font-sora);font-weight:800;display:flex;align-items:center;justify-content:center;}
+.exp .wrow h3{font-size:18px;font-weight:700;margin-bottom:5px;}
+.exp .wrow p{color:#5b6b86;font-size:14.5px;}
+.exp .whofor{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;margin-top:44px;text-align:left;}
+.exp .whorow{display:flex;gap:14px;align-items:flex-start;background:#fff;border:1px solid #e7edf5;border-radius:16px;padding:20px 22px;}
+.exp .whorow .tick{flex:0 0 auto;width:26px;height:26px;border-radius:8px;background:#eef5ff;display:flex;align-items:center;justify-content:center;margin-top:2px;}
+.exp .whorow .tick svg{width:15px;height:15px;stroke:#2563eb;fill:none;stroke-width:2.6;}
+.exp .whorow h3{font-size:16px;font-weight:700;margin-bottom:4px;}
+.exp .whorow p{font-size:14px;color:#5b6b86;}
+.exp .facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;margin-top:40px;text-align:left;}
+.exp .factbox{background:#fff;border:1px solid #e7edf5;border-radius:16px;padding:20px 22px;}
+.exp .factbox b{font-family:"Sora";font-size:26px;display:block;color:#0f172a;line-height:1.2;}
+.exp .factbox span{font-size:13.5px;color:#5b6b86;display:block;margin-top:4px;}
+.exp .steps{display:flex;flex-direction:column;gap:12px;margin-top:44px;text-align:left;}
+.exp .step{display:grid;grid-template-columns:44px 1fr;gap:18px;background:#fff;border:1px solid #e7edf5;border-radius:16px;padding:22px 24px;}
+.exp .step .sn{width:44px;height:44px;border-radius:13px;background:linear-gradient(100deg,#2563eb,#22d3ee);color:#fff;font-family:"Sora";font-weight:800;font-size:17px;display:flex;align-items:center;justify-content:center;}
+.exp .step h3{font-size:17px;font-weight:700;margin-bottom:5px;}
+.exp .step p{font-size:14.5px;color:#5b6b86;}
+.exp .step .when{display:inline-block;font-size:12px;font-weight:600;color:#0e7490;background:#e6fbff;padding:3px 10px;border-radius:999px;margin-top:9px;}
+.exp .docs{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px;margin-top:44px;text-align:left;}
+.exp .doccol{background:#fff;border:1px solid #e7edf5;border-radius:18px;padding:26px 28px;}
+.exp .doccol h3{font-size:17px;font-weight:700;margin-bottom:14px;}
+.exp .doccol ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;}
+.exp .doccol li{display:flex;gap:10px;font-size:14.5px;color:#5b6b86;align-items:flex-start;}
+.exp .doccol li svg{flex:0 0 auto;width:16px;height:16px;stroke:#2563eb;fill:none;stroke-width:2.6;margin-top:4px;}
+.exp .faq{max-width:820px;margin:46px auto 0;}
+.exp .qa{border:1px solid #e7edf5;border-radius:16px;padding:22px 26px;margin-bottom:14px;background:#fff;}
+.exp .qa h4{font-size:16.5px;font-weight:600;margin-bottom:8px;}
+.exp .qa p{color:#5b6b86;font-size:14.5px;}
+.exp .bandwrap{padding:74px 0;}
+.exp .band{position:relative;overflow:hidden;background:linear-gradient(120deg,#0f2350,#123a86 60%,#0e7490);color:#fff;border-radius:28px;padding:60px 40px;text-align:center;margin:0 24px;}
+.exp .band h2{font-size:clamp(28px,3.6vw,40px);color:#fff;margin-bottom:14px;}
+.exp .band p{color:#c7d8f5;font-size:17px;max-width:580px;margin:0 auto 28px;}
+.exp .band .hbtns{justify-content:center;margin-bottom:0;}
+.exp .btn-w{background:#fff;color:#0f2350;}.exp .btn-w:hover{background:#eef4ff;}
+.exp .btn-t{border:1.5px solid rgba(255,255,255,.6);color:#fff;}.exp .btn-t:hover{background:#fff;color:#0f2350;}
+@media(max-width:900px){.exp .why{grid-template-columns:1fr;}}
+`;
 
-const whyUs = [
-  { num: '01', title: 'ภาษาไม่ใช่ปัญหา', desc: 'เรามีทีมงานที่สื่อสารภาษาอังกฤษได้อย่างคล่องแคล่ว พร้อมประสานงานกับเจ้าหน้าที่แทนคุณ' },
-  { num: '02', title: 'ความถูกต้อง 100%', desc: 'ตรวจสอบเอกสารอย่างละเอียด ลดโอกาสการถูกปฏิเสธจากกองตรวจคนเข้าเมือง' },
-  { num: '03', title: 'บริการครบวงจร', desc: 'เชื่อมต่อกับบริการบัญชีและภาษี ช่วยให้การต่อวีซ่าในปีต่อๆ ไปทำได้อย่างราบรื่น' },
+
+/**
+ * FAQ ชุดนี้คือคำถาม 4 ข้อที่แสดงอยู่ในหน้าอยู่แล้ว (ส่วน "Common questions from expats")
+ * นำมาทำเป็น FAQPage schema เพื่อให้ Google อ่านเป็นโครงสร้างได้
+ * ถ้าแก้ข้อความในหน้า ต้องแก้ตรงนี้ให้ตรงกันด้วย ไม่งั้นผิดกติกาของ Google
+ */
+const expatFaqs = [
+  {
+    q: "Can I convert my tourist visa to a work visa in Chiang Mai?",
+    a: "Yes — in most cases we convert a tourist or visa-exempt entry to a Non-B business visa inside Thailand, then process your work permit. We handle the paperwork and appointments.",
+  },
+  {
+    q: "How long does a work permit in Chiang Mai take?",
+    a: "The labour office review takes 5 to 10 working days once your company documents are ready. We prepare everything in advance so nothing sends you back to the queue.",
+  },
+  {
+    q: "Do I need a Thai company to get a work permit?",
+    a: "Usually yes — you need a sponsoring employer. We can register your Thai company and sponsor the work permit in one package.",
+  },
+  {
+    q: "Can foreigners own 100% of a Thai business?",
+    a: "In specific cases — via BOI promotion, a US Amity Treaty company, or a Foreign Business License. We advise the best route for you.",
+  },
 ];
 
 export default function VisaWorkPermitPage() {
@@ -106,190 +175,220 @@ export default function VisaWorkPermitPage() {
       <JsonLd
         data={[
           serviceSchema({
-            name: 'รับทำ Work Permit และวีซ่าทำงานเชียงใหม่',
+            name: "Work Permit & Non-B Visa Services in Chiang Mai",
             description:
-              'บริการยื่นขอใบอนุญาตทำงาน (Work Permit) และวีซ่า Non-Immigrant B ให้พนักงานต่างชาติในเชียงใหม่ ครอบคลุมการเปลี่ยนแปลงข้อมูลนายจ้าง การแจ้งออก และให้คำปรึกษาวีซ่าระยะยาว LTR และ SMART Visa โดยทีมที่ดูแลบัญชีและงบการเงินของบริษัทนายจ้างได้ในทีมเดียว',
-            path: '/visa-work-permit',
+              "English-speaking accountants in Chiang Mai handling Thai work permits, Non-Immigrant B business visas, company registration, Thai tax and BOI advisory for foreigners living and working in Thailand.",
+            path: "/visa-work-permit",
           }),
           breadcrumbSchema([
-            { name: 'หน้าแรก', path: '/' },
-            { name: 'Visa & Work Permit', path: '/visa-work-permit' },
+            { name: "Home", path: "/" },
+            { name: "IC Visa / Work Permit", path: "/visa-work-permit" },
           ]),
-          faqSchema(faqs),
+          faqSchema(expatFaqs),
         ]}
       />
       <Header />
-      <main className="flex-1">
-        <PromoCarousel />
+      {/* หน้านี้เป็นภาษาอังกฤษล้วน แต่ <html> ของเว็บตั้ง lang="th" ไว้
+          จึงต้องประกาศ lang="en" ตรงนี้ ไม่งั้นทั้ง Google และโปรแกรมอ่านหน้าจอ
+          จะเข้าใจว่าเนื้อหาเป็นภาษาไทย */}
+      <main className={`flex-1 exp ${sora.variable} ${inter.variable}`} lang="en">
+        <style dangerouslySetInnerHTML={{ __html: css }} />
 
-        {/* ── HERO ── */}
-        <section className="relative bg-[#163674] py-24 md:py-32 text-primary-foreground overflow-hidden">
-          <div className="absolute inset-0 opacity-10"
-            style={{ backgroundImage: 'linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(90deg, #ffffff 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
-          <div className="absolute inset-0 opacity-15">
-            <Image
-              src="https://images.unsplash.com/photo-1544027993-37dbfe43562a?auto=format&fit=crop&q=80&w=2000"
-              fill
-              className="object-cover"
-              alt="Thailand Visa documents"
-            />
-          </div>
-          <div className="container mx-auto px-6 relative z-10 max-w-4xl" data-aos="fade-up">
-            <nav className="text-sm mb-6 opacity-70">
-              <Link href="/" className="hover:opacity-100 transition-opacity">หน้าแรก</Link>
-              <span className="mx-2">/</span>
-              <span>Visa & Work Permit</span>
+        <section className="hero">
+          <div className="w">
+            <nav className="crumb" aria-label="Breadcrumb">
+              <Link href="/">Home</Link>
+              <span aria-hidden="true">/</span>
+              <span>IC Visa / Work Permit</span>
             </nav>
-            <p className="text-xs font-bold tracking-[0.3em] uppercase mb-4 opacity-70">Visa &amp; Work Permit</p>
-            {/* H1 ต้องเป็นภาษาไทยและมีคำว่า "เชียงใหม่" เพราะหน้านี้เล็งคำค้นฝั่งนายจ้าง
-                ซึ่งค้นเป็นภาษาไทย ของเดิมเป็น "Visa & Work Permit Chiang Mai" ล้วน
-                ซึ่งไปทับกับหน้า /expat-services ที่เป็นภาษาอังกฤษอยู่แล้ว
-                คำว่า Work Permit คงไว้เพราะคนไทยพิมพ์ทับศัพท์กันจริง */}
-            <h1 className="text-4xl md:text-6xl font-black leading-tight mb-6">
-              รับทำ Work Permit เชียงใหม่<br />และวีซ่าทำงานต่างชาติ
-            </h1>
-            <p className="text-lg md:text-xl opacity-80 max-w-2xl leading-relaxed mb-8">
-              ช่วยให้การพำนักและทำงานในประเทศไทยเป็นเรื่องง่าย เราดูแลทุกขั้นตอนอย่างมืออาชีพ เพื่อให้คุณโฟกัสกับธุรกิจและชีวิตในเชียงใหม่ได้อย่างเต็มที่
-            </p>
-            <div className="flex flex-wrap gap-3">
-              {['English-speaking Team', 'ความถูกต้อง 100%', 'ครบทุกประเภทวีซ่า', 'ปรึกษาฟรีก่อนตัดสินใจ'].map((item) => (
-                <div key={item} className="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full text-sm">
-                  <CheckCircle className="h-4 w-4 text-green-300 flex-shrink-0" />
-                  <span>{item}</span>
-                </div>
-              ))}
+            <span className="kb"><span className="dot" />A sub-brand of IC Accounting &amp; Service · Chiang Mai, Thailand</span>
+            <h1>Work permit and visa services in <span className="g">Chiang Mai</span>.</h1>
+            <p className="lead">Non-B business visas, work permits and company registration &mdash; handled end to end by an English-speaking accounting team in Chiang Mai that also keeps your Thai books and tax filings in order.</p>
+            <p className="kws">For foreigners working, hiring or starting a business in Chiang Mai &mdash; whether you already have a Thai company or need one set up first.</p>
+            <div className="hbtns">
+              <a className="btn btn-g" href="https://line.me/R/ti/p/@374jshvh" target="_blank" rel="noopener noreferrer">Talk to us on LINE</a>
+              <a className="btn btn-ghost" href="#services">Explore services</a>
+            </div>
+            <div className="hstats">
+              <div className="hstat"><b>10+ yrs</b><span>Serving Chiang Mai</span></div>
+              <div className="hstat"><b>English</b><span>Speaking team</span></div>
+              <div className="hstat"><b>All-in-one</b><span>Visa + accounting + tax</span></div>
             </div>
           </div>
         </section>
 
-        {/* ── SERVICES ── */}
-        <section className="py-24" data-aos="fade-up">
-          <div className="container mx-auto px-6 max-w-6xl">
-            <div className="text-center mb-16">
-              <p className="text-primary text-xs font-bold tracking-[0.3em] uppercase mb-3">Our Services</p>
-              <h2 className="text-3xl md:text-4xl font-black mb-3">บริการ Visa & Work Permit</h2>
-              <p className="text-muted-foreground">ครอบคลุมทุกประเภทวีซ่าสำหรับชาวต่างชาติในเชียงใหม่</p>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {services.map((s, i) => (
-                <div key={i}
-                  data-aos="fade-up"
-                  data-aos-delay={i * 100}
-                  className="bg-secondary/40 rounded-2xl p-8 border border-border hover:border-primary/30 hover:shadow-md transition-all">
-                  <div className="flex items-start justify-between mb-6">
-                    <div className="w-12 h-12 bg-primary/10 text-primary rounded-xl flex items-center justify-center">
-                      {s.icon}
-                    </div>
-                    <span className="text-xs font-bold text-primary bg-primary/10 px-3 py-1 rounded-full">{s.tag}</span>
-                  </div>
-                  <h3 className="font-black text-xl mb-3">{s.title}</h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed">{s.desc}</p>
-                </div>
-              ))}
+        <section id="services" className="sec alt">
+          <div className="w center">
+            <p className="eyebrow">Our Services</p>
+            <h2 className="title">Everything a foreigner needs in Chiang Mai</h2>
+            <p className="sublead">From your first Thai visa to a fully compliant company — work permit, business visa (Non-B), company registration and tax, all in Chiang Mai.</p>
+            <div className="grid">
+              <div className="card"><div className="no">01</div><div className="ic"><svg viewBox="0 0 24 24" fill="none" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 4v5"/></svg></div><h3>Thai Visa</h3><p>Non-B, tourist-to-work conversion, retirement, LTR and SMART visa — applications and renewals.</p><span className="kw">Non-B · Retirement · LTR · SMART</span></div>
+              <div className="card"><div className="no">02</div><div className="ic"><svg viewBox="0 0 24 24" fill="none" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M20 7h-4V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v3H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/></svg></div><h3>Work Permit</h3><p>New permits, renewals, employer changes and 90-day reporting handled end to end.</p><span className="kw">New · Renewal · 90-day reports</span></div>
+              <div className="card"><div className="no">03</div><div className="ic"><svg viewBox="0 0 24 24" fill="none" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6"/></svg></div><h3>Company Registration</h3><p>Register a Thai Limited Company, VAT, social security and shareholder structuring for foreigners.</p><span className="kw">Thai Limited · VAT · Social security</span></div>
+              <div className="card"><div className="no">04</div><div className="ic"><svg viewBox="0 0 24 24" fill="none" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div><h3>Thai Tax</h3><p>Personal and corporate tax filing, bookkeeping and monthly compliance for foreign-owned businesses.</p><span className="kw">Bookkeeping · Monthly filing · Year-end</span></div>
+              <div className="card"><div className="no">05</div><div className="ic"><svg viewBox="0 0 24 24" fill="none" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2l3 6 6 .9-4.5 4.3 1 6.1L12 17l-5.5 2.3 1-6.1L3 8.9 9 8z"/></svg></div><h3>BOI</h3><p>Board of Investment promotion — eligibility, application and the visa and work-permit privileges it unlocks.</p><span className="kw">Eligibility · Application · Visa privileges</span></div>
+              <div className="card"><div className="no">06</div><div className="ic"><svg viewBox="0 0 24 24" fill="none" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20 15 15 0 0 1 0-20z"/></svg></div><h3>Foreign Business</h3><p>Foreign Business License, US Amity Treaty, and structures for majority foreign ownership.</p><span className="kw">FBL · US Amity Treaty · Ownership</span></div>
+              <div className="card"><div className="no">07</div><div className="ic"><svg viewBox="0 0 24 24" fill="none" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg></div><h3>Living in Chiang Mai</h3><p>Practical settling-in help — bank accounts, driving licence, TM.30 and everyday admin.</p><span className="kw">Bank account · Driving licence · TM.30</span></div>
             </div>
           </div>
         </section>
 
-        {/* ── WHY US ── */}
-        <section className="py-24 bg-secondary/40" data-aos="fade-up">
-          <div className="container mx-auto px-6 max-w-6xl">
-            <div className="grid md:grid-cols-2 gap-16 items-center">
-              <div className="space-y-6">
+        <section className="sec">
+          <div className="w">
+            <div className="why">
+              <div className="panel">
+                <p className="eyebrow" style={{ color: "#22d3ee" }}>Why work with IC</p>
+                <h2>More than a visa agent — your local partner.</h2>
+                <p>Most agencies stop at the paperwork. We run your accounting and tax too, so every visa renewal, work permit and audit lines up perfectly, year after year.</p>
+              </div>
+              <div className="whys">
+                <div className="wrow"><div className="n f">1</div><div><h3>We speak your language</h3><p>A fluent English-speaking team liaises with Thai officials for you — no misunderstandings.</p></div></div>
+                <div className="wrow"><div className="n f">2</div><div><h3>Visa + accounting in one</h3><p>Your permit depends on company financials. We handle both, so renewals stay smooth.</p></div></div>
+                <div className="wrow"><div className="n f">3</div><div><h3>Chiang Mai experts</h3><p>First-hand knowledge of the local immigration and labour offices — faster, predictable results.</p></div></div>
+                <div className="wrow"><div className="n f">4</div><div><h3>100% compliant</h3><p>Documents checked in detail to minimise rejections and keep you fully within Thai law.</p></div></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="sec">
+          <div className="w center">
+            <p className="eyebrow">The process</p>
+            <h2 className="title">How a Chiang Mai work permit actually works</h2>
+            <p className="sublead">Five steps, in order. We take over from step three.</p>
+            <div className="steps">
+              <div className="step">
+                <span className="sn">1</span>
                 <div>
-                  <p className="text-primary text-xs font-bold tracking-[0.3em] uppercase mb-3">Why Choose IC</p>
-                  <h2 className="text-3xl md:text-4xl font-black mb-4">ทำไมต้องเลือกใช้บริการกับเรา?</h2>
-                </div>
-                <div className="space-y-4">
-                  {whyUs.map((item, i) => (
-                    <div key={item.num} data-aos="fade-up" data-aos-delay={i * 100} className="flex gap-4 bg-background rounded-2xl p-5 border border-border hover:border-primary/30 transition-colors">
-                      <div className="flex-shrink-0 w-12 h-12 bg-primary text-primary-foreground rounded-xl flex items-center justify-center font-black text-sm">
-                        {item.num}
-                      </div>
-                      <div>
-                        <h4 className="font-black text-base mb-1">{item.title}</h4>
-                        <p className="text-muted-foreground text-sm leading-relaxed">{item.desc}</p>
-                      </div>
-                    </div>
-                  ))}
+                  <h3>Get a Non-B visa</h3>
+                  <p>Apply for a Non-Immigrant B business visa at a Thai embassy in your country, or convert from a tourist or visa-exempt entry inside Thailand.</p>
                 </div>
               </div>
+              <div className="step">
+                <span className="sn">2</span>
+                <div>
+                  <h3>Enter Thailand on the Non-B</h3>
+                  <p>The Non-B lets you stay for business. On its own it does not give you the right to work &mdash; that comes next.</p>
+                </div>
+              </div>
+              <div className="step">
+                <span className="sn">3</span>
+                <div>
+                  <h3>File at the Chiang Mai labour office</h3>
+                  <p>We submit your application and company documents to the Chiang Mai Provincial Employment Office on your behalf.</p>
+                </div>
+              </div>
+              <div className="step">
+                <span className="sn">4</span>
+                <div>
+                  <h3>Wait for the review</h3>
+                  <p>The labour office reviews your file.</p>
+                  <span className="when">5&ndash;10 working days</span>
+                </div>
+              </div>
+              <div className="step">
+                <span className="sn">5</span>
+                <div>
+                  <h3>Collect your work permit</h3>
+                  <p>Valid for one year and renewable. We handle the renewal each year alongside your company&rsquo;s accounts.</p>
+                  <span className="when">Valid 1 year</span>
+                </div>
+              </div>
+            </div>
 
-              <div className="bg-background rounded-3xl p-8 border border-border shadow-sm" data-aos="fade-up">
-                <p className="text-primary text-xs font-bold tracking-[0.3em] uppercase mb-4">Free Consultation</p>
-                <h3 className="text-2xl font-black mb-3">ปรึกษาเรื่องวีซ่าฟรีวันนี้</h3>
-                <p className="text-muted-foreground mb-8 leading-relaxed">
-                  ไม่แน่ใจว่าต้องใช้วีซ่าประเภทไหน? ทีมงาน IC พร้อมให้คำแนะนำที่ถูกต้องและตรงกับสถานการณ์ของคุณ
-                </p>
-                <div className="space-y-3">
-                  <Link href="https://line.me/R/ti/p/@374jshvh" target="_blank"
-                    className="flex items-center justify-center gap-2 w-full bg-primary text-primary-foreground font-bold py-3 rounded-2xl hover:opacity-90 transition-all">
-                    <MessageSquare className="h-4 w-4" /> ติดต่อผ่าน Line
-                  </Link>
-                  <Link href="/quote"
-                    className="flex items-center justify-center gap-2 w-full border-2 border-primary text-primary font-bold py-3 rounded-2xl hover:bg-primary hover:text-primary-foreground transition-all">
-                    นัดหมายปรึกษาฟรี <ArrowRight className="h-4 w-4" />
-                  </Link>
-                </div>
-              </div>
+            <div className="facts">
+              <div className="factbox"><b>5&ndash;10</b><span>working days for the labour office to review</span></div>
+              <div className="factbox"><b>4 : 1</b><span>Thai employees required per foreign work permit</span></div>
+              <div className="factbox"><b>1 year</b><span>validity, renewable annually</span></div>
+              <div className="factbox"><b>750&ndash;3,000&#3647;</b><span>government fee by duration &mdash; the official fee, not our service charge</span></div>
             </div>
           </div>
         </section>
 
-        {/* ── FAQ ── */}
-        <ServiceFaq
-          faqs={faqs}
-          title="คำถามที่พบบ่อยเรื่อง Work Permit และวีซ่าทำงาน"
-          intro="รวมคำถามที่นายจ้างในเชียงใหม่ถามเราบ่อยที่สุดก่อนจ้างพนักงานต่างชาติ"
-        />
-
-        {/* ── สะพานไปหน้าภาษาอังกฤษ ── */}
-        <section className="pb-4" data-aos="fade-up">
-          <div className="container mx-auto px-6 max-w-4xl">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 rounded-2xl border border-border bg-secondary/40 px-6 py-5">
-              <p className="text-sm md:text-base text-muted-foreground" lang="en">
-                Are you the foreign employee? Read this page in English.
-              </p>
-              <Link
-                href="/expat-services"
-                hrefLang="en"
-                className="inline-flex items-center gap-2 shrink-0 font-bold text-primary hover:underline"
-              >
-                <span lang="en">IC Expat Services</span>
-                <ArrowRight className="h-4 w-4" />
+        <section className="sec alt">
+          <div className="w center">
+            <p className="eyebrow">What to prepare</p>
+            <h2 className="title">Your work permit document checklist</h2>
+            <p className="sublead">Half of this list comes out of your employer&rsquo;s accounts &mdash; which is exactly the half we already look after.</p>
+            <div className="docs">
+              <div className="doccol">
+                <h3>From you</h3>
+                <p style={{ fontSize: 13.5, color: '#8ea6d4', marginBottom: 14 }}>The foreign applicant</p>
+                <ul>
+                  <li><svg viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round"><path d="m4 12 5.5 5.5L20 7"/></svg><span>Passport, original plus a copy of every page</span></li>
+                  <li><svg viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round"><path d="m4 12 5.5 5.5L20 7"/></svg><span>A valid Non-Immigrant B visa</span></li>
+                  <li><svg viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round"><path d="m4 12 5.5 5.5L20 7"/></svg><span>Three 3&times;4 cm photos on a white background</span></li>
+                  <li><svg viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round"><path d="m4 12 5.5 5.5L20 7"/></svg><span>Education and employment history, in Thai or English</span></li>
+                  <li><svg viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round"><path d="m4 12 5.5 5.5L20 7"/></svg><span>Medical certificate from a Thai hospital, issued within the last 6 months</span></li>
+                </ul>
+              </div>
+              <div className="doccol">
+                <h3>From your employer</h3>
+                <p style={{ fontSize: 13.5, color: '#8ea6d4', marginBottom: 14 }}>The sponsoring Thai company</p>
+                <ul>
+                  <li><svg viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round"><path d="m4 12 5.5 5.5L20 7"/></svg><span>Company affidavit from the DBD, issued within the last 6 months</span></li>
+                  <li><svg viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round"><path d="m4 12 5.5 5.5L20 7"/></svg><span>Latest shareholder list (Bor.Or.Jor. 5)</span></li>
+                  <li><svg viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round"><path d="m4 12 5.5 5.5L20 7"/></svg><span>VAT registration (Por.Por. 01)</span></li>
+                  <li><svg viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round"><path d="m4 12 5.5 5.5L20 7"/></svg><span>Employment letter stating position, salary and contract length</span></li>
+                  <li><svg viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round"><path d="m4 12 5.5 5.5L20 7"/></svg><span>List of Thai employees on the payroll</span></li>
+                </ul>
+              </div>
+            </div>
+            <p className="center" style={{ marginTop: 30, fontSize: 14.5, color: '#5b6b86' }}>
+              Want every detail? Read our full guide{' '}
+              <Link href="/blog/work-permit-chiangmai" hrefLang="th" style={{ color: '#2563eb', fontWeight: 600 }}>
+                Work Permit เชียงใหม่ (in Thai)
               </Link>
+            </p>
+          </div>
+        </section>
+
+        <section className="sec">
+          <div className="w center">
+            <p className="eyebrow">Who we work with</p>
+            <h2 className="title">Is this you?</h2>
+            <p className="sublead">Every situation below is one we handle week in, week out in Chiang Mai.</p>
+            <div className="whofor">
+              <div className="whorow"><span className="tick"><svg viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round"><path d="m4 12 5.5 5.5L20 7"/></svg></span><div><h3>Employees hired by a Thai company</h3><p>You have a job offer in Chiang Mai and need a Non-B visa plus a work permit before you can legally start.</p></div></div>
+              <div className="whorow"><span className="tick"><svg viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round"><path d="m4 12 5.5 5.5L20 7"/></svg></span><div><h3>Owners setting up a Thai company</h3><p>You are registering a Thai Limited Company and need the structure, VAT and social security done right from day one.</p></div></div>
+              <div className="whorow"><span className="tick"><svg viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round"><path d="m4 12 5.5 5.5L20 7"/></svg></span><div><h3>Teachers and school staff</h3><p>Schools and language centres in Chiang Mai sponsor your permit — the paperwork still has to match the school's filings.</p></div></div>
+              <div className="whorow"><span className="tick"><svg viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round"><path d="m4 12 5.5 5.5L20 7"/></svg></span><div><h3>Retirees and long-stay residents</h3><p>Retirement, LTR and SMART visa applications and renewals, kept on schedule year after year.</p></div></div>
+              <div className="whorow"><span className="tick"><svg viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round"><path d="m4 12 5.5 5.5L20 7"/></svg></span><div><h3>Foreign-owned businesses</h3><p>Bookkeeping, monthly filings and year-end accounts that keep your permit renewals straightforward.</p></div></div>
+              <div className="whorow"><span className="tick"><svg viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round"><path d="m4 12 5.5 5.5L20 7"/></svg></span><div><h3>People who just arrived</h3><p>Bank account, driving licence and TM.30 — the everyday admin nobody explains to you.</p></div></div>
             </div>
           </div>
         </section>
 
-        {/* ── บทความที่เกี่ยวข้อง ── */}
-        <RelatedArticles
-          slugs={['work-permit-chiangmai', 'company-registration-chiangmai', 'corporate-tax-chiangmai-guide']}
-        />
-
-        {/* ── CTA ── */}
-        <section className="py-16" data-aos="fade-up">
-          <div className="container mx-auto px-6 max-w-4xl">
-            <div className="bg-primary text-primary-foreground rounded-3xl p-10 relative overflow-hidden text-center">
-              <div className="absolute inset-0 opacity-5"
-                style={{ backgroundImage: 'linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(90deg, #ffffff 1px, transparent 1px)', backgroundSize: '30px 30px' }} />
-              <div className="relative z-10">
-                <h3 className="text-2xl md:text-3xl font-black mb-3">พร้อมเริ่มขั้นตอน Work Permit แล้วหรือยัง?</h3>
-                <p className="opacity-80 mb-8">เราพร้อมดูแลทุกขั้นตอนให้คุณ ตั้งแต่เอกสารจนถึงการยื่นคำร้อง</p>
-                <div className="flex flex-wrap gap-4 justify-center">
-                  <Link href="/quote"
-                    className="inline-flex items-center gap-2 bg-white text-primary font-bold px-8 py-3 rounded-full hover:bg-white/90 transition-all">
-                    นัดหมายปรึกษาฟรี <ArrowRight className="h-4 w-4" />
-                  </Link>
-                  <Link href="https://line.me/R/ti/p/@374jshvh" target="_blank"
-                    className="inline-flex items-center gap-2 border border-white/40 text-white font-bold px-8 py-3 rounded-full hover:border-white transition-all">
-                    Contact via Line
-                  </Link>
-                </div>
-              </div>
+        <section className="sec alt">
+          <div className="w">
+            <p className="eyebrow center">FAQ</p>
+            <h2 className="title center">Common questions from expats</h2>
+            <div className="faq">
+              <div className="qa"><h4>Can I convert my tourist visa to a work visa in Chiang Mai?</h4><p>Yes — in most cases we convert a tourist or visa-exempt entry to a Non-B business visa inside Thailand, then process your work permit. We handle the paperwork and appointments.</p></div>
+              <div className="qa"><h4>How long does a work permit in Chiang Mai take?</h4><p>The labour office review takes 5 to 10 working days once your company documents are ready. We prepare everything in advance so nothing sends you back to the queue.</p></div>
+              <div className="qa"><h4>Do I need a Thai company to get a work permit?</h4><p>Usually yes — you need a sponsoring employer. We can register your Thai company and sponsor the work permit in one package.</p></div>
+              <div className="qa"><h4>Can foreigners own 100% of a Thai business?</h4><p>In specific cases — via BOI promotion, a US Amity Treaty company, or a Foreign Business License. We advise the best route for you.</p></div>
             </div>
+            <p className="center" style={{ marginTop: 28, fontSize: 14.5, color: '#5b6b86' }}>
+              Hiring a foreigner for your Thai company?{' '}
+              <Link href="/visa-work-permit" hrefLang="th" lang="th" style={{ color: '#2563eb', fontWeight: 600 }}>
+                อ่านหน้าสำหรับนายจ้าง (ภาษาไทย)
+              </Link>
+            </p>
           </div>
         </section>
 
+        <div className="bandwrap">
+          <div className="band">
+            <h2>Ready to sort out your Chiang Mai work permit?</h2>
+            <p>Free, no-obligation consultation in English. Tell us your situation and we will map the right visa and business path for you.</p>
+            <div className="hbtns">
+              <a className="btn btn-w" href="https://line.me/R/ti/p/@374jshvh" target="_blank" rel="noopener noreferrer">Chat with us on LINE</a>
+              <a className="btn btn-t" href="/quote">Book a free consultation</a>
+            </div>
+          </div>
+        </div>
       </main>
       <Footer />
     </div>

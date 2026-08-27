@@ -490,7 +490,7 @@ const blogPosts = [
                                                                                                                                                                 - ให้คำปรึกษาเรื่อง BOI Visa และ Thailand Elite Visa
 
                                                                                                                                                                 ติดต่อเราเพื่อขอคำปรึกษาฟรีเรื่อง Work Permit เชียงใหม่ได้ตลอดเวลาทำการ`,
-                                                                                                                                                                     category: 'Expat & Visa',
+                                                                                                                                                                     category: 'Visa & Work Permit',
                                                                                                                                                                         date: '20 เม.ย. 2568',
                                                                                                                                                                         dateISO: '2025-04-20',
                                                                                                                                                                         updated: '25 ส.ค. 2569',
@@ -517,11 +517,11 @@ const SERVICE_CTA: Record<
   { href: string; eyebrow: string; heading: string; body: string; label: string }
 > = {
   'work-permit-chiangmai': {
-    href: '/expat-services',
+    href: '/visa-work-permit',
     eyebrow: 'บริการที่เกี่ยวข้อง',
     heading: 'ให้ IC ดูแล Work Permit และวีซ่าให้ทั้งกระบวนการ',
     body: 'เราเข้ามารับช่วงตั้งแต่ขั้นตอนที่ 3 คือยื่นเอกสารที่สำนักงานจัดหางานจังหวัดเชียงใหม่ ตรวจเอกสารก่อนยื่น ติดตามสถานะ และต่ออายุให้ทุกปี — เอกสารครึ่งหนึ่งในรายการข้างบนมาจากบัญชีบริษัท ซึ่งเป็นส่วนที่เราดูแลอยู่แล้ว',
-    label: 'ดูบริการ Work Permit และวีซ่า',
+    label: 'ดูบริการ IC Visa / Work Permit',
   },
   'company-registration-chiangmai': {
     href: '/company-registration',

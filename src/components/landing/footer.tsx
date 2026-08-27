@@ -24,13 +24,12 @@ const footerServiceLinks = [
   { href: "/accounting-services", label: "รับทำบัญชีและภาษี" },
   { href: "/company-registration", label: "จดทะเบียนบริษัท" },
   { href: "/audit-services", label: "ตรวจสอบบัญชี" },
-  { href: "/visa-work-permit", label: "Visa & Work Permit" },
+  { href: "/visa-work-permit", label: "IC Visa / Work Permit" },
   { href: "/organization-system", label: "วางระบบองค์กร" },
   { href: "/media-content", label: "Exclusive Media Production" },
 ];
 
 const footerCompanyLinks = [
-  { href: "/expat-services", label: "IC Expat Services (English)" },
   { href: "/about", label: "เกี่ยวกับเรา" },
   { href: "/blog", label: "บทความน่ารู้" },
   { href: "/quote", label: "นัดหมายปรึกษา" },

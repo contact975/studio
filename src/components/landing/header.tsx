@@ -33,7 +33,7 @@ const serviceSubLinks: SubLink[] = [
   { href: "/company-registration", label: "บริการจดทะเบียนบริษัท", icon: FileText },
   { href: "/accounting-services", label: "บริการทำบัญชี", icon: Calculator },
   { href: "/audit-services", label: "บริการตรวจสอบบัญชี", icon: FileCheck },
-  { href: "/visa-work-permit", label: "บริการทำ Visa & Work Permit", icon: Briefcase },
+  { href: "/visa-work-permit", label: "IC Visa / Work Permit", icon: Briefcase },
   { href: "/organization-system", label: "บริการวางระบบองค์กร", icon: Workflow },
 ];
 
@@ -129,7 +129,7 @@ export function Header() {
             </nav>
             <div className="flex items-center gap-2 ml-auto">
               <Button asChild className="hidden md:flex rounded-full bg-gradient-to-r from-blue-600 to-cyan-400 text-white hover:opacity-90 transition-opacity">
-                <Link href="/expat-services">IC Expat Services</Link>
+                <Link href="/visa-work-permit">IC Visa / Work Permit</Link>
               </Button>
               <Button asChild className="hidden md:flex rounded-full bg-gradient-to-r from-red-500 to-orange-400 text-white hover:opacity-90 transition-opacity">
                 <Link href="/media-content">บริการ Exclusive Media</Link>
@@ -198,7 +198,7 @@ export function Header() {
                           )
                         )}
                         <Button asChild className="rounded-full mt-4 bg-gradient-to-r from-blue-600 to-cyan-400 text-white hover:opacity-90 transition-opacity">
-                          <Link href="/expat-services" onClick={() => setIsSheetOpen(false)}>IC Expat Services</Link>
+                          <Link href="/visa-work-permit" onClick={() => setIsSheetOpen(false)}>IC Visa / Work Permit</Link>
                         </Button>
                         <Button asChild className="rounded-full mt-4 bg-gradient-to-r from-red-500 to-orange-400 text-white hover:opacity-90 transition-opacity">
                           <Link href="/media-content" onClick={() => setIsSheetOpen(false)}>บริการ Exclusive Media</Link>

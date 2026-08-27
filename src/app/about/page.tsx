@@ -67,7 +67,7 @@ const values = [
 const services = [
   { label: 'Accounting & Tax', desc: 'รับทำบัญชีรายเดือน ปิดงบประจำปี และวางแผนภาษี' },
   { label: 'Business Registration', desc: 'บริการจดทะเบียนบริษัทและห้างหุ้นส่วน' },
-  { label: 'Expat Services', desc: 'ดูแลเรื่อง Visa และ Work Permit สำหรับชาวต่างชาติ' },
+  { label: 'IC Visa / Work Permit', desc: 'ดูแลเรื่อง Visa และ Work Permit สำหรับชาวต่างชาติ' },
   { label: 'Organization System', desc: 'วางระบบหลังบ้าน สอนใช้งานโปรแกรมบัญชี' },
   { label: 'Creative Media', desc: 'รับผลิตวิดีโอและกราฟิกเพื่อการตลาดออนไลน์' },
 ];

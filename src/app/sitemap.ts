@@ -30,8 +30,9 @@ const staticRoutes: Array<{
   { path: '/accounting-services', priority: 0.9, changeFrequency: 'monthly' },
   { path: '/company-registration', priority: 0.9, changeFrequency: 'monthly' },
   { path: '/audit-services', priority: 0.9, changeFrequency: 'monthly' },
-  { path: '/visa-work-permit', priority: 0.8, changeFrequency: 'monthly' },
-  { path: '/expat-services', priority: 0.8, changeFrequency: 'monthly' },
+  // ยุบ /expat-services เข้ามาที่นี่แล้ว จึงเหลือ URL เดียวและได้ priority เต็ม
+  // URL ที่ redirect ต้องไม่อยู่ใน sitemap — เท่ากับบอก Google ให้ไปเก็บของที่ย้ายไปแล้ว
+  { path: '/visa-work-permit', priority: 0.9, changeFrequency: 'monthly' },
   { path: '/organization-system', priority: 0.7, changeFrequency: 'monthly' },
   { path: '/media-content', priority: 0.7, changeFrequency: 'monthly' },
 
