@@ -419,12 +419,14 @@ export default function MediaClient() {
           </div>
         </section>
 
+        <ServiceFaq
+          faqs={mediaFaqs}
+          tone="dark"
+          title="คำถามที่พบบ่อยเรื่องงานมีเดีย"
+          intro="ราคาและขอบเขตงานที่ลูกค้าถามบ่อยที่สุดก่อนเริ่มโปรเจกต์"
+        />
+
       </main>
-      <ServiceFaq
-        faqs={mediaFaqs}
-        title="คำถามที่พบบ่อยเรื่องงานมีเดีย"
-        intro="ราคาและขอบเขตงานที่ลูกค้าถามบ่อยที่สุดก่อนเริ่มโปรเจกต์"
-      />
       <Footer />
     </div>
   );
