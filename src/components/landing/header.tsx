@@ -78,7 +78,7 @@ export function Header() {
             <Link href="/" className="mr-6 flex items-center gap-2" prefetch={false}>
               <Image
                 src="https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Logo%20ic.png?alt=media"
-                alt="IC Accounting & Service Logo"
+                alt="IC Accounting & Service สำนักงานบัญชีเชียงใหม่"
                 width={180}
                 height={45}
                 className="object-contain h-10 w-auto"
@@ -154,7 +154,7 @@ export function Header() {
                         <div className="flex items-center gap-2 mb-4">
                           <Image
                             src="https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Logo%20ic.png?alt=media"
-                            alt="IC Accounting & Service Logo"
+                            alt="IC Accounting & Service สำนักงานบัญชีเชียงใหม่"
                             width={150}
                             height={40}
                             className="object-contain"

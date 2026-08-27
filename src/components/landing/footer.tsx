@@ -6,6 +6,36 @@ import { Facebook, MessageCircle, MapPin, Phone, Mail } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import * as React from "react";
 
+/**
+ * ลิงก์ในฟุตเตอร์ — ส่วนที่หายไปทั้งเว็บ
+ *
+ * เมนู "บริการของเรา" บน header สร้างลิงก์ต่อเมื่อผู้ใช้เอาเมาส์ไปชี้
+ * ({isServicesOpen && ...}) แปลว่าใน HTML ที่ส่งให้ Google
+ * ไม่มีลิงก์ไปหน้าบริการสักหน้าเดียว ทั้งเว็บมีลิงก์ภายในแค่ 3 ลิงก์
+ *
+ * Google ใช้โครงลิงก์ภายในเป็นตัวหลักในการเลือก sitelink และประเมินว่า
+ * หน้าไหนสำคัญ เมื่อไม่มีลิงก์ให้เดินตาม จึงต้องเดาเอง — และไปหยิบ
+ * alt ของโลโก้มาเป็นชื่อลิงก์แทน
+ *
+ * ฟุตเตอร์อยู่ทุกหน้าอยู่แล้ว การใส่ลิงก์ตรงนี้จึงทำให้ทุกหน้าบริการ
+ * ได้ลิงก์จากทุกหน้าในเว็บทันที โดยไม่ต้องแตะโครงสร้าง header เลย
+ */
+const footerServiceLinks = [
+  { href: "/accounting-services", label: "รับทำบัญชีและภาษี" },
+  { href: "/company-registration", label: "จดทะเบียนบริษัท" },
+  { href: "/audit-services", label: "ตรวจสอบบัญชี" },
+  { href: "/visa-work-permit", label: "Visa & Work Permit" },
+  { href: "/organization-system", label: "วางระบบองค์กร" },
+  { href: "/media-content", label: "Exclusive Media Production" },
+];
+
+const footerCompanyLinks = [
+  { href: "/expat-services", label: "IC Expat Services (English)" },
+  { href: "/about", label: "เกี่ยวกับเรา" },
+  { href: "/blog", label: "บทความน่ารู้" },
+  { href: "/quote", label: "นัดหมายปรึกษา" },
+];
+
 export function Footer() {
   const [currentYear, setCurrentYear] = React.useState<number | string>("");
 
@@ -16,13 +46,13 @@ export function Footer() {
   return (
     <footer id="contact" className="bg-primary text-primary-foreground py-8 md:py-10">
       <div className="container mx-auto px-4 md:px-6 max-w-7xl">
-        <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
-          
-          <div className="space-y-5">
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-12">
+
+          <div className="space-y-5 lg:col-span-4">
             <Link href="/" className="flex items-center gap-2" prefetch={false}>
               <Image 
                 src="https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Logo%20ic.png?alt=media" 
-                alt="IC Accounting & Service Logo" 
+                alt="IC Accounting & Service สำนักงานบัญชีเชียงใหม่" 
                 width={200} 
                 height={50}
                 className="object-contain brightness-0 invert"
@@ -60,7 +90,40 @@ export function Footer() {
             </div>
           </div>
 
-          <div className="relative w-full h-full min-h-[180px] md:min-h-full rounded-xl overflow-hidden shadow-lg border-2 border-primary-foreground/20">
+          <nav aria-label="ลิงก์บริการทั้งหมด" className="lg:col-span-4 grid grid-cols-2 gap-6 text-sm">
+            <div>
+              <h3 className="font-headline text-lg font-bold mb-3 text-primary-foreground">บริการของเรา</h3>
+              <ul className="space-y-2">
+                {footerServiceLinks.map((link) => (
+                  <li key={link.href}>
+                    <Link
+                      href={link.href}
+                      className="text-primary-foreground/80 hover:text-primary-foreground hover:underline transition-colors"
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h3 className="font-headline text-lg font-bold mb-3 text-primary-foreground">เกี่ยวกับ IC</h3>
+              <ul className="space-y-2">
+                {footerCompanyLinks.map((link) => (
+                  <li key={link.href}>
+                    <Link
+                      href={link.href}
+                      className="text-primary-foreground/80 hover:text-primary-foreground hover:underline transition-colors"
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </nav>
+
+          <div className="relative w-full h-full min-h-[180px] md:min-h-[240px] lg:min-h-full lg:col-span-4 rounded-xl overflow-hidden shadow-lg border-2 border-primary-foreground/20">
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3777.300649716109!2d99.0672194!3d18.7822907!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30da2518e755b42f%3A0x99c60fd368c56643!2sIC%20Accounting%20%26%20Service!5e0!3m2!1sen!2sth"
               width="100%"
