@@ -276,7 +276,7 @@ export default function AboutPage() {
                   className="inline-flex items-center gap-2 bg-white text-primary font-bold px-8 py-3 rounded-full hover:bg-white/90 transition-all">
                   นัดหมายปรึกษาฟรี <ArrowRight className="h-4 w-4" />
                 </Link>
-                <Link href="https://line.me/R/ti/p/@374jshvh" target="_blank"
+                <Link href="https://line.me/R/ti/p/@icacc" target="_blank"
                   className="inline-flex items-center gap-2 border border-white/40 text-white font-bold px-8 py-3 rounded-full hover:border-white transition-all">
                   ติดต่อผ่าน Line
                 </Link>

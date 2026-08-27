@@ -5,6 +5,34 @@ import Link from 'next/link';
 import { PromoCarousel } from '@/components/landing/promo-carousel';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { CheckCircle2, ShieldCheck, BadgeCheck, Zap, ArrowRight, MessageSquare } from 'lucide-react';
+import { JsonLd } from '@/components/seo/json-ld';
+import { ServiceFaq } from '@/components/seo/service-faq';
+import { RelatedArticles } from '@/components/seo/related-articles';
+import { breadcrumbSchema, faqSchema, serviceSchema, type Faq } from '@/lib/seo';
+
+/**
+ * คำถามชุดนี้ต้องแสดงบนหน้าเว็บจริงผ่าน <ServiceFaq /> ด้านล่าง
+ * Google กำหนดว่าเนื้อหา FAQ ที่ประกาศใน schema ต้องมองเห็นได้บนหน้านั้น
+ * ทุกคำตอบอ้างอิงตัวเลขและบริการที่ประกาศอยู่บนหน้านี้อยู่แล้ว ไม่ได้แต่งเพิ่ม
+ */
+const faqs: Faq[] = [
+  {
+    q: 'ค่าตรวจสอบบัญชีประจำปีเริ่มต้นเท่าไหร่',
+    a: 'คิดตามฐานรายได้ของบริษัท งบเปล่าเริ่มต้น 15,000 บาท รายได้ไม่เกิน 1 ล้านบาท 16,500 บาท ไม่เกิน 5 ล้านบาท 22,000 บาท และไม่เกิน 20 ล้านบาท 30,000 บาท ดูตารางเต็มได้ในหน้านี้',
+  },
+  {
+    q: 'ราคาที่แจ้งไว้เป็นราคาสุดท้ายหรือไม่',
+    a: 'เป็นราคาเริ่มต้น อาจเปลี่ยนแปลงตามความซับซ้อนของรายการค้า ส่งไฟล์งบการเงินให้เจ้าหน้าที่ประเมินราคาที่แน่นอนก่อนตัดสินใจได้',
+  },
+  {
+    q: 'บริษัทที่ยังไม่มีรายได้ ต้องตรวจสอบงบการเงินไหม',
+    a: 'ต้องทำ นิติบุคคลที่จดทะเบียนแล้วต้องนำส่งงบการเงินที่ผ่านการตรวจสอบทุกปี แม้ปีนั้นจะไม่มีรายได้เลย กรณีนี้เรียกว่างบเปล่า ค่าบริการเริ่มต้น 15,000 บาท',
+  },
+  {
+    q: 'การตรวจสอบกรณีพิเศษ (Special Audit) คืออะไร',
+    a: 'คือการตรวจสอบตามวัตถุประสงค์เฉพาะด้าน เช่น การตรวจสอบทุจริต หรือการตรวจสอบตามเงื่อนไขของ BOI ซึ่งแยกจากการตรวจสอบงบการเงินประจำปีตามปกติ',
+  },
+];
 
 export const metadata: Metadata = {
   title: 'ปิดงบการเงินเชียงใหม่ ถูกต้อง ทันกำหนด | IC Accounting',
@@ -70,6 +98,27 @@ const pricingData = [
 export default function AuditServicesPage() {
   return (
     <div className="flex flex-col min-h-dvh bg-background text-foreground">
+      <JsonLd
+        data={[
+          serviceSchema({
+            name: 'บริการตรวจสอบบัญชีและปิดงบการเงิน เชียงใหม่',
+            description:
+              'ตรวจสอบและแสดงความเห็นต่องบการเงินตามมาตรฐานการรายงานทางการเงิน (TFRS) พร้อมจัดทำงบการเงินยื่นกรมพัฒนาธุรกิจการค้าและกรมสรรพากร รวมถึงการตรวจสอบกรณีพิเศษ เช่น ตรวจสอบทุจริตและตรวจสอบตามเงื่อนไข BOI',
+            path: '/audit-services',
+            offers: [
+              { name: 'ตรวจสอบงบการเงิน - งบเปล่า', price: '15000' },
+              { name: 'ตรวจสอบงบการเงิน - รายได้ไม่เกิน 1 ล้านบาท', price: '16500' },
+              { name: 'ตรวจสอบงบการเงิน - รายได้ไม่เกิน 5 ล้านบาท', price: '22000' },
+              { name: 'ตรวจสอบงบการเงิน - รายได้ไม่เกิน 20 ล้านบาท', price: '30000' },
+            ],
+          }),
+          breadcrumbSchema([
+            { name: 'หน้าแรก', path: '/' },
+            { name: 'บริการตรวจสอบบัญชี', path: '/audit-services' },
+          ]),
+          faqSchema(faqs),
+        ]}
+      />
       <Header />
       <main className="flex-1">
         <PromoCarousel />
@@ -114,7 +163,7 @@ export default function AuditServicesPage() {
                     เราไม่ได้เพียงแค่ตรวจสอบความถูกต้อง แต่เราช่วยค้นหาจุดอ่อนในระบบควบคุมภายใน เพื่อให้ผู้ประกอบการนำไปปรับปรุงธุรกิจได้จริง
                   </p>
                 </div>
-                <Link href="https://line.me/R/ti/p/@374jshvh" target="_blank"
+                <Link href="https://line.me/R/ti/p/@icacc" target="_blank"
                   className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-bold px-8 py-3 rounded-full hover:opacity-90 transition-all">
                   <MessageSquare className="h-4 w-4" /> ขอใบเสนอราคาตรวจสอบบัญชี
                 </Link>
@@ -172,7 +221,7 @@ export default function AuditServicesPage() {
                   * ราคาเริ่มต้น อาจเปลี่ยนแปลงตามความซับซ้อนของรายการค้า<br />
                   รบกวนส่งไฟล์งบการเงินให้เจ้าหน้าที่ประเมินราคาที่แน่นอนอีกครั้งค่ะ
                 </p>
-                <Link href="https://line.me/R/ti/p/@374jshvh" target="_blank"
+                <Link href="https://line.me/R/ti/p/@icacc" target="_blank"
                   className="inline-flex items-center gap-2 border-2 border-primary text-primary font-bold px-8 py-3 rounded-full hover:bg-primary hover:text-primary-foreground transition-all">
                   สอบถามราคาสำหรับธุรกิจของคุณ
                 </Link>
@@ -230,7 +279,7 @@ export default function AuditServicesPage() {
                     className="inline-flex items-center gap-2 bg-white text-primary font-bold px-8 py-3 rounded-full hover:bg-white/90 transition-all">
                     นัดหมายปรึกษาฟรี <ArrowRight className="h-4 w-4" />
                   </Link>
-                  <Link href="https://line.me/R/ti/p/@374jshvh" target="_blank"
+                  <Link href="https://line.me/R/ti/p/@icacc" target="_blank"
                     className="inline-flex items-center gap-2 border border-white/40 text-white font-bold px-8 py-3 rounded-full hover:border-white transition-all">
                     ติดต่อผ่าน Line
                   </Link>
@@ -240,6 +289,19 @@ export default function AuditServicesPage() {
           </div>
         </section>
 
+        <ServiceFaq
+          faqs={faqs}
+          title="คำถามที่พบบ่อยเรื่องตรวจสอบบัญชี"
+          intro="รวมคำถามที่เจ้าของธุรกิจถามบ่อยที่สุดก่อนส่งงบให้เราตรวจ"
+        />
+
+        <RelatedArticles
+          slugs={[
+            'corporate-tax-chiangmai-guide',
+            '5-common-accounting-mistakes-sme-chiangmai',
+            'accounting-fee-chiangmai',
+          ]}
+        />
       </main>
       <Footer />
     </div>

@@ -4,6 +4,33 @@ import { Footer } from '@/components/landing/footer';
 import Link from 'next/link';
 import { BarChart, ShieldCheck, Users, ArrowRight, MessageSquare, CheckCircle } from 'lucide-react';
 import { PromoCarousel } from '@/components/landing/promo-carousel';
+import { JsonLd } from '@/components/seo/json-ld';
+import { ServiceFaq } from '@/components/seo/service-faq';
+import { RelatedArticles } from '@/components/seo/related-articles';
+import { breadcrumbSchema, faqSchema, serviceSchema, type Faq } from '@/lib/seo';
+
+/**
+ * ทุกคำตอบสรุปจาก solutions / steps / benefits ที่แสดงอยู่บนหน้านี้แล้ว
+ * จึงผ่านเงื่อนไขของ Google ที่ว่าเนื้อหา FAQ ต้องมองเห็นได้จริงบนหน้า
+ */
+const faqs: Faq[] = [
+  {
+    q: 'การวางระบบองค์กรกับ IC มีกี่ขั้นตอน',
+    a: 'สี่ขั้นตอน เริ่มจาก Audit & Analysis สำรวจขั้นตอนการทำงานปัจจุบันและหาจุดที่ต้องปรับปรุง ต่อด้วย Design & Tools ออกแบบ workflow ใหม่และเลือกซอฟต์แวร์ที่เหมาะกับขนาดธุรกิจ จากนั้น Implement & Training ติดตั้งระบบจริงพร้อมอบรมทีมงาน และปิดท้ายด้วย Support & Optimize ที่ติดตามผลและปรับแต่งระบบต่อเนื่อง',
+  },
+  {
+    q: 'บริการนี้ครอบคลุมระบบอะไรบ้าง',
+    a: 'สามส่วนหลัก ได้แก่ ระบบบัญชีและภาษีบน Cloud ที่เชื่อมหน้าบ้านกับหลังบ้านเข้าด้วยกัน ระบบควบคุมภายในที่ออกแบบผังการอนุมัติและการเช็คสต็อกสินค้า และระบบงานบุคคลและเงินเดือนตั้งแต่การลงเวลาทำงานจนถึงการยื่นประกันสังคม',
+  },
+  {
+    q: 'ใช้โปรแกรมบัญชีตัวไหน',
+    a: 'วางรากฐานการบันทึกบัญชีผ่านระบบ Cloud (Clero) ซึ่งเชื่อมโยงข้อมูลหน้าบ้านและหลังบ้านเข้าด้วยกัน ทำให้เจ้าของธุรกิจดูข้อมูลการเงินได้แบบ real-time',
+  },
+  {
+    q: 'วางระบบแล้วธุรกิจได้อะไรที่จับต้องได้',
+    a: 'ลดเวลางานเอกสารที่ซ้ำซ้อน เข้าถึงข้อมูลการเงินแบบ real-time ลดความเสี่ยงจากความผิดพลาดของคน ได้รายงานทางการเงินที่แม่นยำและทันเวลา และได้ระบบที่ scale ตามการเติบโตของธุรกิจได้',
+  },
+];
 
 export const metadata: Metadata = {
   title: 'วางระบบบัญชีองค์กรเชียงใหม่ | IC Accounting',
@@ -56,6 +83,21 @@ const benefits = [
 export default function OrganizationSystemPage() {
   return (
     <div className="flex flex-col min-h-dvh bg-background text-foreground">
+      <JsonLd
+        data={[
+          serviceSchema({
+            name: 'บริการวางระบบบัญชีและระบบองค์กร เชียงใหม่',
+            description:
+              'วางระบบบัญชีและภาษีบน Cloud ระบบควบคุมภายใน และระบบงานบุคคลและเงินเดือน สำหรับธุรกิจในเชียงใหม่ ตั้งแต่สำรวจขั้นตอนงานปัจจุบัน ออกแบบ workflow ใหม่ ติดตั้งจริง อบรมทีมงาน ไปจนถึงติดตามผลระยะยาว',
+            path: '/organization-system',
+          }),
+          breadcrumbSchema([
+            { name: 'หน้าแรก', path: '/' },
+            { name: 'บริการวางระบบองค์กร', path: '/organization-system' },
+          ]),
+          faqSchema(faqs),
+        ]}
+      />
       <Header />
       <main className="flex-1">
         <PromoCarousel />
@@ -152,7 +194,7 @@ export default function OrganizationSystemPage() {
                     </div>
                   ))}
                 </div>
-                <Link href="https://line.me/R/ti/p/@374jshvh" target="_blank"
+                <Link href="https://line.me/R/ti/p/@icacc" target="_blank"
                   className="flex items-center justify-center gap-2 w-full bg-primary text-primary-foreground font-bold py-3 rounded-2xl hover:opacity-90 transition-all">
                   <MessageSquare className="h-4 w-4" /> สอบถามรายละเอียด
                 </Link>
@@ -204,7 +246,7 @@ export default function OrganizationSystemPage() {
                     className="inline-flex items-center gap-2 bg-white text-primary font-bold px-8 py-3 rounded-full hover:bg-white/90 transition-all">
                     นัดหมายปรึกษาฟรี <ArrowRight className="h-4 w-4" />
                   </Link>
-                  <Link href="https://line.me/R/ti/p/@374jshvh" target="_blank"
+                  <Link href="https://line.me/R/ti/p/@icacc" target="_blank"
                     className="inline-flex items-center gap-2 border border-white/40 text-white font-bold px-8 py-3 rounded-full hover:border-white transition-all">
                     ติดต่อผ่าน Line
                   </Link>
@@ -214,6 +256,19 @@ export default function OrganizationSystemPage() {
           </div>
         </section>
 
+        <ServiceFaq
+          faqs={faqs}
+          title="คำถามที่พบบ่อยเรื่องวางระบบองค์กร"
+          intro="สิ่งที่เจ้าของธุรกิจมักถามก่อนเริ่มโครงการวางระบบ"
+        />
+
+        <RelatedArticles
+          slugs={[
+            'sme-chiang-mai-accounting-guide',
+            '5-common-accounting-mistakes-sme-chiangmai',
+            'how-to-choose-accounting-office-chiangmai',
+          ]}
+        />
       </main>
       <Footer />
     </div>

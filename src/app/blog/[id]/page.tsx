@@ -772,7 +772,7 @@ export default function BlogDetailPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button asChild size="lg" variant="secondary" className="rounded-full px-12 h-14 text-lg font-bold">
-                <Link href="https://line.me/R/ti/p/@374jshvh" target="_blank">พูดคุยกับเราทาง Line</Link>
+                <Link href="https://line.me/R/ti/p/@icacc" target="_blank">พูดคุยกับเราทาง Line</Link>
               </Button>
               {cta && (
                 <Button

@@ -47,7 +47,7 @@ export default function QuoteClient() {
         const data = await res.json().catch(() => ({}));
         console.error('[booking] ส่งข้อมูลไม่สำเร็จ', res.status, data);
         alert(
-          'ระบบบันทึกนัดหมายไม่สำเร็จ กรุณาติดต่อเราทาง LINE @374jshvh โดยตรง ' +
+          'ระบบบันทึกนัดหมายไม่สำเร็จ กรุณาติดต่อเราทาง LINE @icacc โดยตรง ' +
           'ขออภัยในความไม่สะดวกครับ'
         );
         return;
@@ -56,7 +56,7 @@ export default function QuoteClient() {
       setIsSuccess(true);
     } catch (error) {
       console.error('[booking] เชื่อมต่อเซิร์ฟเวอร์ไม่ได้', error);
-      alert('เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง หรือติดต่อเราทาง LINE @374jshvh');
+      alert('เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง หรือติดต่อเราทาง LINE @icacc');
     } finally {
       setIsLoading(false);
     }

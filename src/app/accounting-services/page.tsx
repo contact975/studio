@@ -240,7 +240,7 @@ export default function AccountingServicesPage() {
                         </li>
                       ))}
                     </ul>
-                    <Link href="https://line.me/R/ti/p/@374jshvh" target="_blank"
+                    <Link href="https://line.me/R/ti/p/@icacc" target="_blank"
                       className={`flex items-center justify-center gap-2 w-full py-3 rounded-2xl font-bold text-sm transition-all ${pkg.highlight ? 'bg-primary text-primary-foreground hover:opacity-90' : 'border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground'}`}>
                       <MessageSquare className="h-4 w-4" /> ขอใบเสนอราคา
                     </Link>
@@ -282,7 +282,7 @@ export default function AccountingServicesPage() {
                     className="inline-flex items-center gap-2 bg-white text-primary font-bold px-8 py-3 rounded-full hover:bg-white/90 transition-all">
                     นัดหมายปรึกษาฟรี <ArrowRight className="h-4 w-4" />
                   </Link>
-                  <Link href="https://line.me/R/ti/p/@374jshvh" target="_blank"
+                  <Link href="https://line.me/R/ti/p/@icacc" target="_blank"
                     className="inline-flex items-center gap-2 border border-white/40 text-white font-bold px-8 py-3 rounded-full hover:border-white transition-all">
                     ติดต่อผ่าน Line
                   </Link>

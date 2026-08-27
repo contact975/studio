@@ -82,7 +82,7 @@ export function HeroSection() {
               บริการทำบัญชี ภาษี และมีเดียคอนเทนต์ สำหรับธุรกิจในเชียงใหม่และทั่วประเทศ เปลี่ยนตัวเลขที่ซับซ้อน เป็นโอกาสสู่ความสำเร็จ ด้วยประสบการณ์กว่า 10 ปี
             </p>
             <div className="flex flex-wrap gap-3 pt-1">
-              <Link href="https://line.me/R/ti/p/@374jshvh" target="_blank"
+              <Link href="https://line.me/R/ti/p/@icacc" target="_blank"
                 className="inline-flex items-center gap-3 bg-[#2657c1] text-white font-black px-8 h-12 md:h-14 rounded-full transition-all hover:scale-105 hover:shadow-xl hover:shadow-[#2657c1]/25 text-sm md:text-base">
                 ปรึกษาเราฟรี <ArrowRight className="h-4 w-4" />
               </Link>

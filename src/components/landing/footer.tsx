@@ -81,7 +81,7 @@ export function Footer() {
                   <Facebook className="h-6 w-6" />
                   <span className="sr-only">Facebook</span>
                 </Link>
-                <Link href="https://line.me/R/ti/p/@374jshvh" target="_blank" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors" prefetch={false}>
+                <Link href="https://line.me/R/ti/p/@icacc" target="_blank" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors" prefetch={false}>
                   <MessageCircle className="h-6 w-6" />
                   <span className="sr-only">Line</span>
                 </Link>

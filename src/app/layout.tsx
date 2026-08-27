@@ -78,9 +78,18 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     "email": "contact@icaccservice.com",
     "description": "สำนักงานบัญชีเชียงใหม่ ครบวงจร ทำบัญชี วางแผนภาษี จดทะเบียนธุรกิจ และผลิตมีเดียคอนเทนต์",
     "address": { "@type": "PostalAddress", "streetAddress": "80/142 ต.สันปู่เลย อ.ดอยสะเก็ด", "addressLocality": "เชียงใหม่", "postalCode": "50220", "addressCountry": "TH" },
-    "geo": { "@type": "GeoCoordinates", "latitude": 18.8796, "longitude": 99.0353 },
+    // พิกัดชุดเดิม (18.8796, 99.0353) อยู่ห่างจากที่ตั้งจริงราว 11 กม.
+    // ชุดนี้ตรงกับหมุดใน Google Business Profile ซึ่งเป็นหมุดเดียวกับแผนที่ในฟุตเตอร์
+    // อันดับใน map pack คิดจากระยะทางด้วย การประกาศพิกัดผิดจึงทำให้เราดูไกลกว่าความจริง
+    "geo": { "@type": "GeoCoordinates", "latitude": 18.7822907, "longitude": 99.0672194 },
     "openingHoursSpecification": { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "09:00", "closes": "18:00" },
-    "sameAs": ["https://www.facebook.com/icaccservice"],
+    // sameAs = บอก Google ว่าโปรไฟล์เหล่านี้คือธุรกิจรายเดียวกัน
+    // ยิ่งเชื่อมได้หลายช่องทางที่ยืนยันตัวตนได้ ยิ่งช่วยเรื่องความโดดเด่นใน map pack
+    // ใส่ได้เฉพาะช่องทางที่เป็นของเราจริงและเปิดสาธารณะเท่านั้น
+    "sameAs": [
+      "https://www.facebook.com/icaccservice",
+      "https://line.me/R/ti/p/@icacc",
+    ],
     "priceRange": "฿฿",
     "areaServed": { "@type": "City", "name": "เชียงใหม่" },
     "hasOfferCatalog": {

@@ -206,7 +206,7 @@ export default function VisaWorkPermitPage() {
             <p className="lead">Non-B business visas, work permits and company registration &mdash; handled end to end by an English-speaking accounting team in Chiang Mai that also keeps your Thai books and tax filings in order.</p>
             <p className="kws">For foreigners working, hiring or starting a business in Chiang Mai &mdash; whether you already have a Thai company or need one set up first.</p>
             <div className="hbtns">
-              <a className="btn btn-g" href="https://line.me/R/ti/p/@374jshvh" target="_blank" rel="noopener noreferrer">Talk to us on LINE</a>
+              <a className="btn btn-g" href="https://line.me/R/ti/p/@icacc" target="_blank" rel="noopener noreferrer">Talk to us on LINE</a>
               <a className="btn btn-ghost" href="#services">Explore services</a>
             </div>
             <div className="hstats">
@@ -384,7 +384,7 @@ export default function VisaWorkPermitPage() {
             <h2>Ready to sort out your Chiang Mai work permit?</h2>
             <p>Free, no-obligation consultation in English. Tell us your situation and we will map the right visa and business path for you.</p>
             <div className="hbtns">
-              <a className="btn btn-w" href="https://line.me/R/ti/p/@374jshvh" target="_blank" rel="noopener noreferrer">Chat with us on LINE</a>
+              <a className="btn btn-w" href="https://line.me/R/ti/p/@icacc" target="_blank" rel="noopener noreferrer">Chat with us on LINE</a>
               <a className="btn btn-t" href="/quote">Book a free consultation</a>
             </div>
           </div>

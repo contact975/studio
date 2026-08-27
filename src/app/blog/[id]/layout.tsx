@@ -11,7 +11,9 @@ export async function generateMetadata(
     return { title: 'บทความ | IC Accounting & Service เชียงใหม่' };
   }
   return {
-    title: post.title + ' | IC Accounting & Service เชียงใหม่',
+    // ส่วนต่อท้ายเดิมยาว 35 ตัวอักษร กินที่จนชื่อบทความโดน Google ตัดทิ้งทุกบทความ
+    // (ยาวสุด 128 ตัวอักษร ทั้งที่แสดงได้ราว 60) ย่อเหลือเท่าที่จำเป็นต่อการจำแบรนด์
+    title: post.title + ' | IC Accounting',
     description: post.description,
     alternates: { canonical: 'https://icaccservice.com/blog/' + id },
     openGraph: {

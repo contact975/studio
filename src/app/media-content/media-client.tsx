@@ -2,6 +2,8 @@
 
 import { Header } from '@/components/landing/header';
 import { Footer } from '@/components/landing/footer';
+import { ServiceFaq } from '@/components/seo/service-faq';
+import { mediaFaqs } from './faqs';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState, Fragment } from 'react';
@@ -125,7 +127,7 @@ export default function MediaClient() {
                 ไม่ใช่แค่คนทำคอนเทนต์ — เราคือผู้สร้างภาพลักษณ์ระดับพรีเมียม <br className="hidden md:block" /> ด้วยมาตรฐานโปรดัคชั่นที่เปลี่ยนวิสัยทัศน์ให้กลายเป็นความจริง
               </p>
               <div className="flex flex-wrap gap-4 mb-20">
-                <Link href="https://line.me/R/ti/p/@374jshvh" target="_blank"
+                <Link href="https://line.me/R/ti/p/@icacc" target="_blank"
                   className="inline-flex items-center gap-3 bg-blue-600 hover:bg-blue-500 text-white font-bold px-8 h-14 rounded-full transition-all hover:scale-105 text-base">
                   เริ่มต้นโปรเจคของคุณ <ArrowRight className="h-4 w-4" />
                 </Link>
@@ -241,7 +243,7 @@ export default function MediaClient() {
                     {services[activeService].isFree ? 'ฟรี' : `฿${services[activeService].price}`}
                   </p>
                 </div>
-                <Link href="https://line.me/R/ti/p/@374jshvh" target="_blank"
+                <Link href="https://line.me/R/ti/p/@icacc" target="_blank"
                   className="inline-flex items-center gap-3 border border-blue-500 text-blue-400 hover:bg-blue-600 hover:text-white hover:border-blue-600 px-8 h-12 rounded-full transition-all font-bold text-sm">
                   <MessageSquare className="h-4 w-4" /> สอบถามราคา
                 </Link>
@@ -293,7 +295,7 @@ export default function MediaClient() {
             ))}
           </div>
           <div className="text-center mt-10">
-            <Link href="https://line.me/R/ti/p/@374jshvh" target="_blank"
+            <Link href="https://line.me/R/ti/p/@icacc" target="_blank"
               className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 font-bold text-sm border border-blue-500/30 hover:border-blue-400 px-6 py-3 rounded-full transition-all">
               ดูผลงานทั้งหมด <ChevronRight className="h-4 w-4" />
             </Link>
@@ -404,11 +406,11 @@ export default function MediaClient() {
                 ปรึกษาฟรี ไม่มีค่าใช้จ่าย ทีมงาน IC Production พร้อมรับโจทย์ของคุณทุกวัน
               </p>
               <div className="flex flex-wrap gap-4 justify-center">
-                <Link href="https://line.me/R/ti/p/@374jshvh" target="_blank"
+                <Link href="https://line.me/R/ti/p/@icacc" target="_blank"
                   className="inline-flex items-center gap-3 bg-blue-600 hover:bg-blue-500 text-white font-bold px-10 h-14 rounded-full transition-all hover:scale-105 text-base">
                   คุยกับทีมงาน <ArrowRight className="h-4 w-4" />
                 </Link>
-                <Link href="https://line.me/R/ti/p/@374jshvh" target="_blank"
+                <Link href="https://line.me/R/ti/p/@icacc" target="_blank"
                   className="inline-flex items-center gap-3 border border-white/15 hover:border-white/40 text-white/70 hover:text-white px-10 h-14 rounded-full transition-all text-base">
                   ดูพอร์ตฟอลิโอ
                 </Link>
@@ -418,6 +420,11 @@ export default function MediaClient() {
         </section>
 
       </main>
+      <ServiceFaq
+        faqs={mediaFaqs}
+        title="คำถามที่พบบ่อยเรื่องงานมีเดีย"
+        intro="ราคาและขอบเขตงานที่ลูกค้าถามบ่อยที่สุดก่อนเริ่มโปรเจกต์"
+      />
       <Footer />
     </div>
   );
