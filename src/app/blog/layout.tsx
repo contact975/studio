@@ -22,5 +22,11 @@ export const metadata: Metadata = {
 };
 
 export default function BlogLayout({ children }: { children: React.ReactNode }) {
+    /**
+     * layout นี้ครอบทั้ง /blog และ /blog/[id]
+     * schema จึงต้องไปอยู่ที่ page ของแต่ละหน้า ไม่ใช่ตรงนี้
+     * ไม่งั้นหน้าบทความจะได้ Blog schema ที่ลิสต์บทความทั้งหมดติดไปด้วย
+     * และได้ breadcrumb ที่จบแค่ /blog ซึ่งไม่ตรงกับที่ผู้ใช้เห็นบนหน้านั้น
+     */
     return <>{children}</>;
 }

@@ -4,6 +4,8 @@ import Link from 'next/link';
 import { Header } from '@/components/landing/header';
 import { Footer } from '@/components/landing/footer';
 import { CheckCircle, ArrowRight } from 'lucide-react';
+import { JsonLd } from '@/components/seo/json-ld';
+import { aboutPageSchema, breadcrumbSchema } from '@/lib/seo';
 
 export const metadata: Metadata = {
   title: 'เกี่ยวกับเรา | IC Accounting & Service เชียงใหม่',
@@ -75,6 +77,19 @@ const services = [
 export default function AboutPage() {
   return (
     <div className="flex flex-col min-h-dvh bg-background text-foreground">
+      {/* ผู้ก่อตั้งและวันจดทะเบียนตรงกับที่แสดงอยู่บนหน้านี้ ไม่ได้ใส่ข้อมูลใหม่ */}
+      <JsonLd
+        data={[
+          aboutPageSchema({
+            founders: ['จตุพร ยะเปียงปลูก', 'บรรลือศักดิ์ จินดากุล'],
+            foundingDate: '2025-07-02',
+          }),
+          breadcrumbSchema([
+            { name: 'หน้าแรก', path: '/' },
+            { name: 'เกี่ยวกับเรา', path: '/about' },
+          ]),
+        ]}
+      />
       <Header />
       <main className="flex-1">
 

@@ -92,3 +92,51 @@ export function serviceSchema(opts: {
       : {}),
   };
 }
+
+/**
+ * หน้ารวมบทความ
+ *
+ * Blog + BlogPosting บอก Google ว่า URL นี้คือดัชนีบทความ ไม่ใช่หน้าเนื้อหา
+ * ช่วยให้เข้าใจโครงเว็บว่าบทความทั้งหมดสังกัดอยู่ใต้หน้านี้
+ * รายชื่อดึงจาก blogMeta ที่เดียว จึงไม่มีวันหลุดจากของจริง
+ */
+export function blogListSchema(posts: Array<{ slug: string; title: string; description: string }>) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Blog',
+    name: 'บทความบัญชีและภาษีเชียงใหม่',
+    description:
+      'รวมบทความเรื่องบัญชี ภาษี จดทะเบียนบริษัท วีซ่าและใบอนุญาตทำงาน สำหรับธุรกิจในเชียงใหม่',
+    url: `${SITE_URL}/blog`,
+    inLanguage: 'th-TH',
+    publisher: PROVIDER,
+    blogPost: posts.map((p) => ({
+      '@type': 'BlogPosting',
+      headline: p.title,
+      description: p.description,
+      url: `${SITE_URL}/blog/${p.slug}`,
+    })),
+  };
+}
+
+/**
+ * หน้าเกี่ยวกับเรา
+ *
+ * ที่นี่คือที่ที่ควรประกาศตัวตนขององค์กรให้ครบที่สุด — ผู้ก่อตั้ง วันจดทะเบียน
+ * ช่องทางที่ยืนยันตัวตนได้ ทั้งหมดเป็นข้อมูลที่แสดงอยู่บนหน้านี้อยู่แล้ว
+ * ความสอดคล้องของข้อมูลธุรกิจข้ามแหล่งเป็นหนึ่งในปัจจัยของ local SEO
+ */
+export function aboutPageSchema(opts: { founders: string[]; foundingDate: string }) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'AboutPage',
+    url: `${SITE_URL}/about`,
+    inLanguage: 'th-TH',
+    mainEntity: {
+      ...PROVIDER,
+      foundingDate: opts.foundingDate,
+      founder: opts.founders.map((name) => ({ '@type': 'Person', name })),
+      sameAs: ['https://www.facebook.com/icaccservice', 'https://line.me/R/ti/p/@icacc'],
+    },
+  };
+}

@@ -371,9 +371,11 @@ export default function VisaWorkPermitPage() {
               <div className="qa"><h4>Can foreigners own 100% of a Thai business?</h4><p>In specific cases — via BOI promotion, a US Amity Treaty company, or a Foreign Business License. We advise the best route for you.</p></div>
             </div>
             <p className="center" style={{ marginTop: 28, fontSize: 14.5, color: '#5b6b86' }}>
-              Hiring a foreigner for your Thai company?{' '}
-              <Link href="/visa-work-permit" hrefLang="th" lang="th" style={{ color: '#2563eb', fontWeight: 600 }}>
-                อ่านหน้าสำหรับนายจ้าง (ภาษาไทย)
+              {/* เดิมลิงก์กลับมาหน้าตัวเอง — ตกค้างจากตอนที่ยังมีหน้าไทยแยกอีกหน้า
+                  เปลี่ยนเป็นขั้นตอนถัดไปจริงของคนที่ยังไม่มีบริษัทไทย */}
+              Don&rsquo;t have a Thai company yet?{' '}
+              <Link href="/company-registration" hrefLang="th" style={{ color: '#2563eb', fontWeight: 600 }}>
+                We can register one for you first
               </Link>
             </p>
           </div>

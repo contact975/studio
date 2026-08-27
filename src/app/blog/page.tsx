@@ -11,6 +11,9 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Calendar, User, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { JsonLd } from '@/components/seo/json-ld';
+import { blogMeta } from '@/lib/blog-meta';
+import { blogListSchema, breadcrumbSchema } from '@/lib/seo';
 
 const blogPosts = [
   {
@@ -143,8 +146,24 @@ export default function BlogPage() {
     }));
   }, []);
 
+  /* รายชื่อบทความดึงจาก blogMeta ที่เดียว จึงไม่มีวันหลุดจากของจริง */
+  const schemaPosts = Object.entries(blogMeta).map(([slug, meta]) => ({
+    slug,
+    title: meta.title,
+    description: meta.description,
+  }));
+
   return (
     <div className="flex flex-col min-h-dvh bg-slate-50 text-foreground font-body">
+      <JsonLd
+        data={[
+          blogListSchema(schemaPosts),
+          breadcrumbSchema([
+            { name: 'หน้าแรก', path: '/' },
+            { name: 'บทความน่ารู้', path: '/blog' },
+          ]),
+        ]}
+      />
       <Header />
       <main className="flex-1">
         <section className="bg-primary text-primary-foreground py-20 md:py-28 relative overflow-hidden">
