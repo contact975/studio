@@ -10,28 +10,61 @@ interface AnimatedCounterProps {
   suffix?: string;
 }
 
+/**
+ * ตัวเลขนับขึ้นบนหน้าแรก
+ *
+ * ของเดิมเริ่มที่ useState(0) แล้วค่อยนับขึ้นใน useEffect
+ * useEffect ไม่ทำงานตอน server render — HTML ที่ Google และตัวอ่านลิงก์
+ * ได้รับกลับไปจึงเขียนว่า "0+ ลูกค้าที่ไว้วางใจ  0+ ปีประสบการณ์  0.0 คะแนน Google"
+ * คือเอาจุดแข็งที่สุดของธุรกิจไปประกาศเป็นศูนย์
+ *
+ * ยังมีอีกสองกรณีที่ค้างที่ 0 ถาวร: เปิดหน้าไว้ในแท็บพื้นหลัง
+ * (เบราว์เซอร์หยุด requestAnimationFrame) และผู้ใช้ที่ JavaScript ไม่ทำงาน
+ *
+ * ของใหม่เริ่มที่ค่าจริง ทั้ง server และ client render แรกจึงตรงกัน
+ * (ไม่มี hydration mismatch) แล้วค่อยรีเซ็ตเป็น 0 เพื่อนับขึ้นตอนเลื่อนมาถึง
+ * ถ้าอนิเมชันไม่ได้ทำงานด้วยเหตุใดก็ตาม ตัวเลขจะค้างอยู่ที่ค่าจริง ไม่ใช่ศูนย์
+ */
 function AnimatedCounter({ value, duration = 2000, suffix = "" }: AnimatedCounterProps) {
-  const [count, setCount] = React.useState(0);
-  const [hasStarted, setHasStarted] = React.useState(false);
+  const [count, setCount] = React.useState(value);
+  const ref = React.useRef<HTMLSpanElement>(null);
 
   React.useEffect(() => {
-    setHasStarted(true);
-  }, []);
+    const el = ref.current;
+    if (!el) return;
 
-  React.useEffect(() => {
-    if (!hasStarted) return;
-    let startTimestamp: number | null = null;
-    const step = (timestamp: number) => {
-      if (!startTimestamp) startTimestamp = timestamp;
-      const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-      setCount(progress * value);
-      if (progress < 1) window.requestAnimationFrame(step);
+    // เคารพการตั้งค่าของผู้ใช้ที่ขอลดการเคลื่อนไหว — คงตัวเลขจริงไว้เลย
+    if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return;
+
+    let raf = 0;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        observer.disconnect();
+
+        let start: number | null = null;
+        setCount(0);
+        const step = (timestamp: number) => {
+          if (start === null) start = timestamp;
+          const progress = Math.min((timestamp - start) / duration, 1);
+          setCount(progress * value);
+          if (progress < 1) raf = window.requestAnimationFrame(step);
+          else setCount(value); // จบที่ค่าจริงเสมอ ไม่ปล่อยให้ปัดลง
+        };
+        raf = window.requestAnimationFrame(step);
+      },
+      { threshold: 0.4 }
+    );
+
+    observer.observe(el);
+    return () => {
+      observer.disconnect();
+      window.cancelAnimationFrame(raf);
     };
-    window.requestAnimationFrame(step);
-  }, [value, duration, hasStarted]);
+  }, [value, duration]);
 
   return (
-    <span>
+    <span ref={ref}>
       {suffix === ".0" ? count.toFixed(1) : Math.floor(count)}
       {suffix !== ".0" ? suffix : ""}
     </span>
