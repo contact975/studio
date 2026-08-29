@@ -2,7 +2,10 @@
 
 import { Header } from '@/components/landing/header';
 import { HeroSection } from '@/components/landing/hero-section';
-import { VideoSection } from '@/components/landing/video-section';
+// เปลี่ยนมาใช้เวอร์ชันที่มีเอฟเฟกต์ช่องมองเปิดตามการเลื่อน
+// วิดีโอแนะนำทีมงานบน Wistia ยังกดแล้วค่อยโหลดเหมือนเดิม ไม่ได้เล่นเอง
+// ไฟล์ video-section.tsx เดิมยังอยู่ในโปรเจกต์แต่ไม่ถูกเรียกใช้แล้ว ลบทิ้งได้
+import { MaskRevealSection } from '@/components/landing/mask-reveal-section';
 import { ServicesSection } from '@/components/landing/services-section';
 import { WhyUsSection } from '@/components/landing/why-us-section';
 import { BehindTheScenesSection } from '@/components/landing/behind-the-scenes-section';
@@ -47,7 +50,7 @@ export default function Home() {
       <Header />
       <main className="flex-1">
         <HeroSection />
-        <VideoSection />
+        <MaskRevealSection />
         <div data-aos="fade-up">
           <ClientsSection />
         </div>
