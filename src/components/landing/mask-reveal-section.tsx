@@ -200,6 +200,19 @@ export function MaskRevealSection({
     setIsPlaying(true);
   }, [loadPlayerScript]);
 
+  /**
+   * พอผู้ใช้กดดูวิดีโอจริง ต้องหยุดคลิปฉากหลังด้วย
+   *
+   * ไม่งั้นจะมีวิดีโอเล่นพร้อมกันสองตัวซ้อนกันอยู่บนหน้าจอเดียว
+   * ตัวฉากหลังยังวิ่งอยู่หลังการ์ด Wistia ทั้งกวนสายตาและกินทรัพยากรเปล่า
+   */
+  React.useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    if (isPlaying) video.pause();
+    else if (video.src) video.play().catch(() => {});
+  }, [isPlaying]);
+
   const maskStyle: React.CSSProperties = {
     WebkitMaskImage: `url("${maskSrc}")`,
     maskImage: `url("${maskSrc}")`,
@@ -221,7 +234,12 @@ export function MaskRevealSection({
         <div className="relative md:sticky md:top-0 w-full md:h-screen overflow-hidden flex items-center justify-center py-16 md:py-0">
 
           {/* ชั้นวิดีโอที่ถูกครอบด้วยช่องมอง */}
-          <div className="absolute inset-0 hidden md:block">
+          <div
+            className={`absolute inset-0 hidden md:block transition-opacity duration-500 ${
+              isPlaying ? 'opacity-0 pointer-events-none' : 'opacity-100'
+            }`}
+            aria-hidden="true"
+          >
             <div ref={maskRef} className="w-full h-full" style={maskStyle}>
               <video
                 ref={videoRef}
@@ -263,7 +281,7 @@ export function MaskRevealSection({
             </div>
 
             {/* บนมือถือไม่มีเอฟเฟกต์ จึงโชว์ภาพนิ่งเป็นการ์ดแทน ไม่ให้เป็นบล็อกดำเปล่า */}
-            <div className="md:hidden w-full max-w-md my-8">
+            <div className={`w-full max-w-md my-8 ${isPlaying ? 'hidden' : 'md:hidden'}`}>
               <img
                 src={posterSrc}
                 alt="ทีมงาน IC Accounting & Service เชียงใหม่"
