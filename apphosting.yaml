@@ -18,8 +18,9 @@ env:
     secret: GOOGLE_PLACES_API_KEY
     availability:
       - RUNTIME
-  # (ไม่บังคับ) Place ID แบบ ChIJ… — ดูได้จาก log "[google-reviews] พบ Place ID" หลัง deploy ครั้งแรก
-  # - variable: GOOGLE_PLACE_ID
-  #   value: ChIJ...
-  #   availability:
-  #     - RUNTIME
+  # Place ID ของ IC Accounting & Service (ค้นจากชื่อ+ที่อยู่ตอน deploy ครั้งแรก) — ไม่ใช่ความลับ
+  # ใส่ไว้จะได้ไม่ต้องเรียก searchText ทุกรอบ และไม่เสี่ยงค้นเจอผิดร้าน
+  - variable: GOOGLE_PLACE_ID
+    value: ChIJL7RV5xgl2jARQ2bFaNMPxpk
+    availability:
+      - RUNTIME
