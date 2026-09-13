@@ -11,13 +11,13 @@ env:
     availability:
       - RUNTIME
   # --- รีวิว Google บนหน้าแรก (src/app/api/google-reviews) ---
-  # 1) Google Cloud Console → เปิด "Places API (New)" → สร้าง API key (จำกัด API เฉพาะ Places API (New))
-  # 2) เก็บ key เป็น secret:  firebase apphosting:secrets:set GOOGLE_PLACES_API_KEY
-  # 3) เอา comment ออก 4 บรรทัดด้านล่างแล้ว deploy — ถ้าไม่ตั้งค่า ส่วนรีวิวสดจะไม่แสดง แต่เว็บทำงานปกติ
-  # - variable: GOOGLE_PLACES_API_KEY
-  #   secret: GOOGLE_PLACES_API_KEY
-  #   availability:
-  #     - RUNTIME
+  # key อยู่ใน Google Secret Manager (secret ชื่อ GOOGLE_PLACES_API_KEY)
+  # service account firebase-app-hosting-compute@… ได้สิทธิ์ Secret Manager Secret Accessor แล้ว
+  # key ถูกจำกัดให้ใช้ได้เฉพาะ Places API (New) — ดูรายละเอียดใน route
+  - variable: GOOGLE_PLACES_API_KEY
+    secret: GOOGLE_PLACES_API_KEY
+    availability:
+      - RUNTIME
   # (ไม่บังคับ) Place ID แบบ ChIJ… — ดูได้จาก log "[google-reviews] พบ Place ID" หลัง deploy ครั้งแรก
   # - variable: GOOGLE_PLACE_ID
   #   value: ChIJ...
