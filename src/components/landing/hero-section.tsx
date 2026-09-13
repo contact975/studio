@@ -3,6 +3,7 @@
 import * as React from "react";
 import Link from "next/link";
 import { ArrowRight, PlayCircle } from 'lucide-react';
+import { ParticleDrift } from '@/components/ui/particle-drift';
 
 interface AnimatedCounterProps {
   value: number;
@@ -83,6 +84,20 @@ export function HeroSection() {
     <section id="hero" className="relative bg-white overflow-hidden border-b border-gray-100 min-h-[calc(100vh-4rem)] flex flex-col">
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#2657c1]/5 rounded-full blur-[140px] pointer-events-none -translate-y-1/3 translate-x-1/4" />
       <div className="absolute bottom-0 left-0 w-[350px] h-[350px] bg-blue-100/50 rounded-full blur-[100px] pointer-events-none" />
+
+      {/*
+        พื้นหลังอนุภาคสีน้ำเงิน CI บนพื้นขาว — จางฝั่งซ้ายไว้ให้พาดหัวอ่านง่าย
+        และหนาแน่นทางขวาเหมือนต้นฉบับที่มีอนุภาคอยู่ฝั่ง media
+      */}
+      <div
+        className="absolute inset-0 z-0 pointer-events-none"
+        style={{
+          maskImage: "linear-gradient(to right, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.7) 45%, black 70%)",
+          WebkitMaskImage: "linear-gradient(to right, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.7) 45%, black 70%)",
+        }}
+      >
+        <ParticleDrift opacity={0.8} beams={false} />
+      </div>
 
       <div className="container mx-auto px-6 pt-10 pb-14 relative z-10 max-w-6xl w-full flex flex-col flex-1">
 
