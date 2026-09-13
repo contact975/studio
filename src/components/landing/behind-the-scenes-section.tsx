@@ -54,7 +54,9 @@ export function BehindTheScenesSection() {
     return () => clearInterval(t);
   }, [maxIndex]);
 
-  const gap = "1.25rem";
+  // มือถือ (perView = 1): รูปเต็มความกว้างจอ ไม่มีช่องว่าง ไม่มีมุมโค้ง
+  const fullBleed = perView === 1;
+  const gap = fullBleed ? "0rem" : "1.25rem";
 
   return (
     <section className="py-20 md:py-28 bg-background overflow-hidden">
@@ -71,9 +73,9 @@ export function BehindTheScenesSection() {
           </p>
         </div>
 
-        <div className="overflow-hidden">
+        <div className={fullBleed ? "-mx-4 overflow-hidden" : "overflow-hidden"}>
           <div
-            className="flex gap-5 transition-transform duration-500 ease-out"
+            className={`flex ${fullBleed ? "gap-0" : "gap-5"} transition-transform duration-500 ease-out`}
             style={{
               transform: `translateX(calc(-${index} * (100% + ${gap}) / ${perView}))`,
             }}
@@ -81,7 +83,11 @@ export function BehindTheScenesSection() {
             {slides.map((slide, i) => (
               <div
                 key={i}
-                className="relative shrink-0 rounded-[22px] overflow-hidden aspect-[3/4] bg-[#0b1a3a] shadow-[0_20px_40px_-24px_rgba(30,64,175,0.45)]"
+                className={`relative shrink-0 overflow-hidden bg-[#0b1a3a] ${
+                  fullBleed
+                    ? "aspect-[3/4] max-h-[78svh]"
+                    : "aspect-[3/4] rounded-[22px] shadow-[0_20px_40px_-24px_rgba(30,64,175,0.45)]"
+                }`}
                 style={{
                   width: `calc((100% - (${perView} - 1) * ${gap}) / ${perView})`,
                 }}
@@ -93,7 +99,7 @@ export function BehindTheScenesSection() {
                     fill
                     /* container เป็น max-w-7xl (1280px) → การ์ดกว้างสุดจริง ~305px
                        ถ้าปล่อย 23vw ไว้ จอ 1920 จะไปโหลด w=1080 ทั้งที่ต้องการแค่ ~610 */
-                    sizes="(max-width: 520px) 90vw, (max-width: 768px) 45vw, (max-width: 1024px) 30vw, (max-width: 1280px) 23vw, 305px"
+                    sizes="(max-width: 520px) 100vw, (max-width: 768px) 45vw, (max-width: 1024px) 30vw, (max-width: 1280px) 23vw, 305px"
                     className="object-cover"
                     loading="lazy"
                     quality={72}
