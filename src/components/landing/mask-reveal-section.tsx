@@ -311,9 +311,9 @@ export function MaskRevealSection({
                 <button
                   type="button"
                   onClick={handlePlay}
-                  className="group inline-flex items-center gap-3 bg-white/95 hover:bg-white text-[#163674] font-bold pl-4 pr-7 py-3 rounded-full shadow-2xl ring-4 ring-[#050d1f]/40 hover:ring-white/35 transition-all"
+                  className="group inline-flex items-center gap-3 bg-white/95 hover:bg-white text-[#2657c1] font-bold pl-4 pr-7 py-3 rounded-full shadow-2xl ring-4 ring-[#050d1f]/40 hover:ring-white/35 transition-all"
                 >
-                  <span className="w-10 h-10 rounded-full bg-[#163674] text-white flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <span className="w-10 h-10 rounded-full bg-[#2657c1] text-white flex items-center justify-center group-hover:scale-110 transition-transform">
                     <svg className="w-5 h-5 ml-0.5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                       <path d="M8 5v14l11-7z" />
                     </svg>
