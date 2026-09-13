@@ -43,7 +43,7 @@ const footerLinkGroups: FooterLinkGroup[] = [
   },
 ];
 
-// ปุ่มหลัก — ช่องทางเดียวกับ CtaSection เพื่อให้ผู้ใช้จำได้ว่าติดต่อทางไหน
+// ปุ่มหลัก — ช่องทางติดต่อหลัก (LINE / โทร / นัดหมาย) ส่วน CTA ท้ายหน้าแรกเดิมถูกยุบมารวมที่นี่
 const primaryActions: FooterAction[] = [
   { href: "https://line.me/R/ti/p/@icacc", label: "ปรึกษาฟรีผ่าน LINE", icon: MessageCircle, external: true },
   { href: "tel:0957161422", label: "095-716-1422", icon: Phone, external: true },

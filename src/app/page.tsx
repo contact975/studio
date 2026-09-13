@@ -12,7 +12,6 @@ import { BehindTheScenesSection } from '@/components/landing/behind-the-scenes-s
 import { TestimonialsSection } from '@/components/landing/testimonials-section';
 import { ActivitiesSection } from '@/components/landing/activities-section';
 import { FaqSection } from '@/components/landing/faq-section';
-import { CtaSection } from '@/components/landing/cta-section';
 import { Footer } from '@/components/landing/footer';
 import { ClientsSection } from '@/components/landing/clients-section';
 import { PromoCarousel } from '@/components/landing/promo-carousel';
@@ -75,9 +74,7 @@ export default function Home() {
         <div data-aos="fade-up">
           <FaqSection />
         </div>
-        <div data-aos="fade-up">
-          <CtaSection />
-        </div>
+        {/* CtaSection เดิมถูกถอดออก — ฟุตเตอร์ใหม่มีหัวข้อชวนติดต่อ + ปุ่ม LINE/โทร/นัดหมาย ครบแล้ว */}
       </main>
       <Footer />
     </div>
