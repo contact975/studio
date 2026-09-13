@@ -87,19 +87,32 @@ export function BreathingIcon({ icon: Icon, className }: IconProps) {
   );
 }
 
-/** วงคลื่นกระจายรอบไอคอน (จาก GlobalNetwork เดิม) */
+/**
+ * วงคลื่นกระจายรอบไอคอน (จาก GlobalNetwork เดิม)
+ *
+ * ต้นฉบับใช้ div + border แล้ว scale ทำให้เส้นหนาขึ้นตามการขยาย (2px → 6px)
+ * และ 5 วง หน่วง 0.8 วิ ในรอบ 3 วิ ทำให้วงแรกกับวงสุดท้ายห่างกันแค่ 0.2 วิ เห็นเป็นวงคู่
+ * เปลี่ยนเป็น SVG ที่ stroke ไม่สเกลตาม (vector-effect) และ 3 วงห่างเท่ากันพอดีรอบ
+ */
 export function PulseIcon({ icon: Icon, className }: IconProps) {
+  // 2 วง ขยายถึง 2.4 เท่าแล้วจางหมดก่อนถึงขอบ — ตัดวงนอกสุดที่จางจนดูเหมือนกระพริบออก
+  const rings = 2;
+  const duration = 3;
   return (
     <div className={cn("relative flex h-full items-center justify-center", className)}>
       <Icon className="relative z-10 h-16 w-16 text-[#2657c1]" strokeWidth={1.25} />
-      {[0, 1, 2, 3, 4].map((pulse) => (
-        <motion.div
-          key={pulse}
-          className="absolute h-16 w-16 rounded-full border-2 border-[#2657c1]/30"
-          initial={{ scale: 0.5, opacity: 1 }}
-          animate={{ scale: 3, opacity: 0 }}
-          transition={{ duration: 3, repeat: Infinity, delay: pulse * 0.8, ease: "easeOut" }}
-        />
+      {Array.from({ length: rings }, (_, i) => (
+        <motion.svg
+          key={i}
+          viewBox="0 0 64 64"
+          aria-hidden="true"
+          className="absolute h-16 w-16 text-[#2657c1]"
+          initial={{ scale: 0.6, opacity: 0.6 }}
+          animate={{ scale: 2.4, opacity: 0 }}
+          transition={{ duration, repeat: Infinity, delay: (i * duration) / rings, ease: "easeOut" }}
+        >
+          <circle cx="32" cy="32" r="31" fill="none" stroke="currentColor" strokeWidth="1.5" vectorEffect="non-scaling-stroke" />
+        </motion.svg>
       ))}
     </div>
   );
