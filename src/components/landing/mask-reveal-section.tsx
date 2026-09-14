@@ -224,14 +224,15 @@ export function MaskRevealSection({
     maskSize: 'var(--aperture, min(62vw, 760px))',
   };
 
+  // โทนน้ำเงินไล่เฉดชุดเดียวกับฟุตเตอร์ (hsl 221 60% 26% → 64% 16% → 222 66% 10%)
   return (
-    <section className="relative bg-[#050d1f]" aria-label="รู้จัก IC Accounting">
+    <section className="relative bg-[#09132a]" aria-label="รู้จัก IC Accounting">
       {/*
         ตัวจับระยะเลื่อน สูง 150vh บนจอใหญ่ (ต้นฉบับใช้ 360vh ซึ่งดันเนื้อหาจริง
         ลงไปเกือบสี่หน้าจอ) ส่วนจอเล็กสูงเท่าเนื้อหา ไม่มีการตรึงหน้าจอ
       */}
       <div ref={trackRef} className="relative w-full md:min-h-[150vh]">
-        <div className="relative md:sticky md:top-0 w-full md:h-screen overflow-hidden flex items-center justify-center py-16 md:py-0">
+        <div className="relative md:sticky md:top-0 w-full md:h-screen overflow-hidden flex items-center justify-center py-16 md:py-0 bg-[linear-gradient(180deg,#1b346a_0%,#0f1f43_45%,#09132a_100%)]">
 
           {/* ชั้นวิดีโอที่ถูกครอบด้วยช่องมอง */}
           <div
@@ -256,7 +257,7 @@ export function MaskRevealSection({
           </div>
 
           {/* ไล่สีทับให้ตัวหนังสืออ่านออกตลอดไม่ว่าช่องมองจะเปิดแค่ไหน */}
-          <div className="absolute inset-0 hidden md:block bg-[linear-gradient(to_bottom,rgba(5,13,31,0.92)_0%,rgba(5,13,31,0.35)_22%,rgba(5,13,31,0)_42%,rgba(5,13,31,0)_58%,rgba(5,13,31,0.35)_78%,rgba(5,13,31,0.92)_100%)] pointer-events-none" />
+          <div className="absolute inset-0 hidden md:block bg-[linear-gradient(to_bottom,rgba(27,52,106,0.92)_0%,rgba(27,52,106,0.35)_22%,rgba(15,31,67,0)_42%,rgba(15,31,67,0)_58%,rgba(9,19,42,0.35)_78%,rgba(9,19,42,0.92)_100%)] pointer-events-none" />
 
           {/*
             เดิมวางข้อความไว้กลางจอ ซึ่งไปทับโลโก้และตัวหนังสือที่อยู่ในคลิปเอง
@@ -267,15 +268,15 @@ export function MaskRevealSection({
 
             <div className="max-w-2xl">
               <div className="flex justify-center mb-4">
-                <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-blue-300 border border-blue-300/30 px-4 py-1.5 rounded-full bg-[#050d1f]/70 backdrop-blur-sm">
+                <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-blue-300 border border-blue-300/30 px-4 py-1.5 rounded-full bg-[#0f1f43]/70 backdrop-blur-sm">
                   <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse" />
                   รู้จัก IC Accounting
                 </span>
               </div>
-              <h2 className="text-2xl md:text-4xl font-black text-white leading-tight mb-2 [text-shadow:0_2px_20px_rgba(5,13,31,0.95)]">
+              <h2 className="text-2xl md:text-4xl font-black text-white leading-tight mb-2 [text-shadow:0_2px_20px_rgba(15,31,67,0.95)]">
                 สำนักงานบัญชีที่<span className="text-blue-300">ดูแลคุณครบวงจร</span>
               </h2>
-              <p className="text-white/70 text-sm md:text-base [text-shadow:0_2px_14px_rgba(5,13,31,0.95)]">
+              <p className="text-white/70 text-sm md:text-base [text-shadow:0_2px_14px_rgba(15,31,67,0.95)]">
                 ดูวิดีโอสั้นๆ เพื่อทำความรู้จักกับทีมงานและบริการของเรา
               </p>
             </div>
@@ -311,7 +312,7 @@ export function MaskRevealSection({
                 <button
                   type="button"
                   onClick={handlePlay}
-                  className="group inline-flex items-center gap-3 bg-white/95 hover:bg-white text-[#2657c1] font-bold pl-4 pr-7 py-3 rounded-full shadow-2xl ring-4 ring-[#050d1f]/40 hover:ring-white/35 transition-all"
+                  className="group inline-flex items-center gap-3 bg-white/95 hover:bg-white text-[#2657c1] font-bold pl-4 pr-7 py-3 rounded-full shadow-2xl ring-4 ring-[#0f1f43]/40 hover:ring-white/35 transition-all"
                 >
                   <span className="w-10 h-10 rounded-full bg-[#2657c1] text-white flex items-center justify-center group-hover:scale-110 transition-transform">
                     <svg className="w-5 h-5 ml-0.5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
