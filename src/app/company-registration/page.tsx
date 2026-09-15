@@ -3,7 +3,6 @@ import { Header } from '@/components/landing/header';
 import { Footer } from '@/components/landing/footer';
 import Link from 'next/link';
 import { CheckCircle, ArrowRight, MessageSquare } from 'lucide-react';
-import { PromoCarousel } from '@/components/landing/promo-carousel';
 import { JsonLd } from '@/components/seo/json-ld';
 import { ServiceFaq } from '@/components/seo/service-faq';
 import { RelatedArticles } from '@/components/seo/related-articles';
@@ -130,7 +129,6 @@ export default function CompanyRegistrationPage() {
       />
       <Header />
       <main className="flex-1">
-        <PromoCarousel />
 
         {/* ── HERO ── */}
         <section className="bg-[#163674] text-primary-foreground py-24 md:py-32 overflow-hidden relative">

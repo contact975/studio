@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Header } from '@/components/landing/header';
 import { Footer } from '@/components/landing/footer';
-import { PromoCarousel } from '@/components/landing/promo-carousel';
 import { AuditPricing } from '@/components/landing/audit-pricing';
 import { AUDIT_TIERS, AUDIT_ONLY, BUNDLE } from '@/lib/audit-packages';
 import {
@@ -107,7 +106,6 @@ export default function AuditServicesPage() {
       />
       <Header />
       <main className="flex-1">
-        <PromoCarousel />
 
         {/* ── HERO ── */}
         <section className="bg-[#163674] text-primary-foreground py-24 md:py-32 overflow-hidden relative">
