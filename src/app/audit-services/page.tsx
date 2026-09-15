@@ -1,101 +1,89 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import { Header } from '@/components/landing/header';
 import { Footer } from '@/components/landing/footer';
-import Link from 'next/link';
 import { PromoCarousel } from '@/components/landing/promo-carousel';
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { CheckCircle2, ShieldCheck, BadgeCheck, Zap, ArrowRight, MessageSquare } from 'lucide-react';
+import { AuditPricing } from '@/components/landing/audit-pricing';
+import { AUDIT_TIERS, AUDIT_ONLY, BUNDLE } from '@/lib/audit-packages';
+import {
+  CheckCircle2,
+  ArrowRight,
+  MessageSquare,
+  UserCheck,
+  Users,
+  CalendarDays,
+  CalendarCheck,
+  BadgeCheck,
+  Info,
+  HelpCircle,
+} from 'lucide-react';
 import { JsonLd } from '@/components/seo/json-ld';
 import { ServiceFaq } from '@/components/seo/service-faq';
 import { RelatedArticles } from '@/components/seo/related-articles';
 import { breadcrumbSchema, faqSchema, serviceSchema, type Faq } from '@/lib/seo';
 
 /**
- * คำถามชุดนี้ต้องแสดงบนหน้าเว็บจริงผ่าน <ServiceFaq /> ด้านล่าง
- * Google กำหนดว่าเนื้อหา FAQ ที่ประกาศใน schema ต้องมองเห็นได้บนหน้านั้น
- * ทุกคำตอบอ้างอิงตัวเลขและบริการที่ประกาศอยู่บนหน้านี้อยู่แล้ว ไม่ได้แต่งเพิ่ม
+ * หน้าบริการตรวจสอบบัญชี — รอบบัญชีปี 2569
+ *
+ * เขียนให้ลูกค้าทั่วไปเข้าใจง่าย: มีให้เลือก 2 แบบ
+ *   1) ตรวจสอบอย่างเดียว — "คุณทำบัญชีเอง เราตรวจและปิดงบให้" (เริ่ม 6,000/ปี)
+ *   2) ครบวงจร — "เราทำบัญชีให้ทั้งปี แล้วปิดงบให้เสร็จ" (เริ่ม 12,000/ปี)
+ * ตัวเลขทั้งหมดอยู่ที่ lib/audit-packages.ts — ถ้าแก้ราคาที่นั่น ต้องแก้ faqs และ metadata ด้านล่างให้ตรงกัน
  */
-const faqs: Faq[] = [
-  {
-    q: 'ค่าตรวจสอบบัญชีประจำปีเริ่มต้นเท่าไหร่',
-    a: 'คิดตามฐานรายได้ของบริษัท งบเปล่าเริ่มต้น 15,000 บาท รายได้ไม่เกิน 1 ล้านบาท 16,500 บาท ไม่เกิน 5 ล้านบาท 22,000 บาท และไม่เกิน 20 ล้านบาท 30,000 บาท ดูตารางเต็มได้ในหน้านี้',
-  },
-  {
-    q: 'ราคาที่แจ้งไว้เป็นราคาสุดท้ายหรือไม่',
-    a: 'เป็นราคาเริ่มต้น อาจเปลี่ยนแปลงตามความซับซ้อนของรายการค้า ส่งไฟล์งบการเงินให้เจ้าหน้าที่ประเมินราคาที่แน่นอนก่อนตัดสินใจได้',
-  },
-  {
-    q: 'บริษัทที่ยังไม่มีรายได้ ต้องตรวจสอบงบการเงินไหม',
-    a: 'ต้องทำ นิติบุคคลที่จดทะเบียนแล้วต้องนำส่งงบการเงินที่ผ่านการตรวจสอบทุกปี แม้ปีนั้นจะไม่มีรายได้เลย กรณีนี้เรียกว่างบเปล่า ค่าบริการเริ่มต้น 15,000 บาท',
-  },
-  {
-    q: 'การตรวจสอบกรณีพิเศษ (Special Audit) คืออะไร',
-    a: 'คือการตรวจสอบตามวัตถุประสงค์เฉพาะด้าน เช่น การตรวจสอบทุจริต หรือการตรวจสอบตามเงื่อนไขของ BOI ซึ่งแยกจากการตรวจสอบงบการเงินประจำปีตามปกติ',
-  },
-];
-
 export const metadata: Metadata = {
-  title: 'ปิดงบการเงินเชียงใหม่ ถูกต้อง ทันกำหนด | IC Accounting',
-  description: 'บริการตรวจสอบและจัดทำงบการเงินยื่นกรมพัฒนาธุรกิจการค้าและกรมสรรพากร ดูแลโดยทีมงานเชียงใหม่ที่อัปเดตกฎหมายสม่ำเสมอ',
+  title: 'ปิดงบการเงินเชียงใหม่ ตรวจสอบโดย CPA เริ่ม 6,000/ปี | IC Accounting',
+  description:
+    'ตรวจสอบบัญชีและปิดงบประจำปีในเชียงใหม่โดยผู้สอบบัญชีรับอนุญาต ยื่น DBD และสรรพากรให้ครบ เริ่ม 6,000 บาท/ปี หรือแพ็กเกจครบวงจรทำบัญชี + ตรวจสอบ เริ่ม 12,000 บาท/ปี ราคารวม VAT',
   alternates: { canonical: 'https://icaccservice.com/audit-services' },
   openGraph: {
-    title: 'ปิดงบการเงินเชียงใหม่ ถูกต้อง ทันกำหนด | IC Accounting',
-    description: 'บริการตรวจสอบและจัดทำงบการเงินยื่นกรมพัฒนาธุรกิจการค้าและกรมสรรพากร',
+    title: 'ปิดงบการเงินเชียงใหม่ ตรวจสอบโดย CPA เริ่ม 6,000/ปี | IC Accounting',
+    description: 'ตรวจสอบอย่างเดียว เริ่ม 6,000/ปี · ครบวงจร ทำบัญชี + ตรวจสอบ เริ่ม 12,000/ปี ราคารวม VAT',
     url: 'https://icaccservice.com/audit-services',
   },
 };
 
-const auditServices = [
-  {
-    title: "ตรวจสอบงบการเงินประจำปี",
-    description: "ตรวจสอบและแสดงความเห็นต่องบการเงินเพื่อให้เป็นไปตามมาตรฐานการรายงานทางการเงิน (TFRS)",
-    icon: <ShieldCheck className="h-6 w-6" />,
-  },
-  {
-    title: "ตรวจสอบกรณีพิเศษ (Special Audit)",
-    description: "ตรวจสอบตามวัตถุประสงค์เฉพาะด้าน เช่น การตรวจสอบทุจริต หรือตรวจสอบตามเงื่อนไขของ BOI",
-    icon: <BadgeCheck className="h-6 w-6" />,
-  },
-  {
-    title: "ตรวจสอบภายใน (Internal Audit)",
-    description: "ประเมินระบบการควบคุมภายในขององค์กร เพื่อลดความเสี่ยงและเพิ่มประสิทธิภาพการทำงาน",
-    icon: <Zap className="h-6 w-6" />,
-  },
-  {
-    title: "จัดทำงบกระแสเงินสด",
-    description: "บริการจัดเตรียมข้อมูลและวิเคราะห์งบกระแสเงินสดเพื่อการบริหารจัดการเงินทุนอย่างมีประสิทธิภาพ",
-    icon: <CheckCircle2 className="h-6 w-6" />,
-  },
-];
+const heroChips = ['ตรวจโดยผู้สอบบัญชีรับอนุญาต (CPA)', 'ยื่น DBD และสรรพากรให้ครบ', 'ราคารวม VAT ตามช่วงรายได้', 'งบเปล่าก็รับทำ'];
 
 const whyChooseUs = [
-  { num: '01', title: "ทีมงาน CPA มืออาชีพ", description: "ดูแลโดยผู้สอบบัญชีรับอนุญาต (CPA) ที่มีประสบการณ์ตรงในหลากหลายอุตสาหกรรม" },
-  { num: '02', title: "ตรงไปตรงมา", description: "ชี้แจงทุกประเด็นความเสี่ยงอย่างชัดเจน พร้อมแนวทางแก้ไขที่ถูกต้องตามกฎหมาย" },
-  { num: '03', title: "ทำงานรวดเร็ว", description: "มีระบบการจัดการเอกสารที่เป็นระบบ (Digital Based) ช่วยให้งานตรวจสอบจบได้ตามกำหนด" },
+  { num: '01', title: 'ทีมงาน CPA มืออาชีพ', description: 'ดูแลโดยผู้สอบบัญชีรับอนุญาต (CPA) ที่มีประสบการณ์ตรงในหลากหลายอุตสาหกรรม' },
+  { num: '02', title: 'บอกตรงๆ ว่าเจออะไร', description: 'ชี้แจงทุกประเด็นความเสี่ยงอย่างชัดเจน พร้อมแนวทางแก้ไขที่ถูกต้องตามกฎหมาย' },
+  { num: '03', title: 'ทันกำหนดทุกปี', description: 'ระบบจัดการเอกสารแบบดิจิทัล ช่วยให้งานตรวจสอบและยื่นงบเสร็จตามกำหนด ไม่เสียค่าปรับ' },
 ];
 
-const pricingData = [
-  { revenue: "งบเปล่า", price: "15,000" },
-  { revenue: "รายได้ไม่เกิน 5 แสนบาท", price: "16,000" },
-  { revenue: "รายได้ไม่เกิน 1 ล้านบาท", price: "16,500" },
-  { revenue: "รายได้ไม่เกิน 1.5 ล้านบาท", price: "17,000" },
-  { revenue: "รายได้ไม่เกิน 2 ล้านบาท", price: "18,000" },
-  { revenue: "รายได้ไม่เกิน 2.5 ล้านบาท", price: "20,000" },
-  { revenue: "รายได้ไม่เกิน 5 ล้านบาท", price: "22,000" },
-  { revenue: "รายได้ไม่เกิน 9 ล้านบาท", price: "25,000" },
-  { revenue: "รายได้ไม่เกิน 15 ล้านบาท", price: "27,000" },
-  { revenue: "รายได้ไม่เกิน 20 ล้านบาท", price: "30,000" },
-  { revenue: "รายได้ไม่เกิน 30 ล้านบาท", price: "32,000" },
-  { revenue: "รายได้ไม่เกิน 40 ล้านบาท", price: "35,000" },
-  { revenue: "รายได้ไม่เกิน 50 ล้านบาท", price: "38,000" },
-  { revenue: "รายได้ไม่เกิน 60 ล้านบาท", price: "43,000" },
-  { revenue: "รายได้ไม่เกิน 70 ล้านบาท", price: "49,000" },
-  { revenue: "รายได้ไม่เกิน 80 ล้านบาท", price: "55,000" },
-  { revenue: "รายได้ไม่เกิน 90 ล้านบาท", price: "60,000" },
-  { revenue: "รายได้ไม่เกิน 100 ล้านบาท", price: "65,000" },
+/**
+ * คำถามชุดนี้ต้องแสดงบนหน้าเว็บจริงผ่าน <ServiceFaq /> ด้านล่าง
+ * ทุกคำตอบอ้างอิงตัวเลขและเงื่อนไขในเอกสารราคาเท่านั้น ไม่ได้แต่งเพิ่ม
+ * (คำค้นเป้าหมาย: ปิดงบการเงิน เชียงใหม่ · รับปิดงบเปล่า เชียงใหม่ · ตรวจสอบบัญชี เชียงใหม่)
+ */
+const faqs: Faq[] = [
+  {
+    q: 'ค่าตรวจสอบบัญชีประจำปีเริ่มต้นเท่าไหร่?',
+    a: 'ถ้าคุณมีคนทำบัญชีอยู่แล้วและต้องการแค่ผู้สอบบัญชีตรวจและปิดงบ เริ่มต้น 6,000 บาทต่อปีสำหรับงบเปล่า และ 6,900 บาทสำหรับรายได้ไม่เกิน 500,000 บาท ราคารวมภาษีมูลค่าเพิ่มแล้ว คิดตามช่วงรายได้ต่อปี ดูตารางเต็มได้ในหน้านี้',
+  },
+  {
+    q: 'ตรวจสอบอย่างเดียว กับ แพ็กเกจครบวงจร ต่างกันอย่างไร?',
+    a: 'ตรวจสอบอย่างเดียว เหมาะกับกิจการที่ทำบัญชีเองหรือมีสำนักงานบัญชีอยู่แล้ว เราตรวจสอบ รับรองงบ และยื่นให้ตอนสิ้นปี ส่วนแพ็กเกจครบวงจร เราทำบัญชีและยื่นภาษีให้ทุกเดือนตลอดปี แล้วปิดงบพร้อมผู้สอบบัญชีให้เสร็จในราคาเดียว เริ่ม 12,000 บาทต่อปี',
+  },
+  {
+    q: 'บริษัทที่ยังไม่มีรายได้ ต้องตรวจสอบงบการเงินไหม?',
+    a: 'ต้องทำ นิติบุคคลที่จดทะเบียนแล้วต้องนำส่งงบการเงินที่ผ่านการตรวจสอบทุกปี แม้ปีนั้นไม่มีรายการเลย เรียกว่างบเปล่า ค่าบริการตรวจสอบอย่างเดียว 6,000 บาท หรือแบบครบวงจร 12,000 บาทต่อปี รวม VAT',
+  },
+  {
+    q: 'ถ้าเลือกตรวจสอบอย่างเดียว ต้องเตรียมอะไรให้บ้าง?',
+    a: 'กิจการเป็นผู้จัดทำบัญชีและนำส่งงบทดลอง บัญชีแยกประเภท พร้อมเอกสารประกอบให้ครบถ้วน หากเอกสารไม่ครบหรือต้องปรับปรุงบัญชีใหม่ อาจมีค่าบริการเพิ่มเติมตามที่ตกลงกัน',
+  },
+  {
+    q: 'ชำระค่าบริการอย่างไร?',
+    a: 'ตรวจสอบอย่างเดียว ชำระ 50% เมื่อตกลงรับงาน และส่วนที่เหลือเมื่อส่งมอบรายงานผู้สอบบัญชี ส่วนแพ็กเกจครบวงจรคิดเป็นรายปี แบ่งชำระเป็นรายเดือนหรือรายไตรมาสได้ตามที่ตกลงกัน',
+  },
+  {
+    q: 'รายได้เกิน 30 ล้านบาท หรือมีหลายบริษัท คิดราคาอย่างไร?',
+    a: 'รายได้เกิน 30 ล้านบาทเสนอราคาเป็นรายกรณีตามความซับซ้อนของกิจการ และหากมีบริษัทในเครือหรือส่งงานหลายกิจการพร้อมกัน สามารถเจรจาส่วนลดเป็นกรณีพิเศษได้',
+  },
 ];
 
 export default function AuditServicesPage() {
+  const priced = AUDIT_TIERS.filter((t) => t.auditOnly !== null);
   return (
     <div className="flex flex-col min-h-dvh bg-background text-foreground">
       <JsonLd
@@ -103,13 +91,11 @@ export default function AuditServicesPage() {
           serviceSchema({
             name: 'บริการตรวจสอบบัญชีและปิดงบการเงิน เชียงใหม่',
             description:
-              'ตรวจสอบและแสดงความเห็นต่องบการเงินตามมาตรฐานการรายงานทางการเงิน (TFRS) พร้อมจัดทำงบการเงินยื่นกรมพัฒนาธุรกิจการค้าและกรมสรรพากร รวมถึงการตรวจสอบกรณีพิเศษ เช่น ตรวจสอบทุจริตและตรวจสอบตามเงื่อนไข BOI',
+              'ตรวจสอบงบการเงินโดยผู้สอบบัญชีรับอนุญาต จัดทำงบการเงินฉบับสมบูรณ์ นำส่ง ส.บช.3 ต่อกรมพัฒนาธุรกิจการค้า และ ภ.ง.ด.50 ต่อกรมสรรพากร มีทั้งแบบตรวจสอบอย่างเดียวและแบบครบวงจรทำบัญชี + ตรวจสอบ ราคารวม VAT คิดตามช่วงรายได้ต่อปี',
             path: '/audit-services',
             offers: [
-              { name: 'ตรวจสอบงบการเงิน - งบเปล่า', price: '15000' },
-              { name: 'ตรวจสอบงบการเงิน - รายได้ไม่เกิน 1 ล้านบาท', price: '16500' },
-              { name: 'ตรวจสอบงบการเงิน - รายได้ไม่เกิน 5 ล้านบาท', price: '22000' },
-              { name: 'ตรวจสอบงบการเงิน - รายได้ไม่เกิน 20 ล้านบาท', price: '30000' },
+              ...priced.map((t) => ({ name: `ตรวจสอบบัญชีประจำปี — ${t.label}`, price: String(t.auditOnly), description: 'ต่อปี รวม VAT กิจการมีผู้ทำบัญชีอยู่แล้ว' })),
+              ...priced.map((t) => ({ name: `ครบวงจร ทำบัญชี + ตรวจสอบ — ${t.label}`, price: String(t.bundle), description: 'ต่อปี รวม VAT รวมทำบัญชีรายเดือนและปิดงบ' })),
             ],
           }),
           breadcrumbSchema([
@@ -125,23 +111,26 @@ export default function AuditServicesPage() {
 
         {/* ── HERO ── */}
         <section className="bg-[#163674] text-primary-foreground py-24 md:py-32 overflow-hidden relative">
-          <div className="absolute inset-0 opacity-10"
-            style={{ backgroundImage: 'linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(90deg, #ffffff 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
+          <div
+            className="absolute inset-0 opacity-10"
+            style={{ backgroundImage: 'linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(90deg, #ffffff 1px, transparent 1px)', backgroundSize: '40px 40px' }}
+          />
           <div className="container mx-auto px-6 relative z-10 max-w-4xl" data-aos="fade-up">
             <nav className="text-sm mb-6 opacity-70">
               <Link href="/" className="hover:opacity-100 transition-opacity">หน้าแรก</Link>
               <span className="mx-2">/</span>
               <span>บริการตรวจสอบบัญชี</span>
             </nav>
-            <p className="text-xs font-bold tracking-[0.3em] uppercase mb-4 opacity-70">Audit Services</p>
+            <p className="text-xs font-bold tracking-[0.3em] uppercase mb-4 opacity-70">Audit Services · ตรวจสอบบัญชีประจำปี</p>
             <h1 className="text-4xl md:text-6xl font-black leading-tight mb-6">
-              ปิดงบการเงินเชียงใหม่<br />ถูกต้อง ทันกำหนด
+              ปิดงบการเงินเชียงใหม่<br />ตรวจสอบโดย CPA เริ่ม 6,000/ปี
             </h1>
             <p className="text-lg md:text-xl opacity-80 max-w-2xl leading-relaxed mb-8">
-              สร้างความเชื่อมั่นในงบการเงินของคุณ ด้วยการตรวจสอบที่แม่นยำ ตามมาตรฐานการสอบบัญชีที่รับรองโดยสภาวิชาชีพบัญชี
+              ทุกบริษัทต้องส่งงบการเงินที่ผ่านการตรวจสอบทุกปี — เราตรวจ รับรอง และยื่นให้ทั้งกรมพัฒนาธุรกิจการค้าและกรมสรรพากร
+              เลือกได้ว่าจะให้เราตรวจอย่างเดียว หรือทำบัญชีให้ทั้งปีแล้วปิดงบให้เสร็จ
             </p>
             <div className="flex flex-wrap gap-3">
-              {['ตรวจสอบโดย CPA', 'รายงานตามมาตรฐานสากล', 'ให้คำปรึกษาลดความเสี่ยง', 'ราคาโปร่งใส'].map((item) => (
+              {heroChips.map((item) => (
                 <div key={item} className="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full text-sm">
                   <CheckCircle2 className="h-4 w-4 text-green-300 flex-shrink-0" />
                   <span>{item}</span>
@@ -151,111 +140,187 @@ export default function AuditServicesPage() {
           </div>
         </section>
 
-        {/* ── SERVICES ── */}
-        <section className="py-24" data-aos="fade-up">
+        {/* ── เลือกแบบไหนดี ── */}
+        <section className="py-20 md:py-24" data-aos="fade-up">
           <div className="container mx-auto px-6 max-w-6xl">
-            <div className="grid lg:grid-cols-2 gap-16 items-start">
-              <div className="space-y-6">
-                <div>
-                  <p className="text-primary text-xs font-bold tracking-[0.3em] uppercase mb-3">What We Do</p>
-                  <h2 className="text-3xl md:text-4xl font-black mb-4">ให้มากกว่าแค่การลงลายมือชื่อ</h2>
-                  <p className="text-muted-foreground leading-relaxed text-lg">
-                    เราไม่ได้เพียงแค่ตรวจสอบความถูกต้อง แต่เราช่วยค้นหาจุดอ่อนในระบบควบคุมภายใน เพื่อให้ผู้ประกอบการนำไปปรับปรุงธุรกิจได้จริง
-                  </p>
+            <div className="text-center mb-12">
+              <p className="text-primary text-xs font-bold tracking-[0.3em] uppercase mb-3">Which one is for you</p>
+              <h2 className="text-3xl md:text-4xl font-black mb-3">มีให้เลือก 2 แบบ ตอบคำถามเดียวก็รู้</h2>
+              <p className="text-muted-foreground max-w-2xl mx-auto inline-flex items-center gap-2">
+                <HelpCircle className="h-5 w-5 text-primary shrink-0" />
+                <span>
+                  <strong className="text-foreground">ตอนนี้บริษัทคุณมีคนทำบัญชีรายเดือนอยู่แล้วหรือยัง?</strong>
+                </span>
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+              {/* แบบที่ 1 */}
+              <div className="rounded-3xl border border-border bg-card overflow-hidden">
+                <div className="bg-[#163674] text-white p-8">
+                  <div className="flex items-center gap-3 mb-3">
+                    <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/10">
+                      <UserCheck className="h-5 w-5" />
+                    </span>
+                    <span className="text-xs font-bold tracking-widest uppercase opacity-80">มีแล้ว → แบบที่ 1</span>
+                  </div>
+                  <h3 className="text-2xl md:text-3xl font-black">{AUDIT_ONLY.name}</h3>
+                  <p className="text-base opacity-90 mt-1">{AUDIT_ONLY.short}</p>
+                  <div className="mt-5 flex items-baseline gap-2">
+                    <span className="text-sm opacity-80">เริ่มต้น</span>
+                    <span className="text-5xl font-black">6,000</span>
+                    <span className="text-sm opacity-80">บาท/ปี</span>
+                  </div>
+                  <p className="text-xs opacity-70 mt-1">คิดตามช่วงรายได้ต่อปี · รวม VAT · ไม่รวมค่าทำบัญชี</p>
                 </div>
-                <Link href="https://line.me/R/ti/p/@icacc" target="_blank"
-                  className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-bold px-8 py-3 rounded-full hover:opacity-90 transition-all">
-                  <MessageSquare className="h-4 w-4" /> ขอใบเสนอราคาตรวจสอบบัญชี
-                </Link>
+                <div className="p-8">
+                  <div className="rounded-xl bg-primary/5 border-l-4 border-primary px-4 py-3 mb-6 text-sm leading-relaxed">
+                    <span className="font-bold text-primary">เหมาะกับ </span>
+                    <span className="text-muted-foreground">{AUDIT_ONLY.fit}</span>
+                  </div>
+                  <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-3">ที่คุณจะได้จากเรา</p>
+                  <ul className="space-y-3">
+                    {AUDIT_ONLY.scope.map((item) => (
+                      <li key={item} className="flex items-start gap-3">
+                        <CheckCircle2 className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
+                        <span className="text-sm text-muted-foreground leading-relaxed">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {auditServices.map((service, index) => (
-                  <div key={index}
-                    data-aos="fade-up"
-                    data-aos-delay={index * 100}
-                    className="bg-secondary/40 rounded-2xl p-6 border border-border hover:border-primary/30 hover:shadow-md transition-all">
-                    <div className="w-10 h-10 bg-primary/10 text-primary rounded-xl flex items-center justify-center mb-4">
-                      {service.icon}
-                    </div>
-                    <h3 className="font-black text-base mb-2">{service.title}</h3>
-                    <p className="text-muted-foreground text-sm leading-relaxed">{service.description}</p>
+              {/* แบบที่ 2 */}
+              <div className="relative rounded-3xl border-2 border-primary bg-card overflow-hidden shadow-xl shadow-primary/10">
+                <div className="absolute top-4 right-4 bg-white text-primary text-xs font-black px-3 py-1 rounded-full z-10">⭐ จบในที่เดียว</div>
+                <div className="bg-primary text-primary-foreground p-8">
+                  <div className="flex items-center gap-3 mb-3">
+                    <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/15">
+                      <Users className="h-5 w-5" />
+                    </span>
+                    <span className="text-xs font-bold tracking-widest uppercase opacity-80">ยังไม่มี → แบบที่ 2</span>
                   </div>
-                ))}
+                  <h3 className="text-2xl md:text-3xl font-black">{BUNDLE.name}</h3>
+                  <p className="text-base opacity-90 mt-1">{BUNDLE.short}</p>
+                  <div className="mt-5 flex items-baseline gap-2">
+                    <span className="text-sm opacity-80">เริ่มต้น</span>
+                    <span className="text-5xl font-black">12,000</span>
+                    <span className="text-sm opacity-80">บาท/ปี</span>
+                  </div>
+                  <p className="text-xs opacity-70 mt-1">คิดตามช่วงรายได้ต่อปี · รวม VAT · แบ่งจ่ายรายเดือนได้</p>
+                </div>
+                <div className="p-8">
+                  <div className="rounded-xl bg-primary/5 border-l-4 border-primary px-4 py-3 mb-6 text-sm leading-relaxed">
+                    <span className="font-bold text-primary">เหมาะกับ </span>
+                    <span className="text-muted-foreground">{BUNDLE.fit}</span>
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                    <div>
+                      <p className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-muted-foreground mb-3">
+                        <CalendarDays className="h-4 w-4 text-primary" /> ทำให้ทุกเดือน
+                      </p>
+                      <ul className="space-y-2.5">
+                        {BUNDLE.monthly.map((item) => (
+                          <li key={item} className="flex items-start gap-2">
+                            <CheckCircle2 className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
+                            <span className="text-sm text-muted-foreground leading-relaxed">{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    <div>
+                      <p className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-muted-foreground mb-3">
+                        <CalendarCheck className="h-4 w-4 text-primary" /> ทำให้ตอนสิ้นปี
+                      </p>
+                      <ul className="space-y-2.5">
+                        {BUNDLE.yearEnd.map((item) => (
+                          <li key={item} className="flex items-start gap-2">
+                            <CheckCircle2 className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
+                            <span className="text-sm text-muted-foreground leading-relaxed">{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
+
+            <p className="mt-6 text-center text-sm text-muted-foreground">
+              ต้องการแค่ทำบัญชีรายเดือน ยังไม่ถึงตอนปิดงบ?{' '}
+              <Link href="/accounting-services" className="font-bold text-primary hover:underline">
+                ดูแพ็กเกจทำบัญชีรายเดือน →
+              </Link>
+            </p>
           </div>
         </section>
 
         {/* ── PRICING TABLE ── */}
-        <section className="py-24 bg-secondary/40" data-aos="fade-up">
+        <section id="pricing" className="py-20 md:py-24 bg-secondary/30" data-aos="fade-up">
           <div className="container mx-auto px-6 max-w-5xl">
-            <div className="text-center mb-16">
+            <div className="text-center mb-10">
               <p className="text-primary text-xs font-bold tracking-[0.3em] uppercase mb-3">Pricing</p>
-              <h2 className="text-3xl md:text-4xl font-black mb-3">ราคาตรวจสอบบัญชีประจำปี</h2>
-              <p className="text-muted-foreground">ราคาโปร่งใสตามฐานรายได้ ไม่มีค่าธรรมเนียมแอบแฝง</p>
+              <h2 className="text-3xl md:text-4xl font-black mb-3">ค่าบริการตามช่วงรายได้ต่อปี</h2>
+              <p className="text-muted-foreground max-w-2xl mx-auto">
+                ราคาเดียวกันทั้งตาราง ไม่มีค่าใช้จ่ายแฝง ยิ่งรายได้น้อย ยิ่งจ่ายน้อย — เทียบทั้ง 2 แบบได้ในตารางเดียว
+              </p>
             </div>
+            <AuditPricing />
+          </div>
+        </section>
 
-            <div className="bg-background rounded-3xl shadow-xl overflow-hidden border border-border">
-              <div className="bg-primary text-primary-foreground p-5 text-center font-black text-lg">
-                ประมาณการค่าธรรมเนียมตามเกณฑ์รายได้
-              </div>
-              <Table>
-                <TableHeader className="bg-secondary/50">
-                  <TableRow>
-                    <TableHead className="text-center font-black text-foreground h-14 text-base">รายการรายได้</TableHead>
-                    <TableHead className="text-center font-black text-foreground h-14 text-base">ราคาเริ่มต้น (บาท)</TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {pricingData.map((row, index) => (
-                    <TableRow key={index} className={index % 2 === 0 ? 'bg-background' : 'bg-secondary/20'}>
-                      <TableCell className="text-center py-4 font-medium text-muted-foreground">{row.revenue}</TableCell>
-                      <TableCell className="text-center py-4 font-black text-primary text-lg">{row.price}</TableCell>
-                    </TableRow>
+        {/* ── เงื่อนไข ── */}
+        <section className="py-20 md:py-24" data-aos="fade-up">
+          <div className="container mx-auto px-6 max-w-6xl">
+            <div className="text-center mb-10">
+              <p className="text-primary text-xs font-bold tracking-[0.3em] uppercase mb-3">Terms</p>
+              <h2 className="text-3xl md:text-4xl font-black">เงื่อนไขการให้บริการ</h2>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="rounded-3xl border border-border bg-card p-8">
+                <h3 className="font-black text-lg mb-4 flex items-center gap-2">
+                  <UserCheck className="h-5 w-5 text-primary" /> แบบที่ 1 · ตรวจสอบอย่างเดียว
+                </h3>
+                <ul className="space-y-3">
+                  {AUDIT_ONLY.terms.map((item) => (
+                    <li key={item} className="flex items-start gap-3">
+                      <Info className="h-4 w-4 text-primary mt-1 flex-shrink-0" />
+                      <span className="text-sm text-muted-foreground leading-relaxed">{item}</span>
+                    </li>
                   ))}
-                </TableBody>
-              </Table>
-              <div className="p-6 text-center border-t border-border bg-secondary/20">
-                <p className="text-sm text-muted-foreground mb-4 italic">
-                  * ราคาเริ่มต้น อาจเปลี่ยนแปลงตามความซับซ้อนของรายการค้า<br />
-                  รบกวนส่งไฟล์งบการเงินให้เจ้าหน้าที่ประเมินราคาที่แน่นอนอีกครั้งค่ะ
-                </p>
-                <Link href="https://line.me/R/ti/p/@icacc" target="_blank"
-                  className="inline-flex items-center gap-2 border-2 border-primary text-primary font-bold px-8 py-3 rounded-full hover:bg-primary hover:text-primary-foreground transition-all">
-                  สอบถามราคาสำหรับธุรกิจของคุณ
-                </Link>
+                </ul>
+              </div>
+              <div className="rounded-3xl border border-primary/40 bg-primary/5 p-8">
+                <h3 className="font-black text-lg mb-4 flex items-center gap-2">
+                  <BadgeCheck className="h-5 w-5 text-primary" /> แบบที่ 2 · ครบวงจร ทำบัญชี + ตรวจสอบ
+                </h3>
+                <ul className="space-y-3">
+                  {BUNDLE.terms.map((item) => (
+                    <li key={item} className="flex items-start gap-3">
+                      <Info className="h-4 w-4 text-primary mt-1 flex-shrink-0" />
+                      <span className="text-sm text-muted-foreground leading-relaxed">{item}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
             </div>
-
-            <div className="mt-16 grid md:grid-cols-3 gap-6">
-              {[
-                { title: "ประหยัดภาษีได้จริง", desc: "เราแนะนำการวางแผนภาษีที่ถูกต้องเพื่อให้คุณเสียภาษีอย่างคุ้มค่าที่สุด" },
-                { title: "ถูกต้องตามกฎหมาย", desc: "มั่นใจได้ 100% ว่างบการเงินผ่านการตรวจสอบตามมาตรฐานสภาวิชาชีพ" },
-                { title: "ซัพพอร์ตตลอดปี", desc: "ไม่ได้แค่ตรวจสอบแล้วจบ แต่เราพร้อมเป็นที่ปรึกษาให้คุณตลอดอายุสัญญา" },
-              ].map((item, i) => (
-                <div key={i} data-aos="fade-up" data-aos-delay={i * 100} className="bg-background rounded-2xl p-6 border border-border text-center hover:border-primary/30 hover:shadow-md transition-all">
-                  <div className="w-12 h-12 bg-primary/10 text-primary rounded-2xl flex items-center justify-center mx-auto mb-4">
-                    <CheckCircle2 className="h-6 w-6" />
-                  </div>
-                  <h4 className="font-black text-lg mb-2">{item.title}</h4>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
-                </div>
-              ))}
-            </div>
+            <p className="mt-6 text-center text-xs text-muted-foreground">
+              ตารางค่าบริการเบื้องต้นสำหรับรอบบัญชีปี 2569 มีผลถึงวันที่ 31 ธันวาคม 2569 ทุกราคารวมภาษีมูลค่าเพิ่มแล้ว
+              ราคาสุดท้ายขึ้นอยู่กับปริมาณเอกสารและความซับซ้อนของกิจการ
+            </p>
           </div>
         </section>
 
         {/* ── WHY US ── */}
-        <section className="py-24" data-aos="fade-up">
+        <section className="py-20 md:py-24 bg-secondary/30" data-aos="fade-up">
           <div className="container mx-auto px-6 max-w-6xl">
-            <div className="text-center mb-16">
+            <div className="text-center mb-12">
               <p className="text-primary text-xs font-bold tracking-[0.3em] uppercase mb-3">Why IC</p>
               <h2 className="text-3xl md:text-4xl font-black">ทำไมผู้ประกอบการจึงเลือก IC</h2>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {whyChooseUs.map((item, i) => (
-                <div key={item.num} data-aos="fade-up" data-aos-delay={i * 100} className="bg-secondary/40 rounded-2xl p-8 border border-border hover:border-primary/30 hover:shadow-md transition-all">
+                <div key={item.num} data-aos="fade-up" data-aos-delay={i * 100} className="bg-card rounded-2xl p-8 border border-border hover:border-primary/30 hover:shadow-md transition-all">
                   <div className="text-6xl font-black text-primary/10 mb-4 leading-none">{item.num}</div>
                   <h3 className="font-black text-xl mb-3">{item.title}</h3>
                   <p className="text-muted-foreground leading-relaxed">{item.description}</p>
@@ -266,22 +331,26 @@ export default function AuditServicesPage() {
         </section>
 
         {/* ── CTA ── */}
-        <section className="py-16 bg-secondary/40" data-aos="fade-up">
+        <section className="py-16" data-aos="fade-up">
           <div className="container mx-auto px-6 max-w-4xl">
             <div className="bg-primary text-primary-foreground rounded-3xl p-10 relative overflow-hidden text-center">
-              <div className="absolute inset-0 opacity-5"
-                style={{ backgroundImage: 'linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(90deg, #ffffff 1px, transparent 1px)', backgroundSize: '30px 30px' }} />
+              <div
+                className="absolute inset-0 opacity-5"
+                style={{ backgroundImage: 'linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(90deg, #ffffff 1px, transparent 1px)', backgroundSize: '30px 30px' }}
+              />
               <div className="relative z-10">
-                <h3 className="text-2xl md:text-3xl font-black mb-3">พร้อมปิดงบให้ถูกต้องและทันกำหนด?</h3>
-                <p className="opacity-80 mb-8">ปรึกษาทีมงาน IC ฟรี ไม่มีค่าใช้จ่าย พร้อมประเมินราคาให้ตรงกับธุรกิจของคุณ</p>
+                <h3 className="text-2xl md:text-3xl font-black mb-3">ยังไม่แน่ใจว่าควรเลือกแบบไหน?</h3>
+                <p className="opacity-80 mb-8">ทักมาเล่าสถานการณ์บริษัทให้ฟัง ทีมงาน IC ช่วยประเมินและออกใบเสนอราคาให้ฟรี ไม่มีข้อผูกมัด</p>
                 <div className="flex flex-wrap gap-4 justify-center">
-                  <Link href="/quote"
-                    className="inline-flex items-center gap-2 bg-white text-primary font-bold px-8 py-3 rounded-full hover:bg-white/90 transition-all">
+                  <Link href="/quote" className="inline-flex items-center gap-2 bg-white text-primary font-bold px-8 py-3 rounded-full hover:bg-white/90 transition-all">
                     นัดหมายปรึกษาฟรี <ArrowRight className="h-4 w-4" />
                   </Link>
-                  <Link href="https://line.me/R/ti/p/@icacc" target="_blank"
-                    className="inline-flex items-center gap-2 border border-white/40 text-white font-bold px-8 py-3 rounded-full hover:border-white transition-all">
-                    ติดต่อผ่าน Line
+                  <Link
+                    href="https://line.me/R/ti/p/@icacc"
+                    target="_blank"
+                    className="inline-flex items-center gap-2 border border-white/40 text-white font-bold px-8 py-3 rounded-full hover:border-white transition-all"
+                  >
+                    <MessageSquare className="h-4 w-4" /> ติดต่อผ่าน Line
                   </Link>
                 </div>
               </div>
@@ -295,13 +364,7 @@ export default function AuditServicesPage() {
           intro="รวมคำถามที่เจ้าของธุรกิจถามบ่อยที่สุดก่อนส่งงบให้เราตรวจ"
         />
 
-        <RelatedArticles
-          slugs={[
-            'corporate-tax-chiangmai-guide',
-            '5-common-accounting-mistakes-sme-chiangmai',
-            'accounting-fee-chiangmai',
-          ]}
-        />
+        <RelatedArticles slugs={['corporate-tax-chiangmai-guide', '5-common-accounting-mistakes-sme-chiangmai', 'accounting-fee-chiangmai']} />
       </main>
       <Footer />
     </div>
