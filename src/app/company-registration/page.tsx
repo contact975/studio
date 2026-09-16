@@ -26,7 +26,7 @@ const packages = [
     price: '6,000',
     originalPrice: '9,000',
     tag: 'เริ่มต้นง่าย',
-    color: 'from-blue-400 to-blue-500',
+    color: 'bg-[#163674]',
     description: 'ราคารวมค่าบริการและค่าธรรมเนียมที่ต้องชำระทั้งหมดแล้ว',
   },
   {
@@ -35,7 +35,7 @@ const packages = [
     price: '12,000',
     originalPrice: '15,000',
     tag: 'แนะนำ',
-    color: 'from-indigo-500 to-violet-500',
+    color: 'bg-primary',
     highlight: true,
     description: 'ราคารวมค่าบริการและค่าธรรมเนียมที่ต้องชำระทั้งหมดแล้ว',
   },
@@ -171,13 +171,13 @@ export default function CompanyRegistrationPage() {
                 <div key={pkg.name}
                   data-aos="fade-up"
                   data-aos-delay={i * 100}
-                  className={`relative rounded-3xl overflow-hidden border transition-all duration-300 hover:shadow-xl hover:-translate-y-1 ${pkg.highlight ? 'border-primary shadow-lg shadow-primary/10' : 'border-border'}`}>
+                  className={`relative rounded-3xl overflow-hidden border transition-all duration-300 hover:shadow-xl hover:-translate-y-1 ${pkg.highlight ? "border-2 border-primary shadow-xl shadow-primary/10" : "border-border"}`}>
                   {pkg.highlight && (
-                    <div className="absolute top-4 right-4 bg-primary text-primary-foreground text-xs font-black px-3 py-1 rounded-full z-10">
+                    <div className="absolute top-4 right-4 bg-white text-primary text-xs font-black px-3 py-1 rounded-full z-10 shadow">
                       ⭐ {pkg.tag}
                     </div>
                   )}
-                  <div className={`bg-gradient-to-br ${pkg.color} p-8 text-white`}>
+                  <div className={`${pkg.color} p-8 text-white`}>
                     <span className="text-white/60 text-xs font-bold uppercase tracking-widest">{pkg.type}</span>
                     <h3 className="text-3xl font-black mt-2 mb-4">{pkg.name}</h3>
                     <div className="flex items-end gap-3">
