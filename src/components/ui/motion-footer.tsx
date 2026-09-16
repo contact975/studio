@@ -6,7 +6,7 @@ import Link from "next/link";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import type { LucideIcon } from "lucide-react";
-import { ArrowUp, MapPin, Mail } from "lucide-react";
+import { ArrowUp, MapPin, Mail, Building2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 // ลงทะเบียน ScrollTrigger เฉพาะฝั่ง client (ไฟล์นี้ถูก import ตอน SSR ด้วย)
@@ -261,9 +261,12 @@ export interface CinematicFooterProps {
   /** กลุ่มลิงก์ภายในเว็บ — สำคัญต่อ SEO ต้องเป็น <a> จริงใน HTML */
   linkGroups: FooterLinkGroup[];
   contact: {
+    /** ที่ทำการจริง (ตรงกับหมุด Google Business Profile) */
     address: string;
     mapUrl: string;
     email: string;
+    /** ที่อยู่จดทะเบียน + เลขผู้เสียภาษี — แสดงเป็นข้อมูลรอง ไม่ใส่ใน schema */
+    registeredAddress?: string;
   };
   social: FooterAction[];
   companyName: string;
@@ -488,6 +491,12 @@ export function CinematicFooter({
                 <Mail className="h-3.5 w-3.5 shrink-0" />
                 {contact.email}
               </a>
+              {contact.registeredAddress && (
+                <p className="flex items-start gap-1.5 text-muted-foreground/70">
+                  <Building2 className="mt-0.5 h-3.5 w-3.5 shrink-0" />
+                  <span>{contact.registeredAddress}</span>
+                </p>
+              )}
             </div>
 
             <div className="footer-glass-pill order-1 flex cursor-default items-center gap-2 rounded-full px-5 py-2.5 md:order-2 md:px-6 md:py-3">

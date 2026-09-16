@@ -86,6 +86,8 @@ export function Footer() {
         // หมุดเดียวกับ Google Business Profile (cid แปลงมาจาก place id ของแผนที่ฝังเดิม)
         mapUrl: "https://maps.google.com/?cid=11080561333861967427",
         email: "contact@icaccservice.com",
+        // ที่อยู่จดทะเบียนใช้ในใบกำกับภาษี/หัก ณ ที่จ่าย — แสดงเป็นข้อมูลรอง ไม่ใส่ใน schema (Google ใช้ที่ทำการจริงข้างบน)
+        registeredAddress: "ที่อยู่จดทะเบียน: 339 หมู่ 3 ต.แม่สา อ.แม่ริม เชียงใหม่ 50180 · เลขประจำตัวผู้เสียภาษี 0-5055-68013-74-3",
       }}
       social={social}
       companyName="IC Accounting & Service"
