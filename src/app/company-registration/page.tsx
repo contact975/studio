@@ -16,6 +16,8 @@ export const metadata: Metadata = {
     title: 'จดทะเบียนบริษัทเชียงใหม่ เริ่ม 9,000 | IC Accounting',
     description: 'รับจดทะเบียนบริษัทและห้างหุ้นส่วนในเชียงใหม่ ครบทุกขั้นตอน รวดเร็ว ถูกต้อง',
     url: 'https://icaccservice.com/company-registration',
+    // openGraph ของหน้าลูก override ของ root layout ทั้งก้อน จึงต้องใส่รูปซ้ำ ไม่งั้นแชร์ลิงก์ไม่มีรูป
+    images: [{ url: 'https://icaccservice.com/share-preview.jpg', width: 1200, height: 630 }],
   },
 };
 

@@ -37,6 +37,8 @@ export const metadata: Metadata = {
     url: "https://icaccservice.com/visa-work-permit",
     type: "website",
     locale: "en_US",
+    // openGraph ของหน้าลูก override ของ root layout ทั้งก้อน จึงต้องใส่รูปซ้ำ ไม่งั้นแชร์ลิงก์ไม่มีรูป
+    images: [{ url: "https://icaccservice.com/share-preview.jpg", width: 1200, height: 630 }],
   },
 };
 

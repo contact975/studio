@@ -8,6 +8,8 @@ export const metadata: Metadata = {
     title: 'รับผลิต Media Content เชียงใหม่ | IC Accounting',
     description: 'บริการผลิตวิดีโอ Motion Graphics และกราฟิกคุณภาพสูงในเชียงใหม่',
     url: 'https://icaccservice.com/media-content',
+    // openGraph ของหน้าลูก override ของ root layout ทั้งก้อน จึงต้องใส่รูปซ้ำ ไม่งั้นแชร์ลิงก์ไม่มีรูป
+    images: [{ url: 'https://icaccservice.com/share-preview.jpg', width: 1200, height: 630 }],
   },
 };
 

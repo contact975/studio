@@ -47,6 +47,8 @@ export const metadata: Metadata = {
     title: 'วางระบบองค์กรและบัญชีดิจิทัล เชียงใหม่ | IC Accounting',
     description: 'บริการวางระบบบัญชีและองค์กรสำหรับธุรกิจเชียงใหม่ สอนใช้โปรแกรมบัญชี',
     url: 'https://icaccservice.com/organization-system',
+    // openGraph ของหน้าลูก override ของ root layout ทั้งก้อน จึงต้องใส่รูปซ้ำ ไม่งั้นแชร์ลิงก์ไม่มีรูป
+    images: [{ url: 'https://icaccservice.com/share-preview.jpg', width: 1200, height: 630 }],
   },
 };
 
