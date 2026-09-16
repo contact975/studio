@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Header } from '@/components/landing/header';
 import { Footer } from '@/components/landing/footer';
-import { CheckCircle, ArrowRight } from 'lucide-react';
+import { CheckCircle, ArrowRight, UserCheck, MessageCircle, Users, MapPinned } from 'lucide-react';
 import { JsonLd } from '@/components/seo/json-ld';
 import { aboutPageSchema, breadcrumbSchema } from '@/lib/seo';
 
@@ -64,6 +64,17 @@ const values = [
   { title: 'One Stop Solution', desc: 'ดูแลครบวงจรในที่เดียว ตั้งแต่บัญชี ภาษี จดทะเบียน Visa ไปจนถึง Media Content' },
   { title: 'Action Oriented', desc: 'เน้นการลงพื้นที่จริง (Consult) เพื่อวางระบบหลังบ้านที่เหมาะสมกับธุรกิจของคุณ' },
   { title: 'Creative Thinking', desc: 'สำนักงานบัญชีที่เข้าใจการตลาด พร้อมช่วยผลิต Media Content เพื่ออัปเกรดแบรนด์' },
+];
+
+/**
+ * จุดที่ทีมงานซัพพอร์ตลูกค้า — อ้างอิงจากสิ่งที่ประกาศอยู่แล้วบนเว็บและใบเสนอราคา
+ * (ผู้ดูแลบัญชีประจำ / ตอบ LINE ภายใน 1 วันทำการ / ประชุมทบทวนรายไตรมาส / ลงพื้นที่จริง) ไม่ได้เพิ่มคำสัญญาใหม่
+ */
+const teamSupport = [
+  { icon: UserCheck, title: 'ผู้ดูแลบัญชีประจำของคุณ', desc: 'ทุกกิจการมีเจ้าหน้าที่รับผิดชอบโดยตรง รู้จักธุรกิจและเอกสารของคุณ ติดต่อคนเดิมได้ตลอด' },
+  { icon: MessageCircle, title: 'ตอบผ่าน LINE ภายใน 1 วันทำการ', desc: 'มีคำถามเรื่องภาษี เอกสาร หรือกำหนดยื่นแบบ ทักมาได้เลย ทีมงานตอบไวทุกวันทำการ' },
+  { icon: Users, title: 'ทีมครบทุกสาย ไม่ต้องหาหลายที่', desc: 'นักบัญชี ภาษี วีซ่า และมีเดีย ทำงานร่วมกันในทีมเดียว พร้อมเครือข่ายผู้สอบบัญชีรับอนุญาต (CPA)' },
+  { icon: MapPinned, title: 'ลงพื้นที่จริง ทบทวนผลทุกไตรมาส', desc: 'ไม่ได้ดูแค่ตัวเลขจากไกล ๆ — เข้าไปดูหน้างานเมื่อต้องวางระบบ และนั่งทบทวนผลประกอบการร่วมกับผู้บริหารเป็นประจำ' },
 ];
 
 const services = [
@@ -160,8 +171,70 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* ── TIMELINE ── */}
+        {/* ── TEAM ── */}
         <section className="py-24 bg-secondary/40" data-aos="fade-up">
+          <div className="container mx-auto px-6 max-w-6xl">
+            <div className="grid md:grid-cols-2 gap-16 items-center">
+              {/* ข้อความอยู่ซ้าย สลับกับ section ผู้ก่อตั้งด้านบนที่รูปอยู่ซ้าย */}
+              <div className="space-y-6 order-2 md:order-1">
+                <div>
+                  <p className="text-primary text-xs font-bold tracking-[0.3em] uppercase mb-3">The Team</p>
+                  <h2 className="text-3xl md:text-4xl font-black mb-4 leading-tight">
+                    ทีมงานที่อยู่เบื้องหลัง<br />ตัวเลขของคุณทุกเดือน
+                  </h2>
+                </div>
+                <p className="text-muted-foreground leading-relaxed text-lg">
+                  IC ไม่ใช่นักบัญชีคนเดียวที่รับงานทุกอย่าง แต่เป็นทีมงานประจำที่ทำงานร่วมกันทุกวันที่ออฟฟิศดอยสะเก็ด
+                  ทุกกิจการที่ดูแลจะมีผู้รับผิดชอบบัญชีของตัวเองที่รู้จักธุรกิจคุณ ไม่ต้องเล่าใหม่ทุกครั้งที่ติดต่อ
+                </p>
+                <ul className="space-y-4">
+                  {teamSupport.map((item) => (
+                    <li key={item.title} className="flex items-start gap-4">
+                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                        <item.icon className="h-5 w-5" />
+                      </div>
+                      <div>
+                        <p className="font-black text-foreground">{item.title}</p>
+                        <p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+                <Link
+                  href="/quote"
+                  className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-bold px-8 py-3 rounded-full hover:opacity-90 transition-all"
+                >
+                  นัดคุยกับทีมงาน <ArrowRight className="h-4 w-4" />
+                </Link>
+              </div>
+
+              <div className="relative order-1 md:order-2">
+                <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl">
+                  <Image
+                    src="https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Behide%20Scene%2FBehide%20Scene%2015.png?alt=media"
+                    alt="ทีมงาน IC Accounting & Service กำลังทำงานที่สำนักงานดอยสะเก็ด เชียงใหม่"
+                    fill
+                    sizes="(max-width: 768px) 100vw, 544px"
+                    className="object-cover"
+                    loading="lazy"
+                    quality={75}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                  <div className="absolute bottom-6 left-6 right-6">
+                    <p className="text-white font-black text-xl">ออฟฟิศ IC ที่ดอยสะเก็ด</p>
+                    <p className="text-white/70 text-sm">ทีมบัญชีประจำ ทำงานร่วมกันทุกวันทำการ</p>
+                  </div>
+                </div>
+                <div className="absolute -top-4 -left-4 bg-primary text-primary-foreground px-4 py-2 rounded-xl shadow-lg text-sm font-bold">
+                  ดูแลกว่า 100 ธุรกิจ
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ── TIMELINE ── */}
+        <section className="py-24" data-aos="fade-up">
           <div className="container mx-auto px-6 max-w-4xl">
             <div className="text-center mb-16">
               <p className="text-primary text-xs font-bold tracking-[0.3em] uppercase mb-3">Journey</p>
@@ -203,7 +276,8 @@ export default function AboutPage() {
         </section>
 
         {/* ── CO-FOUNDER ── */}
-        <section className="py-24 container mx-auto px-6 max-w-6xl" data-aos="fade-up">
+        <section className="py-24 bg-secondary/40" data-aos="fade-up">
+          <div className="container mx-auto px-6 max-w-6xl">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="space-y-6 order-2 md:order-1">
               <div>
@@ -249,10 +323,11 @@ export default function AboutPage() {
               </div>
             </div>
           </div>
+          </div>
         </section>
 
         {/* ── VALUES ── */}
-        <section className="py-24 bg-secondary/40" data-aos="fade-up">
+        <section className="py-24" data-aos="fade-up">
           <div className="container mx-auto px-6 max-w-6xl">
             <div className="text-center mb-16">
               <p className="text-primary text-xs font-bold tracking-[0.3em] uppercase mb-3">Why Choose IC</p>
