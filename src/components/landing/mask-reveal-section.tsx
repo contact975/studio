@@ -48,8 +48,20 @@ const APERTURE_MASK = `data:image/svg+xml;utf8,${encodeURIComponent(
  * จึงเริ่มที่กรอบ 16:9 ขนาดพอดีอ่านออก แล้วค่อยขยายจนเต็มจอ
  * ได้เอฟเฟกต์ "วิดีโอค่อยๆ ขยายเข้ามาหาเรา" ที่เคารพตัวคลิปเอง
  */
-const startWidth = () =>
-  Math.min(typeof window === 'undefined' ? 760 : window.innerWidth * 0.62, 760);
+/**
+ * ความกว้างช่องมองตอนเริ่ม (mask เป็น 16:9)
+ *
+ * จำกัดจากทั้งความกว้างจอ และ "พื้นที่ว่างจริง" ระหว่างบล็อกข้อความด้านบนกับปุ่มด้านล่าง
+ * (วัดจาก DOM ทุกครั้งที่ apply — ข้อความยาวขึ้น/จอเตี้ยลง ช่องมองก็หดตามโดยไม่ทับตัวหนังสือ)
+ */
+const MASK_ASPECT = 16 / 9;
+/** ระยะหายใจระหว่างขอบช่องมองกับข้อความ/ปุ่ม */
+const MASK_GAP = 28;
+const startWidth = (freeHeight: number) => {
+  const byWidth = Math.min(window.innerWidth * 0.55, 640);
+  const byHeight = Math.max(freeHeight - MASK_GAP * 2, 180) * MASK_ASPECT;
+  return Math.min(byWidth, byHeight);
+};
 
 const WISTIA_MEDIA_ID = 'hd04a418nd';
 const WISTIA_POSTER = `https://fast.wistia.com/embed/medias/${WISTIA_MEDIA_ID}/swatch`;
@@ -70,6 +82,8 @@ export function MaskRevealSection({
   const trackRef = React.useRef<HTMLDivElement>(null);
   const maskRef = React.useRef<HTMLDivElement>(null);
   const videoRef = React.useRef<HTMLVideoElement>(null);
+  const textRef = React.useRef<HTMLDivElement>(null);
+  const ctaRef = React.useRef<HTMLDivElement>(null);
 
   const [isPlaying, setIsPlaying] = React.useState(false);
 
@@ -106,7 +120,16 @@ export function MaskRevealSection({
       const eased = Math.pow(progress, 1.6);
       // ขยายจนเกินเส้นทแยงมุมจอ เพื่อให้เปิดเต็มจริงทุกอัตราส่วนหน้าจอ
       const span = Math.hypot(window.innerWidth, window.innerHeight) * 2.2;
-      mask.style.setProperty('--aperture', `${startWidth() + eased * span}px`);
+
+      // พื้นที่ว่างระหว่างข้อความกับปุ่ม วัดเทียบกับกรอบ mask เอง (กรอบเดียวกับ sticky)
+      const box = mask.getBoundingClientRect();
+      const textBottom = (textRef.current?.getBoundingClientRect().bottom ?? box.top + box.height * 0.4) - box.top;
+      const btnTop = (ctaRef.current?.getBoundingClientRect().top ?? box.bottom - box.height * 0.2) - box.top;
+      const aperture = startWidth(btnTop - textBottom) + eased * span;
+      // ยึดจุดกึ่งกลางช่องมองไว้กลางพื้นที่ว่าง แล้วให้ขยายออกจากจุดนั้น
+      const centerY = (textBottom + btnTop) / 2;
+      mask.style.setProperty('--aperture', `${aperture}px`);
+      mask.style.setProperty('--aperture-top', `${centerY - aperture / MASK_ASPECT / 2}px`);
     };
 
     const onScroll = () => {
@@ -216,12 +239,12 @@ export function MaskRevealSection({
   const maskStyle: React.CSSProperties = {
     WebkitMaskImage: `url("${maskSrc}")`,
     maskImage: `url("${maskSrc}")`,
-    WebkitMaskPosition: '50% 50%',
-    maskPosition: '50% 50%',
+    WebkitMaskPosition: '50% var(--aperture-top, 50%)',
+    maskPosition: '50% var(--aperture-top, 50%)',
     WebkitMaskRepeat: 'no-repeat',
     maskRepeat: 'no-repeat',
-    WebkitMaskSize: 'var(--aperture, min(62vw, 760px))',
-    maskSize: 'var(--aperture, min(62vw, 760px))',
+    WebkitMaskSize: 'var(--aperture, min(55vw, 640px))',
+    maskSize: 'var(--aperture, min(55vw, 640px))',
   };
 
   // โทนน้ำเงินไล่เฉดชุดเดียวกับฟุตเตอร์ (hsl 221 60% 26% → 64% 16% → 222 66% 10%)
@@ -266,7 +289,7 @@ export function MaskRevealSection({
           */}
           <div className="relative z-10 w-full h-full flex flex-col items-center justify-between text-center px-4 py-10 md:py-14">
 
-            <div className="max-w-2xl">
+            <div ref={textRef} className="max-w-2xl">
               <div className="flex justify-center mb-4">
                 <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-blue-300 border border-blue-300/30 px-4 py-1.5 rounded-full bg-[#0f1f43]/70 backdrop-blur-sm">
                   <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse" />
@@ -276,8 +299,12 @@ export function MaskRevealSection({
               <h2 className="text-2xl md:text-4xl font-black text-white leading-tight mb-2 [text-shadow:0_2px_20px_rgba(15,31,67,0.95)]">
                 สำนักงานบัญชีที่<span className="text-blue-300">ดูแลคุณครบวงจร</span>
               </h2>
-              <p className="text-white/70 text-sm md:text-base [text-shadow:0_2px_14px_rgba(15,31,67,0.95)]">
-                ดูวิดีโอสั้นๆ เพื่อทำความรู้จักกับทีมงานและบริการของเรา
+              {/* ประโยคบอกตัวตน: คนรุ่นใหม่ + เทคโนโลยี + ผู้ประกอบการยุคใหม่ — เน้นเป็นข้อความหลักของ section */}
+              <p className="mt-4 text-lg md:text-2xl font-bold text-white leading-snug [text-shadow:0_2px_20px_rgba(15,31,67,0.95)]">
+                บัญชียุคใหม่ <span className="text-blue-300">โดยคนรุ่นใหม่</span>
+                <br className="md:hidden" />
+                <span className="hidden md:inline"> · </span>
+                เพื่อผู้ประกอบการที่พร้อมก้าวไปข้างหน้า
               </p>
             </div>
 
@@ -293,7 +320,7 @@ export function MaskRevealSection({
               />
             </div>
 
-            <div className="w-full max-w-3xl">
+            <div ref={ctaRef} className="w-full max-w-3xl">
               {isPlaying ? (
                 <div className="relative w-full aspect-video rounded-2xl overflow-hidden border border-white/10 shadow-[0_0_80px_rgba(22,54,116,0.35)] bg-black">
                   <style
