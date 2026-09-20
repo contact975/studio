@@ -52,12 +52,8 @@ export interface StructuredPost {
   cta?: BlogCta;
 }
 
-const IMG = {
-  account: '/images/blog/ic-accounting-chiangmai-service-account.jpg',
-  audit: '/images/blog/ic-accounting-chiangmai-service-audit.jpg',
-  consult: '/images/blog/ic-accounting-chiangmai-service-consult.jpg',
-  register: '/images/blog/ic-accounting-chiangmai-service-register.jpg',
-};
+/** ภาพปกเจนจาก scripts/generate-blog-covers.mjs — ชื่อไฟล์ตรงกับ id ของบทความ */
+const cover = (id: string) => `/images/blog/${id}.webp`;
 
 const AUTHOR = 'ทีมงาน IC ACC';
 
@@ -80,7 +76,7 @@ export const structuredPosts: StructuredPost[] = [
     date: '20 ก.ย. 2569',
     dateISO: '2026-09-20',
     author: AUTHOR,
-    image: IMG.audit,
+    image: cover('vat-registration-when-required'),
     imageHint: 'vat registration thailand',
     blocks: [
       {
@@ -233,7 +229,7 @@ export const structuredPosts: StructuredPost[] = [
     date: '20 ก.ย. 2569',
     dateISO: '2026-09-20',
     author: AUTHOR,
-    image: IMG.account,
+    image: cover('withholding-tax-guide-sme'),
     imageHint: 'withholding tax thailand',
     blocks: [
       {
@@ -363,7 +359,7 @@ export const structuredPosts: StructuredPost[] = [
     date: '20 ก.ย. 2569',
     dateISO: '2026-09-20',
     author: AUTHOR,
-    image: IMG.consult,
+    image: cover('director-salary-dividend-loan'),
     imageHint: 'director salary dividend',
     blocks: [
       {
@@ -500,7 +496,7 @@ export const structuredPosts: StructuredPost[] = [
     date: '20 ก.ย. 2569',
     dateISO: '2026-09-20',
     author: AUTHOR,
-    image: IMG.audit,
+    image: cover('corporate-tax-calendar-thailand'),
     imageHint: 'tax calendar thailand company',
     blocks: [
       {
@@ -637,7 +633,7 @@ export const structuredPosts: StructuredPost[] = [
     date: '20 ก.ย. 2569',
     dateISO: '2026-09-20',
     author: AUTHOR,
-    image: IMG.account,
+    image: cover('deductible-expenses-sme'),
     imageHint: 'deductible expenses sme',
     blocks: [
       {

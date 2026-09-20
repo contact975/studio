@@ -77,7 +77,7 @@ const blogPosts = [
     date: '15 มี.ค. 2567',
     dateISO: '2024-03-15',
     author: 'ทีมงาน IC ACC',
-    image: 'https://images.unsplash.com/photo-1562654501-a0ccc0fc3fb1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxEb2N1bWVudHxlbnwwfHx8fDE3NzA4ODg1NTd8MA&ixlib=rb-4.1.0&q=80&w=1080',
+    image: '/images/blog/tax-document-preparation-tips.webp',
     imageHint: 'tax documents'
   },
   {
@@ -158,7 +158,7 @@ const blogPosts = [
     date: '10 มี.ค. 2567',
     dateISO: '2024-03-10',
     author: 'ผู้เชี่ยวชาญด้านกฎหมาย',
-    image: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMXx8QnVzaW5lc3N8ZW58MHx8fHwxNzcwODg4NzkwfDA&ixlib=rb-4.1.0&q=80&w=1080',
+    image: '/images/blog/company-vs-partnership-comparison.webp',
     imageHint: 'business meeting'
   },
   {
@@ -186,7 +186,7 @@ const blogPosts = [
     date: '20 มี.ค. 2567',
     dateISO: '2024-03-20',
     author: 'ทีมงาน IC ACC',
-    image: 'https://images.unsplash.com/photo-1737622020870-73d9f15e8a46?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxzbWUlMjBjaGlhbmdtYWl8ZW58MHx8fHwxNzcwODg4NDIyfDA&ixlib=rb-4.1.0&q=80&w=1080',
+    image: '/images/blog/5-common-accounting-mistakes-sme-chiangmai.webp',
     imageHint: 'accounting error check'
   },
   {
@@ -224,7 +224,7 @@ const blogPosts = [
     date: '01 มี.ค. 2567',
     dateISO: '2024-03-01',
     author: 'ทีมงาน IC ACC',
-    image: 'https://images.unsplash.com/photo-1758115271914-6d5d8bb3d277?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxNHx8Y2hpYW5nbWFpfGVufDB8fHx8MTc3MDg5MDM4MHww&ixlib=rb-4.1.0&q=80&w=1080',
+    image: '/images/blog/sme-chiang-mai-accounting-guide.webp',
     imageHint: 'e-commerce box'
   },
   {
@@ -266,7 +266,7 @@ const blogPosts = [
     date: '25 ก.พ. 2567',
     dateISO: '2024-02-25',
     author: 'ทีมงาน IC ACC',
-    image: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxyZXN0YXVyYW50fGVufDB8fHx8MTc3MDg5MDcxNnww&ixlib=rb-4.1.0&q=80&w=1080',
+    image: '/images/blog/tax-guide-chiang-mai-restaurants.webp',
     imageHint: 'restaurant cafe interior'
   },
   {
@@ -306,7 +306,7 @@ const blogPosts = [
     date: '20 ก.พ. 2567',
     dateISO: '2024-02-20',
     author: 'ทีมงาน IC ACC',
-    image: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxwb29sJTIwdmlsbGF8ZW58MHx8fHwxNzcwODkxNjA0fDA&ixlib=rb-4.1.0&q=80&w=1080',
+    image: '/images/blog/pool-villa-tax-guide-chiang-mai.webp',
     imageHint: 'pool villa'
   },
     {
@@ -359,7 +359,7 @@ const blogPosts = [
                         date: '12 พ.ค. 2568',
                         dateISO: '2025-05-12',
                             author: 'ทีมงาน IC ACC',
-                                image: 'https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Photo%20Services%2Fic-accounting-chiangmai-service-account.jpg?alt=media&token=fc1cee19-5765-4cea-b2ca-81b6a08b3cb5',
+                                image: '/images/blog/accounting-fee-chiangmai.webp',
                                     imageHint: 'accounting service chiang mai',
                                       },
                                         {
@@ -411,7 +411,7 @@ const blogPosts = [
                                                             date: '5 พ.ค. 2568',
                                                             dateISO: '2025-05-05',
                                                                 author: 'ทีมงาน IC ACC',
-                                                                    image: 'https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Photo%20Services%2Fic-accounting-chiangmai-service-register.jpg?alt=media&token=34939e7f-da54-48c1-b5de-83d5c82aa9ba',
+                                                                    image: '/images/blog/company-registration-chiangmai.webp',
                                                                         imageHint: 'company registration chiangmai',
                                                                           },
                                                                             {
@@ -466,7 +466,7 @@ const blogPosts = [
                                                                                                 date: '1 พ.ค. 2568',
                                                                                                 dateISO: '2025-05-01',
                                                                                                     author: 'ทีมงาน IC ACC',
-                                                                                                        image: 'https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Photo%20Services%2Fic-accounting-chiangmai-service-consult.jpg?alt=media&token=7383c116-df92-4925-ab8b-9c0c148ba0dc',
+                                                                                                        image: '/images/blog/how-to-choose-accounting-office-chiangmai.webp',
                                                                                                             imageHint: 'accounting office consultation chiangmai',
                                                                                                               },
                                                                                                                 {
@@ -527,7 +527,7 @@ const blogPosts = [
                                                                                                                                     date: '25 เม.ย. 2568',
                                                                                                                                     dateISO: '2025-04-25',
                                                                                                                                         author: 'ทีมงาน IC ACC',
-                                                                                                                                            image: 'https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Photo%20Services%2Fic-accounting-chiangmai-service-audit.jpg?alt=media&token=b0fbb4a8-886e-4d3d-95ec-91a4a5824058',
+                                                                                                                                            image: '/images/blog/corporate-tax-chiangmai-guide.webp',
                                                                                                                                                 imageHint: 'corporate tax accounting chiangmai',
                                                                                                                                                   },
                                                                                                                                                     {
@@ -663,7 +663,7 @@ Work Permit คือใบที่ให้สิทธิ "ทำงาน" �
                                                                                                                                                                         updated: '25 ส.ค. 2569',
                                                                                                                                                                         updatedISO: '2026-08-25',
                                                                                                                                                                             author: 'ทีมงาน IC ACC',
-                                                                                                                                                                               image: 'https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Photo%20Services%2Fvisa-work-permit-chiangmai.jpg?alt=media&token=8d3e33b0-12ec-4921-b9d6-ad4d10393047',
+                                                                                                                                                                               image: '/images/blog/work-permit-chiangmai.webp',
                                                                                                                                                                                     imageHint: 'work permit visa chiangmai',
                                                                                                                                                                                       },
 ];
