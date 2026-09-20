@@ -388,10 +388,10 @@ export default function AccountingServicesPage() {
         {/* ── บทความที่เกี่ยวข้อง ── */}
         <RelatedArticles
           slugs={[
+            'corporate-tax-calendar-thailand',
+            'withholding-tax-guide-sme',
+            'vat-registration-when-required',
             'accounting-fee-chiangmai',
-            'how-to-choose-accounting-office-chiangmai',
-            '5-common-accounting-mistakes-sme-chiangmai',
-            'tax-document-preparation-tips',
           ]}
         />
 

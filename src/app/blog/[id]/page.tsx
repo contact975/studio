@@ -13,6 +13,8 @@ import { Calendar, User, ChevronLeft, Facebook, Share2, MessageCircle } from 'lu
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { Card, CardHeader, CardTitle } from '@/components/ui/card';
+import { structuredPosts, type StructuredPost } from '@/lib/blog-posts';
+import { ArticleBody, ArticleFaq } from '@/components/blog/article-body';
 
 const blogPosts = [
   {
@@ -718,6 +720,8 @@ const SERVICE_CTA: Record<
   },
 };
 
+type LegacyPost = (typeof blogPosts)[number];
+
 export default function BlogDetailPage() {
   const params = useParams();
 
@@ -731,8 +735,12 @@ export default function BlogDetailPage() {
    * ตั้งแต่ครั้งแรก โดยหน้าตายังเหมือนเดิมทุกอย่าง
    */
   const postId = params?.id ? String(params.id) : '';
-  const post = blogPosts.find((p) => p.id === postId) ?? blogPosts[0];
-  const cta = SERVICE_CTA[post.id];
+  // บทความรุ่นใหม่ (lib/blog-posts.ts) มาก่อน แล้วค่อยตามด้วยบทความข้อความล้วนชุดเดิม
+  const post: LegacyPost | StructuredPost =
+    structuredPosts.find((p) => p.id === postId) ?? blogPosts.find((p) => p.id === postId) ?? structuredPosts[0];
+  const structured = 'blocks' in post ? post : null;
+  const cta = structured?.cta ?? SERVICE_CTA[post.id];
+  const allPosts: Array<{ id: string; title: string; image: string }> = [...structuredPosts, ...blogPosts];
 
   useEffect(() => {
     AOS.init({
@@ -761,11 +769,27 @@ export default function BlogDetailPage() {
               name: 'IC Accounting & Service',
               logo: { '@type': 'ImageObject', url: 'https://icaccservice.com/share-preview.jpg' }
             },
-            description: post.title,
+            description: structured?.excerpt ?? post.title,
             url: `https://icaccservice.com/blog/${post.id}`
           })
         }}
       />
+      {structured?.faq && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'FAQPage',
+              mainEntity: structured.faq.map((f) => ({
+                '@type': 'Question',
+                name: f.q,
+                acceptedAnswer: { '@type': 'Answer', text: f.a },
+              })),
+            }),
+          }}
+        />
+      )}
       {/* breadcrumb ชุดนี้ตรงกับแถบนำทางที่แสดงอยู่ใต้ Header ของหน้านี้ทุกระดับ */}
       <script
         type="application/ld+json"
@@ -837,11 +861,18 @@ export default function BlogDetailPage() {
                 />
               </div>
 
-              <div data-aos="fade-up" className="prose prose-lg max-w-none prose-slate">
-                <div className="whitespace-pre-line text-lg leading-relaxed text-slate-700">
-                  {post.content}
+              {structured ? (
+                <div data-aos="fade-up">
+                  <ArticleBody blocks={structured.blocks} />
+                  {structured.faq && <ArticleFaq faq={structured.faq} />}
                 </div>
-              </div>
+              ) : (
+                <div data-aos="fade-up" className="prose prose-lg max-w-none prose-slate">
+                  <div className="whitespace-pre-line text-lg leading-relaxed text-slate-700">
+                    {(post as LegacyPost).content}
+                  </div>
+                </div>
+              )}
 
               {cta && (
                 <div
@@ -926,7 +957,7 @@ export default function BlogDetailPage() {
           <div className="container mx-auto px-4 md:px-6">
             <h2 className="text-2xl md:text-3xl font-bold font-headline mb-10 text-center">บทความที่คุณอาจสนใจ</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {blogPosts.filter(p => String(p.id) !== String(params?.id)).slice(0, 3).map((post) => (
+              {allPosts.filter(p => p.id !== post.id).slice(0, 3).map((post) => (
                 <Link href={`/blog/${post.id}`} key={post.id} className="group">
                   <Card className="h-full border-none shadow-sm hover:shadow-md transition-all overflow-hidden">
                     <div className="relative aspect-video">

@@ -285,8 +285,8 @@ export default function CompanyRegistrationPage() {
           slugs={[
             'company-registration-chiangmai',
             'company-vs-partnership-comparison',
-            'corporate-tax-chiangmai-guide',
-            'sme-chiang-mai-accounting-guide',
+            'director-salary-dividend-loan',
+            'vat-registration-when-required',
           ]}
         />
 

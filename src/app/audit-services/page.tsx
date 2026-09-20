@@ -364,7 +364,7 @@ export default function AuditServicesPage() {
           intro="รวมคำถามที่เจ้าของธุรกิจถามบ่อยที่สุดก่อนส่งงบให้เราตรวจ"
         />
 
-        <RelatedArticles slugs={['corporate-tax-chiangmai-guide', '5-common-accounting-mistakes-sme-chiangmai', 'accounting-fee-chiangmai']} />
+        <RelatedArticles slugs={['deductible-expenses-sme', 'director-salary-dividend-loan', 'corporate-tax-chiangmai-guide', '5-common-accounting-mistakes-sme-chiangmai']} />
       </main>
       <Footer />
     </div>

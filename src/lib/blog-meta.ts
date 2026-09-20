@@ -12,7 +12,38 @@
  * ให้ไฟล์ route (layout/page) export ตัวแปรอื่นนอกจากที่กำหนดไว้
  * (TS2344: Property 'blogMeta' is incompatible with index signature)
  */
-export const blogMeta: Record<string, { title: string; description: string; image: string }> = {
+export const blogMeta: Record<string, { title: string; description: string; image: string; lastModified?: string }> = {
+  // ── ชุดใหม่ ก.ย. 2569 (เนื้อหาอยู่ใน lib/blog-posts.ts) ──
+  'vat-registration-when-required': {
+    title: 'จด VAT เมื่อไหร่ รายได้ถึง 1.8 ล้านต้องทำอะไรบ้าง',
+    description: 'รายรับเกิน 1.8 ล้านต้องจด VAT ภายใน 30 วัน ไม่จดโดนย้อนหลังทั้ง 7% เบี้ยปรับ 2 เท่า อธิบายวิธีนับรายได้ ข้อดีข้อเสียของการจดก่อนเกณฑ์ และสิ่งที่เปลี่ยนหลังจด',
+    image: 'https://icaccservice.com/images/blog/ic-accounting-chiangmai-service-audit.jpg',
+    lastModified: '2026-09-20',
+  },
+  'withholding-tax-guide-sme': {
+    title: 'ภาษีหัก ณ ที่จ่าย 1% 2% 3% 5% ใช้ตอนไหน ฉบับเจ้าของกิจการ',
+    description: 'ตารางอัตราหัก ณ ที่จ่ายที่ SME เจอบ่อย แยกซื้อสินค้า vs จ้างบริการ กฎ 1,000 บาท กำหนดยื่น ภ.ง.ด.3/53 และค่าปรับถ้าลืมหัก',
+    image: 'https://icaccservice.com/images/blog/ic-accounting-chiangmai-service-account.jpg',
+    lastModified: '2026-09-20',
+  },
+  'director-salary-dividend-loan': {
+    title: 'เอาเงินออกจากบริษัทอย่างถูกต้อง เงินเดือน ปันผล หรือกู้ยืมกรรมการ',
+    description: 'เปรียบเทียบ 3 วิธีเอาเงินออกจากบริษัทอย่างถูกกฎหมาย เงินเดือนกรรมการเท่าไหร่ไม่เสียภาษี และทำไมลูกหนี้กรรมการคือปัญหาใหญ่ในงบการเงิน',
+    image: 'https://icaccservice.com/images/blog/ic-accounting-chiangmai-service-consult.jpg',
+    lastModified: '2026-09-20',
+  },
+  'corporate-tax-calendar-thailand': {
+    title: 'ปฏิทินภาษีบริษัททั้งปี ยื่นอะไร เมื่อไหร่ ค่าปรับเท่าไหร่',
+    description: 'กำหนดยื่นภาษีและเอกสารราชการของบริษัทจำกัดทั้งปี ทั้งรายเดือน ภ.ง.ด.1/3/53 ภ.พ.30 ประกันสังคม และรายปี AGM ส่งงบ DBD ภ.ง.ด.50/51 พร้อมค่าปรับ',
+    image: 'https://icaccservice.com/images/blog/ic-accounting-chiangmai-service-audit.jpg',
+    lastModified: '2026-09-20',
+  },
+  'deductible-expenses-sme': {
+    title: 'ค่าใช้จ่ายแบบไหนหักภาษีได้ แบบไหนโดนบวกกลับ คู่มือ SME',
+    description: 'รายการค่าใช้จ่ายต้องห้ามที่โดนบวกกลับบ่อย เพดานค่ารับรอง 0.3% กฎรถยนต์ 1 ล้าน วิธีจัดการบิลไม่มีใบเสร็จ อัตราค่าเสื่อม และรายจ่ายหักได้ 2 เท่า',
+    image: 'https://icaccservice.com/images/blog/ic-accounting-chiangmai-service-account.jpg',
+    lastModified: '2026-09-20',
+  },
   'tax-document-preparation-tips': {
     title: 'เตรียมเอกสารภาษีสำหรับ SME มือใหม่ 5 เคล็ดลับ',
     description: 'เรียนรู้ 5 เคล็ดลับสำคัญในการเตรียมเอกสารภาษีสำหรับ SME ที่มือใหม่ต้องรู้ เพื่อหลีกเลี่ยงปัญหาและลดความเสี่ยงในช่วงยื่นภาษี',

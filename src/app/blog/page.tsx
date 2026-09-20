@@ -4,7 +4,7 @@ import { Header } from '@/components/landing/header';
 import { Footer } from '@/components/landing/footer';
 import Image from 'next/image'; // แก้ไขจุดนี้เรียบร้อยครับ
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -14,6 +14,7 @@ import { Button } from '@/components/ui/button';
 import { JsonLd } from '@/components/seo/json-ld';
 import { blogMeta } from '@/lib/blog-meta';
 import { blogListSchema, breadcrumbSchema } from '@/lib/seo';
+import { structuredPosts } from '@/lib/blog-posts';
 
 const blogPosts = [
   {
@@ -129,22 +130,16 @@ const blogPosts = [
 ];
 
 export default function BlogPage() {
-  const [currentDate, setCurrentDate] = useState('');
-
   useEffect(() => {
     AOS.init({
       duration: 1000,
       once: true,
       offset: 100,
     });
-
-    const now = new Date();
-    setCurrentDate(now.toLocaleDateString('th-TH', {
-      day: 'numeric',
-      month: 'short',
-      year: 'numeric',
-    }));
   }, []);
+
+  // บทความใหม่ (มีโครงสร้าง) ขึ้นก่อน ตามด้วยชุดเดิม
+  const posts = [...structuredPosts, ...blogPosts];
 
   /* รายชื่อบทความดึงจาก blogMeta ที่เดียว จึงไม่มีวันหลุดจากของจริง */
   const schemaPosts = Object.entries(blogMeta).map(([slug, meta]) => ({
@@ -184,7 +179,7 @@ export default function BlogPage() {
         <section className="py-20 md:py-28">
           <div className="container mx-auto px-4 md:px-6">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
-              {blogPosts.map((post, index) => (
+              {posts.map((post, index) => (
                 <Card 
                   key={post.id} 
                   data-aos="fade-up" 
@@ -208,7 +203,7 @@ export default function BlogPage() {
                   <CardHeader className="flex-grow">
                     <div className="flex items-center gap-4 text-xs text-muted-foreground mb-3">
                       <span className="flex items-center gap-1">
-                        <Calendar className="h-3 w-3" /> {currentDate || post.date}
+                        <Calendar className="h-3 w-3" /> {post.date}
                       </span>
                       <span className="flex items-center gap-1">
                         <User className="h-3 w-3" /> {post.author}

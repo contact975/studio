@@ -66,8 +66,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })
   );
 
-  const posts: MetadataRoute.Sitemap = Object.keys(blogMeta).map((slug) => ({
+  const posts: MetadataRoute.Sitemap = Object.entries(blogMeta).map(([slug, meta]) => ({
     url: `${BASE_URL}/blog/${slug}`,
+    // บทความรุ่นใหม่ระบุวันที่ไว้ใน blogMeta — บทความเก่าไม่ใส่ lastmod (ไม่รู้วันที่จริง ใส่มั่วแย่กว่าไม่ใส่)
+    ...(meta.lastModified ? { lastModified: meta.lastModified } : {}),
     changeFrequency: 'monthly',
     priority: 0.6,
   }));
