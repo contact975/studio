@@ -9,11 +9,11 @@ import { RelatedArticles } from '@/components/seo/related-articles';
 import { breadcrumbSchema, faqSchema, serviceSchema, type Faq } from '@/lib/seo';
 
 export const metadata: Metadata = {
-  title: 'จดทะเบียนบริษัทเชียงใหม่ เริ่ม 9,000 | IC Accounting',
+  title: 'จดทะเบียนนิติบุคคลเชียงใหม่ เริ่ม 6,000 | IC Accounting',
   description: 'รับจดทะเบียนบริษัทและห้างหุ้นส่วนในเชียงใหม่ ครบทุกขั้นตอนตั้งแต่จองชื่อจนถึงได้รับหนังสือรับรอง รวดเร็ว ถูกต้อง',
   alternates: { canonical: 'https://icaccservice.com/company-registration' },
   openGraph: {
-    title: 'จดทะเบียนบริษัทเชียงใหม่ เริ่ม 9,000 | IC Accounting',
+    title: 'จดทะเบียนนิติบุคคลเชียงใหม่ เริ่ม 6,000 | IC Accounting',
     description: 'รับจดทะเบียนบริษัทและห้างหุ้นส่วนในเชียงใหม่ ครบทุกขั้นตอน รวดเร็ว ถูกต้อง',
     url: 'https://icaccservice.com/company-registration',
     // openGraph ของหน้าลูก override ของ root layout ทั้งก้อน จึงต้องใส่รูปซ้ำ ไม่งั้นแชร์ลิงก์ไม่มีรูป
@@ -21,10 +21,24 @@ export const metadata: Metadata = {
   },
 };
 
+/**
+ * รายการที่รวมอยู่ในแพ็กเกจ — ชุดเดียวกับใบเสนอราคา/โปสเตอร์ของทีม
+ * ทั้งสองแพ็กเกจได้รายการเท่ากัน ต่างกันแค่ประเภทนิติบุคคลและราคา
+ */
+const packageIncludes = [
+  'บริการจองชื่อนิติบุคคล',
+  'บริการจัดเตรียมเอกสาร',
+  'ลงลายมือชื่อรับรองเอกสาร',
+  'ค่าธรรมเนียมในการจัดตั้ง และอากรแสตมป์',
+];
+
+/** ของแถมที่ให้ฟรีทั้งสองแพ็กเกจ — แยกออกมาเพื่อเน้นให้เห็นชัด */
+const packageFreebie = 'ฟรี! ตรายางบริษัท และบริการออกแบบ';
+
 const packages = [
   {
     type: 'Partnership',
-    name: 'ห้างหุ้นส่วน',
+    name: 'ห้างหุ้นส่วนจำกัด',
     price: '6,000',
     originalPrice: '9,000',
     tag: 'เริ่มต้นง่าย',
@@ -75,7 +89,7 @@ const steps = [
 const faqs: Faq[] = [
   {
     q: 'รับจดบริษัทเชียงใหม่ ราคาเท่าไหร่?',
-    a: 'ห้างหุ้นส่วนจำกัด 6,000 บาท และบริษัทจำกัด 12,000 บาท ทั้งสองราคารวมค่าบริการและค่าธรรมเนียมที่ต้องชำระทั้งหมดแล้ว ไม่มีค่าใช้จ่ายแอบแฝงเพิ่มภายหลัง',
+    a: 'ห้างหุ้นส่วนจำกัด 6,000 บาท และบริษัทจำกัด 12,000 บาท ทั้งสองราคารวมบริการจองชื่อนิติบุคคล จัดเตรียมเอกสาร ลงลายมือชื่อรับรองเอกสาร ค่าธรรมเนียมในการจัดตั้งและอากรแสตมป์ พร้อมแถมตรายางบริษัทและบริการออกแบบฟรี ไม่มีค่าใช้จ่ายแอบแฝงเพิ่มภายหลัง',
   },
   {
     q: 'จดทะเบียนบริษัทที่เชียงใหม่ ใช้เวลากี่วัน?',
@@ -111,14 +125,14 @@ export default function CompanyRegistrationPage() {
             path: '/company-registration',
             offers: [
               {
-                name: 'จดทะเบียนห้างหุ้นส่วนจำกัด',
+                name: 'จดทะเบียนจัดตั้งห้างหุ้นส่วนจำกัด',
                 price: '6000',
-                description: 'ราคารวมค่าบริการและค่าธรรมเนียมที่ต้องชำระทั้งหมดแล้ว',
+                description: 'ราคารวมค่าบริการและค่าธรรมเนียมที่ต้องชำระทั้งหมดแล้ว รวมบริการจองชื่อ จัดเตรียมเอกสาร ลงลายมือชื่อรับรองเอกสาร ค่าธรรมเนียมจัดตั้งและอากรแสตมป์ พร้อมตรายางและบริการออกแบบฟรี',
               },
               {
-                name: 'จดทะเบียนบริษัทจำกัด',
+                name: 'จดทะเบียนจัดตั้งบริษัทจำกัด',
                 price: '12000',
-                description: 'ราคารวมค่าบริการและค่าธรรมเนียมที่ต้องชำระทั้งหมดแล้ว',
+                description: 'ราคารวมค่าบริการและค่าธรรมเนียมที่ต้องชำระทั้งหมดแล้ว รวมบริการจองชื่อ จัดเตรียมเอกสาร ลงลายมือชื่อรับรองเอกสาร ค่าธรรมเนียมจัดตั้งและอากรแสตมป์ พร้อมตรายางและบริการออกแบบฟรี',
               },
             ],
           }),
@@ -144,7 +158,7 @@ export default function CompanyRegistrationPage() {
             </nav>
             <p className="text-xs font-bold tracking-[0.3em] uppercase mb-4 opacity-70">Company Registration</p>
             <h1 className="text-4xl md:text-6xl font-black leading-tight mb-6">
-              จดทะเบียนบริษัทเชียงใหม่<br />ครบวงจร เริ่ม 9,000 บาท
+              จดจัดตั้งทะเบียนนิติบุคคล เชียงใหม่<br />ครบวงจรเริ่มต้น 6,000 บาท
             </h1>
             <p className="text-lg md:text-xl opacity-80 max-w-2xl leading-relaxed mb-8">
               เริ่มต้นธุรกิจอย่างมั่นใจ บริการจดทะเบียนบริษัทและห้างหุ้นส่วนแบบครบวงจร ให้คุณเริ่มต้นก้าวแรกได้อย่างถูกต้องและรวดเร็ว
@@ -181,7 +195,7 @@ export default function CompanyRegistrationPage() {
                   )}
                   <div className={`${pkg.color} p-8 text-white`}>
                     <span className="text-white/60 text-xs font-bold uppercase tracking-widest">{pkg.type}</span>
-                    <h3 className="text-3xl font-black mt-2 mb-4">{pkg.name}</h3>
+                    <h3 className="text-2xl md:text-3xl font-black mt-2 mb-4">จดทะเบียนจัดตั้ง{pkg.name}</h3>
                     <div className="flex items-end gap-3">
                       <div>
                         <p className="text-white/50 text-sm line-through mb-1">฿{pkg.originalPrice}</p>
@@ -191,7 +205,20 @@ export default function CompanyRegistrationPage() {
                     </div>
                   </div>
                   <div className="bg-card p-8">
-                    <p className="text-muted-foreground text-sm mb-6">{pkg.description}</p>
+                    <p className="text-muted-foreground text-sm mb-5">{pkg.description}</p>
+                    {/* รายการในแพ็กเกจ — ชุดเดียวกับใบเสนอราคาของทีม */}
+                    <ul className="space-y-3 mb-6">
+                      {packageIncludes.map((item) => (
+                        <li key={item} className="flex items-start gap-3 text-sm">
+                          <CheckCircle className="h-5 w-5 text-primary flex-shrink-0 mt-px" />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                      <li className="flex items-start gap-3 text-sm font-bold text-primary">
+                        <CheckCircle className="h-5 w-5 flex-shrink-0 mt-px" />
+                        <span>{packageFreebie}</span>
+                      </li>
+                    </ul>
                     <Link href="https://line.me/R/ti/p/@icacc" target="_blank"
                       className={`flex items-center justify-center gap-2 w-full py-3 rounded-2xl font-bold text-sm transition-all ${pkg.highlight ? 'bg-primary text-primary-foreground hover:opacity-90' : 'border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground'}`}>
                       <MessageSquare className="h-4 w-4" /> ขอใบเสนอราคา
