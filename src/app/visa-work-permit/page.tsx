@@ -23,17 +23,17 @@ import { breadcrumbSchema, faqSchema, serviceSchema } from "@/lib/seo";
  * ตัด keywords ออก — Google เลิกใช้ meta keywords มานานแล้ว ไม่มีผลใดๆ
  */
 export const metadata: Metadata = {
-  title: "Work Permit & Non-B Visa in Chiang Mai | IC Accounting",
+  title: "Work Permit & Non-B Visa Chiang Mai — Cost & Process | IC",
   description:
-    "English-speaking accountants in Chiang Mai handling Thai work permits, Non-B business visas and company registration — from setup through yearly renewal.",
+    "Chiang Mai work permit and Non-B visa handled end to end for THB 112,000 including government fees, paid in three stages. English-speaking accountants, 3–5 months start to finish.",
   // ไม่มี languages/hreflang แล้ว เพราะเหลือหน้าเดียว ไม่มีคู่ภาษาไทย
   alternates: {
     canonical: "https://icaccservice.com/visa-work-permit",
   },
   openGraph: {
-    title: "Work Permit & Non-B Visa in Chiang Mai | IC Accounting",
+    title: "Work Permit & Non-B Visa Chiang Mai — Cost & Process | IC",
     description:
-      "English-speaking accountants in Chiang Mai handling Thai work permits, Non-B business visas and company registration.",
+      "Chiang Mai work permit and Non-B visa handled end to end for THB 112,000 including government fees, paid in three stages.",
     url: "https://icaccservice.com/visa-work-permit",
     type: "website",
     locale: "en_US",
@@ -222,6 +222,21 @@ export default function VisaWorkPermitPage() {
             description:
               "English-speaking accountants in Chiang Mai handling Thai work permits, Non-Immigrant B business visas, company registration, Thai tax and BOI advisory for foreigners living and working in Thailand.",
             path: "/visa-work-permit",
+            // ราคาชุดเดียวกับตารางค่าบริการที่แสดงอยู่บนหน้า (คู่มือฉบับ ก.ค. 2569)
+            offers: [
+              {
+                name: "Non-B visa and work permit — full process",
+                price: "112000",
+                description:
+                  "Service fee including government fees, paid in three installments: 45,000 on submission of the Non-B visa application, 22,000 on work permit collection, 45,000 at the 12-month extension of stay.",
+              },
+              {
+                name: "Annual renewal — visa extension and work permit",
+                price: "37000",
+                description:
+                  "Per year from the second year: 25,000 for the 12-month extension of stay and 12,000 for the work permit renewal.",
+              },
+            ],
           }),
           breadcrumbSchema([
             { name: "Home", path: "/" },
@@ -600,6 +615,39 @@ export default function VisaWorkPermitPage() {
                 We can register one for you first
               </Link>
             </p>
+          </div>
+        </section>
+
+        <section className="sec">
+          <div className="w center">
+            <p className="eyebrow">Visit us</p>
+            <h2 className="title">Our office in Chiang Mai</h2>
+            <p className="sublead">
+              We are a licensed Thai accounting firm, not a visa broker &mdash; the same team that files your
+              work permit also keeps your company&rsquo;s books and tax filings in order.
+            </p>
+            <div className="facts" style={{ textAlign: "left" }}>
+              <div className="factbox">
+                <b style={{ fontSize: 17 }}>IC Accounting &amp; Service Co., Ltd.</b>
+                <span>80/142 Tambon San Pu Loei, Doi Saket District, Chiang Mai 50220, Thailand</span>
+                <span style={{ marginTop: 8 }}>
+                  <a href="https://maps.google.com/?cid=11080561333861967427" target="_blank" rel="noopener noreferrer" style={{ color: "#2563eb", fontWeight: 600 }}>
+                    Open in Google Maps
+                  </a>
+                </span>
+              </div>
+              <div className="factbox">
+                <b style={{ fontSize: 17 }}>Talk to us</b>
+                <span>Phone <a href="tel:0957161422" style={{ color: "#2563eb", fontWeight: 600 }}>095-716-1422</a></span>
+                <span>LINE <a href="https://line.me/R/ti/p/@icacc" target="_blank" rel="noopener noreferrer" style={{ color: "#2563eb", fontWeight: 600 }}>@icacc</a></span>
+                <span>Email contact@icaccservice.com</span>
+              </div>
+              <div className="factbox">
+                <b style={{ fontSize: 17 }}>Office hours</b>
+                <span>Monday to Friday, 09:00&ndash;18:00</span>
+                <span>Appointments outside these hours can be arranged on LINE.</span>
+              </div>
+            </div>
           </div>
         </section>
 

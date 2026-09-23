@@ -39,7 +39,7 @@ const staticRoutes: Array<{
   /** วันที่เนื้อหาเฉพาะของหน้านั้นเปลี่ยนล่าสุด (YYYY-MM-DD) ถ้าไม่ใส่ใช้ SHARED_LAYOUT_UPDATED */
   lastModified?: string;
 }> = [
-  { path: '/', priority: 1.0, changeFrequency: 'weekly', lastModified: '2026-09-14' },
+  { path: '/', priority: 1.0, changeFrequency: 'weekly', lastModified: '2026-09-23' },
 
   // หน้าบริการ — เป็นหน้าที่ต้องแบกคำค้นเชิงพาณิชย์ จึงให้ priority สูงรองจากหน้าแรก
   { path: '/accounting-services', priority: 0.9, changeFrequency: 'monthly' },

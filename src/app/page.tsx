@@ -14,6 +14,7 @@ import { ActivitiesSection } from '@/components/landing/activities-section';
 import { FaqSection } from '@/components/landing/faq-section';
 import { Footer } from '@/components/landing/footer';
 import { ClientsSection } from '@/components/landing/clients-section';
+import { ServiceAreaSection } from '@/components/landing/service-area-section';
 import { PromoCarousel } from '@/components/landing/promo-carousel';
 import { JsonLd } from '@/components/seo/json-ld';
 import { faqSchema } from '@/lib/seo';
@@ -70,6 +71,10 @@ export default function Home() {
         </div>
         <div data-aos="fade-up">
           <ActivitiesSection />
+        </div>
+        {/* พื้นที่ให้บริการ — วางก่อน FAQ เพื่อให้คนที่เลื่อนมาถึงตรงนี้เห็นว่าเราดูแลถึงอำเภอไหนบ้าง */}
+        <div data-aos="fade-up">
+          <ServiceAreaSection />
         </div>
         <div data-aos="fade-up">
           <FaqSection />

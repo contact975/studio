@@ -26,6 +26,13 @@ const PROVIDER = {
     addressCountry: 'TH',
   },
   areaServed: { '@type': 'City', name: 'เชียงใหม่' },
+  // หมุด Google Business Profile — ผูกหน้าบริการทุกหน้าเข้ากับกิจการเดียวกัน
+  sameAs: [
+    'https://www.facebook.com/icaccservice',
+    'https://line.me/R/ti/p/@icacc',
+    'https://maps.google.com/?cid=11080561333861967427',
+  ],
+  hasMap: 'https://maps.google.com/?cid=11080561333861967427',
 } as const;
 
 /** เส้นทางนำทาง — ต้องตรงกับ breadcrumb ที่ผู้ใช้เห็นบนหน้าจอจริง */

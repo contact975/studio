@@ -88,12 +88,29 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     // sameAs = บอก Google ว่าโปรไฟล์เหล่านี้คือธุรกิจรายเดียวกัน
     // ยิ่งเชื่อมได้หลายช่องทางที่ยืนยันตัวตนได้ ยิ่งช่วยเรื่องความโดดเด่นใน map pack
     // ใส่ได้เฉพาะช่องทางที่เป็นของเราจริงและเปิดสาธารณะเท่านั้น
+    // หมุด Google Business Profile ต้องอยู่ในลิสต์นี้ด้วย เพราะคำค้นอย่าง
+    // "สำนักงานบัญชีเชียงใหม่" Google แสดงแผนที่ 3 อันดับเหนือผลปกติ
+    // การผูกเว็บกับหมุดให้ชัดช่วยให้ Google มั่นใจว่าเป็นกิจการเดียวกัน
     "sameAs": [
       "https://www.facebook.com/icaccservice",
       "https://line.me/R/ti/p/@icacc",
+      "https://maps.google.com/?cid=11080561333861967427",
     ],
+    "hasMap": "https://maps.google.com/?cid=11080561333861967427",
     "priceRange": "฿฿",
-    "areaServed": { "@type": "City", "name": "เชียงใหม่" },
+    // ประกาศพื้นที่ให้บริการเป็นรายอำเภอ ตรงกับ section "พื้นที่ให้บริการ" บนหน้าแรก
+    // ไม่ใช่การหว่านชื่ออำเภอ แต่ละชื่อมีเนื้อหาจริงรองรับอยู่ในหน้า
+    "areaServed": [
+      { "@type": "City", "name": "เชียงใหม่" },
+      { "@type": "AdministrativeArea", "name": "อำเภอดอยสะเก็ด" },
+      { "@type": "AdministrativeArea", "name": "อำเภอเมืองเชียงใหม่" },
+      { "@type": "AdministrativeArea", "name": "อำเภอสันทราย" },
+      { "@type": "AdministrativeArea", "name": "อำเภอสันกำแพง" },
+      { "@type": "AdministrativeArea", "name": "อำเภอแม่ริม" },
+      { "@type": "AdministrativeArea", "name": "อำเภอหางดง" },
+      { "@type": "AdministrativeArea", "name": "อำเภอสารภี" },
+      { "@type": "City", "name": "ลำพูน" },
+    ],
     "hasOfferCatalog": {
       "@type": "OfferCatalog",
       "name": "บริการสำนักงานบัญชี",
