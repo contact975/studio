@@ -5,6 +5,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { Header } from '@/components/landing/header';
 import { Footer } from '@/components/landing/footer';
+import { trackEvent } from '@/components/analytics/google-analytics';
 
 export default function QuoteClient() {
   const [isLoading, setIsLoading] = useState(false);
@@ -53,6 +54,8 @@ export default function QuoteClient() {
         return;
       }
 
+      // นัดหมายสำเร็จ = lead จริง ใช้ชื่อ event มาตรฐานของ GA4 ตั้งเป็น key event ได้เลย
+      trackEvent('generate_lead', { service, page_path: '/quote' });
       setIsSuccess(true);
     } catch (error) {
       console.error('[booking] เชื่อมต่อเซิร์ฟเวอร์ไม่ได้', error);

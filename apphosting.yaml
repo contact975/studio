@@ -24,3 +24,12 @@ env:
     value: ChIJL7RV5xgl2jARQ2bFaNMPxpk
     availability:
       - RUNTIME
+  # --- Google Analytics 4 ---
+  # Measurement ID (G-XXXXXXXXXX) ไม่ใช่ความลับ ตัวมันเองอยู่ในหน้าเว็บให้ใครก็เห็นได้อยู่แล้ว
+  # ต้องมี BUILD ด้วย เพราะ NEXT_PUBLIC_* ถูกฝังเข้าไฟล์ตอน build ไม่ใช่อ่านตอนรัน
+  # ถ้าลบบรรทัดนี้ออก สคริปต์ GA จะไม่ถูกเรนเดอร์เลย (ดู components/analytics/google-analytics.tsx)
+  - variable: NEXT_PUBLIC_GA_ID
+    value: G-R6PWYY1P03
+    availability:
+      - BUILD
+      - RUNTIME

@@ -4,6 +4,8 @@ import { Kanit } from 'next/font/google';
 import { Toaster } from '@/components/ui/toaster';
 import { cn } from '@/lib/utils';
 import { AOSProvider } from '@/components/aos-provider';
+import { GoogleAnalytics } from '@/components/analytics/google-analytics';
+import { ConversionTracking } from '@/components/analytics/conversion-tracking';
 
 const kanit = Kanit({
   subsets: ['latin'],
@@ -115,6 +117,9 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           {children}
           <Toaster />
         </AOSProvider>
+        {/* วัดผลการเข้าชมและการกดช่องทางติดต่อ — ไม่ทำงานถ้าไม่ได้ตั้ง NEXT_PUBLIC_GA_ID */}
+        <GoogleAnalytics />
+        <ConversionTracking />
       </body>
     </html>
   );
