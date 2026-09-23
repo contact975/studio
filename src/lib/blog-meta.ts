@@ -96,7 +96,8 @@ export const blogMeta: Record<string, { title: string; description: string; imag
   },
   'work-permit-chiangmai': {
     title: 'Work Permit เชียงใหม่ 2569 ขั้นตอนและเอกสารที่ต้องรู้',
-    description: 'ขอ Work Permit เชียงใหม่ใช้เวลาพิจารณา 5-10 วันทำการ ค่าธรรมเนียมราชการ 750-3,000 บาท อธิบายครบทั้งเอกสาร ขั้นตอน และอัตราส่วนพนักงานไทย 4:1',
+    description: 'ขอ Work Permit เชียงใหม่ใช้เวลารวม 3-5 เดือน ค่าบริการ 112,000 บาทรวมค่าธรรมเนียมราชการ แบ่งชำระ 3 งวด อธิบายครบทั้ง 6 ขั้นตอน เอกสาร 20 รายการ และคุณสมบัติบริษัทผู้ว่าจ้าง',
     image: 'https://icaccservice.com/images/blog/work-permit-chiangmai.jpg',
+    lastModified: '2026-09-23',
   },
 };
