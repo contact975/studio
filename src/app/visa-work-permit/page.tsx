@@ -143,6 +143,39 @@ const css = `
 .exp .band .hbtns{justify-content:center;margin-bottom:0;}
 .exp .btn-w{background:#fff;color:#0f2350;}.exp .btn-w:hover{background:#eef4ff;}
 .exp .btn-t{border:1.5px solid rgba(255,255,255,.6);color:#fff;}.exp .btn-t:hover{background:#fff;color:#0f2350;}
+
+/* ── บล็อกที่เพิ่มจากคู่มือ Non-B / Work Permit (ฉบับ ก.ค. 2569) ── */
+/* ป้ายงวดชำระเงินในแต่ละขั้นตอน */
+.exp .step .pay{display:inline-block;font-size:12px;font-weight:700;color:#0f2350;background:#fff3d6;border:1px solid #f4d795;padding:3px 10px;border-radius:999px;margin-top:9px;margin-left:8px;}
+.exp .step ul{list-style:none;padding:0;margin:10px 0 0;display:flex;flex-direction:column;gap:7px;}
+.exp .step li{display:flex;gap:9px;font-size:14px;color:#5b6b86;align-items:flex-start;}
+.exp .step li::before{content:"";flex:0 0 auto;width:5px;height:5px;border-radius:50%;background:#22d3ee;margin-top:8px;}
+/* ตาราง (ค่าบริการ / ค่าต่ออายุ / ไทม์ไลน์) */
+.exp .tblwrap{margin-top:34px;overflow-x:auto;text-align:left;}
+.exp .tbl{width:100%;border-collapse:collapse;background:#fff;border:1px solid #e7edf5;border-radius:18px;overflow:hidden;font-size:15px;}
+.exp .tbl th{background:#0f2350;color:#fff;font-family:var(--font-sora),sans-serif;font-weight:600;text-align:left;padding:14px 20px;white-space:nowrap;}
+.exp .tbl td{padding:14px 20px;border-top:1px solid #eef2f8;color:#5b6b86;vertical-align:top;}
+.exp .tbl td b{color:#0f172a;font-weight:600;display:block;}
+.exp .tbl td .sm{font-size:13px;color:#8ea6d4;display:block;margin-top:2px;}
+.exp .tbl .num{font-family:var(--font-sora),sans-serif;font-weight:700;color:#0f172a;white-space:nowrap;}
+.exp .tbl tr.total td{background:#f2f7ff;border-top:2px solid #c7ddff;}
+.exp .tbl tr.total td,.exp .tbl tr.total .num{color:#0f2350;font-weight:700;}
+/* กล่องเตือน/ข้อควรทราบ */
+.exp .notes{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px;margin-top:44px;text-align:left;}
+.exp .note{display:flex;gap:14px;background:#fff;border:1px solid #e7edf5;border-left:3px solid #22d3ee;border-radius:14px;padding:20px 22px;}
+.exp .note.warn{border-left-color:#f59e0b;background:#fffdf7;}
+.exp .note h3{font-size:15.5px;font-weight:700;margin-bottom:5px;color:#0f172a;}
+.exp .note p{font-size:14px;color:#5b6b86;}
+.exp .callout{display:flex;gap:14px;text-align:left;background:#fffdf7;border:1px solid #f4d795;border-radius:16px;padding:20px 24px;margin-top:30px;}
+.exp .callout svg{flex:0 0 auto;width:22px;height:22px;stroke:#d97706;fill:none;stroke-width:2;margin-top:1px;}
+.exp .callout p{font-size:14.5px;color:#5b4a1f;}
+.exp .callout b{color:#7c4a03;}
+/* checklist แบบมีหมายเลข */
+.exp .doccol ol{list-style:none;counter-reset:d;padding:0;margin:0;display:flex;flex-direction:column;gap:11px;}
+.exp .doccol ol li{counter-increment:d;display:flex;gap:11px;font-size:14.5px;color:#5b6b86;align-items:flex-start;}
+.exp .doccol ol li::before{content:counter(d);flex:0 0 auto;width:22px;height:22px;border-radius:7px;background:#eef5ff;color:#2563eb;font-size:11.5px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:1px;}
+.exp .doccol ol li .th{display:block;color:#0f172a;font-weight:600;font-size:14.5px;}
+.exp .doccol .cnt{font-size:12px;white-space:nowrap;font-weight:700;color:#0e7490;background:#e6fbff;padding:3px 10px;border-radius:999px;margin-left:8px;}
 @media(max-width:900px){.exp .why{grid-template-columns:1fr;}}
 `;
 
@@ -159,7 +192,15 @@ const expatFaqs = [
   },
   {
     q: "How long does a work permit in Chiang Mai take?",
-    a: "The labour office review takes 5 to 10 working days once your company documents are ready. We prepare everything in advance so nothing sends you back to the queue.",
+    a: "The Department of Employment takes 7 to 15 working days to issue the permit once your documents are in order. End to end — document preparation, WP.3 pre-approval, the Non-B visa, the permit itself and the 12-month extension of stay — allow roughly three to five months.",
+  },
+  {
+    q: "How much does a Non-B visa and work permit cost?",
+    a: "Our service fee is 112,000 THB including government fees, paid in three installments: 45,000 on submission of the Non-B visa application, 22,000 on the day the work permit is collected, and 45,000 at the 12-month extension of stay. Renewal from the second year is 37,000 THB per year.",
+  },
+  {
+    q: "What does my employer need to qualify to sponsor me?",
+    a: "2,000,000 THB of paid-up registered capital per foreign employee, four Thai employees registered with Social Security per foreigner, and a minimum monthly salary of 25,000 to 50,000 THB depending on your nationality. These conditions must be maintained for as long as the permit is valid.",
   },
   {
     q: "Do I need a Thai company to get a work permit?",
@@ -208,7 +249,9 @@ export default function VisaWorkPermitPage() {
             <p className="lead">Non-B business visas, work permits and company registration &mdash; handled end to end by an English-speaking accounting team in Chiang Mai that also keeps your Thai books and tax filings in order.</p>
             <p className="kws">For foreigners working, hiring or starting a business in Chiang Mai &mdash; whether you already have a Thai company or need one set up first.</p>
             <div className="hbtns">
-              <a className="btn btn-g" href="https://line.me/R/ti/p/@icacc" target="_blank" rel="noopener noreferrer">Talk to us on LINE</a>
+              {/* ปุ่มนี้พาไปที่ส่วนขั้นตอน 6 ขั้น ค่าบริการ และเอกสาร (เนื้อหาชุดเดียวกับคู่มือ PDF ที่ทีมส่งให้ลูกค้า) */}
+              <a className="btn btn-g" href="#process">See the full process &amp; fees</a>
+              <a className="btn btn-ghost" href="https://line.me/R/ti/p/@icacc" target="_blank" rel="noopener noreferrer">Talk to us on LINE</a>
               <a className="btn btn-ghost" href="#services">Explore services</a>
             </div>
             <div className="hstats">
@@ -254,87 +297,201 @@ export default function VisaWorkPermitPage() {
           </div>
         </section>
 
-        <section className="sec">
+        {/*
+          เนื้อหาส่วนนี้ยกมาจากคู่มือ Non-B Visa & Work Permit ฉบับ ก.ค. 2569 ของ IC
+          (ไฟล์ Non-B_Visa_WorkPermit_Guide_TH-EN.pdf) เพื่อให้สิ่งที่ลูกค้าเห็นบนเว็บ
+          ตรงกับเอกสารที่ทีมงานส่งให้ลูกค้าจริงทุกตัวเลข ทั้งขั้นตอน ระยะเวลา และค่าบริการ
+        */}
+        <section id="process" className="sec" style={{ scrollMarginTop: 90 }}>
           <div className="w center">
             <p className="eyebrow">The process</p>
             <h2 className="title">How a Chiang Mai work permit actually works</h2>
-            <p className="sublead">Five steps, in order. We take over from step three.</p>
+            <p className="sublead">Six steps, in order, from document preparation to collection &mdash; around three to five months end to end. We run every stage for you.</p>
+
+            <div className="facts">
+              <div className="factbox"><b>2,000,000&#3647;</b><span>paid-up registered capital required per foreign employee</span></div>
+              <div className="factbox"><b>4 : 1</b><span>Thai employees registered with Social Security per foreigner</span></div>
+              <div className="factbox"><b>25,000&ndash;50,000&#3647;</b><span>minimum monthly salary, varies by nationality (Immigration Bureau criteria)</span></div>
+            </div>
+            <p className="sublead center" style={{ marginTop: 16, fontSize: 14.5 }}>
+              These are your employer&rsquo;s eligibility requirements. We check them before anything else &mdash; and they must stay in place for as long as the permit is valid.
+            </p>
+
             <div className="steps">
               <div className="step">
                 <span className="sn">1</span>
                 <div>
-                  <h3>Get a Non-B visa</h3>
-                  <p>Apply for a Non-Immigrant B business visa at a Thai embassy in your country, or convert from a tourist or visa-exempt entry inside Thailand.</p>
+                  <h3>Prepare all required documents</h3>
+                  <ul>
+                    <li>Two sets: company documents and applicant documents &mdash; the full checklist is below.</li>
+                    <li>We verify the registered capital and the Thai-employee ratio before anything is filed.</li>
+                  </ul>
+                  <span className="when">1&ndash;2 weeks</span>
                 </div>
               </div>
               <div className="step">
                 <span className="sn">2</span>
                 <div>
-                  <h3>Enter Thailand on the Non-B</h3>
-                  <p>The Non-B lets you stay for business. On its own it does not give you the right to work &mdash; that comes next.</p>
+                  <h3>Obtain WP.3 pre-approval, then apply for the Non-B visa</h3>
+                  <ul>
+                    <li>As your employer&rsquo;s representative we file the WP.3 (Tor.Tor.3) at the Provincial Employment Office to obtain the pre-approval letter.</li>
+                    <li>You then apply for the Non-B visa at a Royal Thai Embassy or Consulate abroad, or through the Thai e-Visa system.</li>
+                  </ul>
+                  <span className="when">2&ndash;4 weeks</span>
+                  <span className="pay">Installment 1 &mdash; 45,000&#3647;</span>
                 </div>
               </div>
               <div className="step">
                 <span className="sn">3</span>
                 <div>
-                  <h3>File at the Chiang Mai labour office</h3>
-                  <p>We submit your application and company documents to the Chiang Mai Provincial Employment Office on your behalf.</p>
+                  <h3>Enter Thailand &mdash; you receive a 90-day permission to stay</h3>
+                  <ul>
+                    <li>Complete the Thailand Digital Arrival Card (TDAC) before every entry.</li>
+                    <li>Your landlord or house owner must file the TM.30 within 24 hours of you taking up residence.</li>
+                  </ul>
                 </div>
               </div>
               <div className="step">
                 <span className="sn">4</span>
                 <div>
-                  <h3>Wait for the review</h3>
-                  <p>The labour office reviews your file.</p>
-                  <span className="when">5&ndash;10 working days</span>
+                  <h3>Apply for the work permit within 90 days of entry</h3>
+                  <ul>
+                    <li>Filed at the Chiang Mai Provincial Employment Office with the original company and applicant documents.</li>
+                    <li>A medical certificate issued by a Thai hospital is required at this stage.</li>
+                    <li>Permits are now issued through the e-Work Permit (digital) system.</li>
+                  </ul>
+                  <span className="when">7&ndash;15 working days</span>
+                  <span className="pay">Installment 2 &mdash; 22,000&#3647;</span>
                 </div>
               </div>
               <div className="step">
                 <span className="sn">5</span>
                 <div>
-                  <h3>Collect your work permit</h3>
-                  <p>Valid for one year and renewable. We handle the renewal each year alongside your company&rsquo;s accounts.</p>
-                  <span className="when">Valid 1 year</span>
+                  <h3>Extend your permission to stay to 12 months</h3>
+                  <ul>
+                    <li>Filed at Chiang Mai Immigration before your 90-day stay expires &mdash; we recommend starting 30 to 45 days ahead.</li>
+                    <li>The work permit from step 4 is the key supporting document, together with your tax and Social Security evidence.</li>
+                  </ul>
+                  <span className="when">1&ndash;30 days</span>
+                  <span className="pay">Installment 3 &mdash; 45,000&#3647;</span>
+                </div>
+              </div>
+              <div className="step">
+                <span className="sn">6</span>
+                <div>
+                  <h3>Process complete &mdash; your annual obligations begin</h3>
+                  <ul>
+                    <li>90-day address reporting, annual visa and work permit renewal, and personal income tax filing.</li>
+                    <li>We keep all three on schedule alongside your company&rsquo;s accounts.</li>
+                  </ul>
                 </div>
               </div>
             </div>
 
-            <div className="facts">
-              <div className="factbox"><b>5&ndash;10</b><span>working days for the labour office to review</span></div>
-              <div className="factbox"><b>4 : 1</b><span>Thai employees required per foreign work permit</span></div>
-              <div className="factbox"><b>1 year</b><span>validity, renewable annually</span></div>
-              <div className="factbox"><b>750&ndash;3,000&#3647;</b><span>government fee by duration &mdash; the official fee, not our service charge</span></div>
+            <div className="callout">
+              <svg viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round"><path d="M12 9v4M12 17h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z" /></svg>
+              <p>
+                <b>Important:</b> the Non-B visa alone does <b>not</b> authorise work. You may only start working once the work permit has been issued &mdash; otherwise fines and deportation apply.
+              </p>
+            </div>
+
+            <div className="tblwrap">
+              <table className="tbl">
+                <caption className="sr-only">Estimated timeline for a Chiang Mai work permit</caption>
+                <thead>
+                  <tr><th>Stage</th><th>Duration</th><th>Authority</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td><b>Document preparation</b></td><td className="num">1&ndash;2 weeks</td><td>Employer + IC Accounting</td></tr>
+                  <tr><td><b>WP.3 pre-approval</b><span className="sm">Tor.Tor.3</span></td><td className="num">7&ndash;15 working days</td><td>Provincial Employment Office</td></tr>
+                  <tr><td><b>Non-B visa issuance</b></td><td className="num">5&ndash;10 working days</td><td>Royal Thai Embassy / Consulate</td></tr>
+                  <tr><td><b>Work permit</b></td><td className="num">7&ndash;15 working days</td><td>Department of Employment</td></tr>
+                  <tr><td><b>12-month extension of stay</b></td><td className="num">1&ndash;30 days</td><td>Immigration Bureau</td></tr>
+                  <tr className="total"><td><b>Total end to end</b></td><td className="num" colSpan={2}>Approximately 3&ndash;5 months</td></tr>
+                </tbody>
+              </table>
             </div>
           </div>
         </section>
 
         <section className="sec alt">
           <div className="w center">
+            <p className="eyebrow">Service fees</p>
+            <h2 className="title">What it costs, paid in three stages</h2>
+            <p className="sublead">Our service fee includes the government fees at each stage. You pay as the process moves forward &mdash; never everything up front.</p>
+
+            <div className="tblwrap">
+              <table className="tbl">
+                <caption className="sr-only">Work permit and Non-B visa service fees</caption>
+                <thead>
+                  <tr><th>Installment</th><th>When it is due</th><th>Amount</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td><b>Installment 1</b></td><td>On submission of the Non-B visa application</td><td className="num">45,000&#3647;</td></tr>
+                  <tr><td><b>Installment 2</b></td><td>On the day the work permit is collected</td><td className="num">22,000&#3647;</td></tr>
+                  <tr><td><b>Installment 3</b></td><td>On the 12-month extension of stay</td><td className="num">45,000&#3647;</td></tr>
+                  <tr className="total"><td><b>Total</b></td><td>Service fee including government fees</td><td className="num">112,000&#3647;</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div className="tblwrap">
+              <table className="tbl">
+                <caption className="sr-only">Annual renewal fees</caption>
+                <thead>
+                  <tr><th>Annual renewal</th><th>Per year</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td><b>Extension of stay &mdash; 12 months</b></td><td className="num">25,000&#3647;</td></tr>
+                  <tr><td><b>Work permit renewal</b></td><td className="num">12,000&#3647;</td></tr>
+                  <tr className="total"><td><b>Total per year</b></td><td className="num">37,000&#3647;</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <p className="sublead center" style={{ marginTop: 20, fontSize: 14, color: '#8ea6d4' }}>
+              Re-entry permits are paid separately and in cash by the applicant at Immigration or the airport &mdash; 1,000&#3647; single entry, 3,800&#3647; multiple (around 1,200&#3647; at the airport).
+            </p>
+          </div>
+        </section>
+
+        <section id="documents" className="sec" style={{ scrollMarginTop: 90 }}>
+          <div className="w center">
             <p className="eyebrow">What to prepare</p>
             <h2 className="title">Your work permit document checklist</h2>
-            <p className="sublead">Half of this list comes out of your employer&rsquo;s accounts &mdash; which is exactly the half we already look after.</p>
+            <p className="sublead">Two sets of documents. Most of the company side comes straight out of your accounts and tax filings &mdash; which is exactly the half we already look after.</p>
             <div className="docs">
               <div className="doccol">
-                <h3>From you</h3>
-                <p style={{ fontSize: 13.5, color: '#8ea6d4', marginBottom: 14 }}>The foreign applicant</p>
-                <ul>
-                  <li><svg viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round"><path d="m4 12 5.5 5.5L20 7"/></svg><span>Passport, original plus a copy of every page</span></li>
-                  <li><svg viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round"><path d="m4 12 5.5 5.5L20 7"/></svg><span>A valid Non-Immigrant B visa</span></li>
-                  <li><svg viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round"><path d="m4 12 5.5 5.5L20 7"/></svg><span>Three 3&times;4 cm photos on a white background</span></li>
-                  <li><svg viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round"><path d="m4 12 5.5 5.5L20 7"/></svg><span>Education and employment history, in Thai or English</span></li>
-                  <li><svg viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round"><path d="m4 12 5.5 5.5L20 7"/></svg><span>Medical certificate from a Thai hospital, issued within the last 6 months</span></li>
-                </ul>
+                <h3>Part 1 &middot; Company documents<span className="cnt">12 items</span></h3>
+                <p style={{ fontSize: 13.5, color: '#8ea6d4', marginBottom: 14 }}>From the sponsoring Thai company</p>
+                <ol>
+                  <li><span><span className="th">Company Affidavit / Certificate of Registration</span>Issued within the last 6 months</span></li>
+                  <li><span><span className="th">Memorandum of Association</span>Plus all amendment records</span></li>
+                  <li><span><span className="th">List of Shareholders</span>Bor.Or.Jor.5</span></li>
+                  <li><span><span className="th">Latest audited financial statements</span>Certified by a licensed auditor</span></li>
+                  <li><span><span className="th">PND.50 / PND.51</span>Annual and half-year corporate income tax returns</span></li>
+                  <li><span><span className="th">PND.1 and PP.30, last 3 months</span>Withholding tax and VAT returns</span></li>
+                  <li><span><span className="th">SorPorSor.1-10</span>Monthly Social Security contribution filings</span></li>
+                  <li><span><span className="th">VAT registration certificate</span>Por.Por.20 and Por.Por.01</span></li>
+                  <li><span><span className="th">Office map and photographs</span>Signage, interior and exterior</span></li>
+                  <li><span><span className="th">Authorised director&rsquo;s ID</span>ID card and house registration</span></li>
+                  <li><span><span className="th">Letter of Employment / Appointment</span>Including the job description</span></li>
+                  <li><span><span className="th">Employment Contract</span>Stating position, salary and workplace</span></li>
+                </ol>
               </div>
               <div className="doccol">
-                <h3>From your employer</h3>
-                <p style={{ fontSize: 13.5, color: '#8ea6d4', marginBottom: 14 }}>The sponsoring Thai company</p>
-                <ul>
-                  <li><svg viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round"><path d="m4 12 5.5 5.5L20 7"/></svg><span>Company affidavit from the DBD, issued within the last 6 months</span></li>
-                  <li><svg viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round"><path d="m4 12 5.5 5.5L20 7"/></svg><span>Latest shareholder list (Bor.Or.Jor. 5)</span></li>
-                  <li><svg viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round"><path d="m4 12 5.5 5.5L20 7"/></svg><span>VAT registration (Por.Por. 01)</span></li>
-                  <li><svg viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round"><path d="m4 12 5.5 5.5L20 7"/></svg><span>Employment letter stating position, salary and contract length</span></li>
-                  <li><svg viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round"><path d="m4 12 5.5 5.5L20 7"/></svg><span>List of Thai employees on the payroll</span></li>
-                </ul>
+                <h3>Part 2 &middot; Applicant documents<span className="cnt">8 items</span></h3>
+                <p style={{ fontSize: 13.5, color: '#8ea6d4', marginBottom: 14 }}>From you, the foreign applicant</p>
+                <ol>
+                  <li><span><span className="th">Original passport</span>At least 6 months validity, plus copies of every stamped page</span></li>
+                  <li><span><span className="th">Six photos, 3&times;4 cm</span>White background, taken within the last 6 months</span></li>
+                  <li><span><span className="th">Educational proof</span>Degree certificate or transcript</span></li>
+                  <li><span><span className="th">Proof of work experience</span>CV or r&eacute;sum&eacute;</span></li>
+                  <li><span><span className="th">Reference letters</span>From previous employers, if any</span></li>
+                  <li><span><span className="th">Medical certificate</span>From a Thai hospital, for the work permit stage</span></li>
+                  <li><span><span className="th">TM.6 form and proof of residence</span>Lease agreement or TM.30</span></li>
+                  <li><span><span className="th">Certified translations</span>All foreign-language documents must be translated and certified as required</span></li>
+                </ol>
               </div>
             </div>
             <p className="center" style={{ marginTop: 30, fontSize: 14.5, color: '#5b6b86' }}>
@@ -342,6 +499,67 @@ export default function VisaWorkPermitPage() {
               <Link href="/blog/work-permit-chiangmai" hrefLang="th" style={{ color: '#2563eb', fontWeight: 600 }}>
                 Work Permit เชียงใหม่ (in Thai)
               </Link>
+            </p>
+          </div>
+        </section>
+
+        <section className="sec alt">
+          <div className="w center">
+            <p className="eyebrow">Important notes</p>
+            <h2 className="title">Obligations that continue after the permit</h2>
+            <p className="sublead">A work permit is not a one-off. These are the rules that decide whether next year&rsquo;s renewal goes through &mdash; we track every one of them for you.</p>
+            <div className="notes">
+              <div className="note warn">
+                <div>
+                  <h3>Re-entry permit before every departure</h3>
+                  <p>Without one, your permission to stay is cancelled the moment you leave. Official fee 1,000&#3647; single or 3,800&#3647; multiple (around 1,200&#3647; at the airport), cash, paid in person at Immigration or the airport.</p>
+                </div>
+              </div>
+              <div className="note">
+                <div>
+                  <h3>90-day reporting</h3>
+                  <p>You must report your address to Immigration every 90 days &mdash; online, by post or in person. Free of charge when filed on time.</p>
+                </div>
+              </div>
+              <div className="note">
+                <div>
+                  <h3>TM.30 after every move and re-entry</h3>
+                  <p>Your house owner or landlord must notify Immigration of your residence within 24 hours, every time you move or return to Thailand.</p>
+                </div>
+              </div>
+              <div className="note warn">
+                <div>
+                  <h3>The permit is tied to one employer and role</h3>
+                  <p>It covers a specific employer, position and workplace. Any change requires an amendment or an entirely new permit.</p>
+                </div>
+              </div>
+              <div className="note">
+                <div>
+                  <h3>Personal income tax</h3>
+                  <p>Work permit holders must file an annual PND.91 return. Proof of tax paid is essential evidence for the following year&rsquo;s visa renewal.</p>
+                </div>
+              </div>
+              <div className="note">
+                <div>
+                  <h3>Start renewals early</h3>
+                  <p>Begin the work permit renewal 60 days ahead, and the visa extension 30 to 45 days before expiry.</p>
+                </div>
+              </div>
+              <div className="note warn">
+                <div>
+                  <h3>Your employer must stay eligible</h3>
+                  <p>2,000,000&#3647; registered capital and four Thai Social Security-registered employees per foreigner must hold throughout the permit&rsquo;s validity, or renewal may be refused.</p>
+                </div>
+              </div>
+              <div className="note warn">
+                <div>
+                  <h3>Some occupations are reserved for Thai nationals</h3>
+                  <p>Certain jobs are restricted by law. Confirm the intended position with us before starting the process.</p>
+                </div>
+              </div>
+            </div>
+            <p className="center" style={{ marginTop: 28, fontSize: 13.5, color: '#8ea6d4', maxWidth: 760, marginLeft: 'auto', marginRight: 'auto' }}>
+              This page is for general guidance only. Government fees, processing times and requirements are subject to change by the relevant authorities &mdash; please confirm current details with our team before proceeding. Last updated: July 2026.
             </p>
           </div>
         </section>
@@ -368,7 +586,9 @@ export default function VisaWorkPermitPage() {
             <h2 className="title center">Common questions from expats</h2>
             <div className="faq">
               <div className="qa"><h4>Can I convert my tourist visa to a work visa in Chiang Mai?</h4><p>Yes — in most cases we convert a tourist or visa-exempt entry to a Non-B business visa inside Thailand, then process your work permit. We handle the paperwork and appointments.</p></div>
-              <div className="qa"><h4>How long does a work permit in Chiang Mai take?</h4><p>The labour office review takes 5 to 10 working days once your company documents are ready. We prepare everything in advance so nothing sends you back to the queue.</p></div>
+              <div className="qa"><h4>How long does a work permit in Chiang Mai take?</h4><p>The Department of Employment takes 7 to 15 working days to issue the permit once your documents are in order. End to end — document preparation, WP.3 pre-approval, the Non-B visa, the permit itself and the 12-month extension of stay — allow roughly three to five months.</p></div>
+              <div className="qa"><h4>How much does a Non-B visa and work permit cost?</h4><p>Our service fee is 112,000 THB including government fees, paid in three installments: 45,000 on submission of the Non-B visa application, 22,000 on the day the work permit is collected, and 45,000 at the 12-month extension of stay. Renewal from the second year is 37,000 THB per year.</p></div>
+              <div className="qa"><h4>What does my employer need to qualify to sponsor me?</h4><p>2,000,000 THB of paid-up registered capital per foreign employee, four Thai employees registered with Social Security per foreigner, and a minimum monthly salary of 25,000 to 50,000 THB depending on your nationality. These conditions must be maintained for as long as the permit is valid.</p></div>
               <div className="qa"><h4>Do I need a Thai company to get a work permit?</h4><p>Usually yes — you need a sponsoring employer. We can register your Thai company and sponsor the work permit in one package.</p></div>
               <div className="qa"><h4>Can foreigners own 100% of a Thai business?</h4><p>In specific cases — via BOI promotion, a US Amity Treaty company, or a Foreign Business License. We advise the best route for you.</p></div>
             </div>
