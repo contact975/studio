@@ -58,15 +58,8 @@ const STYLES = `
   to { transform: translateX(-50%); }
 }
 
-@keyframes footer-heartbeat {
-  0%, 100% { transform: scale(1); filter: drop-shadow(0 0 5px hsl(var(--destructive) / 0.5)); }
-  15%, 45% { transform: scale(1.2); filter: drop-shadow(0 0 10px hsl(var(--destructive) / 0.8)); }
-  30% { transform: scale(1); }
-}
-
 .animate-footer-breathe { animation: footer-breathe 8s ease-in-out infinite alternate; }
 .animate-footer-scroll-marquee { animation: footer-scroll-marquee 40s linear infinite; }
-.animate-footer-heartbeat { animation: footer-heartbeat 2s cubic-bezier(0.25, 1, 0.5, 1) infinite; }
 
 .footer-bg-grid {
   background-size: 60px 60px;
@@ -147,8 +140,7 @@ const STYLES = `
 
 @media (prefers-reduced-motion: reduce) {
   .animate-footer-breathe,
-  .animate-footer-scroll-marquee,
-  .animate-footer-heartbeat { animation: none; }
+  .animate-footer-scroll-marquee { animation: none; }
 }
 `;
 
@@ -270,8 +262,6 @@ export interface CinematicFooterProps {
   };
   social: FooterAction[];
   companyName: string;
-  /** ข้อความ badge กลางแถวล่าง (ค่าเริ่มต้น "ทำด้วย ❤ ที่เชียงใหม่") */
-  madeIn?: string;
   className?: string;
 }
 
@@ -306,7 +296,6 @@ export function CinematicFooter({
   contact,
   social,
   companyName,
-  madeIn = "ทำด้วย ❤ ที่เชียงใหม่",
   className,
 }: CinematicFooterProps) {
   const wrapperRef = useRef<HTMLDivElement>(null);
@@ -497,16 +486,6 @@ export function CinematicFooter({
                   <span>{contact.registeredAddress}</span>
                 </p>
               )}
-            </div>
-
-            <div className="footer-glass-pill order-1 flex cursor-default items-center gap-2 rounded-full px-5 py-2.5 md:order-2 md:px-6 md:py-3">
-              <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground md:text-xs">
-                {madeIn.split("❤")[0]}
-              </span>
-              <span className="animate-footer-heartbeat text-sm text-destructive md:text-base">❤</span>
-              <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground md:text-xs">
-                {madeIn.split("❤")[1]}
-              </span>
             </div>
 
             <div className="order-3 flex items-center gap-3">
