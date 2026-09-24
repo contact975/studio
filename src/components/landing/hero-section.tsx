@@ -111,12 +111,21 @@ export function HeroSection() {
                 IC Accounting &amp; Service — เชียงใหม่
               </div>
             </div>
-            <h1 className="text-[clamp(3rem,6.5vw,6.5rem)] font-black leading-[0.85] tracking-tight text-[#2657c1]">
-              <span className="block whitespace-nowrap">
-                สำนักงานบัญชี
+            {/*
+              ขนาดตัวอักษรเล็กลงจากเดิม (6.5rem -> 3.4rem) เพราะข้อความยาวขึ้นราวสองเท่า
+              และเลิกใช้ whitespace-nowrap เพราะบรรทัดยาวขนาดนี้จะถูก overflow-hidden
+              ของกล่องแม่ตัดหายบนจอแคบ ปล่อยให้ตัดบรรทัดเองปลอดภัยกว่า
+
+              leading เพิ่มจาก 0.85 เป็น 1.3 เพราะภาษาไทยกินพื้นที่แนวตั้งมากกว่าอักษรละติน
+              บรรทัดบนมีสระล่าง (สู่) บรรทัดล่างมีวรรณยุกต์บน (ด้วย) สองอย่างนี้
+              จะชนกันทันทีถ้า line-height ต่ำกว่า 1.2
+            */}
+            <h1 className="text-[clamp(1.75rem,3.6vw,3.4rem)] font-black leading-[1.3] tracking-tight text-[#2657c1]">
+              <span className="block">
+                ขับเคลื่อนธุรกิจสู่อนาคต
               </span>
               <span className="block text-[#2657c1]/25">
-                เชียงใหม่
+                ด้วยโซลูชันบัญชีที่คุณวางใจ
               </span>
             </h1>
           </div>
