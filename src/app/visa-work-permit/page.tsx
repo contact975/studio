@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
+import { GoogleRatingBadge } from "@/components/seo/google-rating-badge";
 import { Sora, Inter } from "next/font/google";
 import { Header } from "@/components/landing/header";
 import { Footer } from "@/components/landing/footer";
@@ -176,7 +178,12 @@ const css = `
 .exp .doccol ol li::before{content:counter(d);flex:0 0 auto;width:22px;height:22px;border-radius:7px;background:#eef5ff;color:#2563eb;font-size:11.5px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:1px;}
 .exp .doccol ol li .th{display:block;color:#0f172a;font-weight:600;font-size:14.5px;}
 .exp .doccol .cnt{font-size:12px;white-space:nowrap;font-weight:700;color:#0e7490;background:#e6fbff;padding:3px 10px;border-radius:999px;margin-left:8px;}
-@media(max-width:900px){.exp .why{grid-template-columns:1fr;}}
+/* รูปจริงของทีมงานคู่กับข้อมูลออฟฟิศ — หน้านี้เดิมไม่มีรูปในเนื้อหาเลยสักรูป */
+.exp .officegrid{display:grid;grid-template-columns:1fr 1.15fr;gap:34px;align-items:center;margin-top:40px;text-align:left;}
+.exp .officeshot{position:relative;aspect-ratio:4/3;border-radius:22px;overflow:hidden;box-shadow:0 26px 50px -28px rgba(15,35,80,.45);}
+.exp .officeshot img{object-fit:cover;}
+.exp .officegrid .facts{margin-top:0;}
+@media(max-width:900px){.exp .why{grid-template-columns:1fr;}.exp .officegrid{grid-template-columns:1fr;}}
 `;
 
 
@@ -626,6 +633,19 @@ export default function VisaWorkPermitPage() {
               We are a licensed Thai accounting firm, not a visa broker &mdash; the same team that files your
               work permit also keeps your company&rsquo;s books and tax filings in order.
             </p>
+            <div style={{ marginTop: 22 }}>
+              {/* คะแนนดึงสดจาก Google — หน้านี้เดิมไม่มี social proof เลย */}
+              <GoogleRatingBadge label="on Google" reviewsLabel="reviews" />
+            </div>
+            <div className="officegrid">
+              <div className="officeshot">
+                <Image
+                  src="https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Behide%20Scene%2FBehide%20Scene%2015.png?alt=media"
+                  alt="The IC Accounting &amp; Service team at work in our Doi Saket office, Chiang Mai"
+                  fill
+                  sizes="(max-width: 900px) 100vw, 520px"
+                />
+              </div>
             <div className="facts" style={{ textAlign: "left" }}>
               <div className="factbox">
                 <b style={{ fontSize: 17 }}>IC Accounting &amp; Service Co., Ltd.</b>
@@ -647,6 +667,7 @@ export default function VisaWorkPermitPage() {
                 <span>Monday to Friday, 09:00&ndash;18:00</span>
                 <span>Appointments outside these hours can be arranged on LINE.</span>
               </div>
+            </div>
             </div>
           </div>
         </section>
