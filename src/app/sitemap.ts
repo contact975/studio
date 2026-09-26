@@ -42,7 +42,7 @@ const staticRoutes: Array<{
   { path: '/', priority: 1.0, changeFrequency: 'weekly', lastModified: '2026-09-23' },
 
   // หน้าบริการ — เป็นหน้าที่ต้องแบกคำค้นเชิงพาณิชย์ จึงให้ priority สูงรองจากหน้าแรก
-  { path: '/accounting-services', priority: 0.9, changeFrequency: 'monthly' },
+  { path: '/accounting-services', priority: 0.9, changeFrequency: 'monthly', lastModified: '2026-09-26' },
   { path: '/company-registration', priority: 0.9, changeFrequency: 'monthly', lastModified: '2026-09-23' },
   { path: '/audit-services', priority: 0.9, changeFrequency: 'monthly' },
   // ยุบ /expat-services เข้ามาที่นี่แล้ว จึงเหลือ URL เดียวและได้ priority เต็ม

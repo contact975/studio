@@ -75,9 +75,10 @@ export const blogMeta: Record<string, { title: string; description: string; imag
     image: 'https://icaccservice.com/images/blog/pool-villa-tax-guide-chiang-mai.jpg',
   },
   'accounting-fee-chiangmai': {
-    title: 'รับทำบัญชีเชียงใหม่ ราคาเท่าไหร่ เทียบค่าบริการ',
+    title: 'ค่าทำบัญชีเชียงใหม่ ราคาเท่าไหร่ เทียบค่าบริการ',
     description: 'ค่าทำบัญชีเชียงใหม่เริ่มต้นที่ 1,500 บาท/เดือน เปรียบเทียบค่าบริการตามขนาดธุรกิจ และช่วยให้คุณเลือกสำนักงานบัญชีได้คุ้มค่าที่สุด',
     image: 'https://icaccservice.com/images/blog/accounting-fee-chiangmai.jpg',
+    lastModified: '2026-09-26',
   },
   'company-registration-chiangmai': {
     title: 'จดทะเบียนบริษัทเชียงใหม่ ขั้นตอน เอกสาร ค่าใช้จ่าย',
