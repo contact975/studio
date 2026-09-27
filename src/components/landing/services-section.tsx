@@ -115,7 +115,20 @@ export function ServicesSection() {
       <div className="container mx-auto max-w-7xl px-4 md:px-6">
         <div className="mb-12 md:mb-16">
           <p className="mb-3 text-xs font-bold uppercase tracking-[0.3em] text-primary">Our Services</p>
-          <h2 className="text-3xl font-black text-foreground md:text-4xl">บริการจากสำนักงานบัญชีเชียงใหม่</h2>
+          {/*
+            หัวข้อเดิม "บริการจากสำนักงานบัญชีเชียงใหม่" เป็นรูปประโยคแบบแปลตรงจาก
+            "Services from..." ซึ่งภาษาไทยไม่ค่อยใช้ขึ้นต้นหัวข้อ อ่านแล้วแข็ง
+
+            เปลี่ยนหัวข้อเป็นคำถามที่คนอ่านเข้าใจทันที แล้วย้ายคำค้น
+            "สำนักงานบัญชีเชียงใหม่" ลงมาอยู่ในบรรทัดคำอธิบายแทน
+            — section นี้เดิมมีแต่หัวข้อกับการ์ด ไม่มีข้อความบรรยายเลย
+            การเพิ่มบรรทัดนี้จึงได้ทั้งความลื่นไหลและเนื้อหาให้ Google อ่านเพิ่ม
+          */}
+          <h2 className="text-3xl font-black text-foreground md:text-4xl">เราดูแลอะไรให้ธุรกิจคุณบ้าง</h2>
+          <p className="mt-4 max-w-2xl text-muted-foreground leading-relaxed">
+            บริการทั้งหมดของสำนักงานบัญชีเชียงใหม่ IC Accounting &amp; Service
+            ตั้งแต่งานบัญชีรายเดือน ปิดงบการเงิน จดทะเบียนบริษัท ไปจนถึง Visa และ Work Permit
+          </p>
         </div>
 
         <BentoGrid>
