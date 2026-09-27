@@ -41,11 +41,11 @@ const faqs: Faq[] = [
 
 export const metadata: Metadata = {
   title: 'วางระบบองค์กรและบัญชีดิจิทัล เชียงใหม่ | IC Accounting',
-  description: 'บริการวางระบบบัญชีและองค์กรสำหรับธุรกิจเชียงใหม่ สอนใช้โปรแกรมบัญชี วางขั้นตอนเอกสารให้เป็นระบบ เพื่อการเติบโตที่ยั่งยืน',
+  description: 'วางระบบบัญชีและองค์กรสำหรับธุรกิจเชียงใหม่ ทั้งระบบบัญชี Cloud ระบบควบคุมภายใน และงานบุคคล-เงินเดือน สำรวจหน้างานจริง ติดตั้งพร้อมอบรมทีม และดูแลต่อเนื่อง ปรึกษาฟรี',
   alternates: { canonical: 'https://icaccservice.com/organization-system' },
   openGraph: {
     title: 'วางระบบองค์กรและบัญชีดิจิทัล เชียงใหม่ | IC Accounting',
-    description: 'บริการวางระบบบัญชีและองค์กรสำหรับธุรกิจเชียงใหม่ สอนใช้โปรแกรมบัญชี',
+    description: 'วางระบบบัญชีและองค์กรสำหรับธุรกิจเชียงใหม่ ทั้งระบบบัญชี Cloud ระบบควบคุมภายใน และงานบุคคล-เงินเดือน สำรวจหน้างานจริง ติดตั้งพร้อมอบรมทีม และดูแลต่อเนื่อง ปรึกษาฟรี',
     url: 'https://icaccservice.com/organization-system',
     // openGraph ของหน้าลูก override ของ root layout ทั้งก้อน จึงต้องใส่รูปซ้ำ ไม่งั้นแชร์ลิงก์ไม่มีรูป
     images: [{ url: 'https://icaccservice.com/share-preview.jpg', width: 1200, height: 630 }],
