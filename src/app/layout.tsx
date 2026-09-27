@@ -84,7 +84,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     // ชุดนี้ตรงกับหมุดใน Google Business Profile ซึ่งเป็นหมุดเดียวกับแผนที่ในฟุตเตอร์
     // อันดับใน map pack คิดจากระยะทางด้วย การประกาศพิกัดผิดจึงทำให้เราดูไกลกว่าความจริง
     "geo": { "@type": "GeoCoordinates", "latitude": 18.7822907, "longitude": 99.0672194 },
-    "openingHoursSpecification": { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "09:00", "closes": "18:00" },
+    "openingHoursSpecification": { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"], "opens": "09:00", "closes": "18:00" },
     // sameAs = บอก Google ว่าโปรไฟล์เหล่านี้คือธุรกิจรายเดียวกัน
     // ยิ่งเชื่อมได้หลายช่องทางที่ยืนยันตัวตนได้ ยิ่งช่วยเรื่องความโดดเด่นใน map pack
     // ใส่ได้เฉพาะช่องทางที่เป็นของเราจริงและเปิดสาธารณะเท่านั้น

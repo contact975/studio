@@ -112,7 +112,7 @@ export function ServiceAreaSection() {
             <div>
               <p className="font-bold mb-1">เวลาทำการ</p>
               <p className="text-sm text-muted-foreground leading-relaxed">
-                จันทร์ – ศุกร์ 09:00 – 18:00 น.
+                จันทร์ – เสาร์ 09:00 – 18:00 น.
                 <br />
                 นัดหมายนอกเวลาได้ทาง LINE
               </p>

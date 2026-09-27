@@ -664,7 +664,7 @@ export default function VisaWorkPermitPage() {
               </div>
               <div className="factbox">
                 <b style={{ fontSize: 17 }}>Office hours</b>
-                <span>Monday to Friday, 09:00&ndash;18:00</span>
+                <span>Monday to Saturday, 09:00&ndash;18:00</span>
                 <span>Appointments outside these hours can be arranged on LINE.</span>
               </div>
             </div>
