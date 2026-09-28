@@ -30,7 +30,12 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700;800&family=Poppins:wght@600;700&display=swap">
+<!--
+  Kanit ชุดเดียวกับทั้งเว็บ (ดูค่า weight ที่โหลดได้ใน src/app/layout.tsx)
+  โหลดถึง 700 เท่านั้น เพราะหน้าอื่นของเว็บก็โหลดแค่นี้
+  หัวข้อที่สั่ง 800 จะตกมาใช้ 700 ซึ่งทำให้หน้านี้หนาเท่ากับหน้าอื่นพอดี
+-->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap">
 <!--
   IC Tax Check — เครื่องคำนวณภาษีเงินได้บุคคลธรรมดาสำหรับลูกค้า (หน้าเว็บไซต์)
   ตั้งค่าได้ที่ตัวแปร IC_CONFIG ด้านล่างของไฟล์ (ช่องทางติดต่อ, ที่อยู่รับข้อมูลลูกค้า, ลิงก์นโยบายความเป็นส่วนตัว)
@@ -42,8 +47,11 @@
   --amber:#FFBD59; --amber-ink:#7A4E00; --amber-bg:#FFF4DE; --red:#D6392E; --red-2:#B92E24;
   --ink:#132C61; --ink-2:#44527A; --ink-3:#5E6A86; --line:#D6DDEE; --white:#FFFFFF;
   --good:#176B4C; --good-bg:#E2F3EA; --bad:#B4322A; --bad-bg:#FBE7E5;
-  --th:"Sarabun","TH SarabunPSK","TH Sarabun New",system-ui,sans-serif;
-  --num:"Poppins","Sarabun",system-ui,sans-serif;
+  /* ฟอนต์เดียวกับทั้งเว็บ ทั้งข้อความและตัวเลข
+     เดิมแยกตัวเลขไปใช้ Poppins แต่หน้าอื่นของเว็บใช้ Kanit กับตัวเลขอยู่แล้ว
+     (เช่น 100+ และ 5.0 ในหน้าแรก) จึงใช้ชุดเดียวให้เหมือนกันทั้งเว็บ */
+  --th:"Kanit",system-ui,sans-serif;
+  --num:"Kanit",system-ui,sans-serif;
 }
 *{box-sizing:border-box}
 body{background:var(--pale);color:var(--ink);font-family:var(--th);font-size:17px;line-height:1.6;padding:0 16px 90px;margin:0}
