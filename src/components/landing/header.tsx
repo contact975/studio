@@ -46,6 +46,7 @@ const navLinks = [
   },
   { href: "/about", label: "เกี่ยวกับเรา" },
   { href: "/blog", label: "บทความน่ารู้" },
+  { href: "/internship", label: "นักศึกษาฝึกงาน" },
   { href: "/quote", label: "นัดหมาย" },
 ];
 

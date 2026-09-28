@@ -53,6 +53,8 @@ const staticRoutes: Array<{
 
   { path: '/blog', priority: 0.7, changeFrequency: 'weekly' },
   { path: '/about', priority: 0.6, changeFrequency: 'yearly' },
+  // หน้านักศึกษาฝึกงาน — อัปเดตเมื่อมีรุ่นใหม่ จึงตั้ง yearly
+  { path: '/internship', priority: 0.5, changeFrequency: 'yearly', lastModified: '2026-09-28' },
   { path: '/quote', priority: 0.6, changeFrequency: 'monthly' },
 ];
 

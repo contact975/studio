@@ -103,6 +103,10 @@ export default function QuoteClient() {
                         'Visa & Work Permit (วีซ่าและใบอนุญาตทำงาน)',
                         'ปรึกษาการเงิน/ที่ปรึกษาธุรกิจ',
                         'Exclusive Media Production',
+                        // ปลายทางของปุ่ม "กรอกแบบฟอร์มติดต่อ" ในหน้า /internship
+                        // วางไว้ท้ายสุดเพราะไม่ใช่บริการที่ขาย แต่ต้องมีให้เลือก
+                        // ไม่งั้นนักศึกษาจะกรอกโดยเลือกหัวข้อที่ไม่ตรง แล้วทีมงานแยกงานไม่ออก
+                        'ติดต่อฝึกงาน (นักศึกษา/อาจารย์นิเทศ)',
                       ].map((s) => (
                         <label key={s} className="relative flex items-center p-4 border rounded-xl cursor-pointer hover:bg-blue-50 transition">
                           <input type="radio" name="service_type" value={s} className="w-4 h-4 text-blue-600" />
