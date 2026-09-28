@@ -31,11 +31,13 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <!--
-  Kanit ชุดเดียวกับทั้งเว็บ (ดูค่า weight ที่โหลดได้ใน src/app/layout.tsx)
-  โหลดถึง 700 เท่านั้น เพราะหน้าอื่นของเว็บก็โหลดแค่นี้
-  หัวข้อที่สั่ง 800 จะตกมาใช้ 700 ซึ่งทำให้หน้านี้หนาเท่ากับหน้าอื่นพอดี
+  Kanit ชุดเดียวกับทั้งเว็บ — weight ต้องตรงกับ src/app/layout.tsx เป๊ะๆ (300/400/600/700)
+
+  เดิมหน้านี้สั่ง font-weight 500 กับ 800 ซึ่งไม่มีอยู่ในชุดที่เว็บโหลด
+  เบราว์เซอร์จึงต้องหาน้ำหนักใกล้เคียงมาแทน ผลคือบางจุดหนาไม่เท่าหน้าอื่น
+  ตอนนี้ปรับให้ใช้เฉพาะ 400/600/700 จึงได้ตัวอักษรชุดเดียวกับทั้งเว็บจริงๆ
 -->
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600;700&display=swap">
 <!--
   IC Tax Check — เครื่องคำนวณภาษีเงินได้บุคคลธรรมดาสำหรับลูกค้า (หน้าเว็บไซต์)
   ตั้งค่าได้ที่ตัวแปร IC_CONFIG ด้านล่างของไฟล์ (ช่องทางติดต่อ, ที่อยู่รับข้อมูลลูกค้า, ลิงก์นโยบายความเป็นส่วนตัว)
@@ -54,7 +56,7 @@
   --num:"Kanit",system-ui,sans-serif;
 }
 *{box-sizing:border-box}
-body{background:var(--pale);color:var(--ink);font-family:var(--th);font-size:17px;line-height:1.6;padding:0 16px 90px;margin:0}
+body{background:var(--pale);color:var(--ink);font-family:var(--th);font-size:16px;line-height:1.7;padding:0 16px 90px;margin:0}
 .num{font-variant-numeric:tabular-nums}
 .wrap{max-width:1180px;margin:0 auto}
 a{color:var(--blue)}
@@ -69,14 +71,14 @@ button,input,select,textarea{font:inherit;color:inherit}
 .hero{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:28px;align-items:end;padding-block:26px 30px}
 @media (max-width:860px){.hero{grid-template-columns:1fr;gap:16px;padding-block:14px 20px}}
 .eyebrow{display:inline-block;background:var(--white);border:1px solid var(--line);color:var(--blue);font-weight:700;font-size:14px;border-radius:999px;padding:2px 12px;letter-spacing:.02em}
-h1{font-size:clamp(34px,5.4vw,56px);line-height:1.12;margin:12px 0 10px;font-weight:800;letter-spacing:-.01em;text-wrap:balance}
+h1{font-size:clamp(34px,5.4vw,56px);line-height:1.12;margin:12px 0 10px;font-weight:700;text-wrap:balance}
 h1 em{font-style:normal;color:var(--blue)}
 .lead{font-size:19px;color:var(--ink-2);margin:0;max-width:60ch}
 .trust{list-style:none;margin:0;padding:18px 20px;display:grid;gap:10px;background:var(--white);border:1px solid var(--line);border-radius:16px}
 .trust li{display:grid;grid-template-columns:28px 1fr;gap:10px;align-items:start;font-size:16px}
 .trust li b{display:block;color:var(--ink)}
 .trust li span{color:var(--ink-3);font-size:15px}
-.tick{width:28px;height:28px;border-radius:50%;background:var(--pale-2);color:var(--blue);display:grid;place-items:center;font-weight:800;font-size:15px}
+.tick{width:28px;height:28px;border-radius:50%;background:var(--pale-2);color:var(--blue);display:grid;place-items:center;font-weight:700;font-size:15px}
 
 /* tool */
 .tool{display:grid;grid-template-columns:minmax(0,1fr) 370px;gap:22px;align-items:start}
@@ -105,7 +107,7 @@ h1 em{font-style:normal;color:var(--blue)}
 @media (max-width:560px){.f{grid-template-columns:1fr;gap:6px}}
 .f label{font-weight:600;display:block;line-height:1.35}
 .f small{display:block;color:var(--ink-3);font-size:14.5px;line-height:1.4;margin-top:2px}
-.f .used{color:var(--good);font-weight:500}
+.f .used{color:var(--good);font-weight:600}
 .f .used.cut{color:var(--amber-ink)}
 .inw{display:flex;align-items:center;background:var(--pale);border:1.5px solid transparent;border-radius:12px;padding:0 12px}
 .inw:focus-within{border-color:var(--blue);background:var(--white)}
