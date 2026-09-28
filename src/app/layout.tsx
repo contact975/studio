@@ -6,6 +6,7 @@ import { cn } from '@/lib/utils';
 import { AOSProvider } from '@/components/aos-provider';
 import { GoogleAnalytics } from '@/components/analytics/google-analytics';
 import { ConversionTracking } from '@/components/analytics/conversion-tracking';
+import { TaxCalculatorBubble } from '@/components/landing/tax-calculator-bubble';
 
 const kanit = Kanit({
   subsets: ['latin'],
@@ -134,6 +135,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           {children}
           <Toaster />
         </AOSProvider>
+        {/* ปุ่มลอยมุมขวา พาไปเครื่องคำนวณภาษี — วางนอก AOSProvider เพราะไม่ต้องรอ animation */}
+        <TaxCalculatorBubble />
         {/* วัดผลการเข้าชมและการกดช่องทางติดต่อ — ไม่ทำงานถ้าไม่ได้ตั้ง NEXT_PUBLIC_GA_ID */}
         <GoogleAnalytics />
         <ConversionTracking />

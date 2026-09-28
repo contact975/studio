@@ -28,6 +28,20 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+  async rewrites() {
+    return [
+      {
+        // เครื่องคำนวณภาษีเป็น HTML ล้วนที่วางไว้ใน public/
+        // ไม่ได้แปลงเป็น React เพราะตรรกะคำนวณภาษีเขียนเสร็จและทดสอบมาแล้ว
+        // การเขียนใหม่มีแต่ความเสี่ยงคำนวณผิด โดยไม่ได้อะไรเพิ่ม
+        //
+        // rewrite (ไม่ใช่ redirect) เพื่อให้ URL ที่คนเห็นและที่ Google เก็บ
+        // เป็น /tax-calculator สะอาดๆ ไม่มี .html ห้อยท้าย
+        source: '/tax-calculator',
+        destination: '/tax-calculator.html',
+      },
+    ];
+  },
   images: {
     // ตัด 2048 / 3840 ออก — ไม่มีรูปไหนในเว็บนี้ต้องใช้เกิน 1920
     // ค่านี้คือต้นตอของ ?w=3840 ที่เห็นใน DevTools (Next ใช้ค่าใหญ่สุดเป็น src fallback)

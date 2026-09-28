@@ -51,6 +51,10 @@ const staticRoutes: Array<{
   { path: '/organization-system', priority: 0.7, changeFrequency: 'monthly', lastModified: '2026-09-14' },
   { path: '/media-content', priority: 0.7, changeFrequency: 'monthly' },
 
+  // เครื่องคำนวณภาษี — เป็นหน้าที่คนค้นหาเองอยู่แล้ว ("คำนวณภาษี 2569")
+  // และดึงคนที่ยังไม่พร้อมจ้างเข้ามารู้จักเราก่อน จึงให้ priority สูงกว่าหน้าแนะนำตัว
+  { path: '/tax-calculator', priority: 0.8, changeFrequency: 'yearly', lastModified: '2026-09-28' },
+
   { path: '/blog', priority: 0.7, changeFrequency: 'weekly' },
   { path: '/about', priority: 0.6, changeFrequency: 'yearly' },
   // หน้านักศึกษาฝึกงาน — อัปเดตเมื่อมีรุ่นใหม่ จึงตั้ง yearly
