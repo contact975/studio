@@ -36,22 +36,45 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ success: false, error: 'webhook_not_configured' }, { status: 500 });
   }
 
-  const message = `
-🗓 นัดหมายใหม่!
-👤 ชื่อ: ${name}
-📞 โทร: ${phone}
-📋 บริการ: ${service}
-📅 วันที่: ${date}
-⏰ เวลา: ${time}
-📝 รายละเอียด: ${note?.trim() ? note.trim() : '-'}
-  `.trim();
+  const rows: [string, string][] = [
+    ['👤 ชื่อ', name],
+    ['📞 โทร', phone],
+    ['📋 บริการ', service],
+    ['📅 วันที่', date],
+    ['⏰ เวลา', time],
+    ['📝 รายละเอียด', note?.trim() ? note.trim() : '-'],
+  ];
+
+  /** ข้อความล้วน ใช้กับ LINE ซึ่งแสดง HTML tag เป็นตัวอักษรดิบ */
+  const message = [
+    '🗓 นัดหมายใหม่!',
+    ...rows.map(([label, value]) => `${label}: ${value}`),
+  ].join('\n');
+
+  /**
+   * ฉบับ HTML สำหรับอีเมล — Gmail module ของ Make รองรับ body แบบ Raw HTML เท่านั้น
+   * ที่ผ่านมาส่งข้อความล้วนไป อีเมลจึงยุบเหลือบรรทัดเดียวอ่านยาก
+   * ทุกค่ามาจากผู้กรอก จึง escape อักขระ HTML ก่อนเสมอ
+   */
+  const esc = (v: string) =>
+    v.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
+  const messageHtml = [
+    '<div style="font-family:sans-serif;font-size:14px;line-height:1.7">',
+    '<h2 style="margin:0 0 12px">🗓 นัดหมายใหม่</h2>',
+    ...rows.map(
+      ([label, value]) =>
+        `<div><b>${esc(label)}:</b> ${esc(value).replace(/\r?\n/g, '<br>')}</div>`,
+    ),
+    '</div>',
+  ].join('');
 
   try {
     // กันกรณี Make ค้าง ไม่ให้ลูกค้ารอจนหน้าเว็บหมดเวลาไปเอง
     const res = await fetch(webhookUrl, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name, phone, service, date, time, note: note ?? '', message }),
+      body: JSON.stringify({ name, phone, service, date, time, note: note ?? '', message, messageHtml }),
       signal: AbortSignal.timeout(10_000),
     });
 
