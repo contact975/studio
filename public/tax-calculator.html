@@ -220,12 +220,32 @@ form.lead{background:var(--white);border:1px solid var(--line);border-radius:20p
 @media (max-width:560px){.fg{grid-template-columns:1fr}}
 .fi{display:grid;gap:4px}
 .fi span{font-weight:600;font-size:15.5px}
-.fi input,.fi textarea{border:1.5px solid var(--line);background:var(--pale);border-radius:12px;padding:10px 12px;width:100%}
-.fi input:focus,.fi textarea:focus{border-color:var(--blue);background:var(--white);outline:none}
+/*
+  ต้องยกเว้น checkbox ออกจากกฎนี้
+
+  เดิมเขียนว่า ".fi input" เฉยๆ ซึ่งเหมาะกับช่องกรอกชื่อ/เบอร์/อีเมล
+  แต่มันเหมารวม checkbox ในกลุ่ม "อยากให้ IC ช่วยเรื่อง" ไปด้วย
+  ช่องติ๊กจึงถูกยืดเต็มความกว้าง แล้วได้กรอบมนกับพื้นหลังเหมือนช่องกรอกข้อความ
+  กลายเป็นวงรีใหญ่ที่มีติ๊กเล็กๆ อยู่ตรงกลาง ส่วนข้อความถูกดันไปอยู่นอกกรอบ
+  พอที่ไม่พอ ข้อความก็หักเป็นสามบรรทัด
+*/
+.fi input:not([type="checkbox"]),.fi textarea{border:1.5px solid var(--line);background:var(--pale);border-radius:12px;padding:10px 12px;width:100%}
+.fi input:not([type="checkbox"]):focus,.fi textarea:focus{border-color:var(--blue);background:var(--white);outline:none}
 .fi input[aria-invalid="true"]{border-color:var(--bad);background:var(--bad-bg)}
 .wants{display:flex;flex-wrap:wrap;gap:8px}
-.wants label{display:inline-flex;gap:6px;align-items:center;border:1.5px solid var(--line);border-radius:999px;padding:5px 12px;cursor:pointer;font-size:15px}
-.wants input{accent-color:var(--blue)}
+/*
+  flex:0 0 auto กับ white-space:nowrap สองอย่างนี้จำเป็นทั้งคู่
+
+  ค่าเริ่มต้นของ flex item คือยอมให้ถูกบีบ พอที่ไม่พอในแถว เบราว์เซอร์จะบีบ
+  ป้ายให้แคบลงจนเหลือความกว้างของ "คำที่ยาวที่สุด" แทนที่จะดันไปขึ้นแถวใหม่
+  ภาษาไทยไม่มีช่องว่างระหว่างคำ แต่ Chrome ตัดคำไทยเป็น วางแผน/ลด/หย่อน ได้
+  ผลคือป้ายเดียวแตกเป็นสามบรรทัด อ่านยากและดูเหมือนตัวหนังสือล้นกรอบ
+
+  บังคับไม่ให้บีบและไม่ให้ตัดบรรทัด ป้ายจะกว้างตามข้อความจริง
+  แล้วป้ายที่ไม่พอในแถวจะตกลงแถวถัดไปทั้งป้าย ซึ่งเป็นสิ่งที่ต้องการ
+*/
+.wants label{display:inline-flex;flex:0 0 auto;gap:6px;align-items:center;border:1.5px solid var(--line);border-radius:999px;padding:5px 12px;cursor:pointer;font-size:15px;white-space:nowrap;max-width:100%}
+.wants input{accent-color:var(--blue);flex:none}
 .consent{display:flex;gap:10px;align-items:flex-start;font-size:15px;color:var(--ink-2)}
 .consent input{width:20px;height:20px;accent-color:var(--blue);margin-top:3px;flex:none}
 .sent{background:var(--good-bg);color:var(--good);border-radius:14px;padding:14px 16px}
