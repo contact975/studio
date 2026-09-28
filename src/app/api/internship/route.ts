@@ -8,12 +8,12 @@ import { NextRequest, NextResponse } from 'next/server';
  * ถ้าอัปขึ้น Storage แล้วส่งลิงก์ไปทางอีเมล ไฟล์จะเปิดได้โดยใครก็ตามที่มีลิงก์
  * และค้างอยู่บน Storage ตลอดไปโดยไม่มีใครลบ ซึ่งขัดกับหลักเก็บข้อมูลเท่าที่จำเป็นของ PDPA
  *
- * วิธีนี้ส่งไฟล์เป็น base64 ผ่าน Make ไปเป็นไฟล์แนบในอีเมลเลย
+ * วิธีนี้ส่งไฟล์ต่อให้ Make ไปเป็นไฟล์แนบในอีเมลเลย
  * ไฟล์จึงอยู่แค่ในกล่องจดหมายของบริษัท ไม่มีสำเนาค้างบนอินเทอร์เน็ต
  *
  * ── ทำไมจำกัด 5MB ──
- * base64 ทำให้ขนาดโตขึ้นราว 33% ไฟล์ 5MB จึงกลายเป็น payload ~6.7MB
- * ซึ่งยังอยู่ในวิสัยที่ Make รับไหว ถ้าปล่อยถึง 10MB จะเป็น ~13.4MB และเสี่ยงถูกปฏิเสธ
+ * เป็นขนาดที่ Make รับไหวสบายๆ และยังไม่ชนเพดานไฟล์แนบของ Gmail (25MB)
+ * เผื่อที่ไว้ให้ข้อความและ header ของอีเมลด้วย
  *
  * ── ใช้ webhook เดียวกับฟอร์มนัดหมาย ──
  * ส่ง form_type: 'internship' ไปด้วย เพื่อให้แยก branch ใน Make ได้
@@ -62,7 +62,6 @@ export async function POST(request: NextRequest) {
 
   const file = form.get('portfolio');
   let attachmentName = '';
-  let attachmentData = '';
 
   if (file instanceof File && file.size > 0) {
     if (file.size > MAX_FILE_BYTES) {
@@ -71,9 +70,7 @@ export async function POST(request: NextRequest) {
     if (!ALLOWED_TYPES.includes(file.type)) {
       return NextResponse.json({ success: false, error: 'file_type_not_allowed' }, { status: 415 });
     }
-    const buffer = Buffer.from(await file.arrayBuffer());
     attachmentName = file.name;
-    attachmentData = buffer.toString('base64');
   }
 
   const rows: [string, string][] = [
@@ -121,30 +118,48 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ success: false, error: 'webhook_not_configured' }, { status: 500 });
   }
 
+  /**
+   * ส่งเป็น multipart/form-data ไม่ใช่ JSON
+   *
+   * ครั้งแรกส่งไฟล์เป็น base64 ใน JSON แล้วให้ Make แปลงกลับด้วย
+   * toBinary(attachmentData; "base64") แต่ Make ตอบว่า
+   * "base64" is not a valid encoding — ฟังก์ชันนั้นแปลง base64 ไม่ได้จริง
+   *
+   * webhook ของ Make แกะ multipart ให้เองอยู่แล้ว ไฟล์จะมาเป็น collection
+   * ที่มี fileName กับ data เป็น binary พร้อมแนบเข้าอีเมลได้ตรงๆ
+   * ไม่ต้องแปลงกลับ และ payload เล็กลงราว 25% เพราะไม่ต้องหุ้ม base64
+   */
+  const payload = new FormData();
+  const put = (key: string, value: string) => payload.set(key, value);
+
+  put('form_type', 'internship');
+  // ใส่ชื่อฟิลด์ให้ตรงกับฟอร์มนัดหมาย เพื่อให้โมดูลเดิมใน Make ใช้ร่วมกันได้
+  put('name', name);
+  put('phone', phone);
+  put('service', 'ใบสมัครฝึกงาน');
+  put('date', startDate);
+  put('time', endDate);
+  put('note', reason);
+  put('message', message);
+  put('messageHtml', messageHtml);
+  // ฟิลด์เฉพาะของใบสมัครฝึกงาน
+  put('email', email);
+  put('university', university);
+  put('major', major);
+  put('level', level);
+  put('heardFrom', heardFrom);
+  // ยังส่งชื่อไฟล์เป็น text ด้วย เพราะ Router ใน Make ใช้ค่านี้เลือกเส้นทาง
+  put('attachmentName', attachmentName);
+
+  if (file instanceof File && file.size > 0) {
+    payload.set('portfolio', file, file.name);
+  }
+
   try {
+    // ไม่ตั้ง Content-Type เอง ต้องให้ fetch ใส่ boundary ของ multipart ให้
     const res = await fetch(webhookUrl, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        form_type: 'internship',
-        // ใส่ชื่อฟิลด์ให้ตรงกับฟอร์มนัดหมาย เพื่อให้โมดูลเดิมใน Make ใช้ร่วมกันได้
-        name,
-        phone,
-        service: 'ใบสมัครฝึกงาน',
-        date: startDate,
-        time: endDate,
-        note: reason,
-        message,
-        messageHtml,
-        // ฟิลด์เฉพาะของใบสมัครฝึกงาน
-        email,
-        university,
-        major,
-        level,
-        heardFrom,
-        attachmentName,
-        attachmentData,
-      }),
+      body: payload,
       signal: AbortSignal.timeout(20_000),
     });
 
