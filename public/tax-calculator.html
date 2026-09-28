@@ -64,9 +64,23 @@ button,input,select,textarea{font:inherit;color:inherit}
 :focus-visible{outline:3px solid var(--amber);outline-offset:2px;border-radius:6px}
 
 /* header + hero */
-.top{display:flex;justify-content:space-between;align-items:center;gap:12px;padding-block:18px 8px}
+/* flex-wrap ไว้กันจอแคบมาก ถ้าโลโก้กับปุ่มเรียงบรรทัดเดียวไม่พอ
+   ปุ่มจะตกลงไปบรรทัดล่างชิดขวา แทนที่จะล้นออกนอกจอจนกดไม่ได้ */
+.top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;padding-block:18px 8px}
 .top img{height:38px;width:auto}
+/* โลโก้เป็นตัวหนังสือจึงกว้าง 211px ย่อลงบนมือถือเพื่อให้มีที่พอสำหรับปุ่มกลับหน้าแรก */
+@media (max-width:560px){.top img{height:30px}}
+/* จอ 375px (iPhone ส่วนใหญ่) ถ้าโลโก้ 30px จะเกินพอดี 14px แล้วปุ่มตกบรรทัด
+   ทำให้หัวสูงขึ้นเกือบเท่าตัว ย่ออีกนิดเดียวก็อยู่บรรทัดเดียวได้ */
+@media (max-width:420px){.top img{height:26px}}
 .cta{display:inline-flex;align-items:center;gap:8px;background:var(--red);color:#fff;border:0;border-radius:999px;padding:9px 18px;font-weight:700;cursor:pointer;text-decoration:none;white-space:nowrap}
+.home{display:inline-flex;align-items:center;flex:none}
+.topright{display:flex;align-items:center;gap:10px}
+/* ปุ่มกลับหน้าแรกเป็นสีอ่อน ไม่ให้ไปแย่งสายตาจากปุ่มปรึกษาฟรีซึ่งเป็นปุ่มหลัก */
+.ghost{background:var(--white);color:var(--blue);border:1px solid var(--line)}
+.ghost:hover{background:var(--pale-2)}
+/* จอแคบใส่ครบสามอย่างไม่พอ เหลือแต่ลูกศร ส่วนคนใช้โปรแกรมอ่านหน้าจอยังได้ยินชื่อเต็มจาก aria-label ของโลโก้ */
+@media (max-width:560px){.ghost .lbl{display:none}.ghost{padding:9px 14px}.topright{gap:8px}}
 .cta:hover{background:var(--red-2)}
 .hero{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:28px;align-items:end;padding-block:26px 30px}
 @media (max-width:860px){.hero{grid-template-columns:1fr;gap:16px;padding-block:14px 20px}}
@@ -232,8 +246,13 @@ footer img{height:28px;width:auto}
 
 <div class="wrap">
   <header class="top">
-    <img id="logoTop" alt="IC Accounting &amp; Service">
-    <button class="cta" type="button" data-go="contact">ปรึกษาภาษีฟรี</button>
+    <!-- โลโก้ลิงก์กลับหน้าแรก เพราะคนจำนวนมากกดโลโก้โดยสัญชาตญาณอยู่แล้ว -->
+    <a class="home" href="/" aria-label="กลับสู่หน้าแรก IC Accounting &amp; Service"><img id="logoTop" alt="IC Accounting &amp; Service"></a>
+    <div class="topright">
+      <!-- ต้องมี aria-label เพราะบนจอแคบข้อความถูกซ่อน เหลือแต่ลูกศรซึ่งโปรแกรมอ่านหน้าจอไม่อ่าน -->
+      <a class="cta ghost" href="/" aria-label="กลับหน้าแรก"><span aria-hidden="true">←</span> <span class="lbl">กลับหน้าแรก</span></a>
+      <button class="cta" type="button" data-go="contact">ปรึกษาภาษีฟรี</button>
+    </div>
   </header>
 
   <section class="hero">
@@ -298,6 +317,8 @@ footer img{height:28px;width:auto}
   <footer>
     <img id="logoFoot" alt="IC Accounting &amp; Service">
     <div id="footInfo"></div>
+    <!-- หน้านี้ยาว คนที่เลื่อนมาจนสุดแล้วไม่ควรต้องเลื่อนกลับขึ้นไปหาปุ่มด้านบน -->
+    <div><a href="/">← กลับสู่หน้าแรก icaccservice.com</a></div>
     <div>ผลการคำนวณเป็นการประมาณการเบื้องต้นตามประมวลรัษฎากร ใช้ประกอบการวางแผน สิทธิลดหย่อนต้องมีหลักฐานและเป็นไปตามเงื่อนไขของกรมสรรพากร ไม่รวมเงินได้บางประเภท เช่น เงินได้จากการขายอสังหาริมทรัพย์ เงินได้จากต่างประเทศ และเครดิตภาษีเงินปันผล</div>
   </footer>
 </div>
