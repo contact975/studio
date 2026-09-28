@@ -1,12 +1,13 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
-import { GraduationCap, MessageSquare, CheckCircle, Users, Building2, CalendarDays } from 'lucide-react';
+import { GraduationCap, CheckCircle, Users, Building2, CalendarDays } from 'lucide-react';
 import { Header } from '@/components/landing/header';
 import { Footer } from '@/components/landing/footer';
 import { JsonLd } from '@/components/seo/json-ld';
 import { breadcrumbSchema } from '@/lib/seo';
 import { COHORTS, LEARNING_POINTS, PARTNER_UNIVERSITIES, TOTAL_INTERNS } from '@/lib/interns';
+import { InternshipForm } from '@/components/landing/internship-form';
 
 /**
  * หน้านักศึกษาฝึกงาน
@@ -216,45 +217,32 @@ export default function InternshipPage() {
         </section>
 
         {/* ── สมัครฝึกงาน ── */}
-        <section className="py-24" data-aos="fade-up">
+        <section id="apply" className="py-24 scroll-mt-24" data-aos="fade-up">
           <div className="container mx-auto px-6 max-w-4xl">
-            <div className="rounded-3xl bg-[#163674] text-primary-foreground p-10 md:p-14 text-center relative overflow-hidden">
-              <div
-                className="absolute inset-0 opacity-10"
-                style={{
-                  backgroundImage:
-                    'linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(90deg, #ffffff 1px, transparent 1px)',
-                  backgroundSize: '40px 40px',
-                }}
-              />
-              <div className="relative z-10">
-                <GraduationCap className="h-10 w-10 mx-auto mb-5 opacity-90" />
-                <h2 className="text-3xl md:text-4xl font-black mb-4">สนใจฝึกงานกับเรา</h2>
-                <p className="opacity-80 leading-relaxed max-w-xl mx-auto mb-8">
-                  ส่งข้อมูลมาคุยกันได้เลย บอกชื่อสถาบัน สาขาวิชา และช่วงเวลาที่ต้องฝึกงาน
-                  ทีมงานจะติดต่อกลับเพื่อนัดคุยรายละเอียด ทั้งนักศึกษาที่ติดต่อเองและอาจารย์นิเทศที่ติดต่อมาแทน
-                </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Link
-                    href="https://line.me/R/ti/p/@icacc"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-2 bg-white text-[#163674] font-black px-8 py-4 rounded-full hover:opacity-90 transition-opacity"
-                  >
-                    <MessageSquare className="h-5 w-5" /> ทักมาทาง LINE @icacc
-                  </Link>
-                  <Link
-                    href="/quote"
-                    className="inline-flex items-center justify-center gap-2 border-2 border-white/60 font-bold px-8 py-4 rounded-full hover:bg-white hover:text-[#163674] transition-colors"
-                  >
-                    กรอกแบบฟอร์มติดต่อ
-                  </Link>
-                </div>
-                <p className="text-sm opacity-60 mt-6">
-                  สำนักงานอยู่ที่ 80/142 ต.สันปู่เลย อ.ดอยสะเก็ด เชียงใหม่ · จันทร์ – เสาร์ 09:00 – 18:00 น.
-                </p>
-              </div>
+            <div className="text-center mb-12">
+              <p className="text-primary text-xs font-bold tracking-[0.3em] uppercase mb-3">Apply Now</p>
+              <h2 className="text-3xl md:text-4xl font-black mb-3">สมัครฝึกงานกับเรา</h2>
+              <p className="text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+                กรอกข้อมูลและแนบ Portfolio หรือ Resume ได้เลย
+                ทีมงานจะตรวจสอบและติดต่อกลับทางอีเมลหรือเบอร์โทรที่ให้ไว้
+                ทั้งนักศึกษาที่สมัครเองและอาจารย์นิเทศที่สมัครแทน
+              </p>
             </div>
+
+            <InternshipForm />
+
+            <p className="text-center text-sm text-muted-foreground mt-8 leading-relaxed">
+              สะดวกคุยทางแชทมากกว่า? ทักมาที่{' '}
+              <Link
+                href="https://line.me/R/ti/p/@icacc"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-primary font-bold hover:underline"
+              >
+                LINE @icacc
+              </Link>{' '}
+              ได้เลย · สำนักงานอยู่ที่ 80/142 ต.สันปู่เลย อ.ดอยสะเก็ด เชียงใหม่ · จันทร์ – เสาร์ 09:00 – 18:00 น.
+            </p>
           </div>
         </section>
       </main>
