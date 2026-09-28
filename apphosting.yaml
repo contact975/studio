@@ -6,8 +6,11 @@ scripts:
   buildCommand: npm install && npm run build
 
 env:
+  # URL นี้เคยถูกคัดลอกผิด: ตัวอักษร l และ i ถูกพิมพ์เป็นเลข 1
+  # ทำให้ webhook ตอบ 410 และฟอร์มนัดหมายใช้งานไม่ได้มาตลอดโดยไม่มีใครรู้
+  # ถ้าต้องแก้อีกครั้ง ให้คัดลอกจากโมดูล Webhooks ใน Make โดยตรง อย่าพิมพ์เอง
   - variable: MAKE_WEBHOOK_URL
-    value: https://hook.eu1.make.com/detvatwu4ci12qn9y1dxbih42a1redyt
+    value: https://hook.eu1.make.com/detvatwu4cil2qn9yidxbih42a1redyt
     availability:
       - RUNTIME
   # --- รีวิว Google บนหน้าแรก (src/app/api/google-reviews) ---
