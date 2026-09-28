@@ -76,19 +76,44 @@ export async function POST(request: NextRequest) {
     attachmentData = buffer.toString('base64');
   }
 
+  const rows: [string, string][] = [
+    ['ชื่อ-นามสกุล', name],
+    ['อีเมล', email],
+    ['เบอร์โทร', phone || '-'],
+    ['สถาบัน', university || '-'],
+    ['คณะ/สาขา', major || '-'],
+    ['ระดับการศึกษา', level || '-'],
+    ['ช่วงฝึกงาน', `${startDate || '-'} ถึง ${endDate || '-'}`],
+    ['ทราบข้อมูลจาก', heardFrom || '-'],
+    ['เหตุผลที่อยากฝึกงานกับเรา', reason || '-'],
+    ['ไฟล์แนบ', attachmentName || 'ไม่มี'],
+  ];
+
+  /** ข้อความล้วน ใช้กับ LINE ซึ่งแสดง HTML tag เป็นตัวอักษรดิบ */
   const message = [
     'ใบสมัครฝึกงานใหม่',
-    `ชื่อ-นามสกุล: ${name}`,
-    `อีเมล: ${email}`,
-    `เบอร์โทร: ${phone || '-'}`,
-    `สถาบัน: ${university || '-'}`,
-    `คณะ/สาขา: ${major || '-'}`,
-    `ระดับการศึกษา: ${level || '-'}`,
-    `ช่วงฝึกงาน: ${startDate || '-'} ถึง ${endDate || '-'}`,
-    `ทราบข้อมูลจาก: ${heardFrom || '-'}`,
-    `เหตุผลที่อยากฝึกงานกับเรา: ${reason || '-'}`,
-    `ไฟล์แนบ: ${attachmentName || 'ไม่มี'}`,
+    ...rows.map(([label, value]) => `${label}: ${value}`),
   ].join('\n');
+
+  /**
+   * ฉบับ HTML สำหรับอีเมล — Gmail module ของ Make รองรับแต่ Raw HTML
+   * ถ้าส่งข้อความล้วนไป การขึ้นบรรทัดใหม่จะถูกยุบหายหมด
+   *
+   * ประกอบ HTML ที่ฝั่งนี้แทนการพิมพ์ tag ลงในช่อง Content ของ Make
+   * เพราะช่องนั้นดักอักษร "/" ไว้เปิด autocomplete จึงพิมพ์ปิด tag ไม่ได้
+   */
+  const esc = (v: string) =>
+    v.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
+  const messageHtml = [
+    '<div style="font-family:sans-serif;font-size:14px;line-height:1.7">',
+    '<h2 style="margin:0 0 12px">ใบสมัครฝึกงานใหม่</h2>',
+    ...rows.map(
+      ([label, value]) =>
+        `<div><b>${esc(label)}:</b> ${esc(value).replace(/\r?\n/g, '<br>')}</div>`,
+    ),
+    '</div>',
+  ].join('');
 
   const webhookUrl = process.env.MAKE_WEBHOOK_URL;
   if (!webhookUrl) {
@@ -110,6 +135,7 @@ export async function POST(request: NextRequest) {
         time: endDate,
         note: reason,
         message,
+        messageHtml,
         // ฟิลด์เฉพาะของใบสมัครฝึกงาน
         email,
         university,
