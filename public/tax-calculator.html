@@ -305,12 +305,19 @@ const IC_CONFIG={
   /* ที่อยู่ปลายทางสำหรับรับข้อมูลลูกค้า (POST JSON) เช่น Google Apps Script หรือ Firebase Function
      เว้นว่างไว้ = ปุ่มส่งจะเปิด LINE OA พร้อมข้อความสรุปให้ลูกค้ากดส่งเอง */
   submitUrl:"",
+  /* รหัสผ่านคู่กับ SUBMIT_TOKEN ในไฟล์ ic-tax-check-leads.gs — ต้องตรงกันทั้งสองฝั่ง
+     หมายเหตุ: หน้านี้เป็นไฟล์สาธารณะ ใครเปิดดูโค้ดก็เห็นรหัสนี้ได้
+     จึงเป็นแค่ "ตัวกรอง" กันบอตที่ยิงมั่วเท่านั้น ไม่ใช่ระบบยืนยันตัวตน
+     ด่านจริงที่กันของเสียคือการตรวจฝั่ง Apps Script */
+  submitToken:"ic-tax-2569",
   privacyUrl:""   /* ลิงก์นโยบายความเป็นส่วนตัว เช่น https://icaccservice.com/privacy */
 };
 </script>
 <script>
 (function(){
 "use strict";
+/* เวลาที่หน้านี้ถูกเปิด ใช้วัดว่าผู้กรอกใช้เวลานานพอจะเป็นคนจริงไหม */
+const PAGE_OPENED_AT=Date.now();
 /* ---------- Tax rules ---------- */
 const YEAR={
   2568:{sso:9000, ssoBase:"15,000", ltf:300000, ltfHint:"ปี 2568 ใช้สิทธิได้ไม่เกิน 300,000 ส่วนที่เหลือทยอยใช้ปีละ 50,000", esgxNew:true, easy:50000, travel:20000},
@@ -661,14 +668,24 @@ $("leadForm").addEventListener("submit",async e=>{
   const wants=[...document.querySelectorAll('input[name="want"]:checked')].map(x=>x.value);
   const payload={name,phone,line:$("l_line").value.trim(),email:$("l_email").value.trim(),wants,message:$("l_msg").value.trim(),
     summary:summaryText(),calc:R&&hasIncome(S.v)?{form:R.form,year:S.year,total:R.total,net:R.net,tax:R.tax,paid:R.paid,bal:R.bal,planSaving:PL?PL.saving:0}:null,
-    consent:true,page:location.href,sentAt:new Date().toISOString()};
+    consent:true,page:location.href,sentAt:new Date().toISOString(),
+    token:IC_CONFIG.submitToken,
+    /* คนจริงต้องอ่านหน้านี้ กรอกเงินได้ แล้วค่อยกรอกชื่อ อย่างน้อยก็หลายวินาที
+       บอตยิงทันทีที่โหลดเสร็จ ฝั่งเซิร์ฟเวอร์จึงทิ้งรายการที่เร็วผิดปกติได้ */
+    fillMs:Date.now()-PAGE_OPENED_AT};
   const msg=[`สวัสดีครับ/ค่ะ ต้องการให้ IC ช่วย: ${wants.join(", ")||"ปรึกษาภาษี"}`,`ชื่อ: ${name} · โทร: ${phone}${payload.line?` · LINE: ${payload.line}`:""}`,payload.message,"",payload.summary].filter(x=>x!=null&&x!=="").join("\n");
   const btn=$("leadSubmit");
   if(IC_CONFIG.submitUrl){
     btn.disabled=true; btn.textContent="กำลังส่ง…";
     try{
       const r=await fetch(IC_CONFIG.submitUrl,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(payload)});
+      /* Apps Script ตอบ HTTP 200 เสมอ แม้ตอนที่มันปฏิเสธข้อมูล
+         ถ้าเช็กแค่ r.ok หน้าเว็บจะขึ้นว่า "ส่งแล้ว" ทั้งที่ไม่มีอะไรถึงมือใครเลย
+         จึงต้องอ่าน ok ในเนื้อคำตอบด้วย
+         อ่านคำตอบไม่ได้ ก็ถือว่าไม่สำเร็จไว้ก่อน — ลูกค้าส่งซ้ำยังดีกว่าเงียบหาย */
       if(!r.ok) throw new Error("http "+r.status);
+      const j=await r.json();
+      if(!j||j.ok!==true) throw new Error("rejected "+((j&&j.error)||"unknown"));
       $("leadDone").innerHTML=`<div class="sent"><b>ส่งข้อมูลถึง IC แล้ว</b><br>ทีมงานจะติดต่อกลับทางเบอร์ ${esc(phone)} ภายใน 1 วันทำการ</div>`;
       $("leadForm").querySelectorAll("input,textarea").forEach(x=>{if(x.type!=="checkbox")x.value=""});
     }catch(ex){ showLineFallback(msg,"ส่งผ่านเว็บไซต์ไม่สำเร็จ ส่งทาง LINE แทนได้"); }
