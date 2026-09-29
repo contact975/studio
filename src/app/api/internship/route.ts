@@ -75,7 +75,8 @@ export async function POST(request: NextRequest) {
 
   const ip = clientIp(request);
   // ให้มากกว่าฟอร์มนัดหมาย เพราะอัปโหลดไฟล์พลาดแล้วต้องส่งใหม่เป็นเรื่องปกติ
-  if (!allowRequest(`internship:${ip}`, 8, 10 * 60 * 1000)) {
+  // ข้ามการนับเมื่อระบุตัวผู้เรียกไม่ได้ ดูเหตุผลในคอมเมนต์ของ clientIp
+  if (ip && !allowRequest(`internship:${ip}`, 8, 10 * 60 * 1000)) {
     console.warn('[internship] ยิงถี่เกินเพดาน', { ip });
     return NextResponse.json({ success: false, error: 'rate_limited' }, { status: 429 });
   }

@@ -62,8 +62,10 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ success: false, error: 'missing_fields' }, { status: 400 });
   }
 
+  // ip เป็น null แปลว่าระบุตัวผู้เรียกไม่ได้ ข้ามการนับไปเลย
+  // ดูเหตุผลในคอมเมนต์ของ clientIp — ถังรวมถังเดียวอันตรายกว่าไม่นับ
   const ip = clientIp(request);
-  if (!allowRequest(`booking:${ip}`, RATE_LIMIT, RATE_WINDOW_MS)) {
+  if (ip && !allowRequest(`booking:${ip}`, RATE_LIMIT, RATE_WINDOW_MS)) {
     console.warn('[booking] ยิงถี่เกินเพดาน', { ip });
     return NextResponse.json({ success: false, error: 'rate_limited' }, { status: 429 });
   }

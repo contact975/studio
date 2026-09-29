@@ -26,11 +26,19 @@ function sweep(now: number) {
 /**
  * อ่าน IP ของผู้เรียกจาก header ที่ proxy ใส่มาให้
  * x-forwarded-for อาจมีหลาย IP คั่นด้วยจุลภาค ตัวแรกคือผู้เรียกจริง
+ *
+ * คืน null เมื่อระบุตัวผู้เรียกไม่ได้ — ผู้เรียกใช้ต้อง "ปล่อยผ่าน" ในกรณีนั้น
+ * เพราะถ้าเหมารวมทุกคนไว้ในถังเดียวกันชื่อ unknown
+ * สแปมเมอร์คนเดียวยิงไม่กี่ครั้งจะทำให้ลูกค้าจริงทั้งเว็บจองไม่ได้ตามไปด้วย
+ * ซึ่งแย่กว่าปล่อยสแปมผ่านมาก เพราะด่านตรวจค่ายังกันของเสียอยู่แล้ว
  */
-export function clientIp(request: Request): string {
+export function clientIp(request: Request): string | null {
   const fwd = request.headers.get('x-forwarded-for');
-  if (fwd) return fwd.split(',')[0].trim();
-  return request.headers.get('x-real-ip') ?? 'unknown';
+  if (fwd) {
+    const first = fwd.split(',')[0].trim();
+    if (first) return first;
+  }
+  return request.headers.get('x-real-ip')?.trim() || null;
 }
 
 /** คืนค่า true เมื่อยังส่งได้ และ false เมื่อเกินเพดานแล้ว */
