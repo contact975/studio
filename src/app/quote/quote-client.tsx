@@ -6,6 +6,7 @@ import 'aos/dist/aos.css';
 import { Header } from '@/components/landing/header';
 import { Footer } from '@/components/landing/footer';
 import { trackEvent } from '@/components/analytics/google-analytics';
+import { BOOKING_SERVICES, BOOKING_TIMES } from '@/lib/booking-options';
 
 export default function QuoteClient() {
   const [isLoading, setIsLoading] = useState(false);
@@ -94,19 +95,9 @@ export default function QuoteClient() {
                       เลือกประเภทบริการ
                     </h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      {[
-                        'วางแผนบัญชีและภาษี',
-                        'จดทะเบียนธุรกิจ',
-                        // เพิ่มเข้ามาให้ตรงกับหน้า /visa-work-permit
-                        // ใส่ทั้งคำไทยและอังกฤษในบรรทัดเดียว เพราะหน้านี้เป็นภาษาไทย
-                        // แต่ผู้กรอกบางส่วนเป็นชาวต่างชาติที่รู้จักเฉพาะคำว่า Visa / Work Permit
-                        'Visa & Work Permit (วีซ่าและใบอนุญาตทำงาน)',
-                        'ปรึกษาการเงิน/ที่ปรึกษาธุรกิจ',
-                        'Exclusive Media Production',
-                        // ไม่มีหัวข้อฝึกงานที่นี่ — /internship มีแบบฟอร์มสมัครของตัวเองแล้ว
-                        // ซึ่งถามสถาบัน สาขา ช่วงฝึกงาน และรับไฟล์แนบ
-                        // หน้านี้ถามแค่วันเวลานัดคุย จึงเก็บข้อมูลที่จำเป็นไม่ครบ
-                      ].map((s) => (
+                      {/* รายการอยู่ที่ src/lib/booking-options.ts ที่เดียว
+                          ฝั่ง API ใช้รายการเดียวกันเป็นด่านตรวจ ค่าจึงไม่มีทางหลุดจากกัน */}
+                      {BOOKING_SERVICES.map((s) => (
                         <label key={s} className="relative flex items-center p-4 border rounded-xl cursor-pointer hover:bg-blue-50 transition">
                           <input type="radio" name="service_type" value={s} className="w-4 h-4 text-blue-600" />
                           <span className="ml-3 font-medium text-slate-700">{s}</span>
@@ -129,10 +120,9 @@ export default function QuoteClient() {
                         <label className="block text-sm text-gray-600 mb-2">เลือกช่วงเวลา</label>
                         <select id="booking_time" className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none text-slate-900">
                           <option value="">เลือกเวลา</option>
-                          <option value="09:00-10:00">09:00 - 10:00</option>
-                          <option value="10:30-11:30">10:30 - 11:30</option>
-                          <option value="13:30-14:30">13:30 - 14:30</option>
-                          <option value="15:00-16:00">15:00 - 16:00</option>
+                          {BOOKING_TIMES.map((t) => (
+                            <option key={t} value={t}>{t.replace('-', ' - ')}</option>
+                          ))}
                         </select>
                       </div>
                     </div>

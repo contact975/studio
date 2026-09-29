@@ -1,4 +1,37 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { BOOKING_SERVICES, BOOKING_TIMES } from '@/lib/booking-options';
+import { allowRequest, clientIp } from '@/lib/rate-limit';
+
+/**
+ * ด่านตรวจข้อมูลก่อนส่งต่อเข้า Make
+ *
+ * ── ทำไมต้องมี ──
+ * 29 ก.ย. 2026 มีคนยิงเข้า endpoint นี้ตรงๆ (ไม่ผ่านหน้าเว็บ) ด้วยข้อมูล
+ *   ชื่อ "x" · โทร "1" · บริการ "spam-test-do-not-book" · วันที่ 1999-01-01
+ *   รายละเอียด: ลิงก์สองอัน
+ * ข้อความหลุดไปถึง LINE และอีเมลของทีมครบ เป็นการทดสอบว่าเว็บนี้
+ * ใช้เป็นตัวส่งต่อข้อความให้สแปมเมอร์ได้ไหม ซึ่งคำตอบตอนนั้นคือได้
+ *
+ * ── หลักที่ใช้ ──
+ * ค่าที่หน้าเว็บส่งได้มีจำกัดและรู้ล่วงหน้าทั้งหมด (ปุ่มตัวเลือกกับ dropdown)
+ * จึงตรวจว่าตรงกับรายการนั้นไหม แทนที่จะเดาว่าอะไรคือสแปม
+ * วิธีนี้ปฏิเสธของปลอมได้โดยไม่มีทางปฏิเสธลูกค้าจริง เพราะลูกค้าจริงกดจากหน้าเว็บ
+ * ซึ่งส่งค่าจากรายการนี้เสมอ
+ */
+
+/** ยิงได้ 5 ครั้งต่อ 10 นาทีต่อ IP — คนจริงจองไม่ถึง บอตยิงรัวจะโดนตัด */
+const RATE_LIMIT = 5;
+const RATE_WINDOW_MS = 10 * 60 * 1000;
+
+/** เผื่อคนกรอกข้ามเขตเวลา วันที่ย้อนหลังได้ 1 วัน แต่ 1999-01-01 ไม่ผ่านแน่ */
+function isSaneDate(value: string): boolean {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) return false;
+  const picked = Date.parse(value + 'T00:00:00Z');
+  if (Number.isNaN(picked)) return false;
+  const yesterday = Date.now() - 24 * 60 * 60 * 1000;
+  const oneYearOut = Date.now() + 365 * 24 * 60 * 60 * 1000;
+  return picked >= yesterday && picked <= oneYearOut;
+}
 
 /**
  * รับข้อมูลนัดหมายจากหน้า /quote แล้วส่งต่อเข้า Make เพื่อแจ้งเตือน LINE Official
@@ -27,6 +60,41 @@ export async function POST(request: NextRequest) {
   if (!name || !phone || !service || !date || !time) {
     console.error('[booking] ข้อมูลไม่ครบ', { name: !!name, phone: !!phone, service: !!service, date: !!date, time: !!time });
     return NextResponse.json({ success: false, error: 'missing_fields' }, { status: 400 });
+  }
+
+  const ip = clientIp(request);
+  if (!allowRequest(`booking:${ip}`, RATE_LIMIT, RATE_WINDOW_MS)) {
+    console.warn('[booking] ยิงถี่เกินเพดาน', { ip });
+    return NextResponse.json({ success: false, error: 'rate_limited' }, { status: 429 });
+  }
+
+  /**
+   * ตรวจว่าค่าที่ส่งมาตรงกับตัวเลือกบนหน้าเว็บจริงไหม
+   *
+   * ตอบ error เดียวกันหมด ไม่บอกว่าผิดช่องไหน เพราะคนที่เจอข้อความนี้
+   * มีแต่คนที่ยิงเข้ามาเอง ลูกค้าจริงกดจากหน้าเว็บจะไม่มีทางส่งค่านอกรายการ
+   * การบอกละเอียดมีแต่จะช่วยให้คนยิงรู้ว่าต้องแก้อะไรถึงจะผ่าน
+   */
+  const looksLikeForm =
+    (BOOKING_SERVICES as readonly string[]).includes(service) &&
+    (BOOKING_TIMES as readonly string[]).includes(time) &&
+    isSaneDate(date) &&
+    name.trim().length >= 2 &&
+    name.length <= 100 &&
+    phone.replace(/\D/g, '').length >= 9 &&
+    phone.length <= 30 &&
+    (note ?? '').length <= 1000;
+
+  if (!looksLikeForm) {
+    console.warn('[booking] ข้อมูลไม่ตรงกับตัวเลือกบนหน้าเว็บ ปฏิเสธ', {
+      ip,
+      service: service.slice(0, 60),
+      time: time.slice(0, 20),
+      date: date.slice(0, 20),
+      nameLen: name.length,
+      phoneDigits: phone.replace(/\D/g, '').length,
+    });
+    return NextResponse.json({ success: false, error: 'invalid_fields' }, { status: 400 });
   }
 
   const webhookUrl = process.env.MAKE_WEBHOOK_URL;

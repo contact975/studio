@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { allowRequest, clientIp } from '@/lib/rate-limit';
 
 /**
  * รับใบสมัครฝึกงานจากหน้า /internship แล้วส่งต่อเข้า Make เพื่อแจ้งเตือน
@@ -58,6 +59,25 @@ export async function POST(request: NextRequest) {
   // ชื่อกับอีเมลคือขั้นต่ำที่ทำให้ติดต่อกลับได้ ฟิลด์อื่นขาดได้
   if (!name || !email) {
     return NextResponse.json({ success: false, error: 'missing_fields' }, { status: 400 });
+  }
+
+  /**
+   * endpoint นี้เปิดให้ทุกคนเรียกได้เช่นเดียวกับฟอร์มนัดหมาย
+   * ซึ่งถูกยิงสแปมมาแล้วเมื่อ 29 ก.ย. 2026 (ดูคอมเมนต์ใน api/booking/route.ts)
+   *
+   * ที่นี่ตรวจรายการตายตัวแบบนั้นไม่ได้ เพราะทุกช่องเป็นข้อความอิสระ
+   * จึงใช้สองอย่างที่พอทำได้ คือรูปแบบอีเมลต้องใช้ได้จริง (ไม่งั้นติดต่อกลับไม่ได้อยู่ดี)
+   * กับเพดานจำนวนครั้งต่อ IP
+   */
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email) || email.length > 150 || name.length > 150) {
+    return NextResponse.json({ success: false, error: 'invalid_fields' }, { status: 400 });
+  }
+
+  const ip = clientIp(request);
+  // ให้มากกว่าฟอร์มนัดหมาย เพราะอัปโหลดไฟล์พลาดแล้วต้องส่งใหม่เป็นเรื่องปกติ
+  if (!allowRequest(`internship:${ip}`, 8, 10 * 60 * 1000)) {
+    console.warn('[internship] ยิงถี่เกินเพดาน', { ip });
+    return NextResponse.json({ success: false, error: 'rate_limited' }, { status: 429 });
   }
 
   const file = form.get('portfolio');
