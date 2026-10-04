@@ -3,17 +3,17 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Header } from '@/components/landing/header';
 import { Footer } from '@/components/landing/footer';
-import { CheckCircle, ArrowRight, UserCheck, MessageCircle, Users, MapPinned } from 'lucide-react';
+import { CheckCircle, ArrowRight, UserCheck, MessageCircle, Users, MapPinned, Cloud, LayoutDashboard, Cpu } from 'lucide-react';
 import { JsonLd } from '@/components/seo/json-ld';
 import { aboutPageSchema, breadcrumbSchema } from '@/lib/seo';
 
 export const metadata: Metadata = {
   title: 'เกี่ยวกับเรา | IC Accounting & Service เชียงใหม่',
-  description: 'รู้จัก IC Accounting & Service สำนักงานบัญชียุคใหม่เชียงใหม่ ก่อตั้งโดยคุณจตุพร ยะเปียงปลูก ประสบการณ์กว่า 10 ปี',
+  description: 'สำนักงานบัญชีเชียงใหม่ที่ทำงานออนไลน์ 100% ด้วยโปรแกรมบริหารสำนักงานบัญชีที่พัฒนาขึ้นเอง รู้จักทีมงาน IC Accounting & Service ประสบการณ์กว่า 10 ปี ดูแลกว่า 100 ธุรกิจ',
   alternates: { canonical: 'https://icaccservice.com/about' },
     openGraph: {
           title: 'เกี่ยวกับเรา | IC Accounting & Service เชียงใหม่',
-          description: 'รู้จัก IC Accounting & Service สำนักงานบัญชียุคใหม่เชียงใหม่ ก่อตั้งโดยคุณจตุพร ยะเปียงปลูก ประสบการณ์กว่า 10 ปี',
+          description: 'สำนักงานบัญชีเชียงใหม่ที่ทำงานออนไลน์ 100% ด้วยโปรแกรมบริหารสำนักงานบัญชีที่พัฒนาขึ้นเอง รู้จักทีมงาน IC Accounting & Service ประสบการณ์กว่า 10 ปี ดูแลกว่า 100 ธุรกิจ',
           url: 'https://icaccservice.com/about',
           siteName: 'IC Accounting & Service',
           images: [{ url: 'https://icaccservice.com/share-preview.jpg', width: 1200, height: 630, alt: 'เกี่ยวกับ IC Accounting & Service เชียงใหม่' }],
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     twitter: {
           card: 'summary_large_image',
           title: 'เกี่ยวกับเรา | IC Accounting & Service เชียงใหม่',
-          description: 'รู้จัก IC Accounting & Service สำนักงานบัญชียุคใหม่เชียงใหม่ ก่อตั้งโดยคุณจตุพร ยะเปียงปลูก ประสบการณ์กว่า 10 ปี',
+          description: 'สำนักงานบัญชีเชียงใหม่ที่ทำงานออนไลน์ 100% ด้วยโปรแกรมบริหารสำนักงานบัญชีที่พัฒนาขึ้นเอง รู้จักทีมงาน IC Accounting & Service ประสบการณ์กว่า 10 ปี ดูแลกว่า 100 ธุรกิจ',
           images: ['https://icaccservice.com/share-preview.jpg'],
     },
 };
@@ -75,6 +75,30 @@ const teamSupport = [
   { icon: MessageCircle, title: 'ตอบผ่าน LINE ภายใน 1 วันทำการ', desc: 'มีคำถามเรื่องภาษี เอกสาร หรือกำหนดยื่นแบบ ทักมาได้เลย ทีมงานตอบไวทุกวันทำการ' },
   { icon: Users, title: 'ทีมครบทุกสาย ไม่ต้องหาหลายที่', desc: 'นักบัญชี ภาษี วีซ่า และมีเดีย ทำงานร่วมกันในทีมเดียว พร้อมเครือข่ายผู้สอบบัญชีรับอนุญาต (CPA)' },
   { icon: MapPinned, title: 'ลงพื้นที่จริง ทบทวนผลทุกไตรมาส', desc: 'ไม่ได้ดูแค่ตัวเลขจากไกล ๆ — เข้าไปดูหน้างานเมื่อต้องวางระบบ และนั่งทบทวนผลประกอบการร่วมกับผู้บริหารเป็นประจำ' },
+];
+
+/**
+ * จุดต่างด้านเทคโนโลยี — เขียนจากสิ่งที่สำนักงานทำจริง ไม่ใช่คำโฆษณากว้างๆ
+ *
+ * ตั้งใจไม่ระบุชื่อโปรแกรมหรือฟีเจอร์ที่ยังไม่ได้เปิดให้ลูกค้าใช้เอง
+ * เพราะถ้าเขียนเกินจริงแล้วลูกค้าถามหาตอนคุย จะเสียความน่าเชื่อถือมากกว่าได้
+ */
+const techHighlights = [
+  {
+    icon: Cloud,
+    title: 'ระบบออนไลน์ 100%',
+    desc: 'ส่งเอกสาร ติดตามงาน และปรึกษาทีมงานได้จากทุกที่ ไม่ต้องเดินทางมาที่สำนักงาน ธุรกิจต่างจังหวัดจึงได้รับการดูแลไม่ต่างจากลูกค้าในเชียงใหม่',
+  },
+  {
+    icon: LayoutDashboard,
+    title: 'โปรแกรมบริหารสำนักงานบัญชีที่พัฒนาขึ้นเอง',
+    desc: 'เราไม่ได้ซื้อโปรแกรมสำเร็จรูปมาใช้ แต่พัฒนาระบบของตัวเองให้ตรงกับวิธีทำงานจริง ทำให้เห็นสถานะงานของทุกกิจการ กำหนดยื่นแบบ และเอกสารที่ยังขาด ได้ในที่เดียว',
+  },
+  {
+    icon: Cpu,
+    title: 'เทคโนโลยีคือเครื่องมือ ไม่ใช่เป้าหมาย',
+    desc: 'เรานำเทคโนโลยีเข้ามาเพื่อลดงานซ้ำซ้อนและความผิดพลาดจากการคีย์มือ เวลาที่ประหยัดได้ถูกเอาไปใช้กับสิ่งที่ระบบทำแทนไม่ได้ คือการนั่งคุยและให้คำปรึกษากับเจ้าของธุรกิจ',
+  },
 ];
 
 const services = [
@@ -229,6 +253,45 @@ export default function AboutPage() {
                   ดูแลกว่า 100 ธุรกิจ
                 </div>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/*
+          ── TECHNOLOGY ──
+          วางต่อจากส่วนทีมงาน เพราะเล่าต่อเนื่องกันว่า "ทีมเป็นใคร" แล้ว "ทำงานกันอย่างไร"
+
+          ใช้พื้นหลังสีกรมท่าเหมือน hero ไม่ใช่เพื่อความสวยอย่างเดียว
+          แต่เพราะหน้านี้สลับขาว/เทามาตลอด ถ้าใส่สีเดิมอีกจะกลืนไปกับส่วนอื่น
+          ทั้งที่นี่คือจุดต่างที่คู่แข่งในเชียงใหม่ส่วนใหญ่ยังไม่มี จึงควรสะดุดตา
+        */}
+        <section className="py-24 bg-[#163674] text-white" data-aos="fade-up">
+          <div className="container mx-auto px-6 max-w-6xl">
+            <div className="max-w-3xl mb-14">
+              <p className="text-white/50 text-xs font-bold tracking-[0.3em] uppercase mb-3">Technology</p>
+              <h2 className="text-3xl md:text-4xl font-black leading-tight mb-5">
+                ทำงานออนไลน์ 100%<br />ด้วยระบบที่เราพัฒนาขึ้นเอง
+              </h2>
+              <p className="text-white/70 leading-relaxed text-lg">
+                งานบัญชีไม่จำเป็นต้องผูกกับการเดินเอกสารอีกต่อไป เราออกแบบวิธีทำงานใหม่ให้อยู่บนระบบออนไลน์ทั้งหมด
+                ลูกค้าส่งเอกสารได้จากทุกที่ ไม่ต้องขับรถมาที่สำนักงาน
+                และเราดูแลธุรกิจทั้งในเชียงใหม่และต่างจังหวัดได้ด้วยมาตรฐานเดียวกัน
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-6">
+              {techHighlights.map((item) => (
+                <div
+                  key={item.title}
+                  className="rounded-2xl border border-white/15 bg-white/5 p-7 backdrop-blur-sm"
+                >
+                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-white/10 text-white mb-5">
+                    <item.icon className="h-6 w-6" />
+                  </div>
+                  <h3 className="font-black text-lg mb-3 leading-snug">{item.title}</h3>
+                  <p className="text-white/70 text-sm leading-relaxed">{item.desc}</p>
+                </div>
+              ))}
             </div>
           </div>
         </section>
