@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Header } from '@/components/landing/header';
 import { Footer } from '@/components/landing/footer';
-import { CheckCircle, ArrowRight, UserCheck, MessageCircle, Users, MapPinned, Cloud, LayoutDashboard, Calculator, ShieldCheck } from 'lucide-react';
+import { CheckCircle, ArrowRight, UserCheck, MessageCircle, Users, MapPinned, Cloud, LayoutDashboard, ShieldCheck } from 'lucide-react';
 import { JsonLd } from '@/components/seo/json-ld';
 import { aboutPageSchema, breadcrumbSchema } from '@/lib/seo';
 
@@ -97,11 +97,6 @@ const techHighlights = [
     icon: LayoutDashboard,
     title: 'โปรแกรมบริหารงานภายใน',
     desc: 'ระบบที่เราเขียนขึ้นใช้เอง สำหรับคุมว่างานของแต่ละกิจการถึงขั้นไหน ใกล้ถึงกำหนดยื่นแบบหรือยัง และยังขาดเอกสารอะไร',
-  },
-  {
-    icon: Calculator,
-    title: 'โปรแกรมด้านบัญชี',
-    desc: 'ส่วนที่ประมวลผลตัวเลขและออกรายงาน เชื่อมกับระบบเอกสารโดยตรง ข้อมูลชุดเดียวจึงไม่ต้องคีย์ซ้ำหลายรอบ ซึ่งเป็นต้นเหตุหลักของความผิดพลาด',
   },
   {
     icon: ShieldCheck,
@@ -283,17 +278,24 @@ export default function AboutPage() {
               </h2>
               <p className="text-white/70 leading-relaxed text-lg">
                 สำนักงานบัญชีส่วนใหญ่ซื้อโปรแกรมสำเร็จรูปมาใช้คนละตัว แล้วต้องคีย์ข้อมูลชุดเดิมซ้ำไปมาระหว่างระบบ
-                เราเลือกเส้นทางที่ยากกว่าคือสร้างระบบของตัวเองขึ้นมาทั้งชุด ตั้งแต่ที่เก็บเอกสาร
-                ระบบบริหารงานภายใน ไปจนถึงโปรแกรมบัญชี ให้ทุกส่วนคุยกันได้โดยตรง
+                เราเลือกเส้นทางที่ยากกว่า คือเขียนระบบของตัวเองขึ้นมาใช้ ทั้งที่เก็บเอกสารและระบบบริหารงานภายใน
+                เพื่อให้ทุกส่วนคุยกันได้โดยตรง
               </p>
               <p className="text-white/70 leading-relaxed text-lg mt-4">
                 ผลที่ลูกค้าได้รับคือความเร็วและความถูกต้อง ไม่ต้องส่งเอกสารเดิมซ้ำ ไม่ต้องรอให้ใครไปเปิดแฟ้มหา
                 และเวลาที่ประหยัดได้จากงานซ้ำซ้อน ถูกเอาไปใช้กับสิ่งที่ระบบทำแทนไม่ได้ คือการนั่งคุยและให้คำปรึกษากับเจ้าของธุรกิจ
               </p>
+              {/*
+                บอกสถานะตามจริงว่ายังพัฒนาไม่เสร็จ ไม่เขียนรวมไปกับการ์ดด้านล่าง
+                ที่เป็นของที่ใช้งานอยู่จริงแล้ว เพื่อไม่ให้ลูกค้าเข้าใจว่ามีให้ใช้วันนี้
+              */}
+              <p className="text-white/50 leading-relaxed text-sm mt-6">
+                และเรากำลังพัฒนาโปรแกรมบัญชีของเราเองอยู่ เพื่อต่อยอดให้ระบบทั้งหมดสมบูรณ์ยิ่งขึ้น
+              </p>
             </div>
 
-            {/* 4 ส่วนของ ecosystem — จอใหญ่เรียงแถวเดียวให้เห็นว่าเป็นชุดเดียวกัน จอกลางแบ่ง 2x2 */}
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {/* 3 ส่วนของ ecosystem ที่ใช้งานอยู่จริงแล้ว — โปรแกรมบัญชียังพัฒนาไม่เสร็จ จึงพูดถึงในย่อหน้านำแทน */}
+            <div className="grid md:grid-cols-3 gap-6">
               {techHighlights.map((item) => (
                 <div
                   key={item.title}
