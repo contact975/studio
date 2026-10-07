@@ -6,11 +6,24 @@ scripts:
   buildCommand: npm install && npm run build
 
 env:
-  # URL นี้เคยถูกคัดลอกผิด: ตัวอักษร l และ i ถูกพิมพ์เป็นเลข 1
-  # ทำให้ webhook ตอบ 410 และฟอร์มนัดหมายใช้งานไม่ได้มาตลอดโดยไม่มีใครรู้
-  # ถ้าต้องแก้อีกครั้ง ให้คัดลอกจากโมดูล Webhooks ใน Make โดยตรง อย่าพิมพ์เอง
+  # --- ปลายทางฟอร์มนัดหมาย + ฟอร์มฝึกงาน (Make scenario "Integration Webhooks, LINE") ---
+  # URL ของ webhook คือความลับ ใครรู้ URL ก็ยิงเข้ามาได้ทันที ไม่มีรหัสผ่านกั้น
+  # เดิมเก็บเป็น value ตรงนี้ ทั้งที่ repo นี้เป็นสาธารณะ เท่ากับประกาศ URL ให้ทุกคนเห็น
+  # (เคยมีสแปมยิงเข้า LINE จริงเมื่อ 29 ก.ย. 2569 — ดูที่มาใน src/app/api/booking/route.ts)
+  # จึงย้ายมาเก็บใน Google Secret Manager แล้วออก URL ใหม่ทิ้งของเดิมเมื่อ 7 ต.ค. 2569
+  #
+  # ถ้าต้องเปลี่ยน URL อีก ลำดับสำคัญมาก:
+  #   1. สร้าง webhook ใหม่ใน Make (อย่าเพิ่งสลับ trigger ของ scenario)
+  #   2. เพิ่มเวอร์ชันใหม่ของ secret ตัวนี้
+  #   3. deploy แล้วรอจนขึ้นจริง
+  #   4. ค่อยสลับ trigger ของ scenario ไปตัวใหม่  5. ลบ webhook เก่า
+  # สลับใน Make ก่อนที่ deploy จะเสร็จ = ฟอร์มส่งไม่ถึงปลายทางตลอดช่วงที่ build อยู่
+  #
+  # ห้ามพิมพ์ URL เอง ให้คัดลอกจากโมดูล Webhooks ใน Make — เคยพิมพ์ l กับ i เป็นเลข 1
+  # แล้ว webhook ตอบ 410 ฟอร์มนัดหมายใช้ไม่ได้อยู่นานโดยไม่มีใครรู้
+
   - variable: MAKE_WEBHOOK_URL
-    value: https://hook.eu1.make.com/detvatwu4cil2qn9yidxbih42a1redyt
+    secret: MAKE_WEBHOOK_URL
     availability:
       - RUNTIME
   # --- รีวิว Google บนหน้าแรก (src/app/api/google-reviews) ---
