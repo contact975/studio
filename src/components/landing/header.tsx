@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { LanguageSwitcher } from "@/components/landing/language-switcher";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import {
   Accordion,
@@ -129,6 +130,11 @@ export function Header() {
               )}
             </nav>
             <div className="flex items-center gap-2 ml-auto">
+              {/* ปุ่มสลับภาษา โผล่เฉพาะหน้าที่มีครบสองภาษา ดูเงื่อนไขในคอมโพเนนต์ */}
+              {/* ต้องเห็นบนมือถือด้วย ไม่ใช่ซ่อนไว้เฉพาะจอใหญ่
+                  เพราะชาวต่างชาติที่หาข้อมูลวีซ่าส่วนใหญ่เปิดจากมือถือ
+                  ถ้าซ่อน เขาจะไม่รู้เลยว่ามีฉบับภาษาอังกฤษอยู่ */}
+              <LanguageSwitcher className="mr-1" />
               <Button asChild className="hidden md:flex rounded-full bg-gradient-to-r from-blue-600 to-cyan-400 text-white hover:opacity-90 transition-opacity">
                 <Link href="/visa-work-permit">IC Visa / Work Permit</Link>
               </Button>
