@@ -51,6 +51,10 @@ const staticRoutes: Array<{
   // ฉบับภาษาอังกฤษของหน้าเดียวกัน ประกาศ hreflang คู่กันไว้ในหน้าทั้งสองแล้ว
   // ต้องอยู่ใน sitemap ด้วย ไม่งั้น Google อาจไม่เจอหน้านี้เลยเพราะลิงก์เข้าถึงน้อย
   { path: '/en/visa-work-permit', priority: 0.8, changeFrequency: 'monthly', lastModified: '2026-10-07' },
+  // หน้ารวมภาษาอังกฤษ — ปลายทางของปุ่มสลับภาษาในหน้าที่ยังไม่มีคู่ภาษา
+  // priority ต่ำเพราะเป้าหมายของเว็บยังเป็นคำค้นภาษาไทย หน้านี้มีไว้รองรับ
+  // ชาวต่างชาติที่เข้ามาในเว็บแล้ว ไม่ได้ทำไว้ไล่อันดับคำอังกฤษ
+  { path: '/en', priority: 0.5, changeFrequency: 'monthly', lastModified: '2026-10-07' },
   { path: '/organization-system', priority: 0.7, changeFrequency: 'monthly', lastModified: '2026-09-14' },
   { path: '/media-content', priority: 0.7, changeFrequency: 'monthly' },
 

@@ -5,39 +5,49 @@ import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
 
 /**
- * ปุ่มสลับภาษา TH / EN
+ * ปุ่มสลับภาษา TH / EN — แสดงทุกหน้า
  *
- * ── หลักที่ยึด ──
- * 1. ต้องพาไปหน้าเดียวกันในอีกภาษา ไม่ใช่เด้งกลับหน้าแรก
- *    คนที่กำลังอ่านเรื่อง work permit แล้วกด EN ควรได้หน้า work permit ภาษาอังกฤษ
- *    ถ้าเด้งกลับหน้าแรกเขาต้องหาใหม่เองทั้งหมด ซึ่งคนส่วนใหญ่จะเลิกอ่านไปเลย
+ * ── ทำไมต้องมีทุกหน้า ──
+ * เดิมปุ่มซ่อนตัวเองเมื่อหน้านั้นยังไม่มีฉบับภาษาอังกฤษ เพื่อกันพาไป 404
+ * ผลข้างเคียงคือโผล่แค่หน้าเดียวทั้งเว็บ ชาวต่างชาติที่เข้ามาทางหน้าแรก
+ * หรือจาก Google Maps จึงไม่มีทางรู้เลยว่าเว็บนี้มีภาษาอังกฤษ
  *
- * 2. หน้าไหนยังไม่มีฉบับอังกฤษ ให้ซ่อนปุ่มไปเลย ไม่ใช่โชว์แล้วพาไป 404
- *    ตอนนี้มีแค่หน้า visa ที่ทำครบสองภาษา จึงประกาศไว้ใน TRANSLATED_PAGES
- *    เพิ่มหน้าใหม่เมื่อไหร่ ค่อยเติมในรายการนี้
+ * ── แล้วหน้าที่ยังไม่มีคู่ภาษาจะไปไหน ──
+ * ไปหน้า /en ซึ่งเป็นหน้ารวมภาษาอังกฤษ บอกว่าเราทำอะไรและติดต่อยังไง
+ * ไม่ใช่ 404 และไม่ใช่การโยนไปหน้าที่ไม่เกี่ยวข้องกันเลย
+ * พอแปลหน้าไหนเสร็จ ค่อยเพิ่มเข้า PAIRS แล้วปุ่มจะพาไปหน้านั้นตรงๆ แทน
  *
- * 3. ห้ามเด้งอัตโนมัติตามภาษาเบราว์เซอร์หรือ IP เด็ดขาด
- *    Googlebot เข้ามาจากอเมริกา ถ้าเด้งทุกคนที่มาจากต่างประเทศไปหน้าอังกฤษ
- *    Googlebot จะเห็นแต่หน้าอังกฤษ แล้วค่อยๆ ถอดหน้าไทยออกจากดัชนี
- *    อันดับคำไทยที่สะสมมาจะหายโดยที่เจ้าของเว็บไม่รู้ตัว เพราะเปิดเองในไทยก็เห็นปกติ
- *
- * 4. ใส่ hrefLang ที่ลิงก์ เพื่อบอกเครื่องมือค้นหาและโปรแกรมอ่านหน้าจอ
- *    ว่าปลายทางเป็นคนละภาษากับหน้าปัจจุบัน
+ * ── ข้อห้ามที่ยังยืนเหมือนเดิม ──
+ * ห้ามเด้งอัตโนมัติตามภาษาเบราว์เซอร์หรือ IP เด็ดขาด
+ * Googlebot เข้ามาจากอเมริกา ถ้าเด้งทุกคนที่มาจากต่างประเทศไปหน้าอังกฤษ
+ * Googlebot จะเห็นแต่หน้าอังกฤษ แล้วค่อยๆ ถอดหน้าไทยออกจากดัชนี
+ * อันดับคำไทยที่สะสมมาจะหายโดยเจ้าของเว็บไม่รู้ตัว เพราะเปิดเองในไทยก็เห็นปกติ
  */
 
-/** พาธภาษาไทยที่มีฉบับอังกฤษแล้ว — ฝั่งอังกฤษคือพาธเดียวกันแต่มี /en นำหน้า */
-const TRANSLATED_PAGES = ['/visa-work-permit'];
+/** หน้าไทยที่มีฉบับอังกฤษแบบแปลตรงกันแล้ว — เพิ่มที่นี่เมื่อแปลหน้าใหม่เสร็จ */
+const PAIRS: Record<string, string> = {
+  '/visa-work-permit': '/en/visa-work-permit',
+};
+
+/** ปลายทางสำรองของหน้าที่ยังไม่มีคู่ภาษา */
+const EN_HOME = '/en';
 
 export function LanguageSwitcher({ className }: { className?: string }) {
   const pathname = usePathname() || '/';
-
   const isEnglish = pathname === '/en' || pathname.startsWith('/en/');
-  const thaiPath = isEnglish ? pathname.replace(/^\/en/, '') || '/' : pathname;
 
-  // ไม่มีคู่ภาษาของหน้านี้ ก็ไม่ต้องมีปุ่มให้กดไปเจอหน้าที่ไม่มีอยู่
-  if (!TRANSLATED_PAGES.includes(thaiPath)) return null;
+  // หาคู่ของหน้าปัจจุบันในอีกภาษาหนึ่ง
+  let thaiHref = '/';
+  let englishHref = EN_HOME;
 
-  const englishPath = `/en${thaiPath}`;
+  if (isEnglish) {
+    const match = Object.entries(PAIRS).find(([, en]) => en === pathname);
+    thaiHref = match ? match[0] : '/';
+    englishHref = pathname;
+  } else {
+    thaiHref = pathname;
+    englishHref = PAIRS[pathname] ?? EN_HOME;
+  }
 
   return (
     <div
@@ -47,7 +57,7 @@ export function LanguageSwitcher({ className }: { className?: string }) {
       )}
     >
       <Link
-        href={thaiPath}
+        href={thaiHref}
         hrefLang="th"
         aria-current={!isEnglish ? 'page' : undefined}
         className={cn(
@@ -58,7 +68,7 @@ export function LanguageSwitcher({ className }: { className?: string }) {
         ไทย
       </Link>
       <Link
-        href={englishPath}
+        href={englishHref}
         hrefLang="en"
         aria-current={isEnglish ? 'page' : undefined}
         className={cn(
