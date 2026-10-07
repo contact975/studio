@@ -27,6 +27,7 @@ import { cn } from '@/lib/utils';
 /** หน้าไทยที่มีฉบับอังกฤษแบบแปลตรงกันแล้ว — เพิ่มที่นี่เมื่อแปลหน้าใหม่เสร็จ */
 const PAIRS: Record<string, string> = {
   '/visa-work-permit': '/en/visa-work-permit',
+  '/quote': '/en/quote',
 };
 
 /** ปลายทางสำรองของหน้าที่ยังไม่มีคู่ภาษา */

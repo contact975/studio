@@ -6,9 +6,18 @@ import 'aos/dist/aos.css';
 import { Header } from '@/components/landing/header';
 import { Footer } from '@/components/landing/footer';
 import { trackEvent } from '@/components/analytics/google-analytics';
-import { BOOKING_SERVICES, BOOKING_TIMES } from '@/lib/booking-options';
+import { BOOKING_SERVICES, BOOKING_TIMES, BOOKING_SERVICE_LABELS_EN } from '@/lib/booking-options';
+import type { QuoteCopy } from './quote-copy';
 
-export default function QuoteClient() {
+/**
+ * ฟอร์มนัดหมาย ใช้ร่วมกันทั้งหน้าไทย /quote และหน้าอังกฤษ /en/quote
+ *
+ * ── ค่าที่ส่งไป API เป็นภาษาไทยเสมอ ไม่ว่าหน้าจะเป็นภาษาอะไร ──
+ * ป้ายอังกฤษใช้แค่แสดงผล แต่ value ของ radio ยังเป็นสตริงไทยใน BOOKING_SERVICES
+ * เพราะด่านตรวจใน /api/booking เทียบกับรายการไทย และเพราะแจ้งเตือนที่เข้า LINE
+ * กับอีเมลของทีมงานต้องเป็นภาษาไทยให้อ่านงานได้ทันที
+ */
+export default function QuoteClient({ copy, basePath }: { copy: QuoteCopy; basePath: string }) {
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
 
@@ -26,7 +35,7 @@ export default function QuoteClient() {
     const service = serviceEl ? serviceEl.value : '';
 
     if (!name || !phone || !date || !time || !service) {
-      alert('กรุณากรอกข้อมูลให้ครบถ้วน');
+      alert(copy.incomplete);
       return;
     }
 
@@ -56,11 +65,11 @@ export default function QuoteClient() {
       }
 
       // นัดหมายสำเร็จ = lead จริง ใช้ชื่อ event มาตรฐานของ GA4 ตั้งเป็น key event ได้เลย
-      trackEvent('generate_lead', { service, page_path: '/quote' });
+      trackEvent('generate_lead', { service, page_path: basePath });
       setIsSuccess(true);
     } catch (error) {
       console.error('[booking] เชื่อมต่อเซิร์ฟเวอร์ไม่ได้', error);
-      alert('เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง หรือติดต่อเราทาง LINE @icacc');
+      alert(copy.networkError);
     } finally {
       setIsLoading(false);
     }
@@ -69,21 +78,21 @@ export default function QuoteClient() {
   return (
     <div className="flex flex-col min-h-dvh bg-slate-50">
       <Header />
-      <main className="flex-1">
+      <main className="flex-1" lang={copy.htmlLang}>
         <section className="min-h-screen py-20">
           <div className="container mx-auto px-6 max-w-5xl">
             <div className="text-center mb-12">
-              <h1 className="text-3xl md:text-5xl font-bold text-slate-900 mb-4">นัดหมายปรึกษาผู้เชี่ยวชาญ</h1>
-              <p className="text-gray-500">เลือกบริการและเวลาที่คุณสะดวก เพื่อพูดคุยกับทีมงาน IC Accounting & Service</p>
+              <h1 className="text-3xl md:text-5xl font-bold text-slate-900 mb-4">{copy.h1}</h1>
+              <p className="text-gray-500">{copy.intro}</p>
             </div>
 
             {isSuccess ? (
               <div className="text-center py-20">
                 <div className="text-6xl mb-6">✅</div>
-                <h2 className="text-2xl font-bold text-slate-900 mb-4">ยืนยันการนัดหมายเรียบร้อยแล้ว!</h2>
-                <p className="text-gray-500 mb-8">ทีมงาน IC Accounting จะติดต่อกลับภายใน 24 ชั่วโมง</p>
+                <h2 className="text-2xl font-bold text-slate-900 mb-4">{copy.successTitle}</h2>
+                <p className="text-gray-500 mb-8">{copy.successBody}</p>
                 <button onClick={() => setIsSuccess(false)} className="bg-blue-600 text-white px-8 py-3 rounded-xl font-bold hover:bg-blue-700 transition">
-                  นัดหมายเพิ่มเติม
+                  {copy.successAgain}
                 </button>
               </div>
             ) : (
@@ -92,7 +101,7 @@ export default function QuoteClient() {
                   <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
                     <h3 className="text-lg font-bold mb-6 flex items-center gap-2 text-slate-900">
                       <span className="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm">1</span>
-                      เลือกประเภทบริการ
+                      {copy.step1}
                     </h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       {/* รายการอยู่ที่ src/lib/booking-options.ts ที่เดียว
@@ -100,7 +109,7 @@ export default function QuoteClient() {
                       {BOOKING_SERVICES.map((s) => (
                         <label key={s} className="relative flex items-center p-4 border rounded-xl cursor-pointer hover:bg-blue-50 transition">
                           <input type="radio" name="service_type" value={s} className="w-4 h-4 text-blue-600" />
-                          <span className="ml-3 font-medium text-slate-700">{s}</span>
+                          <span className="ml-3 font-medium text-slate-700">{copy.htmlLang === 'en' ? BOOKING_SERVICE_LABELS_EN[s] : s}</span>
                         </label>
                       ))}
                     </div>
@@ -109,17 +118,17 @@ export default function QuoteClient() {
                   <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
                     <h3 className="text-lg font-bold mb-6 flex items-center gap-2 text-slate-900">
                       <span className="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm">2</span>
-                      เลือกวันและเวลาที่สะดวก
+                      {copy.step2}
                     </h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div>
-                        <label className="block text-sm text-gray-600 mb-2">เลือกวันที่</label>
+                        <label className="block text-sm text-gray-600 mb-2">{copy.dateLabel}</label>
                         <input type="date" id="booking_date" className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none text-slate-900" />
                       </div>
                       <div>
-                        <label className="block text-sm text-gray-600 mb-2">เลือกช่วงเวลา</label>
+                        <label className="block text-sm text-gray-600 mb-2">{copy.timeLabel}</label>
                         <select id="booking_time" className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none text-slate-900">
-                          <option value="">เลือกเวลา</option>
+                          <option value="">{copy.timePlaceholder}</option>
                           {BOOKING_TIMES.map((t) => (
                             <option key={t} value={t}>{t.replace('-', ' - ')}</option>
                           ))}
@@ -131,17 +140,17 @@ export default function QuoteClient() {
 
                 <div className="lg:col-span-1">
                   <div className="bg-white p-8 rounded-2xl shadow-lg border border-blue-100 sticky top-24">
-                    <h3 className="text-lg font-bold mb-6 text-slate-900">ข้อมูลผู้ติดต่อ</h3>
+                    <h3 className="text-lg font-bold mb-6 text-slate-900">{copy.contactTitle}</h3>
                     <div className="space-y-4">
-                      <input type="text" id="cust_name" placeholder="ชื่อ-นามสกุล" className="w-full p-3 border rounded-lg text-sm outline-none focus:border-blue-500 text-slate-900" />
-                      <input type="tel" id="cust_phone" placeholder="เบอร์โทรศัพท์" className="w-full p-3 border rounded-lg text-sm outline-none focus:border-blue-500 text-slate-900" />
-                      <textarea id="cust_note" placeholder="รายละเอียดเพิ่มเติม (ถ้ามี)" className="w-full p-3 border rounded-lg text-sm h-24 outline-none focus:border-blue-500 text-slate-900"></textarea>
+                      <input type="text" id="cust_name" placeholder={copy.namePlaceholder} className="w-full p-3 border rounded-lg text-sm outline-none focus:border-blue-500 text-slate-900" />
+                      <input type="tel" id="cust_phone" placeholder={copy.phonePlaceholder} className="w-full p-3 border rounded-lg text-sm outline-none focus:border-blue-500 text-slate-900" />
+                      <textarea id="cust_note" placeholder={copy.notePlaceholder} className="w-full p-3 border rounded-lg text-sm h-24 outline-none focus:border-blue-500 text-slate-900"></textarea>
                       <button
                         onClick={handleSubmit}
                         disabled={isLoading}
                         className="w-full bg-blue-600 text-white py-4 rounded-xl font-bold hover:bg-blue-700 transition-all shadow-md disabled:opacity-50 disabled:cursor-not-allowed"
                       >
-                        {isLoading ? 'กำลังส่ง...' : 'ยืนยันการนัดหมาย'}
+                        {isLoading ? copy.submitting : copy.submit}
                       </button>
                       <p className="text-[10px] text-center text-gray-400 mt-4 uppercase tracking-widest font-sans">IC Accounting & Service Team</p>
                     </div>

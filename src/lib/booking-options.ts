@@ -31,3 +31,26 @@ export const BOOKING_TIMES = [
   '13:30-14:30',
   '15:00-16:00',
 ] as const;
+
+/**
+ * ป้ายภาษาอังกฤษของแต่ละบริการ — ใช้แสดงผลเท่านั้น
+ *
+ * ── สำคัญ: ฟอร์มภาษาอังกฤษยังส่งค่าภาษาไทยไปที่ API เหมือนเดิม ──
+ * ป้ายอังกฤษใช้โชว์ให้ผู้กรอกอ่านรู้เรื่อง แต่ค่าที่ส่งจริงคือสตริงไทยใน BOOKING_SERVICES
+ *
+ * เหตุผลสองข้อ
+ *   1. ด่านตรวจใน /api/booking เทียบกับรายการไทย ถ้าส่งอังกฤษไปจะถูกปฏิเสธทันที
+ *      (ด่านนั้นใส่ไว้กันสแปมที่ยิงเข้า API ตรงๆ เมื่อ 29 ก.ย. 2569)
+ *   2. แจ้งเตือนที่เข้า LINE และอีเมลของทีมงานจะได้เป็นภาษาไทยเหมือนเดิม
+ *      ทีมงานอ่านงานได้ทันทีโดยไม่ต้องแปลในหัวว่าลูกค้าเลือกบริการอะไร
+ *
+ * Record ที่ผูกกับ BOOKING_SERVICES ทำให้ TypeScript บังคับว่าต้องมีครบทุกบริการ
+ * เพิ่มบริการใหม่แล้วลืมใส่ป้ายอังกฤษ จะ build ไม่ผ่าน
+ */
+export const BOOKING_SERVICE_LABELS_EN: Record<(typeof BOOKING_SERVICES)[number], string> = {
+  'วางแผนบัญชีและภาษี': 'Accounting & tax planning',
+  'จดทะเบียนธุรกิจ': 'Company registration',
+  'Visa & Work Permit (วีซ่าและใบอนุญาตทำงาน)': 'Visa & Work Permit',
+  'ปรึกษาการเงิน/ที่ปรึกษาธุรกิจ': 'Financial & business advisory',
+  'Exclusive Media Production': 'Exclusive Media Production',
+};

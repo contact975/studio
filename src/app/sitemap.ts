@@ -55,6 +55,7 @@ const staticRoutes: Array<{
   // priority ต่ำเพราะเป้าหมายของเว็บยังเป็นคำค้นภาษาไทย หน้านี้มีไว้รองรับ
   // ชาวต่างชาติที่เข้ามาในเว็บแล้ว ไม่ได้ทำไว้ไล่อันดับคำอังกฤษ
   { path: '/en', priority: 0.5, changeFrequency: 'monthly', lastModified: '2026-10-07' },
+  { path: '/en/quote', priority: 0.5, changeFrequency: 'monthly', lastModified: '2026-10-07' },
   { path: '/organization-system', priority: 0.7, changeFrequency: 'monthly', lastModified: '2026-09-14' },
   { path: '/media-content', priority: 0.7, changeFrequency: 'monthly' },
 
