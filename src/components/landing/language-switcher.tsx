@@ -28,6 +28,7 @@ import { cn } from '@/lib/utils';
 const PAIRS: Record<string, string> = {
   '/visa-work-permit': '/en/visa-work-permit',
   '/quote': '/en/quote',
+  '/company-registration': '/en/company-registration',
 };
 
 /** ปลายทางสำรองของหน้าที่ยังไม่มีคู่ภาษา */
