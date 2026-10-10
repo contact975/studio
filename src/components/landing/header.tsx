@@ -76,7 +76,9 @@ export function Header() {
       <div className="relative bg-card/95 backdrop-blur supports-[backdrop-filter]:bg-card/60">
         {/* Main Navigation Bar */}
         <div>
-          <div className="container mx-auto flex h-16 items-center px-4 md:px-6">
+          {/* ไม่ใช้ container เพราะ container ล็อกความกว้างไว้ 1280px จนกว่าจอจะถึง 1536px
+              จอ MacBook (1440–1512px) จึงได้พื้นที่เท่าจอ 1280px เมนูภาษาไทยตกเป็นสองบรรทัด */}
+          <div className="mx-auto flex h-16 w-full max-w-screen-2xl items-center px-4 md:px-6">
             <Link href="/" className="mr-6 flex items-center gap-2" prefetch={false}>
               <Image
                 src="https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Logo%20ic.png?alt=media"
@@ -87,7 +89,7 @@ export function Header() {
                 priority
               />
             </Link>
-            <nav className="hidden flex-1 items-center justify-center gap-8 text-base font-medium md:flex">
+            <nav className="hidden flex-1 items-center justify-center gap-6 text-base font-medium md:flex">
               {navLinks.map((link) =>
                 link.subLinks ? (
                   <div
@@ -139,7 +141,7 @@ export function Header() {
                 <Link href="/visa-work-permit">IC Visa / Work Permit</Link>
               </Button>
               <Button asChild className="hidden md:flex rounded-full bg-gradient-to-r from-red-500 to-orange-400 text-white hover:opacity-90 transition-opacity">
-                <Link href="/media-content">บริการ Exclusive Media</Link>
+                <Link href="/media-content">Exclusive Media</Link>
               </Button>
               <Button asChild className="hidden sm:flex rounded-full">
                 <Link href="https://qr-official.line.me/gs/M_374jshvh_GW.png?oat_content=qr" target="_blank">
@@ -208,7 +210,7 @@ export function Header() {
                           <Link href="/visa-work-permit" onClick={() => setIsSheetOpen(false)}>IC Visa / Work Permit</Link>
                         </Button>
                         <Button asChild className="rounded-full mt-4 bg-gradient-to-r from-red-500 to-orange-400 text-white hover:opacity-90 transition-opacity">
-                          <Link href="/media-content" onClick={() => setIsSheetOpen(false)}>บริการ Exclusive Media</Link>
+                          <Link href="/media-content" onClick={() => setIsSheetOpen(false)}>Exclusive Media</Link>
                         </Button>
                         <Button asChild className="rounded-full mt-4">
                           <Link href="https://qr-official.line.me/gs/M_374jshvh_GW.png?oat_content=qr" onClick={() => setIsSheetOpen(false)} target="_blank">
