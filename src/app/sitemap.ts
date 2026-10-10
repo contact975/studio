@@ -39,36 +39,41 @@ const staticRoutes: Array<{
   /** วันที่เนื้อหาเฉพาะของหน้านั้นเปลี่ยนล่าสุด (YYYY-MM-DD) ถ้าไม่ใส่ใช้ SHARED_LAYOUT_UPDATED */
   lastModified?: string;
 }> = [
-  { path: '/', priority: 1.0, changeFrequency: 'weekly', lastModified: '2026-09-23' },
+  { path: '/', priority: 1.0, changeFrequency: 'weekly', lastModified: '2026-10-11' },
 
   // หน้าบริการ — เป็นหน้าที่ต้องแบกคำค้นเชิงพาณิชย์ จึงให้ priority สูงรองจากหน้าแรก
   { path: '/accounting-services', priority: 0.9, changeFrequency: 'monthly', lastModified: '2026-10-11' },
   { path: '/company-registration', priority: 0.9, changeFrequency: 'monthly', lastModified: '2026-09-23' },
-  { path: '/audit-services', priority: 0.9, changeFrequency: 'monthly' },
+  { path: '/audit-services', priority: 0.9, changeFrequency: 'monthly', lastModified: '2026-10-11' },
   // ยุบ /expat-services เข้ามาที่นี่แล้ว จึงเหลือ URL เดียวและได้ priority เต็ม
   // URL ที่ redirect ต้องไม่อยู่ใน sitemap — เท่ากับบอก Google ให้ไปเก็บของที่ย้ายไปแล้ว
   { path: '/visa-work-permit', priority: 0.9, changeFrequency: 'monthly', lastModified: '2026-10-07' },
   // ฉบับภาษาอังกฤษของหน้าเดียวกัน ประกาศ hreflang คู่กันไว้ในหน้าทั้งสองแล้ว
   // ต้องอยู่ใน sitemap ด้วย ไม่งั้น Google อาจไม่เจอหน้านี้เลยเพราะลิงก์เข้าถึงน้อย
   { path: '/en/visa-work-permit', priority: 0.8, changeFrequency: 'monthly', lastModified: '2026-10-07' },
-  // หน้ารวมภาษาอังกฤษ — ปลายทางของปุ่มสลับภาษาในหน้าที่ยังไม่มีคู่ภาษา
-  // priority ต่ำเพราะเป้าหมายของเว็บยังเป็นคำค้นภาษาไทย หน้านี้มีไว้รองรับ
-  // ชาวต่างชาติที่เข้ามาในเว็บแล้ว ไม่ได้ทำไว้ไล่อันดับคำอังกฤษ
-  { path: '/en', priority: 0.5, changeFrequency: 'monthly', lastModified: '2026-10-07' },
+  // หน้าอังกฤษที่เหลือทั้งหมด — priority ต่ำเพราะเป้าหมายของเว็บยังเป็นคำค้นภาษาไทย
+  // หน้าเหล่านี้มีไว้รองรับชาวต่างชาติที่เข้ามาในเว็บแล้ว ไม่ได้ทำไว้ไล่อันดับคำอังกฤษ
+  // แต่ต้องอยู่ใน sitemap เพื่อให้ Google เห็นคู่ hreflang ครบ
+  { path: '/en', priority: 0.5, changeFrequency: 'monthly', lastModified: '2026-10-11' },
   { path: '/en/quote', priority: 0.5, changeFrequency: 'monthly', lastModified: '2026-10-07' },
   { path: '/en/company-registration', priority: 0.5, changeFrequency: 'monthly', lastModified: '2026-10-07' },
   { path: '/en/accounting-services', priority: 0.5, changeFrequency: 'monthly', lastModified: '2026-10-11' },
-  { path: '/organization-system', priority: 0.7, changeFrequency: 'monthly', lastModified: '2026-09-14' },
-  { path: '/media-content', priority: 0.7, changeFrequency: 'monthly' },
+  { path: '/en/audit-services', priority: 0.5, changeFrequency: 'monthly', lastModified: '2026-10-11' },
+  { path: '/en/organization-system', priority: 0.4, changeFrequency: 'monthly', lastModified: '2026-10-11' },
+  { path: '/en/media-content', priority: 0.4, changeFrequency: 'monthly', lastModified: '2026-10-11' },
+  { path: '/en/about', priority: 0.4, changeFrequency: 'yearly', lastModified: '2026-10-11' },
+  { path: '/en/internship', priority: 0.3, changeFrequency: 'yearly', lastModified: '2026-10-11' },
+  { path: '/organization-system', priority: 0.7, changeFrequency: 'monthly', lastModified: '2026-10-11' },
+  { path: '/media-content', priority: 0.7, changeFrequency: 'monthly', lastModified: '2026-10-11' },
 
   // เครื่องคำนวณภาษี — เป็นหน้าที่คนค้นหาเองอยู่แล้ว ("คำนวณภาษี 2569")
   // และดึงคนที่ยังไม่พร้อมจ้างเข้ามารู้จักเราก่อน จึงให้ priority สูงกว่าหน้าแนะนำตัว
   { path: '/tax-calculator', priority: 0.8, changeFrequency: 'yearly', lastModified: '2026-09-28' },
 
   { path: '/blog', priority: 0.7, changeFrequency: 'weekly' },
-  { path: '/about', priority: 0.6, changeFrequency: 'yearly' },
+  { path: '/about', priority: 0.6, changeFrequency: 'yearly', lastModified: '2026-10-11' },
   // หน้านักศึกษาฝึกงาน — อัปเดตเมื่อมีรุ่นใหม่ จึงตั้ง yearly
-  { path: '/internship', priority: 0.5, changeFrequency: 'yearly', lastModified: '2026-09-28' },
+  { path: '/internship', priority: 0.5, changeFrequency: 'yearly', lastModified: '2026-10-11' },
   { path: '/quote', priority: 0.6, changeFrequency: 'monthly' },
 ];
 

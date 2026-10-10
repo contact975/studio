@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { MapPin, Clock, Car, Building2 } from 'lucide-react';
+import type { HomeContent } from './home-content';
 
 /**
  * พื้นที่ให้บริการ — section ที่หน้าแรกขาดไป
@@ -19,29 +20,20 @@ import { MapPin, Clock, Car, Building2 } from 'lucide-react';
  * รายชื่ออำเภอชุดนี้ตรงกับ areaServed ใน app/layout.tsx แก้ที่หนึ่งต้องแก้อีกที่ด้วย
  */
 
-const AREAS = [
-  {
-    name: 'ดอยสะเก็ด',
-    note: 'ที่ตั้งสำนักงาน เข้ามาคุยที่ออฟฟิศได้ทุกวันทำการ',
-    office: true,
-  },
-  { name: 'เมืองเชียงใหม่', note: 'ร้านอาหาร คาเฟ่ โรงแรม และธุรกิจบริการในเขตเมือง' },
-  { name: 'สันทราย', note: 'ธุรกิจการค้า หอพัก และกิจการรอบมหาวิทยาลัยแม่โจ้' },
-  { name: 'สันกำแพง', note: 'งานหัตถกรรม ส่งออก และโรงงานขนาดเล็ก' },
-  { name: 'แม่ริม', note: 'ที่พัก รีสอร์ต และธุรกิจท่องเที่ยว' },
-  { name: 'หางดง', note: 'โรงงาน คลังสินค้า และธุรกิจค้าส่ง' },
-  { name: 'สารภี', note: 'ธุรกิจครอบครัวและกิจการที่เพิ่งจดทะเบียนใหม่' },
-  { name: 'ลำพูน', note: 'ดูแลถึงนิคมอุตสาหกรรมลำพูนและอำเภอใกล้เคียง' },
-];
+/*
+ * รายชื่ออำเภอและคำอธิบายอยู่ใน serviceArea.areas ของ home-content.ts
+ * รายการแรกคือที่ตั้งสำนักงาน (ดอยสะเก็ด) จะได้กรอบเน้นและไอคอนอาคาร
+ */
 
-export function ServiceAreaSection() {
+export function ServiceAreaSection({ c }: { c: HomeContent['serviceArea'] }) {
+  const areas = c.areas.map((a, i) => ({ ...a, office: i === 0 }));
   return (
     <section className="py-20 md:py-28 bg-secondary/40" aria-labelledby="service-area-heading">
       <div className="container mx-auto px-6 max-w-6xl">
         <div className="text-center mb-14">
-          <p className="text-primary text-xs font-bold tracking-[0.3em] uppercase mb-3">Service Area</p>
+          <p className="text-primary text-xs font-bold tracking-[0.3em] uppercase mb-3">{c.eyebrow}</p>
           <h2 id="service-area-heading" className="text-3xl md:text-4xl font-black mb-4">
-            พื้นที่ให้บริการทั่วเชียงใหม่และลำพูน
+            {c.title}
           </h2>
           {/*
             ลิงก์ในย่อหน้านี้ตั้งใจใช้ข้อความที่ตรงกับคำค้นจริง (รับทำบัญชีรายเดือน /
@@ -49,21 +41,20 @@ export function ServiceAreaSection() {
             เป็นตัวบอกว่าหน้าปลายทางเกี่ยวกับอะไร และหน้าแรกเป็นหน้าที่ส่งน้ำหนักได้มากที่สุด
           */}
           <p className="text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            สำนักงานอยู่ที่ดอยสะเก็ด แต่ลูกค้าของเรากระจายอยู่ทั่วจังหวัด เพราะงาน
-            <Link href="/accounting-services" className="text-primary font-semibold hover:underline">
-              รับทำบัญชีรายเดือน
+            {c.intro.before}
+            <Link href={c.intro.accountingHref} className="text-primary font-semibold hover:underline">
+              {c.intro.accountingLink}
             </Link>{' '}
-            ส่งเอกสารผ่านระบบออนไลน์ได้ ไม่ต้องเดินทางมาทุกเดือน ส่วนงานที่ต้องเจอหน้า เช่น
-            วางระบบบัญชี ตรวจนับสต็อก หรือ{' '}
-            <Link href="/company-registration" className="text-primary font-semibold hover:underline">
-              จดทะเบียนบริษัท
+            {c.intro.middle}{' '}
+            <Link href={c.intro.registrationHref} className="text-primary font-semibold hover:underline">
+              {c.intro.registrationLink}
             </Link>{' '}
-            เราเข้าไปถึงหน้างานในทุกอำเภอด้านล่างนี้
+            {c.intro.after}
           </p>
         </div>
 
         <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
-          {AREAS.map((area) => (
+          {areas.map((area) => (
             <li
               key={area.name}
               className={`rounded-2xl border p-5 bg-background ${
@@ -93,9 +84,9 @@ export function ServiceAreaSection() {
           <div className="flex gap-3">
             <MapPin className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
             <div>
-              <p className="font-bold mb-1">ที่ทำการ</p>
+              <p className="font-bold mb-1">{c.office.title}</p>
               <p className="text-sm text-muted-foreground leading-relaxed">
-                80/142 ต.สันปู่เลย อ.ดอยสะเก็ด เชียงใหม่ 50220
+                {c.office.address}
               </p>
               <Link
                 href="https://maps.google.com/?cid=11080561333861967427"
@@ -103,27 +94,27 @@ export function ServiceAreaSection() {
                 rel="noopener noreferrer"
                 className="text-sm text-primary font-semibold hover:underline inline-block mt-1"
               >
-                ดูเส้นทางใน Google Maps
+                {c.office.mapLink}
               </Link>
             </div>
           </div>
           <div className="flex gap-3">
             <Clock className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
             <div>
-              <p className="font-bold mb-1">เวลาทำการ</p>
+              <p className="font-bold mb-1">{c.hours.title}</p>
               <p className="text-sm text-muted-foreground leading-relaxed">
-                จันทร์ – เสาร์ 09:00 – 18:00 น.
+                {c.hours.days}
                 <br />
-                นัดหมายนอกเวลาได้ทาง LINE
+                {c.hours.note}
               </p>
             </div>
           </div>
           <div className="flex gap-3">
             <Car className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
             <div>
-              <p className="font-bold mb-1">ไม่สะดวกเดินทาง?</p>
+              <p className="font-bold mb-1">{c.remote.title}</p>
               <p className="text-sm text-muted-foreground leading-relaxed">
-                ส่งเอกสารผ่านออนไลน์ได้ทั้งหมด หรือให้เราเข้าไปรับถึงที่สำหรับลูกค้ารายเดือน
+                {c.remote.text}
               </p>
             </div>
           </div>

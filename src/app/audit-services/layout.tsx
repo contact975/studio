@@ -1,18 +1,10 @@
-import type { Metadata } from 'next';
-
-export const metadata: Metadata = {
-  title: 'ปิดงบการเงินเชียงใหม่ ตรวจสอบโดย CPA เริ่ม 6,000/ปี | IC Accounting',
-  description: 'ตรวจสอบบัญชีและปิดงบประจำปีในเชียงใหม่โดยผู้สอบบัญชีรับอนุญาต ยื่น DBD และสรรพากรให้ครบ เริ่ม 6,000 บาท/ปี หรือแพ็กเกจครบวงจรทำบัญชี + ตรวจสอบ เริ่ม 12,000 บาท/ปี ราคารวม VAT',
-  alternates: { canonical: 'https://icaccservice.com/audit-services' },
-  openGraph: {
-    title: 'ปิดงบการเงินเชียงใหม่ ตรวจสอบโดย CPA เริ่ม 6,000/ปี | IC Accounting',
-    description: 'ตรวจสอบอย่างเดียว เริ่ม 6,000/ปี · ครบวงจร ทำบัญชี + ตรวจสอบ เริ่ม 12,000/ปี ราคารวม VAT',
-    url: 'https://icaccservice.com/audit-services',
-    // openGraph ของหน้าลูก override ของ root layout ทั้งก้อน จึงต้องใส่รูปซ้ำ ไม่งั้นแชร์ลิงก์ไม่มีรูป
-    images: [{ url: 'https://icaccservice.com/share-preview.jpg', width: 1200, height: 630 }],
-  },
-};
-
+/**
+ * metadata ของหน้านี้ย้ายไปอยู่ใน page.tsx ที่เดียว
+ *
+ * เดิมประกาศไว้ทั้งสองไฟล์ ซึ่ง Next จะให้ page ชนะอยู่แล้ว
+ * การเก็บของเก่าไว้ใน layout จึงมีแต่จะทำให้แก้ผิดที่แล้วไม่เห็นผล
+ * และ layout ไม่มี hreflang ถ้าวันหนึ่ง page เลิกประกาศ metadata หน้านี้จะเสียคู่ภาษาไปเงียบๆ
+ */
 export default function Layout({ children }: { children: React.ReactNode }) {
   return <>{children}</>;
 }

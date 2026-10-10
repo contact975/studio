@@ -262,6 +262,8 @@ export interface CinematicFooterProps {
   };
   social: FooterAction[];
   companyName: string;
+  /** ป้ายปุ่มกลับขึ้นด้านบน (สำหรับโปรแกรมอ่านหน้าจอ) ค่าเริ่มต้นเป็นภาษาไทย */
+  backToTopLabel?: string;
   className?: string;
 }
 
@@ -296,6 +298,7 @@ export function CinematicFooter({
   contact,
   social,
   companyName,
+  backToTopLabel = "กลับขึ้นด้านบน",
   className,
 }: CinematicFooterProps) {
   const wrapperRef = useRef<HTMLDivElement>(null);
@@ -509,7 +512,7 @@ export function CinematicFooter({
                 as="button"
                 type="button"
                 onClick={scrollToTop}
-                aria-label="กลับขึ้นด้านบน"
+                aria-label={backToTopLabel}
                 className="footer-glass-pill group flex h-12 w-12 items-center justify-center rounded-full text-muted-foreground hover:text-foreground"
               >
                 <ArrowUp className="h-5 w-5 transform transition-transform duration-300 group-hover:-translate-y-1.5" />

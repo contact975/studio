@@ -3,6 +3,7 @@
 import { useRef, useState } from 'react';
 import { CheckCircle2, Loader2, Paperclip, Send } from 'lucide-react';
 import { trackEvent } from '@/components/analytics/google-analytics';
+import { INTERNSHIP_MAX_FILE_MB, type InternshipFormCopy } from '@/app/internship/internship-content';
 
 /**
  * แบบฟอร์มสมัครฝึกงาน
@@ -16,14 +17,22 @@ import { trackEvent } from '@/components/analytics/google-analytics';
  * จำกัด 5MB เพราะต้องแปลงเป็น base64 ส่งผ่าน Make (โตขึ้นราว 33%)
  * เช็กฝั่ง client ก่อนเพื่อไม่ให้ผู้ใช้รออัปโหลดจนจบแล้วค่อยโดนปฏิเสธ
  * ฝั่ง server เช็กซ้ำอีกครั้งเพราะเช็กที่ client อย่างเดียวเลี่ยงได้
+ *
+ * ── สองภาษา ──
+ * ใช้ทั้งหน้า /internship และ /en/internship ข้อความทั้งหมดมาจาก prop copy
+ * (internship-content.ts) แต่ชื่อฟิลด์และค่าที่ส่งไป API เหมือนกันทุกตัว
+ * ค่าของ heardFrom ยังเป็นภาษาไทยเสมอ เพื่อให้ทีมงานอ่านแจ้งเตือนเป็นแบบเดียวกัน
  */
 
-const MAX_FILE_MB = 5;
+const MAX_FILE_MB = INTERNSHIP_MAX_FILE_MB;
+/** ค่าที่ส่งไป API เป็นภาษาไทยเสมอ ไม่ว่าผู้ใช้จะอ่านหน้าภาษาไหน */
+const HEARD_FROM_SELF_VALUE = 'ทราบข้อมูลด้วยตัวเอง';
+const HEARD_FROM_UNSPECIFIED_VALUE = 'ไม่ได้ระบุ';
 const ACCEPT = '.pdf,.doc,.docx,.jpg,.jpeg,.png,.webp';
 
 type Status = 'idle' | 'sending' | 'success';
 
-export function InternshipForm() {
+export function InternshipForm({ copy, basePath }: { copy: InternshipFormCopy; basePath: string }) {
   const formRef = useRef<HTMLFormElement>(null);
   const [status, setStatus] = useState<Status>('idle');
   const [error, setError] = useState('');
@@ -39,35 +48,40 @@ export function InternshipForm() {
 
     const file = data.get('portfolio');
     if (file instanceof File && file.size > MAX_FILE_MB * 1024 * 1024) {
-      setError(`ไฟล์ใหญ่เกิน ${MAX_FILE_MB}MB กรุณาบีบอัดหรือส่งไฟล์ที่เล็กลง`);
+      setError(copy.errors.fileTooLargeClient);
       return;
     }
 
     // รวมคำตอบสองช่องของ "ทราบข้อมูลจากแหล่งใด" ให้เหลือค่าเดียวก่อนส่ง
     const heardFromOther = (data.get('heardFromOther') ?? '').toString().trim();
-    data.set('heardFrom', heardFromSelf ? 'ทราบข้อมูลด้วยตัวเอง' : heardFromOther || 'ไม่ได้ระบุ');
+    data.set('heardFrom', heardFromSelf ? HEARD_FROM_SELF_VALUE : heardFromOther || HEARD_FROM_UNSPECIFIED_VALUE);
     data.delete('heardFromOther');
 
     setStatus('sending');
     try {
       const res = await fetch('/api/internship', { method: 'POST', body: data });
-      if (!res.ok) {
-        const json = await res.json().catch(() => ({}));
+      /**
+       * เช็กทั้ง res.ok และ success ในเนื้อคำตอบ
+       * fetch ถือว่าสำเร็จแม้เซิร์ฟเวอร์ตอบ 500 และถ้าวันหนึ่งมีตัวกลางตอบ 200
+       * โดยไม่ได้ส่งต่อจริง ผู้สมัครจะเห็นว่า "ได้รับแล้ว" ทั้งที่ทีมงานไม่ได้แจ้งเตือน
+       */
+      const json = await res.json().catch(() => ({}));
+      if (!res.ok || json?.success !== true) {
         const map: Record<string, string> = {
-          file_too_large: `ไฟล์ใหญ่เกิน ${MAX_FILE_MB}MB`,
-          file_type_not_allowed: 'รองรับเฉพาะไฟล์ PDF, Word และรูปภาพ',
-          missing_fields: 'กรุณากรอกชื่อและอีเมล',
+          file_too_large: copy.errors.file_too_large,
+          file_type_not_allowed: copy.errors.file_type_not_allowed,
+          missing_fields: copy.errors.missing_fields,
         };
-        setError(map[json?.error] ?? 'ส่งใบสมัครไม่สำเร็จ กรุณาลองใหม่ หรือติดต่อเราทาง LINE @icacc');
+        setError(map[json?.error] ?? copy.errors.failed);
         setStatus('idle');
         return;
       }
-      trackEvent('generate_lead', { service: 'ใบสมัครฝึกงาน', page_path: '/internship' });
+      trackEvent('generate_lead', { service: 'ใบสมัครฝึกงาน', page_path: basePath });
       setStatus('success');
       formEl.reset();
       setFileName('');
     } catch {
-      setError('เชื่อมต่อไม่สำเร็จ กรุณาลองใหม่ หรือติดต่อเราทาง LINE @icacc');
+      setError(copy.errors.networkError);
       setStatus('idle');
     }
   }
@@ -76,17 +90,16 @@ export function InternshipForm() {
     return (
       <div className="rounded-3xl border border-border bg-background p-10 md:p-14 text-center">
         <CheckCircle2 className="h-12 w-12 text-green-500 mx-auto mb-5" />
-        <h3 className="text-2xl font-black mb-3">ได้รับใบสมัครแล้ว</h3>
+        <h3 className="text-2xl font-black mb-3">{copy.success.title}</h3>
         <p className="text-muted-foreground leading-relaxed max-w-md mx-auto mb-6">
-          ขอบคุณที่สนใจฝึกงานกับ IC Accounting &amp; Service
-          ทีมงานจะตรวจสอบข้อมูลและติดต่อกลับทางอีเมลหรือเบอร์โทรที่ให้ไว้
+          {copy.success.body}
         </p>
         <button
           type="button"
           onClick={() => setStatus('idle')}
           className="text-primary font-bold hover:underline"
         >
-          ส่งใบสมัครอีกครั้ง
+          {copy.success.again}
         </button>
       </div>
     );
@@ -105,55 +118,55 @@ export function InternshipForm() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
         <div>
           <label className={labelClass} htmlFor="int-name">
-            ชื่อ - นามสกุล <span className="text-destructive">*</span>
+            {copy.name} <span className="text-destructive">*</span>
           </label>
           <input id="int-name" name="name" required className={inputClass} />
         </div>
         <div>
-          <label className={labelClass} htmlFor="int-university">ชื่อสถาบันการศึกษา</label>
+          <label className={labelClass} htmlFor="int-university">{copy.university}</label>
           <input id="int-university" name="university" className={inputClass} />
         </div>
 
         <div>
-          <label className={labelClass} htmlFor="int-major">คณะ / สาขา</label>
+          <label className={labelClass} htmlFor="int-major">{copy.major}</label>
           <input id="int-major" name="major" className={inputClass} />
         </div>
         <div>
-          <label className={labelClass} htmlFor="int-level">ระดับการศึกษา</label>
-          <input id="int-level" name="level" placeholder="เช่น ปริญญาตรี ชั้นปีที่ 3" className={inputClass} />
+          <label className={labelClass} htmlFor="int-level">{copy.level}</label>
+          <input id="int-level" name="level" placeholder={copy.levelPlaceholder} className={inputClass} />
         </div>
 
         <div>
           <label className={labelClass} htmlFor="int-email">
-            อีเมล <span className="text-destructive">*</span>
+            {copy.email} <span className="text-destructive">*</span>
           </label>
           <input id="int-email" name="email" type="email" required className={inputClass} />
         </div>
         <div>
-          <label className={labelClass} htmlFor="int-phone">เบอร์โทรศัพท์</label>
+          <label className={labelClass} htmlFor="int-phone">{copy.phone}</label>
           <input id="int-phone" name="phone" type="tel" inputMode="tel" className={inputClass} />
         </div>
 
         <div>
-          <label className={labelClass} htmlFor="int-start">ระยะเวลาฝึกงานเริ่มต้น</label>
+          <label className={labelClass} htmlFor="int-start">{copy.startDate}</label>
           <input id="int-start" name="startDate" type="date" className={inputClass} />
         </div>
         <div>
-          <label className={labelClass} htmlFor="int-end">ระยะเวลาฝึกงานสิ้นสุด</label>
+          <label className={labelClass} htmlFor="int-end">{copy.endDate}</label>
           <input id="int-end" name="endDate" type="date" className={inputClass} />
         </div>
       </div>
 
       {/* ไฟล์แนบ */}
       <div className="mt-5">
-        <label className={labelClass} htmlFor="int-portfolio">แนบ Portfolio หรือ Resume</label>
+        <label className={labelClass} htmlFor="int-portfolio">{copy.fileLabel}</label>
         <label
           htmlFor="int-portfolio"
           className="flex items-center gap-3 rounded-xl border border-dashed border-border bg-secondary/30 px-4 py-4 cursor-pointer hover:border-primary transition"
         >
           <Paperclip className="h-5 w-5 text-primary flex-shrink-0" />
           <span className="text-sm text-muted-foreground truncate">
-            {fileName || 'เลือกไฟล์ที่ต้องการแนบ'}
+            {fileName || copy.filePick}
           </span>
         </label>
         <input
@@ -165,13 +178,13 @@ export function InternshipForm() {
           onChange={(e) => setFileName(e.target.files?.[0]?.name ?? '')}
         />
         <p className="text-xs text-muted-foreground mt-2">
-          รองรับไฟล์ PDF, Word หรือรูปภาพ ขนาดไม่เกิน {MAX_FILE_MB}MB
+          {copy.fileHint}
         </p>
       </div>
 
       {/* ทราบข้อมูลจากแหล่งใด */}
       <fieldset className="mt-6 rounded-xl border border-border p-5">
-        <legend className="px-2 font-bold text-sm">ทราบข้อมูลของบริษัทนี้จากแหล่งใด</legend>
+        <legend className="px-2 font-bold text-sm">{copy.heardLegend}</legend>
         <label className="flex items-center gap-3 mb-3 cursor-pointer">
           <input
             type="radio"
@@ -180,7 +193,7 @@ export function InternshipForm() {
             onChange={() => setHeardFromSelf(true)}
             className="h-4 w-4"
           />
-          <span className="text-sm">ทราบข้อมูลด้วยตัวเอง</span>
+          <span className="text-sm">{copy.heardSelf}</span>
         </label>
         <label className="flex items-center gap-3 cursor-pointer">
           <input
@@ -190,19 +203,19 @@ export function InternshipForm() {
             onChange={() => setHeardFromSelf(false)}
             className="h-4 w-4"
           />
-          <span className="text-sm">ทราบข้อมูลจาก</span>
+          <span className="text-sm">{copy.heardOther}</span>
         </label>
         {!heardFromSelf && (
           <input
             name="heardFromOther"
-            placeholder="เช่น อาจารย์แนะนำ รุ่นพี่ที่เคยฝึกงาน หรือค้นเจอใน Google"
+            placeholder={copy.heardOtherPlaceholder}
             className={`${inputClass} mt-3`}
           />
         )}
       </fieldset>
 
       <div className="mt-5">
-        <label className={labelClass} htmlFor="int-reason">เหตุผลที่ต้องการฝึกงานกับบริษัทเรา</label>
+        <label className={labelClass} htmlFor="int-reason">{copy.reason}</label>
         <textarea id="int-reason" name="reason" rows={4} className={inputClass} />
       </div>
 
@@ -216,15 +229,14 @@ export function InternshipForm() {
         className="mt-6 w-full md:w-auto inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground font-black px-10 py-4 rounded-full hover:opacity-90 transition disabled:opacity-60"
       >
         {status === 'sending' ? (
-          <><Loader2 className="h-5 w-5 animate-spin" /> กำลังส่ง...</>
+          <><Loader2 className="h-5 w-5 animate-spin" /> {copy.submitting}</>
         ) : (
-          <><Send className="h-5 w-5" /> ส่งใบสมัครฝึกงาน</>
+          <><Send className="h-5 w-5" /> {copy.submit}</>
         )}
       </button>
 
       <p className="text-xs text-muted-foreground mt-4 leading-relaxed">
-        ข้อมูลที่กรอกจะถูกใช้เพื่อพิจารณารับนักศึกษาฝึกงานเท่านั้น
-        และจะไม่ถูกเผยแพร่หรือส่งต่อให้บุคคลภายนอก
+        {copy.privacy}
       </p>
     </form>
   );

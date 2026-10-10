@@ -1,6 +1,7 @@
 'use client';
 
 import * as React from 'react';
+import type { HomeContent } from './home-content';
 
 // React 19 ย้าย JSX namespace เข้าไปอยู่ใน module 'react' แล้ว
 declare module 'react' {
@@ -72,12 +73,14 @@ export interface MaskRevealSectionProps {
   posterSrc?: string;
   /** SVG แบบ data URI ใช้เป็นรูปทรงช่องมอง เปลี่ยนเป็นโลโก้ได้ภายหลัง */
   maskSrc?: string;
+  c: HomeContent['maskReveal'];
 }
 
 export function MaskRevealSection({
   videoSrc = '/videos/ic-showreel.mp4',
   posterSrc = '/videos/ic-showreel-poster.jpg',
   maskSrc = APERTURE_MASK,
+  c,
 }: MaskRevealSectionProps) {
   const trackRef = React.useRef<HTMLDivElement>(null);
   const maskRef = React.useRef<HTMLDivElement>(null);
@@ -249,7 +252,7 @@ export function MaskRevealSection({
 
   // โทนน้ำเงินไล่เฉดชุดเดียวกับฟุตเตอร์ (hsl 221 60% 26% → 64% 16% → 222 66% 10%)
   return (
-    <section className="relative bg-[#09132a]" aria-label="รู้จัก IC Accounting">
+    <section className="relative bg-[#09132a]" aria-label={c.ariaLabel}>
       {/*
         ตัวจับระยะเลื่อน สูง 150vh บนจอใหญ่ (ต้นฉบับใช้ 360vh ซึ่งดันเนื้อหาจริง
         ลงไปเกือบสี่หน้าจอ) ส่วนจอเล็กสูงเท่าเนื้อหา ไม่มีการตรึงหน้าจอ
@@ -293,18 +296,18 @@ export function MaskRevealSection({
               <div className="flex justify-center mb-4">
                 <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-blue-300 border border-blue-300/30 px-4 py-1.5 rounded-full bg-[#0f1f43]/70 backdrop-blur-sm">
                   <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse" />
-                  รู้จัก IC Accounting
+                  {c.eyebrow}
                 </span>
               </div>
               <h2 className="text-2xl md:text-4xl font-black text-white leading-tight mb-2 [text-shadow:0_2px_20px_rgba(15,31,67,0.95)]">
-                สำนักงานบัญชีที่<span className="text-blue-300">ดูแลคุณครบวงจร</span>
+                {c.h2Before}<span className="text-blue-300">{c.h2Highlight}</span>
               </h2>
               {/* ประโยคบอกตัวตน: คนรุ่นใหม่ + เทคโนโลยี + ผู้ประกอบการยุคใหม่ — เน้นเป็นข้อความหลักของ section */}
               <p className="mt-4 text-lg md:text-2xl font-bold text-white leading-snug [text-shadow:0_2px_20px_rgba(15,31,67,0.95)]">
-                บัญชียุคใหม่ <span className="text-blue-300">โดยคนรุ่นใหม่</span>
+                {c.lineBefore}<span className="text-blue-300">{c.lineHighlight}</span>
                 <br className="md:hidden" />
                 <span className="hidden md:inline"> · </span>
-                เพื่อผู้ประกอบการที่พร้อมก้าวไปข้างหน้า
+                {c.lineAfter}
               </p>
             </div>
 
@@ -312,7 +315,7 @@ export function MaskRevealSection({
             <div className={`w-full max-w-md my-8 ${isPlaying ? 'hidden' : 'md:hidden'}`}>
               <img
                 src={posterSrc}
-                alt="ทีมงาน IC Accounting & Service เชียงใหม่"
+                alt={c.posterAlt}
                 width={1280}
                 height={720}
                 loading="lazy"
@@ -346,7 +349,7 @@ export function MaskRevealSection({
                       <path d="M8 5v14l11-7z" />
                     </svg>
                   </span>
-                  ดูวิดีโอแนะนำทีมงาน
+                  {c.playButton}
                 </button>
               )}
             </div>

@@ -57,10 +57,7 @@ export default function QuoteClient({ copy, basePath }: { copy: QuoteCopy; baseP
       if (!res.ok) {
         const data = await res.json().catch(() => ({}));
         console.error('[booking] ส่งข้อมูลไม่สำเร็จ', res.status, data);
-        alert(
-          'ระบบบันทึกนัดหมายไม่สำเร็จ กรุณาติดต่อเราทาง LINE @icacc โดยตรง ' +
-          'ขออภัยในความไม่สะดวกครับ'
-        );
+        alert(copy.failed);
         return;
       }
 

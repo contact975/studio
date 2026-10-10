@@ -1,38 +1,36 @@
 import type { Metadata } from 'next';
-import MediaClient from './media-client';
+import MediaClient from '@/app/media-content/media-client';
 import { JsonLd } from '@/components/seo/json-ld';
 import { breadcrumbSchema, faqSchema, serviceSchema } from '@/lib/seo';
-import { MEDIA_OFFERS, mediaContent } from './media-content';
+import { MEDIA_OFFERS, mediaContent } from '@/app/media-content/media-content';
 
 /**
- * หน้าบริการ Exclusive Media Production ฉบับภาษาไทย
+ * หน้าบริการ Exclusive Media Production ฉบับภาษาอังกฤษ
  *
- * ข้อความและราคาอยู่ที่ media-content.ts markup อยู่ใน media-client.tsx
- * ซึ่งหน้าอังกฤษ /en/media-content ใช้ร่วมกัน
+ * ใช้ markup และราคาชุดเดียวกับหน้าไทย ต่างแค่ข้อความ
  */
 
 const TH_URL = 'https://icaccservice.com/media-content';
 const EN_URL = 'https://icaccservice.com/en/media-content';
-const c = mediaContent.th;
+const c = mediaContent.en;
 
 export const metadata: Metadata = {
   title: c.meta.title,
   description: c.meta.description,
   alternates: {
-    canonical: TH_URL,
+    canonical: EN_URL,
     languages: { th: TH_URL, en: EN_URL, 'x-default': TH_URL },
   },
   openGraph: {
     title: c.meta.title,
     description: c.meta.ogDescription,
-    url: TH_URL,
-    locale: 'th_TH',
-    // openGraph ของหน้าลูก override ของ root layout ทั้งก้อน จึงต้องใส่รูปซ้ำ ไม่งั้นแชร์ลิงก์ไม่มีรูป
+    url: EN_URL,
+    locale: 'en_US',
     images: [{ url: 'https://icaccservice.com/share-preview.jpg', width: 1200, height: 630 }],
   },
 };
 
-export default function MediaContentPage() {
+export default function MediaContentEnglishPage() {
   return (
     <>
       <JsonLd
@@ -40,12 +38,12 @@ export default function MediaContentPage() {
           serviceSchema({
             name: c.schema.name,
             description: c.schema.description,
-            path: '/media-content',
+            path: '/en/media-content',
             offers: MEDIA_OFFERS,
           }),
           breadcrumbSchema([
-            { name: c.schema.home, path: '/' },
-            { name: c.schema.current, path: '/media-content' },
+            { name: c.schema.home, path: '/en' },
+            { name: c.schema.current, path: '/en/media-content' },
           ]),
           faqSchema(c.faq.items),
         ]}

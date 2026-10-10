@@ -1,87 +1,53 @@
-'use client';
-
-import { Header } from '@/components/landing/header';
-import { HeroSection } from '@/components/landing/hero-section';
-// เปลี่ยนมาใช้เวอร์ชันที่มีเอฟเฟกต์ช่องมองเปิดตามการเลื่อน
-// วิดีโอแนะนำทีมงานบน Wistia ยังกดแล้วค่อยโหลดเหมือนเดิม ไม่ได้เล่นเอง
-// ไฟล์ video-section.tsx เดิมยังอยู่ในโปรเจกต์แต่ไม่ถูกเรียกใช้แล้ว ลบทิ้งได้
-import { MaskRevealSection } from '@/components/landing/mask-reveal-section';
-import { ServicesSection } from '@/components/landing/services-section';
-import { WhyUsSection } from '@/components/landing/why-us-section';
-import { BehindTheScenesSection } from '@/components/landing/behind-the-scenes-section';
-import { TestimonialsSection } from '@/components/landing/testimonials-section';
-import { ActivitiesSection } from '@/components/landing/activities-section';
-import { FaqSection } from '@/components/landing/faq-section';
-import { Footer } from '@/components/landing/footer';
-import { ClientsSection } from '@/components/landing/clients-section';
-import { ServiceAreaSection } from '@/components/landing/service-area-section';
-import { PromoCarousel } from '@/components/landing/promo-carousel';
+import type { Metadata } from 'next';
 import { JsonLd } from '@/components/seo/json-ld';
 import { faqSchema } from '@/lib/seo';
+import { HomeTemplate } from '@/components/landing/home-template';
+import { homeContent } from '@/components/landing/home-content';
 
 /**
- * FAQPage ของหน้าแรก — ย้ายมาจาก app/layout.tsx
+ * หน้าแรก ฉบับภาษาไทย
  *
- * ตอนอยู่ใน layout มันติดไปทุกหน้าในเว็บ ทั้งที่คำถามชุดนี้แสดงอยู่บนหน้าแรก
- * หน้าเดียว ซึ่งผิดข้อกำหนดของ Google (เนื้อหา FAQ ต้องให้ผู้ใช้เห็นบนหน้านั้น)
- * ย้ายมาไว้ที่นี่จึงถูกต้อง และไม่ไปชนกับ FAQPage ของหน้าบริการแต่ละหน้า
+ * ข้อความอยู่ที่ components/landing/home-content.ts markup อยู่ที่ home-template.tsx
+ * ซึ่งหน้าอังกฤษ /en ใช้ร่วมกัน
  *
- * คำถามทั้ง 3 ข้อนี้แสดงอยู่จริงใน <FaqSection /> ด้านล่าง
+ * ── metadata ──
+ * เดิมหน้านี้เป็น 'use client' ทั้งหน้า จึงใช้ title/description/canonical จาก app/layout.tsx
+ * ตอนนี้ประกาศเองเพื่อเพิ่ม hreflang คู่กับ /en ค่าที่เหลือต้องเหมือนของ layout ทุกตัวอักษร
+ * openGraph ของหน้าลูกแทนที่ของ layout ทั้งก้อน จึงต้องใส่ siteName / รูป / type ซ้ำ
+ *
+ * ── FAQPage ──
+ * ย้ายมาจาก app/layout.tsx เพราะคำถามชุดนี้แสดงอยู่บนหน้าแรกหน้าเดียว
+ * (ข้อกำหนดของ Google: เนื้อหา FAQ ต้องให้ผู้ใช้เห็นบนหน้านั้น)
+ * คำถามใน faqSchema ทุกข้อแสดงอยู่จริงใน <FaqSection />
  */
-const homeFaqs = [
-  {
-    q: 'ทำบัญชีเชียงใหม่ที่ไหนดี?',
-    a: 'IC Accounting Service คือสำนักงานบัญชีเชียงใหม่ที่เชี่ยวชาญด้านการรับทำบัญชีครบวงจร วางแผนภาษี และจดทะเบียนบริษัท โดยทีมงานมืออาชีพที่มีประสบการณ์กว่า 10 ปี',
+
+const TH_URL = 'https://icaccservice.com';
+const EN_URL = 'https://icaccservice.com/en';
+const c = homeContent.th;
+
+export const metadata: Metadata = {
+  title: c.meta.title,
+  description: c.meta.description,
+  alternates: {
+    canonical: TH_URL,
+    languages: { th: TH_URL, en: EN_URL, 'x-default': TH_URL },
   },
-  {
-    q: 'จดทะเบียนบริษัทในเชียงใหม่ ต้องใช้เวลานานเท่าไหร่?',
-    a: 'การจดทะเบียนบริษัทกับ IC Accounting ปกติจะใช้เวลาเพียง 1-3 วันทำการ หลังจากเตรียมเอกสารครบถ้วน เราดูแลตั้งแต่จองชื่อจนถึงได้รับหนังสือรับรอง',
+  openGraph: {
+    title: c.meta.title,
+    description: c.meta.description,
+    url: TH_URL,
+    siteName: 'IC Accounting & Service',
+    images: [{ url: 'https://icaccservice.com/share-preview.jpg', width: 1200, height: 630, alt: c.meta.ogImageAlt }],
+    locale: 'th_TH',
+    type: 'website',
   },
-  {
-    q: 'ค่าบริการทำบัญชีและภาษี ราคาเท่าไหร่?',
-    a: 'ค่าบริการเริ่มต้นในราคาที่เหมาะสมสำหรับ SME พิจารณาจากปริมาณเอกสารและประเภทธุรกิจ เน้นความโปร่งใส ไม่มีค่าธรรมเนียมแอบแฝง',
-  },
-];
+};
 
 export default function Home() {
   return (
-    <div className="flex flex-col min-h-dvh bg-background text-foreground">
-      <JsonLd data={faqSchema(homeFaqs)} />
-      <Header />
-      <main className="flex-1">
-        <HeroSection />
-        <MaskRevealSection />
-        <div data-aos="fade-up">
-          <ClientsSection />
-        </div>
-        <div data-aos="fade-up">
-          <ServicesSection />
-        </div>
-        <div data-aos="fade-up">
-          <PromoCarousel />
-        </div>
-        <div data-aos="fade-up">
-          <WhyUsSection />
-        </div>
-        <div data-aos="fade-up">
-          <BehindTheScenesSection />
-        </div>
-        <div data-aos="fade-up">
-          <TestimonialsSection />
-        </div>
-        <div data-aos="fade-up">
-          <ActivitiesSection />
-        </div>
-        {/* พื้นที่ให้บริการ — วางก่อน FAQ เพื่อให้คนที่เลื่อนมาถึงตรงนี้เห็นว่าเราดูแลถึงอำเภอไหนบ้าง */}
-        <div data-aos="fade-up">
-          <ServiceAreaSection />
-        </div>
-        <div data-aos="fade-up">
-          <FaqSection />
-        </div>
-        {/* CtaSection เดิมถูกถอดออก — ฟุตเตอร์ใหม่มีหัวข้อชวนติดต่อ + ปุ่ม LINE/โทร/นัดหมาย ครบแล้ว */}
-      </main>
-      <Footer />
-    </div>
+    <>
+      <JsonLd data={faqSchema(c.faqSchema)} />
+      <HomeTemplate c={c} />
+    </>
   );
 }

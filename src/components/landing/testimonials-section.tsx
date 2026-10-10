@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import { ExternalLink, Star } from "lucide-react";
 import { SphereImageGrid, type ImageData } from "@/components/ui/img-sphere";
 import type { GoogleReviewsPayload } from "@/app/api/google-reviews/route";
+import { fill, type HomeContent } from "./home-content";
 
 /**
  * Section รีวิว — ดึงรีวิวจริงจาก Google ผ่าน /api/google-reviews
@@ -48,7 +49,7 @@ function useSphereSize() {
   return size;
 }
 
-export function TestimonialsSection() {
+export function TestimonialsSection({ c }: { c: HomeContent['testimonials'] }) {
   const headerRef = useRef<HTMLDivElement>(null);
   const [headerVis, setHeaderVis] = useState(false);
   const reviews = useGoogleReviews();
@@ -76,7 +77,7 @@ export function TestimonialsSection() {
         list.push({
           id: `${r.id}-${i}`,
           src: r.photo as string,
-          alt: `รีวิวจาก ${r.author}`,
+          alt: fill(c.reviewAlt, { name: r.author }),
           title: r.author,
           description: r.text,
           rating: r.rating,
@@ -85,7 +86,7 @@ export function TestimonialsSection() {
       });
     }
     return list;
-  }, [reviews]);
+  }, [reviews, c.reviewAlt]);
 
   const ratingText = reviews?.rating ? reviews.rating.toFixed(1) : FALLBACK_RATING;
   const totalText = reviews?.total ? `${reviews.total}+` : FALLBACK_TOTAL;
@@ -105,11 +106,11 @@ export function TestimonialsSection() {
           className="mb-12 flex flex-col gap-6 md:mb-16 md:flex-row md:items-end md:justify-between"
         >
           <div>
-            <p className="mb-3 text-xs font-bold uppercase tracking-[0.3em] text-primary">Reviews</p>
+            <p className="mb-3 text-xs font-bold uppercase tracking-[0.3em] text-primary">{c.eyebrow}</p>
             <h2 className="text-3xl font-black text-foreground md:text-4xl">
-              สิ่งที่เราภูมิใจที่สุด
+              {c.titleLine1}
               <br className="hidden md:block" />
-              คือเสียงของลูกค้า
+              {c.titleLine2}
             </h2>
           </div>
           <a
@@ -136,7 +137,7 @@ export function TestimonialsSection() {
             <div className="h-12 w-px bg-border" />
             <div className="text-center">
               <p className="text-3xl font-black text-foreground">{totalText}</p>
-              <p className="mt-1 text-xs font-medium text-muted-foreground">ลูกค้าที่ไว้วางใจ</p>
+              <p className="mt-1 text-xs font-medium text-muted-foreground">{c.trustedLabel}</p>
             </div>
             <ExternalLink className="h-4 w-4 text-muted-foreground transition-colors group-hover:text-primary" />
           </a>
@@ -157,9 +158,9 @@ export function TestimonialsSection() {
               autoRotateSpeed={0.2}
             />
             <p className="text-center text-xs text-muted-foreground">
-              ลากเพื่อหมุน · แตะรูปเพื่ออ่านรีวิว ·{" "}
+              {c.hint}{" "}
               <a href={mapsUrl} target="_blank" rel="noopener noreferrer" className="font-semibold text-primary hover:underline">
-                ดูรีวิวทั้งหมดบน Google
+                {c.seeAll}
               </a>
             </p>
 
@@ -167,7 +168,7 @@ export function TestimonialsSection() {
             <ul className="sr-only">
               {reviews?.reviews.map((r) => (
                 <li key={r.id}>
-                  {r.author} ให้ {r.rating} ดาว: {r.text}
+                  {fill(c.srItem, { name: r.author, rating: r.rating, text: r.text })}
                 </li>
               ))}
             </ul>

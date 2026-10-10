@@ -15,7 +15,6 @@ import type { AccountingContent } from './accounting-content';
  * ดีไซน์จึงต่างกันไม่ได้โดยโครงสร้าง ต่างแค่ข้อความที่รับเข้ามา
  *
  * หมายเหตุ: การตรวจสอบบัญชีประจำปีโดย CPA ไม่รวมในราคารายเดือน (คิดแยกตามรายได้ — หน้า /audit-services)
- * หน้าตรวจสอบบัญชียังไม่มีฉบับอังกฤษ ลิงก์จึงชี้หน้าไทย และป้ายฝั่งอังกฤษบอกไว้ว่าเป็นภาษาไทย
  */
 
 const LINE_URL = 'https://line.me/R/ti/p/@icacc';
@@ -279,7 +278,7 @@ export function AccountingTemplate({ c, quoteHref }: { c: AccountingContent; quo
                     <Minus className="h-4 w-4 mt-1 shrink-0" />
                     <span>
                       {c.notes.audit.text}{' '}
-                      <Link href="/audit-services" className="inline-flex items-center gap-1 font-bold text-primary hover:underline">
+                      <Link href={c.notes.audit.href} className="inline-flex items-center gap-1 font-bold text-primary hover:underline">
                         {c.notes.audit.link} <ExternalLink className="h-3 w-3" />
                       </Link>
                     </span>

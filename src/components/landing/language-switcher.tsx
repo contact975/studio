@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
+import { PAIRS, EN_HOME, isEnglishPath } from '@/lib/i18n-routes';
 
 /**
  * ปุ่มสลับภาษา TH / EN — แสดงทุกหน้า
@@ -13,9 +14,8 @@ import { cn } from '@/lib/utils';
  * หรือจาก Google Maps จึงไม่มีทางรู้เลยว่าเว็บนี้มีภาษาอังกฤษ
  *
  * ── แล้วหน้าที่ยังไม่มีคู่ภาษาจะไปไหน ──
- * ไปหน้า /en ซึ่งเป็นหน้ารวมภาษาอังกฤษ บอกว่าเราทำอะไรและติดต่อยังไง
- * ไม่ใช่ 404 และไม่ใช่การโยนไปหน้าที่ไม่เกี่ยวข้องกันเลย
- * พอแปลหน้าไหนเสร็จ ค่อยเพิ่มเข้า PAIRS แล้วปุ่มจะพาไปหน้านั้นตรงๆ แทน
+ * ไปหน้าแรกภาษาอังกฤษ /en ไม่ใช่ 404 (เช่นบทความ ซึ่งตกลงกันว่าจะไม่แปล)
+ * คู่ URL ทั้งหมดอยู่ที่ lib/i18n-routes.ts แปลหน้าไหนเสร็จ เพิ่มคู่ที่นั่นที่เดียว
  *
  * ── ข้อห้ามที่ยังยืนเหมือนเดิม ──
  * ห้ามเด้งอัตโนมัติตามภาษาเบราว์เซอร์หรือ IP เด็ดขาด
@@ -24,20 +24,9 @@ import { cn } from '@/lib/utils';
  * อันดับคำไทยที่สะสมมาจะหายโดยเจ้าของเว็บไม่รู้ตัว เพราะเปิดเองในไทยก็เห็นปกติ
  */
 
-/** หน้าไทยที่มีฉบับอังกฤษแบบแปลตรงกันแล้ว — เพิ่มที่นี่เมื่อแปลหน้าใหม่เสร็จ */
-const PAIRS: Record<string, string> = {
-  '/visa-work-permit': '/en/visa-work-permit',
-  '/quote': '/en/quote',
-  '/company-registration': '/en/company-registration',
-  '/accounting-services': '/en/accounting-services',
-};
-
-/** ปลายทางสำรองของหน้าที่ยังไม่มีคู่ภาษา */
-const EN_HOME = '/en';
-
 export function LanguageSwitcher({ className }: { className?: string }) {
   const pathname = usePathname() || '/';
-  const isEnglish = pathname === '/en' || pathname.startsWith('/en/');
+  const isEnglish = isEnglishPath(pathname);
 
   // หาคู่ของหน้าปัจจุบันในอีกภาษาหนึ่ง
   let thaiHref = '/';

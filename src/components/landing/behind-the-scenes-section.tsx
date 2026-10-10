@@ -3,6 +3,7 @@
 import { Upload, ChevronLeft, ChevronRight } from "lucide-react";
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import { fill, type HomeContent } from "./home-content";
 
 type Slide = {
   image?: string;
@@ -24,7 +25,7 @@ const slides: Slide[] = [
   { image: "https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Behide%20Scene%2FBehide%20Scene%2017.png?alt=media" },
 ];
 
-export function BehindTheScenesSection() {
+export function BehindTheScenesSection({ c }: { c: HomeContent['behindTheScenes'] }) {
   const [perView, setPerView] = useState(4);
   const [index, setIndex] = useState(0);
 
@@ -63,13 +64,13 @@ export function BehindTheScenesSection() {
       <div className="container mx-auto px-4 md:px-6 max-w-7xl">
         <div className="text-center mb-14">
           <p className="text-primary text-xs font-bold tracking-[0.3em] uppercase mb-3">
-            Behind The Scenes
+            {c.eyebrow}
           </p>
           <h2 className="text-3xl md:text-4xl font-black text-foreground mb-3">
-            ทีมงานจริง ดูแลทุกขั้นตอนการทำงาน
+            {c.title}
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            ตั้งแต่ทีมนักบัญชี ระบบตรวจสอบ การยื่นเอกสารราชการ ไปจนถึงการแบ่งปันความรู้ให้ธุรกิจของคุณ
+            {c.lead}
           </p>
         </div>
 
@@ -95,7 +96,7 @@ export function BehindTheScenesSection() {
                 {slide.image ? (
                   <Image
                     src={slide.image}
-                    alt="ผลงานและกิจกรรมของ IC"
+                    alt={c.imageAlt}
                     fill
                     /* container เป็น max-w-7xl (1280px) → การ์ดกว้างสุดจริง ~305px
                        ถ้าปล่อย 23vw ไว้ จอ 1920 จะไปโหลด w=1080 ทั้งที่ต้องการแค่ ~610 */
@@ -109,7 +110,7 @@ export function BehindTheScenesSection() {
                     <div className="flex h-[74px] w-[74px] items-center justify-center rounded-full border-2 border-dashed border-blue-100/70 bg-white/10">
                       <Upload className="h-8 w-8 text-blue-50" />
                     </div>
-                    <span className="text-sm font-medium opacity-90">อัปโหลดรูปการทำงาน</span>
+                    <span className="text-sm font-medium opacity-90">{c.uploadPlaceholder}</span>
                   </div>
                 )}
               </div>
@@ -120,7 +121,7 @@ export function BehindTheScenesSection() {
         <div className="mt-9 flex justify-center gap-3">
           <button
             type="button"
-            aria-label="ก่อนหน้า"
+            aria-label={c.prev}
             onClick={() => setIndex((i) => (i <= 0 ? maxIndex : i - 1))}
             className="flex h-12 w-12 items-center justify-center rounded-full border border-border bg-background text-primary transition-colors hover:border-primary hover:bg-primary hover:text-primary-foreground"
           >
@@ -128,7 +129,7 @@ export function BehindTheScenesSection() {
           </button>
           <button
             type="button"
-            aria-label="ถัดไป"
+            aria-label={c.next}
             onClick={() => setIndex((i) => (i >= maxIndex ? 0 : i + 1))}
             className="flex h-12 w-12 items-center justify-center rounded-full border border-border bg-background text-primary transition-colors hover:border-primary hover:bg-primary hover:text-primary-foreground"
           >
@@ -141,7 +142,7 @@ export function BehindTheScenesSection() {
             <button
               key={i}
               type="button"
-              aria-label={`ไปสไลด์ ${i + 1}`}
+              aria-label={fill(c.goToSlide, { n: i + 1 })}
               onClick={() => setIndex(i)}
               className={`h-2 rounded-full transition-all ${
                 i === index ? "w-7 bg-primary" : "w-2 bg-border"

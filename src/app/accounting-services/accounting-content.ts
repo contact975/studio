@@ -81,7 +81,7 @@ export type AccountingContent = {
     scopeTitle: string;
     scope: string[];
     separateTitle: string;
-    audit: { text: string; link: string };
+    audit: { text: string; link: string; href: string };
     separateOther: string;
   };
   terms: { title: string; items: string[]; footnote: string };
@@ -231,7 +231,7 @@ const th: AccountingContent = {
       'ค่าบริการคิดตามปริมาณเอกสารในระดับปกติของแต่ละกิจการ',
     ],
     separateTitle: 'บริการที่คิดค่าบริการแยกต่างหาก',
-    audit: { text: 'การตรวจสอบบัญชีประจำปีโดยผู้สอบบัญชีรับอนุญาต คิดตามช่วงรายได้ของกิจการ', link: 'ดูบริการตรวจสอบบัญชี' },
+    audit: { text: 'การตรวจสอบบัญชีประจำปีโดยผู้สอบบัญชีรับอนุญาต คิดตามช่วงรายได้ของกิจการ', link: 'ดูบริการตรวจสอบบัญชี', href: '/audit-services' },
     separateOther: 'งานจดทะเบียนกับกรมพัฒนาธุรกิจการค้า งานขอคืนภาษี งานตรวจสอบพิเศษ และการจัดทำบัญชีย้อนหลัง',
   },
   terms: {
@@ -443,7 +443,7 @@ const en: AccountingContent = {
       'Fees are based on a normal volume of documents for your business.',
     ],
     separateTitle: 'Charged separately',
-    audit: { text: 'Annual audit by a licensed auditor (CPA), priced by your company’s revenue band', link: 'See audit services (in Thai)' },
+    audit: { text: 'Annual audit by a licensed auditor (CPA), priced by your company’s revenue band', link: 'See audit services', href: '/en/audit-services' },
     separateOther: 'Registrations with the Department of Business Development, tax refund claims, special audits and catch-up bookkeeping',
   },
   terms: {

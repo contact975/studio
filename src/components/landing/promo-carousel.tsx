@@ -10,26 +10,24 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
+import type { HomeContent } from "./home-content";
 
 const promoImages = [
   {
     src: "https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Promotion%2FPromotion01.jpg?alt=media",
-    alt: "บริการทำบัญชี โปรโมชั่น 1",
     hint: "accounting promotion banner 1"
   },
   {
     src: "https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Promotion%2FPromotion02.jpg?alt=media",
-    alt: "บริการทำบัญชี โปรโมชั่น 2",
     hint: "accounting promotion banner 2"
   },
   {
     src: "https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Promotion%2FPromotion03.jpg?alt=media",
-    alt: "บริการทำบัญชี โปรโมชั่น 3",
     hint: "accounting promotion banner 3"
   }
 ];
 
-export function PromoCarousel() {
+export function PromoCarousel({ c }: { c: HomeContent['promo'] }) {
   const [isMounted, setIsMounted] = React.useState(false);
 
   React.useEffect(() => {
@@ -69,7 +67,7 @@ export function PromoCarousel() {
                   <Image
                     src={image.src}
                     fill
-                    alt={image.alt}
+                    alt={c.alts[index]}
                     className="object-cover"
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1200px"
                     data-ai-hint={image.hint}

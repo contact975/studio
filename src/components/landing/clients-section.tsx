@@ -3,6 +3,7 @@
 import * as React from "react";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
+import type { HomeContent } from "./home-content";
 
 const logosRow1 = [
   { name: "Customer 01", logoUrl: "https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Customer01.png?alt=media" },
@@ -98,19 +99,19 @@ function MarqueeRow({ logos, direction }: MarqueeRowProps) {
   );
 }
 
-export function ClientsSection() {
+export function ClientsSection({ c }: { c: HomeContent['clients'] }) {
   return (
     <section id="clients" className="py-12 md:py-24 bg-background overflow-hidden">
       <div className="max-w-6xl mx-auto px-4 md:px-6 mb-6 md:mb-12">
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
           <div>
-            <p className="text-primary text-xs font-bold tracking-[0.3em] uppercase mb-2">Trusted By</p>
+            <p className="text-primary text-xs font-bold tracking-[0.3em] uppercase mb-2">{c.eyebrow}</p>
             <h2 className="text-xl md:text-3xl font-black text-foreground">
-              ลูกค้าที่อยู่ในการดูแลของเรา
+              {c.title}
             </h2>
           </div>
           <p className="text-muted-foreground text-xs md:text-sm max-w-xs md:text-right">
-            กว่า 100 ธุรกิจในเชียงใหม่และทั่วประเทศที่เลือกให้ IC ดูแลหลังบ้าน
+            {c.sublead}
           </p>
         </div>
       </div>

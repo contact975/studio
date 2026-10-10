@@ -2,32 +2,35 @@
 
 import { Award, Mic, GraduationCap, Heart, MapPin, Star, ArrowRight } from "lucide-react";
 import Image from "next/image";
+import type { HomeContent } from "./home-content";
 
-const activities = [
-  { Icon: Award, tag: "อบรม & มาตรฐาน", date: "มิถุนายน 2569", title: "ยกระดับมาตรฐานสำนักงานบัญชีสู่คุณภาพระดับสากล", desc: "เข้าร่วมโครงการพัฒนาศักยภาพและรับรองคุณภาพสำนักงานบัญชี เพื่อยกระดับการให้บริการอย่างมืออาชีพ", image: "https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Event%20Company%2FEvent%2001.jpg?alt=media" },
-  { Icon: Mic, tag: "วิทยากร", date: "พฤษภาคม 2569", title: "ได้รับเชิญเป็นวิทยากรบรรยายด้านบัญชีและภาษีธุรกิจ", desc: "แบ่งปันความรู้การวางแผนภาษีและการบริหารการเงิน ให้กับผู้ประกอบการรุ่นใหม่" },
-  { Icon: GraduationCap, tag: "ฝึกประสบการณ์", date: "2569", title: "ต้อนรับนักศึกษาฝึกประสบการณ์วิชาชีพบัญชี", desc: "เปิดโอกาสให้นักศึกษาเรียนรู้และลงมือทำงานจริงร่วมกับทีมงานมืออาชีพของ IC" },
-  { Icon: Heart, tag: "CSR", date: "พฤษภาคม 2569", title: "ร่วมกิจกรรมเพื่อสังคมและชุมชนในเชียงใหม่", desc: "ส่งต่อความสุขและช่วยเหลือชุมชน เป็นส่วนหนึ่งของพันธกิจด้านสังคมที่เราให้ความสำคัญ" },
-  { Icon: MapPin, tag: "ลงพื้นที่", date: "2569", title: "ให้คำปรึกษาและวางระบบบัญชีถึงหน้างาน", desc: "เดินทางไปดูแลลูกค้าถึงที่ พร้อมวางระบบบัญชีให้เหมาะกับบริบทของแต่ละธุรกิจ" },
-  { Icon: Star, tag: "รางวัล", date: "2569", title: "ความภาคภูมิใจจากมาตรฐานการให้บริการ", desc: "ผลลัพธ์จากความตั้งใจดูแลลูกค้าอย่างใกล้ชิด สะท้อนผ่านความไว้วางใจกว่า 100 ธุรกิจ" },
+/** ไอคอนและรูปของแต่ละการ์ด เรียงตรงกับ activities.items ใน home-content.ts */
+const activities: { Icon: typeof Award; image?: string }[] = [
+  { Icon: Award, image: "https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Event%20Company%2FEvent%2001.jpg?alt=media" },
+  { Icon: Mic },
+  { Icon: GraduationCap },
+  { Icon: Heart },
+  { Icon: MapPin },
+  { Icon: Star },
 ];
 
-export function ActivitiesSection() {
+export function ActivitiesSection({ c }: { c: HomeContent['activities'] }) {
   return (
     <section className="py-20 md:py-28 bg-background">
       <div className="container mx-auto px-4 md:px-6 max-w-6xl">
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-11">
           <div>
-            <p className="text-primary text-xs font-bold tracking-[0.26em] uppercase mb-3">Our Activities</p>
-            <h2 className="text-3xl md:text-4xl font-black text-foreground">กิจกรรมของบริษัท</h2>
+            <p className="text-primary text-xs font-bold tracking-[0.26em] uppercase mb-3">{c.eyebrow}</p>
+            <h2 className="text-3xl md:text-4xl font-black text-foreground">{c.title}</h2>
           </div>
           <p className="text-muted-foreground text-base max-w-md leading-relaxed">
-            ความเคลื่อนไหวจริงของทีม IC — ทั้งการพัฒนาความรู้ การส่งต่อสู่สังคม และการดูแลลูกค้าถึงหน้างาน
+            {c.lead}
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {activities.map((a, i) => {
+          {activities.map((item, i) => {
+            const a = { ...item, ...c.items[i] };
             const Icon = a.Icon;
             return (
               <article
@@ -40,7 +43,7 @@ export function ActivitiesSection() {
                   ) : (
                     <div className="absolute inset-0 flex flex-col items-center justify-center gap-2">
                       <Icon className="h-8 w-8 text-primary/80" />
-                      <span className="text-xs text-[#a9bfe6]">ภาพกิจกรรม</span>
+                      <span className="text-xs text-[#a9bfe6]">{c.imagePlaceholder}</span>
                     </div>
                   )}
                 </div>
@@ -52,7 +55,7 @@ export function ActivitiesSection() {
                   <h3 className="text-lg font-semibold leading-snug text-foreground">{a.title}</h3>
                   <p className="text-muted-foreground text-sm leading-relaxed line-clamp-2">{a.desc}</p>
                   <span className="mt-auto inline-flex items-center gap-1.5 text-primary text-sm font-semibold">
-                    อ่านต่อ <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                    {c.readMore} <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </span>
                 </div>
               </article>
@@ -65,7 +68,7 @@ export function ActivitiesSection() {
             href="#"
             className="inline-flex items-center gap-2 border-[1.5px] border-primary text-primary font-semibold text-[15px] px-8 py-3 rounded-full transition-colors hover:bg-primary hover:text-primary-foreground"
           >
-            ดูกิจกรรมทั้งหมด <ArrowRight className="h-4 w-4" />
+            {c.seeAll} <ArrowRight className="h-4 w-4" />
           </a>
         </div>
       </div>

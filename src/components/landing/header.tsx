@@ -23,6 +23,8 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { cn } from "@/lib/utils";
+import { usePathname } from "next/navigation";
+import { isEnglishPath, toEnglishHref } from "@/lib/i18n-routes";
 
 interface SubLink {
   href: string;
@@ -30,28 +32,84 @@ interface SubLink {
   icon: LucideIcon;
 }
 
-const serviceSubLinks: SubLink[] = [
-  { href: "/company-registration", label: "บริการจดทะเบียนบริษัท", icon: FileText },
-  { href: "/accounting-services", label: "บริการทำบัญชี", icon: Calculator },
-  { href: "/audit-services", label: "บริการตรวจสอบบัญชี", icon: FileCheck },
-  { href: "/visa-work-permit", label: "IC Visa / Work Permit", icon: Briefcase },
-  { href: "/organization-system", label: "บริการวางระบบองค์กร", icon: Workflow },
-];
+interface NavLink {
+  href: string;
+  label: string;
+  subLinks?: SubLink[];
+}
 
-const navLinks = [
-  { href: "/", label: "หน้าแรก" },
-  {
-    href: "/#services",
-    label: "บริการของเรา",
-    subLinks: serviceSubLinks,
+/**
+ * ข้อความเมนูทั้งสองภาษา — href เขียนเป็น URL ไทยชุดเดียว
+ * ฝั่งอังกฤษแปลง href ผ่าน toEnglishHref() จาก lib/i18n-routes.ts
+ * หน้าไหนยังไม่มีคู่ (เช่น /blog) ลิงก์จะไปหน้าไทยตรงๆ และป้ายบอกไว้ว่าเป็นภาษาไทย
+ */
+const COPY = {
+  th: {
+    services: {
+      registration: "บริการจดทะเบียนบริษัท",
+      accounting: "บริการทำบัญชี",
+      audit: "บริการตรวจสอบบัญชี",
+      orgSystem: "บริการวางระบบองค์กร",
+    },
+    nav: {
+      home: "หน้าแรก",
+      services: "บริการของเรา",
+      about: "เกี่ยวกับเรา",
+      blog: "บทความน่ารู้",
+      internship: "นักศึกษาฝึกงาน",
+      quote: "นัดหมาย",
+    },
+    contact: "ติดต่อ",
   },
-  { href: "/about", label: "เกี่ยวกับเรา" },
-  { href: "/blog", label: "บทความน่ารู้" },
-  { href: "/internship", label: "นักศึกษาฝึกงาน" },
-  { href: "/quote", label: "นัดหมาย" },
-];
+  en: {
+    services: {
+      registration: "Company Registration",
+      accounting: "Accounting Services",
+      audit: "Audit Services",
+      orgSystem: "Organization System Setup",
+    },
+    nav: {
+      home: "Home",
+      services: "Services",
+      about: "About Us",
+      blog: "Articles (Thai)",
+      internship: "Internship",
+      quote: "Book a Meeting",
+    },
+    contact: "Contact",
+  },
+} as const;
+
+function buildNav(lang: "th" | "en") {
+  const c = COPY[lang];
+  const href = (h: string) => (lang === "en" ? toEnglishHref(h) : h);
+  const serviceSubLinks: SubLink[] = [
+    { href: href("/company-registration"), label: c.services.registration, icon: FileText },
+    { href: href("/accounting-services"), label: c.services.accounting, icon: Calculator },
+    { href: href("/audit-services"), label: c.services.audit, icon: FileCheck },
+    { href: href("/visa-work-permit"), label: "IC Visa / Work Permit", icon: Briefcase },
+    { href: href("/organization-system"), label: c.services.orgSystem, icon: Workflow },
+  ];
+  const navLinks: NavLink[] = [
+    { href: href("/"), label: c.nav.home },
+    { href: href("/#services"), label: c.nav.services, subLinks: serviceSubLinks },
+    { href: href("/about"), label: c.nav.about },
+    { href: "/blog", label: c.nav.blog },
+    { href: href("/internship"), label: c.nav.internship },
+    { href: href("/quote"), label: c.nav.quote },
+  ];
+  return {
+    navLinks,
+    homeHref: href("/"),
+    visaHref: href("/visa-work-permit"),
+    mediaHref: href("/media-content"),
+    contact: c.contact,
+  };
+}
 
 export function Header() {
+  const lang = isEnglishPath(usePathname()) ? "en" : "th";
+  const { navLinks, homeHref, visaHref, mediaHref, contact } = buildNav(lang);
   const [isServicesOpen, setIsServicesOpen] = React.useState(false);
   const [isClient, setIsClient] = React.useState(false);
   const [isSheetOpen, setIsSheetOpen] = React.useState(false);
@@ -79,7 +137,7 @@ export function Header() {
           {/* ไม่ใช้ container เพราะ container ล็อกความกว้างไว้ 1280px จนกว่าจอจะถึง 1536px
               จอ MacBook (1440–1512px) จึงได้พื้นที่เท่าจอ 1280px เมนูภาษาไทยตกเป็นสองบรรทัด */}
           <div className="mx-auto flex h-16 w-full max-w-screen-2xl items-center px-4 md:px-6">
-            <Link href="/" className="mr-6 flex items-center gap-2" prefetch={false}>
+            <Link href={homeHref} className="mr-6 flex items-center gap-2" prefetch={false}>
               <Image
                 src="https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Logo%20ic.png?alt=media"
                 alt="IC Accounting & Service สำนักงานบัญชีเชียงใหม่"
@@ -138,14 +196,14 @@ export function Header() {
                   ถ้าซ่อน เขาจะไม่รู้เลยว่ามีฉบับภาษาอังกฤษอยู่ */}
               <LanguageSwitcher className="mr-1" />
               <Button asChild className="hidden md:flex rounded-full bg-gradient-to-r from-blue-600 to-cyan-400 text-white hover:opacity-90 transition-opacity">
-                <Link href="/visa-work-permit">IC Visa / Work Permit</Link>
+                <Link href={visaHref}>IC Visa / Work Permit</Link>
               </Button>
               <Button asChild className="hidden md:flex rounded-full bg-gradient-to-r from-red-500 to-orange-400 text-white hover:opacity-90 transition-opacity">
-                <Link href="/media-content">Exclusive Media</Link>
+                <Link href={mediaHref}>Exclusive Media</Link>
               </Button>
               <Button asChild className="hidden sm:flex rounded-full">
                 <Link href="https://qr-official.line.me/gs/M_374jshvh_GW.png?oat_content=qr" target="_blank">
-                  ติดต่อ
+                  {contact}
                 </Link>
               </Button>
 
@@ -207,14 +265,14 @@ export function Header() {
                           )
                         )}
                         <Button asChild className="rounded-full mt-4 bg-gradient-to-r from-blue-600 to-cyan-400 text-white hover:opacity-90 transition-opacity">
-                          <Link href="/visa-work-permit" onClick={() => setIsSheetOpen(false)}>IC Visa / Work Permit</Link>
+                          <Link href={visaHref} onClick={() => setIsSheetOpen(false)}>IC Visa / Work Permit</Link>
                         </Button>
                         <Button asChild className="rounded-full mt-4 bg-gradient-to-r from-red-500 to-orange-400 text-white hover:opacity-90 transition-opacity">
-                          <Link href="/media-content" onClick={() => setIsSheetOpen(false)}>Exclusive Media</Link>
+                          <Link href={mediaHref} onClick={() => setIsSheetOpen(false)}>Exclusive Media</Link>
                         </Button>
                         <Button asChild className="rounded-full mt-4">
                           <Link href="https://qr-official.line.me/gs/M_374jshvh_GW.png?oat_content=qr" onClick={() => setIsSheetOpen(false)} target="_blank">
-                            ติดต่อ
+                            {contact}
                           </Link>
                         </Button>
                       </nav>

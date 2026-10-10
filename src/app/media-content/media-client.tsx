@@ -3,7 +3,16 @@
 import { Header } from '@/components/landing/header';
 import { Footer } from '@/components/landing/footer';
 import { ServiceFaq } from '@/components/seo/service-faq';
-import { mediaFaqs } from './faqs';
+import {
+  CLIENTS,
+  HERO_STATS,
+  LINE_URL,
+  MEDIA_SERVICES,
+  PORTFOLIO,
+  RESULT_STATS,
+  formatPrice,
+  type MediaContent,
+} from './media-content';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState, Fragment } from 'react';
@@ -18,82 +27,14 @@ declare global {
   }
 }
 
-const services = [
-  {
-    id: '01',
-    name: 'Art Work &\nGraphic Design',
-    nameEn: 'Artwork & Graphic',
-    desc: 'ออกแบบ Key Visual, โปสเตอร์, Content Graphic สำหรับทุกช่องทางออนไลน์ ให้แบรนด์มีเอกลักษณ์ที่ชัดเจนและดูแพงในทุกงาน',
-    price: '2,000',
-    tag: 'Graphic Design',
-    image: 'https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Media%20Content%2Fic-accounting-team-chiangmai-media.jpg?alt=media&token=0acfec2c-4186-4e55-aec4-3b730140f6c5',
-  },
-  {
-    id: '02',
-    name: 'Ads Motion',
-    nameEn: 'Motion Graphics',
-    desc: 'สร้าง Motion Graphic สำหรับโฆษณาที่ดึงดูดสายตา เพิ่ม Engagement และทำให้แบรนด์โดดเด่นกว่าคู่แข่ง',
-    price: '3,500',
-    tag: 'Motion',
-    image: 'https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Media%20Content%2Fic-accounting-team-chiangmai-motion.jpg?alt=media&token=deee7aa9-0bac-4909-acfb-db668ec4a01d',
-  },
-  {
-    id: '03',
-    name: 'Video\nContent',
-    nameEn: 'Video Production',
-    desc: 'ถ่ายทำวิดีโอคุณภาพสูง ตั้งแต่ Reels, โฆษณาสินค้า ไปจนถึง Brand Film ที่เล่าเรื่องราวของแบรนด์ได้อย่างทรงพลัง',
-    price: '6,000',
-    tag: 'Video',
-    image: 'https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Media%20Content%2Fic-accounting-team-chiangmai-media%202.jpg?alt=media&token=8ae6f303-738a-40c9-ad64-c3dcc840141d',
-  },
-  {
-    id: '04',
-    name: 'Motion\nVideo',
-    nameEn: 'Cinematic Motion',
-    desc: 'งาน Motion Video ระดับ Cinematic ผสมผสานการถ่ายทำและ VFX เพื่อยกระดับภาพลักษณ์แบรนด์ให้ดูพรีเมียมในระดับเดียวกับแบรนด์ระดับโลก',
-    price: '8,000',
-    tag: 'Cinematic',
-    image: 'https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Media%20Content%2Fic-accounting-team-chiangmai-media%203.jpg?alt=media&token=5ab6ad45-a7e5-4e3e-b042-467fb4d667db',
-  },
-  {
-    id: '05',
-    name: 'Media\nConsult',
-    nameEn: 'Strategy Consulting',
-    desc: 'ให้คำปรึกษาด้าน Media Strategy วาง Mood & Tone ของแบรนด์ และวางแผน Content Calendar ให้ตรงกลุ่มเป้าหมาย',
-    price: 'ฟรี',
-    tag: 'Consulting',
-    isFree: true,
-    image: 'https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Media%20Content%2Fic-accounting-team-chiangmai.jpg?alt=media&token=2c10c1eb-07f5-4de0-8488-d75d85c09494',
-  },
-];
-
-const clients = [
-  'SURR Bar', "Smash Daddy's", 'Art Mai Gallery Hotel',
-  'Jarid Thai Food', 'La.moon', 'Into You Clinic',
-  'CAMP', 'Carebeau', 'Apex Foods', 'The Meka Property',
-  'Yoskarn', 'Twitamins',
-];
-
-const stats = [
-  { num: '12+', label: 'แบรนด์ที่ดูแลอยู่' },
-  { num: '18.5K', label: 'Engagement สูงสุด' },
-  { num: '50+', label: 'โปรเจคที่ผ่านมา' },
-  { num: '5', label: 'ประเภทบริการ' },
-];
-
-const process = [
-  { num: '01', title: 'Brief & Consult', desc: 'รับโจทย์ เข้าใจแบรนด์ และวาง Mood & Tone ก่อนเริ่มงานจริง' },
-  { num: '02', title: 'Concept & Planning', desc: 'พัฒนา Concept วาง Storyboard และ Moodboard ให้เห็นภาพชัดเจน' },
-  { num: '03', title: 'Production', desc: 'ลงมือผลิตด้วยทีมงานมืออาชีพ กล้อง ไฟ กราฟิก และ Motion' },
-  { num: '04', title: 'Deliver & Revise', desc: 'ส่งงานพร้อม Revision จนกว่าจะพอใจ 100%' },
-];
-
-const differences = [
-  { label: 'คอนเทนต์ทั่วไป', items: ['ถ่ายเร็ว ง่าย แต่ขาดคุณภาพ', 'ไม่มีทิศทางของแบรนด์', 'ไม่สร้างภาพลักษณ์'], negative: true },
-  { label: 'IC Production', items: ['วางแผนอย่างเป็นระบบ', 'มีการจัดแสงแบบสตูดิโอ', 'Mood & Tone เดียวกันทุกชิ้น', 'ยกระดับแบรนด์ให้ดูพรีเมียม'], negative: false },
-];
-
-export default function MediaClient() {
+/**
+ * markup ของหน้า Media ชุดเดียว ใช้ทั้ง /media-content และ /en/media-content
+ * ข้อความทั้งหมดมาจาก media-content.ts ผ่าน prop c (ข้อมูลล้วน ไม่มีฟังก์ชัน)
+ */
+export default function MediaClient({ c }: { c: MediaContent }) {
+  const services = MEDIA_SERVICES;
+  const clients = CLIENTS;
+  const process = c.process.items;
   const [isMounted, setIsMounted] = useState(false);
   const [activeService, setActiveService] = useState(0);
 
@@ -105,7 +46,7 @@ export default function MediaClient() {
     <div className="bg-[#080810] text-white min-h-screen font-body overflow-x-hidden">
       <Script src="https://fast.wistia.com/player.js" strategy="afterInteractive" />
       <Header />
-      <main>
+      <main lang={c.htmlLang}>
 
         {/* ── HERO ── */}
         <section className="relative min-h-screen flex items-center pt-24 pb-20 px-6 overflow-hidden">
@@ -124,22 +65,22 @@ export default function MediaClient() {
                 <span className="block text-blue-500">IDENTITY.</span>
               </h1>
               <p className="text-gray-400 text-lg md:text-xl max-w-2xl leading-relaxed mb-10">
-                ไม่ใช่แค่คนทำคอนเทนต์ — เราคือผู้สร้างภาพลักษณ์ระดับพรีเมียม <br className="hidden md:block" /> ด้วยมาตรฐานโปรดัคชั่นที่เปลี่ยนวิสัยทัศน์ให้กลายเป็นความจริง
+                {c.hero.lead[0]}<br className="hidden md:block" />{c.hero.lead[1]}
               </p>
               <div className="flex flex-wrap gap-4 mb-20">
-                <Link href="https://line.me/R/ti/p/@icacc" target="_blank"
+                <Link href={LINE_URL} target="_blank"
                   className="inline-flex items-center gap-3 bg-blue-600 hover:bg-blue-500 text-white font-bold px-8 h-14 rounded-full transition-all hover:scale-105 text-base">
-                  เริ่มต้นโปรเจคของคุณ <ArrowRight className="h-4 w-4" />
+                  {c.hero.ctaStart} <ArrowRight className="h-4 w-4" />
                 </Link>
                 <a href="#showreel" className="inline-flex items-center gap-3 border border-white/15 hover:border-white/40 text-white/70 hover:text-white px-8 h-14 rounded-full transition-all text-base">
-                  <PlayCircle className="h-5 w-5 text-blue-400" /> ดู Showreel
+                  <PlayCircle className="h-5 w-5 text-blue-400" /> {c.hero.ctaShowreel}
                 </a>
               </div>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-10 border-t border-white/10" data-aos="fade-up" data-aos-delay="200">
-                {stats.map((s) => (
-                  <div key={s.label}>
+                {HERO_STATS.map((s) => (
+                  <div key={s.key}>
                     <div className="text-3xl md:text-4xl font-black text-white mb-1">{s.num}</div>
-                    <div className="text-xs text-gray-500 uppercase tracking-wider">{s.label}</div>
+                    <div className="text-xs text-gray-500 uppercase tracking-wider">{c.hero.stats[s.key]}</div>
                   </div>
                 ))}
               </div>
@@ -166,7 +107,7 @@ export default function MediaClient() {
               </p>
               <h2 className="text-4xl md:text-5xl font-black">Showreel</h2>
             </div>
-            <p className="text-gray-500 max-w-xs text-sm text-right">ตัวอย่างงานที่เราภูมิใจ นำเสนอผ่านทุกรูปแบบของ Media Production</p>
+            <p className="text-gray-500 max-w-xs text-sm text-right">{c.showreel.intro}</p>
           </div>
           <div className="relative aspect-video rounded-2xl overflow-hidden border border-white/5 bg-zinc-900">
             {isMounted ? (
@@ -201,10 +142,10 @@ export default function MediaClient() {
           <div className="container mx-auto px-6">
             <div className="mb-16">
               <p className="text-blue-400 text-xs tracking-[0.3em] uppercase mb-3 flex items-center gap-2">
-                <span className="w-6 h-px bg-blue-400" /> บริการของเรา
+                <span className="w-6 h-px bg-blue-400" /> {c.services.eyebrow}
               </p>
               <h2 className="text-4xl md:text-5xl font-black mb-4">Services & Pricing</h2>
-              <p className="text-gray-500">ราคาเริ่มต้น — สอบถามรายละเอียดเพิ่มเติมเพื่อรับใบเสนอราคา</p>
+              <p className="text-gray-500">{c.services.sublead}</p>
             </div>
             <div className="flex gap-3 flex-wrap mb-12">
               {services.map((s, i) => (
@@ -216,7 +157,7 @@ export default function MediaClient() {
             </div>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
               <div className="relative aspect-[4/3] rounded-2xl overflow-hidden">
-                <Image src={services[activeService].image} alt={services[activeService].nameEn} fill className="object-cover transition-all duration-700" sizes="(max-width: 768px) 100vw, 50vw" />
+                <Image src={services[activeService].image} alt={services[activeService].alt} fill className="object-cover transition-all duration-700" sizes="(max-width: 768px) 100vw, 50vw" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
                 <div className="absolute bottom-6 left-6 right-6 flex items-end justify-between">
                   <div>
@@ -224,9 +165,9 @@ export default function MediaClient() {
                     <p className="text-white font-black text-2xl whitespace-pre-line">{services[activeService].name}</p>
                   </div>
                   <div className="text-right">
-                    <p className="text-white/40 text-xs mb-1">เริ่มต้นที่</p>
-                    <p className={`font-black text-2xl ${services[activeService].isFree ? 'text-green-400' : 'text-blue-400'}`}>
-                      {services[activeService].isFree ? 'FREE' : `฿${services[activeService].price}`}
+                    <p className="text-white/40 text-xs mb-1">{c.services.startingAt}</p>
+                    <p className={`font-black text-2xl ${services[activeService].price === null ? 'text-green-400' : 'text-blue-400'}`}>
+                      {services[activeService].price === null ? 'FREE' : `฿${formatPrice(services[activeService].price)}`}
                     </p>
                   </div>
                 </div>
@@ -236,16 +177,16 @@ export default function MediaClient() {
                   <span className="text-8xl font-black text-white/5">{services[activeService].id}</span>
                   <h3 className="text-3xl font-black -mt-8 whitespace-pre-line">{services[activeService].name}</h3>
                 </div>
-                <p className="text-gray-400 leading-relaxed text-lg">{services[activeService].desc}</p>
+                <p className="text-gray-400 leading-relaxed text-lg">{c.services.desc[services[activeService].key]}</p>
                 <div>
-                  <p className="text-white/40 text-xs uppercase tracking-widest mb-1">ราคาเริ่มต้น</p>
-                  <p className={`text-3xl font-black ${services[activeService].isFree ? 'text-green-400' : 'text-white'}`}>
-                    {services[activeService].isFree ? 'ฟรี' : `฿${services[activeService].price}`}
+                  <p className="text-white/40 text-xs uppercase tracking-widest mb-1">{c.services.startingPrice}</p>
+                  <p className={`text-3xl font-black ${services[activeService].price === null ? 'text-green-400' : 'text-white'}`}>
+                    {services[activeService].price === null ? c.services.free : `฿${formatPrice(services[activeService].price)}`}
                   </p>
                 </div>
-                <Link href="https://line.me/R/ti/p/@icacc" target="_blank"
+                <Link href={LINE_URL} target="_blank"
                   className="inline-flex items-center gap-3 border border-blue-500 text-blue-400 hover:bg-blue-600 hover:text-white hover:border-blue-600 px-8 h-12 rounded-full transition-all font-bold text-sm">
-                  <MessageSquare className="h-4 w-4" /> สอบถามราคา
+                  <MessageSquare className="h-4 w-4" /> {c.services.ask}
                 </Link>
                 <div className="flex gap-2 pt-4">
                   {services.map((_, i) => (
@@ -261,8 +202,8 @@ export default function MediaClient() {
                   className={`p-5 rounded-2xl border text-left transition-all ${activeService === i ? 'border-blue-500/50 bg-blue-600/10' : 'border-white/5 bg-white/[0.02] hover:border-white/10'}`}>
                   <p className="text-white/30 text-xs font-mono mb-2">{s.id}</p>
                   <p className="text-sm font-bold text-white leading-tight whitespace-pre-line mb-3">{s.name}</p>
-                  <p className={`text-sm font-black ${s.isFree ? 'text-green-400' : 'text-blue-400'}`}>
-                    {s.isFree ? 'ฟรี' : `฿${s.price}+`}
+                  <p className={`text-sm font-black ${s.price === null ? 'text-green-400' : 'text-blue-400'}`}>
+                    {s.price === null ? c.services.free : `฿${formatPrice(s.price)}+`}
                   </p>
                 </button>
               ))}
@@ -274,17 +215,12 @@ export default function MediaClient() {
         <section className="py-24 container mx-auto px-6" data-aos="fade-up">
           <div className="mb-16">
             <p className="text-blue-400 text-xs tracking-[0.3em] uppercase mb-3 flex items-center gap-2">
-              <span className="w-6 h-px bg-blue-400" /> ผลงาน
+              <span className="w-6 h-px bg-blue-400" /> {c.portfolio.eyebrow}
             </p>
             <h2 className="text-4xl md:text-5xl font-black">Portfolio</h2>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-            {[
-              { label: 'Post Ads Content', img: 'https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Media%20Content%2Fic-accounting-team-chiangmai-media.jpg?alt=media&token=0acfec2c-4186-4e55-aec4-3b730140f6c5', span: 'col-span-1 row-span-2' },
-              { label: 'Video Content', img: 'https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Media%20Content%2Fic-accounting-team-chiangmai-media%202.jpg?alt=media&token=8ae6f303-738a-40c9-ad64-c3dcc840141d', span: 'col-span-1' },
-              { label: 'Photo Content', img: 'https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Media%20Content%2Fic-accounting-team-chiangmai-media%204.jpg?alt=media&token=0595006f-05e3-4826-b8af-0c761c30c245', span: 'col-span-1' },
-              { label: 'Motion Media', img: 'https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Media%20Content%2Fic-accounting-team-chiangmai-motion.jpg?alt=media&token=deee7aa9-0bac-4909-acfb-db668ec4a01d', span: 'col-span-2' },
-            ].map((item, i) => (
+            {PORTFOLIO.map((item, i) => (
               <div key={i} data-aos="zoom-in" data-aos-delay={i * 100} className={`${item.span} relative rounded-2xl overflow-hidden group cursor-pointer`} style={{ minHeight: '200px' }}>
                 <Image src={item.img} alt={item.label} fill className="object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" sizes="(max-width: 768px) 50vw, 33vw" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
@@ -295,9 +231,9 @@ export default function MediaClient() {
             ))}
           </div>
           <div className="text-center mt-10">
-            <Link href="https://line.me/R/ti/p/@icacc" target="_blank"
+            <Link href={LINE_URL} target="_blank"
               className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 font-bold text-sm border border-blue-500/30 hover:border-blue-400 px-6 py-3 rounded-full transition-all">
-              ดูผลงานทั้งหมด <ChevronRight className="h-4 w-4" />
+              {c.portfolio.viewAll} <ChevronRight className="h-4 w-4" />
             </Link>
           </div>
         </section>
@@ -307,13 +243,16 @@ export default function MediaClient() {
           <div className="container mx-auto px-6">
             <div className="text-center mb-16">
               <p className="text-blue-400 text-xs tracking-[0.3em] uppercase mb-3 flex items-center gap-2 justify-center">
-                <span className="w-6 h-px bg-blue-400" /> ความแตกต่าง
+                <span className="w-6 h-px bg-blue-400" /> {c.differences.eyebrow}
               </p>
-              <h2 className="text-4xl md:text-5xl font-black mb-4">ทำไมต้องเลือก Production Quality?</h2>
-              <p className="text-gray-500 max-w-xl mx-auto">ความแตกต่างระหว่างคอนเทนต์ทั่วไปกับงานแบบโปรดัคชั่น</p>
+              <h2 className="text-4xl md:text-5xl font-black mb-4">{c.differences.title}</h2>
+              <p className="text-gray-500 max-w-xl mx-auto">{c.differences.sublead}</p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-              {differences.map((d, i) => (
+              {[
+                { ...c.differences.generic, negative: true },
+                { ...c.differences.ic, negative: false },
+              ].map((d, i) => (
                 <div key={i} data-aos="fade-up" data-aos-delay={i * 100} className={`rounded-2xl p-8 border ${d.negative ? 'border-white/5 bg-white/[0.02]' : 'border-blue-500/30 bg-blue-600/10'}`}>
                   <div className="flex items-center gap-3 mb-6">
                     <div className={`w-2 h-2 rounded-full ${d.negative ? 'bg-red-500/50' : 'bg-blue-500'}`} />
@@ -337,7 +276,7 @@ export default function MediaClient() {
         <section className="py-24 container mx-auto px-6" data-aos="fade-up">
           <div className="mb-16">
             <p className="text-blue-400 text-xs tracking-[0.3em] uppercase mb-3 flex items-center gap-2">
-              <span className="w-6 h-px bg-blue-400" /> กระบวนการ
+              <span className="w-6 h-px bg-blue-400" /> {c.process.eyebrow}
             </p>
             <h2 className="text-4xl md:text-5xl font-black">How We Work</h2>
           </div>
@@ -362,7 +301,7 @@ export default function MediaClient() {
           <div className="container mx-auto px-6">
             <div className="text-center mb-16">
               <p className="text-blue-400 text-xs tracking-[0.3em] uppercase mb-3 flex items-center gap-2 justify-center">
-                <span className="w-6 h-px bg-blue-400" /> ลูกค้าของเรา
+                <span className="w-6 h-px bg-blue-400" /> {c.clients.eyebrow}
               </p>
               <h2 className="text-4xl md:text-5xl font-black">Trusted By</h2>
             </div>
@@ -374,15 +313,10 @@ export default function MediaClient() {
               ))}
             </div>
             <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto">
-              {[
-                { num: '18.5K', label: 'Views สูงสุด' },
-                { num: '12.2K', label: 'Engagement' },
-                { num: '14.9K', label: 'Reach' },
-                { num: '10.4K', label: 'Interactions' },
-              ].map((s, i) => (
+              {RESULT_STATS.map((s, i) => (
                 <div key={i} data-aos="fade-up" data-aos-delay={i * 100} className="text-center p-6 rounded-2xl border border-white/5 bg-white/[0.02]">
                   <p className="text-2xl font-black text-blue-400 mb-1">{s.num}</p>
-                  <p className="text-xs text-gray-600 uppercase tracking-wider">{s.label}</p>
+                  <p className="text-xs text-gray-600 uppercase tracking-wider">{c.clients.stats[s.key]}</p>
                 </div>
               ))}
             </div>
@@ -397,22 +331,22 @@ export default function MediaClient() {
               style={{ backgroundImage: 'linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(90deg, #ffffff 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
             <div className="relative z-10">
               <p className="text-blue-400 text-xs tracking-[0.3em] uppercase mb-6 flex items-center gap-2 justify-center">
-                <span className="w-6 h-px bg-blue-400" /> เริ่มต้นวันนี้
+                <span className="w-6 h-px bg-blue-400" /> {c.cta.eyebrow}
               </p>
               <h2 className="text-4xl md:text-6xl font-black mb-6 leading-tight">
-                พร้อมยกระดับ<br />แบรนด์ของคุณ?
+                {c.cta.title[0]}<br />{c.cta.title[1]}
               </h2>
               <p className="text-gray-400 text-lg mb-10 max-w-xl mx-auto">
-                ปรึกษาฟรี ไม่มีค่าใช้จ่าย ทีมงาน IC Production พร้อมรับโจทย์ของคุณทุกวัน
+                {c.cta.lead}
               </p>
               <div className="flex flex-wrap gap-4 justify-center">
-                <Link href="https://line.me/R/ti/p/@icacc" target="_blank"
+                <Link href={LINE_URL} target="_blank"
                   className="inline-flex items-center gap-3 bg-blue-600 hover:bg-blue-500 text-white font-bold px-10 h-14 rounded-full transition-all hover:scale-105 text-base">
-                  คุยกับทีมงาน <ArrowRight className="h-4 w-4" />
+                  {c.cta.talk} <ArrowRight className="h-4 w-4" />
                 </Link>
-                <Link href="https://line.me/R/ti/p/@icacc" target="_blank"
+                <Link href={LINE_URL} target="_blank"
                   className="inline-flex items-center gap-3 border border-white/15 hover:border-white/40 text-white/70 hover:text-white px-10 h-14 rounded-full transition-all text-base">
-                  ดูพอร์ตฟอลิโอ
+                  {c.cta.portfolio}
                 </Link>
               </div>
             </div>
@@ -420,10 +354,10 @@ export default function MediaClient() {
         </section>
 
         <ServiceFaq
-          faqs={mediaFaqs}
+          faqs={c.faq.items}
           tone="dark"
-          title="คำถามที่พบบ่อยเรื่องงานมีเดีย"
-          intro="ราคาและขอบเขตงานที่ลูกค้าถามบ่อยที่สุดก่อนเริ่มโปรเจกต์"
+          title={c.faq.title}
+          intro={c.faq.intro}
         />
 
       </main>

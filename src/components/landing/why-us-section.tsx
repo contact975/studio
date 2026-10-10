@@ -2,35 +2,24 @@
 
 import { Award, Laptop, Handshake, Briefcase, Smartphone, Code2 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
+import type { HomeContent } from "./home-content";
 
 const features = [
   {
     num: "01",
     icon: Award,
-    title: "Professional Expertise",
-    titleTh: "เชี่ยวชาญและรู้จริง",
-    description: "เราคือทีมงานมืออาชีพที่มีประสบการณ์ตรงในเชียงใหม่ เราไม่ได้ทำแค่ตัวเลข แต่เราเข้าใจบริบทของธุรกิจในพื้นที่อย่างแท้จริง พร้อมจัดการทุกความซับซ้อนให้กลายเป็นความถูกต้อง",
   },
   {
     num: "02",
     icon: Laptop,
-    title: "Tech-Driven Accounting",
-    titleTh: "ขับเคลื่อนด้วยเทคโนโลยี",
-    description: "ก้าวข้ามการทำบัญชีแบบเดิมด้วยโปรแกรมบัญชีออนไลน์ เจ้าของธุรกิจดูตัวเลขของกิจการได้เองโดยไม่ต้องรอรายงานสิ้นเดือน และทีมงานทำงานกับข้อมูลชุดเดียวกับคุณเสมอ",
   },
   {
     num: "03",
     icon: Handshake,
-    title: "Personalized Service",
-    titleTh: "ดูแลอย่างใกล้ชิดและเป็นกันเอง",
-    description: "เรายึดถือการบริการด้วยใจ ให้คำปรึกษาที่เข้าใจง่าย ไม่ซับซ้อน พร้อมเป็นที่ปรึกษาธุรกิจที่ลงพื้นที่ดูแลคุณถึงหน้างาน",
   },
   {
     num: "04",
     icon: Briefcase,
-    title: "One Stop Solution",
-    titleTh: "ครบจบในที่เดียว",
-    description: "ประหยัดเวลาและลดความยุ่งยากด้วยบริการที่ครอบคลุม ทั้งงานบัญชี ภาษี จดทะเบียนบริษัท Visa/Work Permit ไปจนถึงการผลิต Media Content",
   },
   /**
    * สองข้อนี้แยกออกจากข้อ 02 โดยตั้งใจ ไม่ได้เขียนรวมกัน
@@ -45,20 +34,16 @@ const features = [
   {
     num: "05",
     icon: Smartphone,
-    title: "Paperless Workflow",
-    titleTh: "ไร้เอกสารกระดาษ",
-    description: "ส่งเอกสารผ่านช่องทางออนไลน์ได้ทุกที่ทุกเวลา ไม่ต้องรวบรวมใส่กล่องแล้วขับรถมาส่งที่สำนักงานทุกเดือน และไม่ต้องหาที่เก็บแฟ้มย้อนหลัง เพราะค้นจากระบบได้ทันที",
   },
   {
     num: "06",
     icon: Code2,
-    title: "Our Own Ecosystem",
-    titleTh: "ระบบที่สร้างขึ้นเองทั้งชุด",
-    description: "เราเขียนระบบจัดเก็บเอกสารและระบบบริหารงานภายในขึ้นใช้เอง ไม่ได้ซื้อสำเร็จรูปมาต่อกัน จึงปรับให้ตรงกับวิธีทำงานจริงได้เสมอ และตอบเรื่องสถานะงานหรือกำหนดยื่นแบบได้ทันทีที่ลูกค้าถาม",
   },
 ];
 
-function FeatureCard({ feature, index }: { feature: typeof features[0], index: number }) {
+type Feature = (typeof features)[number] & HomeContent['whyUs']['items'][number];
+
+function FeatureCard({ feature, index }: { feature: Feature, index: number }) {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
 
@@ -96,7 +81,7 @@ function FeatureCard({ feature, index }: { feature: typeof features[0], index: n
 
       {/* Title */}
       <h3 className="font-black text-lg text-foreground mb-1">{feature.title}</h3>
-      <p className="text-primary text-xs font-bold uppercase tracking-wider mb-4">{feature.titleTh}</p>
+      <p className="text-primary text-xs font-bold uppercase tracking-wider mb-4">{feature.subtitle}</p>
 
       {/* Description */}
       <p className="text-muted-foreground text-sm leading-relaxed">{feature.description}</p>
@@ -104,7 +89,7 @@ function FeatureCard({ feature, index }: { feature: typeof features[0], index: n
   );
 }
 
-export function WhyUsSection() {
+export function WhyUsSection({ c }: { c: HomeContent['whyUs'] }) {
   const headerRef = useRef<HTMLDivElement>(null);
   const [headerVisible, setHeaderVisible] = useState(false);
 
@@ -131,9 +116,9 @@ export function WhyUsSection() {
           }}
           className="mb-16"
         >
-          <p className="text-primary text-xs font-bold tracking-[0.3em] uppercase mb-3">Why IC</p>
+          <p className="text-primary text-xs font-bold tracking-[0.3em] uppercase mb-3">{c.eyebrow}</p>
           <h2 className="text-3xl md:text-4xl font-black text-foreground">
-            ทำไมต้องเลือก IC Accounting & Service?
+            {c.title}
           </h2>
         </div>
 
@@ -147,7 +132,7 @@ export function WhyUsSection() {
         */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {features.map((feature, index) => (
-            <FeatureCard key={index} feature={feature} index={index} />
+            <FeatureCard key={index} feature={{ ...feature, ...c.items[index] }} index={index} />
           ))}
         </div>
 

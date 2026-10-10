@@ -4,6 +4,7 @@ import * as React from "react";
 import Link from "next/link";
 import { ArrowRight, PlayCircle } from 'lucide-react';
 import { ParticleDrift } from '@/components/ui/particle-drift';
+import { HOME_NUMBERS, type HomeContent } from './home-content';
 
 interface AnimatedCounterProps {
   value: number;
@@ -72,14 +73,14 @@ function AnimatedCounter({ value, duration = 2000, suffix = "" }: AnimatedCounte
   );
 }
 
-const stats = [
-  { value: 100, suffix: '+', label: 'ลูกค้าที่ไว้วางใจ' },
-  { value: 10, suffix: '+', label: 'ปีประสบการณ์' },
-  { value: 5, suffix: '', label: 'บริการครบวงจร' },
-  { value: 5, suffix: '.0', label: 'คะแนน Google' },
-];
+export function HeroSection({ c }: { c: HomeContent['hero'] }) {
+  const stats = [
+    { value: HOME_NUMBERS.clients, suffix: '+', label: c.stats.clients },
+    { value: HOME_NUMBERS.years, suffix: '+', label: c.stats.years },
+    { value: HOME_NUMBERS.services, suffix: '', label: c.stats.services },
+    { value: HOME_NUMBERS.rating, suffix: '.0', label: c.stats.rating },
+  ];
 
-export function HeroSection() {
   return (
     <section id="hero" className="relative bg-white overflow-hidden border-b border-gray-100 min-h-[calc(100vh-4rem)] flex flex-col">
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#2657c1]/5 rounded-full blur-[140px] pointer-events-none -translate-y-1/3 translate-x-1/4" />
@@ -108,7 +109,7 @@ export function HeroSection() {
             <div className="flex">
               <div className="inline-flex items-center gap-2 bg-[#2657c1]/6 px-4 py-2 rounded-full text-sm font-semibold border border-[#2657c1]/15 text-[#2657c1]">
                 <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-                IC Accounting &amp; Service — เชียงใหม่
+                {c.badge}
               </div>
             </div>
             {/*
@@ -122,10 +123,10 @@ export function HeroSection() {
             */}
             <h1 className="text-[clamp(1.75rem,3.6vw,3.4rem)] font-black leading-[1.3] tracking-tight text-[#2657c1]">
               <span className="block">
-                ขับเคลื่อนธุรกิจสู่อนาคต
+                {c.h1Line1}
               </span>
               <span className="block text-[#2657c1]/25">
-                ด้วยโซลูชันบัญชีที่คุณวางใจ
+                {c.h1Line2}
               </span>
             </h1>
           </div>
@@ -138,7 +139,7 @@ export function HeroSection() {
               ถ้าจะแก้ข้อความตรงนี้ในอนาคต ให้เก็บคำว่า "สำนักงานบัญชีเชียงใหม่" ไว้
             */}
             <p className="text-base md:text-lg font-bold text-[#2657c1] leading-snug">
-              สำนักงานบัญชีเชียงใหม่ ครบจบทุกเรื่องหลังบ้านธุรกิจ
+              {c.tagline}
             </p>
             {/*
               เรียงลำดับตามน้ำหนักธุรกิจจริง: ทำบัญชี ปิดงบ Visa เป็นบริการหลัก
@@ -149,16 +150,16 @@ export function HeroSection() {
               เพราะบรรทัดนี้เป็นเนื้อหาแรกที่ Google อ่านต่อจาก H1 และบรรทัดหนาด้านบน
             */}
             <p className="text-sm md:text-base text-gray-500 leading-relaxed max-w-md">
-              รับทำบัญชี ปิดงบการเงิน และ Visa &amp; Work Permit สำหรับธุรกิจในเชียงใหม่และทั่วประเทศ เราไม่ได้เป็นแค่คนทำบัญชี แต่เป็นที่ปรึกษาที่เข้าใจธุรกิจคุณ ด้วยประสบการณ์กว่า 10 ปี
+              {c.lead}
             </p>
             <div className="flex flex-wrap gap-3 pt-1">
               <Link href="https://line.me/R/ti/p/@icacc" target="_blank"
                 className="inline-flex items-center gap-3 bg-[#2657c1] text-white font-black px-8 h-12 md:h-14 rounded-full transition-all hover:scale-105 hover:shadow-xl hover:shadow-[#2657c1]/25 text-sm md:text-base">
-                ปรึกษาเราฟรี <ArrowRight className="h-4 w-4" />
+                {c.ctaPrimary} <ArrowRight className="h-4 w-4" />
               </Link>
-              <Link href="/#services"
+              <Link href={c.ctaSecondaryHref}
                 className="inline-flex items-center gap-3 border-2 border-[#2657c1]/20 hover:border-[#2657c1]/60 text-[#2657c1]/70 hover:text-[#2657c1] px-8 h-12 md:h-14 rounded-full transition-all text-sm md:text-base">
-                <PlayCircle className="h-5 w-5" /> ดูบริการทั้งหมด
+                <PlayCircle className="h-5 w-5" /> {c.ctaSecondary}
               </Link>
             </div>
           </div>
