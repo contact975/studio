@@ -44,7 +44,7 @@ export type RegistrationContent = {
   changes: { eyebrow: string; title: string; body: string; items: string[] };
   steps: { eyebrow: string; title: string; sublead: string; items: { title: string; desc: string }[] };
   faq: { title: string; intro: string; items: { q: string; a: string }[] };
-  related: { title: string };
+  related: { title: string; intro: string; readLabel: string };
   cta: { h3: string; p: string; btnQuote: string; btnLine: string };
 };
 
@@ -152,7 +152,11 @@ const th: RegistrationContent = {
       },
     ],
   },
-  related: { title: 'อ่านเพิ่มเติมก่อนตัดสินใจ' },
+  related: {
+    title: 'อ่านเพิ่มเติมก่อนตัดสินใจ',
+    intro: 'บทความจากทีมงาน IC ที่เขียนจากเคสจริงของลูกค้าในเชียงใหม่',
+    readLabel: 'อ่านบทความ',
+  },
   cta: {
     h3: 'พร้อมเริ่มต้นธุรกิจของคุณแล้วหรือยัง?',
     p: 'ปรึกษาทีมงาน IC ฟรี ไม่มีค่าใช้จ่าย เราช่วยแนะนำโครงสร้างที่เหมาะสมให้คุณ',
@@ -266,7 +270,11 @@ const en: RegistrationContent = {
     ],
   },
   /** บทความทั้งหมดเป็นภาษาไทย จึงบอกไว้ในหัวข้อตามตรง ไม่ให้คนอ่านคลิกไปแล้วงง */
-  related: { title: 'Further reading (articles in Thai)' },
+  related: {
+    title: 'Further reading (articles in Thai)',
+    intro: 'Articles by the IC team, written from real client cases in Chiang Mai. Available in Thai only.',
+    readLabel: 'Read article (Thai)',
+  },
   cta: {
     h3: 'Ready to start your business?',
     p: 'Talk to the IC team free of charge. We will recommend the structure that fits what you are building.',

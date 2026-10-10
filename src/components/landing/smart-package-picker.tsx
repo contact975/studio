@@ -4,15 +4,26 @@ import * as React from "react";
 import Link from "next/link";
 import { MessageSquare } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { SMART_SERVICES, SMART_BUNDLE_PRICE } from "@/lib/accounting-packages";
+import { SMART_SERVICES, SMART_BUNDLE_PRICE, formatPrice as fmt, type SmartServiceId } from "@/lib/accounting-packages";
+import type { AccountingContent } from "@/app/accounting-services/accounting-content";
 
 /**
  * ตัวเลือกบริการย่อยของแพ็กเกจ IC Smart — ติ๊กเฉพาะรายการที่ต้องการแล้วเห็นราคารวมทันที
  * เลือกครบทั้ง 4 รายการ = ราคาแพ็กเกจ 4,500 บาท/เดือน (ตามใบเสนอราคา)
+ *
+ * ข้อความทั้งหมดรับมาจาก accounting-content.ts ใช้ได้ทั้งหน้าไทยและหน้าอังกฤษ
+ * ข้อความที่มีตัวแปรใช้ {n} และ {price} เพราะส่งฟังก์ชันจาก server เข้า client ไม่ได้
  */
-const fmt = (n: number) => n.toLocaleString("th-TH");
+const fill = (s: string, vars: Record<string, string | number>) =>
+  s.replace(/\{(\w+)\}/g, (_, k) => String(vars[k] ?? ""));
 
-export function SmartPackagePicker() {
+export function SmartPackagePicker({
+  services,
+  labels,
+}: {
+  services: Record<SmartServiceId, { name: string; alt: string }>;
+  labels: AccountingContent["picker"];
+}) {
   const [picked, setPicked] = React.useState<string[]>(SMART_SERVICES.map((s) => s.id));
 
   const toggle = (id: string) =>
@@ -38,8 +49,8 @@ export function SmartPackagePicker() {
                 />
                 <span className="flex flex-1 items-start justify-between gap-3">
                   <span>
-                    <span className={cn("block text-sm font-semibold", on ? "text-foreground" : "text-muted-foreground")}>{s.name}</span>
-                    <span className="block text-[11px] text-muted-foreground">{s.en}</span>
+                    <span className={cn("block text-sm font-semibold", on ? "text-foreground" : "text-muted-foreground")}>{services[s.id].name}</span>
+                    <span className="block text-[11px] text-muted-foreground">{services[s.id].alt}</span>
                   </span>
                   <span className={cn("shrink-0 text-sm font-bold", on ? "text-foreground" : "text-muted-foreground/60")}>
                     {fmt(s.price)}
@@ -54,15 +65,15 @@ export function SmartPackagePicker() {
       <div className="mt-4 rounded-2xl bg-primary/5 border border-primary/15 p-4">
         <div className="flex items-end justify-between gap-3">
           <div>
-            <p className="text-xs text-muted-foreground">{all ? "ใช้บริการครบทั้ง 4 รายการ" : `เลือก ${picked.length} จาก 4 รายการ`}</p>
+            <p className="text-xs text-muted-foreground">{all ? labels.allSelected : fill(labels.someSelected, { n: picked.length })}</p>
             <p className="text-2xl font-black text-primary">
               {picked.length ? `฿${fmt(total)}` : "—"}
-              <span className="text-sm font-medium text-muted-foreground"> /เดือน</span>
+              <span className="text-sm font-medium text-muted-foreground">{labels.perMonth}</span>
             </p>
           </div>
-          {all && <span className="rounded-full bg-primary px-3 py-1 text-xs font-bold text-primary-foreground">ราคาแพ็กเกจ</span>}
+          {all && <span className="rounded-full bg-primary px-3 py-1 text-xs font-bold text-primary-foreground">{labels.bundleBadge}</span>}
         </div>
-        {!picked.length && <p className="mt-1 text-xs text-muted-foreground">เลือกอย่างน้อย 1 รายการ</p>}
+        {!picked.length && <p className="mt-1 text-xs text-muted-foreground">{labels.minHint}</p>}
       </div>
 
       <Link
@@ -72,7 +83,11 @@ export function SmartPackagePicker() {
         className="mt-4 flex w-full items-center justify-center gap-2 rounded-2xl border-2 border-primary py-3 text-sm font-bold text-primary transition-colors hover:bg-primary hover:text-primary-foreground"
       >
         <MessageSquare className="h-4 w-4" />
-        {all ? "สนใจ IC Smart 4,500/เดือน" : picked.length ? `สนใจ ${picked.length} รายการนี้` : "สอบถามผ่าน LINE"}
+        {all
+          ? fill(labels.ctaAll, { price: fmt(SMART_BUNDLE_PRICE) })
+          : picked.length
+            ? fill(labels.ctaSome, { n: picked.length })
+            : labels.ctaNone}
       </Link>
     </div>
   );

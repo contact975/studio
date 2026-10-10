@@ -58,14 +58,14 @@ const services = [
   {
     h3: 'Company Registration',
     p: 'Register a Thai Limited Company, VAT and social security, with shareholder structuring for foreigners.',
-    href: '/company-registration',
-    linkText: 'See Thai page',
+    href: '/en/company-registration',
+    linkText: 'See packages and prices',
   },
   {
     h3: 'Accounting & Tax',
     p: 'Monthly bookkeeping, tax filing and year-end accounts for foreign-owned businesses in Thailand.',
-    href: '/accounting-services',
-    linkText: 'See Thai page',
+    href: '/en/accounting-services',
+    linkText: 'See packages and prices',
   },
   {
     h3: 'Audit & Financial Statements',

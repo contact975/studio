@@ -29,6 +29,7 @@ const PAIRS: Record<string, string> = {
   '/visa-work-permit': '/en/visa-work-permit',
   '/quote': '/en/quote',
   '/company-registration': '/en/company-registration',
+  '/accounting-services': '/en/accounting-services',
 };
 
 /** ปลายทางสำรองของหน้าที่ยังไม่มีคู่ภาษา */

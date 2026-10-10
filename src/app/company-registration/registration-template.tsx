@@ -196,6 +196,8 @@ export function RegistrationTemplate({ c, quoteHref }: { c: RegistrationContent;
         {/* ── บทความที่เกี่ยวข้อง ── */}
         <RelatedArticles
           title={c.related.title}
+          intro={c.related.intro}
+          readLabel={c.related.readLabel}
           slugs={[
             'company-registration-chiangmai',
             'company-vs-partnership-comparison',

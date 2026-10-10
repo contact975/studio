@@ -42,7 +42,7 @@ const staticRoutes: Array<{
   { path: '/', priority: 1.0, changeFrequency: 'weekly', lastModified: '2026-09-23' },
 
   // หน้าบริการ — เป็นหน้าที่ต้องแบกคำค้นเชิงพาณิชย์ จึงให้ priority สูงรองจากหน้าแรก
-  { path: '/accounting-services', priority: 0.9, changeFrequency: 'monthly', lastModified: '2026-09-26' },
+  { path: '/accounting-services', priority: 0.9, changeFrequency: 'monthly', lastModified: '2026-10-11' },
   { path: '/company-registration', priority: 0.9, changeFrequency: 'monthly', lastModified: '2026-09-23' },
   { path: '/audit-services', priority: 0.9, changeFrequency: 'monthly' },
   // ยุบ /expat-services เข้ามาที่นี่แล้ว จึงเหลือ URL เดียวและได้ priority เต็ม
@@ -57,6 +57,7 @@ const staticRoutes: Array<{
   { path: '/en', priority: 0.5, changeFrequency: 'monthly', lastModified: '2026-10-07' },
   { path: '/en/quote', priority: 0.5, changeFrequency: 'monthly', lastModified: '2026-10-07' },
   { path: '/en/company-registration', priority: 0.5, changeFrequency: 'monthly', lastModified: '2026-10-07' },
+  { path: '/en/accounting-services', priority: 0.5, changeFrequency: 'monthly', lastModified: '2026-10-11' },
   { path: '/organization-system', priority: 0.7, changeFrequency: 'monthly', lastModified: '2026-09-14' },
   { path: '/media-content', priority: 0.7, changeFrequency: 'monthly' },
 

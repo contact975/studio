@@ -16,9 +16,14 @@ import { blogMeta } from '@/lib/blog-meta';
 export function RelatedArticles({
   slugs,
   title = 'อ่านเพิ่มเติมก่อนตัดสินใจ',
+  intro = 'บทความจากทีมงาน IC ที่เขียนจากเคสจริงของลูกค้าในเชียงใหม่',
+  readLabel = 'อ่านบทความ',
 }: {
   slugs: string[];
   title?: string;
+  /** หน้าอังกฤษส่งข้อความของตัวเองมา เพื่อบอกว่าบทความเป็นภาษาไทย */
+  intro?: string;
+  readLabel?: string;
 }) {
   const posts = slugs
     .map((slug) => ({ slug, meta: blogMeta[slug] }))
@@ -32,9 +37,7 @@ export function RelatedArticles({
         <div className="text-center mb-12">
           <p className="text-primary text-xs font-bold tracking-[0.3em] uppercase mb-3">Guides</p>
           <h2 className="text-3xl md:text-4xl font-black mb-3">{title}</h2>
-          <p className="text-muted-foreground">
-            บทความจากทีมงาน IC ที่เขียนจากเคสจริงของลูกค้าในเชียงใหม่
-          </p>
+          <p className="text-muted-foreground">{intro}</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
@@ -51,7 +54,7 @@ export function RelatedArticles({
                 {meta.description}
               </p>
               <span className="mt-auto pt-2 inline-flex items-center gap-2 text-primary text-sm font-bold">
-                อ่านบทความ
+                {readLabel}
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </span>
             </Link>
