@@ -3,7 +3,8 @@
   "configurations": [
     {
       "name": "web",
-      "url": "http://localhost:9002",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev"],
       "port": 9002
     }
   ]
