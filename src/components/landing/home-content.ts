@@ -133,6 +133,8 @@ export type HomeContent = {
       after: string;
     };
     /** รายการแรกคือที่ตั้งสำนักงาน (ดอยสะเก็ด) */
+    /** ป้ายเหนือการ์ดรายอำเภอ — บอกว่าเป็นพื้นที่ที่ลงไปถึงหน้างาน ไม่ใช่ขอบเขตลูกค้าทั้งหมด */
+    onsiteLabel: string;
     areas: Eight<{ name: string; note: string }>;
     office: { title: string; address: string; mapLink: string };
     hours: { title: string; days: string; note: string };
@@ -358,16 +360,17 @@ const th: HomeContent = {
   },
   serviceArea: {
     eyebrow: 'Service Area',
-    title: 'พื้นที่ให้บริการทั่วเชียงใหม่และลำพูน',
+    title: 'ดูแลลูกค้าทั่วประเทศ จากสำนักงานในเชียงใหม่',
     intro: {
-      before: 'สำนักงานอยู่ที่ดอยสะเก็ด แต่ลูกค้าของเรากระจายอยู่ทั่วจังหวัด เพราะงาน',
+      before: 'สำนักงานอยู่ที่ดอยสะเก็ด เชียงใหม่ แต่เราดูแลธุรกิจได้ทุกจังหวัดทั่วประเทศ เพราะงาน',
       accountingLink: 'รับทำบัญชีรายเดือน',
       accountingHref: '/accounting-services',
-      middle: 'ส่งเอกสารผ่านระบบออนไลน์ได้ ไม่ต้องเดินทางมาทุกเดือน ส่วนงานที่ต้องเจอหน้า เช่น วางระบบบัญชี ตรวจนับสต็อก หรือ',
+      middle: 'ส่งเอกสารผ่านระบบออนไลน์ได้ทั้งหมด ไม่ต้องเดินทางมาเชียงใหม่ ส่วนงานที่ต้องเจอหน้า เช่น วางระบบบัญชี ตรวจนับสต็อก หรือ',
       registrationLink: 'จดทะเบียนบริษัท',
       registrationHref: '/company-registration',
-      after: 'เราเข้าไปถึงหน้างานในทุกอำเภอด้านล่างนี้',
+      after: 'เราเข้าไปถึงหน้างานในพื้นที่ด้านล่างนี้',
     },
+    onsiteLabel: 'พื้นที่ที่เราลงไปถึงหน้างานได้ · เชียงใหม่และลำพูน',
     areas: [
       { name: 'ดอยสะเก็ด', note: 'ที่ตั้งสำนักงาน เข้ามาคุยที่ออฟฟิศได้ทุกวันทำการ' },
       { name: 'เมืองเชียงใหม่', note: 'ร้านอาหาร คาเฟ่ โรงแรม และธุรกิจบริการในเขตเมือง' },
@@ -386,8 +389,8 @@ const th: HomeContent = {
     },
     hours: { title: 'เวลาทำการ', days: 'จันทร์ – เสาร์ 09:00 – 18:00 น.', note: 'นัดหมายนอกเวลาได้ทาง LINE' },
     remote: {
-      title: 'ไม่สะดวกเดินทาง?',
-      text: 'ส่งเอกสารผ่านออนไลน์ได้ทั้งหมด หรือให้เราเข้าไปรับถึงที่สำหรับลูกค้ารายเดือน',
+      title: 'ธุรกิจอยู่ต่างจังหวัด?',
+      text: 'ส่งเอกสารผ่านออนไลน์ได้ทั้งหมด ไม่ต้องเดินทางมาเชียงใหม่ ส่วนลูกค้ารายเดือนในพื้นที่ด้านบน ให้เราเข้าไปรับเอกสารถึงที่ได้',
     },
   },
   faq: {
@@ -668,16 +671,17 @@ const en: HomeContent = {
   },
   serviceArea: {
     eyebrow: 'Service Area',
-    title: 'Serving all of Chiang Mai and Lamphun',
+    title: 'Serving clients across Thailand from our Chiang Mai office',
     intro: {
-      before: 'Our office is in Doi Saket, but our clients are spread across the province, because for ',
+      before: 'Our office is in Doi Saket, Chiang Mai, but we look after businesses in every province of Thailand, because for ',
       accountingLink: 'monthly accounting',
       accountingHref: '/en/accounting-services',
-      middle: 'you can send your documents online, with no need to travel in every month. For work that needs a face-to-face visit, such as setting up an accounting system, stock counts or',
+      middle: 'you can send all your documents online, with no need to travel to Chiang Mai. For work that needs a face-to-face visit, such as setting up an accounting system, stock counts or',
       registrationLink: 'company registration',
       registrationHref: '/en/company-registration',
-      after: '— we come to you in every district below.',
+      after: '— we come to you in the areas below.',
     },
+    onsiteLabel: 'Where we can visit you on site · Chiang Mai and Lamphun',
     areas: [
       { name: 'Doi Saket', note: 'Our office location — drop in for a chat any working day' },
       { name: 'Mueang Chiang Mai', note: 'Restaurants, cafés, hotels and service businesses in the city' },
@@ -695,8 +699,8 @@ const en: HomeContent = {
     },
     hours: { title: 'Office hours', days: 'Monday – Saturday 09:00 – 18:00', note: 'Appointments outside these hours can be arranged on LINE' },
     remote: {
-      title: "Can't make it to the office?",
-      text: 'All documents can be sent online, or we can come and collect them from you if you are a monthly client.',
+      title: 'Based outside Chiang Mai?',
+      text: 'All documents can be sent online, with no need to travel to Chiang Mai. For monthly clients in the areas above, we can also come and collect your documents.',
     },
   },
   faq: {

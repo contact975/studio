@@ -101,7 +101,9 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     "priceRange": "฿฿",
     // ประกาศพื้นที่ให้บริการเป็นรายอำเภอ ตรงกับ section "พื้นที่ให้บริการ" บนหน้าแรก
     // ไม่ใช่การหว่านชื่ออำเภอ แต่ละชื่อมีเนื้อหาจริงรองรับอยู่ในหน้า
+    // ดูแลลูกค้าทั่วประเทศผ่านระบบออนไลน์ อำเภอด้านล่างคือพื้นที่ที่ลงไปถึงหน้างานได้
     "areaServed": [
+      { "@type": "Country", "name": "ประเทศไทย" },
       { "@type": "City", "name": "เชียงใหม่" },
       { "@type": "AdministrativeArea", "name": "อำเภอดอยสะเก็ด" },
       { "@type": "AdministrativeArea", "name": "อำเภอเมืองเชียงใหม่" },

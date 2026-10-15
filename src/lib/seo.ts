@@ -25,7 +25,11 @@ const PROVIDER = {
     postalCode: '50220',
     addressCountry: 'TH',
   },
-  areaServed: { '@type': 'City', name: 'เชียงใหม่' },
+  // ให้บริการทั่วประเทศผ่านระบบออนไลน์ สำนักงานและพื้นที่ลงหน้างานอยู่ที่เชียงใหม่
+  areaServed: [
+    { '@type': 'Country', name: 'ประเทศไทย' },
+    { '@type': 'City', name: 'เชียงใหม่' },
+  ],
   // หมุด Google Business Profile — ผูกหน้าบริการทุกหน้าเข้ากับกิจการเดียวกัน
   sameAs: [
     'https://www.facebook.com/icaccservice',
@@ -81,7 +85,7 @@ export function serviceSchema(opts: {
     description: opts.description,
     url: `${SITE_URL}${opts.path}`,
     provider: PROVIDER,
-    areaServed: { '@type': 'City', name: 'เชียงใหม่' },
+    areaServed: PROVIDER.areaServed,
     ...(opts.offers?.length
       ? {
           hasOfferCatalog: {

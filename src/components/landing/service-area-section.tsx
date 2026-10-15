@@ -16,8 +16,14 @@ import type { HomeContent } from './home-content';
  * ของ Google โดยตรง และโดนลดอันดับทั้งเว็บได้ section เดียวที่เขียนจากการทำงานจริง
  * ว่าแต่ละพื้นที่เราดูแลลูกค้าแบบไหน จึงปลอดภัยและได้ผลกว่า
  *
+ * ── ลูกค้าทั่วประเทศ vs การ์ดรายอำเภอ ──
+ * เราดูแลลูกค้าทั่วประเทศผ่านระบบออนไลน์ การ์ดรายอำเภอคือพื้นที่ที่ลงไปถึงหน้างานได้
+ * ไม่ใช่ขอบเขตลูกค้าทั้งหมด ป้าย onsiteLabel เหนือการ์ดจึงต้องบอกไว้ชัด
+ * การ์ดยังเก็บไว้เพราะช่วยคำค้นท้องถิ่นรายอำเภอ (ดูหัวข้อด้านบน)
+ *
  * ── ใช้ร่วมกับ schema ──
  * รายชื่ออำเภอชุดนี้ตรงกับ areaServed ใน app/layout.tsx แก้ที่หนึ่งต้องแก้อีกที่ด้วย
+ * areaServed มี "ประเทศไทย" นำหน้าด้วย เพื่อบอก Google ว่าให้บริการทั่วประเทศ
  */
 
 /*
@@ -53,6 +59,10 @@ export function ServiceAreaSection({ c }: { c: HomeContent['serviceArea'] }) {
           </p>
         </div>
 
+        <p className="flex items-center justify-center gap-2 text-sm font-bold text-foreground/80 mb-5">
+          <MapPin className="h-4 w-4 text-primary flex-shrink-0" />
+          {c.onsiteLabel}
+        </p>
         <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
           {areas.map((area) => (
             <li
