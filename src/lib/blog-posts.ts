@@ -13,6 +13,8 @@
  * ที่ sitemap, metadata และ related-articles ใช้ร่วมกัน)
  */
 
+import { SMART_MIN_PRICE, formatPrice } from '@/lib/accounting-packages';
+
 export type BlogBlock =
   | { type: 'p'; text: string }
   | { type: 'h2'; text: string }
@@ -55,13 +57,16 @@ export interface StructuredPost {
 /** ภาพปกเจนจาก scripts/generate-blog-covers.mjs — ชื่อไฟล์ตรงกับ id ของบทความ */
 const cover = (id: string) => `/images/blog/${id}.webp`;
 
+// ราคาดึงจากไฟล์กลาง — ปรับราคาที่ lib/accounting-packages.ts แล้ว CTA ในบทความตามเอง
+const fromPrice = formatPrice(SMART_MIN_PRICE);
+
 const AUTHOR = 'ทีมงาน IC ACC';
 
 const CTA_ACCOUNTING: BlogCta = {
   href: '/accounting-services',
   eyebrow: 'บริการที่เกี่ยวข้อง',
   heading: 'ให้ IC ดูแลภาษีรายเดือนให้ครบ ไม่ตกหล่น',
-  body: 'แพ็กเกจ IC Smart เริ่ม 4,500 บาท/เดือน ครอบคลุม VAT หัก ณ ที่จ่าย ประกันสังคม และงบรายเดือน — คุณส่งเอกสาร เราจัดการยื่นให้ตรงเวลาทุกแบบ',
+  body: `ยื่นภาษีรายเดือนเริ่มต้น ${fromPrice} บาท/เดือน เลือกเฉพาะรายการที่ต้องการได้ ทั้ง VAT หัก ณ ที่จ่าย ประกันสังคม และงบรายเดือน — คุณส่งเอกสาร เราจัดการยื่นให้ตรงเวลาทุกแบบ`,
   label: 'ดูบริการรับทำบัญชีรายเดือน',
 };
 

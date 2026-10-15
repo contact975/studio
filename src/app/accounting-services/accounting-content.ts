@@ -94,10 +94,8 @@ const th: AccountingContent = {
   htmlLang: 'th',
   meta: {
     title: 'รับทำบัญชีเชียงใหม่ รายเดือน มีผู้ดูแลบัญชีประจำ | IC Accounting',
-    description:
-      'รับทำบัญชีและยื่นภาษีรายเดือนในเชียงใหม่ มีผู้ดูแลบัญชีประจำตอบภายใน 1 วันทำการ โปรแกรมบัญชีออนไลน์พร้อมอบรม และทบทวนผลประกอบการรายไตรมาส เลือกได้ 2 รูปแบบตามขนาดธุรกิจ',
-    ogDescription:
-      'ผู้ดูแลบัญชีประจำตอบภายใน 1 วันทำการ · โปรแกรมบัญชีออนไลน์ · ทบทวนผลประกอบการรายไตรมาส · เลือกได้ 2 รูปแบบตามขนาดธุรกิจ',
+    description: `รับทำบัญชีและยื่นภาษีรายเดือนในเชียงใหม่ ค่าบริการเริ่มต้น ${p(SMART_MIN_PRICE)} บาท/เดือน เลือกเฉพาะบริการที่ต้องการได้ มีผู้ดูแลบัญชีประจำตอบภายใน 1 วันทำการ โปรแกรมบัญชีออนไลน์พร้อมอบรม และทบทวนผลประกอบการรายไตรมาส`,
+    ogDescription: `เริ่มต้น ${p(SMART_MIN_PRICE)} บาท/เดือน เลือกเฉพาะบริการได้ · ผู้ดูแลบัญชีประจำตอบภายใน 1 วันทำการ · โปรแกรมบัญชีออนไลน์ · ทบทวนผลประกอบการรายไตรมาส`,
   },
   crumb: { home: 'หน้าแรก', homeHref: '/', current: 'บริการทำบัญชี' },
   hero: {
@@ -109,7 +107,7 @@ const th: AccountingContent = {
       smart: ' ให้เราดูแลเฉพาะการยื่นภาษีรายเดือน หรือ ',
       total: ' ให้เราเป็นแผนกบัญชีทั้งระบบแทนการจ้างพนักงานประจำ',
     },
-    chips: ['ราคารวม VAT แล้ว', 'เลือกเฉพาะบริการที่ต้องการได้', 'มีโปรแกรมบัญชีออนไลน์ให้ใช้', 'ปรึกษาฟรีก่อนตัดสินใจ'],
+    chips: [`เริ่มต้น ${p(SMART_MIN_PRICE)} บาท/เดือน`, 'เลือกเฉพาะบริการที่ต้องการได้', 'ราคารวม VAT แล้ว', 'มีโปรแกรมบัญชีออนไลน์ให้ใช้', 'ปรึกษาฟรีก่อนตัดสินใจ'],
   },
   packages: {
     eyebrow: 'Pricing Plans',
@@ -257,7 +255,7 @@ const th: AccountingContent = {
     items: [
       {
         q: 'รับทำบัญชีเชียงใหม่ ราคาเริ่มต้นเท่าไหร่?',
-        a: `แพ็กเกจ IC Smart ยื่นภาษีรายเดือน ${p(SMART_BUNDLE_PRICE)} บาทต่อเดือนเมื่อใช้ครบทั้ง 4 รายการ (ยื่น ภ.พ.30, ภ.ง.ด.1/3/53, ประกันสังคม และงบกำไรขาดทุน) ราคารวมภาษีมูลค่าเพิ่มแล้ว หรือเลือกเฉพาะบางรายการได้ เริ่มที่ ${p(SMART_MIN_PRICE)} บาทต่อเดือน`,
+        a: `เริ่มต้น ${p(SMART_MIN_PRICE)} บาทต่อเดือน เมื่อเลือกเฉพาะบางรายการในแพ็กเกจ IC Smart เช่น ยื่นประกันสังคมอย่างเดียว แต่กิจการส่วนใหญ่ต้องใช้หลายรายการร่วมกัน ค่าบริการจึงเพิ่มตามรายการที่เลือก หากใช้ครบทั้ง 4 รายการ (ยื่น ภ.พ.30, ภ.ง.ด.1/3/53, ประกันสังคม และงบกำไรขาดทุน) คิดราคาแพ็กเกจ ${p(SMART_BUNDLE_PRICE)} บาทต่อเดือน ทุกราคารวมภาษีมูลค่าเพิ่มแล้ว ราคาสุดท้ายยืนยันในใบเสนอราคาตามขอบเขตงานของแต่ละกิจการ`,
       },
       {
         q: 'IC Smart กับ IC Total ต่างกันอย่างไร?',
@@ -306,10 +304,8 @@ const en: AccountingContent = {
   htmlLang: 'en',
   meta: {
     title: 'Monthly Accounting in Chiang Mai with a Dedicated Accountant | IC Accounting',
-    description:
-      'Monthly accounting and tax filing for businesses in Chiang Mai. A dedicated accountant who replies within 1 business day, online accounting software with training, and quarterly reviews. Two packages to fit your business.',
-    ogDescription:
-      'A dedicated accountant who replies within 1 business day · Online accounting software · Quarterly reviews · Two packages to fit your business',
+    description: `Monthly accounting and tax filing for businesses in Chiang Mai, from THB ${p(SMART_MIN_PRICE)} a month — choose only the services you need. A dedicated accountant who replies within 1 business day, online accounting software with training, and quarterly reviews.`,
+    ogDescription: `From THB ${p(SMART_MIN_PRICE)}/month, choose only the services you need · A dedicated accountant who replies within 1 business day · Online accounting software · Quarterly reviews`,
   },
   crumb: { home: 'Home', homeHref: '/en', current: 'Accounting Services' },
   hero: {
@@ -321,7 +317,7 @@ const en: AccountingContent = {
       smart: ', where we handle only the monthly tax filings, or ',
       total: ', where we act as your whole accounting department so you don’t need to hire in-house staff.',
     },
-    chips: ['Prices include VAT', 'Choose only the services you need', 'Online accounting software available', 'Free consultation before you decide'],
+    chips: [`From THB ${p(SMART_MIN_PRICE)}/month`, 'Choose only the services you need', 'Prices include VAT', 'Online accounting software available', 'Free consultation before you decide'],
   },
   packages: {
     eyebrow: 'Pricing Plans',
@@ -464,7 +460,7 @@ const en: AccountingContent = {
     items: [
       {
         q: 'How much does monthly accounting cost?',
-        a: `IC Smart costs THB ${p(SMART_BUNDLE_PRICE)} a month when you use all 4 services (PP.30 VAT return, PND.1/3/53 withholding tax, social security and a profit and loss statement), VAT included. You can also choose only some of them, starting at THB ${p(SMART_MIN_PRICE)} a month.`,
+        a: `From THB ${p(SMART_MIN_PRICE)} a month, when you choose just one of the IC Smart services, such as social security filing on its own. Most businesses need several services together, so the fee grows with what you choose. Using all 4 (PP.30 VAT return, PND.1/3/53 withholding tax, social security and a profit and loss statement) is charged at the package price of THB ${p(SMART_BUNDLE_PRICE)} a month. All prices include VAT, and the final price is confirmed in a quotation based on your scope of work.`,
       },
       {
         q: 'What is the difference between IC Smart and IC Total?',
