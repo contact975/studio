@@ -43,3 +43,8 @@ next-env.d.ts
 # firebase
 firebase-debug.log
 firestore-debug.log
+
+# ไฟล์ที่ Codex (แอป ChatGPT) สร้างเองทุกครั้งที่เปิดโฟลเดอร์นี้
+# เป็นสำเนาของ CLAUDE.md และ .claude/skills — ไม่ได้ใช้ Codex กับโปรเจกต์นี้ จึงไม่เก็บเข้า repo
+AGENTS.md
+.agents/
