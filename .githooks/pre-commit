@@ -1,0 +1,50 @@
+#!/bin/sh
+# ด่านตรวจก่อน commit — ทำงานทุกครั้งไม่ว่าจะ commit จาก Claude, Codex หรือ GitHub Desktop
+#
+# repo นี้เป็น public และมี AI สองตัว (Claude / Codex) ผลัดกันทำงาน
+# ด่านนี้กันของที่ไม่ควรขึ้น repo ซึ่ง AI หรือคนกด Commit แบบติ๊กทุกไฟล์อาจหลุดเข้ามา
+# ถ้าโดนบล็อกจริงๆ แต่มั่นใจว่าถูก ใช้ git commit --no-verify ได้ (ควรให้คนเป็นคนตัดสิน ไม่ใช่ AI)
+#
+# เปิดใช้หลัง clone ทุกครั้ง: git config core.hooksPath .githooks
+
+fail=0
+staged=$(git diff --cached --name-only --diff-filter=ACMR)
+
+block() {
+  echo "✗ pre-commit: $1" >&2
+  fail=1
+}
+
+# 1) โฟลเดอร์ skill ที่ Codex ก๊อปจาก .claude/skills — ของซ้ำ และ path ข้างในพังจากการแทนคำ
+if echo "$staged" | grep -q '^\.agents/'; then
+  block "มีไฟล์ใน .agents/ (สำเนา skill ที่ Codex สร้างเอง) — ใช้ .claude/skills/ ที่เดียว"
+fi
+
+# 2) AGENTS.md ต้องเป็นตัวชี้ไป CLAUDE.md เท่านั้น ถ้า Codex เขียนทับด้วยสำเนาทั้งไฟล์ กติกาจะแยกเป็นสองชุด
+if echo "$staged" | grep -qx 'AGENTS.md'; then
+  if ! git show :AGENTS.md | head -1 | grep -q 'AGENTS-POINTER'; then
+    block "AGENTS.md ไม่ใช่ตัวชี้ไป CLAUDE.md แล้ว (น่าจะถูก Codex เขียนทับ) — กติกาต้องอยู่ใน CLAUDE.md ที่เดียว"
+  fi
+fi
+
+# 3) ไฟล์ env มักมีความลับ
+if echo "$staged" | grep -Eq '(^|/)\.env($|\.)'; then
+  block "มีไฟล์ .env — ความลับต้องอยู่ใน Google Secret Manager ไม่ใช่ใน repo"
+fi
+
+# 4) URL webhook ของ Make — เคยหลุดอยู่ใน apphosting.yaml ใครเห็นก็ยิงเข้า LINE/อีเมลทีมงานได้
+if git diff --cached -U0 | grep -E '^\+' | grep -Eq 'hook\.[a-z0-9]+\.make\.com/[A-Za-z0-9]{10,}'; then
+  block "พบ URL webhook ของ Make ในสิ่งที่จะ commit — ต้องเก็บใน Secret Manager"
+fi
+
+# 5) path ในเครื่องของคนพัฒนา — เคยมีแชตอื่นเพิ่มเซิร์ฟเวอร์ของอีกโปรเจกต์ไว้ใน launch.json
+if git diff --cached -U0 | grep -E '^\+' | grep -Eq '/User[s]/'; then
+  block "พบ path เต็มในเครื่อง Mac (โฟลเดอร์ Users) — มักเป็นตั้งค่าของอีกโปรเจกต์หรือของเครื่องที่หลุดมา"
+fi
+
+if [ "$fail" -ne 0 ]; then
+  echo "" >&2
+  echo "commit ถูกยกเลิก — เอาไฟล์ข้างบนออกจากรายการ commit แล้วลองใหม่" >&2
+  exit 1
+fi
+exit 0
