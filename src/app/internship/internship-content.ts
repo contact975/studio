@@ -47,6 +47,8 @@ export type InternshipFormCopy = {
     file_too_large: string;
     file_type_not_allowed: string;
     missing_fields: string;
+    /** ช่วงวันที่ฝึกงานผิดรูปแบบหรือไม่สมเหตุสมผล (เช่น ปี 1970 หรือวันจบก่อนวันเริ่ม) */
+    invalid_dates: string;
     /** ปลายทางล่มหรือปฏิเสธ — ต้องบอกช่องทางสำรอง (LINE) เสมอ */
     failed: string;
     networkError: string;
@@ -198,6 +200,7 @@ const th: InternshipContent = {
       file_too_large: `ไฟล์ใหญ่เกิน ${MB}MB`,
       file_type_not_allowed: 'รองรับเฉพาะไฟล์ PDF, Word และรูปภาพ',
       missing_fields: 'กรุณากรอกชื่อและอีเมล',
+      invalid_dates: 'กรุณาตรวจสอบช่วงวันที่ฝึกงานอีกครั้ง วันสิ้นสุดต้องไม่ก่อนวันเริ่ม',
       failed: 'ส่งใบสมัครไม่สำเร็จ กรุณาลองใหม่ หรือติดต่อเราทาง LINE @icacc',
       networkError: 'เชื่อมต่อไม่สำเร็จ กรุณาลองใหม่ หรือติดต่อเราทาง LINE @icacc',
     },
@@ -311,6 +314,7 @@ const en: InternshipContent = {
       file_too_large: `The file is larger than ${MB}MB.`,
       file_type_not_allowed: 'Only PDF, Word and image files are accepted.',
       missing_fields: 'Please enter your name and email.',
+      invalid_dates: 'Please check your internship dates. The end date cannot be before the start date.',
       failed: 'We could not send your application. Please try again, or contact us on LINE @icacc.',
       networkError: 'Could not connect. Please try again, or contact us on LINE @icacc.',
     },

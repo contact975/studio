@@ -38,6 +38,8 @@ export function InternshipForm({ copy, basePath }: { copy: InternshipFormCopy; b
   const [error, setError] = useState('');
   const [fileName, setFileName] = useState('');
   const [heardFromSelf, setHeardFromSelf] = useState(true);
+  // เวลาที่เปิดฟอร์ม — ส่งระยะเวลากรอกไปให้ API ใช้แยกบอท (ดูคอมเมนต์ใน api/internship/route.ts)
+  const [openedAt] = useState(() => Date.now());
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -56,6 +58,7 @@ export function InternshipForm({ copy, basePath }: { copy: InternshipFormCopy; b
     const heardFromOther = (data.get('heardFromOther') ?? '').toString().trim();
     data.set('heardFrom', heardFromSelf ? HEARD_FROM_SELF_VALUE : heardFromOther || HEARD_FROM_UNSPECIFIED_VALUE);
     data.delete('heardFromOther');
+    data.set('formElapsedMs', String(Date.now() - openedAt));
 
     setStatus('sending');
     try {
@@ -71,6 +74,7 @@ export function InternshipForm({ copy, basePath }: { copy: InternshipFormCopy; b
           file_too_large: copy.errors.file_too_large,
           file_type_not_allowed: copy.errors.file_type_not_allowed,
           missing_fields: copy.errors.missing_fields,
+          invalid_dates: copy.errors.invalid_dates,
         };
         setError(map[json?.error] ?? copy.errors.failed);
         setStatus('idle');
@@ -115,6 +119,15 @@ export function InternshipForm({ copy, basePath }: { copy: InternshipFormCopy; b
       onSubmit={handleSubmit}
       className="rounded-3xl border border-border bg-background p-6 md:p-10"
     >
+      {/*
+        ช่องดักบอท — คนมองไม่เห็นและกด Tab ไปไม่ถึง แต่บอทที่กรอกทุกช่องจะใส่ค่า
+        ชื่อช่องตั้งให้ไม่ตรงกับคำที่เบราว์เซอร์รู้จัก (เช่น website / url) จะได้ไม่ถูก autofill
+      */}
+      <div aria-hidden="true" style={{ position: 'absolute', left: '-10000px', width: 1, height: 1, overflow: 'hidden' }}>
+        <label htmlFor="int-hp">Leave this field empty</label>
+        <input id="int-hp" name="ic_hp_field" type="text" tabIndex={-1} autoComplete="off" />
+      </div>
+
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
         <div>
           <label className={labelClass} htmlFor="int-name">

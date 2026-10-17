@@ -55,6 +55,8 @@ export async function POST(request: NextRequest) {
   const endDate = get('endDate');
   const heardFrom = get('heardFrom');
   const reason = get('reason');
+  const honeypot = get('ic_hp_field');
+  const elapsedMs = Number(get('formElapsedMs'));
 
   // ชื่อกับอีเมลคือขั้นต่ำที่ทำให้ติดต่อกลับได้ ฟิลด์อื่นขาดได้
   if (!name || !email) {
@@ -71,6 +73,42 @@ export async function POST(request: NextRequest) {
    */
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email) || email.length > 150 || name.length > 150) {
     return NextResponse.json({ success: false, error: 'invalid_fields' }, { status: 400 });
+  }
+
+  /**
+   * ด่านกันบอท — เพิ่มหลังโดนยิงเมื่อ 16 ต.ค. 2026
+   * บอทกรอกชื่อ/หมายเหตุเป็นตัวอักษรสุ่ม และใส่ช่วงฝึกงานเป็น 1970-05-31 ทั้งสองช่อง
+   * ข้อความหลุดเข้า LINE ทีมงาน เพราะเดิมด่านมีแค่รูปแบบอีเมลกับเพดานต่อ IP
+   *
+   * 1) ช่องดักบอท ic_hp_field — คนจริงมองไม่เห็น กรอกไม่ได้ ถ้ามีค่าคือบอทแน่นอน
+   *    ทิ้งเงียบๆ แต่ตอบสำเร็จ บอทจะได้ไม่รู้ว่าโดนกัน
+   * 2) ระยะเวลากรอก — ฟอร์มจริงส่ง formElapsedMs มาเสมอ คนกรอกฟอร์มนี้ไม่มีทางเสร็จใน 3 วินาที
+   *    ขาดหรือเร็วเกิน = ตอบ error ไม่ทิ้งเงียบ เผื่อเป็นคนจริงที่เปิดหน้าเก่าค้างไว้
+   *    ข้อความ error ของฟอร์มชี้ไปทาง LINE ให้อยู่แล้ว (บทเรียนฟอร์มพังเงียบใน CLAUDE.md)
+   * 3) ช่วงวันที่ — ถ้ากรอกมา ต้องเป็นวันที่จริงในช่วงปีที่เป็นไปได้ และวันจบไม่ก่อนวันเริ่ม
+   */
+  if (honeypot) {
+    console.warn('[internship] ติดช่องดักบอท — ทิ้ง ไม่ส่งต่อ', { name: name.slice(0, 40) });
+    return NextResponse.json({ success: true });
+  }
+  if (!Number.isFinite(elapsedMs) || elapsedMs < 3000) {
+    console.warn('[internship] ไม่มีเวลากรอก หรือส่งเร็วผิดปกติ', { elapsedMs });
+    return NextResponse.json({ success: false, error: 'too_fast' }, { status: 400 });
+  }
+  const thisYear = new Date().getFullYear();
+  const validDate = (d: string) => {
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(d)) return false;
+    const t = Date.parse(`${d}T00:00:00Z`);
+    const y = Number(d.slice(0, 4));
+    return Number.isFinite(t) && y >= thisYear - 1 && y <= thisYear + 3;
+  };
+  if (
+    (startDate && !validDate(startDate)) ||
+    (endDate && !validDate(endDate)) ||
+    (startDate && endDate && endDate < startDate)
+  ) {
+    console.warn('[internship] ช่วงวันที่ผิด', { startDate, endDate });
+    return NextResponse.json({ success: false, error: 'invalid_dates' }, { status: 400 });
   }
 
   const ip = clientIp(request);
