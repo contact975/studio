@@ -144,9 +144,17 @@ export type HomeContent = {
 };
 
 const th: HomeContent = {
+  /**
+   * หัวข้อและคำอธิบายในผลค้นหา — สื่อแบรนด์ 4 ข้อที่เจ้าของกำหนด (22 ต.ค. 2569)
+   * สำนักงานบัญชียุคใหม่ · ทีมคนรุ่นใหม่ · ที่ปรึกษาส่วนตัวของธุรกิจ · ประสบการณ์กว่า 10 ปี
+   * หัวข้อยังขึ้นต้นด้วย "สำนักงานบัญชีเชียงใหม่" เพราะเป็นคำค้นหลักที่ถืออันดับอยู่
+   * ตัวเลข "ดูแลกว่า 100 ธุรกิจ" ย้ายจากหัวข้อไปอยู่ในคำอธิบาย — ให้เทียบ CTR ใน Search Console
+   * กับช่วงก่อนวันที่นี้ ถ้าตกลงชัดเจนให้พิจารณาเอาตัวเลขกลับเข้าหัวข้อ
+   * app/layout.tsx ดึงค่าชุดนี้ไปใช้เป็นค่าตั้งต้นของทั้งเว็บ แก้ที่นี่ที่เดียว
+   */
   meta: {
-    title: `สำนักงานบัญชีเชียงใหม่ ดูแลกว่า ${N.clients} ธุรกิจ | IC Accounting`,
-    description: `รับทำบัญชี ปิดงบการเงิน จดทะเบียนบริษัท และ Visa & Work Permit ครบจบที่เดียว ประสบการณ์กว่า ${N.years} ปี ดูแลกว่า ${N.clients} ธุรกิจในเชียงใหม่และทั่วประเทศ ปรึกษาฟรีทาง LINE`,
+    title: 'สำนักงานบัญชีเชียงใหม่ยุคใหม่ ที่ปรึกษาส่วนตัวของธุรกิจคุณ | IC Accounting',
+    description: `สำนักงานบัญชียุคใหม่ ดูแลโดยทีมคนรุ่นใหม่ ประสบการณ์กว่า ${N.years} ปี เป็นที่ปรึกษาส่วนตัวให้ธุรกิจคุณ ครบทั้งรับทำบัญชี ปิดงบการเงิน จดทะเบียนบริษัท และ Visa & Work Permit ดูแลกว่า ${N.clients} ธุรกิจทั่วประเทศ ปรึกษาฟรีทาง LINE`,
     ogImageAlt: 'สำนักงานบัญชีเชียงใหม่ IC Accounting & Service',
   },
   faqSchema: [
@@ -456,8 +464,8 @@ const th: HomeContent = {
 
 const en: HomeContent = {
   meta: {
-    title: `Accounting Firm in Chiang Mai, Looking After ${N.clients}+ Businesses | IC Accounting`,
-    description: `Accounting, year-end financial statements, company registration and Visa & Work Permit, all in one place. Over ${N.years} years of experience looking after more than ${N.clients} businesses in Chiang Mai and across Thailand. Free consultation on LINE.`,
+    title: 'A Modern Accounting Firm in Chiang Mai, Your Personal Business Advisor | IC Accounting',
+    description: `A modern accounting firm run by a young team with over ${N.years} years of experience, acting as a personal advisor to your business. Accounting, year-end financial statements, company registration and Visa & Work Permit for more than ${N.clients} businesses across Thailand. Free consultation on LINE.`,
     ogImageAlt: 'IC Accounting & Service, an accounting firm in Chiang Mai',
   },
   faqSchema: [

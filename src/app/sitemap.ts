@@ -39,7 +39,7 @@ const staticRoutes: Array<{
   /** วันที่เนื้อหาเฉพาะของหน้านั้นเปลี่ยนล่าสุด (YYYY-MM-DD) ถ้าไม่ใส่ใช้ SHARED_LAYOUT_UPDATED */
   lastModified?: string;
 }> = [
-  { path: '/', priority: 1.0, changeFrequency: 'weekly', lastModified: '2026-10-11' },
+  { path: '/', priority: 1.0, changeFrequency: 'weekly', lastModified: '2026-10-22' },
 
   // หน้าบริการ — เป็นหน้าที่ต้องแบกคำค้นเชิงพาณิชย์ จึงให้ priority สูงรองจากหน้าแรก
   { path: '/accounting-services', priority: 0.9, changeFrequency: 'monthly', lastModified: '2026-10-15' },
@@ -54,7 +54,7 @@ const staticRoutes: Array<{
   // หน้าอังกฤษที่เหลือทั้งหมด — priority ต่ำเพราะเป้าหมายของเว็บยังเป็นคำค้นภาษาไทย
   // หน้าเหล่านี้มีไว้รองรับชาวต่างชาติที่เข้ามาในเว็บแล้ว ไม่ได้ทำไว้ไล่อันดับคำอังกฤษ
   // แต่ต้องอยู่ใน sitemap เพื่อให้ Google เห็นคู่ hreflang ครบ
-  { path: '/en', priority: 0.5, changeFrequency: 'monthly', lastModified: '2026-10-11' },
+  { path: '/en', priority: 0.5, changeFrequency: 'monthly', lastModified: '2026-10-22' },
   { path: '/en/quote', priority: 0.5, changeFrequency: 'monthly', lastModified: '2026-10-07' },
   { path: '/en/company-registration', priority: 0.5, changeFrequency: 'monthly', lastModified: '2026-10-07' },
   { path: '/en/accounting-services', priority: 0.5, changeFrequency: 'monthly', lastModified: '2026-10-15' },

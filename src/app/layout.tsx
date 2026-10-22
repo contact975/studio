@@ -7,6 +7,7 @@ import { AOSProvider } from '@/components/aos-provider';
 import { GoogleAnalytics } from '@/components/analytics/google-analytics';
 import { ConversionTracking } from '@/components/analytics/conversion-tracking';
 import { TaxCalculatorBubble } from '@/components/landing/tax-calculator-bubble';
+import { homeContent } from '@/components/landing/home-content';
 
 const kanit = Kanit({
   subsets: ['latin'],
@@ -25,9 +26,10 @@ const kanit = Kanit({
  * ของใหม่: คีย์เวิร์ดหลักมาก่อน + ตัวเลขพิสูจน์ตัวตน + แบรนด์ปิดท้าย
  * (ตัวเลข 100 ธุรกิจ / 10 ปี อ้างอิงจากข้อความที่ใช้อยู่แล้วในหน้าเว็บ)
  */
-const SITE_TITLE = 'สำนักงานบัญชีเชียงใหม่ ดูแลกว่า 100 ธุรกิจ | IC Accounting';
-const SITE_DESCRIPTION =
-  'รับทำบัญชี ปิดงบการเงิน จดทะเบียนบริษัท และ Visa & Work Permit ครบจบที่เดียว ประสบการณ์กว่า 10 ปี ดูแลกว่า 100 ธุรกิจในเชียงใหม่และทั่วประเทศ ปรึกษาฟรีทาง LINE';
+// ข้อความจริงอยู่ที่ meta ของ components/landing/home-content.ts ที่เดียว (หน้าแรกใช้ชุดเดียวกัน)
+// เดิมพิมพ์ซ้ำไว้ที่นี่ ถ้าแก้ที่หนึ่งแล้วลืมอีกที่ หน้าที่ไม่มี title ของตัวเองจะค้างข้อความเก่า
+const SITE_TITLE = homeContent.th.meta.title;
+const SITE_DESCRIPTION = homeContent.th.meta.description;
 
 export const metadata: Metadata = {
   // ทำให้ path แบบสั้น เช่น canonical: '/' ขยายเป็น URL เต็มได้ถูกต้อง
