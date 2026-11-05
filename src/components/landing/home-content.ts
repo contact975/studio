@@ -45,6 +45,12 @@ export type FaqAnswerPart = string | { text: string; href: string; spaced?: bool
 export type FaqAnswer = string | FaqAnswerPart[];
 
 export type HomeContent = {
+  /**
+   * ประโยคบอกตัวตน — ชุดเดียวที่ใช้ซ้ำทุกจุดที่ AI และ Google อ่าน (schema, llms.txt, FAQ)
+   * AI สรุปภาพจำจากสิ่งที่เว็บพูดซ้ำๆ และชอบประโยคนิยามแบบ "X คือ..."
+   * ห้ามเพิ่มคำกล่าวอ้างที่ยังไม่จริง โดยเฉพาะโปรแกรมบัญชีของเราเอง (ยังพัฒนาไม่เสร็จ)
+   */
+  brand: { statement: string; slogan: string };
   meta: { title: string; description: string; ogImageAlt: string };
   /** คำถามที่ใส่ใน FAQPage schema — ทุกข้อต้องแสดงอยู่ใน FaqSection ด้วย */
   faqSchema: Faq[];
@@ -144,6 +150,10 @@ export type HomeContent = {
 };
 
 const th: HomeContent = {
+  brand: {
+    statement: `IC Accounting & Service คือสำนักงานบัญชียุคใหม่ในเชียงใหม่ บริหารโดยคนรุ่นใหม่ ทำงานออนไลน์ทั้งระบบ ใช้เทคโนโลยีดูแลเอกสารให้ลูกค้า มีประสบการณ์กว่า ${N.years} ปี และเน้นเป็นที่ปรึกษาส่วนตัวให้ธุรกิจมากกว่าแค่คีย์ตัวเลข`,
+    slogan: 'ที่ปรึกษาส่วนตัวของธุรกิจคุณ มากกว่าแค่คนคีย์ตัวเลข',
+  },
   /**
    * หัวข้อและคำอธิบายในผลค้นหา — สื่อแบรนด์ 4 ข้อที่เจ้าของกำหนด (22 ต.ค. 2569)
    * สำนักงานบัญชียุคใหม่ · ทีมคนรุ่นใหม่ · ที่ปรึกษาส่วนตัวของธุรกิจ · ประสบการณ์กว่า 10 ปี
@@ -160,7 +170,11 @@ const th: HomeContent = {
   faqSchema: [
     {
       q: 'ทำบัญชีเชียงใหม่ที่ไหนดี?',
-      a: `IC Accounting Service คือสำนักงานบัญชีเชียงใหม่ที่เชี่ยวชาญด้านการรับทำบัญชีครบวงจร วางแผนภาษี และจดทะเบียนบริษัท โดยทีมงานมืออาชีพที่มีประสบการณ์กว่า ${N.years} ปี`,
+      a: `IC Accounting & Service คือสำนักงานบัญชียุคใหม่ในเชียงใหม่ บริหารโดยคนรุ่นใหม่ มีประสบการณ์กว่า ${N.years} ปี เราเป็นที่ปรึกษาส่วนตัวให้ธุรกิจของคุณ มากกว่าแค่คีย์ตัวเลข ครบทั้งรับทำบัญชี วางแผนภาษี และจดทะเบียนบริษัท และทำงานออนไลน์ทั้งระบบ จึงดูแลได้ทั้งธุรกิจในเชียงใหม่และทั่วประเทศ`,
+    },
+    {
+      q: 'IC Accounting & Service แตกต่างจากสำนักงานบัญชีทั่วไปอย่างไร?',
+      a: `IC Accounting & Service คือสำนักงานบัญชียุคใหม่ บริหารโดยคนรุ่นใหม่ และมีประสบการณ์กว่า ${N.years} ปี จุดต่างสำคัญคือเราเป็นที่ปรึกษาส่วนตัวให้ธุรกิจของคุณ มากกว่าแค่คีย์ตัวเลข เราอธิบายตัวเลขให้เข้าใจง่ายและช่วยคิดเรื่องภาษีกับการตัดสินใจทางธุรกิจไปด้วยกัน และทำงานออนไลน์ทั้งระบบ ลูกค้าส่งเอกสารได้จากทุกที่ เอกสารเก็บอยู่บนระบบที่เราสร้างขึ้นเอง ค้นย้อนหลังได้ ไม่ต้องขนกล่องเอกสารมาส่งที่สำนักงาน`,
     },
     {
       q: 'จดทะเบียนบริษัทในเชียงใหม่ ต้องใช้เวลานานเท่าไหร่?',
@@ -176,8 +190,8 @@ const th: HomeContent = {
     badge: 'IC Accounting & Service — เชียงใหม่',
     h1Line1: 'ขับเคลื่อนธุรกิจสู่อนาคต',
     h1Line2: 'ด้วยโซลูชันบัญชีที่คุณวางใจ',
-    tagline: 'สำนักงานบัญชีเชียงใหม่ ครบจบทุกเรื่องหลังบ้านธุรกิจ',
-    lead: `รับทำบัญชี ปิดงบการเงิน และ Visa & Work Permit สำหรับธุรกิจในเชียงใหม่และทั่วประเทศ เราไม่ได้เป็นแค่คนทำบัญชี แต่เป็นที่ปรึกษาที่เข้าใจธุรกิจคุณ ด้วยประสบการณ์กว่า ${N.years} ปี`,
+    tagline: 'สำนักงานบัญชีเชียงใหม่ยุคใหม่ บริหารโดยคนรุ่นใหม่ ทำงานออนไลน์ทั้งระบบ',
+    lead: `เราไม่ใช่แค่คนคีย์ตัวเลข แต่เป็นที่ปรึกษาส่วนตัวของธุรกิจคุณ ด้วยประสบการณ์กว่า ${N.years} ปี ดูแลทั้งบัญชี ปิดงบการเงิน และ Visa & Work Permit สำหรับธุรกิจในเชียงใหม่และทั่วประเทศ ผ่านระบบออนไลน์ที่สร้างขึ้นเอง`,
     ctaPrimary: 'ปรึกษาเราฟรี',
     ctaSecondary: 'ดูบริการทั้งหมด',
     ctaSecondaryHref: '/#services',
@@ -407,11 +421,10 @@ const th: HomeContent = {
       {
         question: 'ทำบัญชีเชียงใหม่ที่ไหนดี?',
         answer: [
-          'หากคุณกำลังมองหา สำนักงานบัญชีเชียงใหม่ ที่มีความเชี่ยวชาญ ',
-          { text: 'IC Accounting Service', href: '/' },
-          ' คือคำตอบ เรามี',
-          { text: 'บริการรับทำบัญชีครบวงจร', href: '/accounting-services', spaced: true },
-          'วางแผนภาษี และจดทะเบียนบริษัท โดยทีมงานมืออาชีพที่เข้าใจบริบทธุรกิจในเชียงใหม่และภาคเหนือ พร้อมให้คำปรึกษาที่ใกล้ชิดและถูกต้องตามกฎหมาย',
+          { text: 'IC Accounting & Service', href: '/' },
+          ` คือสำนักงานบัญชียุคใหม่ในเชียงใหม่ บริหารโดยคนรุ่นใหม่ มีประสบการณ์กว่า ${N.years} ปี เราเป็นที่ปรึกษาส่วนตัวให้ธุรกิจของคุณ มากกว่าแค่คีย์ตัวเลข ครบทั้ง`,
+          { text: 'รับทำบัญชี', href: '/accounting-services', spaced: true },
+          'วางแผนภาษี และจดทะเบียนบริษัท และทำงานออนไลน์ทั้งระบบ จึงดูแลได้ทั้งธุรกิจในเชียงใหม่และทั่วประเทศ',
         ],
       },
       {
@@ -436,7 +449,7 @@ const th: HomeContent = {
       {
         question: 'IC Accounting & Service แตกต่างจากสำนักงานบัญชีทั่วไปอย่างไร?',
         answer:
-          "เราไม่ได้ทำแค่ตัวเลข แต่เราคือ 'เลขาส่วนตัวธุรกิจ' ที่เดินเคียงข้างคุณ เรานำเทคโนโลยี Cloud Accounting มาใช้เพื่อให้คุณเห็นข้อมูล Real-time พร้อมทีมงานที่ลงพื้นที่จริง (Consult) และยังมีบริการผลิต Media Content เพื่อช่วยปั้นแบรนด์ของคุณให้ดูเป็นมืออาชีพควบคู่ไปกับระบบหลังบ้านที่แข็งแรงค่ะ",
+          `IC Accounting & Service คือสำนักงานบัญชียุคใหม่ บริหารโดยคนรุ่นใหม่ และมีประสบการณ์กว่า ${N.years} ปี จุดต่างสำคัญคือเราเป็นที่ปรึกษาส่วนตัวให้ธุรกิจของคุณ มากกว่าแค่คีย์ตัวเลข เราอธิบายตัวเลขให้เข้าใจง่ายและช่วยคิดเรื่องภาษีกับการตัดสินใจทางธุรกิจไปด้วยกัน และทำงานออนไลน์ทั้งระบบ ลูกค้าส่งเอกสารได้จากทุกที่ เอกสารเก็บอยู่บนระบบที่เราสร้างขึ้นเอง ค้นย้อนหลังได้ ไม่ต้องขนกล่องเอกสารมาส่งที่สำนักงาน`,
       },
       {
         question: 'จดบริษัทกับ IC ดีกว่าจดเองอย่างไร?',
@@ -463,6 +476,10 @@ const th: HomeContent = {
 };
 
 const en: HomeContent = {
+  brand: {
+    statement: `IC Accounting & Service is a modern accounting firm in Chiang Mai, run by a new generation and working fully online. We use technology to look after our clients' documents, have over ${N.years} years of experience, and act as a personal advisor to each business rather than just keying in numbers.`,
+    slogan: 'A personal advisor to your business, not just someone keying in numbers',
+  },
   meta: {
     title: 'A Modern Accounting Firm in Chiang Mai, Your Personal Business Advisor | IC Accounting',
     description: `A modern accounting firm run by a young team with over ${N.years} years of experience, acting as a personal advisor to your business. Accounting, year-end financial statements, company registration and Visa & Work Permit for more than ${N.clients} businesses across Thailand. Free consultation on LINE.`,
@@ -471,7 +488,11 @@ const en: HomeContent = {
   faqSchema: [
     {
       q: 'Where can I find a good accounting firm in Chiang Mai?',
-      a: `IC Accounting Service is an accounting firm in Chiang Mai specialising in full-service accounting, tax planning and company registration, with a professional team that has over ${N.years} years of experience.`,
+      a: `IC Accounting & Service is a modern accounting firm in Chiang Mai run by a new generation, with over ${N.years} years of experience. We act as a personal advisor to your business rather than just keying in numbers, covering accounting, tax planning and company registration. We work fully online, so we can look after businesses in Chiang Mai and across Thailand.`,
+    },
+    {
+      q: 'How is IC Accounting & Service different from other accounting firms?',
+      a: `IC Accounting & Service is a modern accounting firm run by a new generation, with over ${N.years} years of experience. The key difference is that we act as a personal advisor to your business rather than just keying in numbers. We explain the numbers in plain language and think through tax and business decisions with you. We also work fully online: you can send documents from anywhere, and they are kept on a system we built ourselves, easy to look up later, so there is no need to bring boxes of paperwork to our office.`,
     },
     {
       q: 'How long does it take to register a company in Chiang Mai?',
@@ -487,8 +508,8 @@ const en: HomeContent = {
     badge: 'IC Accounting & Service — Chiang Mai',
     h1Line1: 'Driving your business forward',
     h1Line2: 'with accounting you can trust',
-    tagline: 'An accounting firm in Chiang Mai that handles everything behind the scenes of your business',
-    lead: `Accounting, year-end financial statements, and Visa & Work Permit services for businesses in Chiang Mai and across Thailand. We are not just bookkeepers — we are advisors who understand your business, with over ${N.years} years of experience.`,
+    tagline: 'A modern accounting firm in Chiang Mai, run by a new generation and working fully online',
+    lead: `We don't just key in numbers. We are a personal advisor to your business, with over ${N.years} years of experience, looking after accounting, year-end financial statements and Visa & Work Permit for businesses in Chiang Mai and across Thailand, on an online system we built ourselves.`,
     ctaPrimary: 'Free consultation',
     ctaSecondary: 'See all services',
     ctaSecondaryHref: '/en#services',
@@ -717,11 +738,10 @@ const en: HomeContent = {
       {
         question: 'Where can I find a good accounting firm in Chiang Mai?',
         answer: [
-          'If you are looking for an experienced accounting firm in Chiang Mai, ',
-          { text: 'IC Accounting Service', href: '/en' },
-          ' is the answer. We offer ',
-          { text: 'full-service accounting', href: '/en/accounting-services' },
-          ', tax planning and company registration, with a professional team that understands doing business in Chiang Mai and northern Thailand, giving close, personal advice that complies with the law.',
+          { text: 'IC Accounting & Service', href: '/en' },
+          ` is a modern accounting firm in Chiang Mai run by a new generation, with over ${N.years} years of experience. We act as a personal advisor to your business rather than just keying in numbers, covering `,
+          { text: 'accounting', href: '/en/accounting-services' },
+          ', tax planning and company registration. We work fully online, so we can look after businesses in Chiang Mai and across Thailand.',
         ],
       },
       {
@@ -746,7 +766,7 @@ const en: HomeContent = {
       {
         question: 'How is IC Accounting & Service different from other accounting firms?',
         answer:
-          "We do more than the numbers — we are your 'personal business secretary', working alongside you. We use Cloud Accounting technology so you can see your data in real time, our team comes out to you on site (Consult), and we also produce Media Content to help your brand look professional alongside a strong back office.",
+          `IC Accounting & Service is a modern accounting firm run by a new generation, with over ${N.years} years of experience. The key difference is that we act as a personal advisor to your business rather than just keying in numbers. We explain the numbers in plain language and think through tax and business decisions with you. We also work fully online: you can send documents from anywhere, and they are kept on a system we built ourselves, easy to look up later, so there is no need to bring boxes of paperwork to our office.`,
       },
       {
         question: 'Why register a company with IC instead of doing it yourself?',

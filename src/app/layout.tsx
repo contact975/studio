@@ -81,7 +81,10 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     "url": "https://icaccservice.com",
     "telephone": "095-716-1422",
     "email": "contact@icaccservice.com",
-    "description": "สำนักงานบัญชีเชียงใหม่ ครบวงจร ทำบัญชี วางแผนภาษี จดทะเบียนธุรกิจ และผลิตมีเดียคอนเทนต์",
+    // ประโยคบอกตัวตนชุดเดียวกับ FAQ และ llms.txt — AI ใช้ช่องนี้สรุปว่าเราเป็นใคร
+    "description": homeContent.th.brand.statement,
+    "slogan": homeContent.th.brand.slogan,
+    "knowsAbout": ["การทำบัญชี", "ภาษีธุรกิจ", "ปิดงบการเงิน", "จดทะเบียนบริษัท", "ที่ปรึกษาธุรกิจ SME", "ระบบบัญชีและเอกสารออนไลน์", "Visa & Work Permit"],
     "address": { "@type": "PostalAddress", "streetAddress": "80/142 ต.สันปู่เลย อ.ดอยสะเก็ด", "addressLocality": "เชียงใหม่", "postalCode": "50220", "addressCountry": "TH" },
     // พิกัดชุดเดิม (18.8796, 99.0353) อยู่ห่างจากที่ตั้งจริงราว 11 กม.
     // ชุดนี้ตรงกับหมุดใน Google Business Profile ซึ่งเป็นหมุดเดียวกับแผนที่ในฟุตเตอร์

@@ -1,3 +1,4 @@
+import { homeContent } from '@/components/landing/home-content';
 /**
  * ตัวช่วยสร้าง JSON-LD (structured data) สำหรับหน้าบริการ
  *
@@ -18,6 +19,8 @@ const PROVIDER = {
   url: SITE_URL,
   telephone: '095-716-1422',
   email: 'contact@icaccservice.com',
+  // ประโยคบอกตัวตนชุดเดียวกันทั้งเว็บ จะได้ติดไปกับข้อมูลของหน้าบริการทุกหน้า
+  description: homeContent.th.brand.statement,
   address: {
     '@type': 'PostalAddress',
     streetAddress: '80/142 ต.สันปู่เลย อ.ดอยสะเก็ด',
