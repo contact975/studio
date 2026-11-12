@@ -42,6 +42,12 @@ export const blogMeta: Record<string, { title: string; description: string; imag
     image: 'https://icaccservice.com/images/blog/corporate-tax-calendar-thailand.jpg',
     lastModified: '2026-09-20',
   },
+  'online-seller-vat-shopee-lazada-tiktok': {
+    title: 'แม่ค้าออนไลน์ Shopee Lazada TikTok Shop ต้องจด VAT เมื่อไร',
+    description: 'ร้านค้าออนไลน์นับยอดขายเต็มก่อนหักค่าธรรมเนียม รวมทุกแพลตฟอร์มเกิน 1.8 ล้านต้องจด VAT ภายใน 30 วัน อธิบายวิธีนับยอด สิ่งที่เปลี่ยนหลังจด และเอกสารที่ต้องเก็บ',
+    image: 'https://icaccservice.com/images/blog/online-seller-vat-shopee-lazada-tiktok.jpg',
+    lastModified: '2026-11-12',
+  },
   'late-financial-statement-penalty': {
     title: 'ไม่ปิดงบ ไม่ยื่นงบ โดนค่าปรับเท่าไร ตารางค่าปรับ DBD และสรรพากร',
     description: 'ส่งงบการเงินช้าโดนปรับทั้งบริษัทและกรรมการ 2,000–12,000 บาท ไม่ประชุมอนุมัติงบภายใน 4 เดือนปรับเพิ่มอีก รวมตารางค่าปรับ ตัวอย่างคำนวณ และเช็กลิสต์ก่อนปิดงบ',
