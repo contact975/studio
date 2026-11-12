@@ -4,7 +4,7 @@ import * as React from "react";
 import { useEffect, useRef, useState } from "react";
 import { ExternalLink, Star } from "lucide-react";
 import { SphereImageGrid, type ImageData } from "@/components/ui/img-sphere";
-import type { GoogleReviewsPayload } from "@/app/api/google-reviews/route";
+import type { GoogleReviewsPayload } from "@/lib/google-reviews";
 import { fill, type HomeContent } from "./home-content";
 
 /**
@@ -14,26 +14,38 @@ import { fill, type HomeContent } from "./home-content";
  * - กล่องคะแนน 5.0 / จำนวนรีวิว ใช้ค่าจริงจาก Google ถ้าดึงได้ ไม่ได้ก็ใช้ค่าตั้งต้น
  * - Google ให้รีวิวสูงสุด 5 รายการ จึงวนซ้ำรูปให้เต็มลูกบอล (~24 จุด) เหมือน demo ต้นฉบับ
  * - ยังไม่ตั้งค่า API key → แสดงแค่หัวข้อ + กล่องคะแนน เหมือนเดิม ไม่ error
+ *
+ * ── initial ──
+ * หน้าแรกดึงรีวิวฝั่งเซิร์ฟเวอร์แล้วส่งมาทาง initial ข้อความรีวิวจึงอยู่ใน HTML ตั้งแต่แรก
+ * (บอตที่ไม่รัน JavaScript มองเห็น) ถ้า initial ว่าง เช่นหน้าที่ build ไว้ตอนยังไม่มี key
+ * ค่อยดึงจาก /api/google-reviews หลังโหลดหน้าเหมือนเดิม
+ *
+ * การ์ดรีวิวใต้ลูกบอลแสดงข้อความ 3 รายการแรกให้อ่านได้ทันที ไม่ต้องกดลูกบอล
  */
+const VISIBLE_REVIEWS = 3;
 const FALLBACK_RATING = "5.0";
 const FALLBACK_TOTAL = "100+";
 const MAPS_URL = "https://maps.google.com/?cid=11080561333861967427";
 const SPHERE_NODE_TARGET = 30;
 
-function useGoogleReviews() {
-  const [data, setData] = useState<GoogleReviewsPayload | null>(null);
+const usable = (p?: GoogleReviewsPayload | null) => (p?.configured && p.reviews.length ? p : null);
+
+function useGoogleReviews(initial?: GoogleReviewsPayload) {
+  const [data, setData] = useState<GoogleReviewsPayload | null>(() => usable(initial));
+  const hasData = data !== null;
   useEffect(() => {
+    if (hasData) return;
     let cancelled = false;
     fetch("/api/google-reviews")
       .then((r) => (r.ok ? r.json() : null))
       .then((json: GoogleReviewsPayload | null) => {
-        if (!cancelled && json?.configured && json.reviews.length) setData(json);
+        if (!cancelled && usable(json)) setData(json);
       })
       .catch(() => {});
     return () => {
       cancelled = true;
     };
-  }, []);
+  }, [hasData]);
   return data;
 }
 
@@ -49,10 +61,10 @@ function useSphereSize() {
   return size;
 }
 
-export function TestimonialsSection({ c }: { c: HomeContent['testimonials'] }) {
+export function TestimonialsSection({ c, initial }: { c: HomeContent['testimonials']; initial?: GoogleReviewsPayload }) {
   const headerRef = useRef<HTMLDivElement>(null);
   const [headerVis, setHeaderVis] = useState(false);
-  const reviews = useGoogleReviews();
+  const reviews = useGoogleReviews(initial);
   const sphereSize = useSphereSize();
 
   useEffect(() => {
@@ -163,16 +175,37 @@ export function TestimonialsSection({ c }: { c: HomeContent['testimonials'] }) {
                 {c.seeAll}
               </a>
             </p>
+          </div>
+        )}
 
-            {/* รายการรีวิวแบบข้อความ — ให้ Google และ screen reader อ่านได้ ไม่ต้องกดลูกบอล */}
+        {reviews && (
+          <>
+            {/* ข้อความรีวิวให้อ่านได้ทันที ไม่ต้องกดลูกบอล — บอตและ screen reader ก็อ่านได้ */}
+            <ul className="mt-12 grid gap-4 md:grid-cols-3">
+              {reviews.reviews.slice(0, VISIBLE_REVIEWS).map((r) => (
+                <li key={r.id} className="flex flex-col gap-4 rounded-2xl border border-border bg-secondary/40 p-6">
+                  <div className="flex gap-0.5" role="img" aria-label={`${r.rating}/5`}>
+                    {[1, 2, 3, 4, 5].map((i) => (
+                      <Star key={i} className={i <= r.rating ? "h-4 w-4 fill-yellow-400 text-yellow-400" : "h-4 w-4 text-gray-300"} />
+                    ))}
+                  </div>
+                  <p className="line-clamp-6 flex-1 text-sm leading-relaxed text-foreground">{r.text}</p>
+                  <p className="text-xs text-muted-foreground">
+                    <span className="font-semibold text-foreground">{r.author}</span>
+                    {r.relativeTime ? ` · ${r.relativeTime}` : ""} · Google Reviews
+                  </p>
+                </li>
+              ))}
+            </ul>
+            {/* รีวิวที่เหลือ (Google ให้สูงสุด 5) ยังอยู่ในลูกบอล ใส่เป็นข้อความไว้ให้บอตและ screen reader */}
             <ul className="sr-only">
-              {reviews?.reviews.map((r) => (
+              {reviews.reviews.slice(VISIBLE_REVIEWS).map((r) => (
                 <li key={r.id}>
                   {fill(c.srItem, { name: r.author, rating: r.rating, text: r.text })}
                 </li>
               ))}
             </ul>
-          </div>
+          </>
         )}
       </div>
     </section>

@@ -163,8 +163,8 @@ const th: HomeContent = {
    * app/layout.tsx ดึงค่าชุดนี้ไปใช้เป็นค่าตั้งต้นของทั้งเว็บ แก้ที่นี่ที่เดียว
    */
   meta: {
-    title: 'สำนักงานบัญชีเชียงใหม่ยุคใหม่ ที่ปรึกษาส่วนตัวของธุรกิจคุณ | IC Accounting',
-    description: `สำนักงานบัญชียุคใหม่ ดูแลโดยทีมคนรุ่นใหม่ ประสบการณ์กว่า ${N.years} ปี เป็นที่ปรึกษาส่วนตัวให้ธุรกิจคุณ ครบทั้งรับทำบัญชี ปิดงบการเงิน จดทะเบียนบริษัท และ Visa & Work Permit ดูแลกว่า ${N.clients} ธุรกิจทั่วประเทศ ปรึกษาฟรีทาง LINE`,
+    title: 'สำนักงานบัญชีเชียงใหม่ยุคใหม่ ที่ปรึกษาส่วนตัวธุรกิจ | IC Accounting',
+    description: `สำนักงานบัญชียุคใหม่ ดูแลโดยคนรุ่นใหม่ ประสบการณ์กว่า ${N.years} ปี เป็นที่ปรึกษาส่วนตัวให้ธุรกิจคุณ ครบทั้งบัญชี ภาษี จดบริษัท ดูแลกว่า ${N.clients} ธุรกิจทั่วประเทศ ปรึกษาฟรีทาง LINE`,
     ogImageAlt: 'สำนักงานบัญชีเชียงใหม่ IC Accounting & Service',
   },
   faqSchema: [
@@ -188,9 +188,9 @@ const th: HomeContent = {
   homeHref: '/',
   hero: {
     badge: 'IC Accounting & Service — เชียงใหม่',
-    h1Line1: 'ขับเคลื่อนธุรกิจสู่อนาคต',
-    h1Line2: 'ด้วยโซลูชันบัญชีที่คุณวางใจ',
-    tagline: 'สำนักงานบัญชีเชียงใหม่ยุคใหม่ บริหารโดยคนรุ่นใหม่ ทำงานออนไลน์ทั้งระบบ',
+    h1Line1: 'สำนักงานบัญชีเชียงใหม่',
+    h1Line2: 'ที่ปรึกษาส่วนตัวของธุรกิจคุณ',
+    tagline: 'สำนักงานบัญชียุคใหม่ บริหารโดยคนรุ่นใหม่ ทำงานออนไลน์ทั้งระบบ ดูแลทั่วเชียงใหม่และทั่วประเทศ',
     lead: `เราไม่ใช่แค่คนคีย์ตัวเลข แต่เป็นที่ปรึกษาส่วนตัวของธุรกิจคุณ ด้วยประสบการณ์กว่า ${N.years} ปี ดูแลทั้งบัญชี ปิดงบการเงิน และ Visa & Work Permit สำหรับธุรกิจในเชียงใหม่และทั่วประเทศ ผ่านระบบออนไลน์ที่สร้างขึ้นเอง`,
     ctaPrimary: 'ปรึกษาเราฟรี',
     ctaSecondary: 'ดูบริการทั้งหมด',
@@ -481,8 +481,8 @@ const en: HomeContent = {
     slogan: 'A personal advisor to your business, not just someone keying in numbers',
   },
   meta: {
-    title: 'A Modern Accounting Firm in Chiang Mai, Your Personal Business Advisor | IC Accounting',
-    description: `A modern accounting firm run by a young team with over ${N.years} years of experience, acting as a personal advisor to your business. Accounting, year-end financial statements, company registration and Visa & Work Permit for more than ${N.clients} businesses across Thailand. Free consultation on LINE.`,
+    title: 'A Modern Accounting Firm in Chiang Mai | IC Accounting',
+    description: `A modern accounting firm in Chiang Mai with over ${N.years} years of experience and a personal advisor for your business: accounting, tax, company setup and work permits.`,
     ogImageAlt: 'IC Accounting & Service, an accounting firm in Chiang Mai',
   },
   faqSchema: [
@@ -506,9 +506,9 @@ const en: HomeContent = {
   homeHref: '/en',
   hero: {
     badge: 'IC Accounting & Service — Chiang Mai',
-    h1Line1: 'Driving your business forward',
-    h1Line2: 'with accounting you can trust',
-    tagline: 'A modern accounting firm in Chiang Mai, run by a new generation and working fully online',
+    h1Line1: 'Accounting firm in Chiang Mai',
+    h1Line2: 'Your personal business advisor',
+    tagline: 'A modern firm run by a new generation, working fully online for businesses across Chiang Mai and Thailand',
     lead: `We don't just key in numbers. We are a personal advisor to your business, with over ${N.years} years of experience, looking after accounting, year-end financial statements and Visa & Work Permit for businesses in Chiang Mai and across Thailand, on an online system we built ourselves.`,
     ctaPrimary: 'Free consultation',
     ctaSecondary: 'See all services',

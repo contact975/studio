@@ -15,6 +15,7 @@ import { ClientsSection } from '@/components/landing/clients-section';
 import { ServiceAreaSection } from '@/components/landing/service-area-section';
 import { PromoCarousel } from '@/components/landing/promo-carousel';
 import type { HomeContent } from '@/components/landing/home-content';
+import type { GoogleReviewsPayload } from '@/lib/google-reviews';
 
 /**
  * markup ของหน้าแรก ใช้ร่วมกันทั้ง / (ไทย) และ /en (อังกฤษ)
@@ -22,7 +23,7 @@ import type { HomeContent } from '@/components/landing/home-content';
  * ลำดับ section และดีไซน์จึงต่างกันไม่ได้ ต่างแค่ข้อความใน home-content.ts
  * lang ใส่ที่ <main> เฉพาะหน้าอังกฤษ เพราะ <html> ของทั้งเว็บเป็น lang="th"
  */
-export function HomeTemplate({ c, lang }: { c: HomeContent; lang?: 'en' }) {
+export function HomeTemplate({ c, lang, reviews }: { c: HomeContent; lang?: 'en'; reviews?: GoogleReviewsPayload }) {
   return (
     <div className="flex flex-col min-h-dvh bg-background text-foreground">
       <Header />
@@ -45,7 +46,7 @@ export function HomeTemplate({ c, lang }: { c: HomeContent; lang?: 'en' }) {
           <BehindTheScenesSection c={c.behindTheScenes} />
         </div>
         <div data-aos="fade-up">
-          <TestimonialsSection c={c.testimonials} />
+          <TestimonialsSection c={c.testimonials} initial={reviews} />
         </div>
         <div data-aos="fade-up">
           <ActivitiesSection c={c.activities} />

@@ -3,6 +3,7 @@ import { JsonLd } from '@/components/seo/json-ld';
 import { faqSchema } from '@/lib/seo';
 import { HomeTemplate } from '@/components/landing/home-template';
 import { homeContent } from '@/components/landing/home-content';
+import { getGoogleReviews } from '@/lib/google-reviews';
 
 /**
  * หน้าแรก ฉบับภาษาไทย
@@ -43,11 +44,21 @@ export const metadata: Metadata = {
   },
 };
 
-export default function Home() {
+/**
+ * รีวิว Google ดึงฝั่งเซิร์ฟเวอร์ ให้ข้อความรีวิวอยู่ใน HTML (ดู lib/google-reviews.ts)
+ *
+ * GOOGLE_PLACES_API_KEY มีให้เฉพาะตอนรัน ไม่มีตอน build (apphosting.yaml)
+ * HTML ที่ build ไว้จึงยังไม่มีรีวิว — revalidate ทุก 1 ชม. ให้หน้าถูกสร้างใหม่ตอนรันพร้อมรีวิว
+ * ระหว่างนั้นคอมโพเนนต์ยังดึงรีวิวเองหลังโหลดหน้าเหมือนเดิม คนเปิดเว็บจึงเห็นรีวิวตลอด
+ */
+export const revalidate = 3600;
+
+export default async function Home() {
+  const { payload: reviews } = await getGoogleReviews();
   return (
     <>
       <JsonLd data={faqSchema(c.faqSchema)} />
-      <HomeTemplate c={c} />
+      <HomeTemplate c={c} reviews={reviews} />
     </>
   );
 }

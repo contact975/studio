@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { Star } from 'lucide-react';
-import type { GoogleReviewsPayload } from '@/app/api/google-reviews/route';
+import type { GoogleReviewsPayload } from '@/lib/google-reviews';
 
 /**
  * แถบคะแนน Google แบบสด — ใช้บนหน้าที่ยังไม่มี social proof เลย

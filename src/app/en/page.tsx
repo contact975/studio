@@ -3,6 +3,7 @@ import { JsonLd } from '@/components/seo/json-ld';
 import { faqSchema } from '@/lib/seo';
 import { HomeTemplate } from '@/components/landing/home-template';
 import { homeContent } from '@/components/landing/home-content';
+import { getGoogleReviews } from '@/lib/google-reviews';
 
 /**
  * หน้าแรก ฉบับภาษาอังกฤษ /en
@@ -36,11 +37,15 @@ export const metadata: Metadata = {
   },
 };
 
-export default function EnglishHome() {
+/** รีวิวฝั่งเซิร์ฟเวอร์ — เหตุผลอยู่ที่ app/page.tsx */
+export const revalidate = 3600;
+
+export default async function EnglishHome() {
+  const { payload: reviews } = await getGoogleReviews();
   return (
     <>
       <JsonLd data={faqSchema(c.faqSchema)} />
-      <HomeTemplate c={c} lang="en" />
+      <HomeTemplate c={c} lang="en" reviews={reviews} />
     </>
   );
 }
