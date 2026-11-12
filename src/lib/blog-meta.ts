@@ -12,6 +12,8 @@
  * ให้ไฟล์ route (layout/page) export ตัวแปรอื่นนอกจากที่กำหนดไว้
  * (TS2344: Property 'blogMeta' is incompatible with index signature)
  */
+import { SMART_MIN_PRICE, formatPrice } from '@/lib/accounting-packages';
+
 export const blogMeta: Record<string, { title: string; description: string; image: string; lastModified?: string }> = {
   // ── ชุดใหม่ ก.ย. 2569 (เนื้อหาอยู่ใน lib/blog-posts.ts) ──
   'vat-registration-when-required': {
@@ -37,6 +39,12 @@ export const blogMeta: Record<string, { title: string; description: string; imag
     description: 'กำหนดยื่นภาษีและเอกสารราชการของบริษัทจำกัดทั้งปี ทั้งรายเดือน ภ.ง.ด.1/3/53 ภ.พ.30 ประกันสังคม และรายปี AGM ส่งงบ DBD ภ.ง.ด.50/51 พร้อมค่าปรับ',
     image: 'https://icaccservice.com/images/blog/corporate-tax-calendar-thailand.jpg',
     lastModified: '2026-09-20',
+  },
+  'late-financial-statement-penalty': {
+    title: 'ไม่ปิดงบ ไม่ยื่นงบ โดนค่าปรับเท่าไร ตารางค่าปรับ DBD และสรรพากร',
+    description: 'ส่งงบการเงินช้าโดนปรับทั้งบริษัทและกรรมการ 2,000–12,000 บาท ไม่ประชุมอนุมัติงบภายใน 4 เดือนปรับเพิ่มอีก รวมตารางค่าปรับ ตัวอย่างคำนวณ และเช็กลิสต์ก่อนปิดงบ',
+    image: 'https://icaccservice.com/images/blog/late-financial-statement-penalty.jpg',
+    lastModified: '2026-11-12',
   },
   'deductible-expenses-sme': {
     title: 'ค่าใช้จ่ายแบบไหนหักภาษีได้ แบบไหนโดนบวกกลับ คู่มือ SME',
@@ -76,9 +84,10 @@ export const blogMeta: Record<string, { title: string; description: string; imag
   },
   'accounting-fee-chiangmai': {
     title: 'ค่าทำบัญชีเชียงใหม่ ราคาเท่าไหร่ เทียบค่าบริการ',
-    description: 'ค่าทำบัญชีเชียงใหม่เริ่มต้นที่ 1,500 บาท/เดือน เปรียบเทียบค่าบริการตามขนาดธุรกิจ และช่วยให้คุณเลือกสำนักงานบัญชีได้คุ้มค่าที่สุด',
+    // ราคาเริ่มต้นดึงจากไฟล์กลาง และต้องมีคำกำกับว่าเลือกเฉพาะรายการได้ (ดู CLAUDE.md ข้อ 1)
+    description: `ค่าทำบัญชีเชียงใหม่เริ่มต้น ${formatPrice(SMART_MIN_PRICE)} บาท/เดือน เมื่อเลือกเฉพาะรายการ ราคาเพิ่มตามบริการที่ใช้ เปรียบเทียบค่าบริการตามขนาดธุรกิจ และวิธีเลือกสำนักงานบัญชีให้คุ้มค่า`,
     image: 'https://icaccservice.com/images/blog/accounting-fee-chiangmai.jpg',
-    lastModified: '2026-09-26',
+    lastModified: '2026-11-12',
   },
   'company-registration-chiangmai': {
     title: 'จดทะเบียนบริษัทเชียงใหม่ ขั้นตอน เอกสาร ค่าใช้จ่าย',

@@ -12,7 +12,9 @@
  * ออก 2 ไฟล์ต่อบทความ: .webp สำหรับในหน้าเว็บ และ .jpg สำหรับ og:image
  * (Facebook/LINE ยังอ่าน WebP ไม่ครบทุกที่)
  *
- * เพิ่มบทความใหม่: เพิ่ม 1 แถวใน COVERS แล้วรันสคริปต์นี้ซ้ำ
+ * เพิ่มบทความใหม่: เพิ่ม 1 แถวใน COVERS แล้วรันเฉพาะรูปนั้น
+ *   node scripts/generate-blog-covers.mjs <slug>
+ * (รันทั้งชุดบน Mac ภาพเก่าจะเปลี่ยนฟอนต์ เพราะเครื่องไม่มี Kanit/Leelawadee แบบที่ใช้เจนครั้งแรกบน Windows)
  */
 import { readFile, mkdir } from 'node:fs/promises';
 import path from 'node:path';
@@ -48,6 +50,7 @@ const COVERS = [
   ['director-salary-dividend-loan', 'wallet', 'เอาเงินออกจากบริษัท', 'เงินเดือน ปันผล หรือกู้ยืม', 'บัญชีธุรกิจ'],
   ['corporate-tax-calendar-thailand', 'calendar-days', 'ปฏิทินภาษีบริษัท', 'ยื่นอะไร เมื่อไหร่ ทั้งปี', 'ภาษีธุรกิจ'],
   ['deductible-expenses-sme', 'receipt-text', 'ค่าใช้จ่ายหักภาษีได้', 'แบบไหนโดนบวกกลับ', 'บัญชีธุรกิจ'],
+  ['late-financial-statement-penalty', 'gavel', 'ไม่ปิดงบ ไม่ยื่นงบ', 'โดนค่าปรับเท่าไร', 'ภาษีธุรกิจ'],
 ];
 
 /** อ่าน path ของไอคอนจาก lucide-react โดยตรง จะได้ตรงกับที่ใช้ในเว็บ 100% */
@@ -128,7 +131,12 @@ function svgFor({ icon, line1, line2, category }) {
 
 await mkdir(OUT, { recursive: true });
 let total = 0;
-for (const [slug, iconName, line1, line2, category] of COVERS) {
+// ส่ง slug มาเป็นอาร์กิวเมนต์ = เจนเฉพาะรูปนั้น
+const ONLY = process.argv[2];
+const TARGETS = ONLY ? COVERS.filter(([slug]) => slug === ONLY) : COVERS;
+if (ONLY && !TARGETS.length) throw new Error(`ไม่พบ ${ONLY} ใน COVERS`);
+
+for (const [slug, iconName, line1, line2, category] of TARGETS) {
   const icon = await iconMarkup(iconName);
   const svg = Buffer.from(svgFor({ icon, line1, line2, category }));
   const webp = await sharp(svg).webp({ quality: 82 }).toFile(path.join(OUT, `${slug}.webp`));
@@ -136,4 +144,4 @@ for (const [slug, iconName, line1, line2, category] of COVERS) {
   total += webp.size;
   console.log(`${slug.padEnd(44)} webp ${(webp.size / 1024).toFixed(0).padStart(3)} KB   jpg ${(jpg.size / 1024).toFixed(0).padStart(3)} KB`);
 }
-console.log(`\nรวม WebP ${COVERS.length} รูป = ${(total / 1024).toFixed(0)} KB`);
+console.log(`\nรวม WebP ${TARGETS.length} รูป = ${(total / 1024).toFixed(0)} KB`);
