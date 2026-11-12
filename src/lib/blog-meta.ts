@@ -13,6 +13,8 @@
  * (TS2344: Property 'blogMeta' is incompatible with index signature)
  */
 import { SMART_MIN_PRICE, formatPrice } from '@/lib/accounting-packages';
+import { HOME_NUMBERS } from '@/components/landing/home-content';
+import { REG_PRICES } from '@/app/company-registration/registration-content';
 
 export const blogMeta: Record<string, { title: string; description: string; image: string; lastModified?: string }> = {
   // ── ชุดใหม่ ก.ย. 2569 (เนื้อหาอยู่ใน lib/blog-posts.ts) ──
@@ -91,8 +93,10 @@ export const blogMeta: Record<string, { title: string; description: string; imag
   },
   'company-registration-chiangmai': {
     title: 'จดทะเบียนบริษัทเชียงใหม่ ขั้นตอน เอกสาร ค่าใช้จ่าย',
-    description: 'จดทะเบียนบริษัทเชียงใหม่ใช้เวลาเพียง 3-5 วันทำการ ค่าใช้จ่ายเริ่มต้น 5,000-8,000 บาท ครบทุกขั้นตอนตั้งแต่เตรียมเอกสารจนได้หนังสือรับรองบริษัท',
+    // ราคาและจำนวนวันดึงจากหน้าจดทะเบียน ให้ตรงกับที่หน้าบริการแสดง
+    description: `จดทะเบียนบริษัทเชียงใหม่เสร็จใน ${HOME_NUMBERS.registrationDays} วันทำการหลังเอกสารครบ ค่าบริการรวมค่าธรรมเนียม ห้างหุ้นส่วน ${REG_PRICES.partnership.price} บาท บริษัท ${REG_PRICES.company.price} บาท ครบทุกขั้นตอนจนได้หนังสือรับรอง`,
     image: 'https://icaccservice.com/images/blog/company-registration-chiangmai.jpg',
+    lastModified: '2026-11-12',
   },
   'how-to-choose-accounting-office-chiangmai': {
     title: 'เลือกสำนักงานบัญชีเชียงใหม่ 5 เกณฑ์ที่ต้องดู',
