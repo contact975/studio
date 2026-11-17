@@ -2,7 +2,15 @@
 
 import * as React from "react";
 import Link from "next/link";
-import { ArrowRight, PlayCircle } from 'lucide-react';
+import { ArrowRight, PlayCircle, Facebook, Instagram } from 'lucide-react';
+import { TikTok } from '@/components/icons/tiktok';
+import { SOCIAL_LINKS } from '@/lib/social-links';
+
+const SOCIALS = [
+  { href: SOCIAL_LINKS.facebook, label: 'Facebook', icon: Facebook },
+  { href: SOCIAL_LINKS.instagram, label: 'Instagram', icon: Instagram },
+  { href: SOCIAL_LINKS.tiktok, label: 'TikTok', icon: TikTok },
+];
 import { ParticleDrift } from '@/components/ui/particle-drift';
 import { HOME_NUMBERS, type HomeContent } from './home-content';
 
@@ -129,14 +137,31 @@ export function HeroSection({ c }: { c: HomeContent['hero'] }) {
                 {c.h1Line2}
               </span>
             </h1>
+            {/* ช่องทางโซเชียล (เจ้าของขอ 17 พ.ย. 2569) — ลิงก์อยู่ที่ lib/social-links.ts
+                ไม่ใช้ hover:scale เพราะคอลัมน์นี้ overflow-hidden วงกลมอันแรกจะโดนตัดขอบซ้าย */}
+            <div className="flex items-center gap-3">
+              {SOCIALS.map(({ href, label, icon: Icon }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`IC Accounting บน ${label}`}
+                  title={label}
+                  className="flex h-10 w-10 items-center justify-center rounded-full border border-[#2657c1]/15 bg-[#2657c1]/5 text-[#2657c1] transition-colors hover:bg-[#2657c1] hover:text-white"
+                >
+                  <Icon className="h-[18px] w-[18px]" />
+                </a>
+              ))}
+            </div>
           </div>
 
           {/* Right: content */}
           <div className="flex flex-col justify-end gap-4">
             {/*
-              บรรทัดนี้รับหน้าที่แบกคำค้น "สำนักงานบัญชีเชียงใหม่" แทน H1
-              หลังจาก H1 เปลี่ยนไปใช้สโลแกน — คำนี้เป็นคำเป้าหมายหลักของหน้าแรก
-              ถ้าจะแก้ข้อความตรงนี้ในอนาคต ให้เก็บคำว่า "สำนักงานบัญชีเชียงใหม่" ไว้
+              บรรทัดนี้บอกตัวตน "สำนักงานบัญชีดิจิทัล ดูแลทั่วประเทศ" (เจ้าของกำหนด 17 พ.ย. 2569)
+              คำค้น "สำนักงานบัญชีเชียงใหม่" ย้ายไปอยู่ที่ title และหัวข้อส่วนพื้นที่ให้บริการแทน
+              ถ้าจะแก้หัวข้อนั้นในอนาคต ให้เก็บคำว่า "สำนักงานบัญชีเชียงใหม่" ไว้
             */}
             <p className="text-base md:text-lg font-bold text-[#2657c1] leading-snug">
               {c.tagline}
@@ -146,8 +171,7 @@ export function HeroSection({ c }: { c: HomeContent['hero'] }) {
               ส่วนงานมีเดียเป็นบริการเสริม จึงพูดถึงท้ายสุดและไม่ใช้พื้นที่เท่ากัน
               ของเดิมวาง "มีเดียคอนเทนต์" ไว้ระดับเดียวกับบัญชี ทำให้ภาพธุรกิจเพี้ยน
 
-              คำว่า "ทำบัญชี" และ "เชียงใหม่" ต้องอยู่ในประโยคนี้เสมอ
-              เพราะบรรทัดนี้เป็นเนื้อหาแรกที่ Google อ่านต่อจาก H1 และบรรทัดหนาด้านบน
+              ประโยคนี้ต้องมีคำว่า "ที่ปรึกษาส่วนตัว" (ตัวตนแบรนด์ใน CLAUDE.md)
             */}
             <p className="text-sm md:text-base text-gray-500 leading-relaxed max-w-md">
               {c.lead}

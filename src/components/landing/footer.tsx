@@ -1,9 +1,11 @@
 "use client"
 
 import { usePathname } from "next/navigation";
-import { Facebook, MessageCircle, Phone, CalendarCheck } from "lucide-react";
+import { Facebook, Instagram, MessageCircle, Phone, CalendarCheck } from "lucide-react";
 import { CinematicFooter, type FooterAction, type FooterLinkGroup } from "@/components/ui/motion-footer";
 import { isEnglishPath, toEnglishHref } from "@/lib/i18n-routes";
+import { SOCIAL_LINKS } from "@/lib/social-links";
+import { TikTok } from "@/components/icons/tiktok";
 
 /**
  * ฟุตเตอร์ของทุกหน้า — ข้อมูลของ IC อยู่ที่ไฟล์นี้ไฟล์เดียว
@@ -139,7 +141,9 @@ function buildFooter(lang: Lang) {
 }
 
 const social: FooterAction[] = [
-  { href: "https://www.facebook.com/icaccservice", label: "Facebook", icon: Facebook, external: true },
+  { href: SOCIAL_LINKS.facebook, label: "Facebook", icon: Facebook, external: true },
+  { href: SOCIAL_LINKS.instagram, label: "Instagram", icon: Instagram, external: true },
+  { href: SOCIAL_LINKS.tiktok, label: "TikTok", icon: TikTok, external: true },
   { href: "https://line.me/R/ti/p/@icacc", label: "LINE", icon: MessageCircle, external: true },
 ];
 

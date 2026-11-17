@@ -1,4 +1,5 @@
 import { homeContent } from '@/components/landing/home-content';
+import { SOCIAL_LINKS } from '@/lib/social-links';
 /**
  * ตัวช่วยสร้าง JSON-LD (structured data) สำหรับหน้าบริการ
  *
@@ -35,7 +36,9 @@ const PROVIDER = {
   ],
   // หมุด Google Business Profile — ผูกหน้าบริการทุกหน้าเข้ากับกิจการเดียวกัน
   sameAs: [
-    'https://www.facebook.com/icaccservice',
+    SOCIAL_LINKS.facebook,
+    SOCIAL_LINKS.instagram,
+    SOCIAL_LINKS.tiktok,
     'https://line.me/R/ti/p/@icacc',
     'https://maps.google.com/?cid=11080561333861967427',
   ],
@@ -150,7 +153,7 @@ export function aboutPageSchema(opts: { founders: string[]; foundingDate: string
       ...PROVIDER,
       foundingDate: opts.foundingDate,
       founder: opts.founders.map((name) => ({ '@type': 'Person', name })),
-      sameAs: ['https://www.facebook.com/icaccservice', 'https://line.me/R/ti/p/@icacc'],
+      sameAs: [SOCIAL_LINKS.facebook, SOCIAL_LINKS.instagram, SOCIAL_LINKS.tiktok, 'https://line.me/R/ti/p/@icacc'],
     },
   };
 }

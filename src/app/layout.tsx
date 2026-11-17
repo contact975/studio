@@ -8,6 +8,7 @@ import { GoogleAnalytics } from '@/components/analytics/google-analytics';
 import { ConversionTracking } from '@/components/analytics/conversion-tracking';
 import { TaxCalculatorBubble } from '@/components/landing/tax-calculator-bubble';
 import { homeContent } from '@/components/landing/home-content';
+import { SOCIAL_LINKS } from '@/lib/social-links';
 
 const kanit = Kanit({
   subsets: ['latin'],
@@ -98,7 +99,9 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     // "สำนักงานบัญชีเชียงใหม่" Google แสดงแผนที่ 3 อันดับเหนือผลปกติ
     // การผูกเว็บกับหมุดให้ชัดช่วยให้ Google มั่นใจว่าเป็นกิจการเดียวกัน
     "sameAs": [
-      "https://www.facebook.com/icaccservice",
+      SOCIAL_LINKS.facebook,
+      SOCIAL_LINKS.instagram,
+      SOCIAL_LINKS.tiktok,
       "https://line.me/R/ti/p/@icacc",
       "https://maps.google.com/?cid=11080561333861967427",
     ],
