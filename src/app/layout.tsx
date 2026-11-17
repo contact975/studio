@@ -7,6 +7,7 @@ import { AOSProvider } from '@/components/aos-provider';
 import { GoogleAnalytics } from '@/components/analytics/google-analytics';
 import { ConversionTracking } from '@/components/analytics/conversion-tracking';
 import { TaxCalculatorBubble } from '@/components/landing/tax-calculator-bubble';
+import { ChatBubble } from '@/components/landing/chat-bubble';
 import { homeContent } from '@/components/landing/home-content';
 import { SOCIAL_LINKS } from '@/lib/social-links';
 
@@ -145,8 +146,9 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           {children}
           <Toaster />
         </AOSProvider>
-        {/* ปุ่มลอยมุมขวา พาไปเครื่องคำนวณภาษี — วางนอก AOSProvider เพราะไม่ต้องรอ animation */}
+        {/* ปุ่มลอย: คำนวณภาษีมุมซ้ายล่าง แชทมุมขวาล่าง — วางนอก AOSProvider เพราะไม่ต้องรอ animation */}
         <TaxCalculatorBubble />
+        <ChatBubble />
         {/* วัดผลการเข้าชมและการกดช่องทางติดต่อ — ไม่ทำงานถ้าไม่ได้ตั้ง NEXT_PUBLIC_GA_ID */}
         <GoogleAnalytics />
         <ConversionTracking />

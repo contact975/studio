@@ -7,7 +7,8 @@ import { trackEvent } from '@/components/analytics/google-analytics';
 import { isEnglishPath } from '@/lib/i18n-routes';
 
 /**
- * ปุ่มลอยมุมขวาจอ พาไปเครื่องคำนวณภาษี /tax-calculator
+ * ปุ่มลอยมุมซ้ายล่าง พาไปเครื่องคำนวณภาษี /tax-calculator
+ * (ย้ายจากขวามาซ้าย 17 พ.ย. 2569 เพราะมุมขวาล่างให้บับเบิลแชท — components/landing/chat-bubble.tsx)
  *
  * ── ทำไมเป็น <a> ไม่ใช่ next/link ──
  * ปลายทางเป็น HTML ล้วนใน public/ ไม่ใช่หน้าใน App Router
@@ -62,7 +63,7 @@ export function TaxCalculatorBubble() {
   }
 
   return (
-    <div className="fixed right-4 bottom-4 md:right-6 md:bottom-6 z-50 flex items-center gap-2">
+    <div className="fixed left-4 bottom-4 md:left-6 md:bottom-6 z-50 flex items-center gap-2">
       <a
         href={HREF}
         onClick={() => trackEvent('tax_calculator_open', { page_path: pathname })}

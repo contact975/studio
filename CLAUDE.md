@@ -156,7 +156,7 @@ en/<page>/page.tsx    เหมือนกัน แต่ส่ง content ภ
 
 | ระบบ | ใช้ทำอะไร | หมายเหตุ |
 |---|---|---|
-| Make.com | รับฟอร์มนัดหมายและฟอร์มฝึกงาน แล้วส่งเข้า LINE + Gmail | scenario "Integration Webhooks, LINE" |
+| Make.com | รับฟอร์มนัดหมาย ฟอร์มฝึกงาน และบับเบิลแชท (`/api/contact`, `form_type: 'chat'`) แล้วส่งเข้า LINE + Gmail | scenario "Integration Webhooks, LINE" |
 | Google Apps Script + Sheet | รับ lead จากเครื่องคำนวณภาษี | Sheet ชื่อ "IC Tax Check – Leads" |
 | GA4 | `G-R6PWYY1P03` | event สำคัญ `generate_lead`, `contact_click` |
 | Google Business Profile | โปรไฟล์ร้านใน Maps | จุดอ่อน: ที่ตั้งอยู่ดอยสะเก็ด ไม่ใช่ตัวเมือง |
