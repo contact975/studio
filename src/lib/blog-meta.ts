@@ -48,6 +48,12 @@ export const blogMeta: Record<string, { title: string; description: string; imag
     image: 'https://icaccservice.com/images/blog/online-seller-vat-shopee-lazada-tiktok.jpg',
     lastModified: '2026-11-12',
   },
+  'payroll-social-security-guide-sme': {
+    title: 'ทำเงินเดือนและประกันสังคมพนักงาน 2569 คู่มือนายจ้าง SME',
+    description: 'จ้างพนักงานแล้วต้องทำอะไรบ้าง ขึ้นทะเบียนนายจ้างภายใน 30 วัน เงินสมทบ 5% เพดานใหม่ 17,500 บาท สูงสุด 875 บาท ยื่น สปส.1-10 และ ภ.ง.ด.1 ทุกเดือน พร้อมงานปลายปี',
+    image: 'https://icaccservice.com/images/blog/payroll-social-security-guide-sme.jpg',
+    lastModified: '2026-11-17',
+  },
   'late-financial-statement-penalty': {
     title: 'ไม่ปิดงบ ไม่ยื่นงบ โดนค่าปรับเท่าไร ตารางค่าปรับ DBD และสรรพากร',
     description: 'ส่งงบการเงินช้าโดนปรับทั้งบริษัทและกรรมการ 2,000–12,000 บาท ไม่ประชุมอนุมัติงบภายใน 4 เดือนปรับเพิ่มอีก รวมตารางค่าปรับ ตัวอย่างคำนวณ และเช็กลิสต์ก่อนปิดงบ',

@@ -52,6 +52,7 @@ const COVERS = [
   ['deductible-expenses-sme', 'receipt-text', 'ค่าใช้จ่ายหักภาษีได้', 'แบบไหนโดนบวกกลับ', 'บัญชีธุรกิจ'],
   ['late-financial-statement-penalty', 'gavel', 'ไม่ปิดงบ ไม่ยื่นงบ', 'โดนค่าปรับเท่าไร', 'ภาษีธุรกิจ'],
   ['online-seller-vat-shopee-lazada-tiktok', 'shopping-bag', 'แม่ค้าออนไลน์จด VAT', 'Shopee / Lazada / TikTok Shop', 'ภาษีธุรกิจ'],
+  ['payroll-social-security-guide-sme', 'users', 'เงินเดือนและประกันสังคม', 'คู่มือนายจ้าง SME ปี 2569', 'บัญชีธุรกิจ'],
 ];
 
 /** อ่าน path ของไอคอนจาก lucide-react โดยตรง จะได้ตรงกับที่ใช้ในเว็บ 100% */

@@ -24,6 +24,7 @@ const DORMANT_AUDIT = p(AUDIT_DORMANT.auditOnly);
 const DORMANT_BUNDLE = p(AUDIT_DORMANT.bundle);
 const TIER1_AUDIT = p(AUDIT_FIRST_REVENUE_TIER.auditOnly);
 const TIER1_MAX = p(AUDIT_FIRST_REVENUE_TIER.amount);
+const TIER1_BUNDLE = p(AUDIT_FIRST_REVENUE_TIER.bundle);
 const CUSTOM_MILLIONS = AUDIT_CUSTOM_ABOVE / 1_000_000;
 const YEAR_BE = AUDIT_PRICE_YEAR + 543;
 const YEAR_CE = AUDIT_PRICE_YEAR;
@@ -107,8 +108,8 @@ const th: AuditContent = {
   htmlLang: 'th',
   meta: {
     title: `ปิดงบการเงินเชียงใหม่ ตรวจสอบโดย CPA เริ่ม ${DORMANT_AUDIT}/ปี | IC Accounting`,
-    description: `รับปิดงบการเงินเชียงใหม่ ตรวจสอบโดยผู้สอบบัญชีรับอนุญาต ยื่น DBD และสรรพากรให้ครบ ปิดงบเปล่าเริ่ม ${DORMANT_AUDIT} บาท/ปี รับปิดงบย้อนหลัง หรือแพ็กเกจทำบัญชี + ปิดงบ เริ่ม ${DORMANT_BUNDLE} บาท/ปี ราคารวม VAT`,
-    ogDescription: `ตรวจสอบอย่างเดียว เริ่ม ${DORMANT_AUDIT}/ปี · ครบวงจร ทำบัญชี + ตรวจสอบ เริ่ม ${DORMANT_BUNDLE}/ปี ราคารวม VAT`,
+    description: `รับปิดงบการเงินเชียงใหม่ ตรวจสอบโดยผู้สอบบัญชีรับอนุญาต ยื่น DBD และสรรพากรให้ครบ ปิดงบเปล่าเริ่ม ${DORMANT_AUDIT} บาท/ปี รับปิดงบย้อนหลัง หรือแพ็กเกจทำบัญชี + ปิดงบรายปี เริ่ม ${DORMANT_BUNDLE} บาท/ปี (งบเปล่า) ราคารวม VAT`,
+    ogDescription: `ตรวจสอบอย่างเดียว เริ่ม ${DORMANT_AUDIT}/ปี · ครบวงจร ทำบัญชี + ตรวจสอบ เริ่ม ${DORMANT_BUNDLE}/ปี (งบเปล่า) ราคารวม VAT`,
   },
   crumb: { home: 'หน้าแรก', homeHref: '/', current: 'ปิดงบการเงินและตรวจสอบบัญชี' },
   hero: {
@@ -251,7 +252,11 @@ const th: AuditContent = {
       },
       {
         q: 'ตรวจสอบอย่างเดียว กับ แพ็กเกจครบวงจร ต่างกันอย่างไร?',
-        a: `ตรวจสอบอย่างเดียว เหมาะกับกิจการที่ทำบัญชีเองหรือมีสำนักงานบัญชีอยู่แล้ว เราตรวจสอบ รับรองงบ และยื่นให้ตอนสิ้นปี ส่วนแพ็กเกจครบวงจร เราทำบัญชีและยื่นภาษีให้ทุกเดือนตลอดปี แล้วปิดงบพร้อมผู้สอบบัญชีให้เสร็จในราคาเดียว เริ่ม ${DORMANT_BUNDLE} บาทต่อปี`,
+        a: `ตรวจสอบอย่างเดียว เหมาะกับกิจการที่ทำบัญชีเองหรือมีสำนักงานบัญชีอยู่แล้ว เราตรวจสอบ รับรองงบ และยื่นให้ตอนสิ้นปี ส่วนแพ็กเกจครบวงจร เราทำบัญชีและยื่นภาษีให้ทุกเดือนตลอดปี แล้วปิดงบพร้อมผู้สอบบัญชีให้เสร็จในราคาเดียว คิดตามช่วงรายได้ต่อปี เริ่ม ${DORMANT_BUNDLE} บาทต่อปีสำหรับงบเปล่า และ ${TIER1_BUNDLE} บาทต่อปีสำหรับรายได้ไม่เกิน ${TIER1_MAX} บาท`,
+      },
+      {
+        q: 'แพ็กเกจครบวงจรรายปีในหน้านี้ ต่างจาก IC Total รายเดือนอย่างไร?',
+        a: 'แพ็กเกจครบวงจรในหน้านี้คิดค่าบริการเป็นรายปีตามช่วงรายได้ ครอบคลุมการบันทึกบัญชี ยื่นภาษีและประกันสังคมทุกเดือน แล้วปิดงบพร้อมผู้สอบบัญชีตอนสิ้นปี เหมาะกับกิจการที่รายการไม่มากและต้องการให้งานตามกฎหมายครบ ส่วน IC Total ในหน้ารับทำบัญชีรายเดือน คิดเป็นรายเดือน ดูแลงานบัญชีทั้งระบบแทนฝ่ายบัญชี เพิ่มงานเงินเดือนพนักงาน งบการเงินรายเดือน ปิดงบครึ่งปี ผู้ดูแลบัญชีประจำ และประชุมทบทวนผลประกอบการรายไตรมาส ถ้ายังไม่แน่ใจว่าแบบไหนเหมาะ ทักมาเล่าลักษณะกิจการ ทีมงานประเมินให้ฟรี',
       },
       {
         q: 'บริษัทที่ยังไม่มีรายได้ ต้องตรวจสอบงบการเงินไหม?',
@@ -304,8 +309,8 @@ const en: AuditContent = {
   htmlLang: 'en',
   meta: {
     title: 'Annual Audit & Year-End Financial Statements in Chiang Mai | IC Accounting',
-    description: `Annual audit and year-end closing in Chiang Mai by a licensed auditor (CPA), with full filing to the DBD and the Revenue Department. Audit only from ${DORMANT_AUDIT} THB/year, or an all-in-one accounting + audit package from ${DORMANT_BUNDLE} THB/year. Prices include VAT.`,
-    ogDescription: `Audit only from ${DORMANT_AUDIT}/year · All-in-one accounting + audit from ${DORMANT_BUNDLE}/year · Prices include VAT`,
+    description: `Annual audit and year-end closing in Chiang Mai by a licensed auditor (CPA), with full filing to the DBD and the Revenue Department. Audit only from ${DORMANT_AUDIT} THB/year, or an all-in-one accounting + audit package from ${DORMANT_BUNDLE} THB/year (dormant company). Prices include VAT.`,
+    ogDescription: `Audit only from ${DORMANT_AUDIT}/year · All-in-one accounting + audit from ${DORMANT_BUNDLE}/year (dormant company) · Prices include VAT`,
   },
   crumb: { home: 'Home', homeHref: '/en', current: 'Audit Services' },
   hero: {
@@ -443,7 +448,11 @@ const en: AuditContent = {
       },
       {
         q: 'What is the difference between Audit Only and the All-in-One package?',
-        a: `Audit Only suits companies that do their own bookkeeping or already have an accounting firm. We audit, certify and file at year-end. With the All-in-One package, we do your bookkeeping and tax filing every month throughout the year, then close the year with the auditor, all for one price, from ${DORMANT_BUNDLE} THB a year.`,
+        a: `Audit Only suits companies that do their own bookkeeping or already have an accounting firm. We audit, certify and file at year-end. With the All-in-One package, we do your bookkeeping and tax filing every month throughout the year, then close the year with the auditor, all for one price based on annual revenue: ${DORMANT_BUNDLE} THB a year for a dormant company and ${TIER1_BUNDLE} THB a year for revenue up to ${TIER1_MAX} THB.`,
+      },
+      {
+        q: 'How is the annual All-in-One package different from the monthly IC Total plan?',
+        a: 'The All-in-One package on this page is priced per year by revenue band. It covers bookkeeping, monthly tax and social security filing, and the year-end closing with the auditor, which suits smaller companies with fewer transactions that want every legal requirement covered. IC Total, on our monthly accounting page, is priced per month and runs your whole accounting function in place of an in-house team, adding payroll, monthly financial statements, a half-year closing, a dedicated accountant and quarterly performance reviews. Not sure which fits? Tell us about your business and we will advise for free.',
       },
       {
         q: 'Does a company with no revenue yet need audited financial statements?',
