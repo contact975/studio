@@ -312,10 +312,10 @@ export function AccountingTemplate({ c, quoteHref }: { c: AccountingContent; quo
           intro={c.related.intro}
           readLabel={c.related.readLabel}
           slugs={[
-            'corporate-tax-calendar-thailand',
-            'withholding-tax-guide-sme',
-            'vat-registration-when-required',
             'accounting-fee-chiangmai',
+            'how-to-choose-accounting-office-chiangmai',
+            'online-seller-vat-shopee-lazada-tiktok',
+            'corporate-tax-calendar-thailand',
           ]}
         />
 

@@ -107,16 +107,16 @@ const th: AuditContent = {
   htmlLang: 'th',
   meta: {
     title: `ปิดงบการเงินเชียงใหม่ ตรวจสอบโดย CPA เริ่ม ${DORMANT_AUDIT}/ปี | IC Accounting`,
-    description: `ตรวจสอบบัญชีและปิดงบประจำปีในเชียงใหม่โดยผู้สอบบัญชีรับอนุญาต ยื่น DBD และสรรพากรให้ครบ เริ่ม ${DORMANT_AUDIT} บาท/ปี หรือแพ็กเกจครบวงจรทำบัญชี + ตรวจสอบ เริ่ม ${DORMANT_BUNDLE} บาท/ปี ราคารวม VAT`,
+    description: `รับปิดงบการเงินเชียงใหม่ ตรวจสอบโดยผู้สอบบัญชีรับอนุญาต ยื่น DBD และสรรพากรให้ครบ ปิดงบเปล่าเริ่ม ${DORMANT_AUDIT} บาท/ปี รับปิดงบย้อนหลัง หรือแพ็กเกจทำบัญชี + ปิดงบ เริ่ม ${DORMANT_BUNDLE} บาท/ปี ราคารวม VAT`,
     ogDescription: `ตรวจสอบอย่างเดียว เริ่ม ${DORMANT_AUDIT}/ปี · ครบวงจร ทำบัญชี + ตรวจสอบ เริ่ม ${DORMANT_BUNDLE}/ปี ราคารวม VAT`,
   },
-  crumb: { home: 'หน้าแรก', homeHref: '/', current: 'บริการตรวจสอบบัญชี' },
+  crumb: { home: 'หน้าแรก', homeHref: '/', current: 'ปิดงบการเงินและตรวจสอบบัญชี' },
   hero: {
     eyebrow: 'Audit Services · ตรวจสอบบัญชีประจำปี',
     h1Line1: 'ปิดงบการเงินเชียงใหม่',
     h1Line2: `ตรวจสอบโดย CPA เริ่ม ${DORMANT_AUDIT}/ปี`,
     lead: 'ทุกบริษัทต้องส่งงบการเงินที่ผ่านการตรวจสอบทุกปี — เราตรวจ รับรอง และยื่นให้ทั้งกรมพัฒนาธุรกิจการค้าและกรมสรรพากร เลือกได้ว่าจะให้เราตรวจอย่างเดียว หรือทำบัญชีให้ทั้งปีแล้วปิดงบให้เสร็จ',
-    chips: ['ตรวจโดยผู้สอบบัญชีรับอนุญาต (CPA)', 'ยื่น DBD และสรรพากรให้ครบ', 'ราคารวม VAT ตามช่วงรายได้', 'งบเปล่าก็รับทำ'],
+    chips: ['ตรวจโดยผู้สอบบัญชีรับอนุญาต (CPA)', 'ยื่น DBD และสรรพากรให้ครบ', 'ราคารวม VAT ตามช่วงรายได้', 'งบเปล่าก็รับทำ', 'รับปิดงบย้อนหลัง'],
   },
   choose: {
     eyebrow: 'Which one is for you',
@@ -170,7 +170,7 @@ const th: AuditContent = {
   },
   pricing: {
     eyebrow: 'Pricing',
-    title: 'ค่าบริการตามช่วงรายได้ต่อปี',
+    title: 'ค่าปิดงบการเงินตามช่วงรายได้ต่อปี',
     sublead: 'ราคาเดียวกันทั้งตาราง ไม่มีค่าใช้จ่ายแฝง ยิ่งรายได้น้อย ยิ่งจ่ายน้อย — เทียบทั้ง 2 แบบได้ในตารางเดียว',
   },
   table: {
@@ -222,7 +222,7 @@ const th: AuditContent = {
   },
   why: {
     eyebrow: 'Why IC',
-    title: 'ทำไมผู้ประกอบการจึงเลือก IC',
+    title: 'ทำไมผู้ประกอบการเชียงใหม่เลือกปิดงบกับ IC',
     items: [
       { num: '01', title: 'ทีมงาน CPA มืออาชีพ', description: 'ดูแลโดยผู้สอบบัญชีรับอนุญาต (CPA) ที่มีประสบการณ์ตรงในหลากหลายอุตสาหกรรม' },
       { num: '02', title: 'บอกตรงๆ ว่าเจออะไร', description: 'ชี้แจงทุกประเด็นความเสี่ยงอย่างชัดเจน พร้อมแนวทางแก้ไขที่ถูกต้องตามกฎหมาย' },
@@ -242,7 +242,7 @@ const th: AuditContent = {
    * (คำค้นเป้าหมาย: ปิดงบการเงิน เชียงใหม่ · รับปิดงบเปล่า เชียงใหม่ · ตรวจสอบบัญชี เชียงใหม่)
    */
   faq: {
-    title: 'คำถามที่พบบ่อยเรื่องตรวจสอบบัญชี',
+    title: 'คำถามที่พบบ่อยเรื่องปิดงบการเงินและตรวจสอบบัญชี',
     intro: 'รวมคำถามที่เจ้าของธุรกิจถามบ่อยที่สุดก่อนส่งงบให้เราตรวจ',
     items: [
       {
@@ -260,6 +260,18 @@ const th: AuditContent = {
       {
         q: 'ถ้าเลือกตรวจสอบอย่างเดียว ต้องเตรียมอะไรให้บ้าง?',
         a: 'กิจการเป็นผู้จัดทำบัญชีและนำส่งงบทดลอง บัญชีแยกประเภท พร้อมเอกสารประกอบให้ครบถ้วน หากเอกสารไม่ครบหรือต้องปรับปรุงบัญชีใหม่ อาจมีค่าบริการเพิ่มเติมตามที่ตกลงกัน',
+      },
+      {
+        q: 'ต้องส่งงบการเงินภายในเมื่อไร?',
+        a: 'บริษัทจำกัดต้องประชุมผู้ถือหุ้นอนุมัติงบภายใน 4 เดือนหลังปิดรอบบัญชี แล้วส่งงบให้กรมพัฒนาธุรกิจการค้าภายใน 1 เดือนหลังวันประชุม ห้างหุ้นส่วนส่งงบภายใน 5 เดือนหลังปิดรอบบัญชี และทั้งสองแบบต้องยื่น ภ.ง.ด.50 พร้อมงบให้กรมสรรพากรภายใน 150 วัน กิจการที่ปิดรอบ 31 ธันวาคมจึงควรเริ่มปิดงบตั้งแต่เดือนมกราคม',
+      },
+      {
+        q: 'รับปิดงบย้อนหลังไหม ถ้าค้างส่งงบมาหลายปี?',
+        a: 'รับ เราปิดงบที่ค้างทีละปี เริ่มจากปีที่เก่าที่สุดก่อน โดยใช้เอกสารรายรับรายจ่าย ใบแจ้งยอดธนาคาร และแบบภาษีที่เคยยื่นของแต่ละปี ค่าบริการประเมินเป็นรายกรณีตามจำนวนปีและสภาพเอกสาร ส่วนค่าปรับจากการส่งงบช้าคิดแยกทุกปีและเพิ่มขึ้นตามระยะเวลา ยิ่งเริ่มเร็วยิ่งเสียน้อย',
+      },
+      {
+        q: 'ธุรกิจอยู่อำเภออื่นในเชียงใหม่ หรือต่างจังหวัด ใช้บริการปิดงบได้ไหม?',
+        a: 'ได้ เราปิดงบให้ธุรกิจทั่วเชียงใหม่และทั่วประเทศ ส่งเอกสารผ่านระบบออนไลน์ได้ทั้งหมด ไม่ต้องเดินทางมาที่สำนักงาน ผู้สอบบัญชีตรวจจากเอกสารชุดเดียวกัน และเรายื่นงบให้ทั้งกรมพัฒนาธุรกิจการค้าและกรมสรรพากรทางออนไลน์',
       },
       {
         q: 'ชำระค่าบริการอย่างไร?',
@@ -301,7 +313,7 @@ const en: AuditContent = {
     h1Line1: 'Year-End Closing in Chiang Mai',
     h1Line2: 'Audited by a Licensed CPA',
     lead: 'Every company must submit audited financial statements every year. We audit, certify and file them with both the Department of Business Development (DBD) and the Revenue Department. You choose: we only do the audit, or we keep your books all year and close the year for you.',
-    chips: ['Audited by a licensed auditor (CPA)', 'Full filing with the DBD and Revenue Department', 'VAT-inclusive prices by revenue band', 'Dormant companies welcome'],
+    chips: ['Audited by a licensed auditor (CPA)', 'Full filing with the DBD and Revenue Department', 'VAT-inclusive prices by revenue band', 'Dormant companies welcome', 'Overdue years closed too'],
   },
   choose: {
     eyebrow: 'Which one is for you',
@@ -440,6 +452,18 @@ const en: AuditContent = {
       {
         q: 'If I choose Audit Only, what do I need to prepare?',
         a: 'Your company prepares the books and provides the trial balance, general ledger and complete supporting documents. If documents are incomplete or the books need to be adjusted, additional fees may apply as agreed.',
+      },
+      {
+        q: 'When are financial statements due?',
+        a: 'A limited company must hold a shareholders’ meeting to approve its statements within 4 months of its year-end, then file them with the Department of Business Development within 1 month of that meeting. A partnership files within 5 months of its year-end. Both must file PND.50 with the statements to the Revenue Department within 150 days. If your year ends on 31 December, start closing the books in January.',
+      },
+      {
+        q: 'Can you close overdue years if we are several years behind?',
+        a: 'Yes. We close each overdue year in turn, starting with the oldest, using that year’s income and expense documents, bank statements and any tax returns already filed. Fees are quoted case by case based on the number of years and the state of the documents. Late-filing fines are charged separately for each year and rise the longer you wait, so starting early costs less.',
+      },
+      {
+        q: 'Our business is outside Chiang Mai city or in another province. Can you still close our books?',
+        a: 'Yes. We close the books for businesses across Chiang Mai and the rest of Thailand. You can send every document online without visiting our office. The auditor works from the same documents, and we file with both the Department of Business Development and the Revenue Department online.',
       },
       {
         q: 'How do I pay?',

@@ -1,28 +1,53 @@
 import * as React from 'react';
+import Link from 'next/link';
 import { AlertTriangle, Info } from 'lucide-react';
 import type { BlogBlock, BlogFaq } from '@/lib/blog-posts';
 
 /**
  * แปลง block ของบทความเป็น HTML ที่มีโครงสร้างจริง (h2/h3/ul/ol/table)
- * รองรับตัวหนาแบบ **ข้อความ** ในย่อหน้า ลิสต์ และช่องตาราง
+ * รองรับในย่อหน้า ลิสต์ ช่องตาราง และกล่องเน้น:
+ *   **ข้อความ**          → ตัวหนา
+ *   [ข้อความ](/path)     → ลิงก์ภายในเว็บ
+ *
+ * ลิงก์ในเนื้อหาสำคัญกับ SEO มากกว่าปุ่ม CTA ท้ายบทความ เพราะข้อความของลิงก์
+ * (เช่น "รับทำบัญชีเชียงใหม่") บอก Google ว่าหน้าปลายทางเกี่ยวกับอะไร
+ * รับเฉพาะลิงก์ภายใน (ขึ้นต้นด้วย /) — รูปแบบอื่นแสดงเป็นข้อความตามเดิม
  */
 
-function Inline({ text }: { text: string }) {
-  const parts = text.split(/(\*\*[^*]+\*\*)/g).filter(Boolean);
+const TOKEN = /(\*\*[^*]+\*\*|\[[^\]]+\]\(\/[^)\s]*\))/g;
+const LINK = /^\[([^\]]+)\]\((\/[^)\s]*)\)$/;
+
+export function RichText({ text }: { text: string }) {
+  const parts = text.split(TOKEN).filter(Boolean);
   return (
     <>
-      {parts.map((part, i) =>
-        part.startsWith('**') && part.endsWith('**') ? (
-          <strong key={i} className="font-semibold text-slate-900">
-            {part.slice(2, -2)}
-          </strong>
-        ) : (
-          <React.Fragment key={i}>{part}</React.Fragment>
-        )
-      )}
+      {parts.map((part, i) => {
+        if (part.startsWith('**') && part.endsWith('**')) {
+          return (
+            <strong key={i} className="font-semibold text-slate-900">
+              {part.slice(2, -2)}
+            </strong>
+          );
+        }
+        const link = part.match(LINK);
+        if (link) {
+          return (
+            <Link
+              key={i}
+              href={link[2]}
+              className="font-semibold text-primary underline decoration-primary/30 underline-offset-4 hover:decoration-primary"
+            >
+              {link[1]}
+            </Link>
+          );
+        }
+        return <React.Fragment key={i}>{part}</React.Fragment>;
+      })}
     </>
   );
 }
+
+const Inline = RichText;
 
 function Block({ block }: { block: BlogBlock }) {
   switch (block.type) {

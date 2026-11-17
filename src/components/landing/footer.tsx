@@ -36,7 +36,7 @@ const COPY = {
     services: {
       accounting: "รับทำบัญชีและภาษี",
       registration: "จดทะเบียนบริษัท",
-      audit: "ตรวจสอบบัญชี",
+      audit: "ปิดงบการเงินและตรวจสอบบัญชี",
       orgSystem: "วางระบบองค์กร",
     },
     aboutTitle: "เกี่ยวกับ IC",

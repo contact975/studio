@@ -290,7 +290,7 @@ export function AuditTemplate({ c }: { c: AuditContent }) {
           title={c.related.title}
           intro={c.related.intro}
           readLabel={c.related.readLabel}
-          slugs={['deductible-expenses-sme', 'director-salary-dividend-loan', 'corporate-tax-chiangmai-guide', '5-common-accounting-mistakes-sme-chiangmai']}
+          slugs={['late-financial-statement-penalty', '5-common-accounting-mistakes-sme-chiangmai', 'corporate-tax-chiangmai-guide', 'director-salary-dividend-loan']}
         />
       </main>
       <Footer />

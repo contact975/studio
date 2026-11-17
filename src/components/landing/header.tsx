@@ -47,8 +47,8 @@ const COPY = {
   th: {
     services: {
       registration: "บริการจดทะเบียนบริษัท",
-      accounting: "บริการทำบัญชี",
-      audit: "บริการตรวจสอบบัญชี",
+      accounting: "รับทำบัญชีรายเดือน",
+      audit: "ปิดงบการเงิน / ตรวจสอบบัญชี",
       orgSystem: "บริการวางระบบองค์กร",
     },
     nav: {
