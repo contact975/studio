@@ -68,7 +68,7 @@ export function ServicesSection({ c }: { c: HomeContent['services'] }) {
 
   return (
     <section id="services" className="bg-background py-20 md:py-28">
-      <div className="container mx-auto max-w-7xl px-4 md:px-6">
+      <div className="container mx-auto max-w-6xl px-4 md:px-6">
         <div className="mb-12 md:mb-16">
           <p className="mb-3 text-xs font-bold uppercase tracking-[0.3em] text-primary">{c.eyebrow}</p>
           {/*
@@ -86,6 +86,7 @@ export function ServicesSection({ c }: { c: HomeContent['services'] }) {
           </p>
         </div>
 
+        {/* จอใหญ่: กรอบแคบลง (เดิม max-w-7xl) ให้มีที่ว่างด้านข้างมากขึ้น */}
         <BentoGrid>
           {services.map((service, index) => {
             const tall = service.size === "tall";
