@@ -10,7 +10,8 @@ import {
   Calculator,
   FileCheck,
   Briefcase,
-  Workflow
+  Workflow,
+  Globe
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -86,6 +87,8 @@ function buildNav(lang: "th" | "en") {
   const serviceSubLinks: SubLink[] = [
     { href: href("/company-registration"), label: c.services.registration, icon: FileText },
     { href: href("/accounting-services"), label: c.services.accounting, icon: Calculator },
+    // หน้าไทยอย่างเดียว (ไม่มีคู่ใน PAIRS) จึงแสดงเฉพาะเมนูฝั่งไทย
+    ...(lang === "th" ? [{ href: "/online-accounting", label: "รับทำบัญชีออนไลน์ทั่วประเทศ", icon: Globe }] : []),
     { href: href("/audit-services"), label: c.services.audit, icon: FileCheck },
     { href: href("/visa-work-permit"), label: "IC Visa / Work Permit", icon: Briefcase },
     { href: href("/organization-system"), label: c.services.orgSystem, icon: Workflow },

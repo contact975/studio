@@ -113,6 +113,8 @@ function buildFooter(lang: Lang) {
         { href: href("/visa-work-permit"), label: "IC Visa / Work Permit" },
         { href: href("/organization-system"), label: c.services.orgSystem },
         { href: href("/media-content"), label: "Exclusive Media Production" },
+        // หน้าไทยอย่างเดียว ไม่มีคู่ใน PAIRS จึงแสดงเฉพาะฟุตเตอร์ฝั่งไทย
+        ...(lang === "th" ? [{ href: "/online-accounting", label: "รับทำบัญชีออนไลน์ทั่วประเทศ" }] : []),
       ],
     },
     {

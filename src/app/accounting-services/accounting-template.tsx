@@ -62,6 +62,14 @@ export function AccountingTemplate({ c, quoteHref }: { c: AccountingContent; quo
                 </div>
               ))}
             </div>
+            {c.hero.online && (
+              <p className="mt-6 text-sm opacity-90">
+                {c.hero.online.text}{' '}
+                <Link href={c.hero.online.href} className="font-bold underline underline-offset-4 hover:opacity-80">
+                  {c.hero.online.link} →
+                </Link>
+              </p>
+            )}
           </div>
         </section>
 

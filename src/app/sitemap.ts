@@ -44,7 +44,9 @@ const staticRoutes: Array<{
   // หน้าบริการ — เป็นหน้าที่ต้องแบกคำค้นเชิงพาณิชย์ จึงให้ priority สูงรองจากหน้าแรก
   { path: '/accounting-services', priority: 0.9, changeFrequency: 'monthly', lastModified: '2026-10-15' },
   { path: '/company-registration', priority: 0.9, changeFrequency: 'monthly', lastModified: '2026-09-23' },
-  { path: '/audit-services', priority: 0.9, changeFrequency: 'monthly', lastModified: '2026-10-11' },
+  { path: '/audit-services', priority: 0.9, changeFrequency: 'monthly', lastModified: '2026-11-17' },
+  // ภาษาไทยอย่างเดียว จับคำกลุ่ม "รับทำบัญชีออนไลน์ / ทั่วประเทศ" (ไม่มีคู่ภาษาอังกฤษ)
+  { path: '/online-accounting', priority: 0.9, changeFrequency: 'monthly', lastModified: '2026-11-17' },
   // ยุบ /expat-services เข้ามาที่นี่แล้ว จึงเหลือ URL เดียวและได้ priority เต็ม
   // URL ที่ redirect ต้องไม่อยู่ใน sitemap — เท่ากับบอก Google ให้ไปเก็บของที่ย้ายไปแล้ว
   { path: '/visa-work-permit', priority: 0.9, changeFrequency: 'monthly', lastModified: '2026-10-07' },

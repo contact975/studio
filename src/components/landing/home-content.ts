@@ -128,6 +128,8 @@ export type HomeContent = {
   serviceArea: {
     eyebrow: string;
     title: string;
+    /** ต่อท้าย title ทันที (ไม่เว้นวรรค) แสดงเป็นสีน้ำเงิน CI — ไม่ใส่ก็ได้ */
+    titleHighlight?: string;
     /** ย่อหน้านำ ประกอบเป็น before + <Link>accountingLink</Link> + middle + <Link>registrationLink</Link> + after */
     intro: {
       before: string;
@@ -187,11 +189,13 @@ const th: HomeContent = {
   ],
   homeHref: '/',
   hero: {
-    badge: 'IC Accounting & Service — เชียงใหม่',
-    h1Line1: 'สำนักงานบัญชีเชียงใหม่',
-    h1Line2: 'ที่ปรึกษาส่วนตัวของธุรกิจคุณ',
-    tagline: 'สำนักงานบัญชียุคใหม่ บริหารโดยคนรุ่นใหม่ ทำงานออนไลน์ทั้งระบบ ดูแลทั่วเชียงใหม่และทั่วประเทศ',
-    lead: `เราไม่ใช่แค่คนคีย์ตัวเลข แต่เป็นที่ปรึกษาส่วนตัวของธุรกิจคุณ ด้วยประสบการณ์กว่า ${N.years} ปี ดูแลทั้งบัญชี ปิดงบการเงิน และ Visa & Work Permit สำหรับธุรกิจในเชียงใหม่และทั่วประเทศ ผ่านระบบออนไลน์ที่สร้างขึ้นเอง`,
+    badge: 'IC Accounting & Service',
+    // H1 สื่อตัวตนแบรนด์ (เจ้าของเลือก 17 พ.ย. 2569) ไม่ใส่ชื่อจังหวัด แบบเดียวกับ Simple Balance ที่ SEO ดี
+    // คำว่า "สำนักงานบัญชีเชียงใหม่" ยังอยู่ใน title และเนื้อหา — ไม่พิมพ์ซ้ำในหัวข้อกับบรรทัดรอง
+    h1Line1: 'บัญชีไม่ใช่แค่ตัวเลข',
+    h1Line2: 'แต่คือก้าวต่อไปของธุรกิจ',
+    tagline: `สำนักงานบัญชีดิจิทัล ดูแลธุรกิจทั่วประเทศผ่านระบบออนไลน์ บริหารโดยคนรุ่นใหม่ ประสบการณ์กว่า ${N.years} ปี`,
+    lead: 'เราเป็นที่ปรึกษาส่วนตัวที่ช่วยคิดเรื่องภาษีและการตัดสินใจทางธุรกิจไปกับคุณ ดูแลครบทั้งบัญชี ปิดงบการเงิน จดทะเบียนบริษัท และ Visa & Work Permit',
     ctaPrimary: 'ปรึกษาเราฟรี',
     ctaSecondary: 'ดูบริการทั้งหมด',
     ctaSecondaryHref: '/#services',
@@ -226,28 +230,28 @@ const th: HomeContent = {
     auditVisualLabel: 'ถูกต้อง ทันกำหนด',
     items: {
       accounting: {
-        fullTitle: 'รับทำบัญชี เชียงใหม่',
+        fullTitle: 'รับทำบัญชี',
         tag: 'Accounting Services',
         description:
           'รับทำบัญชีครบวงจรในเชียงใหม่ จัดระเบียบเอกสารรายรับ-รายจ่าย บันทึกบัญชี และดูแลเรื่องภาษีรายเดือนให้ถูกต้องแม่นยำ ช่วยให้เจ้าของธุรกิจเห็นกระแสเงินสดและลดความเสี่ยงจากการโดนค่าปรับย้อนหลัง',
         href: '/accounting-services',
       },
       audit: {
-        fullTitle: 'ปิดงบการเงิน เชียงใหม่',
+        fullTitle: 'ปิดงบการเงิน',
         tag: 'Audit Services',
         description:
           'ตรวจสอบและจัดทำงบการเงินยื่นกรมพัฒนาธุรกิจการค้าและกรมสรรพากรให้ทันกำหนด ดูแลโดยทีมงานสำนักงานบัญชีเชียงใหม่ที่อัปเดตกฎหมายสม่ำเสมอ เพื่อความถูกต้อง 100%',
         href: '/audit-services',
       },
       registration: {
-        fullTitle: 'จดทะเบียนบริษัท เชียงใหม่',
+        fullTitle: 'จดทะเบียนบริษัท',
         tag: 'Company Registration',
         description:
           'รับจดทะเบียนธุรกิจในเชียงใหม่ ครบทุกขั้นตอนตั้งแต่จองชื่อจนถึงได้รับหนังสือรับรอง ให้คำปรึกษาโครงสร้างธุรกิจเพื่อให้คุณเริ่มต้นได้อย่างมั่นใจและประหยัดเวลา',
         href: '/company-registration',
       },
       expat: {
-        fullTitle: 'Visa & Work Permit เชียงใหม่',
+        fullTitle: 'Visa & Work Permit',
         tag: 'IC Visa / Work Permit',
         description:
           'ดูแลการขอและต่ออายุวีซ่าทุกประเภทในพื้นที่เชียงใหม่ และจัดการใบอนุญาตทำงาน ประสานงานหน่วยงานราชการให้ครบทุกขั้นตอนสำหรับชาวต่างชาติ',
@@ -261,7 +265,7 @@ const th: HomeContent = {
         href: '/organization-system',
       },
       media: {
-        fullTitle: 'รับผลิต Media Content เชียงใหม่',
+        fullTitle: 'รับผลิต Media Content',
         tag: 'Marketing Online',
         description:
           'สร้างภาพลักษณ์ธุรกิจให้น่าเชื่อถือด้วยบริการผลิตวิดีโอและกราฟิกคุณภาพสูงในเชียงใหม่ ช่วยให้แบรนด์ของคุณมีตัวตนบนโลกออนไลน์ควบคู่ไปกับระบบบัญชีที่แข็งแกร่ง',
@@ -382,11 +386,12 @@ const th: HomeContent = {
   },
   serviceArea: {
     eyebrow: 'Service Area',
-    title: 'ดูแลลูกค้าทั่วประเทศ จากสำนักงานในเชียงใหม่',
+    title: 'ดูแลลูกค้าทั่วประเทศ จาก',
+    titleHighlight: 'สำนักงานบัญชีเชียงใหม่',
     intro: {
       before: 'สำนักงานอยู่ที่ดอยสะเก็ด เชียงใหม่ แต่เราดูแลธุรกิจได้ทุกจังหวัดทั่วประเทศ เพราะงาน',
-      accountingLink: 'รับทำบัญชีรายเดือน',
-      accountingHref: '/accounting-services',
+      accountingLink: 'รับทำบัญชีออนไลน์',
+      accountingHref: '/online-accounting',
       middle: 'ส่งเอกสารผ่านระบบออนไลน์ได้ทั้งหมด ไม่ต้องเดินทางมาเชียงใหม่ ส่วนงานที่ต้องเจอหน้า เช่น วางระบบบัญชี ตรวจนับสต็อก หรือ',
       registrationLink: 'จดทะเบียนบริษัท',
       registrationHref: '/company-registration',

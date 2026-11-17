@@ -40,6 +40,7 @@ export function ServiceAreaSection({ c }: { c: HomeContent['serviceArea'] }) {
           <p className="text-primary text-xs font-bold tracking-[0.3em] uppercase mb-3">{c.eyebrow}</p>
           <h2 id="service-area-heading" className="text-3xl md:text-4xl font-black mb-4">
             {c.title}
+            {c.titleHighlight && <span className="whitespace-nowrap text-[#2657c1]">{c.titleHighlight}</span>}
           </h2>
           {/*
             ลิงก์ในย่อหน้านี้ตั้งใจใช้ข้อความที่ตรงกับคำค้นจริง (รับทำบัญชีรายเดือน /

@@ -39,6 +39,8 @@ export type AccountingContent = {
     /** ข้อความนำ ประกอบเป็น intro + <b>IC Smart</b> + smart + <b>IC Total</b> + total */
     lead: { intro: string; smart: string; total: string };
     chips: string[];
+    /** ลิงก์ไปหน้ารับทำบัญชีออนไลน์ทั่วประเทศ — หน้านั้นมีแต่ภาษาไทย ฝั่งอังกฤษจึงไม่ใส่ */
+    online?: { text: string; link: string; href: string };
   };
   packages: {
     eyebrow: string;
@@ -108,6 +110,7 @@ const th: AccountingContent = {
       total: ' ให้เราเป็นแผนกบัญชีทั้งระบบแทนการจ้างพนักงานประจำ',
     },
     chips: [`เริ่มต้น ${p(SMART_MIN_PRICE)} บาท/เดือน`, 'เลือกเฉพาะบริการที่ต้องการได้', 'ราคารวม VAT แล้ว', 'มีโปรแกรมบัญชีออนไลน์ให้ใช้', 'ปรึกษาฟรีก่อนตัดสินใจ'],
+    online: { text: 'ธุรกิจอยู่ต่างจังหวัด?', link: 'ดูบริการรับทำบัญชีออนไลน์ทั่วประเทศ', href: '/online-accounting' },
   },
   packages: {
     eyebrow: 'Pricing Plans',
