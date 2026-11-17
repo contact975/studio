@@ -155,6 +155,15 @@ export function TestimonialsSection({ c, initial }: { c: HomeContent['testimonia
           </a>
         </div>
 
+        {/* ยังไม่มีรีวิวใน HTML (ช่วงหลัง deploy ก่อนหน้าถูกสร้างใหม่) ก็ยังมีลิงก์ไปรีวิวบน Google ให้กดเสมอ */}
+        {sphereImages.length === 0 && (
+          <p className="text-center text-sm">
+            <a href={mapsUrl} target="_blank" rel="noopener noreferrer" className="font-semibold text-primary hover:underline">
+              {c.seeAll}
+            </a>
+          </p>
+        )}
+
         {sphereImages.length > 0 && (
           <div className="flex flex-col items-center gap-6">
             <SphereImageGrid

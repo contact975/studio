@@ -48,10 +48,14 @@ export const metadata: Metadata = {
  * รีวิว Google ดึงฝั่งเซิร์ฟเวอร์ ให้ข้อความรีวิวอยู่ใน HTML (ดู lib/google-reviews.ts)
  *
  * GOOGLE_PLACES_API_KEY มีให้เฉพาะตอนรัน ไม่มีตอน build (apphosting.yaml)
- * HTML ที่ build ไว้จึงยังไม่มีรีวิว — revalidate ทุก 1 ชม. ให้หน้าถูกสร้างใหม่ตอนรันพร้อมรีวิว
+ * HTML ที่ build ไว้จึงยังไม่มีรีวิว — revalidate ให้หน้าถูกสร้างใหม่ตอนรันพร้อมรีวิว
  * ระหว่างนั้นคอมโพเนนต์ยังดึงรีวิวเองหลังโหลดหน้าเหมือนเดิม คนเปิดเว็บจึงเห็นรีวิวตลอด
+ *
+ * เดิมตั้ง 1 ชม. ผลคือหลัง deploy ทุกครั้ง บอตที่ไม่รัน JS (เช่น IC Insight, AI crawler)
+ * เห็นหน้าแรกไม่มีรีวิวนานถึงชั่วโมง — 17 พ.ย. 2569 คะแนน "มีรีวิวบนเว็บ" ตกเป็น 0 เพราะเหตุนี้
+ * ลดเหลือ 5 นาที ไม่เพิ่มค่า Places API เพราะ fetch รีวิวมี cache ของตัวเอง 24 ชม. (CACHE_SECONDS)
  */
-export const revalidate = 3600;
+export const revalidate = 300;
 
 export default async function Home() {
   const { payload: reviews } = await getGoogleReviews();

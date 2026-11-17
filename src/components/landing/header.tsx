@@ -11,7 +11,9 @@ import {
   FileCheck,
   Briefcase,
   Workflow,
-  Globe
+  Globe,
+  Info,
+  GraduationCap
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -96,9 +98,16 @@ function buildNav(lang: "th" | "en") {
   const navLinks: NavLink[] = [
     { href: href("/"), label: c.nav.home },
     { href: href("/#services"), label: c.nav.services, subLinks: serviceSubLinks },
-    { href: href("/about"), label: c.nav.about },
+    // นักศึกษาฝึกงานย้ายมาเป็นเมนูย่อยของ "เกี่ยวกับเรา" (เจ้าของสั่ง 17 พ.ย. 2569) เมนูหลักจะได้ไม่ยาว
+    {
+      href: href("/about"),
+      label: c.nav.about,
+      subLinks: [
+        { href: href("/about"), label: c.nav.about, icon: Info },
+        { href: href("/internship"), label: c.nav.internship, icon: GraduationCap },
+      ],
+    },
     { href: "/blog", label: c.nav.blog },
-    { href: href("/internship"), label: c.nav.internship },
     { href: href("/quote"), label: c.nav.quote },
   ];
   return {
@@ -113,7 +122,8 @@ function buildNav(lang: "th" | "en") {
 export function Header() {
   const lang = isEnglishPath(usePathname()) ? "en" : "th";
   const { navLinks, homeHref, visaHref, mediaHref, contact } = buildNav(lang);
-  const [isServicesOpen, setIsServicesOpen] = React.useState(false);
+  // เมนูที่มีเมนูย่อยมีหลายอัน จึงเก็บว่าอันไหนเปิดอยู่ (label) แทน true/false ตัวเดียว
+  const [openMenu, setOpenMenu] = React.useState<string | null>(null);
   const [isClient, setIsClient] = React.useState(false);
   const [isSheetOpen, setIsSheetOpen] = React.useState(false);
 
@@ -128,7 +138,7 @@ export function Header() {
         <div
           className={cn(
             "fixed inset-0 bg-black/30 backdrop-blur-md transition-all duration-500 pointer-events-none z-[-1]",
-            isServicesOpen ? "opacity-100" : "opacity-0"
+            openMenu ? "opacity-100" : "opacity-0"
           )}
           aria-hidden="true"
         />
@@ -156,13 +166,13 @@ export function Header() {
                   <div
                     key={link.label}
                     className="relative h-16 flex items-center"
-                    onMouseEnter={() => setIsServicesOpen(true)}
-                    onMouseLeave={() => setIsServicesOpen(false)}
+                    onMouseEnter={() => setOpenMenu(link.label)}
+                    onMouseLeave={() => setOpenMenu(null)}
                   >
                     <div className="flex items-center gap-1 text-foreground/70 transition-colors hover:text-primary outline-none cursor-default py-4">
-                      {link.label} <ChevronDown className={cn("relative top-[1px] h-4 w-4 transition-transform duration-200", isServicesOpen ? "rotate-180" : "")} />
+                      {link.label} <ChevronDown className={cn("relative top-[1px] h-4 w-4 transition-transform duration-200", openMenu === link.label ? "rotate-180" : "")} />
                     </div>
-                    {isServicesOpen && (
+                    {openMenu === link.label && (
                       <div className="absolute top-full left-1/2 -translate-x-1/2 w-64 z-50 pt-0">
                         <div className="overflow-hidden rounded-xl border bg-popover p-2 text-popover-foreground shadow-2xl animate-in fade-in-0 slide-in-from-top-5 duration-500 fill-mode-both">
                           {link.subLinks.map((subLink) => (
@@ -170,7 +180,7 @@ export function Header() {
                               key={subLink.label}
                               href={subLink.href}
                               className="relative flex select-none items-center gap-3 rounded-lg px-4 py-3 text-base outline-none transition-all hover:bg-primary hover:text-primary-foreground cursor-pointer"
-                              onClick={() => setIsServicesOpen(false)}
+                              onClick={() => setOpenMenu(null)}
                             >
                               <subLink.icon className="h-5 w-5" />
                               {subLink.label}
@@ -233,7 +243,7 @@ export function Header() {
                         {navLinks.map((link) =>
                           link.subLinks ? (
                             <Accordion key={link.label} type="single" collapsible className="w-full">
-                              <AccordionItem value="services" className="border-b-0">
+                              <AccordionItem value={link.label} className="border-b-0">
                                 <AccordionTrigger className="py-0 text-lg font-medium text-muted-foreground hover:text-primary hover:no-underline">
                                   {link.label}
                                 </AccordionTrigger>
