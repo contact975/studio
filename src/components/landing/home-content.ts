@@ -91,18 +91,17 @@ export type HomeContent = {
   whyUs: {
     eyebrow: string;
     title: string;
+    lead: string;
     items: Six<{ title: string; subtitle: string; description: string }>;
   };
   behindTheScenes: {
     eyebrow: string;
     title: string;
     lead: string;
+    /** alt ของรูปแต่ละรูป ใช้ {n} แทนลำดับรูป */
     imageAlt: string;
-    uploadPlaceholder: string;
-    prev: string;
-    next: string;
-    /** ใช้ {n} แทนเลขสไลด์ */
-    goToSlide: string;
+    hint: string;
+    close: string;
   };
   testimonials: {
     eyebrow: string;
@@ -279,6 +278,7 @@ const th: HomeContent = {
   whyUs: {
     eyebrow: 'Why IC',
     title: 'ทำไมต้องเลือก IC Accounting & Service?',
+    lead: 'หกเหตุผลที่ธุรกิจเลือกให้ IC เป็นที่ปรึกษาส่วนตัว ตั้งแต่ทีมที่เข้าใจธุรกิจจริง ระบบออนไลน์ที่ส่งเอกสารได้จากทุกที่ ไปจนถึงการดูแลแบบใกล้ชิดและเป็นกันเอง',
     items: [
       {
         title: 'Professional Expertise',
@@ -322,11 +322,9 @@ const th: HomeContent = {
     eyebrow: 'Behind The Scenes',
     title: 'ทีมงานจริง ดูแลทุกขั้นตอนการทำงาน',
     lead: 'ตั้งแต่ทีมนักบัญชี ระบบตรวจสอบ การยื่นเอกสารราชการ ไปจนถึงการแบ่งปันความรู้ให้ธุรกิจของคุณ',
-    imageAlt: 'ผลงานและกิจกรรมของ IC',
-    uploadPlaceholder: 'อัปโหลดรูปการทำงาน',
-    prev: 'ก่อนหน้า',
-    next: 'ถัดไป',
-    goToSlide: 'ไปสไลด์ {n}',
+    imageAlt: 'บรรยากาศการทำงานของทีม IC รูปที่ {n}',
+    hint: 'แตะรูปเพื่อดูขนาดใหญ่',
+    close: 'ปิดรูป',
   },
   testimonials: {
     eyebrow: 'Reviews',
@@ -598,6 +596,7 @@ const en: HomeContent = {
   whyUs: {
     eyebrow: 'Why IC',
     title: 'Why choose IC Accounting & Service?',
+    lead: 'Six reasons businesses choose IC as their personal advisor, from a team that truly understands your business and an online system for sending documents from anywhere, to close, friendly support.',
     items: [
       {
         title: 'Professional Expertise',
@@ -641,11 +640,9 @@ const en: HomeContent = {
     eyebrow: 'Behind The Scenes',
     title: 'A real team, looking after every step',
     lead: 'From our accountants and review process to government filings and sharing knowledge with your business.',
-    imageAlt: 'IC at work and at our activities',
-    uploadPlaceholder: 'Upload a work photo',
-    prev: 'Previous',
-    next: 'Next',
-    goToSlide: 'Go to slide {n}',
+    imageAlt: 'The IC team at work, photo {n}',
+    hint: 'Tap a photo to view it larger',
+    close: 'Close photo',
   },
   testimonials: {
     eyebrow: 'Reviews',

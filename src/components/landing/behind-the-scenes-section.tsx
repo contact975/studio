@@ -1,155 +1,68 @@
 "use client";
 
-import { Upload, ChevronLeft, ChevronRight } from "lucide-react";
-import { useEffect, useState } from "react";
-import Image from "next/image";
+import { Gallery, GalleryGrid, GalleryImage, type GalleryImageData } from "@/components/ui/shared-element-gallery";
 import { fill, type HomeContent } from "./home-content";
 
-type Slide = {
-  image?: string;
-};
+/**
+ * Behind The Scenes — รูปทีมงานจริงแบบ masonry กดแล้วขยายเต็มจอ (components/ui/shared-element-gallery.tsx)
+ *
+ * เดิมเป็นสไลด์ครอปทุกรูปเป็นแนวตั้ง 3:4 รูปแนวนอนจึงโดนตัดหัวตัดท้าย
+ * แบบ masonry แสดงรูปตามสัดส่วนจริง จึงต้องใส่ width/height จริงของแต่ละไฟล์ไว้ด้วย
+ *
+ * ── เพิ่มรูปใหม่ ──
+ * ย่อเป็น WebP ด้านยาวไม่เกิน 1600px คุณภาพ ~78 แล้ววางใน public/images/behind-the-scenes/
+ * (รูปจากมือถือ 1.5–2 MB เหลือ ~100–200 KB และ next/image ย่อซ้ำตามขนาดจอให้อีกชั้น)
+ * รูปชุดเก่าอยู่ใน Firebase Storage โฟลเดอร์ "Behide Scene" ใช้ได้ทั้งสองแหล่ง
+ */
+const STORAGE = "https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Behide%20Scene%2FBehide%20Scene%20";
+const fb = (file: string) => `${STORAGE}${file}?alt=media`;
+const local = (name: string) => `/images/behind-the-scenes/${name}.webp`;
 
-const slides: Slide[] = [
-  { image: "https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Behide%20Scene%2FBehide%20Scene%2001.jpg?alt=media" },
-  { image: "https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Behide%20Scene%2FBehide%20Scene%2003.jpg?alt=media" },
-  { image: "https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Behide%20Scene%2FBehide%20Scene%2004.jpg?alt=media" },
-  { image: "https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Behide%20Scene%2FBehide%20Scene%2005.jpg?alt=media" },
-  { image: "https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Behide%20Scene%2FBehide%20Scene%2006.jpg?alt=media" },
-  { image: "https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Behide%20Scene%2FBehide%20Scene%2002.jpg?alt=media" },
-  { image: "https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Behide%20Scene%2FBehide%20Scene%2015.png?alt=media" },
-  { image: "https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Behide%20Scene%2FBehide%20Scene%2009.jpg?alt=media" },
-  { image: "https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Behide%20Scene%2FBehide%20Scene%2010.jpg?alt=media" },
-  { image: "https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Behide%20Scene%2FBehide%20Scene%2011.jpg?alt=media" },
-  { image: "https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Behide%20Scene%2FBehide%20Scene%2012.jpg?alt=media" },
-  { image: "https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Behide%20Scene%2FBehide%20Scene%2016.png?alt=media" },
-  { image: "https://firebasestorage.googleapis.com/v0/b/studio-3153056778-cc8e4.firebasestorage.app/o/Behide%20Scene%2FBehide%20Scene%2017.png?alt=media" },
+const PHOTOS: [src: string, width: number, height: number][] = [
+  [local("client-meeting"), 1600, 1200],
+  [fb("04.jpg"), 709, 945],
+  [local("rocq-training-dbd"), 1477, 1108],
+  [local("team-training"), 1200, 1600],
+  [fb("01.jpg"), 1260, 945],
+  [local("client-visit-team"), 1600, 1200],
+  [fb("05.jpg"), 709, 945],
+  [local("client-consult-cafe"), 1200, 1600],
+  [fb("03.jpg"), 1260, 945],
+  [fb("17.png"), 1086, 1448],
+  [fb("06.jpg"), 709, 945],
+  [fb("02.jpg"), 1248, 955],
+  [fb("12.jpg"), 1108, 1499],
+  [fb("15.png"), 1448, 1086],
+  [fb("09.jpg"), 698, 945],
+  [fb("16.png"), 1448, 1086],
 ];
 
-export function BehindTheScenesSection({ c }: { c: HomeContent['behindTheScenes'] }) {
-  const [perView, setPerView] = useState(4);
-  const [index, setIndex] = useState(0);
-
-  useEffect(() => {
-    const calc = () => {
-      const w = window.innerWidth;
-      if (w <= 520) setPerView(1);
-      else if (w <= 768) setPerView(2);
-      else if (w <= 1024) setPerView(3);
-      else setPerView(4);
-    };
-    calc();
-    window.addEventListener("resize", calc);
-    return () => window.removeEventListener("resize", calc);
-  }, []);
-
-  const maxIndex = Math.max(0, slides.length - perView);
-
-  useEffect(() => {
-    if (index > maxIndex) setIndex(maxIndex);
-  }, [maxIndex, index]);
-
-  useEffect(() => {
-    const t = setInterval(() => {
-      setIndex((i) => (i >= maxIndex ? 0 : i + 1));
-    }, 3200);
-    return () => clearInterval(t);
-  }, [maxIndex]);
-
-  // มือถือ (perView = 1): รูปเต็มความกว้างจอ ไม่มีช่องว่าง ไม่มีมุมโค้ง
-  const fullBleed = perView === 1;
-  const gap = fullBleed ? "0rem" : "1.25rem";
+export function BehindTheScenesSection({ c }: { c: HomeContent["behindTheScenes"] }) {
+  const images: GalleryImageData[] = PHOTOS.map(([src, width, height], i) => ({
+    id: String(i),
+    src,
+    alt: fill(c.imageAlt, { n: i + 1 }),
+    width,
+    height,
+  }));
 
   return (
-    <section className="py-20 md:py-28 bg-background overflow-hidden">
+    <section className="py-20 md:py-28 bg-background">
       <div className="container mx-auto px-4 md:px-6 max-w-7xl">
-        <div className="text-center mb-14">
-          <p className="text-primary text-xs font-bold tracking-[0.3em] uppercase mb-3">
-            {c.eyebrow}
-          </p>
-          <h2 className="text-3xl md:text-4xl font-black text-foreground mb-3">
-            {c.title}
-          </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            {c.lead}
-          </p>
+        <div className="text-center mb-12 md:mb-14">
+          <p className="text-primary text-xs font-bold tracking-[0.3em] uppercase mb-3">{c.eyebrow}</p>
+          <h2 className="text-3xl md:text-4xl font-black text-foreground mb-3">{c.title}</h2>
+          <p className="text-muted-foreground max-w-2xl mx-auto">{c.lead}</p>
+          <p className="mt-3 text-xs text-muted-foreground/80">{c.hint}</p>
         </div>
 
-        <div className={fullBleed ? "-mx-4 overflow-hidden" : "overflow-hidden"}>
-          <div
-            className={`flex ${fullBleed ? "gap-0" : "gap-5"} transition-transform duration-500 ease-out`}
-            style={{
-              transform: `translateX(calc(-${index} * (100% + ${gap}) / ${perView}))`,
-            }}
-          >
-            {slides.map((slide, i) => (
-              <div
-                key={i}
-                className={`relative shrink-0 overflow-hidden bg-[#0b1a3a] ${
-                  fullBleed
-                    ? "aspect-[3/4] max-h-[78svh]"
-                    : "aspect-[3/4] rounded-[22px] shadow-[0_20px_40px_-24px_rgba(30,64,175,0.45)]"
-                }`}
-                style={{
-                  width: `calc((100% - (${perView} - 1) * ${gap}) / ${perView})`,
-                }}
-              >
-                {slide.image ? (
-                  <Image
-                    src={slide.image}
-                    alt={c.imageAlt}
-                    fill
-                    /* container เป็น max-w-7xl (1280px) → การ์ดกว้างสุดจริง ~305px
-                       ถ้าปล่อย 23vw ไว้ จอ 1920 จะไปโหลด w=1080 ทั้งที่ต้องการแค่ ~610 */
-                    sizes="(max-width: 520px) 100vw, (max-width: 768px) 45vw, (max-width: 1024px) 30vw, (max-width: 1280px) 23vw, 305px"
-                    className="object-cover"
-                    loading="lazy"
-                    quality={72}
-                  />
-                ) : (
-                  <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-gradient-to-br from-[#1e40af] via-[#2563eb] to-[#3b82f6] text-blue-100">
-                    <div className="flex h-[74px] w-[74px] items-center justify-center rounded-full border-2 border-dashed border-blue-100/70 bg-white/10">
-                      <Upload className="h-8 w-8 text-blue-50" />
-                    </div>
-                    <span className="text-sm font-medium opacity-90">{c.uploadPlaceholder}</span>
-                  </div>
-                )}
-              </div>
+        <Gallery closeLabel={c.close}>
+          <GalleryGrid>
+            {images.map((image) => (
+              <GalleryImage key={image.id} image={image} />
             ))}
-          </div>
-        </div>
-
-        <div className="mt-9 flex justify-center gap-3">
-          <button
-            type="button"
-            aria-label={c.prev}
-            onClick={() => setIndex((i) => (i <= 0 ? maxIndex : i - 1))}
-            className="flex h-12 w-12 items-center justify-center rounded-full border border-border bg-background text-primary transition-colors hover:border-primary hover:bg-primary hover:text-primary-foreground"
-          >
-            <ChevronLeft className="h-5 w-5" />
-          </button>
-          <button
-            type="button"
-            aria-label={c.next}
-            onClick={() => setIndex((i) => (i >= maxIndex ? 0 : i + 1))}
-            className="flex h-12 w-12 items-center justify-center rounded-full border border-border bg-background text-primary transition-colors hover:border-primary hover:bg-primary hover:text-primary-foreground"
-          >
-            <ChevronRight className="h-5 w-5" />
-          </button>
-        </div>
-
-        <div className="mt-5 flex justify-center gap-2">
-          {Array.from({ length: maxIndex + 1 }).map((_, i) => (
-            <button
-              key={i}
-              type="button"
-              aria-label={fill(c.goToSlide, { n: i + 1 })}
-              onClick={() => setIndex(i)}
-              className={`h-2 rounded-full transition-all ${
-                i === index ? "w-7 bg-primary" : "w-2 bg-border"
-              }`}
-            />
-          ))}
-        </div>
+          </GalleryGrid>
+        </Gallery>
       </div>
     </section>
   );
