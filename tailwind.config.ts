@@ -94,6 +94,13 @@ export default {
           '50%': { transform: 'translateY(-20px)' },
           '100%': { transform: 'translateY(0px)' },
         },
+        // บับเบิลแชท: เด้ง 2 ครั้งแล้วพัก ให้คนเห็นแต่ไม่กวนสายตาตลอดเวลา
+        'chat-bounce': {
+          '0%, 40%, 100%': { transform: 'translateY(0)' },
+          '10%': { transform: 'translateY(-12px)' },
+          '20%': { transform: 'translateY(0)' },
+          '28%': { transform: 'translateY(-6px)' },
+        },
         'light-sweep': {
           '0%': { transform: 'translateX(-100%)' },
           '100%': { transform: 'translateX(100%)' },
@@ -108,6 +115,7 @@ export default {
         'accordion-up': 'accordion-up 0.2s ease-out',
         'float': 'float 6s ease-in-out infinite',
         'light-sweep': 'light-sweep 1.5s ease-in-out infinite',
+        'chat-bounce': 'chat-bounce 3s ease-in-out infinite',
         'marquee': 'marquee 25s linear infinite',
       },
     },

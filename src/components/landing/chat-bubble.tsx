@@ -260,7 +260,7 @@ export function ChatBubble() {
         onClick={toggle}
         aria-label={open ? c.close : c.open}
         aria-expanded={open}
-        className="grid h-14 w-14 place-items-center rounded-full bg-[#2657c1] text-white shadow-[0_8px_24px_rgba(38,87,193,0.35)] transition hover:bg-[#1e47a3] hover:shadow-[0_10px_30px_rgba(38,87,193,0.45)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2657c1]"
+        className={`grid h-14 w-14 place-items-center rounded-full ${open ? '' : 'motion-safe:animate-chat-bounce hover:[animation-play-state:paused]'} bg-[#2657c1] text-white shadow-[0_8px_24px_rgba(38,87,193,0.35)] transition hover:bg-[#1e47a3] hover:shadow-[0_10px_30px_rgba(38,87,193,0.45)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2657c1]`}
       >
         {open ? <X className="h-6 w-6" /> : <MessageCircle className="h-7 w-7" />}
       </button>
