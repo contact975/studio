@@ -3,16 +3,27 @@
 import * as React from "react";
 import { useEffect, useRef } from "react";
 import Link from "next/link";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import type { LucideIcon } from "lucide-react";
 import { ArrowUp, MapPin, Mail, Building2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-// ลงทะเบียน ScrollTrigger เฉพาะฝั่ง client (ไฟล์นี้ถูก import ตอน SSR ด้วย)
-if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger);
-}
+/**
+ * โหลด GSAP + ScrollTrigger แบบ lazy (แก้ 19 พ.ย. 2569 เพื่อคะแนนความเร็วมือถือ)
+ *
+ * ฟุตเตอร์อยู่ทุกหน้า เดิม import gsap ไว้บนสุด ทำให้ทุกหน้าต้องโหลดและรัน ~45 KB gzip
+ * ตั้งแต่เปิดหน้า ทั้งที่แอนิเมชันเกิดตอนเลื่อนถึงท้ายหน้าเท่านั้น
+ * ตอนนี้แยกเป็น chunk ต่างหาก โหลดเมื่อฟุตเตอร์ใกล้เข้าจอ หรือตอนเมาส์แตะปุ่มแม่เหล็กครั้งแรก
+ * แอนิเมชันเหมือนเดิมทุกอย่าง
+ */
+type Gsap = typeof import("gsap").gsap;
+let gsapPromise: Promise<Gsap> | null = null;
+const loadGsap = () => {
+  gsapPromise ??= Promise.all([import("gsap"), import("gsap/ScrollTrigger")]).then(([g, st]) => {
+    g.gsap.registerPlugin(st.ScrollTrigger);
+    return g.gsap;
+  });
+  return gsapPromise;
+};
 
 // -------------------------------------------------------------------------
 // 1. STYLES
@@ -165,45 +176,57 @@ const MagneticButton = React.forwardRef<HTMLElement, MagneticButtonProps>(
       const element = localRef.current;
       if (!element || prefersReducedMotion()) return;
 
-      const ctx = gsap.context(() => {
-        const handleMouseMove = (e: MouseEvent) => {
-          const rect = element.getBoundingClientRect();
-          const x = e.clientX - rect.left - rect.width / 2;
-          const y = e.clientY - rect.top - rect.height / 2;
+      let gsap: Gsap | null = null;
+      let alive = true;
+      // โหลด GSAP ตอนเมาส์แตะปุ่มครั้งแรก — มือถือไม่มี mousemove จึงไม่โหลดเลยจากส่วนนี้
+      const ensure = () => {
+        if (gsap) return gsap;
+        loadGsap().then((g) => {
+          if (alive) gsap = g;
+        });
+        return null;
+      };
 
-          gsap.to(element, {
-            x: x * 0.4,
-            y: y * 0.4,
-            rotationX: -y * 0.15,
-            rotationY: x * 0.15,
-            scale: 1.05,
-            ease: "power2.out",
-            duration: 0.4,
-          });
-        };
+      const handleMouseMove = (e: MouseEvent) => {
+        const g = ensure();
+        if (!g) return;
+        const rect = element.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
 
-        const handleMouseLeave = () => {
-          gsap.to(element, {
-            x: 0,
-            y: 0,
-            rotationX: 0,
-            rotationY: 0,
-            scale: 1,
-            ease: "elastic.out(1, 0.3)",
-            duration: 1.2,
-          });
-        };
+        g.to(element, {
+          x: x * 0.4,
+          y: y * 0.4,
+          rotationX: -y * 0.15,
+          rotationY: x * 0.15,
+          scale: 1.05,
+          ease: "power2.out",
+          duration: 0.4,
+        });
+      };
 
-        element.addEventListener("mousemove", handleMouseMove);
-        element.addEventListener("mouseleave", handleMouseLeave);
+      const handleMouseLeave = () => {
+        gsap?.to(element, {
+          x: 0,
+          y: 0,
+          rotationX: 0,
+          rotationY: 0,
+          scale: 1,
+          ease: "elastic.out(1, 0.3)",
+          duration: 1.2,
+        });
+      };
 
-        return () => {
-          element.removeEventListener("mousemove", handleMouseMove);
-          element.removeEventListener("mouseleave", handleMouseLeave);
-        };
-      }, element);
+      element.addEventListener("mousemove", handleMouseMove);
+      element.addEventListener("mouseleave", handleMouseLeave);
 
-      return () => ctx.revert();
+      return () => {
+        alive = false;
+        element.removeEventListener("mousemove", handleMouseMove);
+        element.removeEventListener("mouseleave", handleMouseLeave);
+        gsap?.killTweensOf(element);
+        gsap?.set(element, { clearProps: "transform" });
+      };
     }, []);
 
     return (
@@ -313,48 +336,70 @@ export function CinematicFooter({
   }, []);
 
   useEffect(() => {
-    if (!wrapperRef.current || prefersReducedMotion()) return;
+    const wrapper = wrapperRef.current;
+    if (!wrapper || prefersReducedMotion()) return;
 
-    // gsap.context ทำให้ cleanup ถูกต้องใน React Strict Mode
-    const ctx = gsap.context(() => {
-      // ตัวหนังสือยักษ์ด้านหลังค่อยๆ ลอยขึ้นตามการเลื่อน
-      gsap.fromTo(
-        giantTextRef.current,
-        { y: "10vh", scale: 0.8, opacity: 0 },
-        {
-          y: "0vh",
-          scale: 1,
-          opacity: 1,
-          ease: "power1.out",
-          scrollTrigger: {
-            trigger: wrapperRef.current,
-            start: "top 80%",
-            end: "bottom bottom",
-            scrub: 1,
-          },
-        }
-      );
+    let ctx: { revert: () => void } | null = null;
+    let alive = true;
 
-      // หัวข้อ + ลิงก์โผล่ทีละชุด
-      gsap.fromTo(
-        [headingRef.current, linksRef.current],
-        { y: 50, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          stagger: 0.15,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: wrapperRef.current,
-            start: "top 40%",
-            end: "bottom bottom",
-            scrub: 1,
-          },
-        }
-      );
-    }, wrapperRef);
+    const start = (gsap: Gsap) => {
+      if (!alive) return;
+      // gsap.context ทำให้ cleanup ถูกต้องใน React Strict Mode
+      ctx = gsap.context(() => {
+        // ตัวหนังสือยักษ์ด้านหลังค่อยๆ ลอยขึ้นตามการเลื่อน
+        gsap.fromTo(
+          giantTextRef.current,
+          { y: "10vh", scale: 0.8, opacity: 0 },
+          {
+            y: "0vh",
+            scale: 1,
+            opacity: 1,
+            ease: "power1.out",
+            scrollTrigger: {
+              trigger: wrapperRef.current,
+              start: "top 80%",
+              end: "bottom bottom",
+              scrub: 1,
+            },
+          }
+        );
 
-    return () => ctx.revert();
+        // หัวข้อ + ลิงก์โผล่ทีละชุด
+        gsap.fromTo(
+          [headingRef.current, linksRef.current],
+          { y: 50, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            stagger: 0.15,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: wrapperRef.current,
+              start: "top 40%",
+              end: "bottom bottom",
+              scrub: 1,
+            },
+          }
+        );
+      }, wrapperRef);
+    };
+
+    // เริ่มโหลดเมื่อฟุตเตอร์อยู่ห่างจากจอไม่เกิน ~1.5 หน้าจอ ทันก่อน trigger "top 80%" แน่นอน
+    const io = new IntersectionObserver(
+      (entries) => {
+        if (!entries.some((e) => e.isIntersecting)) return;
+        io.disconnect();
+        loadGsap().then(start);
+      },
+      { rootMargin: "150% 0px" }
+    );
+    io.observe(wrapper);
+
+    return () => {
+      alive = false;
+      io.disconnect();
+      ctx?.revert();
+    };
   }, []);
 
   const scrollToTop = () => {

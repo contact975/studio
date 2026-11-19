@@ -64,6 +64,27 @@ const startWidth = (freeHeight: number) => {
   return Math.min(byWidth, byHeight);
 };
 
+/**
+ * โหลดคลิปฉากหลัง / สคริปต์ Wistia ล่วงหน้าได้ไหม
+ *
+ * ── ทำไมต้องเช็คขนาดจอ ── (แก้ 19 พ.ย. 2569 หลัง PageSpeed มือถือฟ้องว่าหน้าหนัก 4.1 MB)
+ * section นี้อยู่ถัดจาก hero ทันที IntersectionObserver จึงเห็นมันตั้งแต่เปิดหน้า
+ * แล้วดาวน์โหลด ic-showreel.mp4 (3.2 MB) ทันที — รวมถึงบนมือถือ ทั้งที่ชั้นวิดีโอถูกซ่อน (hidden md:block)
+ * คนเปิดบนมือถือจึงเสียเน็ต 3.2 MB ให้คลิปที่มองไม่เห็นเลย ส่วน player.js ของ Wistia (172 KB)
+ * ก็โหลดตั้งแต่ต้นแม้ยังไม่มีใครกดเล่น บนมือถือไม่ต้อง preload — กดปุ่มเล่นแล้ว handlePlay โหลดเอง
+ */
+const shouldPreload = () => {
+  if (!window.matchMedia('(min-width: 768px)').matches) return false;
+  const conn = (navigator as { connection?: { saveData?: boolean; effectiveType?: string } }).connection;
+  return !(conn?.saveData || /(^|-)2g$/.test(conn?.effectiveType ?? ''));
+};
+
+/** รอให้หน้าโหลดเสร็จก่อน ไฟล์ใหญ่จะได้ไม่แย่งแบนด์วิดท์กับ JS / ฟอนต์ / รูปที่ต้องใช้แสดงหน้าแรก */
+const afterPageLoad = (cb: () => void) => {
+  if (document.readyState === 'complete') cb();
+  else window.addEventListener('load', cb, { once: true });
+};
+
 const WISTIA_MEDIA_ID = 'hd04a418nd';
 const WISTIA_POSTER = `https://fast.wistia.com/embed/medias/${WISTIA_MEDIA_ID}/swatch`;
 
@@ -173,17 +194,18 @@ export function MaskRevealSection({
     const track = trackRef.current;
     if (!video || !track || !videoSrc) return;
 
-    const conn = (navigator as { connection?: { saveData?: boolean; effectiveType?: string } }).connection;
-    if (conn?.saveData || /(^|-)2g$/.test(conn?.effectiveType ?? '')) return;
+    if (!shouldPreload()) return;
 
     const io = new IntersectionObserver(
       (entries) => {
         if (!entries.some((e) => e.isIntersecting)) return;
         io.disconnect();
-        video.src = videoSrc;
-        video.load();
-        video.play().catch(() => {
-          /* บางเบราว์เซอร์ปฏิเสธ autoplay — ปล่อยให้เป็นภาพ poster ไป */
+        afterPageLoad(() => {
+          video.src = videoSrc;
+          video.load();
+          video.play().catch(() => {
+            /* บางเบราว์เซอร์ปฏิเสธ autoplay — ปล่อยให้เป็นภาพ poster ไป */
+          });
         });
       },
       { rootMargin: '400px 0px' }
@@ -193,26 +215,27 @@ export function MaskRevealSection({
     return () => io.disconnect();
   }, [videoSrc]);
 
-  /* ── preload สคริปต์ Wistia ตอนเลื่อนมาใกล้ (เหมือนเดิม) ── */
+  /* ── preload สคริปต์ Wistia ตอนเลื่อนมาใกล้ (เฉพาะจอใหญ่ หลังหน้าโหลดเสร็จ) ── */
   React.useEffect(() => {
     const track = trackRef.current;
     if (!track) return;
 
-    const conn = (navigator as { connection?: { saveData?: boolean; effectiveType?: string } }).connection;
-    if (conn?.saveData || /(^|-)2g$/.test(conn?.effectiveType ?? '')) return;
+    if (!shouldPreload()) return;
 
     const io = new IntersectionObserver(
       (entries) => {
         if (!entries.some((e) => e.isIntersecting)) return;
         io.disconnect();
-        const w = window as unknown as {
-          requestIdleCallback?: (cb: () => void, opts?: { timeout: number }) => number;
-        };
-        if (typeof w.requestIdleCallback === 'function') {
-          w.requestIdleCallback(loadPlayerScript, { timeout: 2000 });
-        } else {
-          window.setTimeout(loadPlayerScript, 500);
-        }
+        afterPageLoad(() => {
+          const w = window as unknown as {
+            requestIdleCallback?: (cb: () => void, opts?: { timeout: number }) => number;
+          };
+          if (typeof w.requestIdleCallback === 'function') {
+            w.requestIdleCallback(loadPlayerScript, { timeout: 2000 });
+          } else {
+            window.setTimeout(loadPlayerScript, 500);
+          }
+        });
       },
       { rootMargin: '300px 0px' }
     );
