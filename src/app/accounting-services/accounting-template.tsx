@@ -5,6 +5,8 @@ import { SmartPackagePicker } from '@/components/landing/smart-package-picker';
 import { PACKAGES, COMPARISON_ROWS, TOTAL_EXTRA_GROUPS, formatPrice as fmt } from '@/lib/accounting-packages';
 import { CheckCircle, ArrowRight, Check, Minus, Info, MessageSquare, ShieldCheck, ExternalLink } from 'lucide-react';
 import { ServiceFaq } from '@/components/seo/service-faq';
+import { ReviewStrip } from '@/components/seo/review-strip';
+import type { GoogleReviewsPayload } from '@/lib/google-reviews';
 import { RelatedArticles } from '@/components/seo/related-articles';
 import type { AccountingContent } from './accounting-content';
 
@@ -24,7 +26,16 @@ const gridBg = (size: number) => ({
   backgroundSize: `${size}px ${size}px`,
 });
 
-export function AccountingTemplate({ c, quoteHref }: { c: AccountingContent; quoteHref: string }) {
+export function AccountingTemplate({
+  c,
+  quoteHref,
+  reviews,
+}: {
+  c: AccountingContent;
+  quoteHref: string;
+  /** ดึงฝั่งเซิร์ฟเวอร์ใน page.tsx ให้รีวิวอยู่ใน HTML */
+  reviews?: GoogleReviewsPayload;
+}) {
   const pkgCards = [
     { key: 'smart', pkg: PACKAGES.smart, text: c.packages.smart },
     { key: 'total', pkg: PACKAGES.total, text: c.packages.total },
@@ -213,6 +224,9 @@ export function AccountingTemplate({ c, quoteHref }: { c: AccountingContent; quo
             </div>
           </div>
         </section>
+
+        {/* ── รีวิว Google — วางต่อจากราคา ตรงจุดที่ลูกค้ากำลังตัดสินใจ ── */}
+        <ReviewStrip data={reviews} copy={c.reviews} />
 
         {/* ── GUIDANCE ── */}
         <section className="py-20 md:py-24" data-aos="fade-up">

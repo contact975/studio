@@ -6,6 +6,7 @@ import { Footer } from '@/components/landing/footer';
 import { GoogleRatingBadge } from '@/components/seo/google-rating-badge';
 import { visaPageCss } from './visa-page-styles';
 import type { VisaContent } from './visa-content';
+import type { GoogleReviewsPayload } from '@/lib/google-reviews';
 
 /**
  * เทมเพลตหน้า Visa & Work Permit ที่ใช้ร่วมกันทั้งสองภาษา
@@ -49,7 +50,7 @@ const serviceIcons = [
 
 const LINE_URL = 'https://line.me/R/ti/p/@icacc';
 
-export function VisaPageTemplate({ c }: { c: VisaContent }) {
+export function VisaPageTemplate({ c, reviews }: { c: VisaContent; reviews?: GoogleReviewsPayload }) {
   const isThai = c.htmlLang === 'th';
 
   // หน้าไทยชี้ตัวแปรฟอนต์ไปที่ Kanit โดยที่ค่าอื่นใน CSS ไม่ขยับเลย
@@ -355,7 +356,7 @@ export function VisaPageTemplate({ c }: { c: VisaContent }) {
             <h2 className="title">{c.office.title}</h2>
             <p className="sublead">{c.office.sublead}</p>
             <div style={{ marginTop: 22 }}>
-              <GoogleRatingBadge label={c.office.ratingLabel} reviewsLabel={c.office.reviewsLabel} />
+              <GoogleRatingBadge label={c.office.ratingLabel} reviewsLabel={c.office.reviewsLabel} initial={reviews} />
             </div>
             <div className="officegrid">
               <div className="officeshot">

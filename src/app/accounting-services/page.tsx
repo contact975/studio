@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { JsonLd } from '@/components/seo/json-ld';
+import { getGoogleReviews } from '@/lib/google-reviews';
 import { breadcrumbSchema, faqSchema, serviceSchema } from '@/lib/seo';
 import { PACKAGES, SMART_SERVICES } from '@/lib/accounting-packages';
 import { AccountingTemplate } from './accounting-template';
@@ -34,7 +35,15 @@ export const metadata: Metadata = {
   },
 };
 
-export default function AccountingServicesPage() {
+/**
+ * รีวิว Google ดึงฝั่งเซิร์ฟเวอร์ให้อยู่ใน HTML — API key มีเฉพาะตอนรัน ไม่มีตอน build
+ * จึงต้อง revalidate ให้หน้าถูกสร้างใหม่ตอนรันพร้อมรีวิว (เหตุผลเดียวกับ app/page.tsx)
+ * ไม่เพิ่มค่า Places API เพราะ fetch รีวิวมี cache ของตัวเอง 24 ชม.
+ */
+export const revalidate = 300;
+
+export default async function AccountingServicesPage() {
+  const { payload: reviews } = await getGoogleReviews();
   return (
     <div className="flex flex-col min-h-dvh bg-background text-foreground">
       <JsonLd
@@ -57,7 +66,7 @@ export default function AccountingServicesPage() {
           faqSchema(c.faq.items),
         ]}
       />
-      <AccountingTemplate c={c} quoteHref="/quote" />
+      <AccountingTemplate c={c} quoteHref="/quote" reviews={reviews} />
     </div>
   );
 }

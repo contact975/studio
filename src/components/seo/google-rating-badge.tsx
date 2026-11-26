@@ -17,19 +17,27 @@ import type { GoogleReviewsPayload } from '@/lib/google-reviews';
  * การแสดงให้คนอ่านเห็นทำได้ แต่ห้ามประกาศเป็น structured data
  *
  * ถ้าดึงข้อมูลไม่ได้หรือยังไม่ได้ตั้งค่า API จะไม่เรนเดอร์อะไรเลย ไม่ใช่โชว์ค่าว่าง
+ *
+ * ── initial ── (เพิ่ม 26 พ.ย. 2569)
+ * หน้าที่ดึง getGoogleReviews() ฝั่งเซิร์ฟเวอร์ส่งผลมาได้ ป้ายจะอยู่ใน HTML ตั้งแต่แรกให้บอตเห็น
+ * และไม่ต้องยิง /api/google-reviews ซ้ำ ถ้าไม่ส่งมา (หรือส่งมาแต่ว่าง) ก็ดึงเองหลังโหลดเหมือนเดิม
  */
 export function GoogleRatingBadge({
   label = 'on Google',
   reviewsLabel = 'reviews',
   className = '',
+  initial,
 }: {
   label?: string;
   reviewsLabel?: string;
   className?: string;
+  initial?: GoogleReviewsPayload;
 }) {
-  const [data, setData] = useState<GoogleReviewsPayload | null>(null);
+  const hasInitial = Boolean(initial?.configured && initial.rating != null);
+  const [data, setData] = useState<GoogleReviewsPayload | null>(hasInitial ? initial! : null);
 
   useEffect(() => {
+    if (hasInitial) return;
     let alive = true;
     fetch('/api/google-reviews')
       .then((r) => (r.ok ? r.json() : null))
@@ -42,7 +50,7 @@ export function GoogleRatingBadge({
     return () => {
       alive = false;
     };
-  }, []);
+  }, [hasInitial]);
 
   if (!data?.configured || data.rating == null) return null;
 

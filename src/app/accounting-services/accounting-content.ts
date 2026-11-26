@@ -1,3 +1,4 @@
+import type { ReviewStripCopy } from '@/components/seo/review-strip';
 import {
   SMART_PRICE,
   SMART_MIN_PRICE,
@@ -77,6 +78,8 @@ export type AccountingContent = {
     notIncluded: string;
     rows: Record<ComparisonId, { name: string; desc: string }>;
   };
+  /** แถบรีวิว Google ใต้ตารางเปรียบเทียบ (components/seo/review-strip.tsx) */
+  reviews: ReviewStripCopy;
   guidance: { eyebrow: string; title: string; smartTitle: string; totalTitle: string; smart: string[]; total: string[] };
   steps: { eyebrow: string; title: string; items: { step: string; title: string; desc: string }[] };
   notes: {
@@ -198,6 +201,13 @@ const th: AccountingContent = {
       manager: { name: 'ผู้ดูแลบัญชีประจำ ตอบภายใน 1 วันทำการ', desc: 'มีเจ้าหน้าที่รับผิดชอบบัญชีของกิจการโดยตรง ตอบข้อซักถามผ่าน LINE ภายใน 1 วันทำการ' },
       quarterly: { name: 'ประชุมทบทวนผลประกอบการรายไตรมาส', desc: 'ทบทวนผลประกอบการ ภาระภาษีที่จะเกิดขึ้น และประเด็นที่ควรปรับปรุงร่วมกับผู้บริหารทุกไตรมาส' },
     },
+  },
+  reviews: {
+    eyebrow: 'Google Reviews',
+    title: 'เสียงจากลูกค้าที่ใช้บริการทำบัญชีกับเรา',
+    ratingLabel: 'บน Google',
+    reviewsLabel: 'รีวิว',
+    more: 'อ่านรีวิวทั้งหมดบน Google',
   },
   guidance: {
     eyebrow: 'Guidance',
@@ -408,6 +418,13 @@ const en: AccountingContent = {
       manager: { name: 'A dedicated accountant who replies within 1 business day', desc: 'One person is responsible for your books and answers your questions on LINE within 1 business day.' },
       quarterly: { name: 'Quarterly performance review', desc: 'Every quarter we review performance, upcoming tax liabilities and areas to improve together with management.' },
     },
+  },
+  reviews: {
+    eyebrow: 'Google Reviews',
+    title: 'What our clients say',
+    ratingLabel: 'on Google',
+    reviewsLabel: 'reviews',
+    more: 'Read all reviews on Google',
   },
   guidance: {
     eyebrow: 'Guidance',

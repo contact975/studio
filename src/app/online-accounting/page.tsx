@@ -4,7 +4,9 @@ import { ArrowRight, CheckCircle, MapPin, MessageSquare, Check } from 'lucide-re
 import { Header } from '@/components/landing/header';
 import { Footer } from '@/components/landing/footer';
 import { JsonLd } from '@/components/seo/json-ld';
+import { getGoogleReviews } from '@/lib/google-reviews';
 import { ServiceFaq } from '@/components/seo/service-faq';
+import { ReviewStrip } from '@/components/seo/review-strip';
 import { RelatedArticles } from '@/components/seo/related-articles';
 import { breadcrumbSchema, faqSchema, serviceSchema } from '@/lib/seo';
 import { SMART_MIN_PRICE, TOTAL_PRICE } from '@/lib/accounting-packages';
@@ -37,7 +39,15 @@ const gridBg = {
   backgroundSize: '40px 40px',
 };
 
-export default function OnlineAccountingPage() {
+/**
+ * รีวิว Google ดึงฝั่งเซิร์ฟเวอร์ให้อยู่ใน HTML — API key มีเฉพาะตอนรัน ไม่มีตอน build
+ * จึงต้อง revalidate ให้หน้าถูกสร้างใหม่ตอนรันพร้อมรีวิว (เหตุผลเดียวกับ app/page.tsx)
+ * ไม่เพิ่มค่า Places API เพราะ fetch รีวิวมี cache ของตัวเอง 24 ชม.
+ */
+export const revalidate = 300;
+
+export default async function OnlineAccountingPage() {
+  const { payload: reviews } = await getGoogleReviews();
   const faqs = [...c.faq.items];
   return (
     <div className="flex flex-col min-h-dvh bg-background text-foreground">
@@ -177,6 +187,9 @@ export default function OnlineAccountingPage() {
             </div>
           </div>
         </section>
+
+        {/* ── รีวิว Google ── */}
+        <ReviewStrip data={reviews} copy={c.reviews} className="bg-secondary/30" />
 
         {/* ── ทำไม IC ── */}
         <section className="py-20 md:py-24 bg-secondary/30">

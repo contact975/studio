@@ -92,6 +92,14 @@ export const onlineContent = {
     accountingLink: 'ดูแพ็กเกจรับทำบัญชีและเลือกรายการ →',
     auditLink: 'ดูตารางค่าปิดงบตามช่วงรายได้ →',
   },
+  // แถบรีวิว Google ใต้สรุปราคา (components/seo/review-strip.tsx)
+  reviews: {
+    eyebrow: 'Google Reviews',
+    title: 'ลูกค้าพูดถึงการทำงานกับเราอย่างไร',
+    ratingLabel: 'บน Google',
+    reviewsLabel: 'รีวิว',
+    more: 'อ่านรีวิวทั้งหมดบน Google',
+  },
   why: {
     eyebrow: 'Why IC',
     title: 'ทำไมเลือกสำนักงานบัญชีออนไลน์กับ IC',
